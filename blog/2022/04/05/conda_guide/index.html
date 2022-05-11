@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Foundation of python&#x2F;conda前言 官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程  此外，最好的学习工具——搜索Google    Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的**包(packages)">
+    <meta name="description" content="Foundation of python&#x2F;conda  官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程  此外，最好的学习工具——搜索Google    Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的包(packages)，我们开展的绝大部分工作基">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A test post">
 <meta property="og:url" content="https://hscyber.github.io/blog/2022/04/05/conda_guide/index.html">
 <meta property="og:site_name" content="HS_Book">
-<meta property="og:description" content="Foundation of python&#x2F;conda前言 官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程  此外，最好的学习工具——搜索Google    Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的**包(packages)">
+<meta property="og:description" content="Foundation of python&#x2F;conda  官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程  此外，最好的学习工具——搜索Google    Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的包(packages)，我们开展的绝大部分工作基">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/blog/2022/04/05/conda_guide/image-20211019085800203.png">
 <meta property="og:image" content="https://hscyber.github.io/blog/2022/04/05/conda_guide/image-20211019090940839.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://hscyber.github.io/blog/2022/04/05/conda_guide/image-20211019092856016.png">
 <meta property="og:image" content="https://hscyber.github.io/blog/2022/04/05/conda_guide/image-20211023111239766.png">
 <meta property="article:published_time" content="2022-04-05T07:30:33.000Z">
-<meta property="article:modified_time" content="2022-05-11T15:48:38.429Z">
+<meta property="article:modified_time" content="2022-05-11T16:05:03.014Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="python conda">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundation-of-python-x2F-conda"><span class="nav-number">1.</span> <span class="nav-text">Foundation of python&#x2F;conda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E5%8F%8A%E5%85%B6%E8%84%9A%E6%9C%AC%E9%80%BB%E8%BE%91"><span class="nav-number">3.1.</span> <span class="nav-text">Python及其脚本逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%9F%E6%82%89%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">3.3.</span> <span class="nav-text">熟悉命令行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%8A%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="nav-number"></span> <span class="nav-text">环境及包管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Packages-%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">Packages 包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8Python%E8%A7%A3%E9%87%8A%E5%99%A8-x2F-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E8%BF%90%E8%A1%8C%EF%BC%8C%E5%8C%85%E7%9B%AE%E5%BD%95"><span class="nav-number"></span> <span class="nav-text">在Python解释器&#x2F;命令行中运行，包目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">包</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundation-of-python-conda"><span class="nav-number">1.</span> <span class="nav-text">Foundation of python&#x2F;conda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Python%E5%8F%8A%E5%85%B6%E8%84%9A%E6%9C%AC%E9%80%BB%E8%BE%91"><span class="nav-number">2.1.</span> <span class="nav-text">Python及其脚本逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.</span> <span class="nav-text">环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%9F%E6%82%89%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">2.3.</span> <span class="nav-text">熟悉命令行</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -233,7 +233,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-11 23:48:38" itemprop="dateModified" datetime="2022-05-11T23:48:38+08:00">2022-05-11</time>
+      <time title="修改时间：2022-05-12 00:05:03" itemprop="dateModified" datetime="2022-05-12T00:05:03+08:00">2022-05-12</time>
     </span>
 
   
@@ -243,14 +243,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.6k</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -261,106 +261,129 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Foundation-of-python-x2F-conda"><a href="#Foundation-of-python-x2F-conda" class="headerlink" title="Foundation of python&#x2F;conda"></a>Foundation of python&#x2F;conda</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程</p>
+        <h2 id="Foundation-of-python-conda">Foundation of python/conda</h2>
+<blockquote>
+<p>官方发布的教程文档及接口文档**Documentary/API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程</p>
 <ul>
 <li>此外，最好的学习工具——<a target="_blank" rel="noopener" href="https://www.google.com/">搜索Google</a></li>
 </ul>
 </blockquote>
 <ul>
-<li>Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的**包(packages)**，我们开展的绝大部分工作基本都基于包（实质上就是其他人已经写好的<u>一堆py脚本</u>），因此，学习Python更重要的是在了解其基本语法、对象及函数使用等的基础上→<u><strong>学会快速上手使用包并熟悉各种常用包的功能</strong></u>，熟能生巧，在具体的案例中思考及学习。<u>但是，</u></li>
+<li>Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的<strong>包(packages)</strong>，我们开展的绝大部分工作基本都基于包（实质上就是其他人已经写好的<u>一堆py脚本</u>），因此，学习Python更重要的是在了解其基本语法、对象及函数使用等的基础上→<u><strong>学会快速上手使用包并熟悉各种常用包的功能</strong></u>，熟能生巧，在具体的案例中思考及学习。<u>但是，</u></li>
 <li>在实际中，当我们信心满满准备开始工作前以及编程过程中，却被环境、包及其他各种问题消磨了心神，从而疲于应对而未能体会到这一工具的，这即是我此文想要总结的问题及经验。</li>
-<li>本文将介绍：python&#x2F;Anaconda&#x2F; conda&#x2F;pip…</li>
+<li>本文将介绍：python/Anaconda/ conda/pip…</li>
 </ul>
-<p>&lt; !–more–&gt;</p>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
-<li>可以将<strong>命令行(cmd.exe)</strong>&#x2F;各种exe，等均视为一个<u><strong>脚本&#x2F;“函数集”</strong></u>，提供输入，执行程序！</li>
+<p>&lt; !–more-- &gt;</p>
+<h2 id="基础">基础</h2>
+<ul>
+<li>可以将<strong>命令行(cmd.exe)</strong>/各种exe，等均视为一个<u><strong>脚本/“函数集”</strong></u>，提供输入，执行程序！</li>
 <li>以这样的方式看待各种命令和代码，兴许会轻松许多，发觉命令行也很简单。</li>
 </ul>
-<h3 id="Python及其脚本逻辑"><a href="#Python及其脚本逻辑" class="headerlink" title="Python及其脚本逻辑"></a>Python及其脚本逻辑</h3><blockquote>
+<h3 id="Python及其脚本逻辑">Python及其脚本逻辑</h3>
+<blockquote>
 <ul>
-<li>脚本语言(<strong>Scripting language</strong>)不需要编译，由解释器来负责解释并运行代码，脚本常以文本存储(后缀多种多样，但实际都是文本，**.py也是文本文件**)，在被调用时进行解释或编译</li>
+<li>脚本语言(<strong>Scripting language</strong>)不需要编译，由解释器来负责解释并运行代码，脚本常以文本存储(后缀多种多样，但实际都是文本，<strong>.py也是文本文件</strong>)，在被调用时进行解释或编译</li>
 <li>Python也属于脚本语言，常见的还有<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/JavaScript">JavaScript</a>，py文件也称脚本文件(<strong>Script</strong>)。</li>
 </ul>
 </blockquote>
 <p>以Python解释器为例（仅为演示而安装，实际安anaconda可跳过此步骤）</p>
 <ul>
-<li><p>打开<a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python官网</a>任意下载一个版本的Python，软件都提供嵌入版以及安装版，这里我做案例讲解下载python 3.8.10](<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)%EF%BC%8C%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85">https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)，运行安装</a></p>
+<li>
+<p>打开<a target="_blank" rel="noopener" href="https://www.python.org/downloads/">Python官网</a>任意下载一个版本的Python，软件都提供嵌入版以及安装版，这里我做案例讲解下载python 3.8.10](<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe">https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe</a>)，运行安装</p>
 <ul>
 <li>可选的有pip、及idle编辑器（窗口管理python文件），随后安装到自定义目录</li>
-<li><img src="/blog/2022/04/05/conda_guide/image-20211019085800203.png" class alt="image-20211019085800203">
+<li>
+<img src="/blog/2022/04/05/conda_guide/image-20211019085800203.png" class alt="image-20211019085800203">
 <ul>
 <li>tips: 3.8.10为<strong>版本号</strong>，第一个小数点前为大版本，第二个为小版本，第三个为补丁，前两个变动较大</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>Python安装目录介绍</p>
+<li>
+<p>Python安装目录介绍</p>
 <ul>
-<li><p>Lib为内置包，如<strong>os</strong>模块可以在此找到<code>C:\Users\huangs\Desktop\temp\python38\Lib\os.py</code></p>
+<li>
+<p>Lib为内置包，如<strong>os</strong>模块可以在此找到<code>C:\Users\huangs\Desktop\temp\python38\Lib\os.py</code></p>
 </li>
-<li><p>拓展包目录通常在<code>..\python38\Lib\site-packages</code></p>
+<li>
+<p>拓展包目录通常在<code>..\python38\Lib\site-packages</code></p>
 </li>
-<li><img src="/blog/2022/04/05/conda_guide/image-20211019090940839.png" class alt="image-20211019090940839"></li>
-<li><img src="/blog/2022/04/05/conda_guide/image-20211019091155057.png" class alt="image-20211019091155057">
+<li>
+<img src="/blog/2022/04/05/conda_guide/image-20211019090940839.png" class alt="image-20211019090940839">
 </li>
-<li><p>scripts路径下有三个文件，均为pip，用于安装<a target="_blank" rel="noopener" href="https://pypi.org/"> PyPI</a>，无本质区别</p>
+<li>
+<img src="/blog/2022/04/05/conda_guide/image-20211019091155057.png" class alt="image-20211019091155057">
 </li>
-<li><img src="/blog/2022/04/05/conda_guide/image-20211019091714247.png" class alt="image-20211019091714247"></li>
+<li>
+<p>scripts路径下有三个文件，均为pip，用于安装<a target="_blank" rel="noopener" href="https://pypi.org/"> PyPI</a>，无本质区别</p>
+</li>
+<li>
+<img src="/blog/2022/04/05/conda_guide/image-20211019091714247.png" class alt="image-20211019091714247">
+</li>
 </ul>
 </li>
 </ul>
 <p>代码运行过程，先打开安装后系统应用中出现的<strong>IDLE (Python 3.8 64-bit)</strong></p>
 <ol>
-<li><p>比如编写如下代码（Tab键候选补全,如输入<code>os.</code>，再按<code>tab</code>键）</p>
+<li>
+<p>比如编写如下代码（Tab键候选补全,如输入<code>os.</code>，再按<code>tab</code>键）</p>
 <img src="/blog/2022/04/05/conda_guide/image-20211019091831313.png" class alt="image-20211019091831313">
 </li>
-<li><p>也可以在File中新建，输入代码并保存运行<code>run</code>，在这个过程中：</p>
+<li>
+<p>也可以在File中新建，输入代码并保存运行<code>run</code>，在这个过程中：</p>
 <ol>
-<li><p>调用python解释器（即<strong>Python.exe</strong>），运行命令或者保存的<code>test.py</code>文件，输出结果</p>
+<li>
+<p>调用python解释器（即<strong>Python.exe</strong>），运行命令或者保存的<code>test.py</code>文件，输出结果</p>
 </li>
-<li><p>本过程在可视化界面执行，若在命令行执行文件，类似：</p>
+<li>
+<p>本过程在可视化界面执行，若在命令行执行文件，类似：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先打开CMD：输入cd path</span></span><br><span class="line"><span class="comment">#如cd .\Desktop\temp\python38</span></span><br><span class="line">python + file_path</span><br></pre></td></tr></table></figure>
-
 <img src="/blog/2022/04/05/conda_guide/image-20211019092856016.png" class alt="image-20211019092856016">
 </li>
-<li><p>这里Python实际上就会检索目录下的以Python为名称的exe文件，并执行.py脚本，<strong>该解释器也可视为一个函数</strong>，输入为‘path’时会判断并执行</p>
+<li>
+<p>这里Python实际上就会检索目录下的以Python为名称的exe文件，并执行.py脚本，<strong>该解释器也可视为一个函数</strong>，输入为‘path’时会判断并执行</p>
 </li>
-<li><p>代码中包含的<code>import os</code>，即会在执行过程中检索目录下的<code>os.py</code>并运行</p>
+<li>
+<p>代码中包含的<code>import os</code>，即会在执行过程中检索目录下的<code>os.py</code>并运行</p>
 </li>
 </ol>
 </li>
-<li><p>此即为基础的Python脚本运行全过程</p>
+<li>
+<p>此即为基础的Python脚本运行全过程</p>
 </li>
-<li><p>交互模式：直接打开命令行输入<code>Python</code>，如果已添加环境变量（下节会讲），则会出现交互运行模式，其他的还有ipython模式，jupyter notebook自带，jupyter的文件后缀<code>.ipynb</code>即是<code>ipython notebook</code>的意思</p>
+<li>
+<p>交互模式：直接打开命令行输入<code>Python</code>，如果已添加环境变量（下节会讲），则会出现交互运行模式，其他的还有ipython模式，jupyter notebook自带，jupyter的文件后缀<code>.ipynb</code>即是<code>ipython notebook</code>的意思</p>
 <img src="/blog/2022/04/05/conda_guide/image-20211023111239766.png" class alt="image-20211023111239766">
-
 <ul>
 <li><code>exit()</code>退出，<strong>cmd</strong>常用；题外话退出数据库环境(如mysql mongodb)则用<code>quit()</code></li>
 </ul>
 </li>
 </ol>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote>
+<h3 id="环境变量">环境变量</h3>
+<blockquote>
 <p>环境变量是整个电脑操作系统的变量，其中的PATH——主要用于存储解释路径</p>
 </blockquote>
 <p>上节的过程，每次都需要进入指定目录运行解释器，过麻烦，因此可将exe所在的路径添加到系统环境变量下的Path解释器变量，添加之后，</p>
 <ul>
-<li>直接在<strong>cmd</strong>中输入<code>Python</code>就可以运行&#x2F;调用指定目录下的<u>可执行文件</u>,<strong>windows</strong>中一般是指：exe<ul>
+<li>直接在<strong>cmd</strong>中输入<code>Python</code>就可以运行/调用指定目录下的<u>可执行文件</u>,<strong>windows</strong>中一般是指：exe
+<ul>
 <li>包括<code>conda</code>命令 <code>pip</code>命令，实际上在目录下有对应的exe程序</li>
 </ul>
 </li>
 <li>若是涉及多个Python，建议重命名exe的名字(不影响使用)，如python37, python38</li>
 <li>其他的不展开，有兴趣自行检索</li>
 </ul>
-<h3 id="熟悉命令行"><a href="#熟悉命令行" class="headerlink" title="熟悉命令行"></a>熟悉命令行</h3><blockquote>
-<p>初学觉得命令行很高级很难，但是，通过上述过程你会发现，命令行窗口实际上可&#x3D;&#x3D;<u><strong>视为一个执行程序&#x2F;文件的界面</strong></u>&#x3D;&#x3D;，与Python，IDLE类似，只不过</p>
+<h3 id="熟悉命令行">熟悉命令行</h3>
+<blockquote>
+<p>初学觉得命令行很高级很难，但是，通过上述过程你会发现，命令行窗口实际上可==<u><strong>视为一个执行程序/文件的界面</strong></u>==，与Python，IDLE类似，只不过</p>
 <ul>
-<li>它可以操作&#x2F;管理电脑系统的一些设置以及文件等</li>
-<li>它可以操作一些更为底层的，基础的程序，如我们最常用的切换路径的<code>cd </code>命令，也可以当做一个<u>系统内置的函数<strong>（函数名是<code>cd</code> 接收一个字符串）</strong>，我们在其后传入参数，多个参数默认用空格分隔，它执行&#x2F;输出</u>。</li>
-<li>笔者通常<u>以函数&#x2F;接口的形式看待所有命令行</u></li>
+<li>它可以操作/管理电脑系统的一些设置以及文件等</li>
+<li>它可以操作一些更为底层的，基础的程序，如我们最常用的切换路径的<code>cd </code>命令，也可以当做一个<u>系统内置的函数**（函数名是<code>cd</code> 接收一个字符串）**，我们在其后传入参数，多个参数默认用空格分隔，它执行/输出</u>。</li>
+<li>笔者通常<u>以函数/接口的形式看待所有命令行</u></li>
 </ul>
 </blockquote>
-<p>通常很多软件都会提供GUI和命令行模式，GUI（图形界面）实际上就是让用户通过界面及鼠标点击&#x2F;键盘来实现命令→从而执行程序。不同场景下各有优劣，因此在实际的学习和工作生活中，我们应该根据自己工作更好的选择，如：</p>
+<p>通常很多软件都会提供GUI和命令行模式，GUI（图形界面）实际上就是让用户通过界面及鼠标点击/键盘来实现命令→从而执行程序。不同场景下各有优劣，因此在实际的学习和工作生活中，我们应该根据自己工作更好的选择，如：</p>
 <ul>
 <li>简单的数据可以通过excel保存数据集简单图表</li>
 <li>数据库的管理及可视化通过外部管理工具实现</li>
@@ -375,86 +398,6 @@
 <li>……</li>
 </ul>
 <p><u>接下来介绍关于Python编程环境及环境管理工具</u></p>
-<h1 id="环境及包管理工具"><a href="#环境及包管理工具" class="headerlink" title="环境及包管理工具"></a>环境及包管理工具</h1><blockquote>
-<p>pkgs-pypi-conda-anaconda</p>
-</blockquote>
-<h2 id="Packages-包"><a href="#Packages-包" class="headerlink" title="Packages 包"></a><strong>Packages 包</strong></h2><ul>
-<li><p>每个包可以称为一个模块，如os包，pandas numpy等等，实际上就是看做一些已经写好的.py文件的集合，我们可以调用其中的函数功能等等，比如，安装anaconda之后，我们可以找到对应的包所在的目录</p>
-</li>
-<li><p>&#96;&#96;&#96;python</p>
-<h1 id="在Python解释器-x2F-命令行中运行，包目录"><a href="#在Python解释器-x2F-命令行中运行，包目录" class="headerlink" title="在Python解释器&#x2F;命令行中运行，包目录"></a>在Python解释器&#x2F;命令行中运行，包目录</h1><blockquote>
-<blockquote>
-<blockquote>
-<p>from distutils.sysconfig import get_python_lib<br>print(get_python_lib())<br>C:\MyProgram\Anaconda3\Lib\site-packages</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 如pandas在`C:\MyProgram\Anaconda3\pkgs\pandas-1.2.4-py38hd77b12b_0\Lib\site-packages\pandas`，在使用过程中我们的解释器就会根据代码自动找到包函数来执行</span><br><span class="line"></span><br><span class="line">- Python的强大之处就在于有大量已经写好的完善持续更新的包，上哪里找这些已有的包来实现我想要的功能？</span><br><span class="line"></span><br><span class="line">## The Python Package Index (PyPI)</span><br><span class="line"></span><br><span class="line">&gt; [官方提供的最完整的包仓库](https://pypi.org/)，The Python Package Index (PyPI) is a repository of software for the Python programming language.</span><br><span class="line">&gt;</span><br><span class="line">&gt; - 实际上安装完Python或者conda都会自动安装pypi。</span><br><span class="line"></span><br><span class="line">{% asset_img "manage-environments.html#sharing-an-environment" '"" "image-20211024142739540"' %}</span><br><span class="line"></span><br><span class="line">- yml文件通过记事本打开</span><br><span class="line">- 主要针对同平台Win10，跨平台的迁移后续补充</span><br><span class="line"></span><br><span class="line">|      功能       |                     语句                     |             备注              |</span><br><span class="line">| :-------------: | :------------------------------------------: | :---------------------------: |</span><br><span class="line">|  导出环境为yml  | `conda env export &gt; `&lt;u&gt;environment.yml&lt;/u&gt;  |   可更改文件，路径默认当前    |</span><br><span class="line">| 通过yml文件创建 | `conda env create -f `&lt;u&gt;environment.yml&lt;/u&gt; | 提前删除yml最后一行其中的路径 |</span><br><span class="line"></span><br><span class="line">如：</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># 导出</span><br><span class="line">(base) C:\Users\huangs&gt;conda activate geo_env39</span><br><span class="line">(geo_env39) C:\Users\huangs&gt;conda env export &gt; geo_39.yml</span><br><span class="line"># 去删除</span><br><span class="line"># 新建</span><br><span class="line">cd C:\Users\huangs</span><br><span class="line">conda env create -f geo_39.yml</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt">https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt</a></p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt">https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt</a></p>
-<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><ul>
-<li>安装包是不指定版本则为当前环境下可支持的最新版本</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">功能</th>
-<th align="center">语句</th>
-<th align="center">备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">列出包</td>
-<td align="center"><code>conda list</code></td>
-<td align="center">列出当前环境下所有包的信息</td>
-</tr>
-<tr>
-<td align="center">安装包1</td>
-<td align="center"><code>conda install </code><u>pkg_name</u></td>
-<td align="center">如<code>conda install geopandas</code></td>
-</tr>
-<tr>
-<td align="center">安装包2</td>
-<td align="center"><code>conda install scipy=0.15.0 curl=7.26.0</code></td>
-<td align="center">类似，可灵活调整版本等</td>
-</tr>
-<tr>
-<td align="center">安装包3</td>
-<td align="center"><code>conda install -c</code> <u>pkg_name</u></td>
-<td align="center">严格控制源来自<code>Anaconda.org</code></td>
-</tr>
-<tr>
-<td align="center">更新包</td>
-<td align="center"><code>conda &lt;u&gt;update </code>pkg_name</td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"><em>安装pip</em></td>
-<td align="center"><code>conda install pip</code></td>
-<td align="center">一般默认自带</td>
-</tr>
-<tr>
-<td align="center">pip 安装包</td>
-<td align="center"><code>pip install</code><u>pkg_name</u></td>
-<td align="center">同理</td>
-</tr>
-<tr>
-<td align="center">删除包</td>
-<td align="center"><code>conda remove scipy curl</code></td>
-<td align="center">可删除多个</td>
-</tr>
-<tr>
-<td align="center">查看包依赖性</td>
-<td align="center"><code>grep numpy C:/MyProgram/anaconda3/pkgs/*/info/index.json</code></td>
-<td align="center">以numpy为例</td>
-</tr>
-<tr>
-<td align="center">conda更新</td>
-<td align="center"><code>conda update conda</code>;<code>conda update anaconda</code></td>
-<td align="center">慎用</td>
-</tr>
-</tbody></table>
 
     </div>
 
@@ -524,13 +467,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">5k</span>
+    <span title="站点总字数">3k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">3 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
