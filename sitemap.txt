@@ -7,6 +7,6 @@ https://hscyber.github.io/categories/index.html
 https://hscyber.github.io/blog/2022/04/05/A-test-post/
 https://hscyber.github.io/
 https://hscyber.github.io/tags/test/
-https://hscyber.github.io/tags/hexo/
 https://hscyber.github.io/tags/Anaconda/
+https://hscyber.github.io/tags/hexo/
 https://hscyber.github.io/categories/Python/
