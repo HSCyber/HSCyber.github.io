@@ -1,10 +1,9 @@
-https://hscyber.github.io/bookmarks-Resources/index.html
+https://hscyber.github.io/bookmarks/Academic/index.html
+https://hscyber.github.io/bookmarks/Codes/index.html
+https://hscyber.github.io/bookmarks/Dialy/index.html
+https://hscyber.github.io/bookmarks/Hobby/index.html
 https://hscyber.github.io/bookmarks/index.html
 https://hscyber.github.io/bookmarks/Tools/index.html
-https://hscyber.github.io/bookmarks/Hobby/index.html
-https://hscyber.github.io/bookmarks/Dialy/index.html
-https://hscyber.github.io/bookmarks/Codes/index.html
-https://hscyber.github.io/bookmarks/Academic/index.html
 https://hscyber.github.io/404.html
 https://hscyber.github.io/blog/2022/03/07/hexo%20command/
 https://hscyber.github.io/blog/2022/04/05/conda_guide/
