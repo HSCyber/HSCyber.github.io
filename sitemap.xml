@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hscyber.github.io/Tools/index.html</loc>
+    <loc>https://hscyber.github.io/bookmarks-Resources/index-1.html</loc>
     
     <lastmod>2022-05-12</lastmod>
     
@@ -11,34 +11,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/Hobby/index.html</loc>
-    
-    <lastmod>2022-05-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/Dialy/index.html</loc>
-    
-    <lastmod>2022-05-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/Codes/index.html</loc>
-    
-    <lastmod>2022-05-12</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/Academic/index.html</loc>
+    <loc>https://hscyber.github.io/bookmarks-Resources/index.html</loc>
     
     <lastmod>2022-05-12</lastmod>
     
@@ -48,6 +21,51 @@
   
   <url>
     <loc>https://hscyber.github.io/bookmarks/index.html</loc>
+    
+    <lastmod>2022-05-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/Tools/index.html</loc>
+    
+    <lastmod>2022-05-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/Hobby/index.html</loc>
+    
+    <lastmod>2022-05-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/Dialy/index.html</loc>
+    
+    <lastmod>2022-05-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/Codes/index.html</loc>
+    
+    <lastmod>2022-05-12</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/Academic/index.html</loc>
     
     <lastmod>2022-05-12</lastmod>
     
@@ -135,14 +153,14 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/Anaconda/</loc>
+    <loc>https://hscyber.github.io/tags/hexo/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/hexo/</loc>
+    <loc>https://hscyber.github.io/tags/Anaconda/</loc>
     <lastmod>2022-05-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
