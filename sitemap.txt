@@ -1,3 +1,4 @@
+https://hscyber.github.io/bookmarks/index.html
 https://hscyber.github.io/404.html
 https://hscyber.github.io/blog/2022/03/07/hexo%20command/
 https://hscyber.github.io/blog/2022/04/05/conda_guide/
@@ -7,6 +8,6 @@ https://hscyber.github.io/categories/index.html
 https://hscyber.github.io/blog/2022/04/05/A-test-post/
 https://hscyber.github.io/
 https://hscyber.github.io/tags/test/
-https://hscyber.github.io/tags/Anaconda/
 https://hscyber.github.io/tags/hexo/
+https://hscyber.github.io/tags/Anaconda/
 https://hscyber.github.io/categories/Python/
