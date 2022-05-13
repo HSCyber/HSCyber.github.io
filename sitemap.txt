@@ -14,6 +14,6 @@ https://hscyber.github.io/tags/index.html
 https://hscyber.github.io/categories/index.html
 https://hscyber.github.io/
 https://hscyber.github.io/tags/Hexo/
-https://hscyber.github.io/tags/Anaconda/
 https://hscyber.github.io/tags/hexo/
+https://hscyber.github.io/tags/Anaconda/
 https://hscyber.github.io/categories/Python/
