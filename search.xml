@@ -1,70 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>A test post</title>
-      <link href="/blog/2022/04/05/conda_guide/"/>
-      <url>/blog/2022/04/05/conda_guide/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Foundation-of-python-x2F-conda"><a href="#Foundation-of-python-x2F-conda" class="headerlink" title="Foundation of python&#x2F;conda"></a>Foundation of python&#x2F;conda</h2><blockquote><p>官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程</p><ul><li>此外，最好的学习工具——<a href="https://www.google.com/">搜索Google</a></li></ul></blockquote><ul><li>Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的**包(packages)**，我们开展的绝大部分工作基本都基于包（实质上就是其他人已经写好的<u>一堆py脚本</u>），因此，学习Python更重要的是在了解其基本语法、对象及函数使用等的基础上→<u><strong>学会快速上手使用包并熟悉各种常用包的功能</strong></u>，熟能生巧，在具体的案例中思考及学习。<u>但是，</u></li><li>在实际中，当我们信心满满准备开始工作前以及编程过程中，却被环境、包及其他各种问题消磨了心神，从而疲于应对而未能体会到这一工具的，这即是我此文想要总结的问题及经验。</li><li>本文将介绍：python&#x2F;Anaconda&#x2F; conda&#x2F;pip…</li></ul><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul><li>可以将<strong>命令行(cmd.exe)</strong>&#x2F;各种exe，等均视为一个<u><strong>脚本&#x2F;“函数集”</strong></u>，提供输入，执行程序！</li><li>以这样的方式看待各种命令和代码，兴许会轻松许多，发觉命令行也很简单。</li></ul><h3 id="Python及其脚本逻辑"><a href="#Python及其脚本逻辑" class="headerlink" title="Python及其脚本逻辑"></a>Python及其脚本逻辑</h3><blockquote><ul><li>脚本语言(<strong>Scripting language</strong>)不需要编译，由解释器来负责解释并运行代码，脚本常以文本存储(后缀多种多样，但实际都是文本，**.py也是文本文件**)，在被调用时进行解释或编译</li><li>Python也属于脚本语言，常见的还有<a href="https://baike.baidu.com/item/JavaScript">JavaScript</a>，py文件也称脚本文件(<strong>Script</strong>)。</li></ul></blockquote><p>以Python解释器为例（仅为演示而安装，实际安anaconda可跳过此步骤）</p><ul><li><p>打开<a href="https://www.python.org/downloads/">Python官网</a>任意下载一个版本的Python，软件都提供嵌入版以及安装版，这里我做案例讲解下载python 3.8.10](<a href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)%EF%BC%8C%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85">https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)，运行安装</a></p><ul><li>可选的有pip、及idle编辑器（窗口管理python文件），随后安装到自定义目录</li><li><img src="/blog/2022/04/05/conda_guide/image-20211019085800203.png" class alt="image-20211019085800203"><ul><li>tips: 3.8.10为<strong>版本号</strong>，第一个小数点前为大版本，第二个为小版本，第三个为补丁，前两个变动较大</li></ul></li></ul></li><li><p>Python安装目录介绍</p><ul><li><p>Lib为内置包，如<strong>os</strong>模块可以在此找到<code>C:\Users\huangs\Desktop\temp\python38\Lib\os.py</code></p></li><li><p>拓展包目录通常在<code>..\python38\Lib\site-packages</code></p></li><li><img src="/blog/2022/04/05/conda_guide/image-20211019090940839.png" class alt="image-20211019090940839"></li><li><img src="/blog/2022/04/05/conda_guide/image-20211019091155057.png" class alt="image-20211019091155057"></li><li><p>scripts路径下有三个文件，均为pip，用于安装<a href="https://pypi.org/"> PyPI</a>，无本质区别</p></li><li><img src="/blog/2022/04/05/conda_guide/image-20211019091714247.png" class alt="image-20211019091714247"></li></ul></li></ul><p>代码运行过程，先打开安装后系统应用中出现的<strong>IDLE (Python 3.8 64-bit)</strong></p><ol><li><p>比如编写如下代码（Tab键候选补全,如输入<code>os.</code>，再按<code>tab</code>键）</p><img src="/blog/2022/04/05/conda_guide/image-20211019091831313.png" class alt="image-20211019091831313"></li><li><p>也可以在File中新建，输入代码并保存运行<code>run</code>，在这个过程中：</p><ol><li><p>调用python解释器（即<strong>Python.exe</strong>），运行命令或者保存的<code>test.py</code>文件，输出结果</p></li><li><p>本过程在可视化界面执行，若在命令行执行文件，类似：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先打开CMD：输入cd path</span></span><br><span class="line"><span class="comment">#如cd .\Desktop\temp\python38</span></span><br><span class="line">python + file_path</span><br></pre></td></tr></table></figure><img src="/blog/2022/04/05/conda_guide/image-20211019092856016.png" class alt="image-20211019092856016"></li><li><p>这里Python实际上就会检索目录下的以Python为名称的exe文件，并执行.py脚本，<strong>该解释器也可视为一个函数</strong>，输入为‘path’时会判断并执行</p></li><li><p>代码中包含的<code>import os</code>，即会在执行过程中检索目录下的<code>os.py</code>并运行</p></li></ol></li><li><p>此即为基础的Python脚本运行全过程</p></li><li><p>交互模式：直接打开命令行输入<code>Python</code>，如果已添加环境变量（下节会讲），则会出现交互运行模式，其他的还有ipython模式，jupyter notebook自带，jupyter的文件后缀<code>.ipynb</code>即是<code>ipython notebook</code>的意思</p><img src="/blog/2022/04/05/conda_guide/image-20211023111239766.png" class alt="image-20211023111239766"><ul><li><code>exit()</code>退出，<strong>cmd</strong>常用；题外话退出数据库环境(如mysql mongodb)则用<code>quit()</code></li></ul></li></ol><h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote><p>环境变量是整个电脑操作系统的变量，其中的PATH——主要用于存储解释路径</p></blockquote><p>上节的过程，每次都需要进入指定目录运行解释器，过麻烦，因此可将exe所在的路径添加到系统环境变量下的Path解释器变量，添加之后，</p><ul><li>直接在<strong>cmd</strong>中输入<code>Python</code>就可以运行&#x2F;调用指定目录下的<u>可执行文件</u>,<strong>windows</strong>中一般是指：exe<ul><li>包括<code>conda</code>命令 <code>pip</code>命令，实际上在目录下有对应的exe程序</li></ul></li><li>若是涉及多个Python，建议重命名exe的名字(不影响使用)，如python37, python38</li><li>其他的不展开，有兴趣自行检索</li></ul><h3 id="熟悉命令行"><a href="#熟悉命令行" class="headerlink" title="熟悉命令行"></a>熟悉命令行</h3><blockquote><p>初学觉得命令行很高级很难，但是，通过上述过程你会发现，命令行窗口实际上可&#x3D;&#x3D;<u><strong>视为一个执行程序&#x2F;文件的界面</strong></u>&#x3D;&#x3D;，与Python，IDLE类似，只不过</p><ul><li>它可以操作&#x2F;管理电脑系统的一些设置以及文件等</li><li>它可以操作一些更为底层的，基础的程序，如我们最常用的切换路径的<code>cd </code>命令，也可以当做一个<u>系统内置的函数<strong>（函数名是<code>cd</code> 接收一个字符串）</strong>，我们在其后传入参数，多个参数默认用空格分隔，它执行&#x2F;输出</u>。</li><li>笔者通常<u>以函数&#x2F;接口的形式看待所有命令行</u></li></ul></blockquote><p>通常很多软件都会提供GUI和命令行模式，GUI（图形界面）实际上就是让用户通过界面及鼠标点击&#x2F;键盘来实现命令→从而执行程序。不同场景下各有优劣，因此在实际的学习和工作生活中，我们应该根据自己工作更好的选择，如：</p><ul><li>简单的数据可以通过excel保存数据集简单图表</li><li>数据库的管理及可视化通过外部管理工具实现</li><li>细节图表的绘制在代码绘制之后，通过PS AI 进行修改，或者直接通过Oringin等相关程序绘制…</li><li>……</li></ul><p>但是，编写脚本程序及其环境的管理，建议多使用命令行，虽然有一定的学习成本，但是好处更多：</p><ul><li>提高编程及办公效率，加深对工具的理解</li><li>让电脑的使用更加自然得心应手</li><li>提高动手能力，能够自行查阅并看懂他人提供的方案从而解决很多小问题</li><li>……</li></ul><p><u>接下来介绍关于Python编程环境及环境管理工具</u></p>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>A image test post</title>
+    <url>/blog/2022/04/05/A-test-post/</url>
+    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
+<img src="/blog/2022/04/05/A-test-post/test.png" class alt="image">
+
+
+
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A test post</title>
+    <url>/blog/2022/04/05/conda_guide/</url>
+    <content><![CDATA[<h2 id="Foundation-of-python-x2F-conda"><a href="#Foundation-of-python-x2F-conda" class="headerlink" title="Foundation of python&#x2F;conda"></a>Foundation of python&#x2F;conda</h2><blockquote>
+<p>官方发布的教程文档及接口文档**Documentary&#x2F;API **，但很多人却无暇或耐心看，反而寻求各种良莠不齐的教程</p>
+<ul>
+<li>此外，最好的学习工具——<a href="https://www.google.com/">搜索Google</a></li>
+</ul>
+</blockquote>
+<ul>
+<li>Python是一门高效易用的语言，语法简洁，入门上手很快。但在实际工作中让它与C等语言相比较我觉得最大的差别在于大量的已有的**包(packages)**，我们开展的绝大部分工作基本都基于包（实质上就是其他人已经写好的<u>一堆py脚本</u>），因此，学习Python更重要的是在了解其基本语法、对象及函数使用等的基础上→<u><strong>学会快速上手使用包并熟悉各种常用包的功能</strong></u>，熟能生巧，在具体的案例中思考及学习。<u>但是，</u></li>
+<li>在实际中，当我们信心满满准备开始工作前以及编程过程中，却被环境、包及其他各种问题消磨了心神，从而疲于应对而未能体会到这一工具的，这即是我此文想要总结的问题及经验。</li>
+<li>本文将介绍：python&#x2F;Anaconda&#x2F; conda&#x2F;pip…</li>
+</ul>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li>可以将<strong>命令行(cmd.exe)</strong>&#x2F;各种exe，等均视为一个<u><strong>脚本&#x2F;“函数集”</strong></u>，提供输入，执行程序！</li>
+<li>以这样的方式看待各种命令和代码，兴许会轻松许多，发觉命令行也很简单。</li>
+</ul>
+<h3 id="Python及其脚本逻辑"><a href="#Python及其脚本逻辑" class="headerlink" title="Python及其脚本逻辑"></a>Python及其脚本逻辑</h3><blockquote>
+<ul>
+<li>脚本语言(<strong>Scripting language</strong>)不需要编译，由解释器来负责解释并运行代码，脚本常以文本存储(后缀多种多样，但实际都是文本，**.py也是文本文件**)，在被调用时进行解释或编译</li>
+<li>Python也属于脚本语言，常见的还有<a href="https://baike.baidu.com/item/JavaScript">JavaScript</a>，py文件也称脚本文件(<strong>Script</strong>)。</li>
+</ul>
+</blockquote>
+<p>以Python解释器为例（仅为演示而安装，实际安anaconda可跳过此步骤）</p>
+<ul>
+<li><p>打开<a href="https://www.python.org/downloads/">Python官网</a>任意下载一个版本的Python，软件都提供嵌入版以及安装版，这里我做案例讲解下载python 3.8.10](<a href="https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)%EF%BC%8C%E8%BF%90%E8%A1%8C%E5%AE%89%E8%A3%85">https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe)，运行安装</a></p>
+<ul>
+<li>可选的有pip、及idle编辑器（窗口管理python文件），随后安装到自定义目录</li>
+<li><img src="/blog/2022/04/05/conda_guide/image-20211019085800203.png" class alt="image-20211019085800203">
+<ul>
+<li>tips: 3.8.10为<strong>版本号</strong>，第一个小数点前为大版本，第二个为小版本，第三个为补丁，前两个变动较大</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Python安装目录介绍</p>
+<ul>
+<li><p>Lib为内置包，如<strong>os</strong>模块可以在此找到<code>C:\Users\huangs\Desktop\temp\python38\Lib\os.py</code></p>
+</li>
+<li><p>拓展包目录通常在<code>..\python38\Lib\site-packages</code></p>
+</li>
+<li><img src="/blog/2022/04/05/conda_guide/image-20211019090940839.png" class alt="image-20211019090940839"></li>
+<li><img src="/blog/2022/04/05/conda_guide/image-20211019091155057.png" class alt="image-20211019091155057">
+</li>
+<li><p>scripts路径下有三个文件，均为pip，用于安装<a href="https://pypi.org/"> PyPI</a>，无本质区别</p>
+</li>
+<li><img src="/blog/2022/04/05/conda_guide/image-20211019091714247.png" class alt="image-20211019091714247"></li>
+</ul>
+</li>
+</ul>
+<p>代码运行过程，先打开安装后系统应用中出现的<strong>IDLE (Python 3.8 64-bit)</strong></p>
+<ol>
+<li><p>比如编写如下代码（Tab键候选补全,如输入<code>os.</code>，再按<code>tab</code>键）</p>
+<img src="/blog/2022/04/05/conda_guide/image-20211019091831313.png" class alt="image-20211019091831313">
+</li>
+<li><p>也可以在File中新建，输入代码并保存运行<code>run</code>，在这个过程中：</p>
+<ol>
+<li><p>调用python解释器（即<strong>Python.exe</strong>），运行命令或者保存的<code>test.py</code>文件，输出结果</p>
+</li>
+<li><p>本过程在可视化界面执行，若在命令行执行文件，类似：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#先打开CMD：输入cd path</span></span><br><span class="line"><span class="comment">#如cd .\Desktop\temp\python38</span></span><br><span class="line">python + file_path</span><br></pre></td></tr></table></figure>
+
+<img src="/blog/2022/04/05/conda_guide/image-20211019092856016.png" class alt="image-20211019092856016">
+</li>
+<li><p>这里Python实际上就会检索目录下的以Python为名称的exe文件，并执行.py脚本，<strong>该解释器也可视为一个函数</strong>，输入为‘path’时会判断并执行</p>
+</li>
+<li><p>代码中包含的<code>import os</code>，即会在执行过程中检索目录下的<code>os.py</code>并运行</p>
+</li>
+</ol>
+</li>
+<li><p>此即为基础的Python脚本运行全过程</p>
+</li>
+<li><p>交互模式：直接打开命令行输入<code>Python</code>，如果已添加环境变量（下节会讲），则会出现交互运行模式，其他的还有ipython模式，jupyter notebook自带，jupyter的文件后缀<code>.ipynb</code>即是<code>ipython notebook</code>的意思</p>
+<img src="/blog/2022/04/05/conda_guide/image-20211023111239766.png" class alt="image-20211023111239766">
+
+<ul>
+<li><code>exit()</code>退出，<strong>cmd</strong>常用；题外话退出数据库环境(如mysql mongodb)则用<code>quit()</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><blockquote>
+<p>环境变量是整个电脑操作系统的变量，其中的PATH——主要用于存储解释路径</p>
+</blockquote>
+<p>上节的过程，每次都需要进入指定目录运行解释器，过麻烦，因此可将exe所在的路径添加到系统环境变量下的Path解释器变量，添加之后，</p>
+<ul>
+<li>直接在<strong>cmd</strong>中输入<code>Python</code>就可以运行&#x2F;调用指定目录下的<u>可执行文件</u>,<strong>windows</strong>中一般是指：exe<ul>
+<li>包括<code>conda</code>命令 <code>pip</code>命令，实际上在目录下有对应的exe程序</li>
+</ul>
+</li>
+<li>若是涉及多个Python，建议重命名exe的名字(不影响使用)，如python37, python38</li>
+<li>其他的不展开，有兴趣自行检索</li>
+</ul>
+<h3 id="熟悉命令行"><a href="#熟悉命令行" class="headerlink" title="熟悉命令行"></a>熟悉命令行</h3><blockquote>
+<p>初学觉得命令行很高级很难，但是，通过上述过程你会发现，命令行窗口实际上可&#x3D;&#x3D;<u><strong>视为一个执行程序&#x2F;文件的界面</strong></u>&#x3D;&#x3D;，与Python，IDLE类似，只不过</p>
+<ul>
+<li>它可以操作&#x2F;管理电脑系统的一些设置以及文件等</li>
+<li>它可以操作一些更为底层的，基础的程序，如我们最常用的切换路径的<code>cd </code>命令，也可以当做一个<u>系统内置的函数<strong>（函数名是<code>cd</code> 接收一个字符串）</strong>，我们在其后传入参数，多个参数默认用空格分隔，它执行&#x2F;输出</u>。</li>
+<li>笔者通常<u>以函数&#x2F;接口的形式看待所有命令行</u></li>
+</ul>
+</blockquote>
+<p>通常很多软件都会提供GUI和命令行模式，GUI（图形界面）实际上就是让用户通过界面及鼠标点击&#x2F;键盘来实现命令→从而执行程序。不同场景下各有优劣，因此在实际的学习和工作生活中，我们应该根据自己工作更好的选择，如：</p>
+<ul>
+<li>简单的数据可以通过excel保存数据集简单图表</li>
+<li>数据库的管理及可视化通过外部管理工具实现</li>
+<li>细节图表的绘制在代码绘制之后，通过PS AI 进行修改，或者直接通过Oringin等相关程序绘制…</li>
+<li>……</li>
+</ul>
+<p>但是，编写脚本程序及其环境的管理，建议多使用命令行，虽然有一定的学习成本，但是好处更多：</p>
+<ul>
+<li>提高编程及办公效率，加深对工具的理解</li>
+<li>让电脑的使用更加自然得心应手</li>
+<li>提高动手能力，能够自行查阅并看懂他人提供的方案从而解决很多小问题</li>
+<li>……</li>
+</ul>
+<p><u>接下来介绍关于Python编程环境及环境管理工具</u></p>
+]]></content>
       <categories>
-          
-          <category> Python </category>
-          
+        <category>Python</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> Anaconda </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>A image test post</title>
-      <link href="/blog/2022/04/05/A-test-post/"/>
-      <url>/blog/2022/04/05/A-test-post/</url>
-      
-        <content type="html"><![CDATA[<p>A simple test </p><img src="/blog/2022/04/05/A-test-post/test.png" class alt="image">]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> test </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/blog/2022/03/07/hexo%20command/"/>
-      <url>/blog/2022/03/07/hexo%20command/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><h3 id="all"><a href="#all" class="headerlink" title="all"></a>all</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> hexo </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>Anaconda</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/blog/2022/03/07/hexo%20command/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>

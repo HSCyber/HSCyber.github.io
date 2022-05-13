@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hscyber.github.io/blog/2022/03/07/hexo%20command/</loc>
+    
+    <lastmod>2022-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/blog/2022/04/05/A-test-post/</loc>
+    
+    <lastmod>2022-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/about/index.html</loc>
     
     <lastmod>2022-05-13</lastmod>
@@ -83,15 +101,6 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/blog/2022/03/07/hexo%20command/</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hscyber.github.io/blog/2022/04/05/conda_guide/</loc>
     
     <lastmod>2022-05-11</lastmod>
@@ -118,15 +127,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://hscyber.github.io/blog/2022/04/05/A-test-post/</loc>
-    
-    <lastmod>2022-05-11</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://hscyber.github.io/</loc>
@@ -137,14 +137,7 @@
 
   
   <url>
-    <loc>https://hscyber.github.io/tags/test/</loc>
-    <lastmod>2022-05-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/hexo/</loc>
+    <loc>https://hscyber.github.io/tags/Hexo/</loc>
     <lastmod>2022-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -152,6 +145,13 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/Anaconda/</loc>
+    <lastmod>2022-05-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/hexo/</loc>
     <lastmod>2022-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
