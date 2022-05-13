@@ -1,5 +1,5 @@
-https://hscyber.github.io/blog/2022/05/14/python-time/
 https://hscyber.github.io/blog/2022/03/07/hexo%20command/
+https://hscyber.github.io/blog/2022/05/14/python-time/
 https://hscyber.github.io/blog/2022/04/05/conda_guide/
 https://hscyber.github.io/about/index.html
 https://hscyber.github.io/blog/2022/04/05/A-test-post/
@@ -20,3 +20,4 @@ https://hscyber.github.io/tags/hexo/
 https://hscyber.github.io/tags/Python/
 https://hscyber.github.io/tags/Time/
 https://hscyber.github.io/categories/Python/
+https://hscyber.github.io/categories/hexo/
