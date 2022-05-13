@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>A image test post</title>
+    <url>/blog/2022/04/05/A-test-post/</url>
+    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
+<img src="/blog/2022/04/05/A-test-post/test.png" class alt="image">
+
+
+
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A test post</title>
     <url>/blog/2022/04/05/conda_guide/</url>
     <content><![CDATA[<h2 id="Foundation-of-python-x2F-conda"><a href="#Foundation-of-python-x2F-conda" class="headerlink" title="Foundation of python&#x2F;conda"></a>Foundation of python&#x2F;conda</h2><blockquote>
@@ -14,6 +27,8 @@
 <li>在实际中，当我们信心满满准备开始工作前以及编程过程中，却被环境、包及其他各种问题消磨了心神，从而疲于应对而未能体会到这一工具的，这即是我此文想要总结的问题及经验。</li>
 <li>本文将介绍：python&#x2F;Anaconda&#x2F; conda&#x2F;pip…</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
 <li>可以将<strong>命令行(cmd.exe)</strong>&#x2F;各种exe，等均视为一个<u><strong>脚本&#x2F;“函数集”</strong></u>，提供输入，执行程序！</li>
 <li>以这样的方式看待各种命令和代码，兴许会轻松许多，发觉命令行也很简单。</li>
@@ -122,19 +137,6 @@
       </categories>
       <tags>
         <tag>Anaconda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A image test post</title>
-    <url>/blog/2022/04/05/A-test-post/</url>
-    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
-<img src="/blog/2022/04/05/A-test-post/test.png" class alt="image">
-
-
-
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
