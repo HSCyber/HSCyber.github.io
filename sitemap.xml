@@ -2,18 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hscyber.github.io/about/index.html</loc>
+    <loc>https://hscyber.github.io/posts/a0dd2ef9/</loc>
     
-    <lastmod>2022-05-15</lastmod>
+    <lastmod>2022-05-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/blog/2022/04/05/conda_guide/</loc>
+    <loc>https://hscyber.github.io/posts/659ef075/</loc>
     
-    <lastmod>2022-05-14</lastmod>
+    <lastmod>2022-05-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/about/index.html</loc>
+    
+    <lastmod>2022-05-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/blog/2022/05/14/python-time/</loc>
+    <loc>https://hscyber.github.io/posts/4a17b156/</loc>
     
     <lastmod>2022-05-14</lastmod>
     
@@ -47,16 +56,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/blog/2022/03/07/hexo%20command/</loc>
-    
-    <lastmod>2022-05-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/blog/2022/04/05/A-test-post/</loc>
+    <loc>https://hscyber.github.io/posts/2852138d/</loc>
     
     <lastmod>2022-05-14</lastmod>
     
@@ -147,13 +147,6 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/hexo/</loc>
-    <lastmod>2022-05-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/python-conda/</loc>
     <lastmod>2022-05-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
