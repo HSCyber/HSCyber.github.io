@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>class in python</title>
-    <url>/posts/659ef075/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>A image test post</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -17,6 +12,11 @@
       <categories>
         <category>image</category>
       </categories>
+  </entry>
+  <entry>
+    <title>class in python</title>
+    <url>/posts/659ef075/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -82,20 +82,20 @@
 <li>通过<code>.d</code>可以获取其日期的天属性,<code>.replace()</code>为调用其实现的替换方法</li>
 </ul>
 <hr>
-<h2 id="内置模块time"><a href="#内置模块time" class="headerlink" title="内置模块time"></a>内置模块time</h2><h3 id="时间的表达格式"><a href="#时间的表达格式" class="headerlink" title="时间的表达格式"></a>时间的<strong>表达</strong>格式</h3><ul>
-<li><p>**数字 **&lt;’float’&gt;，Unix时间戳：从epoch(1970年1月1日00:00:00 UTC)经过的秒数&#x2F;偏移量，如631123200000表示”1990-01-01 00:00:00”</p>
+<h2 id="内置模块time"><a href="#内置模块time" class="headerlink" title="内置模块time"></a>内置模块time</h2><h3 id="表达格式"><a href="#表达格式" class="headerlink" title="表达格式"></a>表达格式</h3><ul>
+<li><p>**数字 ** &lt;’float’&gt;，Unix时间戳：从epoch(1970年1月1日00:00:00 UTC)经过的秒数&#x2F;偏移量，如631123200000表示”1990-01-01 00:00:00”</p>
 </li>
-<li><p><strong>时间元组</strong>&lt; ‘time.struct_time’&gt;（实际实现，给计算机看的）包含了一个时间的完整信息：</p>
+<li><p><strong>时间元组</strong> &lt; ‘time.struct_time’&gt;（实际实现，给计算机看的）包含了一个时间的完整信息：</p>
 <ul>
 <li>time.struct_time(tm_year&#x3D;2022, tm_mon&#x3D;5, tm_mday&#x3D;11, tm_hour&#x3D;2, tm_min&#x3D;53, tm_sec&#x3D;2, tm_wday&#x3D;2, tm_yday&#x3D;131, tm_isdst&#x3D;0)：</li>
 </ul>
 </li>
-<li><p>**字符串 **&lt;’str’&gt;（可读性强，给人看的）：如”1990-01-01 00:00:00”，”2018-01-01”，”1998&#x2F;01&#x2F;01”等</p>
+<li><p>**字符串 ** &lt;’str’&gt;（可读性强，给人看的）：如”1990-01-01 00:00:00”，”2018-01-01”，”1998&#x2F;01&#x2F;01”等</p>
 </li>
 </ul>
-<h3 id="时间的获取"><a href="#时间的获取" class="headerlink" title="时间的获取"></a>时间的获取</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># print(&quot;获取计算机当前时间时间：&#123;0&#125;,数据类型：&#123;1&#125;&quot;.format(t, type(t)))</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">t = time.time()</span><br><span class="line"><span class="comment"># 1652701116.7288237,数据类型: &lt;class &#x27;float&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.ctime()</span><br><span class="line"><span class="comment"># Mon May 16 19:38:36 2022,数据类型：&lt;class &#x27;str&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.gmtime()</span><br><span class="line"><span class="comment"># time.struct_time(tm_year=2022, tm_mon=5, tm_mday=16, tm_hour=11, tm_min=38, tm_sec=36, tm_wday=0, tm_yday=136, tm_isdst=0),数据类型：&lt;class &#x27;time.struct_time&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.localtime() <span class="comment">#逆操作time.mktime()：可以将数字转换成元组</span></span><br><span class="line"><span class="comment">#同上 time.struct_time(tm..</span></span><br></pre></td></tr></table></figure>
+<h3 id="时间获取"><a href="#时间获取" class="headerlink" title="时间获取"></a>时间获取</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># print(&quot;获取计算机当前时间时间：&#123;0&#125;,数据类型：&#123;1&#125;&quot;.format(t, type(t)))</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">t = time.time()</span><br><span class="line"><span class="comment"># 1652701116.7288237,数据类型: &lt;class &#x27;float&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.ctime()</span><br><span class="line"><span class="comment"># Mon May 16 19:38:36 2022,数据类型：&lt;class &#x27;str&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.gmtime()</span><br><span class="line"><span class="comment"># time.struct_time(tm_year=2022, tm_mon=5, tm_mday=16, tm_hour=11, tm_min=38, tm_sec=36, tm_wday=0, tm_yday=136, tm_isdst=0),数据类型：&lt;class &#x27;time.struct_time&#x27;&gt;</span></span><br><span class="line"></span><br><span class="line">t = time.localtime() <span class="comment">#逆操作time.mktime()：可以将数字转换成元组</span></span><br><span class="line"><span class="comment">#同上 time.struct_time(tm..</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="时间的转换-strftime-strptime"><a href="#时间的转换-strftime-strptime" class="headerlink" title="时间的转换(strftime()+strptime())"></a>时间的<strong>转换</strong>(<code>strftime()+strptime()</code>)</h3><p>将时间元组转换为格式化字符串</p>
+<h3 id="时间转换-strftime-strptime"><a href="#时间转换-strftime-strptime" class="headerlink" title="时间转换(strftime()+strptime())"></a>时间转换(<code>strftime()+strptime()</code>)</h3><p>将时间元组转换为格式化字符串</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t_struct = time.gmtime() <span class="comment">#创建时间元组</span></span><br><span class="line">t_string = time.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>, t_struct)</span><br></pre></td></tr></table></figure>
 
 <p>将字符串转换为时间元组</p>
@@ -114,13 +114,13 @@
 <li><code>%j</code>: 001, 002, …, 366, </li>
 <li><code>%U</code> <code>%W</code>：周数，一年的第多少周，前者表示周日为第一天</li>
 </ul>
-<h3 id="其他常用函数"><a href="#其他常用函数" class="headerlink" title="其他常用函数"></a>其他常用函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 脚本运行时间计算</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line"></span><br><span class="line">main()<span class="comment">#需要计时的代码</span></span><br><span class="line"></span><br><span class="line">end_time = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; min&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">60</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; h&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">3600</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码停顿3秒</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 脚本运行时间计算</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line"></span><br><span class="line">main()<span class="comment">#需要计时的代码</span></span><br><span class="line"></span><br><span class="line">end_time = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; min&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">60</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; h&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">3600</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码停顿3秒</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="内置模块datetime"><a href="#内置模块datetime" class="headerlink" title="内置模块datetime"></a>内置模块datetime</h2><blockquote>
 <p>time较为底层，一般用的不多，其他实际中主要用datetime<br>datetime是基于time包开发的包，datetime可以拆解为date和time两个部分。可以将这两个分开管理(datetime.date类，datetime.time类)，也可以将两者合在一起(datetime.datetime类)，datetime包还定义了时间间隔对象(timedelta)。</p>
 </blockquote>
-<h3 id="datetime的子类-x2F-对象"><a href="#datetime的子类-x2F-对象" class="headerlink" title="datetime的子类&#x2F;对象"></a>datetime的子类&#x2F;对象</h3><p>类，这些类可以直接通过”属性”进行实例化对象，如datetime.date(2022, 5, 20)</p>
+<h3 id="子类-x2F-对象"><a href="#子类-x2F-对象" class="headerlink" title="子类&#x2F;对象"></a>子类&#x2F;对象</h3><p>类，这些类可以直接通过”属性”进行实例化对象，如datetime.date(2022, 5, 20)</p>
 <ul>
 <li><code>datetime.time</code>：独立于任何特定日期的理想化时间，包含属性: hour, minute, second, microsecond 和 tzinfo。<ul>
 <li>属性的意思表明可以通过 .month .hour获取对象实例的属性值</li>
@@ -142,7 +142,10 @@
 <li>支持通过pickle模块进行高效封存，惯用pickle可以为实际工作带来诸多便利，见<a href>pickle使用-待更新</a></li>
 <li>支持加减法，且涉及时间间隔及时间差等可以通过timedelta进行运算</li>
 </ul>
-<h3 id="date的常用操作，time类似"><a href="#date的常用操作，time类似" class="headerlink" title="date的常用操作，time类似"></a><code>date</code>的常用操作，time类似</h3><ul>
+<h3 id="date常用操作"><a href="#date常用操作" class="headerlink" title="date常用操作"></a><code>date</code>常用操作</h3><blockquote>
+<p>time的与之类似</p>
+</blockquote>
+<ul>
 <li>获取&#x2F;创建时间<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date, timedelta</span><br><span class="line"></span><br><span class="line">today = date.today() <span class="comment">#输出 datetime.date(2022, 5, 16)</span></span><br><span class="line">year, month = today.year, today.month</span><br><span class="line"></span><br><span class="line">my_birthday = date(<span class="number">1998</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">time_to_birthday = <span class="built_in">abs</span>(my_birthday - today) <span class="comment"># datetime.timedelta(days=8901)</span></span><br><span class="line"><span class="comment"># UTC时间转北京时间：time_bj = time_utc+ timedelta(hours=8)</span></span><br></pre></td></tr></table></figure></li>
 <li>日期与字符串格式的转换</li>
 </ul>
@@ -153,7 +156,7 @@
 <ul>
 <li>其他方法<br>时间替换<code>date.replace</code>(year&#x3D;self.year, month&#x3D;self.month, day&#x3D;self.day)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = date(<span class="number">2022</span>, <span class="number">12</span>, <span class="number">31</span>)</span><br><span class="line"><span class="comment"># 时间替换</span></span><br><span class="line">d2 = d.replace(day=<span class="number">26</span>)</span><br><span class="line"><span class="comment">#返回一个 time.struct_time</span></span><br><span class="line">d3 = date.timetuple(d) </span><br><span class="line"><span class="comment"># 获取当前时间的字符串格式</span></span><br><span class="line">t = date.today()</span><br><span class="line">t.ctime()<span class="comment"># 等价于`time.ctime(time.mktime(d.timetuple()))`</span></span><br><span class="line"><span class="comment">#输出&#x27;Mon May 16 00:00:00 2022&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="datetime的常用操作"><a href="#datetime的常用操作" class="headerlink" title="datetime的常用操作"></a><code>datetime</code>的常用操作</h3><ul>
+<h3 id="datetime常用操作"><a href="#datetime常用操作" class="headerlink" title="datetime常用操作"></a><code>datetime</code>常用操作</h3><ul>
 <li><p>获取&#x2F;创建时间</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, time, timezone</span><br><span class="line">datetime.now()   </span><br><span class="line">datetime.now(timezone.utc)  </span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line"><span class="comment"># datetime.datetime(2022, 5, 16, 21, 10, 32, 304773)</span></span><br><span class="line"><span class="comment"># datetime.datetime(2022, 5, 16, 13, 10, 32, 306332, tzinfo=datetime.timezone.utc)</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -171,7 +174,10 @@
 <li>datetime (datetime64[ns])， 类比datetime</li>
 <li>String&#x2F;Object</li>
 </ul>
-<h3 id="创建：pd-date-range"><a href="#创建：pd-date-range" class="headerlink" title="创建：pd.date_range"></a>创建：<code>pd.date_range</code></h3><ul>
+<h3 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h3><blockquote>
+<p><code>pd.date_range()</code></p>
+</blockquote>
+<ul>
 <li>pandas.date_range(start&#x3D;None, end&#x3D;None, periods&#x3D;None, freq&#x3D;None, tz&#x3D;None, normalize&#x3D;False, name&#x3D;None, …)<a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">文档</a></li>
 <li>参数说明<ul>
 <li><code>start end</code>:起始日期</li>
@@ -187,8 +193,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># astype()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>]=df[<span class="string">&#x27;time&#x27;</span>].astype(<span class="built_in">str</span>)</span><br><span class="line"><span class="comment"># strftime()</span></span><br><span class="line">`strftime`: df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m/%d/%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>string→datetime</strong>: <code>to_datetime</code>，输入的列为String或Object类型</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="时间序列合并与拆分"><a href="#时间序列合并与拆分" class="headerlink" title="时间序列合并与拆分"></a>时间序列合并与拆分</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="基于时间序列筛选数据-amp-与-或"><a href="#基于时间序列筛选数据-amp-与-或" class="headerlink" title="基于时间序列筛选数据&amp;与;|或"></a>基于时间序列筛选数据<code>&amp;与;|或</code></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) &amp; (df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<h3 id="时间合并与拆分"><a href="#时间合并与拆分" class="headerlink" title="时间合并与拆分"></a>时间合并与拆分</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="基于时间筛选数据"><a href="#基于时间筛选数据" class="headerlink" title="基于时间筛选数据"></a>基于时间筛选数据</h3><blockquote>
+<p><code>&amp;与;|或</code></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) &amp; (df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
 <h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><blockquote>
 <p>待补充<br>……</p>
 </blockquote>
