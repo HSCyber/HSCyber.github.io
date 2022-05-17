@@ -273,7 +273,7 @@ dd {
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin: 0 0 20px;
   width: 100%;
 }
@@ -306,7 +306,7 @@ td {
   border-radius: 2px;
   color: var(--btn-default-color);
   display: inline-block;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   line-height: 2;
   padding: 0 20px;
   transition: background-color 0.2s ease-in-out;
@@ -377,7 +377,7 @@ pre:hover .copy-btn {
   transition: opacity 0.2s ease-in-out;
   background: #fff;
   border: 0;
-  font-size: 0.75em;
+  font-size: 0.8125em;
   right: 0;
   top: 0;
 }
@@ -399,7 +399,7 @@ pre figcaption {
   background: var(--highlight-gutter-background);
   color: var(--highlight-foreground);
   display: flow-root;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   line-height: 1.2;
   padding: 0.5em;
 }
@@ -420,7 +420,7 @@ code {
 }
 code {
   border-radius: 3px;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   padding: 2px 4px;
   overflow-wrap: break-word;
 }
@@ -1063,7 +1063,7 @@ pre code {
 }
 .headband {
   background: var(--theme-color);
-  height: 2.5px;
+  height: 3px;
 }
 @media (max-width: 991px) {
   .headband {
@@ -1131,7 +1131,7 @@ pre code {
 }
 .site-subtitle {
   color: #ddd;
-  font-size: 0.75em;
+  font-size: 0.8125em;
   margin: 10px 0;
 }
 .use-motion .site-title,
@@ -1200,7 +1200,7 @@ pre code {
 .menu-item a {
   border-bottom: 0;
   display: block;
-  font-size: 0.75em;
+  font-size: 0.8125em;
   transition: border-color 0.2s ease-in-out;
 }
 .menu-item a:hover,
@@ -1332,11 +1332,11 @@ pre code {
 }
 .site-description {
   color: #999;
-  font-size: 0.75em;
+  font-size: 0.8125em;
   margin-top: 0;
 }
 .links-of-author a {
-  font-size: 0.75em;
+  font-size: 0.8125em;
 }
 .links-of-author .fa,
 .links-of-author .fab,
@@ -1367,10 +1367,10 @@ pre code {
   margin-right: 5px;
 }
 .links-of-blogroll {
-  font-size: 0.75em;
+  font-size: 0.8125em;
 }
 .links-of-blogroll-title {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   font-weight: 600;
   margin-top: 0;
 }
@@ -1415,7 +1415,7 @@ pre code {
   color: var(--text-color);
   cursor: pointer;
   display: inline-block;
-  font-size: 0.8125em;
+  font-size: 0.875em;
 }
 .sidebar-nav li.sidebar-nav-overview {
   margin-left: 10px;
@@ -1502,7 +1502,7 @@ pre code {
   transform: rotate(-45deg);
 }
 .post-toc {
-  font-size: 0.8125em;
+  font-size: 0.875em;
 }
 .post-toc ol {
   list-style: none;
@@ -1558,16 +1558,16 @@ pre code {
 }
 .site-state-item-count {
   display: block;
-  font-size: 0.875em;
+  font-size: 0.95em;
   font-weight: 600;
 }
 .site-state-item-name {
   color: #999;
-  font-size: 0.75em;
+  font-size: 0.8125em;
 }
 .footer {
   color: #999;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   padding: 20px 0;
 }
 .footer.footer-fixed {
@@ -1600,7 +1600,7 @@ pre code {
 }
 .languages {
   display: inline-block;
-  font-size: 1em;
+  font-size: 1.1em;
   position: relative;
 }
 .languages .lang-select-label span {
@@ -1747,8 +1747,8 @@ pre code {
   visibility: hidden;
 }
 .posts-collapse .post-content {
-  margin-bottom: 30px;
-  margin-left: 30px;
+  margin-bottom: 35px;
+  margin-left: 35px;
   position: relative;
 }
 @media (max-width: 767px) {
@@ -1758,7 +1758,7 @@ pre code {
   }
 }
 .posts-collapse .post-content .collection-title {
-  font-size: 1em;
+  font-size: 1.1em;
   position: relative;
 }
 .posts-collapse .post-content .collection-title::before {
@@ -1774,7 +1774,7 @@ pre code {
   width: 10px;
 }
 .posts-collapse .post-content .collection-year {
-  font-size: 1.25em;
+  font-size: 1.5em;
   font-weight: bold;
   margin: 60px 0;
   position: relative;
@@ -1810,7 +1810,7 @@ pre code {
   border: 1px solid #fff;
   left: -6px;
   position: absolute;
-  top: 0.7em;
+  top: 0.75em;
   transition: background 0.2s ease-in-out;
   border-radius: 50%;
   content: ' ';
@@ -1825,7 +1825,7 @@ pre code {
 }
 .posts-collapse .post-content .post-meta-container {
   display: inline;
-  font-size: 0.7em;
+  font-size: 0.75em;
   margin-right: 10px;
 }
 .posts-collapse .post-content .post-title {
@@ -1836,7 +1836,7 @@ pre code {
   color: var(--link-color);
 }
 .posts-collapse .post-content .post-title .fa-external-link-alt {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin-left: 5px;
 }
 .posts-collapse .post-content::before {
@@ -1854,7 +1854,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 }
 @media (min-width: 992px) {
@@ -1882,7 +1882,7 @@ pre code {
   border-bottom-style: none;
   color: inherit;
   float: right;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin-left: 10px;
   opacity: 0;
 }
@@ -1931,14 +1931,14 @@ pre code {
   opacity: 1;
 }
 .post-body .exturl .fa {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin-left: 4px;
 }
 .post-body .image-caption,
 .post-body img + figcaption,
 .post-body .fancybox + figcaption {
   color: #999;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   font-weight: bold;
   line-height: 1;
   margin: -20px auto 15px;
@@ -1995,12 +1995,12 @@ pre code {
   margin: 15px 0;
 }
 .posts-expand .post-header {
-  font-size: 1em;
+  font-size: 1.1em;
   margin-bottom: 60px;
   text-align: center;
 }
 .posts-expand .post-title {
-  font-size: 1.25em;
+  font-size: 1.5em;
   font-weight: normal;
   margin: initial;
   overflow-wrap: break-word;
@@ -2026,7 +2026,7 @@ pre code {
   transform: scaleX(1);
 }
 .posts-expand .post-title-link .fa-external-link-alt {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin-left: 5px;
 }
 .post-sticky-flag {
@@ -2037,11 +2037,11 @@ pre code {
 .posts-expand .post-meta-container {
   color: #999;
   font-family: Lato, 'PingFang SC', 'Microsoft YaHei', sans-serif;
-  font-size: 0.7em;
+  font-size: 0.75em;
   margin-top: 3px;
 }
 .posts-expand .post-meta-container .post-description {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   margin-top: 2px;
 }
 .posts-expand .post-meta-container time {
@@ -2082,14 +2082,14 @@ pre code {
 .post-nav-item a {
   border-bottom: 0;
   display: block;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   line-height: 1.6;
 }
 .post-nav-item a:active {
   top: 2px;
 }
 .post-nav-item .fa {
-  font-size: 0.7em;
+  font-size: 0.75em;
 }
 .post-nav-item:first-child .fa {
   margin-right: 5px;
@@ -2127,7 +2127,7 @@ pre code {
 }
 .post-tags a {
   display: inline-block;
-  font-size: 0.75em;
+  font-size: 0.8125em;
 }
 .post-tags a:not(:last-child) {
   margin-right: 10px;
@@ -2146,7 +2146,7 @@ pre code {
 }
 .social-like {
   display: flex;
-  font-size: 0.8125em;
+  font-size: 0.875em;
   justify-content: center;
   text-align: center;
 }
@@ -2368,7 +2368,7 @@ pre code {
   }
 }
 ul.breadcrumb {
-  font-size: 0.7em;
+  font-size: 0.75em;
   list-style: none;
   margin: 1em 0;
   padding: 0 2em;
@@ -2438,7 +2438,7 @@ ul.breadcrumb li:last-child {
 }
 .popular-posts-header {
   border-bottom: 1px solid #eee;
-  font-size: 1em;
+  font-size: 1.1em;
   margin-bottom: 10px;
   margin-top: 60px;
 }
@@ -2449,7 +2449,7 @@ ul.breadcrumb li:last-child {
   margin-left: 2em;
 }
 .popular-posts .popular-posts-item .popular-posts-title {
-  font-size: 0.8125em;
+  font-size: 0.875em;
   font-weight: normal;
   line-height: 1.92;
   margin: 0;
