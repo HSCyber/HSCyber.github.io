@@ -1,7 +1,7 @@
-https://hscyber.github.io/blog/2022/05/14/python-time/
-https://hscyber.github.io/blog/2022/03/07/hexo%20command/
-https://hscyber.github.io/blog/2022/05/16/class-in-python/
-https://hscyber.github.io/blog/2022/04/05/A-test-post/
+https://hscyber.github.io/posts/2852138d/
+https://hscyber.github.io/posts/a0dd2ef9/
+https://hscyber.github.io/posts/4a17b156/
+https://hscyber.github.io/posts/659ef075/
 https://hscyber.github.io/about/
 https://hscyber.github.io/bookmarks/resources/
 https://hscyber.github.io/bookmarks/
@@ -19,6 +19,6 @@ https://hscyber.github.io/tags/Python/
 https://hscyber.github.io/tags/Time/
 https://hscyber.github.io/tags/Datetime/
 https://hscyber.github.io/tags/pandas/
-https://hscyber.github.io/categories/image/
+https://hscyber.github.io/categories/hexo/
 https://hscyber.github.io/categories/Hexo/
 https://hscyber.github.io/categories/Python%E5%9F%BA%E7%A1%80/
