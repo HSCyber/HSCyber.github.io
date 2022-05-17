@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hscyber.github.io/posts/4a17b156/</loc>
+    
+    <lastmod>2022-05-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/posts/2852138d/</loc>
     
     <lastmod>2022-05-17</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://hscyber.github.io/posts/a0dd2ef9/</loc>
     
     <lastmod>2022-05-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/posts/4a17b156/</loc>
-    
-    <lastmod>2022-05-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -183,14 +183,7 @@
 
   
   <url>
-    <loc>https://hscyber.github.io/categories/hexo/</loc>
-    <lastmod>2022-05-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/categories/Hexo/</loc>
+    <loc>https://hscyber.github.io/categories/Hexo%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2022-05-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
