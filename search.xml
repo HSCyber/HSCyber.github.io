@@ -119,7 +119,7 @@
 <li><a href="https://pandas.pydata.org/docs/user_guide/timeseries.html">时间序列相关处理函数</a></li>
 <li><a href="https://pandas.pydata.org/docs/user_guide/timedeltas.html#">时间增量&#x2F;差</a></li>
 </ul>
-<p>涉及Python模块和类、实例、属性及方法相关相关的概念可查阅此文<a href="...">Python中的类</a></p>
+<p>涉及Python模块和类、实例、属性及方法相关相关的概念可查阅此文<a href="https://hscyber.github.io/posts/659ef075">Python中的类</a></p>
 <hr>
 <h2 id="内置模块time"><a href="#内置模块time" class="headerlink" title="内置模块time"></a>内置模块time</h2><h3 id="表达格式"><a href="#表达格式" class="headerlink" title="表达格式"></a>表达格式</h3><ol>
 <li><strong>数字</strong> &lt;’float’&gt;，Unix时间戳：从epoch(1970年1月1日00:00:00 UTC)经过的秒数&#x2F;偏移量，如631123200000表示”1990-01-01 00:00:00”</li>
