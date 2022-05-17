@@ -14,35 +14,52 @@
       </categories>
   </entry>
   <entry>
-    <title>class in python</title>
+    <title>浅谈Python中的类、模块、包</title>
     <url>/posts/659ef075/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的。了解Python中的类一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛），同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
+<ol>
+<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
+<li>Python中如何定义<strong>类(class)</strong></li>
+<li>什么时候需要类？<strong>实例</strong>感受</li>
+<li>小结</li>
+</ol>
 <span id="more"></span>
 
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
+<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因</a></p>
+</blockquote>
+<blockquote>
+<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，此处我以一个开源的<strong>新浪微博爬虫</strong>代码为例感受一下类的使用，<a href="https://github.com/dataabc/weibo-crawler">代码参考</a></p>
+</blockquote>
+<p>下载后解压，文件夹内文件如下图，最主要的是一个参数配置文件（输入）和一个主函数（处理）文件：</p>
+<img src="/posts/659ef075/image-20220517160721390.png" class alt="weibo-crawler">
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight sas"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="variable">&amp;&amp;</span> hexo g <span class="variable">&amp;&amp;</span> hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
+<p>进入<code>weibo.py</code>文件，包括以下四部分：</p>
+<ol>
+<li>各三方及自定义模块导入，（全局）变量定义</li>
+<li>自定义类<code>class Weibo(object):...</code>，类中包含若构造函数<code>__init__</code>以及大量互相调用嵌套的函数</li>
+<li>定义函数<code>get_config()</code>，用于读取和判断配置文件<strong>config.json</strong>中的信息</li>
+<li>主函数<code>main()</code>：该函数先执行get_config()读取参数，再通过参数创建类Weibo的实例，再调用类中定义的方法，逐步完成数据的抓取</li>
+</ol>
+<img src="/posts/659ef075/image-20220517162509165.png" class alt="TOC">
+
+<p>在不适用类时，我对该爬虫的实现应该会是以下三部分</p>
+<ol>
+<li>模块的定义和变量的输入读取</li>
+<li>逐步定义若干函数，并互相嵌套（在此处应该有几十个）</li>
+<li>主函数，运行调用，完成数据抓取</li>
+</ol>
+<p>这样并没有问题，尤其是在工作量不大时完全可以这么做，但是</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2>]]></content>
       <categories>
-        <category>Hexo框架</category>
+        <category>Python基础</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>Python</tag>
+        <tag>类</tag>
+        <tag>模块</tag>
       </tags>
   </entry>
   <entry>
@@ -80,9 +97,9 @@
 <h2 id="内置模块time"><a href="#内置模块time" class="headerlink" title="内置模块time"></a>内置模块time</h2><h3 id="表达格式"><a href="#表达格式" class="headerlink" title="表达格式"></a>表达格式</h3><ul>
 <li><p><strong>数字</strong> &lt;’float’&gt;，Unix时间戳：从epoch(1970年1月1日00:00:00 UTC)经过的秒数&#x2F;偏移量，如631123200000表示”1990-01-01 00:00:00”</p>
 </li>
-<li><p><strong>时间元组</strong> &lt; ‘time.struct_time’&gt;（实际实现，给计算机看的）包含了一个时间的完整信息：</p>
+<li><p><strong>时间元组</strong> &lt; ‘time.struct_time’&gt;（实际实现，给计算机看的）包含了一个时间的完整信息</p>
 <ul>
-<li>time.struct_time(tm_year&#x3D;2022, tm_mon&#x3D;5, tm_mday&#x3D;11, tm_hour&#x3D;2, tm_min&#x3D;53, tm_sec&#x3D;2, tm_wday&#x3D;2, tm_yday&#x3D;131, tm_isdst&#x3D;0)：</li>
+<li>time.struct_time(tm_year&#x3D;2022, tm_mon&#x3D;5, tm_mday&#x3D;11, tm_hour&#x3D;2, tm_min&#x3D;53, tm_sec&#x3D;2, tm_wday&#x3D;2, tm_yday&#x3D;131, tm_isdst&#x3D;0)</li>
 </ul>
 </li>
 <li><p><strong>字符串</strong> &lt;’str’&gt;（可读性强，给人看的）：如”1990-01-01 00:00:00”，”2018-01-01”，”1998&#x2F;01&#x2F;01”等</p>
@@ -109,7 +126,7 @@
 <li><code>%j</code>: 001, 002, …, 366, </li>
 <li><code>%U</code> <code>%W</code>：周数，一年的第多少周，前者表示周日为第一天</li>
 </ul>
-<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 脚本运行时间计算</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line"></span><br><span class="line">main()<span class="comment">#需要计时的代码</span></span><br><span class="line"></span><br><span class="line">end_time = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; min&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">60</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; h&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">3600</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码停顿3秒</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 脚本运行时间计算</span></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()<span class="comment">#需要计时的代码</span></span><br><span class="line">end_time = time.time()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; min&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">60</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;脚本运行总时长:&#123;:.2f&#125; h&#x27;</span>.<span class="built_in">format</span>((end_time-start_time)/<span class="number">3600</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码停顿3秒</span></span><br><span class="line">time.sleep(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="内置模块datetime"><a href="#内置模块datetime" class="headerlink" title="内置模块datetime"></a>内置模块datetime</h2><blockquote>
@@ -130,14 +147,14 @@
 <li><code>datetime.tzinfo</code>：时区信息对象</li>
 <li><code>datetime.timezone</code>：表示相对于UTC的偏移量</li>
 </ul>
-<p>这些类创建的实例具有的属性</p>
+<p>这些类创建实例的<strong>共有属性</strong></p>
 <ul>
 <li>不可变</li>
 <li>可哈希，即可以作为字典的键key</li>
 <li>支持通过pickle模块进行高效封存，惯用pickle可以为实际工作带来诸多便利，见<a href>pickle使用-待更新</a></li>
 <li>支持加减法，且涉及时间间隔及时间差等可以通过timedelta进行运算</li>
 </ul>
-<h3 id="date常用操作"><a href="#date常用操作" class="headerlink" title="date常用操作"></a><code>date</code>常用操作</h3><blockquote>
+<h3 id="date常用操作"><a href="#date常用操作" class="headerlink" title="date常用操作"></a>date常用操作</h3><blockquote>
 <p>time的与之类似</p>
 </blockquote>
 <ul>
@@ -151,7 +168,7 @@
 <ul>
 <li>其他方法<br>时间替换<code>date.replace</code>(year&#x3D;self.year, month&#x3D;self.month, day&#x3D;self.day)<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">d = date(<span class="number">2022</span>, <span class="number">12</span>, <span class="number">31</span>)</span><br><span class="line"><span class="comment"># 时间替换</span></span><br><span class="line">d2 = d.replace(day=<span class="number">26</span>)</span><br><span class="line"><span class="comment">#返回一个 time.struct_time</span></span><br><span class="line">d3 = date.timetuple(d) </span><br><span class="line"><span class="comment"># 获取当前时间的字符串格式</span></span><br><span class="line">t = date.today()</span><br><span class="line">t.ctime()<span class="comment"># 等价于`time.ctime(time.mktime(d.timetuple()))`</span></span><br><span class="line"><span class="comment">#输出&#x27;Mon May 16 00:00:00 2022&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="datetime常用操作"><a href="#datetime常用操作" class="headerlink" title="datetime常用操作"></a><code>datetime</code>常用操作</h3><ul>
+<h3 id="datetime常用操作"><a href="#datetime常用操作" class="headerlink" title="datetime常用操作"></a>datetime常用操作</h3><ul>
 <li><p>获取&#x2F;创建时间</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, time, timezone</span><br><span class="line">datetime.now()   </span><br><span class="line">datetime.now(timezone.utc)  </span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line"><span class="comment"># datetime.datetime(2022, 5, 16, 21, 10, 32, 304773)</span></span><br><span class="line"><span class="comment"># datetime.datetime(2022, 5, 16, 13, 10, 32, 306332, tzinfo=datetime.timezone.utc)</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -170,7 +187,7 @@
 <li>String&#x2F;Object</li>
 </ul>
 <h3 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h3><blockquote>
-<p><code>pd.date_range()</code></p>
+<p>pd.date_range()</p>
 </blockquote>
 <ul>
 <li>pandas.date_range(start&#x3D;None, end&#x3D;None, periods&#x3D;None, freq&#x3D;None, tz&#x3D;None, normalize&#x3D;False, name&#x3D;None, …)<a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">文档</a></li>
@@ -190,7 +207,7 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="时间合并与拆分"><a href="#时间合并与拆分" class="headerlink" title="时间合并与拆分"></a>时间合并与拆分</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="基于时间筛选数据"><a href="#基于时间筛选数据" class="headerlink" title="基于时间筛选数据"></a>基于时间筛选数据</h3><blockquote>
-<p><code>&amp;与;|或</code></p>
+<p><code>&amp;</code>与;<code>|</code>或</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) &amp; (df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">0</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
 <h3 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h3><blockquote>
@@ -210,6 +227,33 @@
         <tag>Time</tag>
         <tag>Datetime</tag>
         <tag>pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight sas"><table><tr><td class="code"><pre><span class="line">hexo clean <span class="variable">&amp;&amp;</span> hexo g <span class="variable">&amp;&amp;</span> hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>

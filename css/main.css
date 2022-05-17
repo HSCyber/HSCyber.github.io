@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #222;
   --btn-default-hover-color: #fff;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #272822;
-  --highlight-foreground: #ddd;
-  --highlight-gutter-background: #393a34;
-  --highlight-gutter-foreground: #cacaca;
+  --highlight-background: #fff;
+  --highlight-foreground: #000;
+  --highlight-gutter-background: #e5e5e5;
+  --highlight-gutter-foreground: #191919;
   color-scheme: light;
 }
 html {
@@ -203,22 +203,22 @@ h6 {
   margin: 30px 0 15px;
 }
 h1 {
-  font-size: 1.5em;
+  font-size: 1.49em;
 }
 h2 {
-  font-size: 1.375em;
+  font-size: 1.355em;
 }
 h3 {
-  font-size: 1.25em;
+  font-size: 1.22em;
 }
 h4 {
-  font-size: 1.125em;
+  font-size: 1.085em;
 }
 h5 {
-  font-size: 1em;
+  font-size: 0.95em;
 }
 h6 {
-  font-size: 0.875em;
+  font-size: 0.815em;
 }
 p {
   margin: 0 0 20px;
@@ -362,7 +362,16 @@ td {
   top: -5px;
   transform: rotate(-45deg);
 }
-pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}.hljs{background:#272822;color:#ddd}.hljs-keyword,.hljs-literal,.hljs-name,.hljs-selector-tag,.hljs-strong,.hljs-tag{color:#f92672}.hljs-code{color:#66d9ef}.hljs-attribute,.hljs-link,.hljs-regexp,.hljs-symbol{color:#bf79db}.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-emphasis,.hljs-section,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-string,.hljs-subst,.hljs-template-tag,.hljs-template-variable,.hljs-title,.hljs-type,.hljs-variable{color:#a6e22e}.hljs-class .hljs-title,.hljs-title.class_{color:#fff}.hljs-comment,.hljs-deletion,.hljs-meta,.hljs-quote{color:#75715e}.hljs-doctag,.hljs-keyword,.hljs-literal,.hljs-section,.hljs-selector-id,.hljs-selector-tag,.hljs-title,.hljs-type{font-weight:700}
+pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}/*!
+  Theme: nnfx light
+  Description: a theme inspired by Netscape Navigator/Firefox
+  Author: (c) 2020-2021 Jim Mason <jmason@ibinx.com>
+  Maintainer: @RocketMan
+  License: https://creativecommons.org/licenses/by-sa/4.0  CC BY-SA 4.0
+  Updated: 2021-05-17
+
+  @version 1.1.0
+*/.hljs{background:#fff;color:#000}.language-xml .hljs-meta,.language-xml .hljs-meta-string{font-weight:700;font-style:italic;color:#48b}.hljs-comment,.hljs-quote{font-style:italic;color:#070}.hljs-built_in,.hljs-keyword,.hljs-name{color:#808}.hljs-attr,.hljs-name{font-weight:700}.hljs-string{font-weight:400}.hljs-code,.hljs-link,.hljs-meta .hljs-string,.hljs-number,.hljs-regexp,.hljs-string{color:#00f}.hljs-bullet,.hljs-symbol,.hljs-template-variable,.hljs-title,.hljs-variable{color:#f40}.hljs-class .hljs-title,.hljs-title.class_,.hljs-type{font-weight:700;color:#639}.hljs-attr,.hljs-function .hljs-title,.hljs-subst,.hljs-tag,.hljs-title.function_{color:#000}.hljs-formula{background-color:#eee;font-style:italic}.hljs-addition{background-color:#beb}.hljs-deletion{background-color:#fbb}.hljs-meta{color:#269}.hljs-section,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-selector-tag{font-weight:700;color:#48b}.hljs-selector-pseudo{font-style:italic}.hljs-doctag,.hljs-strong{font-weight:700}.hljs-emphasis{font-style:italic}
 .highlight:hover .copy-btn,
 pre:hover .copy-btn {
   opacity: 1;
@@ -1558,7 +1567,7 @@ pre code {
 }
 .site-state-item-count {
   display: block;
-  font-size: 0.95em;
+  font-size: 1em;
   font-weight: 600;
 }
 .site-state-item-name {
@@ -1600,7 +1609,7 @@ pre code {
 }
 .languages {
   display: inline-block;
-  font-size: 1.1em;
+  font-size: 1.125em;
   position: relative;
 }
 .languages .lang-select-label span {
@@ -1758,7 +1767,7 @@ pre code {
   }
 }
 .posts-collapse .post-content .collection-title {
-  font-size: 1.1em;
+  font-size: 1.125em;
   position: relative;
 }
 .posts-collapse .post-content .collection-title::before {
@@ -1854,7 +1863,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1.1em;
+    font-size: 1.125em;
   }
 }
 @media (min-width: 992px) {
@@ -1995,7 +2004,7 @@ pre code {
   margin: 15px 0;
 }
 .posts-expand .post-header {
-  font-size: 1.1em;
+  font-size: 1.125em;
   margin-bottom: 60px;
   text-align: center;
 }
@@ -2438,7 +2447,7 @@ ul.breadcrumb li:last-child {
 }
 .popular-posts-header {
   border-bottom: 1px solid #eee;
-  font-size: 1.1em;
+  font-size: 1.125em;
   margin-bottom: 10px;
   margin-top: 60px;
 }
