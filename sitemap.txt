@@ -1,7 +1,7 @@
-https://hscyber.github.io/posts/a0dd2ef9/
-https://hscyber.github.io/posts/4a17b156/
-https://hscyber.github.io/posts/659ef075/
-https://hscyber.github.io/posts/2852138d/
+https://hscyber.github.io/blog/2022/05/14/python-time/
+https://hscyber.github.io/blog/2022/03/07/hexo%20command/
+https://hscyber.github.io/blog/2022/05/16/class-in-python/
+https://hscyber.github.io/blog/2022/04/05/A-test-post/
 https://hscyber.github.io/about/index.html
 https://hscyber.github.io/bookmarks/resources/index.html
 https://hscyber.github.io/bookmarks/index.html
