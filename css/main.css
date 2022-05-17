@@ -3,7 +3,7 @@
   --content-bg-color: #fff;
   --card-bg-color: #f5f5f5;
   --text-color: #555;
-  --blockquote-color: #fa8072;
+  --blockquote-color: #666;
   --link-color: #555;
   --link-hover-color: #222;
   --brand-color: #fff;
@@ -184,8 +184,8 @@ body {
   background: var(--body-bg-color);
   box-sizing: border-box;
   color: var(--text-color);
-  font-family: Roboto Slab, Noto Serif SC//Lato, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
-  font-size: 1em;
+  font-family: Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-size: 0.95em;
   line-height: 1.6;
   min-height: 100%;
   position: relative;
@@ -197,7 +197,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC//Lato, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1132,7 +1132,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC//Lato, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
@@ -1858,7 +1858,7 @@ pre code {
   width: 4px;
 }
 .post-body {
-  font-family: Roboto Slab, Noto Serif SC//Lato, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   overflow-wrap: break-word;
 }
 @media (min-width: 1200px) {
@@ -1977,6 +1977,9 @@ pre code {
   top: 0;
   width: 100%;
 }
+.post-body a {
+  color: #1e90ff;
+}
 .post-gallery {
   display: flex;
   min-height: 200px;
@@ -2045,7 +2048,7 @@ pre code {
 }
 .posts-expand .post-meta-container {
   color: #999;
-  font-family: Roboto Slab, Noto Serif SC//Lato, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   font-size: 0.75em;
   margin-top: 3px;
 }
