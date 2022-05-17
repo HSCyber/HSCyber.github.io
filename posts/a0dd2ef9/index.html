@@ -30,7 +30,7 @@
 <meta property="og:description" content="时间格式是一类较特殊也十分普遍的格式，大量数据都含有时间信息，在实际的学习中会经常接触。最近有创建、处理或转换时间序列数据的需求，因此做一个梳理并汇总以便在后续遇到相关处理时可以拿来即用。本文主要涉及内容：  Python内置模块time 及 datetime的时间格式及处理 Pandas时间格式的表达及常规处理 实际作业中遇到的一些案例">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-13T16:51:44.000Z">
-<meta property="article:modified_time" content="2022-05-17T10:18:31.687Z">
+<meta property="article:modified_time" content="2022-05-17T13:29:00.046Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Time">
@@ -245,7 +245,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-17 18:18:31" itemprop="dateModified" datetime="2022-05-17T18:18:31+08:00">2022-05-17</time>
+      <time title="修改时间：2022-05-17 21:29:00" itemprop="dateModified" datetime="2022-05-17T21:29:00+08:00">2022-05-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -350,13 +350,13 @@
 </blockquote>
 <h3 id="子类-x2F-对象"><a href="#子类-x2F-对象" class="headerlink" title="子类&#x2F;对象"></a>子类&#x2F;对象</h3><p>类，这些类可以直接通过”属性”进行实例化对象，如datetime.date(2022, 5, 20)</p>
 <ul>
-<li><code>datetime.time</code>：独立于任何特定日期的理想化时间，包含属性: hour, minute, second, microsecond 和 tzinfo。<ul>
+<li><code>datetime.time</code>：独立于任何特定日期的理想化时间，包含属性: <u>hour, minute, second</u>, microsecond 和 tzinfo。<ul>
 <li>属性的意思表明可以通过 .month .hour获取对象实例的属性值</li>
 </ul>
 </li>
-<li><code>datetime.date</code>: 理想化的简单型日期, 属性: year, month, and day。</li>
-<li><code>datetime.datetime</code>: 日期和时间的结合。属性：year, month, day, hour, minute, second, microsecond, and tzinfo.</li>
-<li><code>datetime.timedelta</code>：表示两个 date 对象或 time 对象，或者 datetime 对象之间的时间间隔，精确到微秒。<ul>
+<li><code>datetime.date</code>: 理想化的简单型日期, 属性: <u>year, month, and day</u>。</li>
+<li><code>datetime.datetime</code>: 日期和时间的结合。属性：<u>year, month, day, hour, minute, second</u>, microsecond, and tzinfo.</li>
+<li><code>datetime.timedelta</code>：表示两个 date 对象或 time 对象，或者 datetime 对象之间的<u>时间间隔</u>，精确到微秒。<ul>
 <li>常用于时间之间的加减等操做</li>
 </ul>
 </li>
@@ -371,7 +371,7 @@
 <li>支持加减法，且涉及时间间隔及时间差等可以通过<strong>timedelta</strong>进行运算</li>
 </ol>
 <h3 id="date常用操作"><a href="#date常用操作" class="headerlink" title="date常用操作"></a>date常用操作</h3><blockquote>
-<p>time的与之类似</p>
+<p>time的操作与之类似</p>
 </blockquote>
 <ul>
 <li>获取&#x2F;创建时间<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date, timedelta</span><br><span class="line"></span><br><span class="line">today = date.today() <span class="comment">#输出 datetime.date(2022, 5, 16)</span></span><br><span class="line">year, month = today.year, today.month</span><br><span class="line"></span><br><span class="line">my_birthday = date(<span class="number">1998</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">time_to_birthday = <span class="built_in">abs</span>(my_birthday - today) <span class="comment"># datetime.timedelta(days=8901)</span></span><br><span class="line"><span class="comment"># UTC时间转北京时间：time_bj = time_utc+ timedelta(hours=8)</span></span><br></pre></td></tr></table></figure></li>

@@ -160,13 +160,13 @@
 </blockquote>
 <h3 id="子类-x2F-对象"><a href="#子类-x2F-对象" class="headerlink" title="子类&#x2F;对象"></a>子类&#x2F;对象</h3><p>类，这些类可以直接通过”属性”进行实例化对象，如datetime.date(2022, 5, 20)</p>
 <ul>
-<li><code>datetime.time</code>：独立于任何特定日期的理想化时间，包含属性: hour, minute, second, microsecond 和 tzinfo。<ul>
+<li><code>datetime.time</code>：独立于任何特定日期的理想化时间，包含属性: <u>hour, minute, second</u>, microsecond 和 tzinfo。<ul>
 <li>属性的意思表明可以通过 .month .hour获取对象实例的属性值</li>
 </ul>
 </li>
-<li><code>datetime.date</code>: 理想化的简单型日期, 属性: year, month, and day。</li>
-<li><code>datetime.datetime</code>: 日期和时间的结合。属性：year, month, day, hour, minute, second, microsecond, and tzinfo.</li>
-<li><code>datetime.timedelta</code>：表示两个 date 对象或 time 对象，或者 datetime 对象之间的时间间隔，精确到微秒。<ul>
+<li><code>datetime.date</code>: 理想化的简单型日期, 属性: <u>year, month, and day</u>。</li>
+<li><code>datetime.datetime</code>: 日期和时间的结合。属性：<u>year, month, day, hour, minute, second</u>, microsecond, and tzinfo.</li>
+<li><code>datetime.timedelta</code>：表示两个 date 对象或 time 对象，或者 datetime 对象之间的<u>时间间隔</u>，精确到微秒。<ul>
 <li>常用于时间之间的加减等操做</li>
 </ul>
 </li>
@@ -181,7 +181,7 @@
 <li>支持加减法，且涉及时间间隔及时间差等可以通过<strong>timedelta</strong>进行运算</li>
 </ol>
 <h3 id="date常用操作"><a href="#date常用操作" class="headerlink" title="date常用操作"></a>date常用操作</h3><blockquote>
-<p>time的与之类似</p>
+<p>time的操作与之类似</p>
 </blockquote>
 <ul>
 <li>获取&#x2F;创建时间<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date, timedelta</span><br><span class="line"></span><br><span class="line">today = date.today() <span class="comment">#输出 datetime.date(2022, 5, 16)</span></span><br><span class="line">year, month = today.year, today.month</span><br><span class="line"></span><br><span class="line">my_birthday = date(<span class="number">1998</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">time_to_birthday = <span class="built_in">abs</span>(my_birthday - today) <span class="comment"># datetime.timedelta(days=8901)</span></span><br><span class="line"><span class="comment"># UTC时间转北京时间：time_bj = time_utc+ timedelta(hours=8)</span></span><br></pre></td></tr></table></figure></li>

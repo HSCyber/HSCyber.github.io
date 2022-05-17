@@ -1980,6 +1980,14 @@ pre code {
 .post-body a {
   color: #1e90ff;
 }
+.post-body h2 {
+  color: #dc143c;
+  text-align: center;
+  font-size: 1.5em;
+}
+.post-body blockquote {
+  border-left-color: #3cb371;
+}
 .post-gallery {
   display: flex;
   min-height: 200px;
@@ -2007,13 +2015,14 @@ pre code {
   margin: 15px 0;
 }
 .posts-expand .post-header {
-  font-size: 1.125em;
+  font-size: 1.5em;
   margin-bottom: 60px;
   text-align: center;
 }
 .posts-expand .post-title {
   font-size: 1.5em;
   font-weight: normal;
+  color: #dc143c;
   margin: initial;
   overflow-wrap: break-word;
 }
