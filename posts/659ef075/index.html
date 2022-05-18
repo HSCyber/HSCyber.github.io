@@ -22,33 +22,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="类和继承是面向对象编程(OOP)中的重要概念，Python中的大量模块等也都是基于类实现的。了解Python中的类一方面有助于强化写代码时候的逻辑（更清楚地知道自己写的代码-每一步是在干嘛），同时便于我们更好地读懂并复制粘贴别人的代码。本文主要内容：  Python中的模块(module)和包(package) Python中如何定义类(class) 什么时候需要类？实例感受 小结">
+    <meta name="description" content="类和继承是面向对象编程(OOP)中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的逻辑（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地读懂并复制粘贴别人的代码。本文主要内容：  Python中的模块(module)和包(package">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈Python中的类、模块、包">
+<meta property="og:title" content="浅析Python中的类、模块、包">
 <meta property="og:url" content="https://hscyber.github.io/posts/659ef075/">
 <meta property="og:site_name" content="HuangS&#39;s Blog">
-<meta property="og:description" content="类和继承是面向对象编程(OOP)中的重要概念，Python中的大量模块等也都是基于类实现的。了解Python中的类一方面有助于强化写代码时候的逻辑（更清楚地知道自己写的代码-每一步是在干嘛），同时便于我们更好地读懂并复制粘贴别人的代码。本文主要内容：  Python中的模块(module)和包(package) Python中如何定义类(class) 什么时候需要类？实例感受 小结">
+<meta property="og:description" content="类和继承是面向对象编程(OOP)中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的逻辑（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地读懂并复制粘贴别人的代码。本文主要内容：  Python中的模块(module)和包(package">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220518133425618.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517160721390.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517162509165.png">
 <meta property="article:published_time" content="2022-05-16T11:24:47.000Z">
-<meta property="article:modified_time" content="2022-05-17T08:58:05.892Z">
+<meta property="article:modified_time" content="2022-05-18T05:59:55.139Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="类">
 <meta property="article:tag" content="模块">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/659ef075/image-20220517160721390.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/659ef075/image-20220518133425618.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/659ef075/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/659ef075/","path":"posts/659ef075/","title":"浅谈Python中的类、模块、包"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/659ef075/","path":"posts/659ef075/","title":"浅析Python中的类、模块、包"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>浅谈Python中的类、模块、包 | HuangS's Blog</title>
+<title>浅析Python中的类、模块、包 | HuangS's Blog</title>
   
 
 
@@ -224,12 +225,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="浅谈Python中的类、模块、包 | HuangS's Blog">
+      <meta itemprop="name" content="浅析Python中的类、模块、包 | HuangS's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          浅谈Python中的类、模块、包
+          浅析Python中的类、模块、包
         </h1>
 
         <div class="post-meta-container">
@@ -247,7 +248,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-17 16:58:05" itemprop="dateModified" datetime="2022-05-17T16:58:05+08:00">2022-05-17</time>
+      <time title="修改时间：2022-05-18 13:59:55" itemprop="dateModified" datetime="2022-05-18T13:59:55+08:00">2022-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -266,14 +267,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>668</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -284,7 +285,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>类和继承是面向对象编程<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的。了解Python中的类一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛），同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
+        <p>类和继承是面向对象编程<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
 <ol>
 <li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
 <li>Python中如何定义<strong>类(class)</strong></li>
@@ -293,7 +294,34 @@
 </ol>
 <span id="more"></span>
 
-<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
+<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/3/tutorial/modules.html">参考-Modules in python</a></p>
+</blockquote>
+<p>模块：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p>包：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<p>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>从<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</p>
+<img src="/posts/659ef075/image-20220518133425618.png" class alt="libs">
+
+<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
+<ol>
+<li>文件夹即包。熟悉的如：json、logging、multiprocessing、urllib、venv</li>
+<li>py文件，即脚本&#x2F;模块。熟悉的如：os.py、re.py、zipfile.py</li>
+<li>一个特殊的<strong>空文件夹</strong>，site-packages，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包及存放在这）</li>
+</ol>
+<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
+<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在<code>if &#39;__main__&#39;:</code> 之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
+<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
+<h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因</a></p>
 </blockquote>
 <blockquote>
@@ -307,7 +335,7 @@
 <p>进入<code>weibo.py</code>文件，包括以下四部分：</p>
 <ol>
 <li>各三方及自定义模块导入，（全局）变量定义</li>
-<li>自定义类<code>class Weibo(object):...</code>，类中包含若构造函数<code>__init__</code>以及大量互相调用嵌套的函数</li>
+<li>自定义类<code>class Weibo(object):...</code>，类中包含构造函数<code>__init__</code>以及大量互相调用嵌套的函数</li>
 <li>定义函数<code>get_config()</code>，用于读取和判断配置文件<strong>config.json</strong>中的信息</li>
 <li>主函数<code>main()</code>：该函数先执行get_config()读取参数，再通过参数创建类Weibo的实例，再调用类中定义的方法，逐步完成数据的抓取</li>
 </ol>
@@ -339,7 +367,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/659ef075/" title="浅谈Python中的类、模块、包">https://hscyber.github.io/posts/659ef075/</a>
+      <a href="https://hscyber.github.io/posts/659ef075/" title="浅析Python中的类、模块、包">https://hscyber.github.io/posts/659ef075/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -393,13 +421,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">8k</span>
+    <span title="站点总字数">9k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
   </span>
 </div>
 
