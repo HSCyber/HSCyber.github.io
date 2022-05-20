@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517160721390.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517162509165.png">
 <meta property="article:published_time" content="2022-05-16T11:24:47.000Z">
-<meta property="article:modified_time" content="2022-05-18T05:59:55.139Z">
+<meta property="article:modified_time" content="2022-05-18T07:37:01.816Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="类">
@@ -104,8 +104,8 @@
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
   </ul>
 </nav>
 
@@ -151,13 +151,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -248,7 +248,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-18 13:59:55" itemprop="dateModified" datetime="2022-05-18T13:59:55+08:00">2022-05-18</time>
+      <time title="修改时间：2022-05-18 15:37:01" itemprop="dateModified" datetime="2022-05-18T15:37:01+08:00">2022-05-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -295,23 +295,27 @@
 <span id="more"></span>
 
 <h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://docs.python.org/3/tutorial/modules.html">参考-Modules in python</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
 </blockquote>
-<p>模块：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p>包：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
-<p>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</p>
+<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<ul>
+<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
+</ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
 
 
 
-<p>从<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</p>
+<ul>
+<li>从<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
+</ul>
 <img src="/posts/659ef075/image-20220518133425618.png" class alt="libs">
 
 <p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
 <ol>
-<li>文件夹即包。熟悉的如：json、logging、multiprocessing、urllib、venv</li>
-<li>py文件，即脚本&#x2F;模块。熟悉的如：os.py、re.py、zipfile.py</li>
-<li>一个特殊的<strong>空文件夹</strong>，site-packages，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包及存放在这）</li>
+<li><strong>文件夹即包。</strong>熟悉的如：json、logging、multiprocessing、urllib</li>
+<li><strong>py文件，即脚本&#x2F;模块。</strong>熟悉的如：os.py、re.py、zipfile.py</li>
+<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包即存放在这）</li>
 </ol>
 <p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
@@ -319,7 +323,7 @@
 
 
 <p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
-<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在<code>if &#39;__main__&#39;:</code> 之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
+<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
 <h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
 <h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
 <p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因</a></p>
@@ -390,6 +394,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/posts/29d41ed/" rel="next" title="lovemyself">
+                  lovemyself <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -421,13 +428,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">9k</span>
+    <span title="站点总字数">11k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8 分钟</span>
+    <span title="站点阅读时长">10 分钟</span>
   </span>
 </div>
 

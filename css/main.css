@@ -1985,6 +1985,9 @@ pre code {
   text-align: center;
   font-size: 1.5em;
 }
+.post-body blockquote {
+  border-left-color: #f08080;
+}
 .post-gallery {
   display: flex;
   min-height: 200px;
