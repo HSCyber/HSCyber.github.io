@@ -159,9 +159,14 @@
     <content><![CDATA[<p>一张好看的学术图表不仅能够更优雅简洁地传递信息，也能给人予美的享受。在撰写学术论文的过程，耗费大量时间的除了做实验，另一个一定是作图了，要通过几张图把信息很好地呈现出来，需要费不少功夫。</p>
 <p><strong>绘图技能</strong>是我一直想要拓展和延伸的一个技能。这一方面需要通过大量的输入来学习别人对图表的设计和呈现，学习色彩、布局等等……另一方面还要能够用代码来实现，而需要基于代码的可视化是一个比较繁琐的内容，需要学习和积累。故在此开始记录自己Python可视化的学习过程，当然，也便于代码的复用。</p>
 <blockquote>
-<p>本系列博客主要参考：<a href>Matplotlib文档</a>, <a href="https://github.com/rougier/scientific-visualization-book">Nicolas P. Rougier老师的书</a></p>
+<p>本系列博客主要参考：<a href="https://matplotlib.org/stable/api/index.html">Matplotlib文档</a>，<a href="https://matplotlib.org/stable/gallery/index.html">Matplotlib Gallery</a>，<a href="https://github.com/rougier/scientific-visualization-book">Nicolas P. Rougier老师的书</a></p>
 </blockquote>
-<p>本文主要涉及内容：<u><strong>Matplotlib中Figure的组成要素</strong></u></p>
+<p>本文主要涉及内容：</p>
+<ol>
+<li><strong>Matplotlib中Figure的组成要素</strong></li>
+<li><strong>主要元素的常用熟悉方法汇总</strong></li>
+<li>其他的诸如风格、字体、网格、图例、色带陆续总结……</li>
+</ol>
 <span id="more"></span>
 
 <h2 id="图的组成"><a href="#图的组成" class="headerlink" title="图的组成"></a>图的组成</h2><blockquote>
@@ -170,7 +175,63 @@
 <p>下图是Matplotlib官方文档中提供的一张介绍图组成元素的图，很整洁，左图为<a href="https://matplotlib.org/3.1.1/gallery/showcase/anatomy.html">旧版anatomy</a>，右图为最新的文档<a href="https://matplotlib.org/stable/gallery/showcase/anatomy.html?highlight=anatomy">anatomy</a>里的图，我稍作改动放到了一起：</p>
 <img src="/posts/8dfff56a/anatomy.png" class alt="anatomy">
 
-<h2 id="图的基本单元"><a href="#图的基本单元" class="headerlink" title="图的基本单元"></a>图的基本单元</h2>]]></content>
+<h3 id="组成总览"><a href="#组成总览" class="headerlink" title="组成总览"></a>组成总览</h3><ul>
+<li><p><strong>Figure</strong>：最基本的”图”，大致可以理解为<strong>画布</strong>。我们可以设置它的尺寸(figsize、标题(suptile)、背景颜色(facecolor )等属性，背景默认是透明transparent&#x3D;True。</p>
+</li>
+<li><p><strong>Axes</strong>：相当于Subplot，子图，是我们实际的绘图区域，为<strong>矩形</strong>。一张图可以有多个子图(Axes)，如上图</p>
+<ul>
+<li><strong>Spines</strong>： 图边，每个子图都有4条边，<u>每条边有主副刻度线(Tick)+主副刻度标签(Tick labels)+边标签(Label)</u>，默认只显示左+下的Spine。</li>
+<li><strong>Axis</strong>：默认显示的左和下方的两条Spines分别为<u>yaxis，xaxis</u>，属性同Spines。</li>
+<li><strong>Line points</strong>…：绘制的图形，也就是我们要在axes上画的东西</li>
+<li><strong>Legend</strong>：图例，每个axes都可以根据其上绘制的图形生成图例，也可以不依赖图形单独创建。</li>
+<li><strong>Grid</strong>：网格线，自行选择是否添加（按照主副刻度线生成）</li>
+<li><strong>Text：</strong>文本，可以作为注释说明添加到图上<ul>
+<li><strong>Annotation</strong>：可以添加连接线&#x2F;箭头的文本，注释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Artist</strong> : <strong>Everything on the figure</strong>, including Figure, Axes, and Axis objects, is an artist. 理解为图元素。</p>
+<ul>
+<li>组成<a href="https://matplotlib.org/stable/_images/inheritance-746d7ad5b4a3ecbadc51ab040f5d995f5c6ecc71.png">图</a></li>
+</ul>
+</li>
+</ul>
+<p>了解了组成部件，之后我们的学习任务主要就是了解和属性各个部件繁多的<strong>属性和属性调整的方法</strong>，以及组合。</p>
+<p>下一节即有针对性地看一下各个元素的属性方法等</p>
+<h3 id="图的基本单元"><a href="#图的基本单元" class="headerlink" title="图的基本单元"></a>图的基本单元</h3><p>任意的一张图，本质上是由以下三种要素的组合：</p>
+<ul>
+<li>patchs：块，background bars ……</li>
+<li>lines：线，tick,line……</li>
+<li>texts：文本，label title……</li>
+</ul>
+<p>多数情况下我们都是使用绘图自带的<strong>默认</strong>设置，但是实际上，一张图的<strong>任一组成部分即上述部件都能够被访问和调整！</strong>如我们可以像下面这样直接设置每个label加粗，<strong>这些方法都能够在文档中快速找到</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xaxis().get_ticklabels():</span><br><span class="line">    label.set_fontweight(<span class="string">&quot;bold&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🔥想强调的是，每个部件在我们创建了一个图形之后就有了<strong>类</strong>对应的<strong>实例</strong>（对类不熟悉的可以移步<a href="https://hscyber.github.io/posts/659ef075/">Python中的类</a>），通过查阅<a href="https://matplotlib.org/stable/api/index.html">文档</a>我们可以看到该对象的<strong>所有属性及方法</strong>，进一步地我们可以按需检索并实现我们对图形想要进行的<strong>任意设置或调整</strong>，下面开始介绍并举例：</p>
+<h2 id="主要部件详解"><a href="#主要部件详解" class="headerlink" title="主要部件详解"></a>主要部件详解</h2><p>虽然有文档，但是我们还是要熟悉一些常见的属性方法，以使我们能够<strong>快速出图</strong>，至于最终成图的细节则可以再细扣</p>
+<h3 id="Figure"><a href="#Figure" class="headerlink" title="Figure"></a>Figure</h3><blockquote>
+<p><code>class matplotlib.figure.Figure</code>, <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">类的全部属性及方法</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line"><span class="comment"># 这样就创建了一个实例 fig</span></span><br></pre></td></tr></table></figure>
+
+<p>常用函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="🔥Axes"><a href="#🔥Axes" class="headerlink" title="🔥Axes"></a>🔥Axes</h3><blockquote>
+<p><code>class matplotlib.axes.Axes</code>，<a href="https://matplotlib.org/stable/api/axes_api.html#the-axes-class">类的全部属性及方法</a></p>
+</blockquote>
+<h3 id="Spines"><a href="#Spines" class="headerlink" title="Spines"></a>Spines</h3><blockquote>
+<p><code>class matplotlib.spines.Spine</code>，<a href="https://matplotlib.org/stable/api/spines_api.html">类的全部属性及方法</a></p>
+</blockquote>
+<h3 id="Text"><a href="#Text" class="headerlink" title="Text"></a>Text</h3><blockquote>
+<p><code>class matplotlib.text.Text</code>，<a href="https://matplotlib.org/stable/api/text_api.html">类的全部属性及方法</a></p>
+</blockquote>
+<h2 id><a href="#" class="headerlink" title></a></h2>]]></content>
       <categories>
         <category>Python-Matplotlib绘图基础</category>
       </categories>
