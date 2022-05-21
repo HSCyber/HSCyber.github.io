@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/anatomy.png">
 <meta property="article:published_time" content="2022-05-21T08:23:57.000Z">
-<meta property="article:modified_time" content="2022-05-21T15:15:30.627Z">
+<meta property="article:modified_time" content="2022-05-21T15:22:25.289Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python Matplotlib">
 <meta name="twitter:card" content="summary">
@@ -132,7 +132,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">图的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E6%80%BB%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">组成总览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8D%95%E5%85%83"><span class="nav-number">1.2.</span> <span class="nav-text">图的基本单元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E9%83%A8%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">主要部件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Figure"><span class="nav-number">2.1.</span> <span class="nav-text">Figure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%A5Axes"><span class="nav-number">2.2.</span> <span class="nav-text">🔥Axes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spines"><span class="nav-number">2.3.</span> <span class="nav-text">Spines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">2.4.</span> <span class="nav-text">Text</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-number">1.</span> <span class="nav-text">图的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E6%88%90%E6%80%BB%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">组成总览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8D%95%E5%85%83"><span class="nav-number">1.2.</span> <span class="nav-text">图的基本单元</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E9%83%A8%E4%BB%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">主要部件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Figure"><span class="nav-number">2.1.</span> <span class="nav-text">Figure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%F0%9F%94%A5Axes"><span class="nav-number">2.2.</span> <span class="nav-text">🔥Axes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spines"><span class="nav-number">2.3.</span> <span class="nav-text">Spines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Text"><span class="nav-number">2.4.</span> <span class="nav-text">Text</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD"><span class="nav-number">3.</span> <span class="nav-text">后续</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -238,7 +238,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-05-21 16:23:57 / 修改时间：23:15:30" itemprop="dateCreated datePublished" datetime="2022-05-21T16:23:57+08:00">2022-05-21</time>
+      <time title="创建时间：2022-05-21 16:23:57 / 修改时间：23:22:25" itemprop="dateCreated datePublished" datetime="2022-05-21T16:23:57+08:00">2022-05-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -257,7 +257,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.9k</span>
+      <span>7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -381,8 +381,21 @@
 <p>属性具体设置</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.set_text(s) #设置字的内容 </span><br><span class="line">.set_position((x,y))#设置字的位置</span><br><span class="line">.set_x(x)</span><br><span class="line">.set_bbox(rectprops) #设置字体外边框</span><br><span class="line">.set_color(color); .set_c(color)</span><br><span class="line"># 字体及大小</span><br><span class="line">.set_font(fp); .set_fontproperties()</span><br><span class="line">.set_family.(); .set_fontfamily()</span><br><span class="line">.set_fontsize(fontsize)</span><br><span class="line"># 设置加粗倾斜等</span><br><span class="line">.set_fontstyle(fontstyle);#设置斜体&#123;<span class="string">&#x27;normal&#x27;</span>, <span class="string">&#x27;italic&#x27;</span>, <span class="string">&#x27;oblique&#x27;</span>&#125;</span><br><span class="line">.set_fontweight(weight) #字体粗细，&#123;a numeric value <span class="keyword">in</span> range <span class="number">0</span><span class="number">-1000</span>, <span class="string">&#x27;ultralight&#x27;</span>, <span class="string">&#x27;light&#x27;</span>, <span class="string">&#x27;normal&#x27;</span>, <span class="string">&#x27;regular&#x27;</span>, <span class="string">&#x27;book&#x27;</span>, <span class="string">&#x27;medium&#x27;</span>, <span class="string">&#x27;roman&#x27;</span>, <span class="string">&#x27;semibold&#x27;</span>, <span class="string">&#x27;demibold&#x27;</span>, <span class="string">&#x27;demi&#x27;</span>, <span class="string">&#x27;bold&#x27;</span>, <span class="string">&#x27;heavy&#x27;</span>, <span class="string">&#x27;extra bold&#x27;</span>, <span class="string">&#x27;black&#x27;</span>&#125;</span><br><span class="line"># 对齐方式</span><br><span class="line">.set_ha(align); </span><br><span class="line">.set_horizontalalignment(align)# align&#123;<span class="string">&#x27;center&#x27;</span>, <span class="string">&#x27;right&#x27;</span>, <span class="string">&#x27;left&#x27;</span>&#125;</span><br><span class="line"># 旋转角度</span><br><span class="line">.set_rotation(s) #float or &#123;<span class="string">&#x27;vertical&#x27;</span>, <span class="string">&#x27;horizontal&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"># 行间距，默认<span class="number">1.2</span></span><br><span class="line">.set_linespacing(spacing)</span><br><span class="line"># 数学公式，生效的前提是未设置全局Tex,(usetex=<span class="literal">True</span>).</span><br><span class="line">.set_math_fontfamily(fontfamily)</span><br><span class="line">.set_usetex(usetex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">.update(kwargs) #dict，传入字典更新其属性</span><br><span class="line">.update_from(other)</span><br></pre></td></tr></table></figure>
 
-
-
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><blockquote>
+<p>待办</p>
+</blockquote>
+<ol>
+<li>绘图逻辑与思路</li>
+<li>Matplotlib绘图初始设置模板（包含风格、字体等等的初始化）</li>
+<li>Matplotlib图片输出设置，空间占用与dpi的权衡……</li>
+<li>绘图布局详解及案例</li>
+<li>色彩及色带详解及案例</li>
+<li>时间序列刻度详解及案例</li>
+<li>文本及注释详解</li>
+<li>其他绘图库了解及探索</li>
+<li>地图绘制……</li>
+<li>……</li>
+</ol>
 
     </div>
 
