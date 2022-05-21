@@ -161,18 +161,18 @@
 <blockquote>
 <p>本系列博客主要参考：<a href>Matplotlib文档</a>, <a href="https://github.com/rougier/scientific-visualization-book">Nicolas P. Rougier老师的书</a></p>
 </blockquote>
-<p>本文主要涉及内容：**<u>Matplotlib中Figure的组成要素</u>**</p>
+<p>本文主要涉及内容：<u><strong>Matplotlib中Figure的组成要素</strong></u></p>
 <span id="more"></span>
 
 <h2 id="图的组成"><a href="#图的组成" class="headerlink" title="图的组成"></a>图的组成</h2><blockquote>
 <p>matplotlib最新版的文档做了较大的改版，提供了更全的<a href="https://matplotlib.org/stable/gallery/index.html">api参考</a></p>
 </blockquote>
 <p>下图是Matplotlib官方文档中提供的一张介绍图组成元素的图，很整洁，左图为<a href="https://matplotlib.org/3.1.1/gallery/showcase/anatomy.html">旧版anatomy</a>，右图为最新的文档<a href="https://matplotlib.org/stable/gallery/showcase/anatomy.html?highlight=anatomy">anatomy</a>里的图，我稍作改动放到了一起：</p>
-<img src="/posts/undefined/anatomy.svg" class alt="anatomy">
+<img src="/posts/8dfff56a/anatomy.png" class alt="anatomy">
 
 <h2 id="图的基本单元"><a href="#图的基本单元" class="headerlink" title="图的基本单元"></a>图的基本单元</h2>]]></content>
       <categories>
-        <category>python-matplotlib绘图基础</category>
+        <category>Python-Matplotlib绘图基础</category>
       </categories>
       <tags>
         <tag>Python Matplotlib</tag>
