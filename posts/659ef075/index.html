@@ -29,17 +29,15 @@
 <meta property="og:site_name" content="HuangS&#39;s Blog">
 <meta property="og:description" content="类和继承是面向对象编程(OOP)中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的逻辑（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地读懂并复制粘贴别人的代码。本文主要内容：  Python中的模块(module)和包(package">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220518133425618.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517160721390.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220517162509165.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/659ef075/image-20220518132724603.png">
 <meta property="article:published_time" content="2022-05-16T11:24:47.000Z">
-<meta property="article:modified_time" content="2022-05-18T07:37:01.816Z">
+<meta property="article:modified_time" content="2022-05-21T03:13:09.831Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="类">
 <meta property="article:tag" content="模块">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/659ef075/image-20220518133425618.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/659ef075/image-20220518132724603.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/659ef075/">
@@ -136,7 +134,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">模块和包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">定义类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E7%B1%BB%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">何时需要类？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85"><span class="nav-number">1.</span> <span class="nav-text">模块和包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">定义类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%95%E6%97%B6%E9%9C%80%E8%A6%81%E7%B1%BB%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">何时需要类？</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -248,7 +246,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-05-18 15:37:01" itemprop="dateModified" datetime="2022-05-18T15:37:01+08:00">2022-05-18</time>
+      <time title="修改时间：2022-05-21 11:13:09" itemprop="dateModified" datetime="2022-05-21T11:13:09+08:00">2022-05-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -289,8 +287,7 @@
 <ol>
 <li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
 <li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？<strong>实例</strong>感受</li>
-<li>小结</li>
+<li>什么时候需要类？</li>
 </ol>
 <span id="more"></span>
 
@@ -309,7 +306,7 @@
 <ul>
 <li>从<a target="_blank" rel="noopener" href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
 </ul>
-<img src="/posts/659ef075/image-20220518133425618.png" class alt="libs">
+<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
 
 <p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
 <ol>
@@ -326,33 +323,27 @@
 <p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
 <h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
 <h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
-<p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
 </blockquote>
 <blockquote>
-<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，此处我以一个开源的<strong>新浪微博爬虫</strong>代码为例感受一下类的使用，<a target="_blank" rel="noopener" href="https://github.com/dataabc/weibo-crawler">代码参考</a></p>
+<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
 </blockquote>
-<p>下载后解压，文件夹内文件如下图，最主要的是一个参数配置文件（输入）和一个主函数（处理）文件：</p>
-<img src="/posts/659ef075/image-20220517160721390.png" class alt="weibo-crawler">
-
-
-
-<p>进入<code>weibo.py</code>文件，包括以下四部分：</p>
+<p>结合实际讨论，</p>
 <ol>
-<li>各三方及自定义模块导入，（全局）变量定义</li>
-<li>自定义类<code>class Weibo(object):...</code>，类中包含构造函数<code>__init__</code>以及大量互相调用嵌套的函数</li>
-<li>定义函数<code>get_config()</code>，用于读取和判断配置文件<strong>config.json</strong>中的信息</li>
-<li>主函数<code>main()</code>：该函数先执行get_config()读取参数，再通过参数创建类Weibo的实例，再调用类中定义的方法，逐步完成数据的抓取</li>
+<li>当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其属性，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
+<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
+<li>结构清晰，好看，从各种包的api文档（如<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a target="_blank" rel="noopener" href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
+<li>……</li>
 </ol>
-<img src="/posts/659ef075/image-20220517162509165.png" class alt="TOC">
+<p><strong>何时使用？</strong>——拙见</p>
+<p>（虽然在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
+<ul>
+<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
+<li>编写开源包和模块时</li>
+<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
+<li></li>
+</ul>
 
-<p>在不适用类时，我对该爬虫的实现应该会是以下三部分</p>
-<ol>
-<li>模块的定义和变量的输入读取</li>
-<li>逐步定义若干函数，并互相嵌套（在此处应该有几十个）</li>
-<li>主函数，运行调用，完成数据抓取</li>
-</ol>
-<p>这样并没有问题，尤其是在工作量不大时完全可以这么做，但是</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2>
     </div>
 
     
