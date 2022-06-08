@@ -114,11 +114,10 @@
     <title>R语言学习1：基础</title>
     <url>/posts/7b2f7b5e/</url>
     <content><![CDATA[<blockquote>
-<p><strong>从Python到R</strong>，此文充当个人入门速查手册</p>
+<p><strong>从Python到R</strong>~</p>
 </blockquote>
-<p>R是很多领域科研人员尤其数据科学的必修课，相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，</p>
-<p>因此在此希望能通过<strong>类比学习</strong>，快速上手R并完成一些工作。</p>
-<p>本文为R语言基础，主要涉及</p>
+<p>相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过<strong>类比</strong>熟悉一下R语言，以便快速上手R并完成一些工作。</p>
+<p>本文小结R语言基础，主要涉及</p>
 <ol>
 <li>基本语法，数据类型</li>
 <li>常用函数，流程控制（写循环）</li>
@@ -126,14 +125,14 @@
 </ol>
 <span id="more"></span>
 
-<p>目前我用Python最常用的有以下流程：</p>
+<p>目前我用Python最常用的有以下操作：</p>
 <ol>
 <li>用列表或字典存数据；写for循环；创建DataFrame。</li>
 <li>批量获取文件名；读写csv文件，获取表格字段信息等；行列筛选；分组聚合。</li>
 <li>对DataFrame进行运算，apply函数应用。</li>
 </ol>
 <p>R的基础语法和数据类型？在R中上述常规操作如何实现？</p>
-<img src="/posts/undefined/image-20220607230008504.png" class alt="image-20220607230008504">
+<img src="/posts/7b2f7b5e/dataframe.png" class alt="dataframe">
 
 <h2 id="R基础"><a href="#R基础" class="headerlink" title="R基础"></a>R基础</h2><h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><blockquote>
 <p>R中的对象即是我们通常理解的变量</p>
@@ -252,7 +251,7 @@
 </blockquote>
 <h3 id="行列选择"><a href="#行列选择" class="headerlink" title="行列选择"></a>行列选择</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建</span></span><br><span class="line">data.frame<span class="punctuation">(</span></span><br><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">y <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">z <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;ID&#x27;</span><span class="punctuation">,</span>...<span class="punctuation">)</span></span><br><span class="line">row.names <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span>...<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
 
-<img src="/posts/undefined/image-20220607230008504.png" class alt="image-20220607230008504">
+
 
 <p>其他操作</p>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取表格信息</span></span><br><span class="line">str<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line"><span class="comment">#转置</span></span><br><span class="line">t<span class="punctuation">(</span>df<span class="punctuation">)</span> </span><br><span class="line">colSums<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">/</span>colMeans<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment">#计算列的和及均值</span></span><br><span class="line"><span class="comment"># 增加新列</span></span><br><span class="line">df<span class="operator">$</span>new_col <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 增加新行，拼接两个df</span></span><br><span class="line">newdf <span class="operator">=</span> rbind<span class="punctuation">(</span>df1<span class="punctuation">,</span> df2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
@@ -507,6 +506,9 @@
 <h2 id="主要参考"><a href="#主要参考" class="headerlink" title="主要参考"></a>主要参考</h2><blockquote>
 <p>不论是Python的内置模块还是第三方提供的模块，官网的文档都是很好的学习资源，尤其是想要了解地更深的时候或者debug的时候</p>
 </blockquote>
+<ul>
+<li><a href="https://strftime.org/">https://strftime.org/</a></li>
+</ul>
 <p>Python官方文档</p>
 <ul>
 <li><a href="https://docs.python.org/3.9/library/index.html">python标准库</a></li>
@@ -544,7 +546,7 @@
 <p>将字符串转换为时间元组</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t_string = <span class="string">&#x27;2022-05-16 13:16:15&#x27;</span></span><br><span class="line">t_struct = time.strptime(t_string,<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<p>所有格式化参数可以在此页面查找<a href="https://docs.python.org/3/library/time.html#functions">strftime()</a><br>常用的如下（注意区分大小写）：</p>
+<p>所有格式化参数可以在此页面查找<a href="https://strftime.org/">strftime()</a><br>常用的如下（注意区分大小写）：</p>
 <ul>
 <li><code>%Y %m %d</code>: 2022-05-01, <code>%Y %-m %-d</code>: 2022-5-1,</li>
 <li><code>%H %M %S</code>: 05:01:08, <code>%-H %-M %-S</code>: 5:1:8,</li>
