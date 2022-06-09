@@ -782,7 +782,7 @@
 <li>搜索作者：author:(“San Zhang” OR “Si Li”)</li>
 <li>搜索期刊文献：”social resilience” <u>source</u>:”International Journal of Geographical Information Science”</li>
 </ul>
-<p><strong>我最常用的是标题检索，如：intitle:((typhoon OR hurricane) AND (resilience) AND “social media”)。</strong></p>
+<p><strong>我最常用的是标题检索，如：intitle:((typhoon OR hurricane) AND (resilience) AND “social media”)。</strong>想要更加广泛一点或者词组不一定包含在标题中时，则建议直接关键词组合，这样会默认检索论文全文信息。</p>
 <h2 id="Connected-papers"><a href="#Connected-papers" class="headerlink" title="Connected papers"></a>Connected papers</h2><blockquote>
 <p><a href="https://www.connectedpapers.com/">Find and explore academic papers</a>一个论文检索及管理、可视化梳理的平台</p>
 <p>我通常用来找一个具体研究方向上<strong>被引量高</strong>的一些较为重要的文章</p>
