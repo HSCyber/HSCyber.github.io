@@ -1982,7 +1982,7 @@ pre code {
 }
 .posts-expand .post-title-link {
   border-bottom: 0;
-  color: var(--link-color);
+  color: #dc143c;
   display: inline-block;
   position: relative;
 }
