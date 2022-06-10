@@ -22,26 +22,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Stay hungry. Stay foolish.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Huangs&#39;s Notes">
-<meta property="og:url" content="https://hscyber.github.io/tags/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
+    <meta name="description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)，对于单个字符串则可以通过if (substring in text)，列表则可以采用以下推导式newlist &#x3D; [content for content in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="List&#x2F;pandas如何筛选包含若干词语的文本">
+<meta property="og:url" content="https://hscyber.github.io/posts/4d972282/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="Stay hungry. Stay foolish.">
+<meta property="og:description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)，对于单个字符串则可以通过if (substring in text)，列表则可以采用以下推导式newlist &#x3D; [content for content in">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-10T11:06:19.000Z">
+<meta property="article:modified_time" content="2022-06-10T11:20:40.811Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="Python GIS Matplotlib">
+<meta property="article:tag" content="Series.str">
+<meta property="article:tag" content="文本筛选">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://hscyber.github.io/tags/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
+<link rel="canonical" href="https://hscyber.github.io/posts/4d972282/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/入门教程/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/4d972282/","path":"posts/4d972282/","title":"List/pandas如何筛选包含若干词语的文本"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 入门教程 | Huangs's Notes</title>
+<title>List/pandas如何筛选包含若干词语的文本 | Huangs's Notes</title>
   
 
 
@@ -190,50 +193,140 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">入门教程
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4d972282/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="List/pandas如何筛选包含若干词语的文本 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          List/pandas如何筛选包含若干词语的文本
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+      <time title="创建时间：2022-06-10 19:06:19 / 修改时间：19:20:40" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">Pandas数据处理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>648</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…若要全部包含则改成&amp;&#x2F;all()</p>
+<span id="more"></span>
+
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-06-08T16:57:54+08:00"
-              content="2022-06-08">
-          06-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/7b2f7b5e/" itemprop="url">
-            <span itemprop="name">R语言学习1：基础</span>
-          </a>
-      </div>
-
+    
+    
+    
       
-    </header>
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/4d972282/" title="List&#x2F;pandas如何筛选包含若干词语的文本">https://hscyber.github.io/posts/4d972282/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Series-str/" rel="tag"><i class="fa fa-tag"></i> Series.str</a>
+              <a href="/tags/%E6%96%87%E6%9C%AC%E7%AD%9B%E9%80%89/" rel="tag"><i class="fa fa-tag"></i> 文本筛选</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/e8c71149/" rel="prev" title="如何开展研究背景调研和总结？">
+                  <i class="fa fa-chevron-left"></i> 如何开展研究背景调研和总结？
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>

@@ -95,9 +95,9 @@
 
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a></li>
   </ul>
 </nav>
 
@@ -142,7 +142,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -153,7 +153,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,6 +200,102 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4d972282/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/4d972282/" class="post-title-link" itemprop="url">List/pandas如何筛选包含若干词语的文本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-10 19:06:19 / 修改时间：19:20:40" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">Pandas数据处理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>648</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…若要全部包含则改成&amp;&#x2F;all()</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/e8c71149/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -236,7 +332,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-10 11:35:30" itemprop="dateModified" datetime="2022-06-10T11:35:30+08:00">2022-06-10</time>
+      <time title="修改时间：2022-06-10 19:05:07" itemprop="dateModified" datetime="2022-06-10T19:05:07+08:00">2022-06-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -255,7 +351,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>223</span>
+      <span>229</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -277,13 +373,7 @@
 <p>待补充</p>
 </blockquote>
 <p>本文预计包含以下内容：</p>
-<ol>
-<li>为什么要进行文献调研和现状分析？</li>
-<li>要把握的重难点是？</li>
-<li>怎么查文献读文献？</li>
-<li>应用类？方法类？如何总结归纳</li>
-<li>论文背景部分怎么写？</li>
-</ol>
+<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -348,7 +438,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-10 11:35:48" itemprop="dateModified" datetime="2022-06-10T11:35:48+08:00">2022-06-10</time>
+      <time title="修改时间：2022-06-10 19:02:40" itemprop="dateModified" datetime="2022-06-10T19:02:40+08:00">2022-06-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -367,7 +457,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>638</span>
+      <span>663</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -388,13 +478,11 @@
           <blockquote>
 <p>分享一下自己平时下载文献的流程和几种方式…</p>
 </blockquote>
+<blockquote>
+<p>个人平时下载文献的流程和几种方式…</p>
+</blockquote>
 <p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<ol>
-<li>论文所在官网</li>
-<li><a target="_blank" rel="noopener" href="https://scholar.google.com/">谷歌学术</a> + <a target="_blank" rel="noopener" href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）</li>
-<li><a target="_blank" rel="noopener" href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong></li>
-<li>……</li>
-</ol>
+<p>1.论文所在官网；2.<a target="_blank" rel="noopener" href="https://scholar.google.com/">谷歌学术</a> + <a target="_blank" rel="noopener" href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a target="_blank" rel="noopener" href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4….</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -459,7 +547,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-10 11:35:56" itemprop="dateModified" datetime="2022-06-10T11:35:56+08:00">2022-06-10</time>
+      <time title="修改时间：2022-06-10 19:04:06" itemprop="dateModified" datetime="2022-06-10T19:04:06+08:00">2022-06-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -671,7 +759,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-08 17:10:42" itemprop="dateModified" datetime="2022-06-08T17:10:42+08:00">2022-06-08</time>
+      <time title="修改时间：2022-06-10 19:09:50" itemprop="dateModified" datetime="2022-06-10T19:09:50+08:00">2022-06-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -709,10 +797,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
-<ol>
-<li>根据分隔符将一列<strong>拆</strong>成多列</li>
-<li>将多列进行<strong>合并</strong></li>
-</ol>
+<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1488,13 +1573,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">29k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
   </span>
 </div>
 

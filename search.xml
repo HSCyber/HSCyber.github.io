@@ -17,13 +17,7 @@
 <p>待补充</p>
 </blockquote>
 <p>本文预计包含以下内容：</p>
-<ol>
-<li>为什么要进行文献调研和现状分析？</li>
-<li>要把握的重难点是？</li>
-<li>怎么查文献读文献？</li>
-<li>应用类？方法类？如何总结归纳</li>
-<li>论文背景部分怎么写？</li>
-</ol>
+<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
 <span id="more"></span>
 
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
@@ -44,13 +38,11 @@
     <content><![CDATA[<blockquote>
 <p>分享一下自己平时下载文献的流程和几种方式…</p>
 </blockquote>
+<blockquote>
+<p>个人平时下载文献的流程和几种方式…</p>
+</blockquote>
 <p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<ol>
-<li>论文所在官网</li>
-<li><a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）</li>
-<li><a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong></li>
-<li>……</li>
-</ol>
+<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4….</p>
 <span id="more"></span>
 
 <h2 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h2><p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
@@ -228,7 +220,7 @@
 </blockquote>
 <h3 id="行列选择"><a href="#行列选择" class="headerlink" title="行列选择"></a>行列选择</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建</span></span><br><span class="line">data.frame<span class="punctuation">(</span></span><br><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">y <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">z <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;ID&#x27;</span><span class="punctuation">,</span>...<span class="punctuation">)</span></span><br><span class="line">row.names <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span>...<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
 
-
+<img src="/posts/7b2f7b5e/dataframe.png" class alt="image-20220607230008504">
 
 <p>其他操作</p>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取表格信息</span></span><br><span class="line">str<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line"><span class="comment">#转置</span></span><br><span class="line">t<span class="punctuation">(</span>df<span class="punctuation">)</span> </span><br><span class="line">colSums<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">/</span>colMeans<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment">#计算列的和及均值</span></span><br><span class="line"><span class="comment"># 增加新列</span></span><br><span class="line">df<span class="operator">$</span>new_col <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 增加新行，拼接两个df</span></span><br><span class="line">newdf <span class="operator">=</span> rbind<span class="punctuation">(</span>df1<span class="punctuation">,</span> df2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
@@ -528,10 +520,7 @@
     <title>Pandas拆分及合并字符串列</title>
     <url>/posts/374675e0/</url>
     <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
-<ol>
-<li>根据分隔符将一列<strong>拆</strong>成多列</li>
-<li>将多列进行<strong>合并</strong></li>
-</ol>
+<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
 <span id="more"></span>
 
 <img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
@@ -566,7 +555,8 @@
         <category>Pandas数据处理</category>
       </categories>
       <tags>
-        <tag>pandas.str</tag>
+        <tag>表格分列及合并</tag>
+        <tag>Series.str</tag>
       </tags>
   </entry>
   <entry>
@@ -828,6 +818,23 @@
       </categories>
       <tags>
         <tag>谷歌学术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>List/pandas如何筛选包含若干词语的文本</title>
+    <url>/posts/4d972282/</url>
+    <content><![CDATA[<p>处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…若要全部包含则改成&amp;&#x2F;all()</p>
+<span id="more"></span>
+
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理</category>
+      </categories>
+      <tags>
+        <tag>Series.str</tag>
+        <tag>文本筛选</tag>
       </tags>
   </entry>
   <entry>
