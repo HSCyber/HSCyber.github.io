@@ -1090,7 +1090,7 @@ pre code {
 }
 .headband {
   background: var(--theme-color);
-  height: 3px;
+  height: 2.5px;
 }
 @media (max-width: 991px) {
   .headband {
@@ -1938,6 +1938,9 @@ pre code {
 }
 .post-body blockquote {
   border-left-color: #f08080;
+}
+.post-body p {
+  margin: 0 0 15px;
 }
 .post-gallery {
   display: flex;
