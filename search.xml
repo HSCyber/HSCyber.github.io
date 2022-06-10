@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>image test</title>
-    <url>/posts/2852138d/</url>
-    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
-<img src="/posts/2852138d/test.png" class alt="image">
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-  </entry>
-  <entry>
     <title>如何开展研究背景调研和总结？</title>
     <url>/posts/e8c71149/</url>
     <content><![CDATA[<blockquote>
@@ -31,6 +21,16 @@
       <tags>
         <tag>文献</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>image test</title>
+    <url>/posts/2852138d/</url>
+    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
+<img src="/posts/2852138d/test.png" class alt="image">
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
   </entry>
   <entry>
     <title>文献篇 (2)论文下载</title>
@@ -821,23 +821,6 @@
       </tags>
   </entry>
   <entry>
-    <title>List/pandas如何筛选包含若干词语的文本</title>
-    <url>/posts/4d972282/</url>
-    <content><![CDATA[<p>处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…若要全部包含则改成&amp;&#x2F;all()</p>
-<span id="more"></span>
-
-<p>代码举例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Pandas数据处理</category>
-      </categories>
-      <tags>
-        <tag>Series.str</tag>
-        <tag>文本筛选</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>订阅了Typora~</title>
     <url>/posts/34eb4d05/</url>
     <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
@@ -854,6 +837,25 @@
       </categories>
       <tags>
         <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>List/pandas如何筛选包含若干词语的文本</title>
+    <url>/posts/4d972282/</url>
+    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…</p>
+<span id="more"></span>
+
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
+<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
+]]></content>
+      <categories>
+        <category>Pandas数据处理</category>
+      </categories>
+      <tags>
+        <tag>Series.str</tag>
+        <tag>文本筛选</tag>
       </tags>
   </entry>
 </search>
