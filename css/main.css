@@ -1940,7 +1940,7 @@ pre code {
   border-left-color: #f08080;
 }
 .post-body p {
-  margin: 0 0 15px;
+  margin: 0 0 10px;
 }
 .post-gallery {
   display: flex;
@@ -1982,7 +1982,7 @@ pre code {
 }
 .posts-expand .post-title-link {
   border-bottom: 0;
-  color: #dc143c;
+  color: var(--link-color);
   display: inline-block;
   position: relative;
 }
@@ -2081,7 +2081,7 @@ pre code {
   justify-content: center;
 }
 .post-eof {
-  background: #f08080;
+  background: #ccc;
   height: 1px;
   margin: 30px auto 40px;
   width: 50%;
