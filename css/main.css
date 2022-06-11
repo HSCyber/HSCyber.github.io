@@ -1943,6 +1943,19 @@ pre code {
 .post-body blockquote {
   border-left-color: #f08080;
 }
+.post-body ul {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+.post-body ol {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+.post-body figure.highlight {
+  border-radius: 5px;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.4);
+  padding-top: 20px;
+}
 .post-gallery {
   display: flex;
   min-height: 200px;
