@@ -221,7 +221,7 @@ h6 {
   font-size: 0.815em;
 }
 p {
-  margin: 0 0 20px;
+  margin: 0 0 10px;
 }
 a {
   border-bottom: 1px solid #999;
@@ -266,6 +266,10 @@ dt {
 dd {
   margin: 0;
   padding: 0;
+}
+ul ol {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
 }
 .table-container {
   overflow: auto;
@@ -1939,9 +1943,6 @@ pre code {
 .post-body blockquote {
   border-left-color: #f08080;
 }
-.post-body p {
-  margin: 0 0 10px;
-}
 .post-gallery {
   display: flex;
   min-height: 200px;
@@ -1981,6 +1982,7 @@ pre code {
   overflow-wrap: break-word;
 }
 .posts-expand .post-title-link {
+  font-size: 1.125em;
   border-bottom: 0;
   color: var(--link-color);
   display: inline-block;
