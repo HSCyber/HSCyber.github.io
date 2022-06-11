@@ -228,9 +228,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-06-10 19:06:19 / 修改时间：19:23:49" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
+      <time title="创建时间：2022-06-10 19:06:19" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-11 19:56:00" itemprop="dateModified" datetime="2022-06-11T19:56:00+08:00">2022-06-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -249,7 +255,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>642</span>
+      <span>660</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -267,7 +273,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格中包含某几个关键词的行，对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code>，对于单个字符串则可以通过<code>if (substring in text)</code>，列表则可以采用以下推导式<code>newlist = [content for content in contents if any(w in content for w in keywords)]</code>…</p>
+          <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
+<ul>
+<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
+<li>对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
+<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
+</ul>
           <!--noindex-->
           <!--/noindex-->
         
