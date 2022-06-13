@@ -255,6 +255,13 @@
   </url>
   
   <url>
+    <loc>https://hscyber.github.io/tags/hexo/</loc>
+    <lastmod>2022-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/tags/Python/</loc>
     <lastmod>2022-06-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -270,13 +277,6 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/%E6%A8%A1%E5%9D%97/</loc>
-    <lastmod>2022-06-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/hexo/</loc>
     <lastmod>2022-06-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
