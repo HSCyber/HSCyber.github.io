@@ -197,7 +197,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Josefin Sans, Noto Sans SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   font-weight: bold;
   line-height: 1.5;
   margin: 30px 0 15px;
@@ -1154,7 +1154,7 @@ pre code {
   color: var(--brand-hover-color);
 }
 .site-title {
-  font-family: Roboto Slab, Noto Serif SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
+  font-family: Josefin Sans, Noto Sans SC, Roboto Slab, Noto Serif SC, 'Noto Serif SC', 'Microsoft YaHei', sans-serif;
   font-size: 1.375em;
   font-weight: normal;
   line-height: 1.5;
