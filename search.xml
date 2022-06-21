@@ -948,25 +948,6 @@
       </tags>
   </entry>
   <entry>
-    <title>订阅了Typora~</title>
-    <url>/posts/34eb4d05/</url>
-    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
-<span id="more"></span>
-
-<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
-<ul>
-<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
-</ul>
-<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>用VSCode写Jupyter及Python脚本</title>
     <url>/posts/9730787a/</url>
     <content><![CDATA[<p>小结一下自己目前基于Python的数据分析工作习惯，之前是基于Anaconda环境，采用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，采用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。</p>
@@ -983,6 +964,25 @@
       <tags>
         <tag>Python</tag>
         <tag>VSCode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>订阅了Typora~</title>
+    <url>/posts/34eb4d05/</url>
+    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
+<span id="more"></span>
+
+<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
+<ul>
+<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
+</ul>
+<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
       </tags>
   </entry>
 </search>
