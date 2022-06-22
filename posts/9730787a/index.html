@@ -21,19 +21,21 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="小结一下自己目前基于Python的数据分析工作习惯，之前是基于Anaconda环境，采用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，采用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。">
+    <meta name="description" content="小结一下自己目前基于Python的数据分析工作习惯。之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用VSCode写Jupyter及Python脚本">
 <meta property="og:url" content="https://hscyber.github.io/posts/9730787a/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="小结一下自己目前基于Python的数据分析工作习惯，之前是基于Anaconda环境，采用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，采用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。">
+<meta property="og:description" content="小结一下自己目前基于Python的数据分析工作习惯。之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/9730787a/image-20220622225823880.png">
 <meta property="article:published_time" content="2022-06-20T02:00:42.000Z">
-<meta property="article:modified_time" content="2022-06-21T13:16:50.419Z">
+<meta property="article:modified_time" content="2022-06-22T15:05:23.871Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="VSCode">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/9730787a/image-20220622225823880.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/9730787a/">
@@ -130,7 +132,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Python工作模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vs-Code%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">Vs Code的使用简介</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Python工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">问题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-x2F-%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">2.2.</span> <span class="nav-text">代码&#x2F;工具实现思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vs-Code%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">Vs Code的使用简介</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,11 +243,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
         </span>
     </span>
 
@@ -263,7 +265,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>342</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -281,13 +283,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>小结一下自己目前基于Python的数据分析工作习惯，之前是基于Anaconda环境，采用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，采用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。</p>
+        <p>小结一下自己目前<strong>基于Python的数据分析工作习惯</strong>。之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap。</p>
 <span id="more"></span>
 
+<p>ps: QGIS在一些功能和处理速度等功能比ArcMap好用很多，比如 Spatial join; Zonal statistic等，好用且速度更快，后续陆续总结一下，遗憾的是QGIS的Python脚本功能不如ArcPy。</p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><blockquote>
-<p>尽管jupyter notebook&#x2F;lab是广为推崇的Python数据分析利器，我也用了很长一段时间，但网页版的jupyter偶尔出bug且每次启动还需要启动浏览器，尤其是在文件夹及数据管理等方面不太方便，在好朋友推荐下转向了支持Jupyter的开源且轻巧的vscode，已经上手了一段时间觉得很舒服~</p>
+<p>言归正传，尽管jupyter notebook&#x2F;lab是广为推崇的Python数据分析利器，我也用了很长一段时间，但网页版的jupyter偶尔出bug且每次启动还需要启动浏览器，尤其是在文件夹及数据管理等方面不太方便，在好朋友推荐下转向了支持Jupyter的开源且轻巧的vscode，已经上手了一段时间觉得很舒服~</p>
 </blockquote>
-<h2 id="Python工作模式"><a href="#Python工作模式" class="headerlink" title="Python工作模式"></a>Python工作模式</h2><h2 id="Vs-Code的使用简介"><a href="#Vs-Code的使用简介" class="headerlink" title="Vs Code的使用简介"></a>Vs Code的使用简介</h2>
+<h2 id="Python工作模式"><a href="#Python工作模式" class="headerlink" title="Python工作模式"></a>Python工作模式</h2><blockquote>
+<p>不论数据获取、处理还是分析，编程都只是实现任务的工具之一，所以最核心的还是目的及思路步骤。</p>
+<p>好记性不如烂笔头，对我而言记录逻辑和步骤是十分重要的，这也便于复用和查错。</p>
+</blockquote>
+<h3 id="问题思路"><a href="#问题思路" class="headerlink" title="问题思路"></a>问题思路</h3><p>这方面很难讲，我个人是习惯</p>
+<ol>
+<li>先捋捋问题的核心是什么，最后要得到什么样的输出和数据结果，需要兼顾的问题等等</li>
+<li>然后花一段时间结合数据、经验与熟系的工具拟定初步方案（这步若卡住则需要多做功课或请教师兄师姐老师）</li>
+<li>觉得想清楚了差不多了就开始动手想具体步骤，也即实现方案的具体步骤</li>
+<li>开始上手，代码+软件齐上阵，过程中记录出现的问题并视情况调整</li>
+<li>……</li>
+</ol>
+<p>如下图，这是我近期处理数据时候记录的一些笔记（基于typora），供参考，我也是最近才开始文本记录，对于一些<strong>步骤多点</strong>的任务，最好还是记录一下，当然，后续也会试情况不断调整和完善需要记录的内容：</p>
+<img src="/posts/9730787a/image-20220622225823880.png" class alt="image-20220622225823880">
+
+<p>另外，实际一些<strong>小的案例</strong>，直接写在py脚本的开头简单写写就行，很多软件都有添加脚本header信息的功能，如以下案例我需要将网站抓取的原始GPS轨迹数据处理为表格，于是我的文件头是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   json2shp.py</span></span><br><span class="line"><span class="string">@Time    :   2022/04/01 19:50:21</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   将json文件转换为geopandas csv</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">1. 导入json文件，将.json转换为csv文件，转换为列：pid,time,lng,lat,elev,speed,geometry-用wkt表示</span></span><br><span class="line"><span class="string">2. 将csv转换为line几何类型，用wkt表示</span></span><br><span class="line"><span class="string">3. 根据文件名(tid)将csv与表进行连接，得到最终的表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">参考链接|API文档：</span></span><br><span class="line"><span class="string">1. </span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="keyword">import</span> os, time, json</span><br><span class="line"><span class="keyword">from</span> multiprocessing.pool <span class="keyword">import</span> Pool</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><strong>总之</strong>，<u>在数据处理分析过程中，充分捋清并记录自己的思维逻辑和实现步骤，并记录出现得到问题，能够提高效率</u></p>
+<h3 id="代码-x2F-工具实现思路"><a href="#代码-x2F-工具实现思路" class="headerlink" title="代码&#x2F;工具实现思路"></a>代码&#x2F;工具实现思路</h3><blockquote>
+</blockquote>
+<h2 id="Vs-Code的使用简介"><a href="#Vs-Code的使用简介" class="headerlink" title="Vs Code的使用简介"></a>Vs Code的使用简介</h2>
     </div>
 
     
@@ -359,13 +383,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">32k</span>
+    <span title="站点总字数">33k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">29 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
