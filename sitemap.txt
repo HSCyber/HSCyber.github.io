@@ -1,3 +1,4 @@
+https://hscyber.github.io/bookmarks/daily/
 https://hscyber.github.io/bookmarks/academic/
 https://hscyber.github.io/bookmarks/codes/
 https://hscyber.github.io/bookmarks/hobby/
@@ -19,7 +20,6 @@ https://hscyber.github.io/about/
 https://hscyber.github.io/posts/33f7b1b7/
 https://hscyber.github.io/posts/4a17b156/
 https://hscyber.github.io/posts/2852138d/
-https://hscyber.github.io/bookmarks/daily/
 https://hscyber.github.io/bookmarks/tools/
 https://hscyber.github.io/404
 https://hscyber.github.io/tags/
