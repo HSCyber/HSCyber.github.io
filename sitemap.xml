@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/bookmarks/</loc>
+    <loc>https://hscyber.github.io/bookmarks/codes/</loc>
     
     <lastmod>2022-06-26</lastmod>
     
@@ -29,7 +29,16 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/bookmarks/codes/</loc>
+    <loc>https://hscyber.github.io/posts/9730787a/</loc>
+    
+    <lastmod>2022-06-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/bookmarks/</loc>
     
     <lastmod>2022-06-26</lastmod>
     
@@ -48,15 +57,6 @@
   
   <url>
     <loc>https://hscyber.github.io/posts/7b2f7b5e/</loc>
-    
-    <lastmod>2022-06-26</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/posts/9730787a/</loc>
     
     <lastmod>2022-06-26</lastmod>
     
