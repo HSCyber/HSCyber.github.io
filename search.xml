@@ -362,6 +362,8 @@
 <p>持续阅读并更新</p>
 </blockquote>
 <p>本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
+<span id="more"></span>
+
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
 <p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
 </blockquote>
@@ -558,6 +560,209 @@
       <categories>
         <category>生活</category>
       </categories>
+  </entry>
+  <entry>
+    <title>matplotlib绘图基础1：图的组成元素</title>
+    <url>/posts/8dfff56a/</url>
+    <content><![CDATA[<p>一张好看的学术图表不仅能够更优雅简洁地传递信息，也能给人予美的享受。在撰写学术论文的过程，耗费大量时间的除了做实验，另一个一定是作图了，要通过几张图把信息很好地呈现出来，需要费不少功夫。</p>
+<p><strong>绘图技能</strong>是我一直想要拓展和延伸的一个技能。这一方面需要通过大量的输入来学习别人对图表的设计和呈现，学习色彩、布局等等……另一方面还要能够用代码来实现，而需要基于代码的可视化是一个比较繁琐的内容，需要学习和积累。故在此开始记录自己Python可视化的学习过程，当然，也便于代码的复用。</p>
+<blockquote>
+<p>本系列博客主要参考：<a href="https://matplotlib.org/stable/api/index.html">Matplotlib文档</a>，<a href="https://matplotlib.org/stable/gallery/index.html">Matplotlib Gallery</a>，部分参考<a href="https://github.com/rougier/scientific-visualization-book">Rougier老师的开源书</a></p>
+</blockquote>
+<p>本文主要涉及内容：</p>
+<ol>
+<li><strong>Matplotlib中Figure的组成要素</strong></li>
+<li><strong>主要元素的常用方法汇总</strong></li>
+<li>其他的诸如风格、字体、网格、图例、色带陆续总结……</li>
+</ol>
+<span id="more"></span>
+
+<p>另外，快速绘图<a href="https://matplotlib.org/cheatsheets/cheatsheets.pdf">备忘录下载</a>，该备忘录有两张大图（<a href="https://camo.githubusercontent.com/bc3b143766ed68eb6a851900c317c5d9222eb1471888942afb35137aa5141557/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d312e706e67">基础绘图</a>;<a href="https://camo.githubusercontent.com/8566d191963c2ada58246241d19a1252c519edea1ecf4049f5bc939e302e36a8/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d322e706e67">色彩及文字等</a>），可以快速查看常见的绘图操作&#x2F;函数，函数右侧的<strong>api</strong>还可以点击直达官网api文档详细介绍。</p>
+<img src="/posts/8dfff56a/text-shadow.png" class alt="matplotlib">
+
+<p>上图通过matplotlib代码制作，详见<a href="https://github.com/rougier/scientific-visualization-book">book</a></p>
+<h2 id="图的组成"><a href="#图的组成" class="headerlink" title="图的组成"></a>图的组成</h2><blockquote>
+<p>matplotlib最新版的文档做了较大的改版，提供了更全的<a href="https://matplotlib.org/stable/gallery/index.html">api参考</a></p>
+</blockquote>
+<p>下图是Matplotlib官方文档中提供的一张介绍图组成元素的图，很整洁，左图为<a href="https://matplotlib.org/3.1.1/gallery/showcase/anatomy.html">旧版anatomy</a>，右图为最新的文档<a href="https://matplotlib.org/stable/gallery/showcase/anatomy.html?highlight=anatomy">anatomy</a>里的图，我稍作改动放到了一起：</p>
+<img src="/posts/8dfff56a/anatomy.png" class alt="anatomy">
+
+<h3 id="组成总览"><a href="#组成总览" class="headerlink" title="组成总览"></a>组成总览</h3><ul>
+<li><p><strong>Figure</strong>：所有绘图元素的顶级容器，大致可以理解为<strong>画布canvas</strong>。我们可以设置它的尺寸(figsize)、标题(suptile)、背景颜色(facecolor )等属性，背景默认是透明 transparent&#x3D;True。</p>
+</li>
+<li><p><strong>Axes</strong>：相当于Subplot，子图，是我们实际的绘图区域，为<strong>矩形</strong>。一张图可以有多个子图(Axes)，如上图</p>
+<ul>
+<li><strong>Spines</strong>： 图边，每个子图都有4条边，<u>每条边有主副刻度线(Tick)+主副刻度标签(Tick labels)+边标签(Label)</u>，默认只显示左+下的Spine。</li>
+<li><strong>Axis</strong>：默认显示的左和下方的两条Spines分别为<u>yaxis，xaxis</u>，属性同Spines。</li>
+<li><strong>Line points</strong>…：绘制的图形，也就是我们要在axes上画的东西</li>
+<li><strong>Legend</strong>：图例，每个axes都可以根据其上绘制的图形生成图例，也可以不依赖图形单独创建。</li>
+<li><strong>Grid</strong>：网格线，自行选择是否添加（按照主副刻度线生成）</li>
+<li><strong>Text：</strong>文本，可以作为注释说明添加到图上<ul>
+<li><strong>Annotation</strong>：可以添加连接线&#x2F;箭头的文本，注释</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Artist</strong> : <strong>Everything on the figure</strong>, including Figure, Axes, and Axis objects, is an artist. 理解为图元素。</p>
+<ul>
+<li>组成<a href="https://matplotlib.org/stable/_images/inheritance-746d7ad5b4a3ecbadc51ab040f5d995f5c6ecc71.png">图</a></li>
+</ul>
+</li>
+</ul>
+<p>了解了组成部件，之后我们的学习任务主要就是了解和属性各个部件繁多的<strong>属性和属性调整的方法</strong>，以及组合。</p>
+<p>下一节即有针对性地看一下各个元素的属性方法等</p>
+<h3 id="图的基本单元"><a href="#图的基本单元" class="headerlink" title="图的基本单元"></a>图的基本单元</h3><p>任意的一张图，本质上是由以下三种要素的组合（莫明想起了GIS里的点线面hh）：</p>
+<ul>
+<li>patchs：块，如background bars ……</li>
+<li>lines：线，如tick,line……</li>
+<li>texts：文本，如label title……</li>
+</ul>
+<p>多数情况下我们都是使用绘图自带的<strong>默认</strong>设置，但是实际上，一张图的<strong>任一组成部分即上述部件都能够被访问和调整！</strong>如我们可以像下面这样直接设置每个label加粗，<strong>这些方法都能够在文档中快速找到</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xaxis().get_ticklabels():</span><br><span class="line">    label.set_fontweight(<span class="string">&quot;bold&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>🔥想强调的是，每个部件在我们创建了一个图形之后就有了<strong>类</strong>对应的<strong>实例</strong>（对类不熟悉的可以移步<a href="https://hscyber.github.io/posts/659ef075/">Python中的类</a>），通过查阅<a href="https://matplotlib.org/stable/api/index.html">文档</a>我们可以看到该对象的<strong>所有属性及方法</strong>，进一步地我们可以按需检索并实现我们对图形想要进行的<strong>任意设置或调整</strong>，下面开始介绍并举例：</p>
+<h2 id="主要部件详解"><a href="#主要部件详解" class="headerlink" title="主要部件详解"></a>主要部件详解</h2><p>虽然有文档，但是我还是要熟悉一些常见的属性方法，以使我们能够<strong>快速出图</strong>，至于最终成图的细节则可以再细扣</p>
+<p>另外，以下所有均来自<u>Matplotlib3.5官方文档</u>，一些参数细节暂不展开讲，在后续的总结中再慢慢铺开</p>
+<h3 id="Figure"><a href="#Figure" class="headerlink" title="Figure"></a>Figure</h3><blockquote>
+<p><code>class matplotlib.figure.Figure</code>, <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">类的属性及方法</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 创建一个 fig实例 </span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">fig, ax = plt.subplots()</span><br></pre></td></tr></table></figure>
+
+<p>常用属性及方法&#x2F;函数：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建时即可传参</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">matplotlib</span>.figure.Figure(figsize=<span class="literal">None</span>, dpi=<span class="literal">None</span>, facecolor=<span class="literal">None</span>, edgecolor=<span class="literal">None</span>, linewidth=<span class="number">0.0</span>, frameon=<span class="literal">None</span>, subplotpars=<span class="literal">None</span>, tight_layout=<span class="literal">None</span>, constrained_layout=<span class="literal">None</span>, *, layout=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 添加子图</span></span><br><span class="line">.add_subplot()</span><br><span class="line">.add_axes()</span><br><span class="line">.subplots()</span><br><span class="line">.add_gridspec() <span class="comment">#复杂布局时使用</span></span><br><span class="line"><span class="comment"># 日期ticklabels自动调整，自动旋转以免叠盖</span></span><br><span class="line">.autofmt_xdate(bottom=<span class="number">0.2</span>, rotation=<span class="number">30</span>, ha=<span class="string">&#x27;right&#x27;</span>, which=<span class="string">&#x27;major&#x27;</span>)</span><br><span class="line"><span class="comment"># 添加色带</span></span><br><span class="line">.colorbar(mappable, cax=<span class="literal">None</span>, ax=<span class="literal">None</span>, use_gridspec=<span class="literal">True</span>, **kw)</span><br><span class="line"><span class="comment"># 放置图例</span></span><br><span class="line">.legend()</span><br><span class="line"><span class="comment"># 设置标题、文本</span></span><br><span class="line">.suptitle()</span><br><span class="line">.supxlabel(); .supylabel()</span><br><span class="line">.text(x, y, s, fontdict=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 保存，常用，常用设置会在另一篇文章展开</span></span><br><span class="line">.savefig(fname, *, dpi=<span class="string">&#x27;figure&#x27;</span>, <span class="built_in">format</span>=<span class="literal">None</span>, metadata=<span class="literal">None</span>,</span><br><span class="line">        bbox_inches=<span class="literal">None</span>, pad_inches=<span class="number">0.1</span>,</span><br><span class="line">        facecolor=<span class="string">&#x27;auto&#x27;</span>, edgecolor=<span class="string">&#x27;auto&#x27;</span>,</span><br><span class="line">        backend=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 设置各种属性，可以一次性设置多个参数，详见文档</span></span><br><span class="line">.<span class="built_in">set</span>(*...)</span><br><span class="line">.set_label(s)</span><br><span class="line">.set_alpha(alpha)</span><br><span class="line">.set_constrained_layout(constrained)</span><br><span class="line">.set_constrained_layout_pads(*, w_pad=<span class="literal">None</span>, h_pad=<span class="literal">None</span>, wspace=<span class="literal">None</span>, hspace=<span class="literal">None</span>)</span><br><span class="line">.set_dpi(); .set_edgecolor; .set_facecolor()...</span><br><span class="line"><span class="comment"># 获取</span></span><br><span class="line">.gca()  <span class="comment">#当前axes</span></span><br><span class="line">.get_axes()</span><br><span class="line">.get_children()</span><br><span class="line">.get_edgecolor(); .get_facecolor()</span><br><span class="line">.get_figheight(); .get_figwidth()</span><br></pre></td></tr></table></figure>
+
+<h3 id="🔥Axes-绘图区"><a href="#🔥Axes-绘图区" class="headerlink" title="🔥Axes-绘图区"></a>🔥Axes-绘图区</h3><blockquote>
+<p><code>class matplotlib.axes.Axes</code>，<a href="https://matplotlib.org/stable/api/axes_api.html#the-axes-class">类的属性及方法</a></p>
+</blockquote>
+<p>创建，有很多种方式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#常用</span></span><br><span class="line">fig, ax = plt.subplots(ncols=<span class="number">2</span>, nrows=<span class="number">3</span>, figsize=(<span class="number">12</span>,<span class="number">8</span>), sharex=<span class="literal">True</span>)</span><br><span class="line">axs[<span class="number">2</span>, <span class="number">0</span>].plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]) <span class="comment">#在第三行第一列绘图</span></span><br><span class="line">ax_list = ax.flatten() <span class="comment">#可以遍历获取各个axes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张图,一个axes,</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, aspect=<span class="number">1</span>)<span class="comment"># aspect是xy横纵比</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>, aspect=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#创建两个axes,一行两列</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1,ax2 = fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, aspect=<span class="number">1</span>),fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, aspect=<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#创建两个axes,两行一列</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1,ax2 = fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, aspect=<span class="number">1</span>),fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, aspect=<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建共享x、y轴的axes，左右双图</span></span><br><span class="line">axes.twinx() </span><br><span class="line">axes.twiny()</span><br><span class="line">.sharex()<span class="comment"># 也可以手动设置/绑定axes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 大小不一多子图的复杂布局，使用gridspec，具体查阅文档</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">gs = fig.add_gridspec(<span class="number">3</span>, <span class="number">3</span>) <span class="comment">#初始九个图</span></span><br><span class="line">f_ax1 = fig.add_subplot(gs[<span class="number">0</span>, :]) <span class="comment">#合并了第一行的三个图，现在变成7张图</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>绘图（快速绘图）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.plot() <span class="comment">#折线图</span></span><br><span class="line">.scatter() <span class="comment">#散点图</span></span><br><span class="line">.bar() <span class="comment">#柱状图</span></span><br><span class="line">.pie() <span class="comment">#饼图</span></span><br><span class="line">.hist() <span class="comment">#直方图</span></span><br><span class="line">.boxplot() <span class="comment"># 箱线图</span></span><br><span class="line">.hexbin(); .hist2d() <span class="comment">#二维直方图，√大量数据的相关性展示可用</span></span><br><span class="line">.stackplot() <span class="comment">#堆积柱状图</span></span><br><span class="line">.violinplot() <span class="comment">#小提琴图</span></span><br><span class="line">.imshow() <span class="comment">#绘制图片，二维矩阵栅格</span></span><br><span class="line"><span class="comment"># ...接口很多，还可以绘制洋流图、等高线、频谱图等</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制x y辅助线</span></span><br><span class="line">.vlines() <span class="comment">#竖线</span></span><br><span class="line">.hlines() <span class="comment">#横线</span></span><br><span class="line"><span class="comment"># 水平填充、垂直填充、任意填充</span></span><br><span class="line">.fill_between()</span><br><span class="line">.fill_betweenx()</span><br><span class="line">.fill()</span><br></pre></td></tr></table></figure>
+
+<p>添加注释</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.annotate() <span class="comment">#添加注释</span></span><br><span class="line">.text() <span class="comment">#添加注释</span></span><br><span class="line">.secondary_xaxis() <span class="comment">#添加水平轴；可以实现上下双刻度线，具体见文档</span></span><br><span class="line">.secondary_yaxis() <span class="comment">#添加垂直边；可以实现左右双刻度线</span></span><br><span class="line">.arrow() <span class="comment">#添加箭头</span></span><br><span class="line">.inset_axes() <span class="comment">#添加注释，插入子图</span></span><br><span class="line">.table() <span class="comment">#添加注释</span></span><br></pre></td></tr></table></figure>
+
+<p>要素属性设置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.set_xlim(); .get_xlim()<span class="comment"># 设置显示的范围，有set一般都有get</span></span><br><span class="line">.set_ylim()</span><br><span class="line">.set_xbound(); .set_ybound()<span class="comment"># 设置上下界</span></span><br><span class="line">.set_xlabel();.set_ylabel() <span class="comment">#设置标签</span></span><br><span class="line"></span><br><span class="line">.set_title() <span class="comment">#设置标题</span></span><br><span class="line">.set_xticks(); y... <span class="comment">#设置刻度值</span></span><br><span class="line">.set_xticklabels() <span class="comment">#设置刻度标签</span></span><br><span class="line">.minorticks_off(); .minorticks_on() <span class="comment">#次刻度的显示设置</span></span><br><span class="line">.ticklabel_format() <span class="comment">#格式化labels，如可以设置科学计数法显示</span></span><br><span class="line">.tick_params() <span class="comment"># 各种参数包括网格线等的设置</span></span><br><span class="line">.locator_params() <span class="comment">#设置主刻度线，高级自定义</span></span><br><span class="line">.set_position() <span class="comment">#设置图像在图中的位置，比如可以设置绘图左下角起点</span></span><br><span class="line"></span><br><span class="line">.set_xscale() <span class="comment">#设置刻度变换</span></span><br><span class="line">.set_yscale()</span><br><span class="line">.set_xmargin() <span class="comment">#设置绘制图形距离边/spines的距离,变相裁剪</span></span><br><span class="line">.set_ymargin() </span><br><span class="line">.set_aspect() <span class="comment">#设置轴缩放的横纵比</span></span><br><span class="line"></span><br><span class="line">.legend() <span class="comment">#设置图例</span></span><br><span class="line">h, l = ax.get_legend_handles_labels() <span class="comment">#获取图例句柄及标签</span></span><br><span class="line">.invert_xaxis();.invert_yaxis() <span class="comment">#设置轴的增大方向</span></span><br></pre></td></tr></table></figure>
+
+<p>外观开关设置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 隐藏</span></span><br><span class="line">.set_axis_off()</span><br><span class="line">.set_axis_on()</span><br><span class="line">.grid()</span><br><span class="line">.get_facecolor()</span><br><span class="line">.set_facecolor()</span><br><span class="line">.get_xaxis() <span class="comment">#获取XAxis实例</span></span><br><span class="line">.get_yaxis()</span><br><span class="line"><span class="comment"># 隐藏轴及标签</span></span><br><span class="line">ax.get_xaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.get_yaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.get_xaxis().set_ticks([])</span><br><span class="line">ax.get_yaxis().set_ticks([])</span><br><span class="line">ax.xaxis.set_ticklabels([])</span><br><span class="line">ax.yaxis.set_ticklabels([])</span><br></pre></td></tr></table></figure>
+
+<p>元素添加及参考系变换等，我们可以自行创建任意的图像然后添加到axes中</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.add_artist()</span><br><span class="line">.add_child_axes()</span><br><span class="line">.add_collection()</span><br><span class="line">.add_image()</span><br><span class="line">.add_line()</span><br><span class="line">.add_patch()</span><br><span class="line">.add_table()</span><br><span class="line"><span class="comment"># 轴的标准化坐标0-1和实际坐标的变换可能用到，具体用法在另一篇展开</span></span><br><span class="line">.get_xaxis_transform</span><br><span class="line">.get_yaxis_transform</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spines-边框"><a href="#Spines-边框" class="headerlink" title="Spines-边框"></a>Spines-边框</h3><blockquote>
+<p><code>class matplotlib.spines.Spine</code>，<a href="https://matplotlib.org/stable/api/spines_api.html">类的属性及方法</a></p>
+</blockquote>
+<p>属性设置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取和设置显示/隐藏边框</span></span><br><span class="line">ax.spines[<span class="string">&#x27;top&#x27;</span>].set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines.top.set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines[[<span class="string">&#x27;top&#x27;</span>, <span class="string">&#x27;right&#x27;</span>]].set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines[:].set_visible(<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">.set_bounds(low=<span class="literal">None</span>, high=<span class="literal">None</span>)</span><br><span class="line">.set_color(c)  <span class="comment"># 设置颜色</span></span><br><span class="line">.set_position(position)<span class="comment">#常用，设置位置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改边界线的形状，实际上axes依旧是矩形</span></span><br><span class="line">.set_patch_circle() <span class="comment"># 设置为圆形</span></span><br><span class="line">set_patch_arc(center, radius, theta1, theta2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Text-文本"><a href="#Text-文本" class="headerlink" title="Text-文本"></a>Text-文本</h3><blockquote>
+<p><code>class matplotlib.text.Text</code>，<a href="https://matplotlib.org/stable/api/text_api.html">类的属性及方法</a></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class matplotlib.text.Text(x=0, y=0, text=&#x27;&#x27;, color=None, ...)</span><br><span class="line"># 先添加文本</span><br><span class="line">text = ax.text(s = &quot;注释&quot;,x,y,c = &#x27;r&#x27;...)# 可以通过这样的方式获取文本示例再设置属性</span><br><span class="line"># 批量设置</span><br><span class="line">.set(*, agg_filter=&lt;UNSET&gt;, alpha=&lt;UNSET&gt;, animated=&lt;UNSET&gt;,...)</span><br></pre></td></tr></table></figure>
+
+<p>属性具体设置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.set_text(s) <span class="comment">#设置字的内容 </span></span><br><span class="line">.set_position((x,y))<span class="comment">#设置字的位置</span></span><br><span class="line">.set_x(x)</span><br><span class="line">.set_bbox(rectprops) <span class="comment">#设置字体外边框</span></span><br><span class="line">.set_color(color); .set_c(color)</span><br><span class="line"><span class="comment"># 字体及大小</span></span><br><span class="line">.set_font(fp); .set_fontproperties()</span><br><span class="line">.set_family.(); .set_fontfamily()</span><br><span class="line">.set_fontsize(fontsize)</span><br><span class="line"><span class="comment"># 设置加粗倾斜等</span></span><br><span class="line">.set_fontstyle(fontstyle);<span class="comment">#设置斜体&#123;&#x27;normal&#x27;, &#x27;italic&#x27;, &#x27;oblique&#x27;&#125;</span></span><br><span class="line">.set_fontweight(weight) <span class="comment">#字体粗细，&#123;a numeric value in range 0-1000, &#x27;ultralight&#x27;, &#x27;light&#x27;, &#x27;normal&#x27;, &#x27;regular&#x27;, &#x27;book&#x27;, &#x27;medium&#x27;, &#x27;roman&#x27;, &#x27;semibold&#x27;, &#x27;demibold&#x27;, &#x27;demi&#x27;, &#x27;bold&#x27;, &#x27;heavy&#x27;, &#x27;extra bold&#x27;, &#x27;black&#x27;&#125;</span></span><br><span class="line"><span class="comment"># 对齐方式</span></span><br><span class="line">.set_ha(align); </span><br><span class="line">.set_horizontalalignment(align)<span class="comment"># align&#123;&#x27;center&#x27;, &#x27;right&#x27;, &#x27;left&#x27;&#125;</span></span><br><span class="line"><span class="comment"># 旋转角度</span></span><br><span class="line">.set_rotation(s) <span class="comment">#float or &#123;&#x27;vertical&#x27;, &#x27;horizontal&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 行间距，默认1.2</span></span><br><span class="line">.set_linespacing(spacing)</span><br><span class="line"><span class="comment"># 数学公式，生效的前提是未设置全局Tex,(usetex=True).</span></span><br><span class="line">.set_math_fontfamily(fontfamily)</span><br><span class="line">.set_usetex(usetex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">.update(kwargs) <span class="comment">#dict，传入字典更新其属性</span></span><br><span class="line">.update_from(other)</span><br></pre></td></tr></table></figure>
+
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><blockquote>
+<p>待办</p>
+</blockquote>
+<ol>
+<li>绘图逻辑与思路</li>
+<li>Matplotlib绘图初始设置模板（包含风格、字体等等的初始化）</li>
+<li>Matplotlib图片输出设置，空间占用与dpi的权衡……</li>
+<li>绘图布局详解及案例</li>
+<li>色彩及色带详解及案例</li>
+<li>时间序列刻度详解及案例</li>
+<li>文本及注释详解</li>
+<li>其他绘图库了解及探索</li>
+<li>地图绘制……</li>
+<li>……</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Python可视化之Matplotlib</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas表格数据选取/条件筛选小结</title>
+    <url>/posts/f9c7a8a1/</url>
+    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
+<ol>
+<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
+<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
+<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
+<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
+</blockquote>
+<p>测试数据导入及查看基本信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
+<p>Python默认从<code>0</code>开始索引.</p>
+</blockquote>
+<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
+<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
+</li>
+<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
+</li>
+<li><p>大多数情况，可以访问也可以修改值</p>
+</li>
+</ul>
+<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
+<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行第四列的数值</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
+<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
+<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
+</blockquote>
+<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
+<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
+<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
+</blockquote>
+<p>即自定义一个新的函数生成新列，再筛选，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
+<ul>
+<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
+</ul>
+<p>有时候需要多列参与运算，结果是返回单个值</p>
+<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
+<ul>
+<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
+<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>关于更多函数的运用后续小结</p>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+      </tags>
   </entry>
   <entry>
     <title>Pandas拆分及合并字符串列</title>
@@ -893,209 +1098,6 @@
       <tags>
         <tag>Pandas</tag>
         <tag>文本筛选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>matplotlib绘图基础1：图的组成元素</title>
-    <url>/posts/8dfff56a/</url>
-    <content><![CDATA[<p>一张好看的学术图表不仅能够更优雅简洁地传递信息，也能给人予美的享受。在撰写学术论文的过程，耗费大量时间的除了做实验，另一个一定是作图了，要通过几张图把信息很好地呈现出来，需要费不少功夫。</p>
-<p><strong>绘图技能</strong>是我一直想要拓展和延伸的一个技能。这一方面需要通过大量的输入来学习别人对图表的设计和呈现，学习色彩、布局等等……另一方面还要能够用代码来实现，而需要基于代码的可视化是一个比较繁琐的内容，需要学习和积累。故在此开始记录自己Python可视化的学习过程，当然，也便于代码的复用。</p>
-<blockquote>
-<p>本系列博客主要参考：<a href="https://matplotlib.org/stable/api/index.html">Matplotlib文档</a>，<a href="https://matplotlib.org/stable/gallery/index.html">Matplotlib Gallery</a>，部分参考<a href="https://github.com/rougier/scientific-visualization-book">Rougier老师的开源书</a></p>
-</blockquote>
-<p>本文主要涉及内容：</p>
-<ol>
-<li><strong>Matplotlib中Figure的组成要素</strong></li>
-<li><strong>主要元素的常用方法汇总</strong></li>
-<li>其他的诸如风格、字体、网格、图例、色带陆续总结……</li>
-</ol>
-<span id="more"></span>
-
-<p>另外，快速绘图<a href="https://matplotlib.org/cheatsheets/cheatsheets.pdf">备忘录下载</a>，该备忘录有两张大图（<a href="https://camo.githubusercontent.com/bc3b143766ed68eb6a851900c317c5d9222eb1471888942afb35137aa5141557/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d312e706e67">基础绘图</a>;<a href="https://camo.githubusercontent.com/8566d191963c2ada58246241d19a1252c519edea1ecf4049f5bc939e302e36a8/68747470733a2f2f6d6174706c6f746c69622e6f72672f63686561747368656574732f63686561747368656574732d322e706e67">色彩及文字等</a>），可以快速查看常见的绘图操作&#x2F;函数，函数右侧的<strong>api</strong>还可以点击直达官网api文档详细介绍。</p>
-<img src="/posts/8dfff56a/text-shadow.png" class alt="matplotlib">
-
-<p>上图通过matplotlib代码制作，详见<a href="https://github.com/rougier/scientific-visualization-book">book</a></p>
-<h2 id="图的组成"><a href="#图的组成" class="headerlink" title="图的组成"></a>图的组成</h2><blockquote>
-<p>matplotlib最新版的文档做了较大的改版，提供了更全的<a href="https://matplotlib.org/stable/gallery/index.html">api参考</a></p>
-</blockquote>
-<p>下图是Matplotlib官方文档中提供的一张介绍图组成元素的图，很整洁，左图为<a href="https://matplotlib.org/3.1.1/gallery/showcase/anatomy.html">旧版anatomy</a>，右图为最新的文档<a href="https://matplotlib.org/stable/gallery/showcase/anatomy.html?highlight=anatomy">anatomy</a>里的图，我稍作改动放到了一起：</p>
-<img src="/posts/8dfff56a/anatomy.png" class alt="anatomy">
-
-<h3 id="组成总览"><a href="#组成总览" class="headerlink" title="组成总览"></a>组成总览</h3><ul>
-<li><p><strong>Figure</strong>：所有绘图元素的顶级容器，大致可以理解为<strong>画布canvas</strong>。我们可以设置它的尺寸(figsize)、标题(suptile)、背景颜色(facecolor )等属性，背景默认是透明 transparent&#x3D;True。</p>
-</li>
-<li><p><strong>Axes</strong>：相当于Subplot，子图，是我们实际的绘图区域，为<strong>矩形</strong>。一张图可以有多个子图(Axes)，如上图</p>
-<ul>
-<li><strong>Spines</strong>： 图边，每个子图都有4条边，<u>每条边有主副刻度线(Tick)+主副刻度标签(Tick labels)+边标签(Label)</u>，默认只显示左+下的Spine。</li>
-<li><strong>Axis</strong>：默认显示的左和下方的两条Spines分别为<u>yaxis，xaxis</u>，属性同Spines。</li>
-<li><strong>Line points</strong>…：绘制的图形，也就是我们要在axes上画的东西</li>
-<li><strong>Legend</strong>：图例，每个axes都可以根据其上绘制的图形生成图例，也可以不依赖图形单独创建。</li>
-<li><strong>Grid</strong>：网格线，自行选择是否添加（按照主副刻度线生成）</li>
-<li><strong>Text：</strong>文本，可以作为注释说明添加到图上<ul>
-<li><strong>Annotation</strong>：可以添加连接线&#x2F;箭头的文本，注释</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>Artist</strong> : <strong>Everything on the figure</strong>, including Figure, Axes, and Axis objects, is an artist. 理解为图元素。</p>
-<ul>
-<li>组成<a href="https://matplotlib.org/stable/_images/inheritance-746d7ad5b4a3ecbadc51ab040f5d995f5c6ecc71.png">图</a></li>
-</ul>
-</li>
-</ul>
-<p>了解了组成部件，之后我们的学习任务主要就是了解和属性各个部件繁多的<strong>属性和属性调整的方法</strong>，以及组合。</p>
-<p>下一节即有针对性地看一下各个元素的属性方法等</p>
-<h3 id="图的基本单元"><a href="#图的基本单元" class="headerlink" title="图的基本单元"></a>图的基本单元</h3><p>任意的一张图，本质上是由以下三种要素的组合（莫明想起了GIS里的点线面hh）：</p>
-<ul>
-<li>patchs：块，如background bars ……</li>
-<li>lines：线，如tick,line……</li>
-<li>texts：文本，如label title……</li>
-</ul>
-<p>多数情况下我们都是使用绘图自带的<strong>默认</strong>设置，但是实际上，一张图的<strong>任一组成部分即上述部件都能够被访问和调整！</strong>如我们可以像下面这样直接设置每个label加粗，<strong>这些方法都能够在文档中快速找到</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xaxis().get_ticklabels():</span><br><span class="line">    label.set_fontweight(<span class="string">&quot;bold&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>🔥想强调的是，每个部件在我们创建了一个图形之后就有了<strong>类</strong>对应的<strong>实例</strong>（对类不熟悉的可以移步<a href="https://hscyber.github.io/posts/659ef075/">Python中的类</a>），通过查阅<a href="https://matplotlib.org/stable/api/index.html">文档</a>我们可以看到该对象的<strong>所有属性及方法</strong>，进一步地我们可以按需检索并实现我们对图形想要进行的<strong>任意设置或调整</strong>，下面开始介绍并举例：</p>
-<h2 id="主要部件详解"><a href="#主要部件详解" class="headerlink" title="主要部件详解"></a>主要部件详解</h2><p>虽然有文档，但是我还是要熟悉一些常见的属性方法，以使我们能够<strong>快速出图</strong>，至于最终成图的细节则可以再细扣</p>
-<p>另外，以下所有均来自<u>Matplotlib3.5官方文档</u>，一些参数细节暂不展开讲，在后续的总结中再慢慢铺开</p>
-<h3 id="Figure"><a href="#Figure" class="headerlink" title="Figure"></a>Figure</h3><blockquote>
-<p><code>class matplotlib.figure.Figure</code>, <a href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">类的属性及方法</a></p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 创建一个 fig实例 </span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">4</span>))</span><br><span class="line">fig, ax = plt.subplots()</span><br></pre></td></tr></table></figure>
-
-<p>常用属性及方法&#x2F;函数：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建时即可传参</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">matplotlib</span>.figure.Figure(figsize=<span class="literal">None</span>, dpi=<span class="literal">None</span>, facecolor=<span class="literal">None</span>, edgecolor=<span class="literal">None</span>, linewidth=<span class="number">0.0</span>, frameon=<span class="literal">None</span>, subplotpars=<span class="literal">None</span>, tight_layout=<span class="literal">None</span>, constrained_layout=<span class="literal">None</span>, *, layout=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 添加子图</span></span><br><span class="line">.add_subplot()</span><br><span class="line">.add_axes()</span><br><span class="line">.subplots()</span><br><span class="line">.add_gridspec() <span class="comment">#复杂布局时使用</span></span><br><span class="line"><span class="comment"># 日期ticklabels自动调整，自动旋转以免叠盖</span></span><br><span class="line">.autofmt_xdate(bottom=<span class="number">0.2</span>, rotation=<span class="number">30</span>, ha=<span class="string">&#x27;right&#x27;</span>, which=<span class="string">&#x27;major&#x27;</span>)</span><br><span class="line"><span class="comment"># 添加色带</span></span><br><span class="line">.colorbar(mappable, cax=<span class="literal">None</span>, ax=<span class="literal">None</span>, use_gridspec=<span class="literal">True</span>, **kw)</span><br><span class="line"><span class="comment"># 放置图例</span></span><br><span class="line">.legend()</span><br><span class="line"><span class="comment"># 设置标题、文本</span></span><br><span class="line">.suptitle()</span><br><span class="line">.supxlabel(); .supylabel()</span><br><span class="line">.text(x, y, s, fontdict=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 保存，常用，常用设置会在另一篇文章展开</span></span><br><span class="line">.savefig(fname, *, dpi=<span class="string">&#x27;figure&#x27;</span>, <span class="built_in">format</span>=<span class="literal">None</span>, metadata=<span class="literal">None</span>,</span><br><span class="line">        bbox_inches=<span class="literal">None</span>, pad_inches=<span class="number">0.1</span>,</span><br><span class="line">        facecolor=<span class="string">&#x27;auto&#x27;</span>, edgecolor=<span class="string">&#x27;auto&#x27;</span>,</span><br><span class="line">        backend=<span class="literal">None</span>, **kwargs)</span><br><span class="line"><span class="comment"># 设置各种属性，可以一次性设置多个参数，详见文档</span></span><br><span class="line">.<span class="built_in">set</span>(*...)</span><br><span class="line">.set_label(s)</span><br><span class="line">.set_alpha(alpha)</span><br><span class="line">.set_constrained_layout(constrained)</span><br><span class="line">.set_constrained_layout_pads(*, w_pad=<span class="literal">None</span>, h_pad=<span class="literal">None</span>, wspace=<span class="literal">None</span>, hspace=<span class="literal">None</span>)</span><br><span class="line">.set_dpi(); .set_edgecolor; .set_facecolor()...</span><br><span class="line"><span class="comment"># 获取</span></span><br><span class="line">.gca()  <span class="comment">#当前axes</span></span><br><span class="line">.get_axes()</span><br><span class="line">.get_children()</span><br><span class="line">.get_edgecolor(); .get_facecolor()</span><br><span class="line">.get_figheight(); .get_figwidth()</span><br></pre></td></tr></table></figure>
-
-<h3 id="🔥Axes-绘图区"><a href="#🔥Axes-绘图区" class="headerlink" title="🔥Axes-绘图区"></a>🔥Axes-绘图区</h3><blockquote>
-<p><code>class matplotlib.axes.Axes</code>，<a href="https://matplotlib.org/stable/api/axes_api.html#the-axes-class">类的属性及方法</a></p>
-</blockquote>
-<p>创建，有很多种方式</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#常用</span></span><br><span class="line">fig, ax = plt.subplots(ncols=<span class="number">2</span>, nrows=<span class="number">3</span>, figsize=(<span class="number">12</span>,<span class="number">8</span>), sharex=<span class="literal">True</span>)</span><br><span class="line">axs[<span class="number">2</span>, <span class="number">0</span>].plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]) <span class="comment">#在第三行第一列绘图</span></span><br><span class="line">ax_list = ax.flatten() <span class="comment">#可以遍历获取各个axes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一张图,一个axes,</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>, <span class="number">8</span>))</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, aspect=<span class="number">1</span>)<span class="comment"># aspect是xy横纵比</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>, aspect=<span class="number">1</span>)</span><br><span class="line"><span class="comment">#创建两个axes,一行两列</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1,ax2 = fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, aspect=<span class="number">1</span>),fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, aspect=<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#创建两个axes,两行一列</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax1,ax2 = fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, aspect=<span class="number">1</span>),fig.add_subplot(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, aspect=<span class="number">1</span>)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建共享x、y轴的axes，左右双图</span></span><br><span class="line">axes.twinx() </span><br><span class="line">axes.twiny()</span><br><span class="line">.sharex()<span class="comment"># 也可以手动设置/绑定axes</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 大小不一多子图的复杂布局，使用gridspec，具体查阅文档</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">gs = fig.add_gridspec(<span class="number">3</span>, <span class="number">3</span>) <span class="comment">#初始九个图</span></span><br><span class="line">f_ax1 = fig.add_subplot(gs[<span class="number">0</span>, :]) <span class="comment">#合并了第一行的三个图，现在变成7张图</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>绘图（快速绘图）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.plot() <span class="comment">#折线图</span></span><br><span class="line">.scatter() <span class="comment">#散点图</span></span><br><span class="line">.bar() <span class="comment">#柱状图</span></span><br><span class="line">.pie() <span class="comment">#饼图</span></span><br><span class="line">.hist() <span class="comment">#直方图</span></span><br><span class="line">.boxplot() <span class="comment"># 箱线图</span></span><br><span class="line">.hexbin(); .hist2d() <span class="comment">#二维直方图，√大量数据的相关性展示可用</span></span><br><span class="line">.stackplot() <span class="comment">#堆积柱状图</span></span><br><span class="line">.violinplot() <span class="comment">#小提琴图</span></span><br><span class="line">.imshow() <span class="comment">#绘制图片，二维矩阵栅格</span></span><br><span class="line"><span class="comment"># ...接口很多，还可以绘制洋流图、等高线、频谱图等</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制x y辅助线</span></span><br><span class="line">.vlines() <span class="comment">#竖线</span></span><br><span class="line">.hlines() <span class="comment">#横线</span></span><br><span class="line"><span class="comment"># 水平填充、垂直填充、任意填充</span></span><br><span class="line">.fill_between()</span><br><span class="line">.fill_betweenx()</span><br><span class="line">.fill()</span><br></pre></td></tr></table></figure>
-
-<p>添加注释</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.annotate() <span class="comment">#添加注释</span></span><br><span class="line">.text() <span class="comment">#添加注释</span></span><br><span class="line">.secondary_xaxis() <span class="comment">#添加水平轴；可以实现上下双刻度线，具体见文档</span></span><br><span class="line">.secondary_yaxis() <span class="comment">#添加垂直边；可以实现左右双刻度线</span></span><br><span class="line">.arrow() <span class="comment">#添加箭头</span></span><br><span class="line">.inset_axes() <span class="comment">#添加注释，插入子图</span></span><br><span class="line">.table() <span class="comment">#添加注释</span></span><br></pre></td></tr></table></figure>
-
-<p>要素属性设置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.set_xlim(); .get_xlim()<span class="comment"># 设置显示的范围，有set一般都有get</span></span><br><span class="line">.set_ylim()</span><br><span class="line">.set_xbound(); .set_ybound()<span class="comment"># 设置上下界</span></span><br><span class="line">.set_xlabel();.set_ylabel() <span class="comment">#设置标签</span></span><br><span class="line"></span><br><span class="line">.set_title() <span class="comment">#设置标题</span></span><br><span class="line">.set_xticks(); y... <span class="comment">#设置刻度值</span></span><br><span class="line">.set_xticklabels() <span class="comment">#设置刻度标签</span></span><br><span class="line">.minorticks_off(); .minorticks_on() <span class="comment">#次刻度的显示设置</span></span><br><span class="line">.ticklabel_format() <span class="comment">#格式化labels，如可以设置科学计数法显示</span></span><br><span class="line">.tick_params() <span class="comment"># 各种参数包括网格线等的设置</span></span><br><span class="line">.locator_params() <span class="comment">#设置主刻度线，高级自定义</span></span><br><span class="line">.set_position() <span class="comment">#设置图像在图中的位置，比如可以设置绘图左下角起点</span></span><br><span class="line"></span><br><span class="line">.set_xscale() <span class="comment">#设置刻度变换</span></span><br><span class="line">.set_yscale()</span><br><span class="line">.set_xmargin() <span class="comment">#设置绘制图形距离边/spines的距离,变相裁剪</span></span><br><span class="line">.set_ymargin() </span><br><span class="line">.set_aspect() <span class="comment">#设置轴缩放的横纵比</span></span><br><span class="line"></span><br><span class="line">.legend() <span class="comment">#设置图例</span></span><br><span class="line">h, l = ax.get_legend_handles_labels() <span class="comment">#获取图例句柄及标签</span></span><br><span class="line">.invert_xaxis();.invert_yaxis() <span class="comment">#设置轴的增大方向</span></span><br></pre></td></tr></table></figure>
-
-<p>外观开关设置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 隐藏</span></span><br><span class="line">.set_axis_off()</span><br><span class="line">.set_axis_on()</span><br><span class="line">.grid()</span><br><span class="line">.get_facecolor()</span><br><span class="line">.set_facecolor()</span><br><span class="line">.get_xaxis() <span class="comment">#获取XAxis实例</span></span><br><span class="line">.get_yaxis()</span><br><span class="line"><span class="comment"># 隐藏轴及标签</span></span><br><span class="line">ax.get_xaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.get_yaxis().set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.get_xaxis().set_ticks([])</span><br><span class="line">ax.get_yaxis().set_ticks([])</span><br><span class="line">ax.xaxis.set_ticklabels([])</span><br><span class="line">ax.yaxis.set_ticklabels([])</span><br></pre></td></tr></table></figure>
-
-<p>元素添加及参考系变换等，我们可以自行创建任意的图像然后添加到axes中</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.add_artist()</span><br><span class="line">.add_child_axes()</span><br><span class="line">.add_collection()</span><br><span class="line">.add_image()</span><br><span class="line">.add_line()</span><br><span class="line">.add_patch()</span><br><span class="line">.add_table()</span><br><span class="line"><span class="comment"># 轴的标准化坐标0-1和实际坐标的变换可能用到，具体用法在另一篇展开</span></span><br><span class="line">.get_xaxis_transform</span><br><span class="line">.get_yaxis_transform</span><br></pre></td></tr></table></figure>
-
-<h3 id="Spines-边框"><a href="#Spines-边框" class="headerlink" title="Spines-边框"></a>Spines-边框</h3><blockquote>
-<p><code>class matplotlib.spines.Spine</code>，<a href="https://matplotlib.org/stable/api/spines_api.html">类的属性及方法</a></p>
-</blockquote>
-<p>属性设置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取和设置显示/隐藏边框</span></span><br><span class="line">ax.spines[<span class="string">&#x27;top&#x27;</span>].set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines.top.set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines[[<span class="string">&#x27;top&#x27;</span>, <span class="string">&#x27;right&#x27;</span>]].set_visible(<span class="literal">False</span>)</span><br><span class="line">ax.spines[:].set_visible(<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">.set_bounds(low=<span class="literal">None</span>, high=<span class="literal">None</span>)</span><br><span class="line">.set_color(c)  <span class="comment"># 设置颜色</span></span><br><span class="line">.set_position(position)<span class="comment">#常用，设置位置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改边界线的形状，实际上axes依旧是矩形</span></span><br><span class="line">.set_patch_circle() <span class="comment"># 设置为圆形</span></span><br><span class="line">set_patch_arc(center, radius, theta1, theta2)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Text-文本"><a href="#Text-文本" class="headerlink" title="Text-文本"></a>Text-文本</h3><blockquote>
-<p><code>class matplotlib.text.Text</code>，<a href="https://matplotlib.org/stable/api/text_api.html">类的属性及方法</a></p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class matplotlib.text.Text(x=0, y=0, text=&#x27;&#x27;, color=None, ...)</span><br><span class="line"># 先添加文本</span><br><span class="line">text = ax.text(s = &quot;注释&quot;,x,y,c = &#x27;r&#x27;...)# 可以通过这样的方式获取文本示例再设置属性</span><br><span class="line"># 批量设置</span><br><span class="line">.set(*, agg_filter=&lt;UNSET&gt;, alpha=&lt;UNSET&gt;, animated=&lt;UNSET&gt;,...)</span><br></pre></td></tr></table></figure>
-
-<p>属性具体设置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">.set_text(s) <span class="comment">#设置字的内容 </span></span><br><span class="line">.set_position((x,y))<span class="comment">#设置字的位置</span></span><br><span class="line">.set_x(x)</span><br><span class="line">.set_bbox(rectprops) <span class="comment">#设置字体外边框</span></span><br><span class="line">.set_color(color); .set_c(color)</span><br><span class="line"><span class="comment"># 字体及大小</span></span><br><span class="line">.set_font(fp); .set_fontproperties()</span><br><span class="line">.set_family.(); .set_fontfamily()</span><br><span class="line">.set_fontsize(fontsize)</span><br><span class="line"><span class="comment"># 设置加粗倾斜等</span></span><br><span class="line">.set_fontstyle(fontstyle);<span class="comment">#设置斜体&#123;&#x27;normal&#x27;, &#x27;italic&#x27;, &#x27;oblique&#x27;&#125;</span></span><br><span class="line">.set_fontweight(weight) <span class="comment">#字体粗细，&#123;a numeric value in range 0-1000, &#x27;ultralight&#x27;, &#x27;light&#x27;, &#x27;normal&#x27;, &#x27;regular&#x27;, &#x27;book&#x27;, &#x27;medium&#x27;, &#x27;roman&#x27;, &#x27;semibold&#x27;, &#x27;demibold&#x27;, &#x27;demi&#x27;, &#x27;bold&#x27;, &#x27;heavy&#x27;, &#x27;extra bold&#x27;, &#x27;black&#x27;&#125;</span></span><br><span class="line"><span class="comment"># 对齐方式</span></span><br><span class="line">.set_ha(align); </span><br><span class="line">.set_horizontalalignment(align)<span class="comment"># align&#123;&#x27;center&#x27;, &#x27;right&#x27;, &#x27;left&#x27;&#125;</span></span><br><span class="line"><span class="comment"># 旋转角度</span></span><br><span class="line">.set_rotation(s) <span class="comment">#float or &#123;&#x27;vertical&#x27;, &#x27;horizontal&#x27;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 行间距，默认1.2</span></span><br><span class="line">.set_linespacing(spacing)</span><br><span class="line"><span class="comment"># 数学公式，生效的前提是未设置全局Tex,(usetex=True).</span></span><br><span class="line">.set_math_fontfamily(fontfamily)</span><br><span class="line">.set_usetex(usetex=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">.update(kwargs) <span class="comment">#dict，传入字典更新其属性</span></span><br><span class="line">.update_from(other)</span><br></pre></td></tr></table></figure>
-
-<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><blockquote>
-<p>待办</p>
-</blockquote>
-<ol>
-<li>绘图逻辑与思路</li>
-<li>Matplotlib绘图初始设置模板（包含风格、字体等等的初始化）</li>
-<li>Matplotlib图片输出设置，空间占用与dpi的权衡……</li>
-<li>绘图布局详解及案例</li>
-<li>色彩及色带详解及案例</li>
-<li>时间序列刻度详解及案例</li>
-<li>文本及注释详解</li>
-<li>其他绘图库了解及探索</li>
-<li>地图绘制……</li>
-<li>……</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Python可视化之Matplotlib</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Matplotlib</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas表格数据选取/条件筛选小结</title>
-    <url>/posts/f9c7a8a1/</url>
-    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
-<ol>
-<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
-<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
-<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
-</ol>
-<span id="more"></span>
-
-<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
-<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
-</blockquote>
-<p>测试数据导入及查看基本信息</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
-<p>Python默认从<code>0</code>开始索引.</p>
-</blockquote>
-<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
-<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
-</li>
-<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
-</li>
-<li><p>大多数情况，可以访问也可以修改值</p>
-</li>
-</ul>
-<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
-<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行第四列的数值</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
-
-<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
-<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
-<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
-</blockquote>
-<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
-<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
-
-<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
-<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
-</blockquote>
-<p>即自定义一个新的函数生成新列，再筛选，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
-<ul>
-<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
-</ul>
-<p>有时候需要多列参与运算，结果是返回单个值</p>
-<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
-<ul>
-<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
-<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-<p>关于更多函数的运用后续小结</p>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
