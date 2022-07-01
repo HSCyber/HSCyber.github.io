@@ -21,28 +21,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="待补充  本文预计包含以下内容： ①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？">
+    <meta name="description" content="持续阅读并更新  本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh… 前言 Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文献篇(3) 如何开展研究背景调研和总结？">
-<meta property="og:url" content="https://hscyber.github.io/posts/e8c71149/">
+<meta property="og:title" content="在读书籍:《流畅的Python》">
+<meta property="og:url" content="https://hscyber.github.io/posts/15750410/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="待补充  本文预计包含以下内容： ①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？">
+<meta property="og:description" content="持续阅读并更新  本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh… 前言 Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-09T14:10:34.000Z">
-<meta property="article:modified_time" content="2022-06-27T14:11:30.925Z">
+<meta property="article:published_time" content="2022-07-01T14:17:34.000Z">
+<meta property="article:modified_time" content="2022-07-01T14:58:38.035Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="文献">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="技术类书籍">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://hscyber.github.io/posts/e8c71149/">
+<link rel="canonical" href="https://hscyber.github.io/posts/15750410/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/e8c71149/","path":"posts/e8c71149/","title":"文献篇(3) 如何开展研究背景调研和总结？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/15750410/","path":"posts/15750410/","title":"在读书籍:《流畅的Python》"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>文献篇(3) 如何开展研究背景调研和总结？ | Huangs's Notes</title>
+<title>在读书籍:《流畅的Python》 | Huangs's Notes</title>
   
 
 
@@ -129,7 +130,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why"><span class="nav-number">2.</span> <span class="nav-text">Why</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">3.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-gt-%E8%AF%BB"><span class="nav-number">4.</span> <span class="nav-text">How -&gt;读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-gt-%E6%80%9D"><span class="nav-number">5.</span> <span class="nav-text">How -&gt; 思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-gt-%E5%86%99"><span class="nav-number">6.</span> <span class="nav-text">How -&gt; 写</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-Python%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">第一部分-Python数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E2%80%94%E2%80%94%E5%BA%8F%E5%88%97-%E5%88%97%E8%A1%A8-%E5%85%83%E7%BB%84%E2%80%A6"><span class="nav-number">3.</span> <span class="nav-text">数据结构——序列(列表+元组…)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#little-tips"><span class="nav-number">4.</span> <span class="nav-text">little tips</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -203,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/e8c71149/">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/15750410/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar2.jpg">
@@ -216,12 +217,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="文献篇(3) 如何开展研究背景调研和总结？ | Huangs's Notes">
+      <meta itemprop="name" content="在读书籍:《流畅的Python》 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          文献篇(3) 如何开展研究背景调研和总结？
+          在读书籍:《流畅的Python》
         </h1>
 
         <div class="post-meta-container">
@@ -232,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-06-09 22:10:34" itemprop="dateCreated datePublished" datetime="2022-06-09T22:10:34+08:00">2022-06-09</time>
+      <time title="创建时间：2022-07-01 22:17:34" itemprop="dateCreated datePublished" datetime="2022-07-01T22:17:34+08:00">2022-07-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -240,7 +241,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">科研</span></a>
+          <a href="/categories/%E4%B9%A6%E7%B1%8D%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">书籍文档学习</span></a>
         </span>
     </span>
 
@@ -258,7 +259,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>344</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -277,34 +278,56 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>待补充</p>
+<p>持续阅读并更新</p>
 </blockquote>
-<p>本文预计包含以下内容：</p>
-<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
-<span id="more"></span>
-
+<p>本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
+<p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
 </blockquote>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><blockquote>
-<p>为什么要读文献</p>
-<p>为什么要开展背景调研</p>
+<p>作者本书强调Python的独有特性，专注于基本库。作者表明尽管Python的包索引已经极多，但是他几乎不会提到标准库以外的任何包。</p>
+<p>赞！因为接触过一段时间的工作会发现三方包的性能方面参差不齐，实际中需要代码优化和加速的场景越来越频繁，而如果能够多调用标准库，充分发挥Python特性，我想应该是可以有助于代码运行效率提高的。</p>
+<h2 id="第一部分-Python数据模型"><a href="#第一部分-Python数据模型" class="headerlink" title="第一部分-Python数据模型"></a>第一部分-Python数据模型</h2><blockquote>
+<p>浅浅介绍一下Python一些<strong>数据类型&#x2F;类</strong>的底层构造模式</p>
 </blockquote>
-<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><blockquote>
-<p>文献的类别</p>
-<p>阅读的类别</p>
+<p>要点</p>
+<ol>
+<li>Python中的内置类型实现了很多特殊方法（以双下划线开头如<code>__getitem__()</code>），也就是函数，来实现一些比较基本的操作，如：<strong>迭代&#x2F;循环、属性访问、对象实例创建删除、字符串表示，文件管理(with…)等</strong></li>
+<li>所以当需要使用内置类型实现上述相关功能时，用<strong>内置的方法：速度更快，优先考虑</strong>，如<code>len(x)</code>，若x是一个内置类型如list的实例，那么运行就快，相当于<strong>走后门</strong>。</li>
+<li>下一部分的主要目的就是熟悉和了解Python内置的<strong>数据类型的底层特性及内置方法</strong>：序列（列表、元组）、字典、集合等，特殊用法，从而提高代码的性能</li>
+</ol>
+<h2 id="数据结构——序列-列表-元组…"><a href="#数据结构——序列-列表-元组…" class="headerlink" title="数据结构——序列(列表+元组…)"></a>数据结构——序列(列表+元组…)</h2><blockquote>
+<p>第二部分是数据结构，包含三部分</p>
+<p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
 </blockquote>
-<h2 id="How-gt-读"><a href="#How-gt-读" class="headerlink" title="How -&gt;读"></a>How -&gt;读</h2><blockquote>
-<p>怎么检索查阅及下载文献</p>
-<p>怎么读和记</p>
-</blockquote>
-<h2 id="How-gt-思"><a href="#How-gt-思" class="headerlink" title="How -&gt; 思"></a>How -&gt; 思</h2><blockquote>
-<p>如何梳理与总结</p>
-</blockquote>
-<h2 id="How-gt-写"><a href="#How-gt-写" class="headerlink" title="How -&gt; 写"></a>How -&gt; 写</h2><blockquote>
-<p>怎么写科技论文研究背景</p>
-<p>怎么写申报书研究现状</p>
-</blockquote>
+<p>要点——list和推导式</p>
+<ol>
+<li><p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
+</li>
+<li><p>序列分类</p>
+<ol>
+<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)</li>
+<li>按是否可变（简单理解为自由增删改）分可变和不可变，如list属于可变，tuple不可变</li>
+</ol>
+</li>
+<li><p>list使用要点：</p>
+<ol>
+<li>多使用<strong>列表推导式</strong>，但一般只用于创建新列表，一行不能搞定的也不用</li>
+<li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次<ul>
+<li>节省内存，避免额外内存消耗，大数据考虑</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p>要点——元组tuple使用</p>
+<ol>
+<li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
+<li>元组拆包的妙用：显式或隐式的都有，很方便<br> 1. </li>
+<li>具名元组，带表头？是否可以取代表格数据管理还有待探索hh</li>
+</ol>
+<h2 id="little-tips"><a href="#little-tips" class="headerlink" title="little tips"></a>little tips</h2><ol>
+<li>“_”占位符可以用来过滤一些不需要的输出结果</li>
+</ol>
 
     </div>
 
@@ -324,7 +347,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/e8c71149/" title="文献篇(3) 如何开展研究背景调研和总结？">https://hscyber.github.io/posts/e8c71149/</a>
+      <a href="https://hscyber.github.io/posts/15750410/" title="在读书籍:《流畅的Python》">https://hscyber.github.io/posts/15750410/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -333,21 +356,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%96%87%E7%8C%AE/" rel="tag"><i class="fa fa-tag"></i> 文献</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E7%B1%BB%E4%B9%A6%E7%B1%8D/" rel="tag"><i class="fa fa-tag"></i> 技术类书籍</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/99dce68a/" rel="prev" title="文献篇(2) 论文下载">
-                  <i class="fa fa-chevron-left"></i> 文献篇(2) 论文下载
+                <a href="/posts/f9c7a8a1/" rel="prev" title="Pandas表格数据选取/条件筛选小结">
+                  <i class="fa fa-chevron-left"></i> Pandas表格数据选取/条件筛选小结
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/4d972282/" rel="next" title="List/pandas如何筛选包含若干词语的文本">
-                  List/pandas如何筛选包含若干词语的文本 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
