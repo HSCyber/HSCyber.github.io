@@ -1071,6 +1071,25 @@
       </tags>
   </entry>
   <entry>
+    <title>订阅了Typora~</title>
+    <url>/posts/34eb4d05/</url>
+    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
+<span id="more"></span>
+
+<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
+<ul>
+<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
+</ul>
+<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>List/pandas如何筛选包含若干词语的文本</title>
     <url>/posts/4d972282/</url>
     <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
@@ -1098,25 +1117,6 @@
       <tags>
         <tag>Pandas</tag>
         <tag>文本筛选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>订阅了Typora~</title>
-    <url>/posts/34eb4d05/</url>
-    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
-<span id="more"></span>
-
-<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
-<ul>
-<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
-</ul>
-<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
