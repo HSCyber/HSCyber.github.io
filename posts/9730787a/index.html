@@ -23,14 +23,14 @@
 
     <meta name="description" content="介绍一下Vscode Python环境配置，并小结一下自己目前基于Python的数据分析工作习惯。 之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap等软件。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的Python数据处理习惯及VSCode的使用简介">
+<meta property="og:title" content="我的数据处理习惯及VSCode Python的使用简介">
 <meta property="og:url" content="https://hscyber.github.io/posts/9730787a/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="介绍一下Vscode Python环境配置，并小结一下自己目前基于Python的数据分析工作习惯。 之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap等软件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/9730787a/image-20220624185014513.png">
 <meta property="article:published_time" content="2022-06-20T02:00:42.000Z">
-<meta property="article:modified_time" content="2022-06-26T13:25:23.071Z">
+<meta property="article:modified_time" content="2022-07-04T11:20:47.422Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="VSCode">
@@ -44,10 +44,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/9730787a/","path":"posts/9730787a/","title":"我的Python数据处理习惯及VSCode的使用简介"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/9730787a/","path":"posts/9730787a/","title":"我的数据处理习惯及VSCode Python的使用简介"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>我的Python数据处理习惯及VSCode的使用简介 | Huangs's Notes</title>
+<title>我的数据处理习惯及VSCode Python的使用简介 | Huangs's Notes</title>
   
 
 
@@ -101,9 +101,9 @@
 
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">22</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">10</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a></li>
   </ul>
 </nav>
 
@@ -134,7 +134,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vs-Code%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">Vs Code的使用简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyter-notebook"><span class="nav-number">2.1.</span> <span class="nav-text">jupyter notebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py-script"><span class="nav-number">2.2.</span> <span class="nav-text">.py script</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84Python%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">我的Python工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">问题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-x2F-%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">代码&#x2F;工具实现思路</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vs-Code%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">Vs Code的使用简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jupyter-notebook"><span class="nav-number">2.1.</span> <span class="nav-text">jupyter notebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#py-script"><span class="nav-number">2.2.</span> <span class="nav-text">.py script</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">我的工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">问题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81-x2F-%E5%B7%A5%E5%85%B7%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="nav-number">3.2.</span> <span class="nav-text">代码&#x2F;工具实现思路</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -149,18 +149,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -221,12 +221,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="我的Python数据处理习惯及VSCode的使用简介 | Huangs's Notes">
+      <meta itemprop="name" content="我的数据处理习惯及VSCode Python的使用简介 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          我的Python数据处理习惯及VSCode的使用简介
+          我的数据处理习惯及VSCode Python的使用简介
         </h1>
 
         <div class="post-meta-container">
@@ -303,7 +303,7 @@
 <h3 id="py-script"><a href="#py-script" class="headerlink" title=".py script"></a>.py script</h3><blockquote>
 <p>运行脚本时需要配合命令行窗口~</p>
 </blockquote>
-<h2 id="我的Python工作模式"><a href="#我的Python工作模式" class="headerlink" title="我的Python工作模式"></a>我的Python工作模式</h2><blockquote>
+<h2 id="我的工作模式"><a href="#我的工作模式" class="headerlink" title="我的工作模式"></a>我的工作模式</h2><blockquote>
 <p>不论数据获取、处理还是分析，编程都只是实现任务的<strong>工具</strong>之一，所以最核心的还是目的及思路步骤。</p>
 <p>好记性不如烂笔头，对我而言记录逻辑和步骤是十分重要的，这便于复用和查错。</p>
 </blockquote>
@@ -365,7 +365,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/9730787a/" title="我的Python数据处理习惯及VSCode的使用简介">https://hscyber.github.io/posts/9730787a/</a>
+      <a href="https://hscyber.github.io/posts/9730787a/" title="我的数据处理习惯及VSCode Python的使用简介">https://hscyber.github.io/posts/9730787a/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -423,13 +423,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">39k</span>
+    <span title="站点总字数">44k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">35 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

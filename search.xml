@@ -382,19 +382,18 @@
 <p>第二部分是数据结构，包含三部分</p>
 <p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
 </blockquote>
-<p>要点——list和推导式</p>
-<ol>
+<h3 id="list和推导式"><a href="#list和推导式" class="headerlink" title="list和推导式"></a>list和推导式</h3><ol>
 <li><p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
 </li>
 <li><p>序列分类</p>
 <ol>
-<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)</li>
-<li>按是否可变（简单理解为自由增删改）分可变和不可变，如list属于可变，tuple不可变</li>
+<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)，后者小而快，前者更灵活</li>
+<li>按是否可变（简单理解为自由增删改）分可变和不可变，如<strong>list dict属于可变</strong>，<strong>str tuple不可变</strong></li>
 </ol>
 </li>
 <li><p>list使用要点：</p>
 <ol>
-<li>多使用<strong>列表推导式</strong>，但一般只用于创建新列表，一行不能搞定的也不用</li>
+<li>多使用<strong>列表推导式</strong>，但一般只用于<strong>创建</strong>新列表，一行不能搞定的也不用</li>
 <li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次<ul>
 <li>节省内存，避免额外内存消耗，大数据考虑</li>
 </ul>
@@ -402,14 +401,67 @@
 </ol>
 </li>
 </ol>
-<p>要点——元组tuple使用</p>
-<ol>
+<h3 id="元组tuple及-的使用"><a href="#元组tuple及-的使用" class="headerlink" title="元组tuple及*的使用"></a>元组tuple及<code>*</code>的使用</h3><ol>
 <li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
-<li>元组拆包的妙用：显式或隐式的都有，很方便<br> 1. </li>
-<li>具名元组，带表头？是否可以取代表格数据管理还有待探索hh</li>
+<li>元组拆包的妙用：显式或隐式的都有，很方便，举例：</li>
 </ol>
-<h2 id="little-tips"><a href="#little-tips" class="headerlink" title="little tips"></a>little tips</h2><ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 平行复制</span></span><br><span class="line">loc = (<span class="number">33.9</span>, <span class="number">118.5</span>)</span><br><span class="line">lat, lng = loc</span><br><span class="line"><span class="comment"># 函数传参</span></span><br><span class="line">afunc = f(a,b)</span><br><span class="line">z = f(*loc)</span><br><span class="line"><span class="comment"># *处理不确定个数的元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,*b,c,d = <span class="built_in">range</span>(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>具名元组，可以用来构建：<ol>
+<li>带字段的元组。表头？是否可以取代表格数据管理还有待探索hh</li>
+<li>有名字的类</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">City = namedtuple(<span class="string">&#x27;City&#x27;</span>, <span class="string">&#x27;name country pop loc&#x27;</span>) <span class="comment">#创建类</span></span><br><span class="line">tolyo = City(<span class="string">&#x27;Tokyo&#x27;</span>,<span class="string">&#x27;JP&#x27;</span>,<span class="number">36.933</span>, (<span class="number">35.7</span>, <span class="number">139.7</span>)) <span class="comment"># 实例化</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="切片与赋值"><a href="#切片与赋值" class="headerlink" title="切片与赋值"></a>切片与赋值</h3><blockquote>
+<p>即选取序列中的一段&#x2F;一部分</p>
+<p>索引从0开始，左闭右开 (a,b]，空表示断点</p>
+</blockquote>
+<ul>
+<li>s[1:5]，选取序列s的第二个到第五个元素</li>
+<li><code>s[a: b:c]</code>，a~b之间以间隔c取值, c值为负数代表倒序取值</li>
+</ul>
+<p>切片赋值时，若左侧为一个切片，右侧应该是可迭代的，即便只有一个值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">alistp[<span class="number">1</span>:<span class="number">5</span>]=[<span class="number">48</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="序列的拼接"><a href="#序列的拼接" class="headerlink" title="序列的拼接"></a>序列的拼接</h3><p>+和*都是创建一个新的序列：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c = a+b <span class="comment"># &gt;&gt;&gt;[1,2,3,3,4,5]</span></span><br><span class="line">d = a*<span class="number">3</span> <span class="comment"># &gt;&gt;&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]</span></span><br><span class="line">e = <span class="number">5</span>*<span class="string">&#x27;abc&#x27;</span><span class="comment"># &gt;&gt;&gt;&#x27;abcabcabcabcabc&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>+&#x3D;和*&#x3D;可用于对可变序列，如列表和字典，其原理是这些类的内部实现了<code>__iadd__或__imul__</code></p>
+<ul>
+<li>对于可变序列使用时，就地改变数据，数据的内存及ID位置不会变</li>
+</ul>
+<h3 id="序列排序"><a href="#序列排序" class="headerlink" title="序列排序"></a>序列排序</h3><p>list.sort()：就地排序,返回None</p>
+<p>sorted()：对可迭代对象排序生成新对象，如列表、元组及生成器都可以</p>
+<ul>
+<li><p>可选参数：reverse(默认是False，升序输出); key 默认是元素本身的值排序，若设置key&#x3D;str.lower或key&#x3D;len可以使其忽略大小写或基于长度排序</p>
+</li>
+<li><p>此外，key关键字可以在很多内置函数中使用，如max() min()</p>
+</li>
+</ul>
+<p>当我们需要进行查找和插入元素并<strong>保持序列的顺序不变</strong>时，可使用bisect模块，其使用二分法进行查找和插入，有需要时再检索即可</p>
+<h3 id="处理数值序列-数组array"><a href="#处理数值序列-数组array" class="headerlink" title="处理数值序列-数组array"></a>处理数值序列-数组array</h3><blockquote>
+<p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
+<p>因为数组背后是对数字的机器翻译——字节标段数</p>
+</blockquote>
+<p>使用数组array</p>
+<p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
+</li>
+<li><p>array的排序可以通过, a &#x3D; array.array(a.typecode, sorted(a))</p>
+</li>
+</ul>
+<p>标准库之外：值得学习的Numpy和Scipy库，强大的科学计算工具</p>
+<p>Python内部实现了双向队列的类型collections.deque：线程安全、可以快速从两段添加或删除元素的数据类型</p>
+<h2 id="数据结构——字典与集合"><a href="#数据结构——字典与集合" class="headerlink" title="数据结构——字典与集合"></a>数据结构——字典与集合</h2><h2 id="little-tips"><a href="#little-tips" class="headerlink" title="little tips"></a>little tips</h2><ol>
 <li>“_”占位符可以用来过滤一些不需要的输出结果</li>
+<li></li>
 </ol>
 ]]></content>
       <categories>
@@ -562,6 +614,80 @@
       </categories>
   </entry>
   <entry>
+    <title>Pandas表格数据选取/条件筛选小结</title>
+    <url>/posts/f9c7a8a1/</url>
+    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
+<ol>
+<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
+<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
+<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
+<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
+</blockquote>
+<p>测试数据导入及查看基本信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
+<p>Python默认从<code>0</code>开始索引.</p>
+</blockquote>
+<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
+<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
+</li>
+<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
+</li>
+<li><p>大多数情况，可以访问也可以修改值</p>
+</li>
+</ul>
+<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
+<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行第四列的数值</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
+<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
+<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
+</blockquote>
+<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
+<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
+<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
+</blockquote>
+<p>即自定义一个新的函数生成新列，再筛选，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
+<ul>
+<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
+</ul>
+<p>有时候需要多列参与运算，结果是返回单个值</p>
+<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
+<ul>
+<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
+<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>关于更多函数的运用后续小结</p>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>matplotlib绘图基础1：图的组成元素</title>
     <url>/posts/8dfff56a/</url>
     <content><![CDATA[<p>一张好看的学术图表不仅能够更优雅简洁地传递信息，也能给人予美的享受。在撰写学术论文的过程，耗费大量时间的除了做实验，另一个一定是作图了，要通过几张图把信息很好地呈现出来，需要费不少功夫。</p>
@@ -688,80 +814,6 @@
       <tags>
         <tag>Python</tag>
         <tag>Matplotlib</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas表格数据选取/条件筛选小结</title>
-    <url>/posts/f9c7a8a1/</url>
-    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
-<ol>
-<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
-<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
-<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
-</ol>
-<span id="more"></span>
-
-<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
-<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
-</blockquote>
-<p>测试数据导入及查看基本信息</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
-<p>Python默认从<code>0</code>开始索引.</p>
-</blockquote>
-<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
-<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
-</li>
-<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
-</li>
-<li><p>大多数情况，可以访问也可以修改值</p>
-</li>
-</ul>
-<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
-<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行第四列的数值</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
-
-<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
-<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
-<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
-</blockquote>
-<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
-<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
-
-<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
-<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
-</blockquote>
-<p>即自定义一个新的函数生成新列，再筛选，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
-<ul>
-<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
-</ul>
-<p>有时候需要多列参与运算，结果是返回单个值</p>
-<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
-<ul>
-<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
-<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-<p>关于更多函数的运用后续小结</p>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -1071,6 +1123,75 @@
       </tags>
   </entry>
   <entry>
+    <title>空间数据分区统计sjoin|zonal</title>
+    <url>/posts/54103437/</url>
+    <content><![CDATA[<p><strong>按照多边形</strong>（如格网&#x2F;行政区划）边界<strong>汇总统计</strong>其内的<strong>点&#x2F;栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
+<p>对于软件，如果点是矢量，则可以直接通过ArcMap&#x2F;QGIS的spatial join计算，点为栅格，则称zonal statistic……</p>
+<p>实际上数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
+<span id="more"></span>
+
+<p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步</p>
+<p>这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了</p>
+<p><u>此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</u></p>
+<h2 id="∑点×矢量sjoin"><a href="#∑点×矢量sjoin" class="headerlink" title="∑点×矢量sjoin"></a>∑点×矢量sjoin</h2><p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
+<h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
+<li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
+</ul>
+<img src="/posts/undefined/image-20220706220226879.png" class alt="image-20220706220226879">
+
+<img src="/posts/undefined/image-20220706220152451.png" class alt="image-20220706220152451">
+
+<img src="/posts/undefined/image-20220706221509848.png" class alt="image-20220706221509848">
+
+<ul>
+<li>QGIS：按位置连接，在QGIS工具箱搜索join或者连接都行，其工具检索双语支持，也可以批处理</li>
+</ul>
+<img src="/posts/undefined/image-20220706221352490.png" class alt="image-20220706221352490">
+
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><ol>
+<li>一种是基于ArcPy实现Spatial Join工具的脚本即可，查看tool help的代码即可，支持批处理，略</li>
+<li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
+</ol>
+<p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是</p>
+<ul>
+<li>在原有的shapefile表上增加了12列，每一列对应当月格网内的数量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
+
+<h2 id="∑栅格×矢量zonal"><a href="#∑栅格×矢量zonal" class="headerlink" title="∑栅格×矢量zonal"></a>∑栅格×矢量zonal</h2><p>以统计格网(polygons)内栅格值为例：</p>
+<h3 id="软件-1"><a href="#软件-1" class="headerlink" title="软件"></a>软件</h3><blockquote>
+<p>之前汇总过一次全国960w格网的栅格计算，分省计算的，基于的是QGIS的批处理（通过导入参数json文件实现）&#x2F;也尝试了其Python脚本发现不好用，可能是我还没上手习惯</p>
+</blockquote>
+<ul>
+<li><p>ArcGIS略</p>
+</li>
+<li><p>QGIS：在工具箱搜索zonal或者分区统计即可</p>
+</li>
+</ul>
+<img src="/posts/undefined/image-20220706222730274.png" class alt="image-20220706222730274">
+
+<p>QGIS批处理，QGIS的脚本不如ArcPy好用，所以批处理之前是用参数导入的方式实现的，但是其参数设置还需要经过一道转换，略显麻烦，但也还行，代码见：</p>
+<img src="/posts/undefined/image-20220706223030773.png" class alt="image-20220706223030773">
+
+<p>参数设置代码参考，其要求比较严格需要标准的路径、json对象和json文件等，当时debug了好一会~，json的介绍可以我写过的<a href="https://hscyber.github.io/posts/3c868742/">这里</a>，需要设置输入文件、输出文件、栅格波段、计算方式（数量、均值等）、前缀等等</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># infiles是输入的拆分好的960w格网文件</span></span><br><span class="line">inpath = <span class="string">&quot;A:/Data/ChinaGrid/grids_v1/shp&quot;</span></span><br><span class="line">infiles = glob(inpath+<span class="string">&quot;/*.shp&quot;</span>)</span><br><span class="line"><span class="comment"># 这里是为了把双反斜杠\\换成正斜杠/ </span></span><br><span class="line">infiles = [inpath+<span class="string">&quot;/&quot;</span>+os.path.basename(file) <span class="keyword">for</span> file <span class="keyword">in</span> infiles]</span><br><span class="line"><span class="comment"># 全部输出文件，视情况改，我这里因为只换了文件夹</span></span><br><span class="line">outfiles = [infile.replace(<span class="string">&#x27;v1&#x27;</span>,<span class="string">&#x27;v2&#x27;</span>) <span class="keyword">for</span> infile <span class="keyword">in</span> infiles]</span><br><span class="line">paras = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outfiles)):</span><br><span class="line">    infile =  json.dumps(infiles[i])</span><br><span class="line">    <span class="comment"># outfile = json.dumps(outfiles[i])</span></span><br><span class="line">    <span class="comment"># 输入栅格，此处我计算的是同一个栅格，如果多个另外传参数</span></span><br><span class="line">    inraster =  json.dumps(<span class="string">&quot;A:/Data/ChinaGrid/base/china-gaia.tif&quot;</span>)</span><br><span class="line">    prefix = json.dumps(<span class="string">&#x27;imp_&#x27;</span>) <span class="comment"># 前缀</span></span><br><span class="line">    <span class="comment"># 这里搜一下qgis脚本 zonal的参数说明文档，或者先小文件跑看一下输出记录写的参数，1代表数量</span></span><br><span class="line">    statis = json.dumps([<span class="number">1</span>]) </span><br><span class="line">    para = &#123;</span><br><span class="line">        <span class="string">&quot;PARAMETERS&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;INPUT&quot;</span>:infile,</span><br><span class="line">            <span class="string">&quot;INPUT_RASTER&quot;</span>:inraster,</span><br><span class="line">            <span class="string">&quot;RASTER_BAND&quot;</span>:<span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;COLUMN_PREFIX&quot;</span>: prefix,</span><br><span class="line">            <span class="string">&quot;STATISTICS&quot;</span>: statis&#125;,</span><br><span class="line">        <span class="string">&quot;OUTPUTS&quot;</span>: &#123;<span class="string">&quot;OUTPUT&quot;</span>: outfiles[i]&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    paras.append(para)</span><br><span class="line"><span class="built_in">print</span>(paras[<span class="number">0</span>])<span class="comment"># 预览一下</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;A:\Data\ChinaGrid\zonal_batch.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(paras,f)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python-1"><a href="#Python-1" class="headerlink" title="Python"></a>Python</h3><ol>
+<li>ArcPy，实现Zonal Statistic<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/zonal-statistics.htm">功能</a>，应该在空间分析工具下，也可自行查看文档</li>
+<li>一个专门做分区统计的小模块<a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>，使用方便可自行查看文档</li>
+<li>其他暂不探索</li>
+</ol>
+]]></content>
+      <categories>
+        <category>空间数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>QGIS</tag>
+        <tag>矢栅数据</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>List/pandas如何筛选包含若干词语的文本</title>
     <url>/posts/4d972282/</url>
     <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
@@ -1120,7 +1241,7 @@
       </tags>
   </entry>
   <entry>
-    <title>我的Python数据处理习惯及VSCode的使用简介</title>
+    <title>我的数据处理习惯及VSCode Python的使用简介</title>
     <url>/posts/9730787a/</url>
     <content><![CDATA[<p>介绍一下Vscode Python环境配置，并小结一下自己目前<strong>基于Python的数据分析工作习惯</strong>。</p>
 <p>之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap等软件。</p>
@@ -1144,7 +1265,7 @@
 <h3 id="py-script"><a href="#py-script" class="headerlink" title=".py script"></a>.py script</h3><blockquote>
 <p>运行脚本时需要配合命令行窗口~</p>
 </blockquote>
-<h2 id="我的Python工作模式"><a href="#我的Python工作模式" class="headerlink" title="我的Python工作模式"></a>我的Python工作模式</h2><blockquote>
+<h2 id="我的工作模式"><a href="#我的工作模式" class="headerlink" title="我的工作模式"></a>我的工作模式</h2><blockquote>
 <p>不论数据获取、处理还是分析，编程都只是实现任务的<strong>工具</strong>之一，所以最核心的还是目的及思路步骤。</p>
 <p>好记性不如烂笔头，对我而言记录逻辑和步骤是十分重要的，这便于复用和查错。</p>
 </blockquote>
