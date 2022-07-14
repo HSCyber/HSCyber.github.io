@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hscyber.github.io/posts/8dfff56a/</loc>
+    
+    <lastmod>2022-07-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/posts/3c868742/</loc>
     
     <lastmod>2022-07-12</lastmod>
@@ -194,15 +203,6 @@
     <loc>https://hscyber.github.io/posts/34eb4d05/</loc>
     
     <lastmod>2022-06-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/posts/8dfff56a/</loc>
-    
-    <lastmod>2022-06-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

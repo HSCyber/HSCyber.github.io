@@ -652,7 +652,7 @@
 <img src="/posts/8dfff56a/anatomy.png" class alt="anatomy">
 
 <h3 id="组成总览"><a href="#组成总览" class="headerlink" title="组成总览"></a>组成总览</h3><ul>
-<li><p><strong>Figure</strong>：所有绘图元素的顶级容器，大致可以理解为<strong>画布canvas</strong>。我们可以设置它的尺寸(figsize)、标题(suptile)、背景颜色(facecolor )等属性，背景默认是透明 transparent&#x3D;True。</p>
+<li><p><strong>Figure</strong>：所有绘图元素的顶级容器，大致可以理解为<strong>画布canvas</strong>。我们可以设置它的尺寸(figsize)、标题(suptile)、x标签(supxlabel)、背景颜色(facecolor )等属性，背景默认是透明 transparent&#x3D;True。</p>
 </li>
 <li><p><strong>Axes</strong>：相当于Subplot，子图，是我们实际的绘图区域，为<strong>矩形</strong>。一张图可以有多个子图(Axes)，如上图</p>
 <ul>
