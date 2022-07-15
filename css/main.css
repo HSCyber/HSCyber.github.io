@@ -416,8 +416,8 @@ code,
 kbd,
 figure.highlight,
 pre {
-  background: var(--highlight-background);
-  color: var(--highlight-foreground);
+  color: #c71585;
+  background: #fffafa;
 }
 figure.highlight,
 pre {
