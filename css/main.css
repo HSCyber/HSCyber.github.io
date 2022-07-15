@@ -2689,7 +2689,7 @@ ul.breadcrumb li:last-child {
   padding-top: 40px;
   padding-right: 220px;
   padding-bottom: 40px;
-  padding-tleft: 220px;
+  padding-left: 220px;
 }
 @media (max-width: 991px) {
   .main-inner {
