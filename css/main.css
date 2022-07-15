@@ -2499,10 +2499,6 @@ ul.breadcrumb li:last-child {
   border-radius: initial;
   box-sizing: border-box;
   width: calc(100% - 252px);
-  padding-top: 40px;
-  padding-right: 220px;
-  padding-bottom: 40px;
-  padding-tleft: 220px;
 }
 @media (max-width: 991px) {
   .main-inner {
@@ -2690,6 +2686,10 @@ ul.breadcrumb li:last-child {
   background: var(--content-bg-color);
   box-shadow: initial;
   padding: 40px;
+  padding-top: 40px;
+  padding-right: 220px;
+  padding-bottom: 40px;
+  padding-tleft: 220px;
 }
 @media (max-width: 991px) {
   .main-inner {
