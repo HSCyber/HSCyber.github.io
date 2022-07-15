@@ -2701,14 +2701,14 @@ ul.breadcrumb li:last-child {
   background: var(--content-bg-color);
   box-shadow: initial;
   padding: 40px;
-  padding-top: 40px;
-  padding-right: 220px;
-  padding-bottom: 40px;
-  padding-left: 220px;
+  padding-top: 3em;
+  padding-right: 5em;
+  padding-bottom: 2.5em;
+  padding-left: 5em;
 }
 @media (max-width: 991px) {
   .main-inner {
-    padding: 20px;
+    padding: 1.5em;
   }
 }
 .sub-menu {

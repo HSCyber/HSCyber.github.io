@@ -361,79 +361,6 @@
       </tags>
   </entry>
   <entry>
-    <title>浅析Python中的类、模块、包</title>
-    <url>/posts/659ef075/</url>
-    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
-<ol>
-<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
-<li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？</li>
-</ol>
-<span id="more"></span>
-
-<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
-<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
-</blockquote>
-<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
-<ul>
-<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
-</ul>
-<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
-
-<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
-<ol>
-<li><strong>文件夹即包。</strong>熟悉的如：json、logging、multiprocessing、urllib</li>
-<li><strong>py文件，即脚本&#x2F;模块。</strong>熟悉的如：os.py、re.py、zipfile.py</li>
-<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包即存放在这）</li>
-</ol>
-<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
-
-
-
-<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
-<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
-<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
-<h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
-<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
-</blockquote>
-<blockquote>
-<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
-</blockquote>
-<p>结合实际讨论，</p>
-<ol>
-<li>当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其属性，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
-<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
-<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
-<li>……</li>
-</ol>
-<p><strong>何时使用？</strong>——拙见</p>
-<p>（虽然在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
-<ul>
-<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
-<li>编写开源包和模块时</li>
-<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
-<li></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>类</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在读书籍:《流畅的Python》</title>
     <url>/posts/15750410/</url>
     <content><![CDATA[<blockquote>
@@ -558,9 +485,109 @@
       </tags>
   </entry>
   <entry>
+    <title>浅析Python中的类、模块、包</title>
+    <url>/posts/659ef075/</url>
+    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
+<ol>
+<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
+<li>Python中如何定义<strong>类(class)</strong></li>
+<li>什么时候需要类？</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
+<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
+</blockquote>
+<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<ul>
+<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
+</ul>
+<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
+
+<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
+<ol>
+<li><strong>文件夹即包。</strong>熟悉的如：json、logging、multiprocessing、urllib</li>
+<li><strong>py文件，即脚本&#x2F;模块。</strong>熟悉的如：os.py、re.py、zipfile.py</li>
+<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包即存放在这）</li>
+</ol>
+<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
+<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
+<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
+<h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
+<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
+</blockquote>
+<blockquote>
+<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
+</blockquote>
+<p>结合实际讨论，</p>
+<ol>
+<li>当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其属性，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
+<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
+<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
+<li>……</li>
+</ol>
+<p><strong>何时使用？</strong>——拙见</p>
+<p>（虽然在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
+<ul>
+<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
+<li>编写开源包和模块时</li>
+<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>类</tag>
+        <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>随笔随机-2022/520</title>
     <url>/posts/29d41ed/</url>
-    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗……</p>
+    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
 <p>When I started loving myself, Charlie Chaplin </p>
 <span id="more"></span>
 
@@ -597,107 +624,6 @@
       <categories>
         <category>生活</category>
       </categories>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas表格数据选取/条件筛选小结</title>
-    <url>/posts/f9c7a8a1/</url>
-    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
-<ol>
-<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
-<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
-<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
-</ol>
-<span id="more"></span>
-
-<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
-<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
-</blockquote>
-<p>测试数据导入及查看基本信息</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
-<p>Python默认从<code>0</code>开始索引.</p>
-</blockquote>
-<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
-<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
-</li>
-<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
-</li>
-<li><p>大多数情况，可以访问也可以修改值</p>
-</li>
-</ul>
-<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
-<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行&#x27;B&#x27;列的数值，4为行索引名称</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
-
-<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
-<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
-<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
-</blockquote>
-<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
-<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
-
-<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
-<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
-</blockquote>
-<p>即自定义一个新的函数生成新列，再筛选，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
-<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
-<ul>
-<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
-</ul>
-<p>有时候需要多列参与运算，结果是返回单个值</p>
-<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
-<ul>
-<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
-<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-<p>关于更多函数的运用后续小结</p>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-      </tags>
   </entry>
   <entry>
     <title>matplotlib绘图基础1：图的组成元素</title>
@@ -826,6 +752,80 @@
       <tags>
         <tag>Python</tag>
         <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas表格数据选取/条件筛选小结</title>
+    <url>/posts/f9c7a8a1/</url>
+    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类：</p>
+<ol>
+<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
+<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
+<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
+<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
+</blockquote>
+<p>测试数据导入及查看基本信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
+<p>Python默认从<code>0</code>开始索引.</p>
+</blockquote>
+<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
+<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
+</li>
+<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
+</li>
+<li><p>大多数情况，可以访问也可以修改值</p>
+</li>
+</ul>
+<p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
+<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行&#x27;B&#x27;列的数值，4为行索引名称</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
+
+<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
+<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
+<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
+</blockquote>
+<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
+<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
+<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
+</blockquote>
+<p>即自定义一个新的函数生成新列，再筛选，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
+<ul>
+<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
+</ul>
+<p>有时候需要多列参与运算，结果是返回单个值</p>
+<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
+<ul>
+<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
+<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>关于更多函数的运用后续小结</p>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -1138,13 +1138,10 @@
     <title>空间数据分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网&#x2F;行政区划）边界<strong>汇总统计</strong>其内的<strong>点&#x2F;栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
-<p>对于软件，如果点是矢量，则可以直接通过ArcMap&#x2F;QGIS的spatial join计算，点为栅格，则称zonal statistic……</p>
-<p>实际上数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
+<p>对于软件，如果点是矢量，则可以直接通过ArcMap&#x2F;QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
 <span id="more"></span>
 
-<p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步</p>
-<p>这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了</p>
-<p><u>此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</u></p>
+<p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步，这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了。此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</p>
 <h2 id="∑点×矢量sjoin"><a href="#∑点×矢量sjoin" class="headerlink" title="∑点×矢量sjoin"></a>∑点×矢量sjoin</h2><p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
 <h3 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h3><ul>
 <li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
@@ -1322,7 +1319,7 @@
 </ol>
 ]]></content>
       <categories>
-        <category>Python数据处理分析</category>
+        <category>科研</category>
       </categories>
       <tags>
         <tag>Python</tag>
