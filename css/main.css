@@ -1944,7 +1944,7 @@ pre code {
 .post-body h2 {
   color: #dc143c;
   text-align: center;
-  font-size: 1.35em;
+  font-size: 1.115em;
 }
 .post-body blockquote {
   border-left-color: #f08080;
@@ -1961,6 +1961,11 @@ pre code {
   border-radius: 5px;
   box-shadow: 0 5px 5px 0 rgba(0,0,0,0.4);
   padding-top: 20px;
+}
+.post-body p code {
+  color: #c71585;
+  background: #fffafa;
+  margin: 2px;
 }
 .post-gallery {
   display: flex;
