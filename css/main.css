@@ -416,8 +416,8 @@ code,
 kbd,
 figure.highlight,
 pre {
-  color: #c71585;
-  background: #fffafa;
+  background: var(--highlight-background);
+  color: var(--highlight-foreground);
 }
 figure.highlight,
 pre {
@@ -1963,6 +1963,16 @@ pre code {
   padding-top: 20px;
 }
 .post-body p code {
+  color: #c71585;
+  background: #fffafa;
+  margin: 2px;
+}
+.post-body ul code {
+  color: #c71585;
+  background: #fffafa;
+  margin: 2px;
+}
+.post-body ol code {
   color: #c71585;
   background: #fffafa;
   margin: 2px;
