@@ -1,6 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>正则表达式re模块用法</title>
+    <url>/posts/da405e24/</url>
+    <content><![CDATA[<blockquote>
+<p>re(Regular Expression)&#x2F;正则表达式是一个内置的文本处理模块，在进行数据处理（筛选、替换）以及网页数据抓取时十分常用</p>
+</blockquote>
+<p>该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，<code>import re</code></p>
+<p>本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
+<span id="more"></span>
+
+<p>先介绍函数，再介绍写法</p>
+<h2 id="函数方法"><a href="#函数方法" class="headerlink" title="函数方法"></a>函数方法</h2><blockquote>
+<p>flages是在匹配时的附加参数，获得更加准确及干净的匹配结果，如可以选择<strong>不考虑换行，忽略大小写等</strong></p>
+</blockquote>
+<h3 id="方法及对象"><a href="#方法及对象" class="headerlink" title="方法及对象"></a>方法及对象</h3><p><code>re.compile(pattern, flags=0)</code>：将表达式编译为<strong>正则表达式对象</strong>以供后续使用&#x2F;<strong>复用</strong></p>
+<ul>
+<li>输入pattern为表达式字符串，返回对象类型为 &lt;class ‘re.Pattern’&gt;，可以直接进行检索也可作为其他函数的pattern输入</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pattern_ = re.<span class="built_in">compile</span>(pattern)</span><br><span class="line">result = re.match(pattern_, string)<span class="comment">#实际上就等价于re.match(pattern, string)</span></span><br><span class="line"><span class="comment"># 其他参见pattern_.search();pattern_.match();pattern_.split();pattern_.findall();...</span></span><br></pre></td></tr></table></figure>
+
+<p><code>re.findall(pattern, string, flags=0)</code>：常用，返回全部匹配结果，以<strong>列表list</strong>返回</p>
+<ul>
+<li>通过在表达式中加括号可以实现元组分组，两个示例</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.findall(<span class="string">r&#x27;[a-zA-Z]+&#x27;</span>, <span class="string">&#x27;Which453foot378（*&amp;…… or378 378hand378 fell378 fastest&#x27;</span>)</span><br><span class="line"><span class="comment"># 返回其中的单词 [&#x27;which&#x27;, &#x27;foot&#x27;, &#x27;or&#x27;, &#x27;hand&#x27;, &#x27;fell&#x27;, &#x27;fastest&#x27;]</span></span><br><span class="line">re.findall(<span class="string">r&#x27;(\w+)=(\d+)&#x27;</span>, <span class="string">&#x27;set width=20 and height=10&#x27;</span>)</span><br><span class="line">[(<span class="string">&#x27;width&#x27;</span>, <span class="string">&#x27;20&#x27;</span>), (<span class="string">&#x27;height&#x27;</span>, <span class="string">&#x27;10&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>re.finditer(pattern, string, flags=0)</code>：同上，但是返回结果为一个迭代器</li>
+</ul>
+<p><code>re.search(pattern, string, flags=0)</code>: 整个字符串匹配并返回满足pattern的的<strong>第一个</strong>位置，可以为空</p>
+<ul>
+<li>返回对象类型是&lt;class ‘re.Match’&gt;，如果没有匹配到，则返回None ；</li>
+</ul>
+<p><code>re.match(pattern, string, flags=0)</code>: 匹配字符串开头是否满足pattern并返回，不常用</p>
+<p><code>re.split(pattern, string, maxsplit=0, flags=0)</code>：匹配表达式分割string，如匹配逗号分开单词</p>
+<ul>
+<li>可以视为str.split(char, num)的加强版，maxsplit设置分割次数，默认全部分割</li>
+<li>如果pattern中包含了括号则会同时返回匹配到的内容及切分后的结果，示例：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(<span class="string">r&#x27;\W+&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;words&#x27;, &#x27;words&#x27;, &#x27;&#x27;]</span></span><br><span class="line">re.split(<span class="string">r&#x27;(\W+)&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;.&#x27;, &#x27;&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><code>re.sub(pattern, repl, string, count=0, flags=0)</code>：查找并<strong>替换</strong>string中pattern匹配的内容</p>
+<ul>
+<li><p>repl是替换为的新的内容，也可以是一个函数</p>
+</li>
+<li><p>可以视为str.replace(‘…’, ‘…’)的加强版，<code>re.``subn()</code>类似，但是会同时返回替换&#x2F;匹配成功的次数</p>
+</li>
+</ul>
+<h3 id="flags参数"><a href="#flags参数" class="headerlink" title="flags参数"></a>flags参数</h3><blockquote>
+<p>一次只能设一个</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">表达式flags&#x3D;</th>
+<th align="center">全称</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">re.A</td>
+<td align="center">ASCII</td>
+<td align="center">让 \w, \W, \b, \B, \d, \D, \s 和 \S 只匹配ASCII，而不是Unicode</td>
+</tr>
+<tr>
+<td align="center">re.I</td>
+<td align="center">IGNORECASE</td>
+<td align="center">忽略大小写匹配</td>
+</tr>
+<tr>
+<td align="center">re.S</td>
+<td align="center">DOTALL</td>
+<td align="center">最常用，让 <code>&#39;.&#39;</code> 特殊字符匹配任何字符，包括换行符</td>
+</tr>
+<tr>
+<td align="center">re.M</td>
+<td align="center">MULTILINE</td>
+<td align="center">当之前只能匹配字符串开头结尾的的可以拓展到多行的开头结尾</td>
+</tr>
+<tr>
+<td align="center">re.X</td>
+<td align="center">VERBOSE</td>
+<td align="center">编写友好，写表达式时可以进行分段和添加注释</td>
+</tr>
+</tbody></table>
+<h2 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h2><blockquote>
+<p>最重要的是完成准确的正则表达式的书写，通常的形式是  r’raw…’</p>
+</blockquote>
+<p>正则表达式的几个点</p>
+<ol>
+<li>可以拼接组合，如‘a-zA-Z’会一起匹配大小写字母，A|B 或匹配，优先A</li>
+<li>可以包含普通或者特殊字符，</li>
+<li>元字符有<code>. ^ $ * + ? &#123; &#125; [ ] \ | ( )</code>，它们不匹配自己</li>
+<li>反斜杠<code>\</code>用于和其他字母组合表示特殊匹配形式</li>
+<li>重复修饰符 (<code>*</code>, <code>+</code>, <code>?</code>, <code>&#123;m,n&#125;</code>，字面意思，重复匹配</li>
+<li>关于转义符的解释：<code>r&quot;\n&quot;</code> 表示包含 <code>&#39;\&#39;</code> 和 <code>&#39;n&#39;</code> 两个字符的字符串，而 <code>&quot;\n&quot;</code> 则表示只包含一个换行符的字符串,<code>r&quot;.*?&quot;</code>匹配特殊序列而不是匹配<code>?</code>本身。</li>
+</ol>
+<p>语法-<a href="https://docs.python.org/zh-cn/3/library/re.html#regular-expression-syntax">详细参考</a>，此处仅介绍部分</p>
+<ul>
+<li><code>.</code>：匹配除了换行的任意字符。如果指定了标签<strong>re.S</strong>，它将匹配包括换行符的任意字符。</li>
+<li><code>[]</code>:表示一个字符集合，如[amk]匹配三个字母，<code>[0-5][0-9]</code>匹配00-59<ul>
+<li>特殊字符在集合中会失去其特殊意义，如<code>[(+*)]</code> 只会匹配这几个字面字符之一 <code>&#39;(&#39;</code>, <code>&#39;+&#39;</code>, <code>&#39;*&#39;</code>, or <code>&#39;)&#39;</code>。</li>
+<li>[^…]，匹配不在 [] 中的字符</li>
+</ul>
+</li>
+<li><code>()</code>: 匹配括号内的表达式，也表示一个组</li>
+</ul>
+<p>重复匹配符</p>
+<ul>
+<li><code>*</code>: 对它前面的正则式匹配0到任意次重复， 尽量多的匹配字符串。</li>
+<li><code>+</code>: 对它前面的正则式匹配1到任意次重复。</li>
+<li><code>?</code>: 对它前面的正则式匹配0到1次重复。 <code>ab?</code> 会匹配 <code>&#39;a&#39;</code> 或者 <code>&#39;ab&#39;</code></li>
+<li><code>*?, +?, ??</code></li>
+<li><code>&#123;m&#125;</code></li>
+<li><code>&#123;mn&#125;</code>对正则式进行 m 到 n 次匹配，在 m 和 n 之间取尽量多。</li>
+<li><code>&#123;m,n&#125;?</code>：同上，但是非贪婪模式，及尽可能少</li>
+</ul>
+<p>匹配数字字母及下划线等符号</p>
+<ul>
+<li><code>\d</code>：匹配数字想当于[0-9]；<code>\D</code>匹配非数字相当于<code>[^0-9]</code></li>
+<li><code>\s</code>: 匹配任意空白字符（换行符等），等价于 [\t\n\r\f]，<code>\S</code>取反</li>
+<li><code>\w</code>: 匹配字母数字及下划线，大写<code>\W</code>则取反</li>
+</ul>
+<p>其他：<code>\A \z</code>等匹配字符串的开头结尾</p>
+<h2 id="案例及常用"><a href="#案例及常用" class="headerlink" title="案例及常用"></a>案例及常用</h2><p>任意匹配：<code>.*?</code></p>
+<p>匹配url: <code>[a-zA-z]+://[^\s]*</code></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>源代码位置：<a href="https://github.com/python/cpython/tree/3.10/Lib/re.py">Lib&#x2F;re.py</a></p>
+<p>官方文档: <a href="https://docs.python.org/zh-cn/3/library/re.html#functions">api</a></p>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>正则表达式</tag>
+        <tag>爬虫</tag>
+        <tag>文本处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LOESS(STL)时间序列分解</title>
+    <url>/posts/6e05178d/</url>
+    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
+<p>1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);   </p>
+<span id="more"></span>
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<p>时间序列中的”异常”？</p>
+<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded&#x2F;)</p>
+</blockquote>
+<p>周期：如一个商场的总人口每天24小时的规律变化</p>
+<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化&#x2F;减少的趋势线</p>
+<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
+<ul>
+<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
+<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
+</ul>
+<p>在异常分析时这是比较常规的方式：</p>
+<ol>
+<li>对序列进行<strong>建模&#x2F;拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
+<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
+<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
+</ol>
+<h2 id="stl时序分解"><a href="#stl时序分解" class="headerlink" title="stl时序分解"></a>stl时序分解</h2><blockquote>
+<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
+</blockquote>
+<blockquote>
+<p> Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
+</blockquote>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded&#x2F;)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
+</li>
+<li><p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>时间序列分析</category>
+      </categories>
+      <tags>
+        <tag>时间序列分解</tag>
+        <tag>Python</tag>
+        <tag>statsmodels</tag>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>image test</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -98,8 +284,8 @@
         <category>Python基础</category>
       </categories>
       <tags>
-        <tag>json文件</tag>
         <tag>Python</tag>
+        <tag>json文件</tag>
       </tags>
   </entry>
   <entry>
@@ -485,6 +671,33 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅析Python中的类、模块、包</title>
     <url>/posts/659ef075/</url>
     <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
@@ -555,33 +768,6 @@
         <tag>Python</tag>
         <tag>类</tag>
         <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1231,25 +1417,6 @@
       </tags>
   </entry>
   <entry>
-    <title>订阅了Typora~</title>
-    <url>/posts/34eb4d05/</url>
-    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
-<span id="more"></span>
-
-<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
-<ul>
-<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
-</ul>
-<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>我的数据处理习惯及VSCode Python的使用简介</title>
     <url>/posts/9730787a/</url>
     <content><![CDATA[<p>介绍一下Vscode Python环境配置，并小结一下自己目前<strong>基于Python的数据分析工作习惯</strong>。</p>
@@ -1326,6 +1493,25 @@
         <tag>VSCode</tag>
         <tag>Tools</tag>
         <tag>数据处理分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>订阅了Typora~</title>
+    <url>/posts/34eb4d05/</url>
+    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
+<span id="more"></span>
+
+<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
+<ul>
+<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
+</ul>
+<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
       </tags>
   </entry>
 </search>
