@@ -143,224 +143,6 @@
       </tags>
   </entry>
   <entry>
-    <title>文献篇(2) 论文下载</title>
-    <url>/posts/99dce68a/</url>
-    <content><![CDATA[<blockquote>
-<p>个人平时下载文献的流程和几种方式…</p>
-</blockquote>
-<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4….</p>
-<span id="more"></span>
-
-<h2 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h2><p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
-<ol>
-<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
-<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
-<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
-</ol>
-<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
-
-<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
-
-<h2 id="谷歌学术或SciHub"><a href="#谷歌学术或SciHub" class="headerlink" title="谷歌学术或SciHub"></a>谷歌学术或SciHub</h2><blockquote>
-<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
-<p>一般前面的操作不行我才会到scihub求助</p>
-</blockquote>
-<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
-
-<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
-
-<h2 id="ResearchGate"><a href="#ResearchGate" class="headerlink" title="ResearchGate"></a>ResearchGate</h2><blockquote>
-<p> <a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
-</blockquote>
-<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
-<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
-<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
-<p>以上~</p>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>英文论文下载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R语言学习1：基础</title>
-    <url>/posts/7b2f7b5e/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>从Python到R</strong>~</p>
-</blockquote>
-<p>相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过<strong>类比</strong>熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及</p>
-<ol>
-<li>基本语法，数据类型</li>
-<li>常用函数，流程控制（写循环）</li>
-<li>文件读写及数据框的常规操作</li>
-</ol>
-<span id="more"></span>
-
-<p>目前我用Python最常用的有以下操作：</p>
-<ol>
-<li>用列表或字典存数据；写for循环；创建DataFrame。</li>
-<li>批量获取文件名；读写csv文件，获取表格字段信息等；行列筛选；分组聚合。</li>
-<li>对DataFrame进行运算，apply函数应用。</li>
-</ol>
-<p>R的基础语法和数据类型？在R中上述常规操作如何实现？</p>
-<img src="/posts/7b2f7b5e/dataframe.png" class alt="dataframe">
-
-<h2 id="R基础"><a href="#R基础" class="headerlink" title="R基础"></a>R基础</h2><h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><blockquote>
-<p>R中的对象即是我们通常理解的变量</p>
-<p><strong>R的索引默认从1开始而非0</strong></p>
-</blockquote>
-<p>数值类型：TRUE&#x2F;FLASE; integer; numric; complex; character; raw(二进制)</p>
-<p>特殊：Inf(正无穷); -Inf; NaN(非数字); NA(缺失，不存在); NULL(空变量，元素存在但是没赋值)</p>
-<ol>
-<li>向量&#x2F;Vector，<code>c()</code>，相当于数组，其内元素的类型必须相同</li>
-<li>列表&#x2F;List，<code>list()</code>，类似于Python中的list但是包容性更强，可以同时包含多种不同类型的数据</li>
-<li>矩阵&#x2F;Matrix，<code>matrix()</code>,二维数组</li>
-<li>数组&#x2F;Array，<code>array()</code></li>
-<li>因子&#x2F;Factor，<code>factor()</code>，类别变量</li>
-<li>数据框&#x2F;Data Frame，<code>data.frame()</code>，表格数据，每列为一个向量，列名为name</li>
-</ol>
-<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><ol>
-<li><p>比较：用<code>==; !=</code>来比较整数&#x2F;向量&#x2F;字符串是否相等，用<code>all.equal(a,b)</code>比较两个数字</p>
-</li>
-<li><p>变量赋值：<code>&lt;-; =</code>，都可以 无区别，个人习惯&#x3D;，全局变量赋值<code>&lt;&lt;-</code></p>
-</li>
-<li><p>逻辑向量：<code>&amp; ! |</code>，与非或，根据向量生成逻辑向量<code>any();all()</code></p>
-</li>
-</ol>
-<h3 id="循环-x2F-流程控制"><a href="#循环-x2F-流程控制" class="headerlink" title="循环&#x2F;流程控制"></a>循环&#x2F;流程控制</h3><ol>
-<li><code>if else</code></li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span><span class="punctuation">(</span>x<span class="operator">&gt;</span><span class="number">3</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    y<span class="operator">=</span><span class="number">6</span></span><br><span class="line"><span class="punctuation">&#125;</span> <span class="keyword">else</span></span><br><span class="line"><span class="punctuation">&#123;</span>message<span class="punctuation">(</span><span class="string">&quot;ok&quot;</span><span class="punctuation">)</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><code>repeat</code>循环，结合<code>next; break</code></li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">n<span class="operator">=</span><span class="number">0</span>;j<span class="operator">=</span><span class="number">0</span></span><br><span class="line">message<span class="punctuation">(</span><span class="string">&quot;do while&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">repeat</span><span class="punctuation">&#123;</span></span><br><span class="line">  n<span class="operator">=</span>n<span class="operator">+</span><span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span><span class="punctuation">(</span>n<span class="operator">%%</span><span class="number">7</span><span class="operator">==</span><span class="number">0</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    message<span class="punctuation">(</span>n<span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">next</span>  <span class="comment">#跳过后续代码直接进入下一次迭代</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  j<span class="operator">=</span>j<span class="operator">+</span><span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span><span class="punctuation">(</span>n<span class="operator">==</span><span class="number">100</span><span class="punctuation">)</span> <span class="keyword">break</span> <span class="comment">#结束循环</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment"># j=86，跳过了14次</span></span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><code>while</code>循环，直接用</li>
-<li><code>for</code>循环</li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">&#123;</span><span class="punctuation">&#125;</span> </span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>n <span class="keyword">in</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="literal">TRUE</span><span class="punctuation">,</span> <span class="literal">FALSE</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><p><code>library(bfast)</code>: 导入三方包，此处为bfast</p>
-<p><code>Rscript test.R </code>：运行脚本</p>
-<p><code>ls()</code>：查看所有变量，ls(pattern&#x3D;“ab”)可以正则匹配</p>
-<p><code>rm(list=ls())</code>：删除所有变量</p>
-<p><code>class(); mode(); typeof()</code>:查看变量&#x2F;数值类型：</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">x <span class="operator">=</span> array<span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">24</span><span class="punctuation">,</span> <span class="built_in">dim</span><span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;array&quot;</span></span><br><span class="line">mode<span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;numeric&quot;</span></span><br><span class="line">typeof<span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;integer&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><code>length()</code>：计算向量长度</p>
-<p><code>dim()</code>：返回多维向量的维度</p>
-<p><code>names()</code>：对象命名, R中可以给每个对象赋予名称，类似于字典的<strong>键</strong></p>
-<p><code>unlist()</code>；将多维list展开成一维</p>
-<p><code>options(digits=n)</code>：设置全局小数点显示位数</p>
-<p><code>summary()</code>:汇总函数，输出向量最大最小值四分位数等信息，也可以作用与data.frame，每列的汇总信息</p>
-<p><code>attribute/</code>查看对象的所有属性裂变</p>
-<p><code>View()</code>以电子表格的形式查看data.frame</p>
-<h3 id="文件路径相关"><a href="#文件路径相关" class="headerlink" title="文件路径相关"></a>文件路径相关</h3><blockquote>
-<p>R中支持正斜杠<code>/</code>或双反斜杠<code>\\</code></p>
-</blockquote>
-<p><code>path = getwd()</code>：返回当前工作路径</p>
-<p><code>file.path(&quot;c&quot;,&quot;program files&quot;,&quot;R&quot;)</code>:拼接，类似于Python中的os.path.join()</p>
-<p><code>files = dir(path ,pattern = &quot;\\.csv$&quot;)</code>：返回路径下所有csv文件名</p>
-<p><code>filenames = dir(path ,pattern = &quot;\\.csv$&quot;, full.names = TRUE)</code>:返回文件名绝对路径</p>
-<p><code>basename(file)</code>：文件名</p>
-<p><code>path.expand(&quot;~&quot;)</code>：返回当前绝对”C:&#x2F;Users&#x2F;huangs&#x2F;Documents”</p>
-<h3 id="创建”字典name”"><a href="#创建”字典name”" class="headerlink" title="创建”字典name”"></a>创建”字典name”</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span><span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;a1&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a2&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a3&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a4&#x27;</span><span class="punctuation">)</span></span><br><span class="line">x<span class="punctuation">[</span><span class="string">&#x27;a1&#x27;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="创建序列”range”"><a href="#创建序列”range”" class="headerlink" title="创建序列”range”"></a>创建序列”range”</h3><p><code>1:10</code>：创建一个1~10的序列</p>
-<p><code>seq(); seq.int()</code>：相当于Python中的range()</p>
-<p><code>seq_alone(x)</code>：创建一个和x一样长的，从1开始的序列</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">seq<span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">11</span><span class="punctuation">)</span> <span class="comment"># 0.1~1.0</span></span><br><span class="line"><span class="built_in">seq.int</span><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span><span class="number">10</span><span class="punctuation">)</span> <span class="comment">#0 1 ... 10</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">9</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="number">2</span><span class="punctuation">)</span>     <span class="comment"># 1 3 5 7 9</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">1.575</span><span class="punctuation">,</span> <span class="number">5.125</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="number">0.05</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">17</span><span class="punctuation">)</span> <span class="comment">#等价于seq.int(17) seq(1:17) seq_len(17)</span></span><br></pre></td></tr></table></figure>
-
-<p><code>rep(1:5),3</code>：基于一个序列的重复构造新序列，有多个参数可选，可以自定义重复规则</p>
-<p><code>runif(30，1, 50)</code>：服从标准&#x2F;随机分布的30个数，random uniform seq</p>
-<h3 id="创建时间序列"><a href="#创建时间序列" class="headerlink" title="创建时间序列"></a>创建时间序列</h3><blockquote>
-<p>有关R中的时间在另外的笔记中进行总结</p>
-</blockquote>
-<p>seq.Date: Generate Regular Sequences of Dates。<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/seq.Date">api</a></p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment">## first days of years</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;1910/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> as.Date<span class="punctuation">(</span><span class="string">&quot;1999/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="string">&quot;years&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## by month</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;2000/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">12</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## quarters</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;2000/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> as.Date<span class="punctuation">(</span><span class="string">&quot;2003/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;quarter&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## find all 7th of the month between two dates, the last being a 7th.</span></span><br><span class="line">st <span class="operator">&lt;-</span> as.Date<span class="punctuation">(</span><span class="string">&quot;1998-12-17&quot;</span><span class="punctuation">)</span></span><br><span class="line">en <span class="operator">&lt;-</span> as.Date<span class="punctuation">(</span><span class="string">&quot;2000-1-7&quot;</span><span class="punctuation">)</span></span><br><span class="line">ll <span class="operator">&lt;-</span> seq<span class="punctuation">(</span>en<span class="punctuation">,</span> st<span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;-1 month&quot;</span><span class="punctuation">)</span></span><br><span class="line">rev<span class="punctuation">(</span>ll<span class="punctuation">[</span>ll <span class="operator">&gt;</span> st <span class="operator">&amp;</span> ll <span class="operator">&lt;</span> en<span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<p>seq.POSIXt: Generate Regular Sequences of Times。<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/seq.POSIXt">api</a></p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment">## first days of years</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">1910</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> ISOdate<span class="punctuation">(</span><span class="number">1999</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="string">&quot;years&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## by month</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">12</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">31</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## quarters</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">1990</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;quarter&quot;</span><span class="punctuation">)</span> <span class="comment"># or &quot;3 months&quot;</span></span><br><span class="line"><span class="comment">## days vs DSTdays: use c() to lose the time zone.</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;day&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;DSTday&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;7 DSTdays&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="apply运算"><a href="#apply运算" class="headerlink" title="apply运算"></a>apply运算</h3><ul>
-<li><p><code>lapply(list(),f(x))</code>：<code>&quot;list apply&quot;</code>，</p>
-<ul>
-<li>对<strong>list</strong>中的每一个元素依次计算<code>f()</code>，并返回一个新的<strong>list</strong></li>
-</ul>
-</li>
-<li><p><code>vapply(list()/vector(), f(x), numeric(1))</code>：<code>&quot;vaetor apply&quot;</code>：返回vector，但需要确保结果可用vector包装并指定返回的数据类型及长度</p>
-</li>
-<li><p><code>eapply()</code>；遍历环境中的变量</p>
-</li>
-<li><p><code>mapply()</code>:多参数apply，</p>
-</li>
-<li><p><code>tapply</code>：类似<strong>group by</strong>，<code>with(data, tapply(x1, x2, f()))</code></p>
-<ul>
-<li><code>by, aggregate</code></li>
-</ul>
-</li>
-<li><p><code>library(plyr)</code>：指定输入输出形式的apply函数</p>
-<ul>
-<li><code>ddply()</code>; 输入输出为<strong>data.frame</strong></li>
-<li><code>llply()</code>；输入输出均为list</li>
-<li><code>laply()</code>；输入list，输出array</li>
-</ul>
-</li>
-</ul>
-<h3 id="CSV读写"><a href="#CSV读写" class="headerlink" title="CSV读写"></a>CSV读写</h3><ul>
-<li><p>数据加载：<code>load(file = &quot;...rda&quot;)</code></p>
-</li>
-<li><p>csv读写：</p>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">df <span class="operator">=</span> read.csv<span class="punctuation">(</span>path<span class="punctuation">,</span> header <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>encoding <span class="operator">=</span> <span class="string">&quot;UTF-8&quot;</span><span class="punctuation">)</span></span><br><span class="line">write.csv<span class="punctuation">(</span>df<span class="punctuation">,</span>file <span class="operator">=</span> <span class="string">&#x27;....csv&#x27;</span><span class="punctuation">,</span>row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h3><p>trycatch</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tryCatch<span class="punctuation">(</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment"># 待执行/判断的代码</span></span><br><span class="line">    a<span class="operator">+</span>b</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span> warning <span class="operator">=</span> <span class="keyword">function</span><span class="punctuation">(</span>w<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment"># 出现warning状态时执行，可以输出警告，也可以执行其它命令</span></span><br><span class="line">    print<span class="punctuation">(</span><span class="string">&quot;warning&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span> error <span class="operator">=</span> <span class="keyword">function</span><span class="punctuation">(</span>e<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment"># 出现Error状态时执行，可以输出错误，也可以执行其它命令</span></span><br><span class="line">    print<span class="punctuation">(</span>error<span class="punctuation">)</span></span><br><span class="line">    k <span class="operator">=</span> <span class="operator">-</span><span class="number">1</span></span><br><span class="line">    print<span class="punctuation">(</span>k<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span>finally <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="built_in">return</span><span class="punctuation">(</span>k<span class="punctuation">)</span></span><br><span class="line">  <span class="comment"># 这里的代码最后一定会执行</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="表格操作"><a href="#表格操作" class="headerlink" title="表格操作"></a>表格操作</h2><blockquote>
-<p>R中的data.frame类似于Python的pandas dataframe ，用于表示表格型数据，应用十分灵活方便</p>
-</blockquote>
-<h3 id="行列选择"><a href="#行列选择" class="headerlink" title="行列选择"></a>行列选择</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建</span></span><br><span class="line">data.frame<span class="punctuation">(</span></span><br><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">y <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">z <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;ID&#x27;</span><span class="punctuation">,</span>...<span class="punctuation">)</span></span><br><span class="line">row.names <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span>...<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<img src="/posts/7b2f7b5e/dataframe.png" class alt="image-20220607230008504">
-
-<p>其他操作</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取表格信息</span></span><br><span class="line">str<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line"><span class="comment">#转置</span></span><br><span class="line">t<span class="punctuation">(</span>df<span class="punctuation">)</span> </span><br><span class="line">colSums<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">/</span>colMeans<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment">#计算列的和及均值</span></span><br><span class="line"><span class="comment"># 增加新列</span></span><br><span class="line">df<span class="operator">$</span>new_col <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 增加新行，拼接两个df</span></span><br><span class="line">newdf <span class="operator">=</span> rbind<span class="punctuation">(</span>df1<span class="punctuation">,</span> df2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="新建并追加data-frame"><a href="#新建并追加data-frame" class="headerlink" title="新建并追加data.frame"></a>新建并追加data.frame</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outfile <span class="operator">=</span> <span class="string">&quot;../.*csv&quot;</span></span><br><span class="line">out.table <span class="operator">=</span> data.frame<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span> <span class="punctuation">(</span>colname <span class="keyword">in</span> <span class="built_in">names</span><span class="punctuation">(</span>df<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">    gridid <span class="operator">=</span> colname</span><br><span class="line">    x <span class="operator">=</span> df<span class="punctuation">[</span><span class="punctuation">,</span>colname<span class="punctuation">]</span></span><br><span class="line">    res <span class="operator">=</span> myfun<span class="punctuation">(</span>x<span class="punctuation">)</span></span><br><span class="line">    k <span class="operator">=</span> res<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span></span><br><span class="line">    pvalue <span class="operator">=</span> res<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">]</span></span><br><span class="line">    ktime <span class="operator">=</span> times<span class="punctuation">[</span>k<span class="punctuation">]</span></span><br><span class="line">      <span class="comment"># Populate the row</span></span><br><span class="line">    new.row <span class="operator">=</span> data.frame<span class="punctuation">(</span>gridid <span class="operator">=</span> gridid<span class="punctuation">,</span> ktime <span class="operator">=</span> ktime<span class="punctuation">,</span> pvalue <span class="operator">=</span> pvalue<span class="punctuation">)</span></span><br><span class="line">    out.table <span class="operator">=</span> rbind<span class="punctuation">(</span>out.table<span class="punctuation">,</span> new.row<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">write.csv<span class="punctuation">(</span>outfile<span class="punctuation">,</span>file <span class="operator">=</span> outfile<span class="punctuation">,</span> row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h3><p><code>groups = split(df, df$Quarter)</code>：返回的是<strong>dflist</strong>，通过索引访问，如<strong>groups[1]</strong></p>
-<p>拆分后遍历</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">df &lt;- data.frame(</span><br><span class="line">  Weekday = factor(rep(c(&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;), each = 4), </span><br><span class="line">                   levels = c(&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;)),</span><br><span class="line">  Quarter = paste0(&quot;Q&quot;, rep(1:4, each = 5)), </span><br><span class="line">  Delay = c(9.9, 5.4, 8.8, 6.9, 4.9, 9.7, 7.9, 5, 8.8, 11.1, 10.2, 9.3, 12.2,</span><br><span class="line">            10.2, 9.2, 9.7, 12.2, 8.1, 7.9, 5.6))</span><br><span class="line">            </span><br><span class="line">gs = split(df, df$Quarter)</span><br><span class="line">for(gp in gs)</span><br><span class="line">&#123;</span><br><span class="line">  tempdf = data.frame(gp)</span><br><span class="line">  print(tempdf$Weekday)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="dplyr包"><a href="#dplyr包" class="headerlink" title="dplyr包"></a>dplyr包</h2><blockquote>
-<p>一个功能强大的数据处理包<a href="https://dplyr.tidyverse.org/">dplyr</a></p>
-</blockquote>
-<p>安装：<code>install.packages(&quot;tidyverse&quot;)</code>;<code>install.packages(&quot;dplyr&quot;)</code></p>
-<p><code>%&gt;%</code>管道操作符，该符号的意思是将前者作为后者的输入参数进行传入</p>
-<h3 id="拆分group-split"><a href="#拆分group-split" class="headerlink" title="拆分group_split"></a>拆分group_split</h3><h3 id="Groupby分类汇总"><a href="#Groupby分类汇总" class="headerlink" title="Groupby分类汇总"></a>Groupby分类汇总</h3><p>参考<a href="https://mgimond.github.io/ES218/Week03ab_groupby.html#Count_the_number_of_records_in_each_group">1</a></p>
-<p>操作实例</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span></span><br><span class="line">  Weekday <span class="operator">=</span> factor<span class="punctuation">(</span><span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">                   levels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  Quarter <span class="operator">=</span> paste0<span class="punctuation">(</span><span class="string">&quot;Q&quot;</span><span class="punctuation">,</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">5</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">  Delay <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">9.9</span><span class="punctuation">,</span> <span class="number">5.4</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">6.9</span><span class="punctuation">,</span> <span class="number">4.9</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">11.1</span><span class="punctuation">,</span> <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.3</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.2</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span> <span class="number">8.1</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5.6</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">df <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>Weekday<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarize<span class="punctuation">(</span>min_delay <span class="operator">=</span> <span class="built_in">min</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">,</span> max_delay <span class="operator">=</span> <span class="built_in">max</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>R语言</category>
-      </categories>
-      <tags>
-        <tag>R语言</tag>
-        <tag>入门教程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在读书籍:《流畅的Python》</title>
     <url>/posts/15750410/</url>
     <content><![CDATA[<blockquote>
@@ -558,33 +340,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>随笔随机-2022/520</title>
     <url>/posts/29d41ed/</url>
     <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
@@ -624,6 +379,78 @@
       <categories>
         <category>生活</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献篇(2) 论文下载</title>
+    <url>/posts/99dce68a/</url>
+    <content><![CDATA[<blockquote>
+<p>个人平时下载文献的流程和几种方式…</p>
+</blockquote>
+<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
+<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4….</p>
+<span id="more"></span>
+
+<h2 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h2><p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
+<ol>
+<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
+<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
+<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
+</ol>
+<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
+
+<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
+
+<h2 id="谷歌学术或SciHub"><a href="#谷歌学术或SciHub" class="headerlink" title="谷歌学术或SciHub"></a>谷歌学术或SciHub</h2><blockquote>
+<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
+<p>一般前面的操作不行我才会到scihub求助</p>
+</blockquote>
+<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
+
+<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
+
+<h2 id="ResearchGate"><a href="#ResearchGate" class="headerlink" title="ResearchGate"></a>ResearchGate</h2><blockquote>
+<p> <a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
+</blockquote>
+<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
+<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
+<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
+
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
+<p>以上~</p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>英文论文下载</tag>
+      </tags>
   </entry>
   <entry>
     <title>matplotlib绘图基础1：图的组成元素</title>
@@ -826,6 +653,179 @@
       </categories>
       <tags>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R语言学习1：基础</title>
+    <url>/posts/7b2f7b5e/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>从Python到R</strong>~</p>
+</blockquote>
+<p>相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过<strong>类比</strong>熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及</p>
+<ol>
+<li>基本语法，数据类型</li>
+<li>常用函数，流程控制（写循环）</li>
+<li>文件读写及数据框的常规操作</li>
+</ol>
+<span id="more"></span>
+
+<p>目前我用Python最常用的有以下操作：</p>
+<ol>
+<li>用列表或字典存数据；写for循环；创建DataFrame。</li>
+<li>批量获取文件名；读写csv文件，获取表格字段信息等；行列筛选；分组聚合。</li>
+<li>对DataFrame进行运算，apply函数应用。</li>
+</ol>
+<p>R的基础语法和数据类型？在R中上述常规操作如何实现？</p>
+<img src="/posts/7b2f7b5e/dataframe.png" class alt="dataframe">
+
+<h2 id="R基础"><a href="#R基础" class="headerlink" title="R基础"></a>R基础</h2><h3 id="对象类型"><a href="#对象类型" class="headerlink" title="对象类型"></a>对象类型</h3><blockquote>
+<p>R中的对象即是我们通常理解的变量</p>
+<p><strong>R的索引默认从1开始而非0</strong></p>
+</blockquote>
+<p>数值类型：TRUE&#x2F;FLASE; integer; numric; complex; character; raw(二进制)</p>
+<p>特殊：Inf(正无穷); -Inf; NaN(非数字); NA(缺失，不存在); NULL(空变量，元素存在但是没赋值)</p>
+<ol>
+<li>向量&#x2F;Vector，<code>c()</code>，相当于数组，其内元素的类型必须相同</li>
+<li>列表&#x2F;List，<code>list()</code>，类似于Python中的list但是包容性更强，可以同时包含多种不同类型的数据</li>
+<li>矩阵&#x2F;Matrix，<code>matrix()</code>,二维数组</li>
+<li>数组&#x2F;Array，<code>array()</code></li>
+<li>因子&#x2F;Factor，<code>factor()</code>，类别变量</li>
+<li>数据框&#x2F;Data Frame，<code>data.frame()</code>，表格数据，每列为一个向量，列名为name</li>
+</ol>
+<h3 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h3><ol>
+<li><p>比较：用<code>==; !=</code>来比较整数&#x2F;向量&#x2F;字符串是否相等，用<code>all.equal(a,b)</code>比较两个数字</p>
+</li>
+<li><p>变量赋值：<code>&lt;-; =</code>，都可以 无区别，个人习惯&#x3D;，全局变量赋值<code>&lt;&lt;-</code></p>
+</li>
+<li><p>逻辑向量：<code>&amp; ! |</code>，与非或，根据向量生成逻辑向量<code>any();all()</code></p>
+</li>
+</ol>
+<h3 id="循环-x2F-流程控制"><a href="#循环-x2F-流程控制" class="headerlink" title="循环&#x2F;流程控制"></a>循环&#x2F;流程控制</h3><ol>
+<li><code>if else</code></li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span><span class="punctuation">(</span>x<span class="operator">&gt;</span><span class="number">3</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    y<span class="operator">=</span><span class="number">6</span></span><br><span class="line"><span class="punctuation">&#125;</span> <span class="keyword">else</span></span><br><span class="line"><span class="punctuation">&#123;</span>message<span class="punctuation">(</span><span class="string">&quot;ok&quot;</span><span class="punctuation">)</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>repeat</code>循环，结合<code>next; break</code></li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">n<span class="operator">=</span><span class="number">0</span>;j<span class="operator">=</span><span class="number">0</span></span><br><span class="line">message<span class="punctuation">(</span><span class="string">&quot;do while&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">repeat</span><span class="punctuation">&#123;</span></span><br><span class="line">  n<span class="operator">=</span>n<span class="operator">+</span><span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span><span class="punctuation">(</span>n<span class="operator">%%</span><span class="number">7</span><span class="operator">==</span><span class="number">0</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    message<span class="punctuation">(</span>n<span class="punctuation">)</span></span><br><span class="line">    <span class="keyword">next</span>  <span class="comment">#跳过后续代码直接进入下一次迭代</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line">  j<span class="operator">=</span>j<span class="operator">+</span><span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span><span class="punctuation">(</span>n<span class="operator">==</span><span class="number">100</span><span class="punctuation">)</span> <span class="keyword">break</span> <span class="comment">#结束循环</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"><span class="comment"># j=86，跳过了14次</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>while</code>循环，直接用</li>
+<li><code>for</code>循环</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">&#123;</span><span class="punctuation">&#125;</span> </span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>n <span class="keyword">in</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="literal">TRUE</span><span class="punctuation">,</span> <span class="literal">FALSE</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><h3 id="查看信息"><a href="#查看信息" class="headerlink" title="查看信息"></a>查看信息</h3><p><code>library(bfast)</code>: 导入三方包，此处为bfast</p>
+<p><code>Rscript test.R </code>：运行脚本</p>
+<p><code>ls()</code>：查看所有变量，ls(pattern&#x3D;“ab”)可以正则匹配</p>
+<p><code>rm(list=ls())</code>：删除所有变量</p>
+<p><code>class(); mode(); typeof()</code>:查看变量&#x2F;数值类型：</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">x <span class="operator">=</span> array<span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">24</span><span class="punctuation">,</span> <span class="built_in">dim</span><span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;array&quot;</span></span><br><span class="line">mode<span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;numeric&quot;</span></span><br><span class="line">typeof<span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="comment">#&quot;integer&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>length()</code>：计算向量长度</p>
+<p><code>dim()</code>：返回多维向量的维度</p>
+<p><code>names()</code>：对象命名, R中可以给每个对象赋予名称，类似于字典的<strong>键</strong></p>
+<p><code>unlist()</code>；将多维list展开成一维</p>
+<p><code>options(digits=n)</code>：设置全局小数点显示位数</p>
+<p><code>summary()</code>:汇总函数，输出向量最大最小值四分位数等信息，也可以作用与data.frame，每列的汇总信息</p>
+<p><code>attribute/</code>查看对象的所有属性裂变</p>
+<p><code>View()</code>以电子表格的形式查看data.frame</p>
+<h3 id="文件路径相关"><a href="#文件路径相关" class="headerlink" title="文件路径相关"></a>文件路径相关</h3><blockquote>
+<p>R中支持正斜杠<code>/</code>或双反斜杠<code>\\</code></p>
+</blockquote>
+<p><code>path = getwd()</code>：返回当前工作路径</p>
+<p><code>file.path(&quot;c&quot;,&quot;program files&quot;,&quot;R&quot;)</code>:拼接，类似于Python中的os.path.join()</p>
+<p><code>files = dir(path ,pattern = &quot;\\.csv$&quot;)</code>：返回路径下所有csv文件名</p>
+<p><code>filenames = dir(path ,pattern = &quot;\\.csv$&quot;, full.names = TRUE)</code>:返回文件名绝对路径</p>
+<p><code>basename(file)</code>：文件名</p>
+<p><code>path.expand(&quot;~&quot;)</code>：返回当前绝对”C:&#x2F;Users&#x2F;huangs&#x2F;Documents”</p>
+<h3 id="创建”字典name”"><a href="#创建”字典name”" class="headerlink" title="创建”字典name”"></a>创建”字典name”</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span><span class="punctuation">(</span>x<span class="punctuation">)</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;a1&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a2&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a3&#x27;</span><span class="punctuation">,</span><span class="string">&#x27;a4&#x27;</span><span class="punctuation">)</span></span><br><span class="line">x<span class="punctuation">[</span><span class="string">&#x27;a1&#x27;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建序列”range”"><a href="#创建序列”range”" class="headerlink" title="创建序列”range”"></a>创建序列”range”</h3><p><code>1:10</code>：创建一个1~10的序列</p>
+<p><code>seq(); seq.int()</code>：相当于Python中的range()</p>
+<p><code>seq_alone(x)</code>：创建一个和x一样长的，从1开始的序列</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">seq<span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">11</span><span class="punctuation">)</span> <span class="comment"># 0.1~1.0</span></span><br><span class="line"><span class="built_in">seq.int</span><span class="punctuation">(</span><span class="number">0</span><span class="punctuation">,</span><span class="number">10</span><span class="punctuation">)</span> <span class="comment">#0 1 ... 10</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">9</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="number">2</span><span class="punctuation">)</span>     <span class="comment"># 1 3 5 7 9</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">1.575</span><span class="punctuation">,</span> <span class="number">5.125</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="number">0.05</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="number">17</span><span class="punctuation">)</span> <span class="comment">#等价于seq.int(17) seq(1:17) seq_len(17)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>rep(1:5),3</code>：基于一个序列的重复构造新序列，有多个参数可选，可以自定义重复规则</p>
+<p><code>runif(30，1, 50)</code>：服从标准&#x2F;随机分布的30个数，random uniform seq</p>
+<h3 id="创建时间序列"><a href="#创建时间序列" class="headerlink" title="创建时间序列"></a>创建时间序列</h3><blockquote>
+<p>有关R中的时间在另外的笔记中进行总结</p>
+</blockquote>
+<p>seq.Date: Generate Regular Sequences of Dates。<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/seq.Date">api</a></p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment">## first days of years</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;1910/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> as.Date<span class="punctuation">(</span><span class="string">&quot;1999/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="string">&quot;years&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## by month</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;2000/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">12</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## quarters</span></span><br><span class="line">seq<span class="punctuation">(</span>as.Date<span class="punctuation">(</span><span class="string">&quot;2000/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> as.Date<span class="punctuation">(</span><span class="string">&quot;2003/1/1&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;quarter&quot;</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## find all 7th of the month between two dates, the last being a 7th.</span></span><br><span class="line">st <span class="operator">&lt;-</span> as.Date<span class="punctuation">(</span><span class="string">&quot;1998-12-17&quot;</span><span class="punctuation">)</span></span><br><span class="line">en <span class="operator">&lt;-</span> as.Date<span class="punctuation">(</span><span class="string">&quot;2000-1-7&quot;</span><span class="punctuation">)</span></span><br><span class="line">ll <span class="operator">&lt;-</span> seq<span class="punctuation">(</span>en<span class="punctuation">,</span> st<span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;-1 month&quot;</span><span class="punctuation">)</span></span><br><span class="line">rev<span class="punctuation">(</span>ll<span class="punctuation">[</span>ll <span class="operator">&gt;</span> st <span class="operator">&amp;</span> ll <span class="operator">&lt;</span> en<span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p>seq.POSIXt: Generate Regular Sequences of Times。<a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/seq.POSIXt">api</a></p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment">## first days of years</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">1910</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> ISOdate<span class="punctuation">(</span><span class="number">1999</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> <span class="string">&quot;years&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## by month</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">12</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">31</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;month&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment">## quarters</span></span><br><span class="line">seq<span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">1990</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;quarter&quot;</span><span class="punctuation">)</span> <span class="comment"># or &quot;3 months&quot;</span></span><br><span class="line"><span class="comment">## days vs DSTdays: use c() to lose the time zone.</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;day&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;DSTday&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">10</span><span class="punctuation">)</span></span><br><span class="line">seq<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span>ISOdate<span class="punctuation">(</span><span class="number">2000</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">20</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> by <span class="operator">=</span> <span class="string">&quot;7 DSTdays&quot;</span><span class="punctuation">,</span> length.out <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="apply运算"><a href="#apply运算" class="headerlink" title="apply运算"></a>apply运算</h3><ul>
+<li><p><code>lapply(list(),f(x))</code>：<code>&quot;list apply&quot;</code>，</p>
+<ul>
+<li>对<strong>list</strong>中的每一个元素依次计算<code>f()</code>，并返回一个新的<strong>list</strong></li>
+</ul>
+</li>
+<li><p><code>vapply(list()/vector(), f(x), numeric(1))</code>：<code>&quot;vaetor apply&quot;</code>：返回vector，但需要确保结果可用vector包装并指定返回的数据类型及长度</p>
+</li>
+<li><p><code>eapply()</code>；遍历环境中的变量</p>
+</li>
+<li><p><code>mapply()</code>:多参数apply，</p>
+</li>
+<li><p><code>tapply</code>：类似<strong>group by</strong>，<code>with(data, tapply(x1, x2, f()))</code></p>
+<ul>
+<li><code>by, aggregate</code></li>
+</ul>
+</li>
+<li><p><code>library(plyr)</code>：指定输入输出形式的apply函数</p>
+<ul>
+<li><code>ddply()</code>; 输入输出为<strong>data.frame</strong></li>
+<li><code>llply()</code>；输入输出均为list</li>
+<li><code>laply()</code>；输入list，输出array</li>
+</ul>
+</li>
+</ul>
+<h3 id="CSV读写"><a href="#CSV读写" class="headerlink" title="CSV读写"></a>CSV读写</h3><ul>
+<li><p>数据加载：<code>load(file = &quot;...rda&quot;)</code></p>
+</li>
+<li><p>csv读写：</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">df <span class="operator">=</span> read.csv<span class="punctuation">(</span>path<span class="punctuation">,</span> header <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>encoding <span class="operator">=</span> <span class="string">&quot;UTF-8&quot;</span><span class="punctuation">)</span></span><br><span class="line">write.csv<span class="punctuation">(</span>df<span class="punctuation">,</span>file <span class="operator">=</span> <span class="string">&#x27;....csv&#x27;</span><span class="punctuation">,</span>row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="异常捕获"><a href="#异常捕获" class="headerlink" title="异常捕获"></a>异常捕获</h3><p>trycatch</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">tryCatch<span class="punctuation">(</span><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment"># 待执行/判断的代码</span></span><br><span class="line">    a<span class="operator">+</span>b</span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span> warning <span class="operator">=</span> <span class="keyword">function</span><span class="punctuation">(</span>w<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment"># 出现warning状态时执行，可以输出警告，也可以执行其它命令</span></span><br><span class="line">    print<span class="punctuation">(</span><span class="string">&quot;warning&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span> error <span class="operator">=</span> <span class="keyword">function</span><span class="punctuation">(</span>e<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment"># 出现Error状态时执行，可以输出错误，也可以执行其它命令</span></span><br><span class="line">    print<span class="punctuation">(</span>error<span class="punctuation">)</span></span><br><span class="line">    k <span class="operator">=</span> <span class="operator">-</span><span class="number">1</span></span><br><span class="line">    print<span class="punctuation">(</span>k<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span>finally <span class="operator">=</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="built_in">return</span><span class="punctuation">(</span>k<span class="punctuation">)</span></span><br><span class="line">  <span class="comment"># 这里的代码最后一定会执行</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="表格操作"><a href="#表格操作" class="headerlink" title="表格操作"></a>表格操作</h2><blockquote>
+<p>R中的data.frame类似于Python的pandas dataframe ，用于表示表格型数据，应用十分灵活方便</p>
+</blockquote>
+<h3 id="行列选择"><a href="#行列选择" class="headerlink" title="行列选择"></a>行列选择</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建</span></span><br><span class="line">data.frame<span class="punctuation">(</span></span><br><span class="line">x <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">y <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line">z <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="built_in">names</span> <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&#x27;ID&#x27;</span><span class="punctuation">,</span>...<span class="punctuation">)</span></span><br><span class="line">row.names <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span>...<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<img src="/posts/7b2f7b5e/dataframe.png" class alt="image-20220607230008504">
+
+<p>其他操作</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取表格信息</span></span><br><span class="line">str<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>df<span class="punctuation">)</span></span><br><span class="line"><span class="comment">#转置</span></span><br><span class="line">t<span class="punctuation">(</span>df<span class="punctuation">)</span> </span><br><span class="line">colSums<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span><span class="operator">/</span>colMeans<span class="punctuation">(</span>df<span class="punctuation">[</span><span class="punctuation">,</span><span class="punctuation">]</span><span class="punctuation">)</span> <span class="comment">#计算列的和及均值</span></span><br><span class="line"><span class="comment"># 增加新列</span></span><br><span class="line">df<span class="operator">$</span>new_col <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span>..<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 增加新行，拼接两个df</span></span><br><span class="line">newdf <span class="operator">=</span> rbind<span class="punctuation">(</span>df1<span class="punctuation">,</span> df2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="新建并追加data-frame"><a href="#新建并追加data-frame" class="headerlink" title="新建并追加data.frame"></a>新建并追加data.frame</h3><figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outfile <span class="operator">=</span> <span class="string">&quot;../.*csv&quot;</span></span><br><span class="line">out.table <span class="operator">=</span> data.frame<span class="punctuation">(</span><span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span> <span class="punctuation">(</span>colname <span class="keyword">in</span> <span class="built_in">names</span><span class="punctuation">(</span>df<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">    gridid <span class="operator">=</span> colname</span><br><span class="line">    x <span class="operator">=</span> df<span class="punctuation">[</span><span class="punctuation">,</span>colname<span class="punctuation">]</span></span><br><span class="line">    res <span class="operator">=</span> myfun<span class="punctuation">(</span>x<span class="punctuation">)</span></span><br><span class="line">    k <span class="operator">=</span> res<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span></span><br><span class="line">    pvalue <span class="operator">=</span> res<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">]</span></span><br><span class="line">    ktime <span class="operator">=</span> times<span class="punctuation">[</span>k<span class="punctuation">]</span></span><br><span class="line">      <span class="comment"># Populate the row</span></span><br><span class="line">    new.row <span class="operator">=</span> data.frame<span class="punctuation">(</span>gridid <span class="operator">=</span> gridid<span class="punctuation">,</span> ktime <span class="operator">=</span> ktime<span class="punctuation">,</span> pvalue <span class="operator">=</span> pvalue<span class="punctuation">)</span></span><br><span class="line">    out.table <span class="operator">=</span> rbind<span class="punctuation">(</span>out.table<span class="punctuation">,</span> new.row<span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line">write.csv<span class="punctuation">(</span>outfile<span class="punctuation">,</span>file <span class="operator">=</span> outfile<span class="punctuation">,</span> row.names <span class="operator">=</span> <span class="built_in">F</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h3><p><code>groups = split(df, df$Quarter)</code>：返回的是<strong>dflist</strong>，通过索引访问，如<strong>groups[1]</strong></p>
+<p>拆分后遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">df &lt;- data.frame(</span><br><span class="line">  Weekday = factor(rep(c(&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;), each = 4), </span><br><span class="line">                   levels = c(&quot;Mon&quot;, &quot;Tues&quot;, &quot;Wed&quot;, &quot;Thurs&quot;, &quot;Fri&quot;)),</span><br><span class="line">  Quarter = paste0(&quot;Q&quot;, rep(1:4, each = 5)), </span><br><span class="line">  Delay = c(9.9, 5.4, 8.8, 6.9, 4.9, 9.7, 7.9, 5, 8.8, 11.1, 10.2, 9.3, 12.2,</span><br><span class="line">            10.2, 9.2, 9.7, 12.2, 8.1, 7.9, 5.6))</span><br><span class="line">            </span><br><span class="line">gs = split(df, df$Quarter)</span><br><span class="line">for(gp in gs)</span><br><span class="line">&#123;</span><br><span class="line">  tempdf = data.frame(gp)</span><br><span class="line">  print(tempdf$Weekday)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="dplyr包"><a href="#dplyr包" class="headerlink" title="dplyr包"></a>dplyr包</h2><blockquote>
+<p>一个功能强大的数据处理包<a href="https://dplyr.tidyverse.org/">dplyr</a></p>
+</blockquote>
+<p>安装：<code>install.packages(&quot;tidyverse&quot;)</code>;<code>install.packages(&quot;dplyr&quot;)</code></p>
+<p><code>%&gt;%</code>管道操作符，该符号的意思是将前者作为后者的输入参数进行传入</p>
+<h3 id="拆分group-split"><a href="#拆分group-split" class="headerlink" title="拆分group_split"></a>拆分group_split</h3><h3 id="Groupby分类汇总"><a href="#Groupby分类汇总" class="headerlink" title="Groupby分类汇总"></a>Groupby分类汇总</h3><p>参考<a href="https://mgimond.github.io/ES218/Week03ab_groupby.html#Count_the_number_of_records_in_each_group">1</a></p>
+<p>操作实例</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span></span><br><span class="line">  Weekday <span class="operator">=</span> factor<span class="punctuation">(</span><span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">                   levels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  Quarter <span class="operator">=</span> paste0<span class="punctuation">(</span><span class="string">&quot;Q&quot;</span><span class="punctuation">,</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">5</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">  Delay <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">9.9</span><span class="punctuation">,</span> <span class="number">5.4</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">6.9</span><span class="punctuation">,</span> <span class="number">4.9</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">11.1</span><span class="punctuation">,</span> <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.3</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.2</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span> <span class="number">8.1</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5.6</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">df <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>Weekday<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarize<span class="punctuation">(</span>min_delay <span class="operator">=</span> <span class="built_in">min</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">,</span> max_delay <span class="operator">=</span> <span class="built_in">max</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>R语言</category>
+      </categories>
+      <tags>
+        <tag>R语言</tag>
+        <tag>入门教程</tag>
       </tags>
   </entry>
   <entry>
@@ -1135,36 +1135,6 @@
       </tags>
   </entry>
   <entry>
-    <title>List/pandas如何筛选包含若干词语的文本</title>
-    <url>/posts/4d972282/</url>
-    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
-<ul>
-<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
-<li>对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
-<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
-</ul>
-<p>补充：如果是列元素是否包含于<strong>list</strong>的筛选：<code>df2 = df1.loc[df1[&#39;ID&#39;].isin(keywords)]</code>，取反则加<code>~</code></p>
-<span id="more"></span>
-
-<p>代码举例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-
-<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<p>列表包含，如用户筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>文本筛选</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>空间数据分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网&#x2F;行政区划）边界<strong>汇总统计</strong>其内的<strong>点&#x2F;栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
@@ -1228,6 +1198,36 @@
         <tag>geopandas</tag>
         <tag>QGIS</tag>
         <tag>矢栅数据</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>List/pandas如何筛选包含若干词语的文本</title>
+    <url>/posts/4d972282/</url>
+    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
+<ul>
+<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
+<li>对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
+<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
+</ul>
+<p>补充：如果是列元素是否包含于<strong>list</strong>的筛选：<code>df2 = df1.loc[df1[&#39;ID&#39;].isin(keywords)]</code>，取反则加<code>~</code></p>
+<span id="more"></span>
+
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
+<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
+<p>列表包含，如用户筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>文本筛选</tag>
       </tags>
   </entry>
   <entry>
