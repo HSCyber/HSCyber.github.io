@@ -1944,7 +1944,7 @@ pre code {
 .post-body h2 {
   color: #dc143c;
   text-align: center;
-  font-size: 1.115em;
+  font-size: 1.25em;
 }
 .post-body blockquote {
   border-left-color: #f08080;
@@ -1963,19 +1963,22 @@ pre code {
   padding-top: 20px;
 }
 .post-body p code {
-  color: #c71585;
-  background: #fffafa;
+  color: #00008b;
+  background: #e8e8e8;
   margin: 2px;
+  font-weight: bold;
 }
 .post-body ul code {
-  color: #c71585;
-  background: #fffafa;
+  color: #00008b;
+  background: #e8e8e8;
   margin: 2px;
+  font-weight: bold;
 }
 .post-body ol code {
-  color: #c71585;
-  background: #fffafa;
+  color: #00008b;
+  background: #e8e8e8;
   margin: 2px;
+  font-weight: bold;
 }
 .post-gallery {
   display: flex;
