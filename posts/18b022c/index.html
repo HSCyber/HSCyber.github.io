@@ -30,15 +30,15 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220722223231092.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/18b022c/image-20220722223231092.png">
 <meta property="article:published_time" content="2022-07-22T14:09:45.000Z">
-<meta property="article:modified_time" content="2022-07-22T14:32:41.712Z">
+<meta property="article:modified_time" content="2022-07-22T14:41:16.337Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="sql">
 <meta property="article:tag" content="join">
 <meta property="article:tag" content="Pandas">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20220722223231092.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/18b022c/image-20220722223231092.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/18b022c/">
@@ -307,7 +307,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">df1 = pd.DataFrame(data1)</span><br><span class="line">df2 = pd.DataFrame(data2)</span><br><span class="line"><span class="comment"># 查看输出</span></span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>分别输出：</p>
-<img src="/posts/undefined/image-20220722223231092.png" class alt="image-20220722223231092">
+<img src="/posts/18b022c/image-20220722223231092.png" class alt="image-20220722223231092">
 
     </div>
 
