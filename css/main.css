@@ -1942,7 +1942,7 @@ pre code {
   color: #1e90ff;
 }
 .post-body h2 {
-  color: #dc143c;
+  color: #262a30;
   text-align: center;
   font-size: 1.25em;
 }
@@ -2014,7 +2014,7 @@ pre code {
 .posts-expand .post-title {
   font-size: 1.35em;
   font-weight: normal;
-  color: #dc143c;
+  color: #262a30;
   margin: initial;
   overflow-wrap: break-word;
 }

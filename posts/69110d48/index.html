@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="近期debug，同学在引入包(rasterio)的过程中频繁遇到DLL load failed while importing _version: 找不到指定的程序的问题，之前我也遇到过，但是是因为其他的包，但大部分情况都是因为包依赖的冲突&#x2F;不适配问题">
+    <meta name="description" content="近期debug，同学在引入包(rasterio)的过程中频繁遇到DLL load failed while importing _version: 找不到指定的程序的问题，大部分情况都是因为包依赖的冲突&#x2F;不适配问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DLL文件及conda模块加载失败">
 <meta property="og:url" content="https://hscyber.github.io/posts/69110d48/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="近期debug，同学在引入包(rasterio)的过程中频繁遇到DLL load failed while importing _version: 找不到指定的程序的问题，之前我也遇到过，但是是因为其他的包，但大部分情况都是因为包依赖的冲突&#x2F;不适配问题">
+<meta property="og:description" content="近期debug，同学在引入包(rasterio)的过程中频繁遇到DLL load failed while importing _version: 找不到指定的程序的问题，大部分情况都是因为包依赖的冲突&#x2F;不适配问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-18T07:30:18.000Z">
-<meta property="article:modified_time" content="2022-07-18T10:53:18.353Z">
+<meta property="article:modified_time" content="2022-07-22T13:57:22.589Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="DLL">
@@ -100,9 +100,9 @@
 
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">36</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a></li>
   </ul>
 </nav>
 
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -159,7 +159,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">36</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -280,9 +280,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，之前我也遇到过，但是是因为其他的包，但大部分情况都是因为包依赖的冲突&#x2F;不适配问题</p>
+        <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突&#x2F;不适配问题</p>
 <span id="more"></span>
 
+<p>一般重新安装或者重新配置环境解决。</p>
 <p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
 <h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><blockquote>
 <p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
@@ -359,6 +360,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/posts/57d7f29/" rel="next" title="geopandas常用函数小结">
+                  geopandas常用函数小结 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -390,13 +394,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">50k</span>
+    <span title="站点总字数">52k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">46 分钟</span>
+    <span title="站点阅读时长">47 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

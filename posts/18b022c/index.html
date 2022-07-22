@@ -23,32 +23,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="pandas处理表格时，字符串列的拆分及合并操作，类似于excel中的分列 1.根据分隔符将一列拆成多列;      2.将多列进行合并">
+    <meta name="description" content="简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pandas拆分及合并字符串列">
-<meta property="og:url" content="https://hscyber.github.io/posts/374675e0/">
+<meta property="og:title" content="表格的各中连接方式">
+<meta property="og:url" content="https://hscyber.github.io/posts/18b022c/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="pandas处理表格时，字符串列的拆分及合并操作，类似于excel中的分列 1.根据分隔符将一列拆成多列;      2.将多列进行合并">
+<meta property="og:description" content="简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/374675e0/image-20220531130906473.png">
-<meta property="article:published_time" content="2022-05-31T05:02:48.000Z">
-<meta property="article:modified_time" content="2022-06-27T14:12:19.855Z">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220722223231092.png">
+<meta property="article:published_time" content="2022-07-22T14:09:45.000Z">
+<meta property="article:modified_time" content="2022-07-22T14:32:41.712Z">
 <meta property="article:author" content="huangsh">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="join">
 <meta property="article:tag" content="Pandas">
-<meta property="article:tag" content="表格分列及合并">
-<meta property="article:tag" content="字符串">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/374675e0/image-20220531130906473.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20220722223231092.png">
 
 
-<link rel="canonical" href="https://hscyber.github.io/posts/374675e0/">
+<link rel="canonical" href="https://hscyber.github.io/posts/18b022c/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/374675e0/","path":"posts/374675e0/","title":"Pandas拆分及合并字符串列"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/18b022c/","path":"posts/18b022c/","title":"表格的各中连接方式"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Pandas拆分及合并字符串列 | Huangs's Notes</title>
+<title>表格的各中连接方式 | Huangs's Notes</title>
   
 
 
@@ -122,7 +122,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -135,7 +135,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">分列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%88%E5%B9%B6"><span class="nav-number">2.</span> <span class="nav-text">合并</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -209,7 +208,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/374675e0/">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/18b022c/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar2.jpg">
@@ -222,12 +221,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Pandas拆分及合并字符串列 | Huangs's Notes">
+      <meta itemprop="name" content="表格的各中连接方式 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Pandas拆分及合并字符串列
+          表格的各中连接方式
         </h1>
 
         <div class="post-meta-container">
@@ -238,7 +237,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-05-31 13:02:48" itemprop="dateCreated datePublished" datetime="2022-05-31T13:02:48+08:00">2022-05-31</time>
+      <time title="创建时间：2022-07-22 22:09:45" itemprop="dateCreated datePublished" datetime="2022-07-22T22:09:45+08:00">2022-07-22</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -264,7 +263,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>948</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -282,37 +281,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
-<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
+        <p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
 <span id="more"></span>
 
-<img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
-
-
-
-<h2 id="分列"><a href="#分列" class="headerlink" title="分列"></a>分列</h2><blockquote>
-<p>参考api介绍: <a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.split.html">Series.str.split()</a></p>
-<p>该方法支持正则表达式</p>
-</blockquote>
-<p>处理高德Poi数据时发现有一列<strong>typename</strong>是这样的：</p>
+<p>在<code>pd.merge(); df.join(); gpd.sjoin()</code>等函数中会用到，只有存在共同字段的列才能连接。否则拼接应该采用<code>pd.concat()</code><a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">函数</a></p>
+<ol>
+<li><p>内连接 (inner join)，一般默认，只保留匹配到的结果</p>
+</li>
+<li><p>左(外)连接 (left join)，以左侧表的连接键唯一值数量为准，左表行数不变</p>
+</li>
+<li><p>右(外)连接 (right join)，右表行数不变</p>
+</li>
+<li><p>全连接 (full join)，在pandas中没有：在数据库中指返回左右表的所有行，缺失处补空值。行数&#x3D;左表的行数+右表的行数-公共连接行</p>
+</li>
+</ol>
+<p>举例，下面左表<strong>5行</strong>2列，右表-<strong>4行</strong>两列，公共列为fid，fid<strong>公共行数为3行</strong>，结果</p>
 <ul>
-<li>汽车服务;汽车服务相关;汽车服务相关</li>
-<li>生活服务;人才市场;人才市场</li>
-<li>餐饮服务;中餐厅;中餐厅</li>
+<li><p>内连接返回三行，[‘a’, ‘b’,’c’]，未匹配的丢弃</p>
+</li>
+<li><p>左连接返回5行，[1,2,3,4,5]，无值则补null</p>
+</li>
+<li><p>右连接返回3行，[3,4,5,7]，无值则补null</p>
+</li>
 </ul>
-<p>分别代表大中小类别，因此通过如下代码切分</p>
-<ul>
-<li><code>expand=True</code>表示将拆分的字符串展开为单独的列</li>
-<li><code>n</code>指定拆分的分隔符个数，默认0&#x2F;-1全部拆分</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试数据，原始df过大</span></span><br><span class="line">df_sample = df.sample(<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 直接切分，预览结果发现得到五列，后两列大量为None,有的小类过细</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, expand=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 因此最终的切分代码</span></span><br><span class="line">df_sample[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]] = df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, n=<span class="number">2</span>, expand=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">df1 = pd.DataFrame(data1)</span><br><span class="line">df2 = pd.DataFrame(data2)</span><br><span class="line"><span class="comment"># 查看输出</span></span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h2><blockquote>
-<p>参考api介绍: <a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.cat.html">Series.str.cat()</a></p>
-<p>补充的其他方法，另见<a target="_blank" rel="noopener" href="https://sparkbyexamples.com/pandas/pandas-combine-two-columns-of-text-in-dataframe/">参考2</a></p>
-</blockquote>
-<p>确保各类为文本&#x2F;字符串类型，否则先转换</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;type1&#x27;] = df[&#x27;type1&#x27;].astype(str)</span></span><br><span class="line"><span class="comment"># 最直接的是字符串相加</span></span><br><span class="line">df_sample[<span class="string">&quot;typename2&quot;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].astype(<span class="built_in">str</span>) +<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type2&quot;</span>]+<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type3&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并方式2</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename2&#x27;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].<span class="built_in">str</span>.cat(df_sample[[<span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]], sep=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字符串join函数</span></span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].agg(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="keyword">lambda</span> x: <span class="string">&quot;-&quot;</span>.join(x), axis =<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>分别输出：</p>
+<img src="/posts/undefined/image-20220722223231092.png" class alt="image-20220722223231092">
 
     </div>
 
@@ -332,7 +327,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/374675e0/" title="Pandas拆分及合并字符串列">https://hscyber.github.io/posts/374675e0/</a>
+      <a href="https://hscyber.github.io/posts/18b022c/" title="表格的各中连接方式">https://hscyber.github.io/posts/18b022c/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -341,23 +336,20 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/sql/" rel="tag"><i class="fa fa-tag"></i> sql</a>
+              <a href="/tags/join/" rel="tag"><i class="fa fa-tag"></i> join</a>
               <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
-              <a href="/tags/%E8%A1%A8%E6%A0%BC%E5%88%86%E5%88%97%E5%8F%8A%E5%90%88%E5%B9%B6/" rel="tag"><i class="fa fa-tag"></i> 表格分列及合并</a>
-              <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"><i class="fa fa-tag"></i> 字符串</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/33f7b1b7/" rel="prev" title="文献篇(1) 论文检索">
-                  <i class="fa fa-chevron-left"></i> 文献篇(1) 论文检索
+                <a href="/posts/57d7f29/" rel="prev" title="geopandas常用函数小结">
+                  <i class="fa fa-chevron-left"></i> geopandas常用函数小结
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/34eb4d05/" rel="next" title="订阅了Typora~">
-                  订阅了Typora~ <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
