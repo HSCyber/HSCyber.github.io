@@ -146,15 +146,6 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/posts/a0dd2ef9/</loc>
-    
-    <lastmod>2022-06-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://hscyber.github.io/posts/374675e0/</loc>
     
     <lastmod>2022-06-27</lastmod>
@@ -499,28 +490,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/Time/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/Datetime/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hscyber.github.io/tags/%E8%B0%B7%E6%AD%8C%E5%AD%A6%E6%9C%AF/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/%E6%96%87%E6%9C%AC%E7%AD%9B%E9%80%89/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -535,6 +505,13 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/%E7%9F%A2%E6%A0%85%E6%95%B0%E6%8D%AE/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/%E6%96%87%E6%9C%AC%E7%AD%9B%E9%80%89/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
