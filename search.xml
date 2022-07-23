@@ -268,7 +268,7 @@
       </tags>
   </entry>
   <entry>
-    <title>表格的各中连接方式</title>
+    <title>表格的各种连接方式</title>
     <url>/posts/18b022c/</url>
     <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
 <span id="more"></span>
@@ -316,46 +316,6 @@
       <categories>
         <category>Hexo框架</category>
       </categories>
-  </entry>
-  <entry>
-    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
-    <url>/posts/e8c71149/</url>
-    <content><![CDATA[<blockquote>
-<p>待补充</p>
-</blockquote>
-<p>本文预计包含以下内容：</p>
-<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
-<span id="more"></span>
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
-</blockquote>
-<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><blockquote>
-<p>为什么要读文献</p>
-<p>为什么要开展背景调研</p>
-</blockquote>
-<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><blockquote>
-<p>文献的类别</p>
-<p>阅读的类别</p>
-</blockquote>
-<h2 id="How-gt-读"><a href="#How-gt-读" class="headerlink" title="How -&gt;读"></a>How -&gt;读</h2><blockquote>
-<p>怎么检索查阅及下载文献</p>
-<p>怎么读和记</p>
-</blockquote>
-<h2 id="How-gt-思"><a href="#How-gt-思" class="headerlink" title="How -&gt; 思"></a>How -&gt; 思</h2><blockquote>
-<p>如何梳理与总结</p>
-</blockquote>
-<h2 id="How-gt-写"><a href="#How-gt-写" class="headerlink" title="How -&gt; 写"></a>How -&gt; 写</h2><blockquote>
-<p>怎么写科技论文研究背景</p>
-<p>怎么写申报书研究现状</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>文献</tag>
-      </tags>
   </entry>
   <entry>
     <title>Python中的Json文件处理</title>
@@ -447,6 +407,46 @@
       <tags>
         <tag>Python</tag>
         <tag>json文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
+    <url>/posts/e8c71149/</url>
+    <content><![CDATA[<blockquote>
+<p>待补充</p>
+</blockquote>
+<p>本文预计包含以下内容：</p>
+<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
+<span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
+</blockquote>
+<h2 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h2><blockquote>
+<p>为什么要读文献</p>
+<p>为什么要开展背景调研</p>
+</blockquote>
+<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><blockquote>
+<p>文献的类别</p>
+<p>阅读的类别</p>
+</blockquote>
+<h2 id="How-gt-读"><a href="#How-gt-读" class="headerlink" title="How -&gt;读"></a>How -&gt;读</h2><blockquote>
+<p>怎么检索查阅及下载文献</p>
+<p>怎么读和记</p>
+</blockquote>
+<h2 id="How-gt-思"><a href="#How-gt-思" class="headerlink" title="How -&gt; 思"></a>How -&gt; 思</h2><blockquote>
+<p>如何梳理与总结</p>
+</blockquote>
+<h2 id="How-gt-写"><a href="#How-gt-写" class="headerlink" title="How -&gt; 写"></a>How -&gt; 写</h2><blockquote>
+<p>怎么写科技论文研究背景</p>
+<p>怎么写申报书研究现状</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>文献</tag>
       </tags>
   </entry>
   <entry>
@@ -1442,6 +1442,36 @@
       </tags>
   </entry>
   <entry>
+    <title>List/pandas如何筛选包含若干词语的文本</title>
+    <url>/posts/4d972282/</url>
+    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
+<ul>
+<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
+<li>对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
+<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
+</ul>
+<p>补充：如果是列元素是否包含于<strong>list</strong>的筛选：<code>df2 = df1.loc[df1[&#39;ID&#39;].isin(keywords)]</code>，取反则加<code>~</code></p>
+<span id="more"></span>
+
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
+<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
+<p>列表包含，如用户筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>文本筛选</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>空间数据分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网&#x2F;行政区划）边界<strong>汇总统计</strong>其内的<strong>点&#x2F;栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
@@ -1508,36 +1538,6 @@
         <tag>geopandas</tag>
         <tag>QGIS</tag>
         <tag>矢栅数据</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>List/pandas如何筛选包含若干词语的文本</title>
-    <url>/posts/4d972282/</url>
-    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
-<ul>
-<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
-<li>对于pandas可以通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
-<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
-</ul>
-<p>补充：如果是列元素是否包含于<strong>list</strong>的筛选：<code>df2 = df1.loc[df1[&#39;ID&#39;].isin(keywords)]</code>，取反则加<code>~</code></p>
-<span id="more"></span>
-
-<p>代码举例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-
-<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<p>列表包含，如用户筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>文本筛选</tag>
       </tags>
   </entry>
   <entry>
