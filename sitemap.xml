@@ -468,14 +468,7 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/%E7%B1%BB/</loc>
-    <lastmod>2022-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://hscyber.github.io/tags/%E6%A8%A1%E5%9D%97/</loc>
+    <loc>https://hscyber.github.io/tags/%E6%8A%80%E6%9C%AF%E7%B1%BB%E4%B9%A6%E7%B1%8D/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -489,7 +482,14 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/%E6%8A%80%E6%9C%AF%E7%B1%BB%E4%B9%A6%E7%B1%8D/</loc>
+    <loc>https://hscyber.github.io/tags/%E7%B1%BB/</loc>
+    <lastmod>2022-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/%E6%A8%A1%E5%9D%97/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -659,14 +659,14 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://hscyber.github.io/categories/%E4%B9%A6%E7%B1%8D%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/categories/%E4%B9%A6%E7%B1%8D%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://hscyber.github.io/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

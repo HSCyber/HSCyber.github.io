@@ -30,9 +30,9 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="前一节小结了一下Matplotlib一张图表的组成(Elements), 也即Anatomy of a figure，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上是由以下三种要素的组合: patchs块、线和文本，且理论上上述部件(也称artist)都能够被访问和调整，即自定义。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的逻辑及最">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/zorder.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/5524eff4/zorder.png">
 <meta property="article:published_time" content="2022-07-23T15:11:53.000Z">
-<meta property="article:modified_time" content="2022-07-24T11:30:32.632Z">
+<meta property="article:modified_time" content="2022-07-24T11:48:14.777Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -40,7 +40,7 @@
 <meta property="article:tag" content="输出图片大小">
 <meta property="article:tag" content="分辨率">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/zorder.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/5524eff4/zorder.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/5524eff4/">
@@ -137,7 +137,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE%E7%9A%84%E9%80%BB%E8%BE%91"><span class="nav-number">1.</span> <span class="nav-text">绘图的逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%B1%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">图层顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%B0%BA%E5%AF%B8"><span class="nav-number">3.</span> <span class="nav-text">图形尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E7%82%B9-x2F-%E5%B0%8F%E7%BB%93"><span class="nav-number">3.1.</span> <span class="nav-text">要点&#x2F;小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.2.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%9A%84%E5%A4%A7%E5%B0%8F"><span class="nav-number">3.3.</span> <span class="nav-text">字体的大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86"><span class="nav-number">3.4.</span> <span class="nav-text">计算原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A6%82%E5%BF%B5"><span class="nav-number">4.</span> <span class="nav-text">补充概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">静态图像文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backends"><span class="nav-number">4.2.</span> <span class="nav-text">Backends</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%98%E5%9B%BE%E7%9A%84%E9%80%BB%E8%BE%91"><span class="nav-number">1.</span> <span class="nav-text">绘图的逻辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%B1%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">图层顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%B0%BA%E5%AF%B8"><span class="nav-number">3.</span> <span class="nav-text">图形尺寸</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E7%82%B9-x2F-%E5%B0%8F%E7%BB%93"><span class="nav-number">3.1.</span> <span class="nav-text">要点&#x2F;小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.2.</span> <span class="nav-text">补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%9A%84%E5%A4%A7%E5%B0%8F-x2F-%E7%A3%85"><span class="nav-number">3.3.</span> <span class="nav-text">字体的大小&#x2F;磅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E5%8E%9F%E7%90%86"><span class="nav-number">3.4.</span> <span class="nav-text">计算原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E6%A6%82%E5%BF%B5"><span class="nav-number">4.</span> <span class="nav-text">补充概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%9B%BE%E5%83%8F%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">4.1.</span> <span class="nav-text">静态图像文件格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backends"><span class="nav-number">4.2.</span> <span class="nav-text">Backends</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -287,10 +287,10 @@
         <p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
 <span id="more"></span>
 
-<blockquote>
+<h2 id="绘图的逻辑"><a href="#绘图的逻辑" class="headerlink" title="绘图的逻辑"></a>绘图的逻辑</h2><blockquote>
 <p>用代码绘图的思路和用软件如PS&#x2F;AI&#x2F;CoreDraw等是一样的</p>
 </blockquote>
-<h2 id="绘图的逻辑"><a href="#绘图的逻辑" class="headerlink" title="绘图的逻辑"></a>绘图的逻辑</h2><blockquote>
+<blockquote>
 <p>主要针对最后的出图而非草图</p>
 </blockquote>
 <p>通常制作一张图表通常包含几步：</p>
@@ -309,18 +309,16 @@
 <p>通常我们不需要修改，但是当大量图形绘制产生叠盖或者较复杂时可以考虑调整该参数，如</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">ax.plot(..., zorder=<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
 
-
-
-<img src="/posts/undefined/zorder.png" class alt="zorder">
+<img src="/posts/5524eff4/zorder.png" class alt="zorder">
 
 <h2 id="图形尺寸"><a href="#图形尺寸" class="headerlink" title="图形尺寸"></a>图形尺寸</h2><h3 id="要点-x2F-小结"><a href="#要点-x2F-小结" class="headerlink" title="要点&#x2F;小结"></a>要点&#x2F;小结</h3><ol>
-<li>figsize()决定了图像输出的实际大小，即修改dpi图像尺寸不会变</li>
-<li>分辨率决定了<u>栅格图像模糊&#x2F;清晰度</u>，矢量缩放清晰度不影响</li>
+<li><strong><font color="#dd0000">figsize()决定了图像输出的实际大小，即修改dpi图像尺寸不会变</font></strong></li>
+<li><strong><font color="#dd0000">分辨率决定了<u>栅格图像模糊&#x2F;清晰度</u>，矢量缩放清晰度不影响</font></strong></li>
 </ol>
 <p>所以实际中，以A4纸(21cm宽，高29.7cm)为例，我们可以设置如下：</p>
 <ul>
 <li>21cm&#x2F;2.54&#x3D;8.27，29.7&#x2F;2.54&#x3D;11.7假设两边各1.27cm的边距，则7.26</li>
-<li>pad_inches&#x3D;0.5表明各设置0.5英寸及1.27的边距</li>
+<li>pad_inches&#x3D;0.5表明各设置0.5英寸-&gt; 四周1.27cm的边距</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建画布，画布默认背景为透明即空颜色facecolor=&#x27;w&#x27;表示设为白色</span></span><br><span class="line">cm = <span class="number">1</span>/<span class="number">2.54</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># fig, ax = plt.subplots(figsize=(8.27,11.7),facecolor=&#x27;w&#x27;)</span></span><br><span class="line">ax.plot(<span class="built_in">range</span>(<span class="number">20</span>))</span><br><span class="line">plt.savefig(<span class="string">r&quot;./A4.png&quot;</span>, dpi=<span class="number">300</span>,pad_inches=<span class="number">0.5</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.savefig(<span class="string">r&quot;./A4.pdf&quot;</span>, dpi=<span class="number">300</span>,pad_inches=<span class="number">0.5</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -331,7 +329,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">200</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="字体的大小"><a href="#字体的大小" class="headerlink" title="字体的大小"></a>字体的大小</h3><blockquote>
+<h3 id="字体的大小-x2F-磅"><a href="#字体的大小-x2F-磅" class="headerlink" title="字体的大小&#x2F;磅"></a>字体的大小&#x2F;磅</h3><blockquote>
 <p>字体的大小也是直接实际的大小，默认是以磅数(point (pt))为单位</p>
 </blockquote>
 <p>1 磅等于1&#x2F;72 英寸，默认字体大小为10磅，比如我们可以设置默认字体为10.5磅即五号</p>
@@ -374,7 +372,10 @@
 <td align="center">22</td>
 </tr>
 </tbody></table>
-<h3 id="计算原理"><a href="#计算原理" class="headerlink" title="计算原理"></a>计算原理</h3><p>图像输出的实际尺寸大小计算及距举例，<strong>1厘米(cm)&#x3D;0.394英寸(inch)， 1英寸&#x3D;2.54厘米</strong><br>$$<br>out\ imagesize(cm)&#x3D;dpi\times figsize\div \frac{dpi}{2.54}&#x3D;figsize\times 2.54 \<br>dpi &#x3D; 300, figsize &#x3D; (6,12) \<br>width &#x3D; 6\times 300 \div \frac{300}{2.54}&#x3D;15.24cm \<br>height &#x3D; 12\times 2.54 &#x3D; 30.48cm<br>$$<br><strong>分辨率</strong>&#x2F;resolution的度量-dpi：指每英寸点数Dots per inch&#x2F;每厘米点数</p>
+<h3 id="计算原理"><a href="#计算原理" class="headerlink" title="计算原理"></a>计算原理</h3><blockquote>
+<p>hexo默认公式LATEX渲染有问题，待修正</p>
+</blockquote>
+<p>图像输出的实际尺寸大小计算及距举例，<strong>1厘米(cm)&#x3D;0.394英寸(inch)， 1英寸&#x3D;2.54厘米</strong><br>$$<br>out\ imagesize(cm)&#x3D;dpi\times figsize\div \frac{dpi}{2.54}&#x3D;figsize\times 2.54 \<br>dpi &#x3D; 300, figsize &#x3D; (6,12) \<br>width &#x3D; 6\times 300 \div \frac{300}{2.54}&#x3D;15.24cm \<br>height &#x3D; 12\times 2.54 &#x3D; 30.48cm<br>$$<br><strong>分辨率</strong>&#x2F;resolution的度量-dpi：指每英寸点数Dots per inch&#x2F;每厘米点数</p>
 <p><strong>像素密度</strong>测量指标：ppi; pixels&#x2F;cm ppcm</p>
 <ul>
 <li>每英寸像素Pixels per inch&#x2F;每厘米像素pixels per centimetre</li>

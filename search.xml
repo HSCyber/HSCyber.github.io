@@ -668,147 +668,6 @@
       </tags>
   </entry>
   <entry>
-    <title>浅析Python中的类、模块、包</title>
-    <url>/posts/659ef075/</url>
-    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
-<ol>
-<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
-<li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？</li>
-</ol>
-<span id="more"></span>
-
-<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
-<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
-</blockquote>
-<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
-<ul>
-<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
-</ul>
-<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
-
-<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
-<ol>
-<li><strong>文件夹即包。</strong>熟悉的如：json、logging、multiprocessing、urllib</li>
-<li><strong>py文件，即脚本&#x2F;模块。</strong>熟悉的如：os.py、re.py、zipfile.py</li>
-<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包即存放在这）</li>
-</ol>
-<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
-
-
-
-<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
-<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
-<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
-<h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
-<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
-</blockquote>
-<blockquote>
-<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
-</blockquote>
-<p>结合实际讨论，</p>
-<ol>
-<li>属性&#x2F;结果的保存和即时访问：当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其<strong>属性</strong>，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
-<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
-<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
-<li>……</li>
-</ol>
-<p><strong>何时使用？</strong></p>
-<p>（虽然一直在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
-<ul>
-<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
-<li>编写开源包和模块时</li>
-<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
-<li></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>类</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随笔随机-2022/520</title>
-    <url>/posts/29d41ed/</url>
-    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
-<p>When I started loving myself, Charlie Chaplin </p>
-<span id="more"></span>
-
-<h2 id="When-I-started-loving-myself"><a href="#When-I-started-loving-myself" class="headerlink" title="When I started loving myself"></a>When I started loving myself</h2><h2 id="当我开始爱自己"><a href="#当我开始爱自己" class="headerlink" title="当我开始爱自己"></a>当我开始爱自己</h2><blockquote>
-<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
-</blockquote>
-<p>When I started loving myself<br>I understood that I’m always and at any given opportunity<br>in the right place at the right time.<br>And I understood that all that happens is right –<br>from then on I could be calm.<br>Today I know: It’s called TRUST.</p>
-<p>When I started to love myself I understood how much it can offend somebody<br>When I tried to force my desires on this person,<br>even though I knew the time is not right and the person was not ready for it,<br>and even though this person was me.<br>Today I know: It’s called LETTING GO</p>
-<p>When I started loving myself<br>I could recognize that emotional pain and grief<br>are just warnings for me to not live against my own truth.<br>Today I know: It’s called AUTHENTICALLY BEING.</p>
-<p>When I started loving myself<br>I stopped longing for another life<br>and could see that everything around me was a request to grow.<br>Today I know: It’s called MATURITY.</p>
-<p>When I started loving myself<br>I stopped depriving myself of my free time<br>and stopped sketching further magnificent projects for the future.<br>Today I only do what’s fun and joy for me,<br>what I love and what makes my heart laugh,<br>in my own way and in my tempo.<br>Today I know: it’s called HONESTY.</p>
-<p>When I started loving myself<br>I escaped from all what wasn’t healthy for me,<br>from dishes, people, things, situations<br>and from everything pulling me down and away from myself.<br>In the beginning I called it the “healthy egoism”,<br>but today I know: it’s called SELF-LOVE.</p>
-<p>When I started loving myself<br>I stopped wanting to be always right<br>thus I’ve been less wrong.<br>Today I’ve recognized: it’s called HUMBLENESS.</p>
-<p>When I started loving myself<br>I refused to live further in the past<br>and worry about my future.<br>Now I live only at this moment where EVERYTHING takes place,<br>like this I live every day and I call it CONSCIOUSNESS.</p>
-<p>When I started loving myself<br>I recognized, that my thinking<br>can make me miserable and sick.<br>When I requested for my heart forces,<br>my mind got an important partner.<br>Today I call this connection HEART WISDOM.</p>
-<p>We do not need to fear further discussions,<br>conflicts and problems with ourselves and others<br>since even stars sometimes bang on each other<br>and create new worlds.<br>Today I know: THIS IS LIFE!</p>
-<h2 id="爱"><a href="#爱" class="headerlink" title="爱"></a>爱</h2><blockquote>
-<p>韶华易逝，好好珍惜</p>
-</blockquote>
-<p>人这一生</p>
-<ul>
-<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整<ul>
-<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
-</ul>
-</li>
-<li>向外<ul>
-<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
-<li>和谐共处的家庭、社会关系和社会生活……</li>
-</ul>
-</li>
-</ul>
-<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-  </entry>
-  <entry>
     <title>在读书籍:《流畅的Python》</title>
     <url>/posts/15750410/</url>
     <content><![CDATA[<blockquote>
@@ -933,15 +792,156 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a href="#command" class="headerlink" title="command"></a>command</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>浅析Python中的类、模块、包</title>
+    <url>/posts/659ef075/</url>
+    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
+<ol>
+<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
+<li>Python中如何定义<strong>类(class)</strong></li>
+<li>什么时候需要类？</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="模块和包"><a href="#模块和包" class="headerlink" title="模块和包"></a>模块和包</h2><blockquote>
+<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
+</blockquote>
+<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<ul>
+<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
+</ul>
+<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
+
+<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
+<ol>
+<li><strong>文件夹即包。</strong>熟悉的如：json、logging、multiprocessing、urllib</li>
+<li><strong>py文件，即脚本&#x2F;模块。</strong>熟悉的如：os.py、re.py、zipfile.py</li>
+<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi&#x2F;conda安装的包即存放在这）</li>
+</ol>
+<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
+<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if &#39;__main__&#39;== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
+<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><p>构造函数：</p>
+<h2 id="何时需要类？"><a href="#何时需要类？" class="headerlink" title="何时需要类？"></a>何时需要类？</h2><blockquote>
+<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
+</blockquote>
+<blockquote>
+<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
+</blockquote>
+<p>结合实际讨论，</p>
+<ol>
+<li>属性&#x2F;结果的保存和即时访问：当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其<strong>属性</strong>，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
+<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
+<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
+<li>……</li>
+</ol>
+<p><strong>何时使用？</strong></p>
+<p>（虽然一直在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
+<ul>
+<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
+<li>编写开源包和模块时</li>
+<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>类</tag>
+        <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随笔随机-2022/520</title>
+    <url>/posts/29d41ed/</url>
+    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
+<p>When I started loving myself, Charlie Chaplin </p>
+<span id="more"></span>
+
+<h2 id="When-I-started-loving-myself"><a href="#When-I-started-loving-myself" class="headerlink" title="When I started loving myself"></a>When I started loving myself</h2><h2 id="当我开始爱自己"><a href="#当我开始爱自己" class="headerlink" title="当我开始爱自己"></a>当我开始爱自己</h2><blockquote>
+<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
+</blockquote>
+<p>When I started loving myself<br>I understood that I’m always and at any given opportunity<br>in the right place at the right time.<br>And I understood that all that happens is right –<br>from then on I could be calm.<br>Today I know: It’s called TRUST.</p>
+<p>When I started to love myself I understood how much it can offend somebody<br>When I tried to force my desires on this person,<br>even though I knew the time is not right and the person was not ready for it,<br>and even though this person was me.<br>Today I know: It’s called LETTING GO</p>
+<p>When I started loving myself<br>I could recognize that emotional pain and grief<br>are just warnings for me to not live against my own truth.<br>Today I know: It’s called AUTHENTICALLY BEING.</p>
+<p>When I started loving myself<br>I stopped longing for another life<br>and could see that everything around me was a request to grow.<br>Today I know: It’s called MATURITY.</p>
+<p>When I started loving myself<br>I stopped depriving myself of my free time<br>and stopped sketching further magnificent projects for the future.<br>Today I only do what’s fun and joy for me,<br>what I love and what makes my heart laugh,<br>in my own way and in my tempo.<br>Today I know: it’s called HONESTY.</p>
+<p>When I started loving myself<br>I escaped from all what wasn’t healthy for me,<br>from dishes, people, things, situations<br>and from everything pulling me down and away from myself.<br>In the beginning I called it the “healthy egoism”,<br>but today I know: it’s called SELF-LOVE.</p>
+<p>When I started loving myself<br>I stopped wanting to be always right<br>thus I’ve been less wrong.<br>Today I’ve recognized: it’s called HUMBLENESS.</p>
+<p>When I started loving myself<br>I refused to live further in the past<br>and worry about my future.<br>Now I live only at this moment where EVERYTHING takes place,<br>like this I live every day and I call it CONSCIOUSNESS.</p>
+<p>When I started loving myself<br>I recognized, that my thinking<br>can make me miserable and sick.<br>When I requested for my heart forces,<br>my mind got an important partner.<br>Today I call this connection HEART WISDOM.</p>
+<p>We do not need to fear further discussions,<br>conflicts and problems with ourselves and others<br>since even stars sometimes bang on each other<br>and create new worlds.<br>Today I know: THIS IS LIFE!</p>
+<h2 id="爱"><a href="#爱" class="headerlink" title="爱"></a>爱</h2><blockquote>
+<p>韶华易逝，好好珍惜</p>
+</blockquote>
+<p>人这一生</p>
+<ul>
+<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整<ul>
+<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
+</ul>
+</li>
+<li>向外<ul>
+<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
+<li>和谐共处的家庭、社会关系和社会生活……</li>
+</ul>
+</li>
+</ul>
+<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>matplotlib绘图基础2：绘图逻辑与输出尺寸/格式</title>
     <url>/posts/5524eff4/</url>
     <content><![CDATA[<p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
 <span id="more"></span>
 
-<blockquote>
+<h2 id="绘图的逻辑"><a href="#绘图的逻辑" class="headerlink" title="绘图的逻辑"></a>绘图的逻辑</h2><blockquote>
 <p>用代码绘图的思路和用软件如PS&#x2F;AI&#x2F;CoreDraw等是一样的</p>
 </blockquote>
-<h2 id="绘图的逻辑"><a href="#绘图的逻辑" class="headerlink" title="绘图的逻辑"></a>绘图的逻辑</h2><blockquote>
+<blockquote>
 <p>主要针对最后的出图而非草图</p>
 </blockquote>
 <p>通常制作一张图表通常包含几步：</p>
@@ -960,18 +960,16 @@
 <p>通常我们不需要修改，但是当大量图形绘制产生叠盖或者较复杂时可以考虑调整该参数，如</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">ax.plot(..., zorder=<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
 
-
-
-<img src="/posts/undefined/zorder.png" class alt="zorder">
+<img src="/posts/5524eff4/zorder.png" class alt="zorder">
 
 <h2 id="图形尺寸"><a href="#图形尺寸" class="headerlink" title="图形尺寸"></a>图形尺寸</h2><h3 id="要点-x2F-小结"><a href="#要点-x2F-小结" class="headerlink" title="要点&#x2F;小结"></a>要点&#x2F;小结</h3><ol>
-<li>figsize()决定了图像输出的实际大小，即修改dpi图像尺寸不会变</li>
-<li>分辨率决定了<u>栅格图像模糊&#x2F;清晰度</u>，矢量缩放清晰度不影响</li>
+<li><strong><font color="#dd0000">figsize()决定了图像输出的实际大小，即修改dpi图像尺寸不会变</font></strong></li>
+<li><strong><font color="#dd0000">分辨率决定了<u>栅格图像模糊&#x2F;清晰度</u>，矢量缩放清晰度不影响</font></strong></li>
 </ol>
 <p>所以实际中，以A4纸(21cm宽，高29.7cm)为例，我们可以设置如下：</p>
 <ul>
 <li>21cm&#x2F;2.54&#x3D;8.27，29.7&#x2F;2.54&#x3D;11.7假设两边各1.27cm的边距，则7.26</li>
-<li>pad_inches&#x3D;0.5表明各设置0.5英寸及1.27的边距</li>
+<li>pad_inches&#x3D;0.5表明各设置0.5英寸-&gt; 四周1.27cm的边距</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建画布，画布默认背景为透明即空颜色facecolor=&#x27;w&#x27;表示设为白色</span></span><br><span class="line">cm = <span class="number">1</span>/<span class="number">2.54</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># fig, ax = plt.subplots(figsize=(8.27,11.7),facecolor=&#x27;w&#x27;)</span></span><br><span class="line">ax.plot(<span class="built_in">range</span>(<span class="number">20</span>))</span><br><span class="line">plt.savefig(<span class="string">r&quot;./A4.png&quot;</span>, dpi=<span class="number">300</span>,pad_inches=<span class="number">0.5</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br><span class="line">plt.savefig(<span class="string">r&quot;./A4.pdf&quot;</span>, dpi=<span class="number">300</span>,pad_inches=<span class="number">0.5</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -982,7 +980,7 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">200</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="字体的大小"><a href="#字体的大小" class="headerlink" title="字体的大小"></a>字体的大小</h3><blockquote>
+<h3 id="字体的大小-x2F-磅"><a href="#字体的大小-x2F-磅" class="headerlink" title="字体的大小&#x2F;磅"></a>字体的大小&#x2F;磅</h3><blockquote>
 <p>字体的大小也是直接实际的大小，默认是以磅数(point (pt))为单位</p>
 </blockquote>
 <p>1 磅等于1&#x2F;72 英寸，默认字体大小为10磅，比如我们可以设置默认字体为10.5磅即五号</p>
@@ -1025,7 +1023,10 @@
 <td align="center">22</td>
 </tr>
 </tbody></table>
-<h3 id="计算原理"><a href="#计算原理" class="headerlink" title="计算原理"></a>计算原理</h3><p>图像输出的实际尺寸大小计算及距举例，<strong>1厘米(cm)&#x3D;0.394英寸(inch)， 1英寸&#x3D;2.54厘米</strong><br>$$<br>out\ imagesize(cm)&#x3D;dpi\times figsize\div \frac{dpi}{2.54}&#x3D;figsize\times 2.54 \<br>dpi &#x3D; 300, figsize &#x3D; (6,12) \<br>width &#x3D; 6\times 300 \div \frac{300}{2.54}&#x3D;15.24cm \<br>height &#x3D; 12\times 2.54 &#x3D; 30.48cm<br>$$<br><strong>分辨率</strong>&#x2F;resolution的度量-dpi：指每英寸点数Dots per inch&#x2F;每厘米点数</p>
+<h3 id="计算原理"><a href="#计算原理" class="headerlink" title="计算原理"></a>计算原理</h3><blockquote>
+<p>hexo默认公式LATEX渲染有问题，待修正</p>
+</blockquote>
+<p>图像输出的实际尺寸大小计算及距举例，<strong>1厘米(cm)&#x3D;0.394英寸(inch)， 1英寸&#x3D;2.54厘米</strong><br>$$<br>out\ imagesize(cm)&#x3D;dpi\times figsize\div \frac{dpi}{2.54}&#x3D;figsize\times 2.54 \<br>dpi &#x3D; 300, figsize &#x3D; (6,12) \<br>width &#x3D; 6\times 300 \div \frac{300}{2.54}&#x3D;15.24cm \<br>height &#x3D; 12\times 2.54 &#x3D; 30.48cm<br>$$<br><strong>分辨率</strong>&#x2F;resolution的度量-dpi：指每英寸点数Dots per inch&#x2F;每厘米点数</p>
 <p><strong>像素密度</strong>测量指标：ppi; pixels&#x2F;cm ppcm</p>
 <ul>
 <li>每英寸像素Pixels per inch&#x2F;每厘米像素pixels per centimetre</li>
