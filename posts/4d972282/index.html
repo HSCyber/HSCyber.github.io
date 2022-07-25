@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords  单个字符串的筛选则可以通过if (substring in text)进行判断 对于pandas可以通过df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;) 列表的推导式newlist">
+    <meta name="description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords，或选择属于某个list的行……">
 <meta property="og:type" content="article">
-<meta property="og:title" content="List&#x2F;pandas如何筛选包含若干词语的文本">
+<meta property="og:title" content="List&#x2F;pandas文本包含筛选">
 <meta property="og:url" content="https://hscyber.github.io/posts/4d972282/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords  单个字符串的筛选则可以通过if (substring in text)进行判断 对于pandas可以通过df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;) 列表的推导式newlist">
+<meta property="og:description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords，或选择属于某个list的行……">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-10T11:06:19.000Z">
-<meta property="article:modified_time" content="2022-06-27T14:12:43.151Z">
+<meta property="article:modified_time" content="2022-07-25T07:08:52.575Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Pandas">
 <meta property="article:tag" content="文本筛选">
@@ -42,10 +42,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/4d972282/","path":"posts/4d972282/","title":"List/pandas如何筛选包含若干词语的文本"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/4d972282/","path":"posts/4d972282/","title":"List/pandas文本包含筛选"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>List/pandas如何筛选包含若干词语的文本 | Huangs's Notes</title>
+<title>List/pandas文本包含筛选 | Huangs's Notes</title>
   
 
 
@@ -119,7 +119,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -132,6 +132,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text"> 字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%8C%85%E5%90%AB"><span class="nav-number">2.</span> <span class="nav-text"> 列表包含</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -218,12 +219,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="List/pandas如何筛选包含若干词语的文本 | Huangs's Notes">
+      <meta itemprop="name" content="List/pandas文本包含筛选 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          List/pandas如何筛选包含若干词语的文本
+          List/pandas文本包含筛选
         </h1>
 
         <div class="post-meta-container">
@@ -260,7 +261,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>846</span>
+      <span>865</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -278,18 +279,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong></p>
-<ul>
-<li>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</li>
-<li>对于pandas可以通过<code>df['text'].str.contains(&quot;keyword1|keyword2...&quot;)</code></li>
-<li>列表的推导式<code>newlist = [text for text in texts if any(w in text for w in keywords)]</code></li>
-</ul>
-<p>补充：如果是列元素是否包含于<strong>list</strong>的筛选：<code>df2 = df1.loc[df1['ID'].isin(keywords)]</code>，取反则加<code>~</code></p>
+        <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
 <span id="more"></span>
+<h2 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h2>
+<blockquote>
+<p>子串包含行筛选</p>
+</blockquote>
+<p>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</p>
+<p>pandas可通过<code>df['text'].str.contains(&quot;keyword1|keyword2...&quot;)</code></p>
 <p>代码举例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
 <p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<p>列表包含，如用户筛选</p>
+<h2 id="列表包含"><a class="markdownIt-Anchor" href="#列表包含"></a> 列表包含</h2>
+<p>列表推导</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newlist = [text <span class="keyword">for</span> text <span class="keyword">in</span> texts <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> text <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+<p>如果是列元素是否包含于<strong>list</strong>的筛选：</p>
+<ul>
+<li><code>df2 = df1.loc[df1['ID'].isin(keywords)]</code></li>
+<li>取反则加<code>~</code>，如用户筛选：</li>
+</ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -310,7 +318,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/4d972282/" title="List&#x2F;pandas如何筛选包含若干词语的文本">https://hscyber.github.io/posts/4d972282/</a>
+      <a href="https://hscyber.github.io/posts/4d972282/" title="List&#x2F;pandas文本包含筛选">https://hscyber.github.io/posts/4d972282/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -416,7 +424,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
 
 
 
