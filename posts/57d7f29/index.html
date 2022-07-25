@@ -279,23 +279,19 @@
     <div class="post-body" itemprop="articleBody">
         <p>汇总一下常用的几行geopandas代码便于复用</p>
 <span id="more"></span>
-
 <blockquote>
 <p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
 <p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
-
 <p>创建，读取or写出</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>空间连接-<a target="_blank" rel="noopener" href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
 <ul>
 <li>intersects、contains、within、touches、crosses、overlaps</li>
 <li>how: left、right、inner</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -416,6 +412,11 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
 
 
 
