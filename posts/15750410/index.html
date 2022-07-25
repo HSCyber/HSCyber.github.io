@@ -31,7 +31,7 @@
 <meta property="og:description" content="持续阅读并更新  本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-01T14:17:34.000Z">
-<meta property="article:modified_time" content="2022-07-15T08:11:36.244Z">
+<meta property="article:modified_time" content="2022-07-25T14:52:52.587Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="技术类书籍">
@@ -99,9 +99,9 @@
 
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">39</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">43</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">26</span></a></li>
   </ul>
 </nav>
 
@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -158,7 +158,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">43</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -379,9 +379,9 @@
 <p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
 <p>因为数组背后是对数字的机器翻译——字节标段数</p>
 </blockquote>
-<p>使用数组array</p>
+<p>使用数组<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/array.html">array</a></p>
 <p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点, 更多类型可查看文档</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
 <ul>
 <li>
 <p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
@@ -482,13 +482,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">58k</span>
+    <span title="站点总字数">59k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">52 分钟</span>
+    <span title="站点阅读时长">54 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
