@@ -23,15 +23,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2)">
+    <meta name="description" content="地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此先小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python读写GeoTIFF">
 <meta property="og:url" content="https://hscyber.github.io/posts/f61ccf5/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2)">
+<meta property="og:description" content="地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此先小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-25T08:49:08.000Z">
-<meta property="article:modified_time" content="2022-07-25T15:30:29.725Z">
+<meta property="article:modified_time" content="2022-07-26T03:33:20.816Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="GeoTIFF">
 <meta property="article:tag" content="栅格文件读写">
@@ -134,7 +134,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geotiff%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text"> GeoTIFF文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text"> 文件简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text"> 压缩方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text"> 文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rasterio"><span class="nav-number">2.1.</span> <span class="nav-text"> rasterio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdal"><span class="nav-number">2.2.</span> <span class="nav-text"> gdal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matlab"><span class="nav-number">2.3.</span> <span class="nav-text"> matlab</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geotiff%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text"> GeoTIFF文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text"> 文件简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text"> 数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.</span> <span class="nav-text"> 压缩方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text"> 文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rasterio"><span class="nav-number">2.1.</span> <span class="nav-text"> rasterio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdal"><span class="nav-number">2.2.</span> <span class="nav-text"> gdal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matlab"><span class="nav-number">2.3.</span> <span class="nav-text"> matlab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -263,14 +263,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -281,13 +281,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>地理栅格数据通常会以<strong>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)<strong>等多种文件格式(后两者气象数据居多，<strong>长时间序列数据存储</strong>)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此小结并对比一下：</strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+        <p>地理栅格数据通常会以<strong>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)<strong>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此先小结并对比一下：</strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
 <span id="more"></span>
+<ul>
+<li>关于h5文件和nc文件的读写后续总结</li>
+</ul>
 <h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
 <blockquote>
 <p><strong>GEO+TIF</strong></p>
 </blockquote>
 <h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
+<blockquote>
+<p>如果 TIFF 文件本身没有地理配准信息，GDAL 还将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
+</blockquote>
 <p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
 <ul>
 <li>
@@ -329,15 +335,17 @@
 <p>刚刚已经提到了数据类型主要包括整型和浮点，其中整型还包括无符号整型，这里再看一下各类型占用空间的大小</p>
 <ul>
 <li>以一张中国0.01°×0.01°格网的geotif（约）为例：宽6160×高4974约3000w，去掉空值后约960w个格子</li>
+<li><strong><font color="#dd0000">可以看到如果文件不压缩会很大，大量的空值也会占据空间，因此压缩是必要的。</font></strong></li>
+<li><strong>numpy矩阵本身的保存也很大</strong>，而通过h5等文件格式能够较好的用于数据存储并节约内存！</li>
 </ul>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">数据类型</th>
 <th style="text-align:center">单个占用空间(bytes/B)</th>
-<th style="text-align:center">范围</th>
-<th>数组大小</th>
-<th>TIFF大小（不压缩）</th>
+<th style="text-align:center">数值范围</th>
+<th style="text-align:center">数组大小</th>
+<th style="text-align:center">TIFF大小（不压缩）</th>
 </tr>
 </thead>
 <tbody>
@@ -345,72 +353,118 @@
 <td style="text-align:center">uint8</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">0~255(2^8-1)</td>
-<td>29MB</td>
-<td></td>
+<td style="text-align:center">29MB</td>
+<td style="text-align:center">29.8MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int8</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-128~127</td>
-<td>29MB</td>
-<td></td>
+<td style="text-align:center">29MB</td>
+<td style="text-align:center">29.8MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int16</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">-32768-32767</td>
-<td>58MB</td>
-<td></td>
+<td style="text-align:center">58MB</td>
+<td style="text-align:center">59.7MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int32</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">-2147483648 to 2147483647</td>
-<td>116MB</td>
-<td></td>
+<td style="text-align:center">116MB</td>
+<td style="text-align:center">119MB(Lzw压缩后大小为2.4MB)</td>
 </tr>
 <tr>
 <td style="text-align:center">int64</td>
 <td style="text-align:center">8</td>
 <td style="text-align:center">…</td>
-<td>233MB</td>
-<td></td>
+<td style="text-align:center">233MB</td>
+<td style="text-align:center">…</td>
 </tr>
 <tr>
 <td style="text-align:center">float16</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">10 个尾数位</td>
-<td>58MB</td>
-<td></td>
+<td style="text-align:center">58MB</td>
+<td style="text-align:center">…</td>
 </tr>
 <tr>
 <td style="text-align:center">float32</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">32 个尾数位</td>
-<td>116MB</td>
-<td></td>
+<td style="text-align:center">116MB</td>
+<td style="text-align:center">119MB</td>
 </tr>
 </tbody>
 </table>
 <h3 id="压缩方式"><a class="markdownIt-Anchor" href="#压缩方式"></a> 压缩方式</h3>
 <blockquote>
-<p>图像/光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储</p>
-<p><a target="_blank" rel="noopener" href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options">https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL supports three lossless compression,methods with GDALs creation options</a>.</p>
-<p><a target="_blank" rel="noopener" href="https://kokoalberti.com/articles/geotiff-compression-optimization-guide/">https://kokoalberti.com/articles/geotiff-compression-optimization-guide/</a></p>
+<p>图像/光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储，且压缩并不会对影响数据。</p>
 </blockquote>
-<p>None<br>
-PACKBITS<br>
-Deflate<br>
-LZW<br>
-LZMA<br>
-ZSTD</p>
+<p>测试结果仅供参考。</p>
+<p>图像压缩的方式有很多，这里仅比较几个GeoTIFF中常用的三种<strong>无损压缩</strong>算法以及较新的ZSTD(facabook, 2016)，以int32 geotiff文件为例，目前看性价比最高的是**<font color="#dd0000">DEFLATE</font>**，然后是LZW：</p>
+<ul>
+<li>压缩会减少数据占用**<font color="#dd0000">空间</font><strong>，但会增加读取和写入数据的</strong><font color="#dd0000">时间</font>**</li>
+<li>压缩的越多压缩所需要的时间越长,时间参考(%%timmit)</li>
+<li>通过某些操作如增大GDAL的块缓存可以缩小写入时间，在此不做考虑</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>压缩方式</th>
+<th style="text-align:center">压缩/写出速度</th>
+<th style="text-align:center">压缩比例</th>
+<th style="text-align:center">压缩后</th>
+<th style="text-align:center">读取速度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKBITS</td>
+<td style="text-align:center">最快；199ms</td>
+<td style="text-align:center">小</td>
+<td style="text-align:center">5.91MB</td>
+<td style="text-align:center">127ms</td>
+</tr>
+<tr>
+<td>LZW</td>
+<td style="text-align:center">中；441ms</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">2.41MB</td>
+<td style="text-align:center">205ms</td>
+</tr>
+<tr>
+<td>DEFLATE</td>
+<td style="text-align:center">慢；570ms</td>
+<td style="text-align:center">大</td>
+<td style="text-align:center">1.87MB</td>
+<td style="text-align:center">140ms</td>
+</tr>
+<tr>
+<td>ZSTD</td>
+<td style="text-align:center">最慢；2340ms</td>
+<td style="text-align:center">最大</td>
+<td style="text-align:center">1.76MB</td>
+<td style="text-align:center">191ms</td>
+</tr>
+</tbody>
+</table>
+<p>时间测试代码示例 (10 loops each)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%%timeit</span><br><span class="line">file = <span class="string">&#x27;...tif&#x27;</span></span><br><span class="line">ds = gdal.Open(file)</span><br><span class="line">im_data = ds.ReadAsArray()</span><br></pre></td></tr></table></figure>
 <h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
 <blockquote></blockquote>
 <h3 id="rasterio"><a class="markdownIt-Anchor" href="#rasterio"></a> rasterio</h3>
 <h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
 <h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
 <p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
+</ol>
 
     </div>
 
@@ -485,7 +539,7 @@ ZSTD</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">59k</span>
+    <span title="站点总字数">60k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">

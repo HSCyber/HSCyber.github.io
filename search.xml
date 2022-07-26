@@ -146,60 +146,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LOESS(STL)时间序列分解</title>
-    <url>/posts/6e05178d/</url>
-    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
-<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
-<span id="more"></span>
-<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<blockquote>
-<p>时间序列中的”异常”？</p>
-<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
-</blockquote>
-<p>周期：如一个商场的总人口每天24小时的规律变化</p>
-<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
-<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
-<ul>
-<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
-<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
-</ul>
-<p>在异常分析时这是比较常规的方式：</p>
-<ol>
-<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
-<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
-<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
-</ol>
-<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
-<blockquote>
-<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
-</blockquote>
-<blockquote>
-<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
-</blockquote>
-<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
-<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<ul>
-<li>
-<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
-</li>
-<li>
-<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>时间序列分析</category>
-      </categories>
-      <tags>
-        <tag>时间序列分解</tag>
-        <tag>Python</tag>
-        <tag>statsmodels</tag>
-        <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DLL文件及conda模块加载失败</title>
     <url>/posts/69110d48/</url>
     <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
@@ -253,6 +199,60 @@
         <tag>Windows</tag>
         <tag>DLL</tag>
         <tag>conda环境管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LOESS(STL)时间序列分解</title>
+    <url>/posts/6e05178d/</url>
+    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
+<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
+<span id="more"></span>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+<blockquote>
+<p>时间序列中的”异常”？</p>
+<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
+</blockquote>
+<p>周期：如一个商场的总人口每天24小时的规律变化</p>
+<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
+<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
+<ul>
+<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
+<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
+</ul>
+<p>在异常分析时这是比较常规的方式：</p>
+<ol>
+<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
+<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
+<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
+</ol>
+<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
+<blockquote>
+<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
+</blockquote>
+<blockquote>
+<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
+</blockquote>
+<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
+<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li>
+<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
+</li>
+<li>
+<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>时间序列分析</category>
+      </categories>
+      <tags>
+        <tag>时间序列分解</tag>
+        <tag>Python</tag>
+        <tag>statsmodels</tag>
+        <tag>R</tag>
       </tags>
   </entry>
   <entry>
@@ -704,6 +704,74 @@
       </tags>
   </entry>
   <entry>
+    <title>浅析Python中的类、模块、包</title>
+    <url>/posts/659ef075/</url>
+    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
+<ol>
+<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
+<li>Python中如何定义<strong>类(class)</strong></li>
+<li>什么时候需要类？</li>
+</ol>
+<span id="more"></span>
+<h2 id="模块和包"><a class="markdownIt-Anchor" href="#模块和包"></a> 模块和包</h2>
+<blockquote>
+<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
+</blockquote>
+<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<ul>
+<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
+</ul>
+<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
+<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
+<ol>
+<li>**文件夹即包。**熟悉的如：json、logging、multiprocessing、urllib</li>
+<li>**py文件，即脚本/模块。**熟悉的如：<a href="http://os.py">os.py</a>、<a href="http://re.py">re.py</a>、<a href="http://zipfile.py">zipfile.py</a></li>
+<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi/conda安装的包即存放在这）</li>
+</ol>
+<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
+<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
+<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if '__main__'== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
+<h2 id="定义类"><a class="markdownIt-Anchor" href="#定义类"></a> 定义类</h2>
+<p>构造函数：</p>
+<h2 id="何时需要类"><a class="markdownIt-Anchor" href="#何时需要类"></a> 何时需要类？</h2>
+<blockquote>
+<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
+</blockquote>
+<blockquote>
+<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
+</blockquote>
+<p>结合实际讨论，</p>
+<ol>
+<li>属性/结果的保存和即时访问：当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其<strong>属性</strong>，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
+<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
+<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
+<li>……</li>
+</ol>
+<p><strong>何时使用？</strong></p>
+<p>（虽然一直在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
+<ul>
+<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
+<li>编写开源包和模块时</li>
+<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>类</tag>
+        <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在读书籍:《流畅的Python》</title>
     <url>/posts/15750410/</url>
     <content><![CDATA[<blockquote>
@@ -844,83 +912,49 @@
       </tags>
   </entry>
   <entry>
-    <title>浅析Python中的类、模块、包</title>
-    <url>/posts/659ef075/</url>
-    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
-<ol>
-<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
-<li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？</li>
-</ol>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
-<h2 id="模块和包"><a class="markdownIt-Anchor" href="#模块和包"></a> 模块和包</h2>
-<blockquote>
-<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
-</blockquote>
-<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
-<ul>
-<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
-</ul>
-<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
-<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
-<ol>
-<li>**文件夹即包。**熟悉的如：json、logging、multiprocessing、urllib</li>
-<li>**py文件，即脚本/模块。**熟悉的如：<a href="http://os.py">os.py</a>、<a href="http://re.py">re.py</a>、<a href="http://zipfile.py">zipfile.py</a></li>
-<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi/conda安装的包即存放在这）</li>
-</ol>
-<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
-<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
-<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if '__main__'== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
-<h2 id="定义类"><a class="markdownIt-Anchor" href="#定义类"></a> 定义类</h2>
-<p>构造函数：</p>
-<h2 id="何时需要类"><a class="markdownIt-Anchor" href="#何时需要类"></a> 何时需要类？</h2>
-<blockquote>
-<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
-</blockquote>
-<blockquote>
-<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
-</blockquote>
-<p>结合实际讨论，</p>
-<ol>
-<li>属性/结果的保存和即时访问：当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其<strong>属性</strong>，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
-<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
-<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
-<li>……</li>
-</ol>
-<p><strong>何时使用？</strong></p>
-<p>（虽然一直在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
-<ul>
-<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
-<li>编写开源包和模块时</li>
-<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
-<li></li>
-</ul>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Python基础</category>
+        <category>Hexo框架</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>类</tag>
-        <tag>模块</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
     <title>Python读写GeoTIFF</title>
     <url>/posts/f61ccf5/</url>
-    <content><![CDATA[<p>地理栅格数据通常会以<strong>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)<strong>等多种文件格式(后两者气象数据居多，<strong>长时间序列数据存储</strong>)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此小结并对比一下：</strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+    <content><![CDATA[<p>地理栅格数据通常会以<strong>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)<strong>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，但是tif数据的读写尤其是写入较为麻烦，而且直接写出文件可能较大需要压缩，因此先小结并对比一下：</strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
 <span id="more"></span>
+<ul>
+<li>关于h5文件和nc文件的读写后续总结</li>
+</ul>
 <h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
 <blockquote>
 <p><strong>GEO+TIF</strong></p>
 </blockquote>
 <h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
+<blockquote>
+<p>如果 TIFF 文件本身没有地理配准信息，GDAL 还将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
+</blockquote>
 <p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
 <ul>
 <li>
@@ -962,15 +996,17 @@
 <p>刚刚已经提到了数据类型主要包括整型和浮点，其中整型还包括无符号整型，这里再看一下各类型占用空间的大小</p>
 <ul>
 <li>以一张中国0.01°×0.01°格网的geotif（约）为例：宽6160×高4974约3000w，去掉空值后约960w个格子</li>
+<li><strong><font color="#dd0000">可以看到如果文件不压缩会很大，大量的空值也会占据空间，因此压缩是必要的。</font></strong></li>
+<li><strong>numpy矩阵本身的保存也很大</strong>，而通过h5等文件格式能够较好的用于数据存储并节约内存！</li>
 </ul>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">数据类型</th>
 <th style="text-align:center">单个占用空间(bytes/B)</th>
-<th style="text-align:center">范围</th>
-<th>数组大小</th>
-<th>TIFF大小（不压缩）</th>
+<th style="text-align:center">数值范围</th>
+<th style="text-align:center">数组大小</th>
+<th style="text-align:center">TIFF大小（不压缩）</th>
 </tr>
 </thead>
 <tbody>
@@ -978,72 +1014,118 @@
 <td style="text-align:center">uint8</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">0~255(2^8-1)</td>
-<td>29MB</td>
-<td></td>
+<td style="text-align:center">29MB</td>
+<td style="text-align:center">29.8MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int8</td>
 <td style="text-align:center">1</td>
 <td style="text-align:center">-128~127</td>
-<td>29MB</td>
-<td></td>
+<td style="text-align:center">29MB</td>
+<td style="text-align:center">29.8MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int16</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">-32768-32767</td>
-<td>58MB</td>
-<td></td>
+<td style="text-align:center">58MB</td>
+<td style="text-align:center">59.7MB</td>
 </tr>
 <tr>
 <td style="text-align:center">int32</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">-2147483648 to 2147483647</td>
-<td>116MB</td>
-<td></td>
+<td style="text-align:center">116MB</td>
+<td style="text-align:center">119MB(Lzw压缩后大小为2.4MB)</td>
 </tr>
 <tr>
 <td style="text-align:center">int64</td>
 <td style="text-align:center">8</td>
 <td style="text-align:center">…</td>
-<td>233MB</td>
-<td></td>
+<td style="text-align:center">233MB</td>
+<td style="text-align:center">…</td>
 </tr>
 <tr>
 <td style="text-align:center">float16</td>
 <td style="text-align:center">2</td>
 <td style="text-align:center">10 个尾数位</td>
-<td>58MB</td>
-<td></td>
+<td style="text-align:center">58MB</td>
+<td style="text-align:center">…</td>
 </tr>
 <tr>
 <td style="text-align:center">float32</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">32 个尾数位</td>
-<td>116MB</td>
-<td></td>
+<td style="text-align:center">116MB</td>
+<td style="text-align:center">119MB</td>
 </tr>
 </tbody>
 </table>
 <h3 id="压缩方式"><a class="markdownIt-Anchor" href="#压缩方式"></a> 压缩方式</h3>
 <blockquote>
-<p>图像/光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储</p>
-<p><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></p>
-<p><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options">https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL supports three lossless compression,methods with GDALs creation options</a>.</p>
-<p><a href="https://kokoalberti.com/articles/geotiff-compression-optimization-guide/">https://kokoalberti.com/articles/geotiff-compression-optimization-guide/</a></p>
+<p>图像/光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储，且压缩并不会对影响数据。</p>
 </blockquote>
-<p>None<br>
-PACKBITS<br>
-Deflate<br>
-LZW<br>
-LZMA<br>
-ZSTD</p>
+<p>测试结果仅供参考。</p>
+<p>图像压缩的方式有很多，这里仅比较几个GeoTIFF中常用的三种<strong>无损压缩</strong>算法以及较新的ZSTD(facabook, 2016)，以int32 geotiff文件为例，目前看性价比最高的是**<font color="#dd0000">DEFLATE</font>**，然后是LZW：</p>
+<ul>
+<li>压缩会减少数据占用**<font color="#dd0000">空间</font><strong>，但会增加读取和写入数据的</strong><font color="#dd0000">时间</font>**</li>
+<li>压缩的越多压缩所需要的时间越长,时间参考(%%timmit)</li>
+<li>通过某些操作如增大GDAL的块缓存可以缩小写入时间，在此不做考虑</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>压缩方式</th>
+<th style="text-align:center">压缩/写出速度</th>
+<th style="text-align:center">压缩比例</th>
+<th style="text-align:center">压缩后</th>
+<th style="text-align:center">读取速度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PACKBITS</td>
+<td style="text-align:center">最快；199ms</td>
+<td style="text-align:center">小</td>
+<td style="text-align:center">5.91MB</td>
+<td style="text-align:center">127ms</td>
+</tr>
+<tr>
+<td>LZW</td>
+<td style="text-align:center">中；441ms</td>
+<td style="text-align:center">中</td>
+<td style="text-align:center">2.41MB</td>
+<td style="text-align:center">205ms</td>
+</tr>
+<tr>
+<td>DEFLATE</td>
+<td style="text-align:center">慢；570ms</td>
+<td style="text-align:center">大</td>
+<td style="text-align:center">1.87MB</td>
+<td style="text-align:center">140ms</td>
+</tr>
+<tr>
+<td>ZSTD</td>
+<td style="text-align:center">最慢；2340ms</td>
+<td style="text-align:center">最大</td>
+<td style="text-align:center">1.76MB</td>
+<td style="text-align:center">191ms</td>
+</tr>
+</tbody>
+</table>
+<p>时间测试代码示例 (10 loops each)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%timeit</span><br><span class="line">file = <span class="string">&#x27;...tif&#x27;</span></span><br><span class="line">ds = gdal.Open(file)</span><br><span class="line">im_data = ds.ReadAsArray()</span><br></pre></td></tr></table></figure>
 <h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
 <blockquote></blockquote>
 <h3 id="rasterio"><a class="markdownIt-Anchor" href="#rasterio"></a> rasterio</h3>
 <h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
 <h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
 <p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
+<li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>空间数据处理分析</category>
@@ -1054,121 +1136,6 @@ ZSTD</p>
         <tag>GDAL</tag>
         <tag>Rasterio</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随笔随机-2022/520</title>
-    <url>/posts/29d41ed/</url>
-    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
-<p>When I started loving myself, Charlie Chaplin</p>
-<span id="more"></span>
-<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
-<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
-<blockquote>
-<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
-</blockquote>
-<p>When I started loving myself<br>
-I understood that I’m always and at any given opportunity<br>
-in the right place at the right time.<br>
-And I understood that all that happens is right –<br>
-from then on I could be calm.<br>
-Today I know: It’s called TRUST.</p>
-<p>When I started to love myself I understood how much it can offend somebody<br>
-When I tried to force my desires on this person,<br>
-even though I knew the time is not right and the person was not ready for it,<br>
-and even though this person was me.<br>
-Today I know: It’s called LETTING GO</p>
-<p>When I started loving myself<br>
-I could recognize that emotional pain and grief<br>
-are just warnings for me to not live against my own truth.<br>
-Today I know: It’s called AUTHENTICALLY BEING.</p>
-<p>When I started loving myself<br>
-I stopped longing for another life<br>
-and could see that everything around me was a request to grow.<br>
-Today I know: It’s called MATURITY.</p>
-<p>When I started loving myself<br>
-I stopped depriving myself of my free time<br>
-and stopped sketching further magnificent projects for the future.<br>
-Today I only do what’s fun and joy for me,<br>
-what I love and what makes my heart laugh,<br>
-in my own way and in my tempo.<br>
-Today I know: it’s called HONESTY.</p>
-<p>When I started loving myself<br>
-I escaped from all what wasn’t healthy for me,<br>
-from dishes, people, things, situations<br>
-and from everything pulling me down and away from myself.<br>
-In the beginning I called it the “healthy egoism”,<br>
-but today I know: it’s called SELF-LOVE.</p>
-<p>When I started loving myself<br>
-I stopped wanting to be always right<br>
-thus I’ve been less wrong.<br>
-Today I’ve recognized: it’s called HUMBLENESS.</p>
-<p>When I started loving myself<br>
-I refused to live further in the past<br>
-and worry about my future.<br>
-Now I live only at this moment where EVERYTHING takes place,<br>
-like this I live every day and I call it CONSCIOUSNESS.</p>
-<p>When I started loving myself<br>
-I recognized, that my thinking<br>
-can make me miserable and sick.<br>
-When I requested for my heart forces,<br>
-my mind got an important partner.<br>
-Today I call this connection HEART WISDOM.</p>
-<p>We do not need to fear further discussions,<br>
-conflicts and problems with ourselves and others<br>
-since even stars sometimes bang on each other<br>
-and create new worlds.<br>
-Today I know: THIS IS LIFE!</p>
-<h2 id="爱"><a class="markdownIt-Anchor" href="#爱"></a> 爱</h2>
-<blockquote>
-<p>韶华易逝，好好珍惜</p>
-</blockquote>
-<p>人这一生</p>
-<ul>
-<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整
-<ul>
-<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
-</ul>
-</li>
-<li>向外
-<ul>
-<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
-<li>和谐共处的家庭、社会关系和社会生活……</li>
-</ul>
-</li>
-</ul>
-<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
   </entry>
   <entry>
     <title>matplotlib绘图基础2：绘图逻辑与输出尺寸/格式</title>
@@ -1507,6 +1474,93 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>随笔随机-2022/520</title>
+    <url>/posts/29d41ed/</url>
+    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
+<p>When I started loving myself, Charlie Chaplin</p>
+<span id="more"></span>
+<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
+<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
+<blockquote>
+<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
+</blockquote>
+<p>When I started loving myself<br>
+I understood that I’m always and at any given opportunity<br>
+in the right place at the right time.<br>
+And I understood that all that happens is right –<br>
+from then on I could be calm.<br>
+Today I know: It’s called TRUST.</p>
+<p>When I started to love myself I understood how much it can offend somebody<br>
+When I tried to force my desires on this person,<br>
+even though I knew the time is not right and the person was not ready for it,<br>
+and even though this person was me.<br>
+Today I know: It’s called LETTING GO</p>
+<p>When I started loving myself<br>
+I could recognize that emotional pain and grief<br>
+are just warnings for me to not live against my own truth.<br>
+Today I know: It’s called AUTHENTICALLY BEING.</p>
+<p>When I started loving myself<br>
+I stopped longing for another life<br>
+and could see that everything around me was a request to grow.<br>
+Today I know: It’s called MATURITY.</p>
+<p>When I started loving myself<br>
+I stopped depriving myself of my free time<br>
+and stopped sketching further magnificent projects for the future.<br>
+Today I only do what’s fun and joy for me,<br>
+what I love and what makes my heart laugh,<br>
+in my own way and in my tempo.<br>
+Today I know: it’s called HONESTY.</p>
+<p>When I started loving myself<br>
+I escaped from all what wasn’t healthy for me,<br>
+from dishes, people, things, situations<br>
+and from everything pulling me down and away from myself.<br>
+In the beginning I called it the “healthy egoism”,<br>
+but today I know: it’s called SELF-LOVE.</p>
+<p>When I started loving myself<br>
+I stopped wanting to be always right<br>
+thus I’ve been less wrong.<br>
+Today I’ve recognized: it’s called HUMBLENESS.</p>
+<p>When I started loving myself<br>
+I refused to live further in the past<br>
+and worry about my future.<br>
+Now I live only at this moment where EVERYTHING takes place,<br>
+like this I live every day and I call it CONSCIOUSNESS.</p>
+<p>When I started loving myself<br>
+I recognized, that my thinking<br>
+can make me miserable and sick.<br>
+When I requested for my heart forces,<br>
+my mind got an important partner.<br>
+Today I call this connection HEART WISDOM.</p>
+<p>We do not need to fear further discussions,<br>
+conflicts and problems with ourselves and others<br>
+since even stars sometimes bang on each other<br>
+and create new worlds.<br>
+Today I know: THIS IS LIFE!</p>
+<h2 id="爱"><a class="markdownIt-Anchor" href="#爱"></a> 爱</h2>
+<blockquote>
+<p>韶华易逝，好好珍惜</p>
+</blockquote>
+<p>人这一生</p>
+<ul>
+<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整
+<ul>
+<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
+</ul>
+</li>
+<li>向外
+<ul>
+<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
+<li>和谐共处的家庭、社会关系和社会生活……</li>
+</ul>
+</li>
+</ul>
+<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pandas数据选取/条件筛选小结</title>
     <url>/posts/f9c7a8a1/</url>
     <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类：</p>
@@ -1579,6 +1633,44 @@ height = 12\times 2.54 = 30.48cm
       </categories>
       <tags>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python中的时间格式(2)：速查版</title>
+    <url>/posts/13994161/</url>
+    <content><![CDATA[<p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
+<span id="more"></span>
+<p>一般只用<code>datetime</code>这个库即可</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, hour</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h2 id="常规时间格式处理"><a class="markdownIt-Anchor" href="#常规时间格式处理"></a> 常规时间格式处理</h2>
+<p>转换，将根据字符串的模式匹配并生成时间格式</p>
+<p>时间格式之后就可以按照自己的要求进行转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字符串转时间</span></span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16:30:00&quot;</span>, <span class="string">&quot;%d/%m/%y %H:%M:%S&quot;</span>)</span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16&quot;</span>, <span class="string">&quot;%d/%m/%y %H&quot;</span>)</span><br><span class="line">year,month, udate = dt.year, dt.month, dt.date()</span><br><span class="line"><span class="comment"># 时间转字符串</span></span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y/%m/%d&quot;</span>)</span><br><span class="line"><span class="comment"># 时间加减，如加时区</span></span><br><span class="line">time_bj = time_utc+ timedelta(hours=<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="pandas时间序列处理"><a class="markdownIt-Anchor" href="#pandas时间序列处理"></a> pandas时间序列处理</h2>
+<blockquote>
+<p>建议是写出文件的时候转成字符串，在读取处理的时候则使用datetime格式便于计算和绘图等等</p>
+</blockquote>
+<p>时间格式转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入时即转换</span></span><br><span class="line">df = pd.read_csv(filepath, parse_dates=[<span class="string">&#x27;time&#x27;</span>,<span class="string">&#x27;date&#x27;</span>], encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是字符串则</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是时间格式转字符串</span></span><br><span class="line"><span class="comment"># df[&#x27;time_str&#x27;]=df[&#x27;time&#x27;].astype(str)； strftime()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>时间序列的拆分合并</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>时间序列范围筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">5</span>)) &amp; (df.time &lt;= pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">23</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">6</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">创建序列</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围</span></span><br></pre></td></tr></table></figure>
+<h2 id="计算脚本时长"><a class="markdownIt-Anchor" href="#计算脚本时长"></a> 计算脚本时长</h2>
+<p>对于python <code>.py</code>脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">seconds = time.time() - start_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Time Taken:&#x27;</span>, time.strftime(<span class="string">&quot;%H:%M:%S&quot;</span>,time.gmtime(seconds)))</span><br></pre></td></tr></table></figure>
+<p>对于jupyter notebook/lab, 运行单元格加一行，如果是vscode则不需要</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%time</span><br><span class="line">my process...</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>时间格式</tag>
+        <tag>Datetime</tag>
       </tags>
   </entry>
   <entry>
@@ -1810,44 +1902,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>Python中的时间格式(2)：速查版</title>
-    <url>/posts/13994161/</url>
-    <content><![CDATA[<p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
-<span id="more"></span>
-<p>一般只用<code>datetime</code>这个库即可</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, hour</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-<h2 id="常规时间格式处理"><a class="markdownIt-Anchor" href="#常规时间格式处理"></a> 常规时间格式处理</h2>
-<p>转换，将根据字符串的模式匹配并生成时间格式</p>
-<p>时间格式之后就可以按照自己的要求进行转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字符串转时间</span></span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16:30:00&quot;</span>, <span class="string">&quot;%d/%m/%y %H:%M:%S&quot;</span>)</span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16&quot;</span>, <span class="string">&quot;%d/%m/%y %H&quot;</span>)</span><br><span class="line">year,month, udate = dt.year, dt.month, dt.date()</span><br><span class="line"><span class="comment"># 时间转字符串</span></span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y/%m/%d&quot;</span>)</span><br><span class="line"><span class="comment"># 时间加减，如加时区</span></span><br><span class="line">time_bj = time_utc+ timedelta(hours=<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="pandas时间序列处理"><a class="markdownIt-Anchor" href="#pandas时间序列处理"></a> pandas时间序列处理</h2>
-<blockquote>
-<p>建议是写出文件的时候转成字符串，在读取处理的时候则使用datetime格式便于计算和绘图等等</p>
-</blockquote>
-<p>时间格式转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入时即转换</span></span><br><span class="line">df = pd.read_csv(filepath, parse_dates=[<span class="string">&#x27;time&#x27;</span>,<span class="string">&#x27;date&#x27;</span>], encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是字符串则</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是时间格式转字符串</span></span><br><span class="line"><span class="comment"># df[&#x27;time_str&#x27;]=df[&#x27;time&#x27;].astype(str)； strftime()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>时间序列的拆分合并</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>时间序列范围筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">5</span>)) &amp; (df.time &lt;= pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">23</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">6</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
-<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">创建序列</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围</span></span><br></pre></td></tr></table></figure>
-<h2 id="计算脚本时长"><a class="markdownIt-Anchor" href="#计算脚本时长"></a> 计算脚本时长</h2>
-<p>对于python <code>.py</code>脚本</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">seconds = time.time() - start_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Time Taken:&#x27;</span>, time.strftime(<span class="string">&quot;%H:%M:%S&quot;</span>,time.gmtime(seconds)))</span><br></pre></td></tr></table></figure>
-<p>对于jupyter notebook/lab, 运行单元格加一行，如果是vscode则不需要</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%time</span><br><span class="line">my process...</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>时间格式</tag>
-        <tag>Datetime</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文献篇(1) 论文检索</title>
     <url>/posts/33f7b1b7/</url>
     <content><![CDATA[<p>背景调研和文献整理是研究开展的必要过程，通常在明确问题之后首先就要进行一个较完整的文献梳理。本文主要介绍<a href="https://scholar.google.com/">谷歌学术</a>以及<a href="https://www.connectedpapers.com/">Connected papers</a>的使用，侧重于英文文献，其他常用平台还有<a href="https://www.webofscience.com/wos/woscc/basic-search">Web Of Science</a>、<a href="https://www.cnki.net/">中国知网</a>。</p>
@@ -1939,6 +1993,24 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
+    <title>订阅了Typora~</title>
+    <url>/posts/34eb4d05/</url>
+    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
+<span id="more"></span>
+<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
+<ul>
+<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
+</ul>
+<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>空间数据分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
@@ -2004,24 +2076,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <tag>geopandas</tag>
         <tag>QGIS</tag>
         <tag>矢栅统计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>订阅了Typora~</title>
-    <url>/posts/34eb4d05/</url>
-    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
-<span id="more"></span>
-<p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
-<ul>
-<li>价格的话$15~￥89，支持三台设备，永久有效，可随时更换设备</li>
-</ul>
-<img src="/posts/34eb4d05/typora.png" class alt="激活成功">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
