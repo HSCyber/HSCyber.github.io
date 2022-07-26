@@ -966,7 +966,7 @@
 <p>刚刚已经提到了数据类型主要包括整型和浮点，其中整型还包括无符号整型，这里再看一下各类型占用空间的大小</p>
 <ul>
 <li>以一张中国0.01°×0.01°格网的geotif（约）为例：宽6160×高4974约3000w，去掉空值后约960w个格子</li>
-<li><strong><font color="#dd0000">可以看到如果文件不压缩会很大，大量的空值也会占据空间，因此压缩是必要的。</font></strong></li>
+<li><strong><font color="#dd0000">如果文件不压缩会很大，大量的空值也会占据空间，因此压缩是必要的。</font></strong></li>
 <li><strong>numpy矩阵本身的保存也很大</strong>，而通过h5等文件格式能够较好的用于数据存储并节约内存！</li>
 </ul>
 <table>
@@ -1086,14 +1086,80 @@
 <p>时间测试代码示例 (10 loops each)</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%timeit</span><br><span class="line">file = <span class="string">&#x27;...tif&#x27;</span></span><br><span class="line">ds = gdal.Open(file)</span><br><span class="line">im_data = ds.ReadAsArray()</span><br></pre></td></tr></table></figure>
 <h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
-<blockquote></blockquote>
-<h3 id="rasterio"><a class="markdownIt-Anchor" href="#rasterio"></a> rasterio</h3>
+<blockquote>
+<p>简要版，更多的参数设置查看文档：<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a href="https://gdal.org/index.html">gdal2</a></p>
+<p>仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
+</blockquote>
+<p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
+<h3 id="rasterio推荐"><a class="markdownIt-Anchor" href="#rasterio推荐"></a> rasterio(推荐)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
+<blockquote>
+<p>更为底层，前者实际上是基于gdal完成的读写</p>
+<p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
+</blockquote>
+<p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
+<p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
+<p>GDALDataType, 如gdal.GDT_Byte</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">enum GDALDataType</th>
+<th style="text-align:center">对应numpy类型</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GDT_Byte</td>
+<td style="text-align:center">np.uint8</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt16, GDT_Int16</td>
+<td style="text-align:center">np.uint16, np.int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt32, GDT_Int32</td>
+<td style="text-align:center">np.uint32, np.int32</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt64, GDT_Int64</td>
+<td style="text-align:center">np.uint64, np.int64</td>
+<td style="text-align:center">GDAL &gt;= 3.5</td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_Float32， GDT_Float64</td>
+<td style="text-align:center">np.float32, np.float64</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CInt16，GDT_CInt32</td>
+<td style="text-align:center">Complex Int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CFloat32，GDT_CFloat64</td>
+<td style="text-align:center">Complex Float32</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>写出方法1: Create</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
+<p>写出方法2: CreateCopy</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
 <h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
 <p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <ol>
 <li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
+<li><a href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
+<li><a href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
 <li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
 <li><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
 </ol>
@@ -1435,6 +1501,81 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>Pandas数据选取/条件筛选小结</title>
+    <url>/posts/f9c7a8a1/</url>
+    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类：</p>
+<ol>
+<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
+<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
+<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
+</ol>
+<span id="more"></span>
+<h2 id="数据预览"><a class="markdownIt-Anchor" href="#数据预览"></a> 数据预览</h2>
+<blockquote>
+<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
+</blockquote>
+<p>测试数据导入及查看基本信息</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="位置筛选"><a class="markdownIt-Anchor" href="#位置筛选"></a> 位置筛选</h2>
+<blockquote>
+<p>Python默认从<code>0</code>开始索引.</p>
+</blockquote>
+<h3 id="行列号切片"><a class="markdownIt-Anchor" href="#行列号切片"></a> 行列号切片</h3>
+<ul>
+<li>
+<p>切片时选取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[a,b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span>默认为 数学中的左闭右开<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[a,b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span>，因此总的个数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b-a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span>个</p>
+</li>
+<li>
+<p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
+</li>
+<li>
+<p>大多数情况，可以访问也可以修改值</p>
+</li>
+</ul>
+<p>主要函数：<strong>df.iloc[],</strong> df.iat[], <a href="http://df.at">df.at</a>[]</p>
+<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行&#x27;B&#x27;列的数值，4为行索引名称</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
+<h2 id="条件筛选行dfloc"><a class="markdownIt-Anchor" href="#条件筛选行dfloc"></a> 条件筛选行df.loc</h2>
+<blockquote>
+<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)/即补集，</p>
+<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
+</blockquote>
+<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
+<h3 id="特定值"><a class="markdownIt-Anchor" href="#特定值"></a> 特定值</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="范围值"><a class="markdownIt-Anchor" href="#范围值"></a> 范围值</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
+<h2 id="复杂条件筛选"><a class="markdownIt-Anchor" href="#复杂条件筛选"></a> 复杂条件筛选</h2>
+<blockquote>
+<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
+</blockquote>
+<p>即自定义一个新的函数生成新列，再筛选，如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
+<ul>
+<li>df[newcol] = df[col].apply(lambda x: myfun(x))</li>
+</ul>
+<p>有时候需要多列参与运算，结果是返回单个值</p>
+<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
+<ul>
+<li>df[col]  = df.apply(lambda row: myfun(row[col1],row[col2]), axis=1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
+<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>关于更多函数的运用后续小结</p>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>matplotlib绘图基础(1)：图的组成元素</title>
     <url>/posts/8dfff56a/</url>
     <content><![CDATA[<p>一张好看的学术图表不仅能够更优雅简洁地传递信息，也能给人予美的享受。在撰写学术论文的过程，耗费大量时间的除了做实验，另一个一定是作图了，要通过几张图把信息很好地呈现出来，需要费不少功夫。</p>
@@ -1558,81 +1699,6 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Python</tag>
         <tag>Matplotlib</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas数据选取/条件筛选小结</title>
-    <url>/posts/f9c7a8a1/</url>
-    <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类：</p>
-<ol>
-<li>位置筛选（与表中数值无关，仅取决于行列号或行列名）</li>
-<li>条件筛选（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
-<li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
-</ol>
-<span id="more"></span>
-<h2 id="数据预览"><a class="markdownIt-Anchor" href="#数据预览"></a> 数据预览</h2>
-<blockquote>
-<p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
-</blockquote>
-<p>测试数据导入及查看基本信息</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="位置筛选"><a class="markdownIt-Anchor" href="#位置筛选"></a> 位置筛选</h2>
-<blockquote>
-<p>Python默认从<code>0</code>开始索引.</p>
-</blockquote>
-<h3 id="行列号切片"><a class="markdownIt-Anchor" href="#行列号切片"></a> 行列号切片</h3>
-<ul>
-<li>
-<p>切片时选取<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">[a,b]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">]</span></span></span></span>默认为 数学中的左闭右开<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[a,b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span></span></span></span>，因此总的个数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>−</mo><mi>a</mi></mrow><annotation encoding="application/x-tex">b-a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span></span></span></span>个</p>
-</li>
-<li>
-<p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
-</li>
-<li>
-<p>大多数情况，可以访问也可以修改值</p>
-</li>
-</ul>
-<p>主要函数：<strong>df.iloc[],</strong> df.iat[], <a href="http://df.at">df.at</a>[]</p>
-<p>原则：传入一个值或一个list时返回若干行；传入参数时，返回行及列的筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列</span></span><br><span class="line"><span class="comment"># 其他</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"><span class="comment"># 行列名称选取</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>]</span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]</span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br><span class="line"><span class="comment">#df.at就地更改第四行&#x27;B&#x27;列的数值，4为行索引名称</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br></pre></td></tr></table></figure>
-<p>df创建列，直接df[]新建，右侧为值或者series或series的元组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;列名&#x27;</span>] = ...</span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>] = ...</span><br></pre></td></tr></table></figure>
-<h2 id="条件筛选行dfloc"><a class="markdownIt-Anchor" href="#条件筛选行dfloc"></a> 条件筛选行df.loc</h2>
-<blockquote>
-<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)/即补集，</p>
-<p>主要函数<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
-</blockquote>
-<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
-<h3 id="特定值"><a class="markdownIt-Anchor" href="#特定值"></a> 特定值</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna()</span><br><span class="line">df.fillna(-<span class="number">1</span>)</span><br><span class="line">Cond= f[<span class="string">&#x27;Comment&#x27;</span>].isnull()</span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])</span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h3 id="范围值"><a class="markdownIt-Anchor" href="#范围值"></a> 范围值</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
-<h2 id="复杂条件筛选"><a class="markdownIt-Anchor" href="#复杂条件筛选"></a> 复杂条件筛选</h2>
-<blockquote>
-<p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
-</blockquote>
-<p>即自定义一个新的函数生成新列，再筛选，如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
-<p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
-<ul>
-<li>df[newcol] = df[col].apply(lambda x: myfun(x))</li>
-</ul>
-<p>有时候需要多列参与运算，结果是返回单个值</p>
-<p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
-<ul>
-<li>df[col]  = df.apply(lambda row: myfun(row[col1],row[col2]), axis=1)</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
-<p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-<p>关于更多函数的运用后续小结</p>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -1902,97 +1968,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>文献篇(1) 论文检索</title>
-    <url>/posts/33f7b1b7/</url>
-    <content><![CDATA[<p>背景调研和文献整理是研究开展的必要过程，通常在明确问题之后首先就要进行一个较完整的文献梳理。本文主要介绍<a href="https://scholar.google.com/">谷歌学术</a>以及<a href="https://www.connectedpapers.com/">Connected papers</a>的使用，侧重于英文文献，其他常用平台还有<a href="https://www.webofscience.com/wos/woscc/basic-search">Web Of Science</a>、<a href="https://www.cnki.net/">中国知网</a>。</p>
-<span id="more"></span>
-<img src="/posts/33f7b1b7/image-20220604165048854.png" class alt="image-20220604165048854">
-<h2 id="google-scholar"><a class="markdownIt-Anchor" href="#google-scholar"></a> Google Scholar</h2>
-<blockquote>
-<p><a href="https://scholar.google.com/">谷歌学术网址</a>，<strong>Stand on the shoulders of giants</strong></p>
-<p>此平台也是一个很好的<strong>跟踪学者研究成果</strong>的平台</p>
-</blockquote>
-<h3 id="类型及时间筛选"><a class="markdownIt-Anchor" href="#类型及时间筛选"></a> 类型及时间筛选</h3>
-<p>左侧设置搜索选项：</p>
-<ul>
-<li>
-<p><strong>类型</strong>可以选择<strong>综述</strong>(review)或所有类型的文章（在论文投稿时会注明文章类型，其中包括review，因此平台可以识别）</p>
-</li>
-<li>
-<p><strong>时间</strong>通常不受限，尤其是梳理研究历史和重要的文章的时候，也常设置近五年、三年或者近一年以追踪最近的成果进展</p>
-</li>
-</ul>
-<h3 id="内容筛选"><a class="markdownIt-Anchor" href="#内容筛选"></a> 内容筛选</h3>
-<p>逻辑符(大写)：<strong>AND  OR</strong>，常见论文搜索/组合方式（<strong>冒号后无空格</strong>）：</p>
-<ul>
-<li>关键词检索：typhoon resilience 或 typhoon+resilience 等价于typhoon AND resilience</li>
-<li>短语关键词检索：“social resilience”</li>
-<li>搜索标题：intitle
-<ul>
-<li>intitle:(resilience typhoon)</li>
-<li>intitle:((typhoon OR hurricane) AND (resilience))</li>
-</ul>
-</li>
-<li>搜索作者：author:(“San Zhang” OR “Si Li”)</li>
-<li>搜索期刊文献：“social resilience” <u>source</u>:“International Journal of Geographical Information Science”</li>
-</ul>
-<p>**我最常用的是标题检索，如：intitle:((typhoon OR hurricane) AND (resilience) AND “social media”)。**想要更加广泛一点或者词组不一定包含在标题中时，则建议直接关键词组合，这样会默认检索论文全文信息。</p>
-<h2 id="connected-papers"><a class="markdownIt-Anchor" href="#connected-papers"></a> Connected papers</h2>
-<blockquote>
-<p><a href="https://www.connectedpapers.com/">Find and explore academic papers</a>一个论文检索及管理、可视化梳理的平台</p>
-<p>我通常用来找一个具体研究方向上<strong>被引量高</strong>的一些较为重要的文章</p>
-</blockquote>
-<img src="/posts/33f7b1b7/image-20220604170812558.png" class alt="image-20220604170812558">
-<h3 id="作者的初衷"><a class="markdownIt-Anchor" href="#作者的初衷"></a> 作者的初衷</h3>
-<p>多年来，我们一直感到学术文献回顾和探索的痛苦，并且一直在思考如何解决它。很多时候，我们找到了一篇有趣的论文，并且我们希望：<u>1. 查找针对同一主题的不同方法和方法；2. 追踪该领域的最新研究状况；3. 确定开创性作品和背景知识；4.探索并沉浸在主题中，并了解论文中的趋势和动态。</u>因此开发了这个平台</p>
-<h3 id="怎么阅读"><a class="markdownIt-Anchor" href="#怎么阅读"></a> 怎么阅读</h3>
-<p>布局显示</p>
-<ul>
-<li>相似的论文聚集在一起，并通过更强的线条（边缘）相连，<strong>线的颜色越深，联系越强</strong>，研究延续性越强。</li>
-<li>指标刻画，<strong>论文被引越多，圆圈越大</strong>;论文越新，颜色越深。</li>
-</ul>
-<p><strong>List view</strong>：按时间顺序排列</p>
-<p><strong>Prior and derivative works</strong></p>
-<ul>
-<li>开创性论文Prior</li>
-<li>衍生的新方法论文/综述derivative</li>
-</ul>
-<p><strong>右侧可以查看论文摘要并且创建新的CP图</strong></p>
-<p><strong>下载</strong>：直接下载.bib结尾的引文格式</p>
-<h2 id="google"><a class="markdownIt-Anchor" href="#google"></a> Google</h2>
-<blockquote>
-<p><a href="https://www.google.com/">谷歌官网，需要梯子</a>，最后介绍一下搜索引擎的高级检索，百度也有类似的功能。</p>
-<p><a href="http://www.googleguide.com/advanced_operators_reference.html">参考1-官方搜索运算符文档</a>，可以进行<u>标题，网址、文本、类型</u>等的检索。</p>
-</blockquote>
-<p>常用搜索（逻辑符(大写)：<strong>AND  OR</strong>，也可以用空格或+替换AND）</p>
-<ul>
-<li><strong>标题</strong>包含：intitle。如输入<u>intitle:google</u>（<strong>冒号后无空格</strong>），网页标题中带有google的网页都会被搜索出来。
-<ul>
-<li>还有<strong>allintitle</strong>，可以进行多个关键词的检索，包括还有allintext, allinurl，用法类似。</li>
-<li>也就是说进行单个/并列关键词检索时二者检索结果均无区别，看习惯。<strong>e.g., [ intitle:google intitle:search ] is the same as [ allintitle: google search ]</strong>。</li>
-</ul>
-</li>
-<li><strong>网址</strong>包含：inurl。搜索包含有特定字符的URL。</li>
-<li><strong>网页正文</strong>包含：intext。搜索网页正文内容中的指定字符。</li>
-<li><strong>文件</strong>检索：filetype。搜索指定类型的文件。例如输入<u>filetype:pdf</u>，将返回所有以pdf结尾的文件URL，这通常用于组合-即多条件检索,如 <u>inurl:google AND filetype:pdf</u>。
-<ul>
-<li>
-<img src="/posts/33f7b1b7/image-20220527104807053.png" class alt="searchfile">
-</li>
-</ul>
-</li>
-<li><strong>相关网站</strong>检索site。找到与指定网站有联系的URL。例如输入<u>site:igsnrr.cas.cn</u>。所有和这个网站有联系的URL都会被显示。</li>
-<li><strong>相似网站</strong>检索：related。查询将列出与您指定的网页相似的网页，如<u>related:igsnrr.cas.cn</u>：结果中会呈现科学网、中科院心理研究所、天文台等，可自行尝试。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>谷歌学术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>矢栅处理(1)：分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
@@ -2108,6 +2083,97 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </categories>
       <tags>
         <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献篇(1) 论文检索</title>
+    <url>/posts/33f7b1b7/</url>
+    <content><![CDATA[<p>背景调研和文献整理是研究开展的必要过程，通常在明确问题之后首先就要进行一个较完整的文献梳理。本文主要介绍<a href="https://scholar.google.com/">谷歌学术</a>以及<a href="https://www.connectedpapers.com/">Connected papers</a>的使用，侧重于英文文献，其他常用平台还有<a href="https://www.webofscience.com/wos/woscc/basic-search">Web Of Science</a>、<a href="https://www.cnki.net/">中国知网</a>。</p>
+<span id="more"></span>
+<img src="/posts/33f7b1b7/image-20220604165048854.png" class alt="image-20220604165048854">
+<h2 id="google-scholar"><a class="markdownIt-Anchor" href="#google-scholar"></a> Google Scholar</h2>
+<blockquote>
+<p><a href="https://scholar.google.com/">谷歌学术网址</a>，<strong>Stand on the shoulders of giants</strong></p>
+<p>此平台也是一个很好的<strong>跟踪学者研究成果</strong>的平台</p>
+</blockquote>
+<h3 id="类型及时间筛选"><a class="markdownIt-Anchor" href="#类型及时间筛选"></a> 类型及时间筛选</h3>
+<p>左侧设置搜索选项：</p>
+<ul>
+<li>
+<p><strong>类型</strong>可以选择<strong>综述</strong>(review)或所有类型的文章（在论文投稿时会注明文章类型，其中包括review，因此平台可以识别）</p>
+</li>
+<li>
+<p><strong>时间</strong>通常不受限，尤其是梳理研究历史和重要的文章的时候，也常设置近五年、三年或者近一年以追踪最近的成果进展</p>
+</li>
+</ul>
+<h3 id="内容筛选"><a class="markdownIt-Anchor" href="#内容筛选"></a> 内容筛选</h3>
+<p>逻辑符(大写)：<strong>AND  OR</strong>，常见论文搜索/组合方式（<strong>冒号后无空格</strong>）：</p>
+<ul>
+<li>关键词检索：typhoon resilience 或 typhoon+resilience 等价于typhoon AND resilience</li>
+<li>短语关键词检索：“social resilience”</li>
+<li>搜索标题：intitle
+<ul>
+<li>intitle:(resilience typhoon)</li>
+<li>intitle:((typhoon OR hurricane) AND (resilience))</li>
+</ul>
+</li>
+<li>搜索作者：author:(“San Zhang” OR “Si Li”)</li>
+<li>搜索期刊文献：“social resilience” <u>source</u>:“International Journal of Geographical Information Science”</li>
+</ul>
+<p>**我最常用的是标题检索，如：intitle:((typhoon OR hurricane) AND (resilience) AND “social media”)。**想要更加广泛一点或者词组不一定包含在标题中时，则建议直接关键词组合，这样会默认检索论文全文信息。</p>
+<h2 id="connected-papers"><a class="markdownIt-Anchor" href="#connected-papers"></a> Connected papers</h2>
+<blockquote>
+<p><a href="https://www.connectedpapers.com/">Find and explore academic papers</a>一个论文检索及管理、可视化梳理的平台</p>
+<p>我通常用来找一个具体研究方向上<strong>被引量高</strong>的一些较为重要的文章</p>
+</blockquote>
+<img src="/posts/33f7b1b7/image-20220604170812558.png" class alt="image-20220604170812558">
+<h3 id="作者的初衷"><a class="markdownIt-Anchor" href="#作者的初衷"></a> 作者的初衷</h3>
+<p>多年来，我们一直感到学术文献回顾和探索的痛苦，并且一直在思考如何解决它。很多时候，我们找到了一篇有趣的论文，并且我们希望：<u>1. 查找针对同一主题的不同方法和方法；2. 追踪该领域的最新研究状况；3. 确定开创性作品和背景知识；4.探索并沉浸在主题中，并了解论文中的趋势和动态。</u>因此开发了这个平台</p>
+<h3 id="怎么阅读"><a class="markdownIt-Anchor" href="#怎么阅读"></a> 怎么阅读</h3>
+<p>布局显示</p>
+<ul>
+<li>相似的论文聚集在一起，并通过更强的线条（边缘）相连，<strong>线的颜色越深，联系越强</strong>，研究延续性越强。</li>
+<li>指标刻画，<strong>论文被引越多，圆圈越大</strong>;论文越新，颜色越深。</li>
+</ul>
+<p><strong>List view</strong>：按时间顺序排列</p>
+<p><strong>Prior and derivative works</strong></p>
+<ul>
+<li>开创性论文Prior</li>
+<li>衍生的新方法论文/综述derivative</li>
+</ul>
+<p><strong>右侧可以查看论文摘要并且创建新的CP图</strong></p>
+<p><strong>下载</strong>：直接下载.bib结尾的引文格式</p>
+<h2 id="google"><a class="markdownIt-Anchor" href="#google"></a> Google</h2>
+<blockquote>
+<p><a href="https://www.google.com/">谷歌官网，需要梯子</a>，最后介绍一下搜索引擎的高级检索，百度也有类似的功能。</p>
+<p><a href="http://www.googleguide.com/advanced_operators_reference.html">参考1-官方搜索运算符文档</a>，可以进行<u>标题，网址、文本、类型</u>等的检索。</p>
+</blockquote>
+<p>常用搜索（逻辑符(大写)：<strong>AND  OR</strong>，也可以用空格或+替换AND）</p>
+<ul>
+<li><strong>标题</strong>包含：intitle。如输入<u>intitle:google</u>（<strong>冒号后无空格</strong>），网页标题中带有google的网页都会被搜索出来。
+<ul>
+<li>还有<strong>allintitle</strong>，可以进行多个关键词的检索，包括还有allintext, allinurl，用法类似。</li>
+<li>也就是说进行单个/并列关键词检索时二者检索结果均无区别，看习惯。<strong>e.g., [ intitle:google intitle:search ] is the same as [ allintitle: google search ]</strong>。</li>
+</ul>
+</li>
+<li><strong>网址</strong>包含：inurl。搜索包含有特定字符的URL。</li>
+<li><strong>网页正文</strong>包含：intext。搜索网页正文内容中的指定字符。</li>
+<li><strong>文件</strong>检索：filetype。搜索指定类型的文件。例如输入<u>filetype:pdf</u>，将返回所有以pdf结尾的文件URL，这通常用于组合-即多条件检索,如 <u>inurl:google AND filetype:pdf</u>。
+<ul>
+<li>
+<img src="/posts/33f7b1b7/image-20220527104807053.png" class alt="searchfile">
+</li>
+</ul>
+</li>
+<li><strong>相关网站</strong>检索site。找到与指定网站有联系的URL。例如输入<u>site:igsnrr.cas.cn</u>。所有和这个网站有联系的URL都会被显示。</li>
+<li><strong>相似网站</strong>检索：related。查询将列出与您指定的网页相似的网页，如<u>related:igsnrr.cas.cn</u>：结果中会呈现科学网、中科院心理研究所、天文台等，可自行尝试。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>谷歌学术</tag>
       </tags>
   </entry>
   <entry>
