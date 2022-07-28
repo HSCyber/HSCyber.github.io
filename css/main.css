@@ -1966,7 +1966,7 @@ pre code {
   width: 100%;
 }
 .post-body a {
-  color: #3498db;
+  font-weight: bold;
 }
 .post-body h2 {
   color: #262a30;
