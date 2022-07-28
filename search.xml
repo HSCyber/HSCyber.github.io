@@ -146,62 +146,6 @@
       </tags>
   </entry>
   <entry>
-    <title>DLL文件及conda模块加载失败</title>
-    <url>/posts/69110d48/</url>
-    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
-<span id="more"></span>
-<p>一般重新安装或者重新配置环境解决。</p>
-<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
-<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
-<blockquote>
-<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
-</blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
-<ul>
-<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
-<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
-<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
-</ul>
-<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
-<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
-<blockquote>
-<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
-</blockquote>
-<blockquote>
-<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
-</blockquote>
-<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
-<ul>
-<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
-</ul>
-<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
-<ul>
-<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
-<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
-</ul>
-<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
-<ul>
-<li>
-<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
-</li>
-<li>
-<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>DLL</tag>
-        <tag>conda环境管理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LOESS(STL)时间序列分解</title>
     <url>/posts/6e05178d/</url>
     <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
@@ -253,6 +197,61 @@
         <tag>Python</tag>
         <tag>statsmodels</tag>
         <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DLL文件及conda模块加载失败</title>
+    <url>/posts/69110d48/</url>
+    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
+<span id="more"></span>
+<p>一般重新安装或者重新配置环境解决。</p>
+<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
+<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
+<blockquote>
+<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
+<ul>
+<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
+<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
+<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
+</ul>
+<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
+<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
+<blockquote>
+<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
+</blockquote>
+<blockquote>
+<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
+</blockquote>
+<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
+<ul>
+<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
+</ul>
+<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
+<ul>
+<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
+<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
+</ul>
+<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
+<ul>
+<li>
+<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
+</li>
+<li>
+<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>conda环境管理</tag>
       </tags>
   </entry>
   <entry>
@@ -321,7 +320,6 @@
         <category>Pandas数据处理分析</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>join</tag>
         <tag>Pandas</tag>
       </tags>
@@ -472,6 +470,49 @@
       </categories>
       <tags>
         <tag>文献</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献篇(2) 论文下载</title>
+    <url>/posts/99dce68a/</url>
+    <content><![CDATA[<blockquote>
+<p>个人平时下载文献的流程和几种方式…</p>
+</blockquote>
+<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
+<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
+<span id="more"></span>
+<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
+<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
+<ol>
+<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
+<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
+<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
+</ol>
+<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
+<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
+<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
+<blockquote>
+<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
+<p>一般前面的操作不行我才会到scihub求助</p>
+</blockquote>
+<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
+<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
+<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
+<blockquote>
+<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
+</blockquote>
+<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
+<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
+<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
+<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
+<p>以上~</p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>英文论文下载</tag>
       </tags>
   </entry>
   <entry>
@@ -657,50 +698,6 @@
       </categories>
       <tags>
         <tag>R语言</tag>
-        <tag>入门教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文献篇(2) 论文下载</title>
-    <url>/posts/99dce68a/</url>
-    <content><![CDATA[<blockquote>
-<p>个人平时下载文献的流程和几种方式…</p>
-</blockquote>
-<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
-<span id="more"></span>
-<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
-<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
-<ol>
-<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
-<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
-<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
-</ol>
-<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
-<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
-<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
-<blockquote>
-<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
-<p>一般前面的操作不行我才会到scihub求助</p>
-</blockquote>
-<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
-<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
-<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
-<blockquote>
-<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
-</blockquote>
-<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
-<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
-<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
-<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
-<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
-<p>以上~</p>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>英文论文下载</tag>
       </tags>
   </entry>
   <entry>
@@ -910,121 +907,6 @@
         <tag>类</tag>
         <tag>模块</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随笔随机-2022/520</title>
-    <url>/posts/29d41ed/</url>
-    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
-<p>When I started loving myself, Charlie Chaplin</p>
-<span id="more"></span>
-<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
-<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
-<blockquote>
-<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
-</blockquote>
-<p>When I started loving myself<br>
-I understood that I’m always and at any given opportunity<br>
-in the right place at the right time.<br>
-And I understood that all that happens is right –<br>
-from then on I could be calm.<br>
-Today I know: It’s called TRUST.</p>
-<p>When I started to love myself I understood how much it can offend somebody<br>
-When I tried to force my desires on this person,<br>
-even though I knew the time is not right and the person was not ready for it,<br>
-and even though this person was me.<br>
-Today I know: It’s called LETTING GO</p>
-<p>When I started loving myself<br>
-I could recognize that emotional pain and grief<br>
-are just warnings for me to not live against my own truth.<br>
-Today I know: It’s called AUTHENTICALLY BEING.</p>
-<p>When I started loving myself<br>
-I stopped longing for another life<br>
-and could see that everything around me was a request to grow.<br>
-Today I know: It’s called MATURITY.</p>
-<p>When I started loving myself<br>
-I stopped depriving myself of my free time<br>
-and stopped sketching further magnificent projects for the future.<br>
-Today I only do what’s fun and joy for me,<br>
-what I love and what makes my heart laugh,<br>
-in my own way and in my tempo.<br>
-Today I know: it’s called HONESTY.</p>
-<p>When I started loving myself<br>
-I escaped from all what wasn’t healthy for me,<br>
-from dishes, people, things, situations<br>
-and from everything pulling me down and away from myself.<br>
-In the beginning I called it the “healthy egoism”,<br>
-but today I know: it’s called SELF-LOVE.</p>
-<p>When I started loving myself<br>
-I stopped wanting to be always right<br>
-thus I’ve been less wrong.<br>
-Today I’ve recognized: it’s called HUMBLENESS.</p>
-<p>When I started loving myself<br>
-I refused to live further in the past<br>
-and worry about my future.<br>
-Now I live only at this moment where EVERYTHING takes place,<br>
-like this I live every day and I call it CONSCIOUSNESS.</p>
-<p>When I started loving myself<br>
-I recognized, that my thinking<br>
-can make me miserable and sick.<br>
-When I requested for my heart forces,<br>
-my mind got an important partner.<br>
-Today I call this connection HEART WISDOM.</p>
-<p>We do not need to fear further discussions,<br>
-conflicts and problems with ourselves and others<br>
-since even stars sometimes bang on each other<br>
-and create new worlds.<br>
-Today I know: THIS IS LIFE!</p>
-<h2 id="爱"><a class="markdownIt-Anchor" href="#爱"></a> 爱</h2>
-<blockquote>
-<p>韶华易逝，好好珍惜</p>
-</blockquote>
-<p>人这一生</p>
-<ul>
-<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整
-<ul>
-<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
-</ul>
-</li>
-<li>向外
-<ul>
-<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
-<li>和谐共处的家庭、社会关系和社会生活……</li>
-</ul>
-</li>
-</ul>
-<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
   </entry>
   <entry>
     <title>矢栅处理(2)：Python读写GeoTIFF</title>
@@ -1277,6 +1159,121 @@ Today I know: THIS IS LIFE!</p>
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随笔随机-2022/520</title>
+    <url>/posts/29d41ed/</url>
+    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
+<p>When I started loving myself, Charlie Chaplin</p>
+<span id="more"></span>
+<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
+<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
+<blockquote>
+<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
+</blockquote>
+<p>When I started loving myself<br>
+I understood that I’m always and at any given opportunity<br>
+in the right place at the right time.<br>
+And I understood that all that happens is right –<br>
+from then on I could be calm.<br>
+Today I know: It’s called TRUST.</p>
+<p>When I started to love myself I understood how much it can offend somebody<br>
+When I tried to force my desires on this person,<br>
+even though I knew the time is not right and the person was not ready for it,<br>
+and even though this person was me.<br>
+Today I know: It’s called LETTING GO</p>
+<p>When I started loving myself<br>
+I could recognize that emotional pain and grief<br>
+are just warnings for me to not live against my own truth.<br>
+Today I know: It’s called AUTHENTICALLY BEING.</p>
+<p>When I started loving myself<br>
+I stopped longing for another life<br>
+and could see that everything around me was a request to grow.<br>
+Today I know: It’s called MATURITY.</p>
+<p>When I started loving myself<br>
+I stopped depriving myself of my free time<br>
+and stopped sketching further magnificent projects for the future.<br>
+Today I only do what’s fun and joy for me,<br>
+what I love and what makes my heart laugh,<br>
+in my own way and in my tempo.<br>
+Today I know: it’s called HONESTY.</p>
+<p>When I started loving myself<br>
+I escaped from all what wasn’t healthy for me,<br>
+from dishes, people, things, situations<br>
+and from everything pulling me down and away from myself.<br>
+In the beginning I called it the “healthy egoism”,<br>
+but today I know: it’s called SELF-LOVE.</p>
+<p>When I started loving myself<br>
+I stopped wanting to be always right<br>
+thus I’ve been less wrong.<br>
+Today I’ve recognized: it’s called HUMBLENESS.</p>
+<p>When I started loving myself<br>
+I refused to live further in the past<br>
+and worry about my future.<br>
+Now I live only at this moment where EVERYTHING takes place,<br>
+like this I live every day and I call it CONSCIOUSNESS.</p>
+<p>When I started loving myself<br>
+I recognized, that my thinking<br>
+can make me miserable and sick.<br>
+When I requested for my heart forces,<br>
+my mind got an important partner.<br>
+Today I call this connection HEART WISDOM.</p>
+<p>We do not need to fear further discussions,<br>
+conflicts and problems with ourselves and others<br>
+since even stars sometimes bang on each other<br>
+and create new worlds.<br>
+Today I know: THIS IS LIFE!</p>
+<h2 id="爱"><a class="markdownIt-Anchor" href="#爱"></a> 爱</h2>
+<blockquote>
+<p>韶华易逝，好好珍惜</p>
+</blockquote>
+<p>人这一生</p>
+<ul>
+<li>向内，追寻精神的成长，自我的独立和完善、灵魂的完整
+<ul>
+<li>勇敢而坚定地去认识、接纳和锻炼自己吧……</li>
+</ul>
+</li>
+<li>向外
+<ul>
+<li>寻一个钟爱的人、一份热爱的事业，勇敢地、精心地守护和前行</li>
+<li>和谐共处的家庭、社会关系和社会生活……</li>
+</ul>
+</li>
+</ul>
+<p>我们始终是自由的，不要因为他人言语和外界环境而妥协扭曲自己心底的渴望和热爱，喜欢的话就勇敢地去追逐吧，一步一步……</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>matplotlib绘图基础(2)：绘图逻辑与输出尺寸/格式</title>
     <url>/posts/5524eff4/</url>
     <content><![CDATA[<p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
@@ -1481,8 +1478,7 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Python</tag>
         <tag>Matplotlib</tag>
-        <tag>图片文件格式</tag>
-        <tag>输出图片大小</tag>
+        <tag>出图尺寸</tag>
         <tag>分辨率</tag>
       </tags>
   </entry>
@@ -1685,6 +1681,7 @@ height = 12\times 2.54 = 30.48cm
       </categories>
       <tags>
         <tag>Pandas</tag>
+        <tag>表格数据筛选</tag>
       </tags>
   </entry>
   <entry>
@@ -1725,11 +1722,10 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Pandas</tag>
         <tag>表格分列及合并</tag>
-        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
-    <title>python性能(1)：多进程处理multiprocessing</title>
+    <title>python性能(1)：multiprocessing多进程处理</title>
     <url>/posts/4b434785/</url>
     <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
 <span id="more"></span>
@@ -1941,7 +1937,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       <tags>
         <tag>Python</tag>
         <tag>时间格式</tag>
-        <tag>Datetime</tag>
+        <tag>datetime</tag>
       </tags>
   </entry>
   <entry>
@@ -1979,7 +1975,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       <tags>
         <tag>Python</tag>
         <tag>时间格式</tag>
-        <tag>Datetime</tag>
+        <tag>datetime</tag>
       </tags>
   </entry>
   <entry>
