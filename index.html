@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="Stay hungry. Stay foolish.">
 <meta property="og:type" content="website">
@@ -80,6 +80,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -99,11 +100,37 @@
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">45</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">27</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
         
@@ -185,6 +212,7 @@
 
     
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -269,6 +297,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/4b434785/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -364,6 +397,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/f61ccf5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -459,6 +497,11 @@
     <div class="post-body" itemprop="articleBody">
           <p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/5524eff4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -554,6 +597,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/13994161/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -649,6 +697,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/18b022c/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -744,6 +797,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>汇总一下常用的几行geopandas代码便于复用</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/57d7f29/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -839,6 +897,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/69110d48/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -935,6 +998,11 @@
           <p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
 <p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/6e05178d/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1034,6 +1102,11 @@
 <p>该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，<code>import re</code></p>
 <p>本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/da405e24/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1130,6 +1203,11 @@
           <p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
 <p>对于软件，如果点是矢量，则可以直接通过ArcMap/QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a target="_blank" rel="noopener" href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/54103437/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1228,6 +1306,11 @@
 </blockquote>
 <p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/15750410/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1328,6 +1411,11 @@
 <li>复杂条件筛选（自定义函数apply的运用），<strong>理论上基于代码我们可以实现任何想得到的处理</strong></li>
 </ol>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/f9c7a8a1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1424,6 +1512,11 @@
           <p>介绍一下Vscode Python环境配置，并小结一下自己目前<strong>基于Python的数据分析工作习惯</strong>。</p>
 <p>之前的模式是基于Anaconda环境，使用Jupyter Notebook/Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap等软件。</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/9730787a/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1521,6 +1614,11 @@
 <p>①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例/非标准JSON文件处理</p>
 <p>首先：<code>import json</code></p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/3c868742/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1616,6 +1714,11 @@
     <div class="post-body" itemprop="articleBody">
           <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
           <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/4d972282/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           <!--/noindex-->
         
       
@@ -1692,9 +1795,11 @@
 
   
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
   
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
 
 
 
@@ -1712,6 +1817,9 @@
   <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
 
 
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
 
 </body>
 </html>

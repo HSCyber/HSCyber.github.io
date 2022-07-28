@@ -1688,6 +1688,76 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>Pandas拆分及合并字符串列</title>
+    <url>/posts/374675e0/</url>
+    <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
+<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
+<span id="more"></span>
+<img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
+<h2 id="分列"><a class="markdownIt-Anchor" href="#分列"></a> 分列</h2>
+<blockquote>
+<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.split.html">Series.str.split()</a></p>
+<p>该方法支持正则表达式</p>
+</blockquote>
+<p>处理高德Poi数据时发现有一列<strong>typename</strong>是这样的：</p>
+<ul>
+<li>汽车服务;汽车服务相关;汽车服务相关</li>
+<li>生活服务;人才市场;人才市场</li>
+<li>餐饮服务;中餐厅;中餐厅</li>
+</ul>
+<p>分别代表大中小类别，因此通过如下代码切分</p>
+<ul>
+<li><code>expand=True</code>表示将拆分的字符串展开为单独的列</li>
+<li><code>n</code>指定拆分的分隔符个数，默认0/-1全部拆分</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试数据，原始df过大</span></span><br><span class="line">df_sample = df.sample(<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 直接切分，预览结果发现得到五列，后两列大量为None,有的小类过细</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, expand=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 因此最终的切分代码</span></span><br><span class="line">df_sample[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]] = df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, n=<span class="number">2</span>, expand=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="合并"><a class="markdownIt-Anchor" href="#合并"></a> 合并</h2>
+<blockquote>
+<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.cat.html">Series.str.cat()</a></p>
+<p>补充的其他方法，另见<a href="https://sparkbyexamples.com/pandas/pandas-combine-two-columns-of-text-in-dataframe/">参考2</a></p>
+</blockquote>
+<p>确保各类为文本/字符串类型，否则先转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;type1&#x27;] = df[&#x27;type1&#x27;].astype(str)</span></span><br><span class="line"><span class="comment"># 最直接的是字符串相加</span></span><br><span class="line">df_sample[<span class="string">&quot;typename2&quot;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].astype(<span class="built_in">str</span>) +<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type2&quot;</span>]+<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type3&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并方式2</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename2&#x27;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].<span class="built_in">str</span>.cat(df_sample[[<span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]], sep=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字符串join函数</span></span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].agg(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="keyword">lambda</span> x: <span class="string">&quot;-&quot;</span>.join(x), axis =<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>表格分列及合并</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python性能(1)：多进程处理multiprocessing</title>
+    <url>/posts/4b434785/</url>
+    <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
+<span id="more"></span>
+<p>进程的知识点不少，方法也好多类，这里先放一个</p>
+<h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
+<blockquote>
+<p>目前我用的最多的简单粗暴的并行</p>
+</blockquote>
+<p>有大堆数据，需要进行相同的处理（函数）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">  pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
+<p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">  paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">  pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
+<p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
+<ul>
+<li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python性能</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>multiprocessing</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python中的时间格式(1)：详细版</title>
     <url>/posts/a0dd2ef9/</url>
     <content><![CDATA[<p>时间格式是一类较特殊也十分普遍的格式，大量数据都含有时间信息，在实际的学习中会经常接触。最近有创建、处理或转换时间序列数据的需求，因此做一个梳理并汇总以便在后续遇到相关处理时可以拿来即用，还有另一个简化的<a href="https://hscyber.github.io/posts/13994161">速查版</a>。本文主要涉及内容：</p>
@@ -1875,47 +1945,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>Pandas拆分及合并字符串列</title>
-    <url>/posts/374675e0/</url>
-    <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
-<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
-<span id="more"></span>
-<img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
-<h2 id="分列"><a class="markdownIt-Anchor" href="#分列"></a> 分列</h2>
-<blockquote>
-<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.split.html">Series.str.split()</a></p>
-<p>该方法支持正则表达式</p>
-</blockquote>
-<p>处理高德Poi数据时发现有一列<strong>typename</strong>是这样的：</p>
-<ul>
-<li>汽车服务;汽车服务相关;汽车服务相关</li>
-<li>生活服务;人才市场;人才市场</li>
-<li>餐饮服务;中餐厅;中餐厅</li>
-</ul>
-<p>分别代表大中小类别，因此通过如下代码切分</p>
-<ul>
-<li><code>expand=True</code>表示将拆分的字符串展开为单独的列</li>
-<li><code>n</code>指定拆分的分隔符个数，默认0/-1全部拆分</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试数据，原始df过大</span></span><br><span class="line">df_sample = df.sample(<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 直接切分，预览结果发现得到五列，后两列大量为None,有的小类过细</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, expand=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 因此最终的切分代码</span></span><br><span class="line">df_sample[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]] = df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, n=<span class="number">2</span>, expand=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="合并"><a class="markdownIt-Anchor" href="#合并"></a> 合并</h2>
-<blockquote>
-<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.cat.html">Series.str.cat()</a></p>
-<p>补充的其他方法，另见<a href="https://sparkbyexamples.com/pandas/pandas-combine-two-columns-of-text-in-dataframe/">参考2</a></p>
-</blockquote>
-<p>确保各类为文本/字符串类型，否则先转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;type1&#x27;] = df[&#x27;type1&#x27;].astype(str)</span></span><br><span class="line"><span class="comment"># 最直接的是字符串相加</span></span><br><span class="line">df_sample[<span class="string">&quot;typename2&quot;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].astype(<span class="built_in">str</span>) +<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type2&quot;</span>]+<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type3&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并方式2</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename2&#x27;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].<span class="built_in">str</span>.cat(df_sample[[<span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]], sep=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字符串join函数</span></span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].agg(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="keyword">lambda</span> x: <span class="string">&quot;-&quot;</span>.join(x), axis =<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>表格分列及合并</tag>
-        <tag>字符串</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python中的时间格式(2)：速查版</title>
     <url>/posts/13994161/</url>
     <content><![CDATA[<p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
@@ -2042,35 +2071,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </categories>
       <tags>
         <tag>谷歌学术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>python性能(1)：多进程处理multiprocessing</title>
-    <url>/posts/4b434785/</url>
-    <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
-<span id="more"></span>
-<p>进程的知识点不少，方法也好多类，这里先放一个</p>
-<h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
-<blockquote>
-<p>目前我用的最多的简单粗暴的并行</p>
-</blockquote>
-<p>有大堆数据，需要进行相同的处理（函数）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">  pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
-<p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">  paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">  pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
-<h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
-<p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
-<ul>
-<li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python性能</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>multiprocessing</tag>
       </tags>
   </entry>
   <entry>
