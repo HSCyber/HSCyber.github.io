@@ -2076,41 +2076,22 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <p>对于软件，如果点是矢量，则可以直接通过ArcMap/QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
 <span id="more"></span>
 <p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步，这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了。此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</p>
-<h2 id="点矢量sjoin"><a class="markdownIt-Anchor" href="#点矢量sjoin"></a> ∑点×矢量sjoin</h2>
-<p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
-<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
-<ul>
-<li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
-</ul>
-<img src="/posts/54103437/image-20220706220226879.png" class alt="image-20220706220226879">
-<img src="/posts/54103437/image-20220706220152451.png" class alt="image-20220706220152451">
-<img src="/posts/54103437/image-20220706221509848.png" class alt="image-20220706221509848">
-<ul>
-<li>QGIS：按位置连接，在QGIS工具箱搜索join或者连接都行，其工具检索双语支持，也可以批处理</li>
-</ul>
-<img src="/posts/54103437/image-20220706221352490.png" class alt="image-20220706221352490">
-<h3 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h3>
-<ol>
-<li>一种是基于ArcPy实现Spatial Join工具的脚本即可，查看tool help的代码即可，支持批处理，略</li>
-<li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
-</ol>
-<p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是</p>
-<ul>
-<li>在原有的shapefile表上增加了12列，每一列对应当月格网内的数量</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
 <h2 id="栅格矢量zonal"><a class="markdownIt-Anchor" href="#栅格矢量zonal"></a> ∑栅格×矢量zonal</h2>
 <p>以统计格网(polygons)内栅格值为例：</p>
-<h3 id="python-2"><a class="markdownIt-Anchor" href="#python-2"></a> Python</h3>
+<h3 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h3>
 <ol>
 <li>ArcPy，实现Zonal Statistic<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/zonal-statistics.htm">功能</a>，应该在空间分析工具下，可自行查看文档</li>
-<li>一个专门用于做分区统计的模块<a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，使用方便，这里给一个简单的个人案例，统计区划内的高程信息，经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。</li>
+<li>一个<font color="#dd0000">专门用于做分区统计的模块</font><a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，较<strong>推荐</strong>，这里给一个简单的个人案例，统计区划内的高程信息，经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。
+<ul>
+<li>分别传入统计的几何单元以及栅格图层文件路径即可</li>
+</ul>
+</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rasterstats <span class="keyword">import</span> zonal_stats</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="comment"># 读取shape矢量文件为gpd，空间区域，也可以通过csv文件创建gpd</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./青海西藏县.shp&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tiffile = <span class="string">&quot;A:/Data/dem.tif&quot;</span> <span class="comment">#栅格文件</span></span><br><span class="line">stats = zonal_stats(gdf,demfile,stats=[<span class="string">&#x27;min&#x27;</span>, <span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;median&#x27;</span>, <span class="string">&#x27;majority&#x27;</span>, <span class="string">&#x27;sum&#x27;</span>])<span class="comment"># 这里也可以自定义函数统计的指标，参见文档即可</span></span><br><span class="line"><span class="comment"># 统计的stats是一个字典，也可以输出geojson,参数geojson_out=True</span></span><br><span class="line"><span class="comment"># 这里我直接拼接两张表得到统计的结果</span></span><br><span class="line">res = pd.concat([gdf, pd.DataFrame(stats)], axis=<span class="number">1</span>) <span class="comment">#geodataframe </span></span><br><span class="line"><span class="comment"># 再视情况写出即可res.to_file(...)</span></span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>其他暂不探索</li>
 </ol>
-<h3 id="软件-2"><a class="markdownIt-Anchor" href="#软件-2"></a> 软件</h3>
+<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
 <blockquote>
 <p>之前汇总过一次全国960w格网的栅格计算，分省计算的，基于的是QGIS的批处理（通过导入参数json文件实现）/也尝试了其Python脚本发现不好用，可能是我还没上手习惯</p>
 </blockquote>
@@ -2127,6 +2108,26 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <img src="/posts/54103437/image-20220706223030773.png" class alt="image-20220706223030773">
 <p>参数设置代码参考，其要求比较严格需要标准的路径、json对象和json文件等，当时debug了好一会~，json的介绍可以我写过的<a href="https://hscyber.github.io/posts/3c868742/">这里</a>，需要设置输入文件、输出文件、栅格波段、计算方式（数量、均值等）、前缀等等</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># infiles是输入的拆分好的960w格网文件</span></span><br><span class="line">inpath = <span class="string">&quot;A:/Data/ChinaGrid/grids_v1/shp&quot;</span></span><br><span class="line">infiles = glob(inpath+<span class="string">&quot;/*.shp&quot;</span>)</span><br><span class="line"><span class="comment"># 这里是为了把双反斜杠\\换成正斜杠/ </span></span><br><span class="line">infiles = [inpath+<span class="string">&quot;/&quot;</span>+os.path.basename(file) <span class="keyword">for</span> file <span class="keyword">in</span> infiles]</span><br><span class="line"><span class="comment"># 全部输出文件，视情况改，我这里因为只换了文件夹</span></span><br><span class="line">outfiles = [infile.replace(<span class="string">&#x27;v1&#x27;</span>,<span class="string">&#x27;v2&#x27;</span>) <span class="keyword">for</span> infile <span class="keyword">in</span> infiles]</span><br><span class="line">paras = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outfiles)):</span><br><span class="line">    infile =  json.dumps(infiles[i])</span><br><span class="line">    <span class="comment"># outfile = json.dumps(outfiles[i])</span></span><br><span class="line">    <span class="comment"># 输入栅格，此处我计算的是同一个栅格，如果多个另外传参数</span></span><br><span class="line">    inraster =  json.dumps(<span class="string">&quot;A:/Data/ChinaGrid/base/china-gaia.tif&quot;</span>)</span><br><span class="line">    prefix = json.dumps(<span class="string">&#x27;imp_&#x27;</span>) <span class="comment"># 前缀</span></span><br><span class="line">    <span class="comment"># 这里搜一下qgis脚本 zonal的参数说明文档，或者先小文件跑看一下输出记录写的参数，1代表数量</span></span><br><span class="line">    statis = json.dumps([<span class="number">1</span>]) </span><br><span class="line">    para = &#123;</span><br><span class="line">        <span class="string">&quot;PARAMETERS&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;INPUT&quot;</span>:infile,</span><br><span class="line">            <span class="string">&quot;INPUT_RASTER&quot;</span>:inraster,</span><br><span class="line">            <span class="string">&quot;RASTER_BAND&quot;</span>:<span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;COLUMN_PREFIX&quot;</span>: prefix,</span><br><span class="line">            <span class="string">&quot;STATISTICS&quot;</span>: statis&#125;,</span><br><span class="line">        <span class="string">&quot;OUTPUTS&quot;</span>: &#123;<span class="string">&quot;OUTPUT&quot;</span>: outfiles[i]&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    paras.append(para)</span><br><span class="line"><span class="built_in">print</span>(paras[<span class="number">0</span>])<span class="comment"># 预览一下</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;A:\Data\ChinaGrid\zonal_batch.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(paras,f)</span><br></pre></td></tr></table></figure>
+<h2 id="点矢量sjoin"><a class="markdownIt-Anchor" href="#点矢量sjoin"></a> ∑点×矢量sjoin</h2>
+<p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
+<h3 id="软件-2"><a class="markdownIt-Anchor" href="#软件-2"></a> 软件</h3>
+<ul>
+<li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
+</ul>
+<img src="/posts/54103437/image-20220706220226879.png" class alt="image-20220706220226879">
+<img src="/posts/54103437/image-20220706220152451.png" class alt="image-20220706220152451">
+<img src="/posts/54103437/image-20220706221509848.png" class alt="image-20220706221509848">
+<ul>
+<li>QGIS：按位置连接，在QGIS工具箱搜索join或者连接都行，其工具检索双语支持，也可以批处理</li>
+</ul>
+<img src="/posts/54103437/image-20220706221352490.png" class alt="image-20220706221352490">
+<h3 id="python-2"><a class="markdownIt-Anchor" href="#python-2"></a> Python</h3>
+<ol>
+<li>一种是基于ArcPy实现Spatial Join工具的脚本即可，查看tool help的代码即可，支持批处理，略</li>
+<li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
+</ol>
+<p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是：**在原有的shapefile表上增加了12列，**每一列对应当月格网内的数量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>空间数据处理分析</category>
