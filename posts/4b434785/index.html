@@ -31,7 +31,7 @@
 <meta property="og:description" content="处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块multiprecessing的简单使用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-27T12:46:48.000Z">
-<meta property="article:modified_time" content="2022-07-28T15:33:02.872Z">
+<meta property="article:modified_time" content="2022-07-31T07:09:57.994Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="multiprocessing">
@@ -100,9 +100,9 @@
 
       
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">41</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">42</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">28</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -174,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -185,7 +185,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">42</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -315,9 +315,9 @@
 <p>目前我用的最多的简单粗暴的并行</p>
 </blockquote>
 <p>有大堆数据，需要进行相同的处理（函数）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">  pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
 <p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">  paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">  pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
 <p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
 <ul>

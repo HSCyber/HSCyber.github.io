@@ -269,9 +269,10 @@
 <p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
 <ul>
 <li>intersects、contains、within、touches、crosses、overlaps</li>
-<li>how: left、right、inner</li>
+<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
+<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>空间数据处理分析</category>
@@ -854,8 +855,8 @@
 <blockquote>
 <p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
 </blockquote>
-<p><strong>模块</strong>：一个**.py文件**就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）。</p>
+<p><strong>模块</strong>：一个<code>.py文件</code>就构成了一个模块，模块名即为去掉后缀之后的名。</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）,因此有些时候github上下载别人写好的小工具包可以直接放在文件夹下import使用而不需要install。</p>
 <ul>
 <li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
 </ul>
@@ -866,8 +867,8 @@
 <img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
 <p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
 <ol>
-<li>**文件夹即包。**熟悉的如：json、logging、multiprocessing、urllib</li>
-<li>**py文件，即脚本/模块。**熟悉的如：<a href="http://os.py">os.py</a>、<a href="http://re.py">re.py</a>、<a href="http://zipfile.py">zipfile.py</a></li>
+<li><strong>文件夹即包</strong>，熟悉的如：json、logging、multiprocessing、urllib</li>
+<li><strong>py文件，即脚本/模块</strong>，熟悉的如：<a href="http://os.py">os.py</a>、<a href="http://re.py">re.py</a>、<a href="http://zipfile.py">zipfile.py</a></li>
 <li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi/conda安装的包即存放在这）</li>
 </ol>
 <p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
@@ -895,8 +896,7 @@
 <ul>
 <li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
 <li>编写开源包和模块时</li>
-<li>工作量比较大，代码组织感觉比较乱时，可以考虑（但其实理理逻辑，通过多个脚本也可以写出结构清晰的脚本）。</li>
-<li></li>
+<li>工作量比较大，代码组织感觉比较乱时，可以考虑（理理逻辑，通过多个函数/脚本也可以写出结构清晰的脚本）。</li>
 </ul>
 ]]></content>
       <categories>
@@ -1754,9 +1754,9 @@ height = 12\times 2.54 = 30.48cm
 <p>目前我用的最多的简单粗暴的并行</p>
 </blockquote>
 <p>有大堆数据，需要进行相同的处理（函数）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">  pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
 <p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">  paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">  pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
 <p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
 <ul>
@@ -2100,13 +2100,15 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <h3 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h3>
 <ol>
 <li>ArcPy，实现Zonal Statistic<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/zonal-statistics.htm">功能</a>，应该在空间分析工具下，可自行查看文档</li>
-<li>一个<font color="#dd0000">专门用于做分区统计的模块</font><a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，较<strong>推荐</strong>，这里给一个简单的个人案例，统计区划内的高程信息，经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。
+<li>一个<font color="#dd0000">专门用于做分区统计的模块</font><a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，较<strong>推荐</strong>，这里给一个简单的个人案例，统计区划内的高程信息。经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。
 <ul>
-<li>分别传入统计的几何单元以及栅格图层文件路径即可</li>
+<li>传入统计的矢量数据或geometry类型+栅格图层文件路径即可，输出的是一个字典，可以直接转成df</li>
+<li>也可以自定义计算函数作为统计参数stats</li>
+<li>对于分类的栅格数据可以添加<code>categorical = True</code>参数</li>
 </ul>
 </li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rasterstats <span class="keyword">import</span> zonal_stats</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="comment"># 读取shape矢量文件为gpd，空间区域，也可以通过csv文件创建gpd</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./青海西藏县.shp&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tiffile = <span class="string">&quot;A:/Data/dem.tif&quot;</span> <span class="comment">#栅格文件</span></span><br><span class="line">stats = zonal_stats(gdf,demfile,stats=[<span class="string">&#x27;min&#x27;</span>, <span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;median&#x27;</span>, <span class="string">&#x27;majority&#x27;</span>, <span class="string">&#x27;sum&#x27;</span>])<span class="comment"># 这里也可以自定义函数统计的指标，参见文档即可</span></span><br><span class="line"><span class="comment"># 统计的stats是一个字典，也可以输出geojson,参数geojson_out=True</span></span><br><span class="line"><span class="comment"># 这里我直接拼接两张表得到统计的结果</span></span><br><span class="line">res = pd.concat([gdf, pd.DataFrame(stats)], axis=<span class="number">1</span>) <span class="comment">#geodataframe </span></span><br><span class="line"><span class="comment"># 再视情况写出即可res.to_file(...)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rasterstats <span class="keyword">import</span> zonal_stats</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="comment"># 读取shape矢量文件为gpd，空间区域，也可以通过csv文件创建gpd</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./青海西藏县.shp&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tiffile = <span class="string">&quot;A:/Data/dem.tif&quot;</span> <span class="comment">#栅格文件</span></span><br><span class="line">stats = zonal_stats(gdf,demfile,stats=[<span class="string">&#x27;min&#x27;</span>, <span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;median&#x27;</span>, <span class="string">&#x27;majority&#x27;</span>, <span class="string">&#x27;sum&#x27;</span>])</span><br><span class="line">stats2 = zonal_stats(<span class="string">&quot;./青海西藏县.shp&quot;</span>,demfile,stats=<span class="string">&#x27;count&#x27;</span>)</span><br><span class="line"><span class="comment"># 统计的stats是一个字典，也可以输出geojson,参数geojson_out=True</span></span><br><span class="line"><span class="comment"># 这里我选择拼接两张表并导出统计的结果</span></span><br><span class="line">res = pd.concat([gdf, pd.DataFrame(stats)], axis=<span class="number">1</span>) <span class="comment">#geodataframe </span></span><br><span class="line"><span class="comment"># 再视情况写出即可res.to_file(...)</span></span><br></pre></td></tr></table></figure>
 <ol start="3">
 <li>其他暂不探索</li>
 </ol>
@@ -2187,6 +2189,26 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       <tags>
         <tag>Pandas</tag>
         <tag>文本筛选</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown语法及Typora使用简介</title>
+    <url>/posts/c694f527/</url>
+    <content><![CDATA[<p>经常给人安利typora-markdown编辑器，遂在此放一下markdown的基本语法和typora的使用，上手简单。</p>
+<span id="more"></span>
+<blockquote>
+<p><a href="https://markdown.com.cn/basic-syntax/">Markdown</a>语言,使用易读易写的纯文本格式编写文档，可与HTML混编，可导出 HTML、PDF 以及本身的 .md 格式的文件。因简洁、高效、易读、易写，Markdown被大量使用，如Github、Wikipedia、简书等。</p>
+</blockquote>
+<p>！总之，用于书写笔记博客等均十分方便，包括带公式的文档等，学习成本也很低。</p>
+<h2 id="markdown语法"><a class="markdownIt-Anchor" href="#markdown语法"></a> Markdown语法</h2>
+<h2 id="typora使用"><a class="markdownIt-Anchor" href="#typora使用"></a> Typora使用</h2>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
