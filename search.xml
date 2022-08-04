@@ -200,89 +200,7 @@
       </tags>
   </entry>
   <entry>
-    <title>DLL文件及conda模块加载失败</title>
-    <url>/posts/69110d48/</url>
-    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
-<span id="more"></span>
-<p>一般重新安装或者重新配置环境解决。</p>
-<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
-<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
-<blockquote>
-<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
-</blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
-<ul>
-<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
-<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
-<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
-</ul>
-<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
-<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
-<blockquote>
-<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
-</blockquote>
-<blockquote>
-<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
-</blockquote>
-<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
-<ul>
-<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
-</ul>
-<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
-<ul>
-<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
-<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
-</ul>
-<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
-<ul>
-<li>
-<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
-</li>
-<li>
-<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>conda环境管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>geopandas常用函数小结</title>
-    <url>/posts/57d7f29/</url>
-    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
-<span id="more"></span>
-<blockquote>
-<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
-<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
-<p>创建，读取or写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
-<ul>
-<li>intersects、contains、within、touches、crosses、overlaps</li>
-<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
-<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>空间数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>geopandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>表格的各种连接方式</title>
+    <title>Pandas(杂)：表格的各种连接方式</title>
     <url>/posts/18b022c/</url>
     <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
 <span id="more"></span>
@@ -326,6 +244,34 @@
       </tags>
   </entry>
   <entry>
+    <title>矢栅处理(杂)：geopandas常用函数小结</title>
+    <url>/posts/57d7f29/</url>
+    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
+<span id="more"></span>
+<blockquote>
+<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
+<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
+<p>创建，读取or写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
+<ul>
+<li>intersects、contains、within、touches、crosses、overlaps</li>
+<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
+<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>空间数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>spatialjoin</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>image test</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -334,6 +280,52 @@
       <categories>
         <category>Hexo框架</category>
       </categories>
+  </entry>
+  <entry>
+    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
+    <url>/posts/e8c71149/</url>
+    <content><![CDATA[<blockquote>
+<p>待补充</p>
+</blockquote>
+<p>本文预计包含以下内容：</p>
+<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>
+④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
+<span id="more"></span>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
+</blockquote>
+<h2 id="why"><a class="markdownIt-Anchor" href="#why"></a> Why</h2>
+<blockquote>
+<p>为什么要读文献</p>
+<p>为什么要开展背景调研</p>
+</blockquote>
+<h2 id="what"><a class="markdownIt-Anchor" href="#what"></a> What</h2>
+<blockquote>
+<p>文献的类别</p>
+<p>阅读的类别</p>
+</blockquote>
+<h2 id="how-读"><a class="markdownIt-Anchor" href="#how-读"></a> How -&gt;读</h2>
+<blockquote>
+<p>怎么检索查阅及下载文献</p>
+<p>怎么读和记</p>
+</blockquote>
+<h2 id="how-思"><a class="markdownIt-Anchor" href="#how-思"></a> How -&gt; 思</h2>
+<blockquote>
+<p>如何梳理与总结</p>
+</blockquote>
+<h2 id="how-写"><a class="markdownIt-Anchor" href="#how-写"></a> How -&gt; 写</h2>
+<blockquote>
+<p>怎么写科技论文研究背景</p>
+<p>怎么写申报书研究现状</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>文献</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python中的Json文件处理</title>
@@ -428,52 +420,6 @@
       </tags>
   </entry>
   <entry>
-    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
-    <url>/posts/e8c71149/</url>
-    <content><![CDATA[<blockquote>
-<p>待补充</p>
-</blockquote>
-<p>本文预计包含以下内容：</p>
-<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>
-④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
-<span id="more"></span>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<blockquote>
-<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
-</blockquote>
-<h2 id="why"><a class="markdownIt-Anchor" href="#why"></a> Why</h2>
-<blockquote>
-<p>为什么要读文献</p>
-<p>为什么要开展背景调研</p>
-</blockquote>
-<h2 id="what"><a class="markdownIt-Anchor" href="#what"></a> What</h2>
-<blockquote>
-<p>文献的类别</p>
-<p>阅读的类别</p>
-</blockquote>
-<h2 id="how-读"><a class="markdownIt-Anchor" href="#how-读"></a> How -&gt;读</h2>
-<blockquote>
-<p>怎么检索查阅及下载文献</p>
-<p>怎么读和记</p>
-</blockquote>
-<h2 id="how-思"><a class="markdownIt-Anchor" href="#how-思"></a> How -&gt; 思</h2>
-<blockquote>
-<p>如何梳理与总结</p>
-</blockquote>
-<h2 id="how-写"><a class="markdownIt-Anchor" href="#how-写"></a> How -&gt; 写</h2>
-<blockquote>
-<p>怎么写科技论文研究背景</p>
-<p>怎么写申报书研究现状</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>文献</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>文献篇(2) 论文下载</title>
     <url>/posts/99dce68a/</url>
     <content><![CDATA[<blockquote>
@@ -517,7 +463,147 @@
       </tags>
   </entry>
   <entry>
-    <title>R语言学习1：基础</title>
+    <title>在读书籍:《流畅的Python》</title>
+    <url>/posts/15750410/</url>
+    <content><![CDATA[<blockquote>
+<p>持续阅读并更新</p>
+</blockquote>
+<p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
+<span id="more"></span>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
+</blockquote>
+<p>作者本书强调Python的独有特性，专注于基本库。作者表明尽管Python的包索引已经极多，但是他几乎不会提到标准库以外的任何包。</p>
+<p>赞！因为接触过一段时间的工作会发现三方包的性能方面参差不齐，实际中需要代码优化和加速的场景越来越频繁，而如果能够多调用标准库，充分发挥Python特性，我想应该是可以有助于代码运行效率提高的。</p>
+<h2 id="第一部分-python数据模型"><a class="markdownIt-Anchor" href="#第一部分-python数据模型"></a> 第一部分-Python数据模型</h2>
+<blockquote>
+<p>浅浅介绍一下Python一些<strong>数据类型/类</strong>的底层构造模式</p>
+</blockquote>
+<p>要点</p>
+<ol>
+<li>Python中的内置类型实现了很多特殊方法（以双下划线开头如<code>__getitem__()</code>），也就是函数，来实现一些比较基本的操作，如：<strong>迭代/循环、属性访问、对象实例创建删除、字符串表示，文件管理(with…)等</strong></li>
+<li>所以当需要使用内置类型实现上述相关功能时，用<strong>内置的方法：速度更快，优先考虑</strong>，如<code>len(x)</code>，若x是一个内置类型如list的实例，那么运行就快，相当于<strong>走后门</strong>。</li>
+<li>下一部分的主要目的就是熟悉和了解Python内置的<strong>数据类型的底层特性及内置方法</strong>：序列（列表、元组）、字典、集合等，特殊用法，从而提高代码的性能</li>
+</ol>
+<h2 id="数据结构序列列表元组"><a class="markdownIt-Anchor" href="#数据结构序列列表元组"></a> 数据结构——序列(列表+元组…)</h2>
+<blockquote>
+<p>第二部分是数据结构，包含三部分</p>
+<p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
+</blockquote>
+<h3 id="list和推导式"><a class="markdownIt-Anchor" href="#list和推导式"></a> list和推导式</h3>
+<ol>
+<li>
+<p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
+</li>
+<li>
+<p>序列分类</p>
+<ol>
+<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)，后者小而快，前者更灵活</li>
+<li>按是否可变（简单理解为自由增删改）分可变和不可变，如<strong>list dict属于可变</strong>，<strong>str tuple不可变</strong></li>
+</ol>
+</li>
+<li>
+<p>list使用要点：</p>
+<ol>
+<li>多使用<strong>列表推导式</strong>，但一般只用于<strong>创建</strong>新列表，一行不能搞定的也不用</li>
+<li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次
+<ul>
+<li>节省内存，避免额外内存消耗，大数据考虑</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="元组tuple及的使用"><a class="markdownIt-Anchor" href="#元组tuple及的使用"></a> 元组tuple及<code>*</code>的使用</h3>
+<ol>
+<li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
+<li>元组拆包的妙用：显式或隐式的都有，很方便，举例：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 平行复制</span></span><br><span class="line">loc = (<span class="number">33.9</span>, <span class="number">118.5</span>)</span><br><span class="line">lat, lng = loc</span><br><span class="line"><span class="comment"># 函数传参</span></span><br><span class="line">afunc = f(a,b)</span><br><span class="line">z = f(*loc)</span><br><span class="line"><span class="comment"># *处理不确定个数的元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,*b,c,d = <span class="built_in">range</span>(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>具名元组，可以用来构建：
+<ol>
+<li>带字段的元组。表头？是否可以取代表格数据管理还有待探索hh</li>
+<li>有名字的类</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">City = namedtuple(<span class="string">&#x27;City&#x27;</span>, <span class="string">&#x27;name country pop loc&#x27;</span>) <span class="comment">#创建类</span></span><br><span class="line">tolyo = City(<span class="string">&#x27;Tokyo&#x27;</span>,<span class="string">&#x27;JP&#x27;</span>,<span class="number">36.933</span>, (<span class="number">35.7</span>, <span class="number">139.7</span>)) <span class="comment"># 实例化</span></span><br></pre></td></tr></table></figure>
+<h3 id="切片与赋值"><a class="markdownIt-Anchor" href="#切片与赋值"></a> 切片与赋值</h3>
+<blockquote>
+<p>即选取序列中的一段/一部分</p>
+<p>索引从0开始，左闭右开 (a,b]，空表示断点</p>
+</blockquote>
+<ul>
+<li>s[1:5]，选取序列s的第二个到第五个元素</li>
+<li><code>s[a: b:c]</code>，a~b之间以间隔c取值, c值为负数代表倒序取值</li>
+</ul>
+<p>切片赋值时，若左侧为一个切片，右侧应该是可迭代的，即便只有一个值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">alistp[<span class="number">1</span>:<span class="number">5</span>]=[<span class="number">48</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="序列的拼接"><a class="markdownIt-Anchor" href="#序列的拼接"></a> 序列的拼接</h3>
+<p>+和*都是创建一个新的序列：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c = a+b <span class="comment"># &gt;&gt;&gt;[1,2,3,3,4,5]</span></span><br><span class="line">d = a*<span class="number">3</span> <span class="comment"># &gt;&gt;&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]</span></span><br><span class="line">e = <span class="number">5</span>*<span class="string">&#x27;abc&#x27;</span><span class="comment"># &gt;&gt;&gt;&#x27;abcabcabcabcabc&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>+=和*=可用于对可变序列，如列表和字典，其原理是这些类的内部实现了<code>__iadd__或__imul__</code></p>
+<ul>
+<li>对于可变序列使用时，就地改变数据，数据的内存及ID位置不会变</li>
+</ul>
+<h3 id="序列排序"><a class="markdownIt-Anchor" href="#序列排序"></a> 序列排序</h3>
+<p>list.sort()：就地排序,返回None</p>
+<p>sorted()：对可迭代对象排序生成新对象，如列表、元组及生成器都可以</p>
+<ul>
+<li>
+<p>可选参数：reverse(默认是False，升序输出); key 默认是元素本身的值排序，若设置key=str.lower或key=len可以使其忽略大小写或基于长度排序</p>
+</li>
+<li>
+<p>此外，key关键字可以在很多内置函数中使用，如max() min()</p>
+</li>
+</ul>
+<p>当我们需要进行查找和插入元素并<strong>保持序列的顺序不变</strong>时，可使用bisect模块，其使用二分法进行查找和插入，有需要时再检索即可</p>
+<h3 id="处理数值序列-数组array"><a class="markdownIt-Anchor" href="#处理数值序列-数组array"></a> 处理数值序列-数组array</h3>
+<blockquote>
+<p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
+<p>因为数组背后是对数字的机器翻译——字节标段数</p>
+</blockquote>
+<p>使用数组<a href="https://docs.python.org/3/library/array.html">array</a></p>
+<p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点, 更多类型可查看文档</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
+</li>
+<li>
+<p>array的排序可以通过, a = array.array(a.typecode, sorted(a))</p>
+</li>
+</ul>
+<p>标准库之外：值得学习的Numpy和Scipy库，强大的科学计算工具</p>
+<p>Python内部实现了双向队列的类型collections.deque：线程安全、可以快速从两段添加或删除元素的数据类型</p>
+<h2 id="数据结构字典与集合"><a class="markdownIt-Anchor" href="#数据结构字典与集合"></a> 数据结构——字典与集合</h2>
+<h3 id="字典功能结构"><a class="markdownIt-Anchor" href="#字典功能结构"></a> 字典功能结构</h3>
+<h3 id="字典的构造和推导式"><a class="markdownIt-Anchor" href="#字典的构造和推导式"></a> 字典的构造和推导式</h3>
+<h3 id="字典常用方法"><a class="markdownIt-Anchor" href="#字典常用方法"></a> 字典常用方法</h3>
+<h3 id="键找不到时的处理"><a class="markdownIt-Anchor" href="#键找不到时的处理"></a> 键找不到时的处理</h3>
+<p>常规查找：</p>
+<p>my_dict.get(key, defalut)</p>
+<p>更新处理</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict.setdefault(key, []).append(newvalue)</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> my_dict:</span><br><span class="line">    my_dict[key] = []</span><br><span class="line">my_dict[key].append(newvalue) </span><br></pre></td></tr></table></figure>
+<h3 id="自定义字典"><a class="markdownIt-Anchor" href="#自定义字典"></a> 自定义字典</h3>
+<h2 id="little-tips"><a class="markdownIt-Anchor" href="#little-tips"></a> little tips</h2>
+<ol>
+<li>“_”占位符可以用来过滤一些不需要的输出结果</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>书籍文档学习</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>技术类书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>R语言学习(1)：基础</title>
     <url>/posts/7b2f7b5e/</url>
     <content><![CDATA[<blockquote>
 <p><strong>从Python到R</strong>~</p>
@@ -766,146 +852,6 @@
         <tag>Python</tag>
         <tag>类</tag>
         <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在读书籍:《流畅的Python》</title>
-    <url>/posts/15750410/</url>
-    <content><![CDATA[<blockquote>
-<p>持续阅读并更新</p>
-</blockquote>
-<p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
-<span id="more"></span>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<blockquote>
-<p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
-</blockquote>
-<p>作者本书强调Python的独有特性，专注于基本库。作者表明尽管Python的包索引已经极多，但是他几乎不会提到标准库以外的任何包。</p>
-<p>赞！因为接触过一段时间的工作会发现三方包的性能方面参差不齐，实际中需要代码优化和加速的场景越来越频繁，而如果能够多调用标准库，充分发挥Python特性，我想应该是可以有助于代码运行效率提高的。</p>
-<h2 id="第一部分-python数据模型"><a class="markdownIt-Anchor" href="#第一部分-python数据模型"></a> 第一部分-Python数据模型</h2>
-<blockquote>
-<p>浅浅介绍一下Python一些<strong>数据类型/类</strong>的底层构造模式</p>
-</blockquote>
-<p>要点</p>
-<ol>
-<li>Python中的内置类型实现了很多特殊方法（以双下划线开头如<code>__getitem__()</code>），也就是函数，来实现一些比较基本的操作，如：<strong>迭代/循环、属性访问、对象实例创建删除、字符串表示，文件管理(with…)等</strong></li>
-<li>所以当需要使用内置类型实现上述相关功能时，用<strong>内置的方法：速度更快，优先考虑</strong>，如<code>len(x)</code>，若x是一个内置类型如list的实例，那么运行就快，相当于<strong>走后门</strong>。</li>
-<li>下一部分的主要目的就是熟悉和了解Python内置的<strong>数据类型的底层特性及内置方法</strong>：序列（列表、元组）、字典、集合等，特殊用法，从而提高代码的性能</li>
-</ol>
-<h2 id="数据结构序列列表元组"><a class="markdownIt-Anchor" href="#数据结构序列列表元组"></a> 数据结构——序列(列表+元组…)</h2>
-<blockquote>
-<p>第二部分是数据结构，包含三部分</p>
-<p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
-</blockquote>
-<h3 id="list和推导式"><a class="markdownIt-Anchor" href="#list和推导式"></a> list和推导式</h3>
-<ol>
-<li>
-<p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
-</li>
-<li>
-<p>序列分类</p>
-<ol>
-<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)，后者小而快，前者更灵活</li>
-<li>按是否可变（简单理解为自由增删改）分可变和不可变，如<strong>list dict属于可变</strong>，<strong>str tuple不可变</strong></li>
-</ol>
-</li>
-<li>
-<p>list使用要点：</p>
-<ol>
-<li>多使用<strong>列表推导式</strong>，但一般只用于<strong>创建</strong>新列表，一行不能搞定的也不用</li>
-<li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次
-<ul>
-<li>节省内存，避免额外内存消耗，大数据考虑</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="元组tuple及的使用"><a class="markdownIt-Anchor" href="#元组tuple及的使用"></a> 元组tuple及<code>*</code>的使用</h3>
-<ol>
-<li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
-<li>元组拆包的妙用：显式或隐式的都有，很方便，举例：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 平行复制</span></span><br><span class="line">loc = (<span class="number">33.9</span>, <span class="number">118.5</span>)</span><br><span class="line">lat, lng = loc</span><br><span class="line"><span class="comment"># 函数传参</span></span><br><span class="line">afunc = f(a,b)</span><br><span class="line">z = f(*loc)</span><br><span class="line"><span class="comment"># *处理不确定个数的元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,*b,c,d = <span class="built_in">range</span>(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-<ol>
-<li>具名元组，可以用来构建：
-<ol>
-<li>带字段的元组。表头？是否可以取代表格数据管理还有待探索hh</li>
-<li>有名字的类</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">City = namedtuple(<span class="string">&#x27;City&#x27;</span>, <span class="string">&#x27;name country pop loc&#x27;</span>) <span class="comment">#创建类</span></span><br><span class="line">tolyo = City(<span class="string">&#x27;Tokyo&#x27;</span>,<span class="string">&#x27;JP&#x27;</span>,<span class="number">36.933</span>, (<span class="number">35.7</span>, <span class="number">139.7</span>)) <span class="comment"># 实例化</span></span><br></pre></td></tr></table></figure>
-<h3 id="切片与赋值"><a class="markdownIt-Anchor" href="#切片与赋值"></a> 切片与赋值</h3>
-<blockquote>
-<p>即选取序列中的一段/一部分</p>
-<p>索引从0开始，左闭右开 (a,b]，空表示断点</p>
-</blockquote>
-<ul>
-<li>s[1:5]，选取序列s的第二个到第五个元素</li>
-<li><code>s[a: b:c]</code>，a~b之间以间隔c取值, c值为负数代表倒序取值</li>
-</ul>
-<p>切片赋值时，若左侧为一个切片，右侧应该是可迭代的，即便只有一个值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">alistp[<span class="number">1</span>:<span class="number">5</span>]=[<span class="number">48</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="序列的拼接"><a class="markdownIt-Anchor" href="#序列的拼接"></a> 序列的拼接</h3>
-<p>+和*都是创建一个新的序列：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c = a+b <span class="comment"># &gt;&gt;&gt;[1,2,3,3,4,5]</span></span><br><span class="line">d = a*<span class="number">3</span> <span class="comment"># &gt;&gt;&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]</span></span><br><span class="line">e = <span class="number">5</span>*<span class="string">&#x27;abc&#x27;</span><span class="comment"># &gt;&gt;&gt;&#x27;abcabcabcabcabc&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>+=和*=可用于对可变序列，如列表和字典，其原理是这些类的内部实现了<code>__iadd__或__imul__</code></p>
-<ul>
-<li>对于可变序列使用时，就地改变数据，数据的内存及ID位置不会变</li>
-</ul>
-<h3 id="序列排序"><a class="markdownIt-Anchor" href="#序列排序"></a> 序列排序</h3>
-<p>list.sort()：就地排序,返回None</p>
-<p>sorted()：对可迭代对象排序生成新对象，如列表、元组及生成器都可以</p>
-<ul>
-<li>
-<p>可选参数：reverse(默认是False，升序输出); key 默认是元素本身的值排序，若设置key=str.lower或key=len可以使其忽略大小写或基于长度排序</p>
-</li>
-<li>
-<p>此外，key关键字可以在很多内置函数中使用，如max() min()</p>
-</li>
-</ul>
-<p>当我们需要进行查找和插入元素并<strong>保持序列的顺序不变</strong>时，可使用bisect模块，其使用二分法进行查找和插入，有需要时再检索即可</p>
-<h3 id="处理数值序列-数组array"><a class="markdownIt-Anchor" href="#处理数值序列-数组array"></a> 处理数值序列-数组array</h3>
-<blockquote>
-<p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
-<p>因为数组背后是对数字的机器翻译——字节标段数</p>
-</blockquote>
-<p>使用数组<a href="https://docs.python.org/3/library/array.html">array</a></p>
-<p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点, 更多类型可查看文档</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
-</li>
-<li>
-<p>array的排序可以通过, a = array.array(a.typecode, sorted(a))</p>
-</li>
-</ul>
-<p>标准库之外：值得学习的Numpy和Scipy库，强大的科学计算工具</p>
-<p>Python内部实现了双向队列的类型collections.deque：线程安全、可以快速从两段添加或删除元素的数据类型</p>
-<h2 id="数据结构字典与集合"><a class="markdownIt-Anchor" href="#数据结构字典与集合"></a> 数据结构——字典与集合</h2>
-<h3 id="字典功能结构"><a class="markdownIt-Anchor" href="#字典功能结构"></a> 字典功能结构</h3>
-<h3 id="字典的构造和推导式"><a class="markdownIt-Anchor" href="#字典的构造和推导式"></a> 字典的构造和推导式</h3>
-<h3 id="字典常用方法"><a class="markdownIt-Anchor" href="#字典常用方法"></a> 字典常用方法</h3>
-<h3 id="键找不到时的处理"><a class="markdownIt-Anchor" href="#键找不到时的处理"></a> 键找不到时的处理</h3>
-<p>常规查找：</p>
-<p>my_dict.get(key, defalut)</p>
-<p>更新处理</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict.setdefault(key, []).append(newvalue)</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> my_dict:</span><br><span class="line">    my_dict[key] = []</span><br><span class="line">my_dict[key].append(newvalue) </span><br></pre></td></tr></table></figure>
-<h3 id="自定义字典"><a class="markdownIt-Anchor" href="#自定义字典"></a> 自定义字典</h3>
-<h2 id="little-tips"><a class="markdownIt-Anchor" href="#little-tips"></a> little tips</h2>
-<ol>
-<li>“_”占位符可以用来过滤一些不需要的输出结果</li>
-<li></li>
-</ol>
-]]></content>
-      <categories>
-        <category>书籍文档学习</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>技术类书籍</tag>
       </tags>
   </entry>
   <entry>
@@ -1203,6 +1149,61 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DLL文件及conda模块加载失败</title>
+    <url>/posts/69110d48/</url>
+    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
+<span id="more"></span>
+<p>一般重新安装或者重新配置环境解决。</p>
+<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
+<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
+<blockquote>
+<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
+<ul>
+<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
+<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
+<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
+</ul>
+<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
+<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
+<blockquote>
+<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
+</blockquote>
+<blockquote>
+<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
+</blockquote>
+<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
+<ul>
+<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
+</ul>
+<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
+<ul>
+<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
+<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
+</ul>
+<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
+<ul>
+<li>
+<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
+</li>
+<li>
+<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>conda环境管理</tag>
       </tags>
   </entry>
   <entry>
@@ -1628,7 +1629,7 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas数据选取/条件筛选小结</title>
+    <title>Pandas(1)：数据选取/条件筛选小结</title>
     <url>/posts/f9c7a8a1/</url>
     <content><![CDATA[<p>小结一下Pandas 筛选 表格数据子集的方法作为速查手册……实际中我们的处理分析及可视化往往只是数据表的一部分，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类：</p>
 <ol>
@@ -1704,7 +1705,7 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas拆分及合并字符串列</title>
+    <title>Pandas(杂)：字符串列拆分及合并</title>
     <url>/posts/374675e0/</url>
     <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
 <p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
@@ -2091,6 +2092,109 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
+    <title>矢栅处理(1)：分区统计sjoin|zonal</title>
+    <url>/posts/54103437/</url>
+    <content><![CDATA[<p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
+<p>对于软件，如果点是矢量，则可以直接通过ArcMap/QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
+<span id="more"></span>
+<p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步，这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了。此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</p>
+<h2 id="栅格矢量zonal"><a class="markdownIt-Anchor" href="#栅格矢量zonal"></a> ∑栅格×矢量zonal</h2>
+<p>以统计格网(polygons)内栅格值为例：</p>
+<h3 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h3>
+<ol>
+<li>ArcPy，实现Zonal Statistic<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/zonal-statistics.htm">功能</a>，应该在空间分析工具下，可自行查看文档</li>
+<li>一个<font color="#dd0000">专门用于做分区统计的模块</font><a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，较<strong>推荐</strong>，这里给一个简单的个人案例，统计区划内的高程信息。经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。
+<ul>
+<li>传入统计的矢量数据或geometry类型+栅格图层文件路径即可，输出的是一个字典，可以直接转成df</li>
+<li>也可以自定义计算函数作为统计参数stats</li>
+<li>对于分类的栅格数据可以添加<code>categorical = True</code>参数</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rasterstats <span class="keyword">import</span> zonal_stats</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="comment"># 读取shape矢量文件为gpd，空间区域，也可以通过csv文件创建gpd</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./青海西藏县.shp&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tiffile = <span class="string">&quot;A:/Data/dem.tif&quot;</span> <span class="comment">#栅格文件</span></span><br><span class="line">stats = zonal_stats(gdf,demfile,stats=[<span class="string">&#x27;min&#x27;</span>, <span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;median&#x27;</span>, <span class="string">&#x27;majority&#x27;</span>, <span class="string">&#x27;sum&#x27;</span>])</span><br><span class="line">stats2 = zonal_stats(<span class="string">&quot;./青海西藏县.shp&quot;</span>,demfile,stats=<span class="string">&#x27;count&#x27;</span>)</span><br><span class="line"><span class="comment"># 统计的stats是一个字典，也可以输出geojson,参数geojson_out=True</span></span><br><span class="line"><span class="comment"># 这里我选择拼接两张表并导出统计的结果</span></span><br><span class="line">res = pd.concat([gdf, pd.DataFrame(stats)], axis=<span class="number">1</span>) <span class="comment">#geodataframe </span></span><br><span class="line"><span class="comment"># 再视情况写出即可res.to_file(...)</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>其他暂不探索</li>
+</ol>
+<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
+<blockquote>
+<p>之前汇总过一次全国960w格网的栅格计算，分省计算的，基于的是QGIS的批处理（通过导入参数json文件实现）/也尝试了其Python脚本发现不好用，可能是我还没上手习惯</p>
+</blockquote>
+<ul>
+<li>
+<p>ArcGIS略</p>
+</li>
+<li>
+<p>QGIS：在工具箱搜索zonal或者分区统计即可</p>
+</li>
+</ul>
+<img src="/posts/54103437/image-20220706222730274.png" class alt="image-20220706222730274">
+<p>QGIS批处理，QGIS的脚本不如ArcPy好用，所以批处理之前是用参数导入的方式实现的，但是其参数设置还需要经过一道转换，略显麻烦，但也还行，代码见：</p>
+<img src="/posts/54103437/image-20220706223030773.png" class alt="image-20220706223030773">
+<p>参数设置代码参考，其要求比较严格需要标准的路径、json对象和json文件等，当时debug了好一会~，json的介绍可以我写过的<a href="https://hscyber.github.io/posts/3c868742/">这里</a>，需要设置输入文件、输出文件、栅格波段、计算方式（数量、均值等）、前缀等等</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># infiles是输入的拆分好的960w格网文件</span></span><br><span class="line">inpath = <span class="string">&quot;A:/Data/ChinaGrid/grids_v1/shp&quot;</span></span><br><span class="line">infiles = glob(inpath+<span class="string">&quot;/*.shp&quot;</span>)</span><br><span class="line"><span class="comment"># 这里是为了把双反斜杠\\换成正斜杠/ </span></span><br><span class="line">infiles = [inpath+<span class="string">&quot;/&quot;</span>+os.path.basename(file) <span class="keyword">for</span> file <span class="keyword">in</span> infiles]</span><br><span class="line"><span class="comment"># 全部输出文件，视情况改，我这里因为只换了文件夹</span></span><br><span class="line">outfiles = [infile.replace(<span class="string">&#x27;v1&#x27;</span>,<span class="string">&#x27;v2&#x27;</span>) <span class="keyword">for</span> infile <span class="keyword">in</span> infiles]</span><br><span class="line">paras = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outfiles)):</span><br><span class="line">    infile =  json.dumps(infiles[i])</span><br><span class="line">    <span class="comment"># outfile = json.dumps(outfiles[i])</span></span><br><span class="line">    <span class="comment"># 输入栅格，此处我计算的是同一个栅格，如果多个另外传参数</span></span><br><span class="line">    inraster =  json.dumps(<span class="string">&quot;A:/Data/ChinaGrid/base/china-gaia.tif&quot;</span>)</span><br><span class="line">    prefix = json.dumps(<span class="string">&#x27;imp_&#x27;</span>) <span class="comment"># 前缀</span></span><br><span class="line">    <span class="comment"># 这里搜一下qgis脚本 zonal的参数说明文档，或者先小文件跑看一下输出记录写的参数，1代表数量</span></span><br><span class="line">    statis = json.dumps([<span class="number">1</span>]) </span><br><span class="line">    para = &#123;</span><br><span class="line">        <span class="string">&quot;PARAMETERS&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;INPUT&quot;</span>:infile,</span><br><span class="line">            <span class="string">&quot;INPUT_RASTER&quot;</span>:inraster,</span><br><span class="line">            <span class="string">&quot;RASTER_BAND&quot;</span>:<span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;COLUMN_PREFIX&quot;</span>: prefix,</span><br><span class="line">            <span class="string">&quot;STATISTICS&quot;</span>: statis&#125;,</span><br><span class="line">        <span class="string">&quot;OUTPUTS&quot;</span>: &#123;<span class="string">&quot;OUTPUT&quot;</span>: outfiles[i]&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    paras.append(para)</span><br><span class="line"><span class="built_in">print</span>(paras[<span class="number">0</span>])<span class="comment"># 预览一下</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;A:\Data\ChinaGrid\zonal_batch.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(paras,f)</span><br></pre></td></tr></table></figure>
+<h2 id="点矢量sjoin"><a class="markdownIt-Anchor" href="#点矢量sjoin"></a> ∑点×矢量sjoin</h2>
+<p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
+<h3 id="软件-2"><a class="markdownIt-Anchor" href="#软件-2"></a> 软件</h3>
+<ul>
+<li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
+</ul>
+<img src="/posts/54103437/image-20220706220226879.png" class alt="image-20220706220226879">
+<img src="/posts/54103437/image-20220706220152451.png" class alt="image-20220706220152451">
+<img src="/posts/54103437/image-20220706221509848.png" class alt="image-20220706221509848">
+<ul>
+<li>QGIS：按位置连接，在QGIS工具箱搜索join或者连接都行，其工具检索双语支持，也可以批处理</li>
+</ul>
+<img src="/posts/54103437/image-20220706221352490.png" class alt="image-20220706221352490">
+<h3 id="python-2"><a class="markdownIt-Anchor" href="#python-2"></a> Python</h3>
+<ol>
+<li>一种是基于ArcPy实现Spatial Join工具的脚本即可，查看tool help的代码即可，支持批处理，略</li>
+<li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
+</ol>
+<p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是：**在原有的shapefile表上增加了12列，**每一列对应当月格网内的数量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>空间数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>QGIS</tag>
+        <tag>矢栅统计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(杂)：List/pandas文本包含筛选</title>
+    <url>/posts/4d972282/</url>
+    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
+<span id="more"></span>
+<h2 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h2>
+<blockquote>
+<p>子串包含行筛选</p>
+</blockquote>
+<p>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</p>
+<p>pandas可通过<code>df['text'].str.contains(&quot;keyword1|keyword2...&quot;)</code></p>
+<p>代码举例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
+<h2 id="列表包含"><a class="markdownIt-Anchor" href="#列表包含"></a> 列表包含</h2>
+<p>列表推导</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newlist = [text <span class="keyword">for</span> text <span class="keyword">in</span> texts <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> text <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+<p>如果是列元素是否包含于<strong>list</strong>的筛选：</p>
+<ul>
+<li><code>df2 = df1.loc[df1['ID'].isin(keywords)]</code></li>
+<li>取反则加<code>~</code>，如用户筛选：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>文本筛选</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown语法及Typora使用简介</title>
     <url>/posts/c694f527/</url>
     <content><![CDATA[<p>经常给人安利typora-markdown编辑器，遂在此放一下markdown的基本语法和typora的使用，常用的标记符号不超过十个，上手简单。</p>
@@ -2169,109 +2273,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       <tags>
         <tag>Typora</tag>
         <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>List/pandas文本包含筛选</title>
-    <url>/posts/4d972282/</url>
-    <content><![CDATA[<p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
-<span id="more"></span>
-<h2 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h2>
-<blockquote>
-<p>子串包含行筛选</p>
-</blockquote>
-<p>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</p>
-<p>pandas可通过<code>df['text'].str.contains(&quot;keyword1|keyword2...&quot;)</code></p>
-<p>代码举例：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<h2 id="列表包含"><a class="markdownIt-Anchor" href="#列表包含"></a> 列表包含</h2>
-<p>列表推导</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">newlist = [text <span class="keyword">for</span> text <span class="keyword">in</span> texts <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> text <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-<p>如果是列元素是否包含于<strong>list</strong>的筛选：</p>
-<ul>
-<li><code>df2 = df1.loc[df1['ID'].isin(keywords)]</code></li>
-<li>取反则加<code>~</code>，如用户筛选：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>文本筛选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(1)：分区统计sjoin|zonal</title>
-    <url>/posts/54103437/</url>
-    <content><![CDATA[<p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
-<p>对于软件，如果点是矢量，则可以直接通过ArcMap/QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
-<span id="more"></span>
-<p>具体的实现流程视数据情况而定，数据量大的时候可以考虑看能不能先<strong>分块</strong>再算或者多分几步，这里仅给出一些我的处理案例，数据量更大的可能就需要考虑进一步优化实现思路了。此外：ArcGIS的底层是32位貌似且Python还是2.7的，因此运行会更慢，当然现在慢慢迁移到ArcGIS Pro，但是Pro比较吃电脑配置<strong>很多操作我更加推荐开源的QGIS</strong>，一方面QGIS参数的控制和结果更加细致，且运行速度（Python3.6）和结果预览都更快！</p>
-<h2 id="栅格矢量zonal"><a class="markdownIt-Anchor" href="#栅格矢量zonal"></a> ∑栅格×矢量zonal</h2>
-<p>以统计格网(polygons)内栅格值为例：</p>
-<h3 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h3>
-<ol>
-<li>ArcPy，实现Zonal Statistic<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/zonal-statistics.htm">功能</a>，应该在空间分析工具下，可自行查看文档</li>
-<li>一个<font color="#dd0000">专门用于做分区统计的模块</font><a href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats文档</a>，较<strong>推荐</strong>，这里给一个简单的个人案例，统计区划内的高程信息。经过简单测试发现时间为50秒，而在QGIS中运行耗时150秒，ArcGIS理论上更慢，说明该工具还可以（毕竟底层C++）。
-<ul>
-<li>传入统计的矢量数据或geometry类型+栅格图层文件路径即可，输出的是一个字典，可以直接转成df</li>
-<li>也可以自定义计算函数作为统计参数stats</li>
-<li>对于分类的栅格数据可以添加<code>categorical = True</code>参数</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> rasterstats <span class="keyword">import</span> zonal_stats</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="comment"># 读取shape矢量文件为gpd，空间区域，也可以通过csv文件创建gpd</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./青海西藏县.shp&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">tiffile = <span class="string">&quot;A:/Data/dem.tif&quot;</span> <span class="comment">#栅格文件</span></span><br><span class="line">stats = zonal_stats(gdf,demfile,stats=[<span class="string">&#x27;min&#x27;</span>, <span class="string">&#x27;max&#x27;</span>, <span class="string">&#x27;median&#x27;</span>, <span class="string">&#x27;majority&#x27;</span>, <span class="string">&#x27;sum&#x27;</span>])</span><br><span class="line">stats2 = zonal_stats(<span class="string">&quot;./青海西藏县.shp&quot;</span>,demfile,stats=<span class="string">&#x27;count&#x27;</span>)</span><br><span class="line"><span class="comment"># 统计的stats是一个字典，也可以输出geojson,参数geojson_out=True</span></span><br><span class="line"><span class="comment"># 这里我选择拼接两张表并导出统计的结果</span></span><br><span class="line">res = pd.concat([gdf, pd.DataFrame(stats)], axis=<span class="number">1</span>) <span class="comment">#geodataframe </span></span><br><span class="line"><span class="comment"># 再视情况写出即可res.to_file(...)</span></span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>其他暂不探索</li>
-</ol>
-<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
-<blockquote>
-<p>之前汇总过一次全国960w格网的栅格计算，分省计算的，基于的是QGIS的批处理（通过导入参数json文件实现）/也尝试了其Python脚本发现不好用，可能是我还没上手习惯</p>
-</blockquote>
-<ul>
-<li>
-<p>ArcGIS略</p>
-</li>
-<li>
-<p>QGIS：在工具箱搜索zonal或者分区统计即可</p>
-</li>
-</ul>
-<img src="/posts/54103437/image-20220706222730274.png" class alt="image-20220706222730274">
-<p>QGIS批处理，QGIS的脚本不如ArcPy好用，所以批处理之前是用参数导入的方式实现的，但是其参数设置还需要经过一道转换，略显麻烦，但也还行，代码见：</p>
-<img src="/posts/54103437/image-20220706223030773.png" class alt="image-20220706223030773">
-<p>参数设置代码参考，其要求比较严格需要标准的路径、json对象和json文件等，当时debug了好一会~，json的介绍可以我写过的<a href="https://hscyber.github.io/posts/3c868742/">这里</a>，需要设置输入文件、输出文件、栅格波段、计算方式（数量、均值等）、前缀等等</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># infiles是输入的拆分好的960w格网文件</span></span><br><span class="line">inpath = <span class="string">&quot;A:/Data/ChinaGrid/grids_v1/shp&quot;</span></span><br><span class="line">infiles = glob(inpath+<span class="string">&quot;/*.shp&quot;</span>)</span><br><span class="line"><span class="comment"># 这里是为了把双反斜杠\\换成正斜杠/ </span></span><br><span class="line">infiles = [inpath+<span class="string">&quot;/&quot;</span>+os.path.basename(file) <span class="keyword">for</span> file <span class="keyword">in</span> infiles]</span><br><span class="line"><span class="comment"># 全部输出文件，视情况改，我这里因为只换了文件夹</span></span><br><span class="line">outfiles = [infile.replace(<span class="string">&#x27;v1&#x27;</span>,<span class="string">&#x27;v2&#x27;</span>) <span class="keyword">for</span> infile <span class="keyword">in</span> infiles]</span><br><span class="line">paras = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outfiles)):</span><br><span class="line">    infile =  json.dumps(infiles[i])</span><br><span class="line">    <span class="comment"># outfile = json.dumps(outfiles[i])</span></span><br><span class="line">    <span class="comment"># 输入栅格，此处我计算的是同一个栅格，如果多个另外传参数</span></span><br><span class="line">    inraster =  json.dumps(<span class="string">&quot;A:/Data/ChinaGrid/base/china-gaia.tif&quot;</span>)</span><br><span class="line">    prefix = json.dumps(<span class="string">&#x27;imp_&#x27;</span>) <span class="comment"># 前缀</span></span><br><span class="line">    <span class="comment"># 这里搜一下qgis脚本 zonal的参数说明文档，或者先小文件跑看一下输出记录写的参数，1代表数量</span></span><br><span class="line">    statis = json.dumps([<span class="number">1</span>]) </span><br><span class="line">    para = &#123;</span><br><span class="line">        <span class="string">&quot;PARAMETERS&quot;</span>:&#123;</span><br><span class="line">            <span class="string">&quot;INPUT&quot;</span>:infile,</span><br><span class="line">            <span class="string">&quot;INPUT_RASTER&quot;</span>:inraster,</span><br><span class="line">            <span class="string">&quot;RASTER_BAND&quot;</span>:<span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;COLUMN_PREFIX&quot;</span>: prefix,</span><br><span class="line">            <span class="string">&quot;STATISTICS&quot;</span>: statis&#125;,</span><br><span class="line">        <span class="string">&quot;OUTPUTS&quot;</span>: &#123;<span class="string">&quot;OUTPUT&quot;</span>: outfiles[i]&#125;</span><br><span class="line">        &#125;</span><br><span class="line">    paras.append(para)</span><br><span class="line"><span class="built_in">print</span>(paras[<span class="number">0</span>])<span class="comment"># 预览一下</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;A:\Data\ChinaGrid\zonal_batch.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(paras,f)</span><br></pre></td></tr></table></figure>
-<h2 id="点矢量sjoin"><a class="markdownIt-Anchor" href="#点矢量sjoin"></a> ∑点×矢量sjoin</h2>
-<p>以统计格网(polygons)内点的数量为例，比如我这里统计8w个0.05°格网内微博签到点的数量：</p>
-<h3 id="软件-2"><a class="markdownIt-Anchor" href="#软件-2"></a> 软件</h3>
-<ul>
-<li>ArcMap：右击多边形直接join汇总点，或者通过ArcToolbox~\Analysis Tools.tbx\Overlay\Spatial Join</li>
-</ul>
-<img src="/posts/54103437/image-20220706220226879.png" class alt="image-20220706220226879">
-<img src="/posts/54103437/image-20220706220152451.png" class alt="image-20220706220152451">
-<img src="/posts/54103437/image-20220706221509848.png" class alt="image-20220706221509848">
-<ul>
-<li>QGIS：按位置连接，在QGIS工具箱搜索join或者连接都行，其工具检索双语支持，也可以批处理</li>
-</ul>
-<img src="/posts/54103437/image-20220706221352490.png" class alt="image-20220706221352490">
-<h3 id="python-2"><a class="markdownIt-Anchor" href="#python-2"></a> Python</h3>
-<ol>
-<li>一种是基于ArcPy实现Spatial Join工具的脚本即可，查看tool help的代码即可，支持批处理，略</li>
-<li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
-</ol>
-<p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是：**在原有的shapefile表上增加了12列，**每一列对应当月格网内的数量</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>空间数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>geopandas</tag>
-        <tag>QGIS</tag>
-        <tag>矢栅统计</tag>
       </tags>
   </entry>
   <entry>
