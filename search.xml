@@ -255,34 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title>矢栅处理(杂)：geopandas常用函数小结</title>
-    <url>/posts/57d7f29/</url>
-    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
-<span id="more"></span>
-<blockquote>
-<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
-<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
-<p>创建，读取or写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
-<ul>
-<li>intersects、contains、within、touches、crosses、overlaps</li>
-<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
-<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>空间数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>geopandas</tag>
-        <tag>spatialjoin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pandas(杂)：表格的各种连接方式</title>
     <url>/posts/18b022c/</url>
     <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
@@ -324,6 +296,34 @@
       <tags>
         <tag>join</tag>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(杂)：geopandas常用函数小结</title>
+    <url>/posts/57d7f29/</url>
+    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
+<span id="more"></span>
+<blockquote>
+<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
+<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
+<p>创建，读取or写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
+<ul>
+<li>intersects、contains、within、touches、crosses、overlaps</li>
+<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
+<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>空间数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>spatialjoin</tag>
       </tags>
   </entry>
   <entry>
@@ -1705,37 +1705,6 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>python性能(1)：multiprocessing多进程处理</title>
-    <url>/posts/4b434785/</url>
-    <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
-<span id="more"></span>
-<p>进程的知识点不少，方法也好多类，这里先放一个</p>
-<h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
-<blockquote>
-<p>目前我用的最多的简单粗暴的并行</p>
-</blockquote>
-<p>有大堆数据，需要进行相同的处理（函数）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> cpu_count</span><br><span class="line"><span class="built_in">print</span>(cpu_count())</span><br></pre></td></tr></table></figure>
-<p>上面的函数查看电脑CPU的核数/即最大并行进程数</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
-<p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
-<h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
-<p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
-<ul>
-<li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python性能</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>multiprocessing</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pandas(杂)：字符串列拆分及合并</title>
     <url>/posts/374675e0/</url>
     <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
@@ -1773,6 +1742,37 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Pandas</tag>
         <tag>表格分列及合并</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python性能(1)：multiprocessing多进程处理</title>
+    <url>/posts/4b434785/</url>
+    <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
+<span id="more"></span>
+<p>进程的知识点不少，方法也好多类，这里先放一个</p>
+<h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
+<blockquote>
+<p>目前我用的最多的简单粗暴的并行</p>
+</blockquote>
+<p>有大堆数据，需要进行相同的处理（函数）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> cpu_count</span><br><span class="line"><span class="built_in">print</span>(cpu_count())</span><br></pre></td></tr></table></figure>
+<p>上面的函数查看电脑CPU的核数/即最大并行进程数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
+<p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
+<p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
+<ul>
+<li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python性能</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>multiprocessing</tag>
       </tags>
   </entry>
   <entry>

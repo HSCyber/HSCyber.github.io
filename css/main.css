@@ -1966,6 +1966,7 @@ pre code {
   width: 100%;
 }
 .post-body a {
+  color: #0876e4;
   font-weight: bold;
 }
 .post-body h2 {
@@ -1975,7 +1976,7 @@ pre code {
   margin: 40px 0 25px;
 }
 .post-body blockquote {
-  border-left-color: #9fe2bf;
+  border-left-color: #28b463;
 }
 .post-body ul {
   margin-block-start: 0.5em;
