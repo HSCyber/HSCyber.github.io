@@ -283,6 +283,16 @@
       </tags>
   </entry>
   <entry>
+    <title>image test</title>
+    <url>/posts/2852138d/</url>
+    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
+<img src="/posts/2852138d/test.png" class alt="image">
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pandas(杂)：表格的各种连接方式</title>
     <url>/posts/18b022c/</url>
     <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
@@ -324,62 +334,6 @@
       <tags>
         <tag>join</tag>
         <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>image test</title>
-    <url>/posts/2852138d/</url>
-    <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
-<img src="/posts/2852138d/test.png" class alt="image">
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
-    <url>/posts/e8c71149/</url>
-    <content><![CDATA[<blockquote>
-<p>待补充</p>
-</blockquote>
-<p>本文预计包含以下内容：</p>
-<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>
-④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
-<span id="more"></span>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<blockquote>
-<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
-</blockquote>
-<h2 id="why"><a class="markdownIt-Anchor" href="#why"></a> Why</h2>
-<blockquote>
-<p>为什么要读文献</p>
-<p>为什么要开展背景调研</p>
-</blockquote>
-<h2 id="what"><a class="markdownIt-Anchor" href="#what"></a> What</h2>
-<blockquote>
-<p>文献的类别</p>
-<p>阅读的类别</p>
-</blockquote>
-<h2 id="how-读"><a class="markdownIt-Anchor" href="#how-读"></a> How -&gt;读</h2>
-<blockquote>
-<p>怎么检索查阅及下载文献</p>
-<p>怎么读和记</p>
-</blockquote>
-<h2 id="how-思"><a class="markdownIt-Anchor" href="#how-思"></a> How -&gt; 思</h2>
-<blockquote>
-<p>如何梳理与总结</p>
-</blockquote>
-<h2 id="how-写"><a class="markdownIt-Anchor" href="#how-写"></a> How -&gt; 写</h2>
-<blockquote>
-<p>怎么写科技论文研究背景</p>
-<p>怎么写申报书研究现状</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>文献</tag>
       </tags>
   </entry>
   <entry>
@@ -472,6 +426,52 @@
       <tags>
         <tag>Python</tag>
         <tag>json文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
+    <url>/posts/e8c71149/</url>
+    <content><![CDATA[<blockquote>
+<p>待补充</p>
+</blockquote>
+<p>本文预计包含以下内容：</p>
+<p>①为什么要进行文献调研和现状分析？ ②要把握的重难点是？  ③怎么查文献读文献？<br>
+④ 应用类？方法类？如何总结归纳？   ⑤论文背景部分怎么写？</p>
+<span id="more"></span>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>最近一个多月的时间，由于团队在进行几个项目的申请工作，所以非常密集地针对几个较为宽泛的研究主题进行了<u>文献调研、研究现状归纳总结和撰写研究背景</u>，过程中有了很多收获，遂想花点时间静心整理一下自己入学一年多时间里在读文献，调查研究现状和写背景方面的一些习惯和心得。[这周加班干活，具体内容待闲暇时间补充……20220609]</p>
+</blockquote>
+<h2 id="why"><a class="markdownIt-Anchor" href="#why"></a> Why</h2>
+<blockquote>
+<p>为什么要读文献</p>
+<p>为什么要开展背景调研</p>
+</blockquote>
+<h2 id="what"><a class="markdownIt-Anchor" href="#what"></a> What</h2>
+<blockquote>
+<p>文献的类别</p>
+<p>阅读的类别</p>
+</blockquote>
+<h2 id="how-读"><a class="markdownIt-Anchor" href="#how-读"></a> How -&gt;读</h2>
+<blockquote>
+<p>怎么检索查阅及下载文献</p>
+<p>怎么读和记</p>
+</blockquote>
+<h2 id="how-思"><a class="markdownIt-Anchor" href="#how-思"></a> How -&gt; 思</h2>
+<blockquote>
+<p>如何梳理与总结</p>
+</blockquote>
+<h2 id="how-写"><a class="markdownIt-Anchor" href="#how-写"></a> How -&gt; 写</h2>
+<blockquote>
+<p>怎么写科技论文研究背景</p>
+<p>怎么写申报书研究现状</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>文献</tag>
       </tags>
   </entry>
   <entry>
