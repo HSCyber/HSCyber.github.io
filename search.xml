@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DLL文件及conda模块加载失败</title>
+    <url>/posts/69110d48/</url>
+    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
+<span id="more"></span>
+<p>一般重新安装或者重新配置环境解决。</p>
+<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
+<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
+<blockquote>
+<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
+<ul>
+<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
+<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
+<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
+</ul>
+<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
+<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
+<blockquote>
+<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
+</blockquote>
+<blockquote>
+<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
+</blockquote>
+<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
+<ul>
+<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
+</ul>
+<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
+<ul>
+<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
+<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
+</ul>
+<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
+<ul>
+<li>
+<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
+</li>
+<li>
+<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+        <tag>conda环境管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(杂)：geopandas常用函数小结</title>
+    <url>/posts/57d7f29/</url>
+    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
+<span id="more"></span>
+<blockquote>
+<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
+<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
+<p>创建，读取or写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
+<ul>
+<li>intersects、contains、within、touches、crosses、overlaps</li>
+<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
+<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>spatialjoin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(杂)：表格的各种连接方式</title>
+    <url>/posts/18b022c/</url>
+    <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
+<span id="more"></span>
+<p>在<code>pd.merge(); df.join(); gpd.sjoin()</code>等函数中会用到，只有存在共同字段的列才能连接。否则拼接应该采用<code>pd.concat()</code><a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">函数</a></p>
+<ol>
+<li>
+<p>内连接 (inner join)，一般默认，只保留匹配到的结果</p>
+</li>
+<li>
+<p>左(外)连接 (left join)，以左侧表的连接键唯一值数量为准，左表行数不变</p>
+</li>
+<li>
+<p>右(外)连接 (right join)，右表行数不变</p>
+</li>
+<li>
+<p>全连接 (full join)，在pandas中没有：在数据库中指返回左右表的所有行，缺失处补空值。行数=左表的行数+右表的行数-公共连接行</p>
+</li>
+</ol>
+<p>举例，下面左表<strong>5行</strong>2列，右表-<strong>4行</strong>两列，公共列为fid，fid<strong>公共行数为3行</strong>，结果</p>
+<ul>
+<li>
+<p>内连接返回三行，[‘a’, ‘b’,‘c’]，未匹配的丢弃</p>
+</li>
+<li>
+<p>左连接返回5行，[1,2,3,4,5]，无值则补null</p>
+</li>
+<li>
+<p>右连接返回3行，[3,4,5,7]，无值则补null</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">df1 = pd.DataFrame(data1)</span><br><span class="line">df2 = pd.DataFrame(data2)</span><br><span class="line"><span class="comment"># 查看输出</span></span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>分别输出：</p>
+<img src="/posts/18b022c/image-20220722223231092.png" class alt="image-20220722223231092">
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>join</tag>
+        <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>正则表达式re模块用法</title>
     <url>/posts/da405e24/</url>
     <content><![CDATA[<blockquote>
@@ -146,187 +273,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LOESS(STL)时间序列分解</title>
-    <url>/posts/6e05178d/</url>
-    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
-<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
-<span id="more"></span>
-<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<blockquote>
-<p>时间序列中的”异常”？</p>
-<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
-</blockquote>
-<p>周期：如一个商场的总人口每天24小时的规律变化</p>
-<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
-<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
-<ul>
-<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
-<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
-</ul>
-<p>在异常分析时这是比较常规的方式：</p>
-<ol>
-<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
-<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
-<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
-</ol>
-<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
-<blockquote>
-<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
-</blockquote>
-<blockquote>
-<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
-</blockquote>
-<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
-<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<ul>
-<li>
-<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
-</li>
-<li>
-<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>时间序列分析</category>
-      </categories>
-      <tags>
-        <tag>时间序列分解</tag>
-        <tag>Python</tag>
-        <tag>statsmodels</tag>
-        <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DLL文件及conda模块加载失败</title>
-    <url>/posts/69110d48/</url>
-    <content><![CDATA[<p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
-<span id="more"></span>
-<p>一般重新安装或者重新配置环境解决。</p>
-<p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
-<h2 id="dll文件"><a class="markdownIt-Anchor" href="#dll文件"></a> DLL文件</h2>
-<blockquote>
-<p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
-</blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
-<ul>
-<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
-<li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
-<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
-</ul>
-<p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
-<h2 id="conda版本及包问题"><a class="markdownIt-Anchor" href="#conda版本及包问题"></a> Conda版本及包问题</h2>
-<blockquote>
-<p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
-</blockquote>
-<blockquote>
-<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
-</blockquote>
-<p>个人习惯使用<a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
-<ul>
-<li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
-</ul>
-<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
-<ul>
-<li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
-<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
-</ul>
-<h2 id="部分参考"><a class="markdownIt-Anchor" href="#部分参考"></a> 部分参考</h2>
-<ul>
-<li>
-<p><a href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
-</li>
-<li>
-<p><a href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-        <tag>conda环境管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(杂)：geopandas常用函数小结</title>
-    <url>/posts/57d7f29/</url>
-    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
-<span id="more"></span>
-<blockquote>
-<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
-<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
-<p>创建，读取or写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
-<ul>
-<li>intersects、contains、within、touches、crosses、overlaps</li>
-<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
-<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>空间数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>geopandas</tag>
-        <tag>spatialjoin</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas(杂)：表格的各种连接方式</title>
-    <url>/posts/18b022c/</url>
-    <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
-<span id="more"></span>
-<p>在<code>pd.merge(); df.join(); gpd.sjoin()</code>等函数中会用到，只有存在共同字段的列才能连接。否则拼接应该采用<code>pd.concat()</code><a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">函数</a></p>
-<ol>
-<li>
-<p>内连接 (inner join)，一般默认，只保留匹配到的结果</p>
-</li>
-<li>
-<p>左(外)连接 (left join)，以左侧表的连接键唯一值数量为准，左表行数不变</p>
-</li>
-<li>
-<p>右(外)连接 (right join)，右表行数不变</p>
-</li>
-<li>
-<p>全连接 (full join)，在pandas中没有：在数据库中指返回左右表的所有行，缺失处补空值。行数=左表的行数+右表的行数-公共连接行</p>
-</li>
-</ol>
-<p>举例，下面左表<strong>5行</strong>2列，右表-<strong>4行</strong>两列，公共列为fid，fid<strong>公共行数为3行</strong>，结果</p>
-<ul>
-<li>
-<p>内连接返回三行，[‘a’, ‘b’,‘c’]，未匹配的丢弃</p>
-</li>
-<li>
-<p>左连接返回5行，[1,2,3,4,5]，无值则补null</p>
-</li>
-<li>
-<p>右连接返回3行，[3,4,5,7]，无值则补null</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">df1 = pd.DataFrame(data1)</span><br><span class="line">df2 = pd.DataFrame(data2)</span><br><span class="line"><span class="comment"># 查看输出</span></span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>分别输出：</p>
-<img src="/posts/18b022c/image-20220722223231092.png" class alt="image-20220722223231092">
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>join</tag>
-        <tag>Pandas</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>image test</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -337,7 +283,7 @@
       </categories>
   </entry>
   <entry>
-    <title>Python中的Json文件处理</title>
+    <title>Python处理Json文件</title>
     <url>/posts/3c868742/</url>
     <content><![CDATA[<p>本文小结JSON相关的一些知识点和读写方式，涉及内容</p>
 <p>①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例/非标准JSON文件处理</p>
@@ -424,8 +370,8 @@
         <category>Python基础</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>json文件</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -518,7 +464,61 @@
       </tags>
   </entry>
   <entry>
-    <title>矢栅处理(5)：R,nc转多张Geotif</title>
+    <title>时间序列(1)：LOESS(STL)时间序列分解</title>
+    <url>/posts/6e05178d/</url>
+    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
+<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
+<span id="more"></span>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+<blockquote>
+<p>时间序列中的”异常”？</p>
+<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
+</blockquote>
+<p>周期：如一个商场的总人口每天24小时的规律变化</p>
+<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
+<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
+<ul>
+<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
+<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
+</ul>
+<p>在异常分析时这是比较常规的方式：</p>
+<ol>
+<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
+<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
+<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
+</ol>
+<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
+<blockquote>
+<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
+</blockquote>
+<blockquote>
+<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
+</blockquote>
+<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
+<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li>
+<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
+</li>
+<li>
+<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>时间序列分解</tag>
+        <tag>statsmodels</tag>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(5)：R语言nc转多张Geotif</title>
     <url>/posts/ef2a4876/</url>
     <content><![CDATA[<p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
 <span id="more"></span>
@@ -540,7 +540,7 @@
 <p>不过不能直接按照shapefile边界形状裁剪？</p>
 ]]></content>
       <categories>
-        <category>空间数据处理分析</category>
+        <category>时空数据处理分析</category>
       </categories>
       <tags>
         <tag>R语言</tag>
@@ -955,7 +955,7 @@
 <ul>
 <li>简单来说，netcdf是一个包含多自变量及其函数的文件。用公式来说就是f(x,y,z,…)=value，同时存储了xyz</li>
 <li>函数的自变量x,y,z等在netcdf中叫做维(dimension) 或坐标轴(axix),<code>ds.dimensions</code>可以看到维度的信息</li>
-<li>函数值即自变量均存储在(Variables)，<code>ds.variables</code>属性则存储了数据的详细信息及数组文件。</li>
+<li>函数值与自变量均存储在(Variables)，<code>ds.variables</code>属性则存储了数据的详细信息及数组文件。</li>
 </ul>
 <p>具体案例见下方示例：</p>
 <h2 id="python读nc文件"><a class="markdownIt-Anchor" href="#python读nc文件"></a> Python读nc文件</h2>
@@ -977,13 +977,137 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp = dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>][<span class="number">1</span>,:,:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp</span><br><span class="line">masked_array(</span><br><span class="line">  data=[[--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        ...,</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --]],</span><br><span class="line">  mask=[[ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        ...,</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>]],</span><br><span class="line">  fill_value=nan,</span><br><span class="line">  dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp.data</span><br><span class="line">array([[nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       ...,</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>空间数据处理分析</category>
+        <category>时空数据处理分析</category>
       </categories>
       <tags>
         <tag>Python</tag>
         <tag>R语言</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(3)：Python读写GeoTIFF</title>
+    <url>/posts/f61ccf5/</url>
+    <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+<span id="more"></span>
+<ul>
+<li>关于h5文件和nc文件的读写后续总结</li>
+</ul>
+<h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
+<h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
+<blockquote>
+<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
+</blockquote>
+<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
+<ul>
+<li>像元值，纯数值矩阵numpy ndarray
+<ul>
+<li>矩阵的维度——行列数+波段数</li>
+<li>矩阵的数值及<a href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64
+<ul>
+<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
+<li>float16, float32, float64</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>地理参考/空间位置信息
+<ul>
+<li>空间范围Extent，矩形框四个角的范围</li>
+<li>坐标系：地理坐标系及投影坐标系，如果深究坐标参考系的信息较为丰富</li>
+<li>分辨率，或行列数、空值 Nodata value、图层个数等</li>
+</ul>
+</li>
+<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆=该点的值</li>
+<li><strong><font color="#dd0000">数据读取和处理等中间过程可通过numpy数组完成，涉及空间运算时把位置信息加入生成进行处理即可</font></strong></li>
+</ul>
+<h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
+<blockquote>
+<p>简要版，更多的参数设置查看文档：<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a href="https://gdal.org/index.html">gdal2</a>. 仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
+</blockquote>
+<p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
+<h3 id="rasterio推荐"><a class="markdownIt-Anchor" href="#rasterio推荐"></a> rasterio(推荐)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
+<blockquote>
+<p>更为底层，前者实际上是基于gdal完成的读写</p>
+<p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
+</blockquote>
+<p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
+<p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
+<p>GDALDataType, 如gdal.GDT_Byte</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">enum GDALDataType</th>
+<th style="text-align:center">对应numpy类型</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GDT_Byte</td>
+<td style="text-align:center">np.uint8</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt16, GDT_Int16</td>
+<td style="text-align:center">np.uint16, np.int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt32, GDT_Int32</td>
+<td style="text-align:center">np.uint32, np.int32</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt64, GDT_Int64</td>
+<td style="text-align:center">np.uint64, np.int64</td>
+<td style="text-align:center">GDAL &gt;= 3.5</td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_Float32， GDT_Float64</td>
+<td style="text-align:center">np.float32, np.float64</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CInt16，GDT_CInt32</td>
+<td style="text-align:center">Complex Int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CFloat32，GDT_CFloat64</td>
+<td style="text-align:center">Complex Float32</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>写出方法1: Create</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
+<p>写出方法2: CreateCopy</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
+<h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
+<p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
+<li><a href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
+<li><a href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
+<li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
+<li><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>GeoTIFF</tag>
+        <tag>栅格文件读写</tag>
+        <tag>GDAL</tag>
+        <tag>Rasterio</tag>
       </tags>
   </entry>
   <entry>
@@ -1124,135 +1248,11 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%timeit</span><br><span class="line">file = <span class="string">&#x27;...tif&#x27;</span></span><br><span class="line">ds = gdal.Open(file)</span><br><span class="line">im_data = ds.ReadAsArray()</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>空间数据处理分析</category>
+        <category>时空数据处理分析</category>
       </categories>
       <tags>
         <tag>GeoTIFF</tag>
         <tag>栅格数据压缩</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(3)：Python读写GeoTIFF</title>
-    <url>/posts/f61ccf5/</url>
-    <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
-<span id="more"></span>
-<ul>
-<li>关于h5文件和nc文件的读写后续总结</li>
-</ul>
-<h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
-<h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
-<blockquote>
-<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
-</blockquote>
-<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
-<ul>
-<li>像元值，纯数值矩阵numpy ndarray
-<ul>
-<li>矩阵的维度——行列数+波段数</li>
-<li>矩阵的数值及<a href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64
-<ul>
-<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
-<li>float16, float32, float64</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>地理参考/空间位置信息
-<ul>
-<li>空间范围Extent，矩形框四个角的范围</li>
-<li>坐标系：地理坐标系及投影坐标系，如果深究坐标参考系的信息较为丰富</li>
-<li>分辨率，或行列数、空值 Nodata value、图层个数等</li>
-</ul>
-</li>
-<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆=该点的值</li>
-<li><strong><font color="#dd0000">数据读取和处理等中间过程可通过numpy数组完成，涉及空间运算时把位置信息加入生成进行处理即可</font></strong></li>
-</ul>
-<h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
-<blockquote>
-<p>简要版，更多的参数设置查看文档：<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a href="https://gdal.org/index.html">gdal2</a>. 仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
-</blockquote>
-<p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
-<h3 id="rasterio推荐"><a class="markdownIt-Anchor" href="#rasterio推荐"></a> rasterio(推荐)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
-<blockquote>
-<p>更为底层，前者实际上是基于gdal完成的读写</p>
-<p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
-</blockquote>
-<p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
-<p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
-<p>GDALDataType, 如gdal.GDT_Byte</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">enum GDALDataType</th>
-<th style="text-align:center">对应numpy类型</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">GDT_Byte</td>
-<td style="text-align:center">np.uint8</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt16, GDT_Int16</td>
-<td style="text-align:center">np.uint16, np.int16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt32, GDT_Int32</td>
-<td style="text-align:center">np.uint32, np.int32</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt64, GDT_Int64</td>
-<td style="text-align:center">np.uint64, np.int64</td>
-<td style="text-align:center">GDAL &gt;= 3.5</td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_Float32， GDT_Float64</td>
-<td style="text-align:center">np.float32, np.float64</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_CInt16，GDT_CInt32</td>
-<td style="text-align:center">Complex Int16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_CFloat32，GDT_CFloat64</td>
-<td style="text-align:center">Complex Float32</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<p>写出方法1: Create</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
-<p>写出方法2: CreateCopy</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
-<h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
-<p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<ol>
-<li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
-<li><a href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
-<li><a href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
-<li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
-<li><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>空间数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>GeoTIFF</tag>
-        <tag>栅格文件读写</tag>
-        <tag>GDAL</tag>
-        <tag>Rasterio</tag>
       </tags>
   </entry>
   <entry>
@@ -1284,7 +1284,7 @@
       </tags>
   </entry>
   <entry>
-    <title>随笔随机-2022/520</title>
+    <title>随笔随记-2022/520</title>
     <url>/posts/29d41ed/</url>
     <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
 <p>When I started loving myself, Charlie Chaplin</p>
@@ -2228,10 +2228,10 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <li>使用geopandas <a href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">sjoin</a>，但是没法直接一步到位，以下是我的处理，先sjoin在merge，剔除无关字段</li>
 </ol>
 <p>我这里需要按月统计所有格网内的微博点数量，列名等参数可以自行更改，count()也可以换成求和或求值等，或者同时计算更多的类型使用pivot table，此处最后的结果是：**在原有的shapefile表上增加了12列，**每一列对应当月格网内的数量</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids2是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">grids3 = grids2.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, grids3[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    grids3 = pd.merge(left = grids3,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    grids3[new_name] = grids3[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">outdir = <span class="string">r&quot;A:\my_research\dataset\wb1720\2017m&quot;</span></span><br><span class="line"><span class="comment"># grids是我的格网文件，wb2017是全年的微博</span></span><br><span class="line">polygons = grids.copy(deep=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> month, table <span class="keyword">in</span> wb2017.groupby(<span class="string">&#x27;month&#x27;</span>):</span><br><span class="line">    outfile = outdir+<span class="string">&quot;\\m&quot;</span>+<span class="built_in">str</span>(month)+<span class="string">&quot;.shp&quot;</span></span><br><span class="line">    <span class="comment"># 按月输出微博文件，也可以忽略</span></span><br><span class="line">    table.to_file(outfile, encoding=<span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">    <span class="comment">#统计数量，按照格网id gid。_id为微博的唯一di用于计数</span></span><br><span class="line">    <span class="comment"># 如果是某列求和则更改groupby函数及count()为其他函数即可</span></span><br><span class="line">    table_sjoin = gpd.sjoin(table, polygons[[<span class="string">&#x27;gid&#x27;</span>, <span class="string">&#x27;geometry&#x27;</span>]])</span><br><span class="line">    table_df = pd.DataFrame(table_sjoin.groupby(<span class="string">&#x27;gid&#x27;</span>)[<span class="string">&#x27;_id&#x27;</span>].count())</span><br><span class="line">    table_df = table_df.reset_index()</span><br><span class="line">    new_name = <span class="string">&quot;count_m&quot;</span>+<span class="built_in">str</span>(month)</span><br><span class="line">    table_df = table_df.rename(columns=&#123;<span class="string">&#x27;_id&#x27;</span>:new_name&#125;)</span><br><span class="line">    <span class="comment"># 连接表格</span></span><br><span class="line">    polygons = pd.merge(left = polygons,right=table_df, on=<span class="string">&#x27;gid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>).fillna(<span class="number">0</span>)</span><br><span class="line">    polygons[new_name] = polygons[new_name].astype(<span class="string">&#x27;int32&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(month)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>空间数据处理分析</category>
+        <category>时空数据处理分析</category>
       </categories>
       <tags>
         <tag>geopandas</tag>
