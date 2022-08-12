@@ -969,8 +969,54 @@
       <tags>
         <tag>Python</tag>
         <tag>Geopandas</tag>
-        <tag>rasterio</tag>
+        <tag>Rasterio</tag>
         <tag>Extract</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(4)：NC文件读写</title>
+    <url>/posts/448bb583/</url>
+    <content><![CDATA[<p><a href="https://en.wikipedia.org/wiki/NetCDF">NC文件</a>由于便捷存储多维数据（如大范围长时间序列），因而广泛用于气候，气象数据存储及交换。python文档<a href="https://unidata.github.io/netcdf4-python/">netCDF4</a></p>
+<span id="more"></span>
+<p>安装：conda install -c conda-forge netcdf4</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> netCDF4 <span class="keyword">as</span> nc</span><br><span class="line"><span class="keyword">from</span> netCDF4 <span class="keyword">import</span> Dataset</span><br></pre></td></tr></table></figure>
+<h2 id="netcdf"><a class="markdownIt-Anchor" href="#netcdf"></a> NetCDF</h2>
+<blockquote>
+<p>NetCDF (Network Common Data Form)，网络通用数据格式</p>
+</blockquote>
+<p>NC文件包括以下几个属性</p>
+<ul>
+<li>简单来说，netcdf是一个包含多自变量及其函数的文件。用公式来说就是f(x,y,z,…)=value，同时存储了xyz</li>
+<li>函数的自变量x,y,z等在netcdf中叫做维(dimension) 或坐标轴(axix),<code>ds.dimensions</code>可以看到维度的信息</li>
+<li>函数值与自变量均存储在(Variables)，<code>ds.variables</code>属性则存储了数据的详细信息及数组文件。</li>
+</ul>
+<p>具体案例见下方示例：</p>
+<h2 id="python读nc文件"><a class="markdownIt-Anchor" href="#python读nc文件"></a> Python读nc文件</h2>
+<p>netCDF文件有五种（NETCDF3_CLASSIC, NETCDF3_64BIT_OFFSET, NETCDF3_64BIT_DATA, NETCDF4_CLASSIC和NETCDF4）读取之后<code>ds.data_model</code>输出可以看到其实际存储格式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ncfile = <span class="string">&#x27;E:\\Datasets\\temp\\China_1km_maxtmp_2017.nc&#x27;</span></span><br><span class="line">ds = Dataset(ncfile, <span class="string">&quot;r&quot;</span>, <span class="built_in">format</span>=<span class="string">&quot;NETCDF4&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(ds.data_model)</span><br><span class="line"><span class="comment"># ds.close()</span></span><br></pre></td></tr></table></figure>
+<p>常见属性举例：时间这里是从1800年开始按天算的，实际中都要自行判断并转换，这里的温度的单位是K</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds.dimensions</span><br><span class="line">&#123;<span class="string">&#x27;lon&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lon&#x27;</span>, size = <span class="number">7386</span>,</span><br><span class="line"> <span class="string">&#x27;lat&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lat&#x27;</span>, size = <span class="number">4267</span>,</span><br><span class="line"> <span class="string">&#x27;time&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt; (unlimited): name = <span class="string">&#x27;time&#x27;</span>, size = <span class="number">365</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds_dict = ds.variables</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict.keys()</span><br><span class="line">dict_keys([<span class="string">&#x27;time&#x27;</span>, <span class="string">&#x27;lon&#x27;</span>, <span class="string">&#x27;lat&#x27;</span>, <span class="string">&#x27;maxtmp&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据信息</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;time&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 time(time)</span><br><span class="line">    units: days since <span class="number">1800</span>-01-01 <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">    standard_name: time</span><br><span class="line">    calendar: proleptic_gregorian</span><br><span class="line">    long_name: Time</span><br><span class="line">    axis: T</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 lon(lon)</span><br><span class="line">    standard_name: longitude</span><br><span class="line">    long_name: Longitude</span><br><span class="line">    units: degrees_east</span><br><span class="line">    axis: X</span><br><span class="line">unlimited dimensions: </span><br><span class="line">current shape = (<span class="number">7386</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 maxtmp(time, lat, lon)</span><br><span class="line">    _FillValue: nan</span><br><span class="line">    scale_factor: <span class="number">0.01</span></span><br><span class="line">    add_offset: <span class="number">273.15</span></span><br><span class="line">    units: K</span><br><span class="line">    long_name: Daily Maximum Near-Surface Air Temperature</span><br><span class="line">    standard_name: air_temperature</span><br><span class="line">    missing_value: nan</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>, <span class="number">4267</span>, <span class="number">7386</span>)</span><br><span class="line">filling on</span><br></pre></td></tr></table></figure>
+<p>数据矩阵访问，通常是掩码数组，这里是False，相当于无掩码，普通数组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>][:]</span><br><span class="line">masked_array(data=[ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>,</span><br><span class="line">                   <span class="number">134.9803</span> , <span class="number">134.98863</span>],</span><br><span class="line">             mask=<span class="literal">False</span>,</span><br><span class="line">       fill_value=<span class="number">1e+20</span>,</span><br><span class="line">            dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>array_lon = dt_dict[<span class="string">&#x27;lon&#x27;</span>][:].data</span><br><span class="line">array([ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>, <span class="number">134.9803</span> ,</span><br><span class="line">       <span class="number">134.98863</span>], dtype=float32)</span><br></pre></td></tr></table></figure>
+<p>其他类似，后面的操作都是<strong>numy多维数组</strong>的操作了</p>
+<ul>
+<li>
+<p>访问某天的全区域的数据<code>[1,:,:]</code>，也可以输入特定经纬度索引范围</p>
+</li>
+<li>
+<p>访问某点的时间序列数据<code>[:,index_lon,index_lat]</code></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp = dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>][<span class="number">1</span>,:,:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp</span><br><span class="line">masked_array(</span><br><span class="line">  data=[[--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        ...,</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --]],</span><br><span class="line">  mask=[[ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        ...,</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>]],</span><br><span class="line">  fill_value=nan,</span><br><span class="line">  dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp.data</span><br><span class="line">array([[nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       ...,</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>R语言</tag>
+        <tag>netCDF4</tag>
+        <tag>NC文件</tag>
       </tags>
   </entry>
   <entry>
@@ -1092,55 +1138,9 @@
       </categories>
       <tags>
         <tag>GeoTIFF</tag>
+        <tag>Rasterio</tag>
         <tag>栅格文件读写</tag>
         <tag>GDAL</tag>
-        <tag>Rasterio</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(4)：NC文件读写</title>
-    <url>/posts/448bb583/</url>
-    <content><![CDATA[<p><a href="https://en.wikipedia.org/wiki/NetCDF">NC文件</a>由于便捷存储多维数据（如大范围长时间序列），因而广泛用于气候，气象数据存储及交换。python文档<a href="https://unidata.github.io/netcdf4-python/">netCDF4</a></p>
-<span id="more"></span>
-<p>安装：conda install -c conda-forge netcdf4</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> netCDF4 <span class="keyword">as</span> nc</span><br><span class="line"><span class="keyword">from</span> netCDF4 <span class="keyword">import</span> Dataset</span><br></pre></td></tr></table></figure>
-<h2 id="netcdf"><a class="markdownIt-Anchor" href="#netcdf"></a> NetCDF</h2>
-<blockquote>
-<p>NetCDF (Network Common Data Form)，网络通用数据格式</p>
-</blockquote>
-<p>NC文件包括以下几个属性</p>
-<ul>
-<li>简单来说，netcdf是一个包含多自变量及其函数的文件。用公式来说就是f(x,y,z,…)=value，同时存储了xyz</li>
-<li>函数的自变量x,y,z等在netcdf中叫做维(dimension) 或坐标轴(axix),<code>ds.dimensions</code>可以看到维度的信息</li>
-<li>函数值与自变量均存储在(Variables)，<code>ds.variables</code>属性则存储了数据的详细信息及数组文件。</li>
-</ul>
-<p>具体案例见下方示例：</p>
-<h2 id="python读nc文件"><a class="markdownIt-Anchor" href="#python读nc文件"></a> Python读nc文件</h2>
-<p>netCDF文件有五种（NETCDF3_CLASSIC, NETCDF3_64BIT_OFFSET, NETCDF3_64BIT_DATA, NETCDF4_CLASSIC和NETCDF4）读取之后<code>ds.data_model</code>输出可以看到其实际存储格式。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ncfile = <span class="string">&#x27;E:\\Datasets\\temp\\China_1km_maxtmp_2017.nc&#x27;</span></span><br><span class="line">ds = Dataset(ncfile, <span class="string">&quot;r&quot;</span>, <span class="built_in">format</span>=<span class="string">&quot;NETCDF4&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(ds.data_model)</span><br><span class="line"><span class="comment"># ds.close()</span></span><br></pre></td></tr></table></figure>
-<p>常见属性举例：时间这里是从1800年开始按天算的，实际中都要自行判断并转换，这里的温度的单位是K</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds.dimensions</span><br><span class="line">&#123;<span class="string">&#x27;lon&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lon&#x27;</span>, size = <span class="number">7386</span>,</span><br><span class="line"> <span class="string">&#x27;lat&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lat&#x27;</span>, size = <span class="number">4267</span>,</span><br><span class="line"> <span class="string">&#x27;time&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt; (unlimited): name = <span class="string">&#x27;time&#x27;</span>, size = <span class="number">365</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds_dict = ds.variables</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict.keys()</span><br><span class="line">dict_keys([<span class="string">&#x27;time&#x27;</span>, <span class="string">&#x27;lon&#x27;</span>, <span class="string">&#x27;lat&#x27;</span>, <span class="string">&#x27;maxtmp&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据信息</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;time&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 time(time)</span><br><span class="line">    units: days since <span class="number">1800</span>-01-01 <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">    standard_name: time</span><br><span class="line">    calendar: proleptic_gregorian</span><br><span class="line">    long_name: Time</span><br><span class="line">    axis: T</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 lon(lon)</span><br><span class="line">    standard_name: longitude</span><br><span class="line">    long_name: Longitude</span><br><span class="line">    units: degrees_east</span><br><span class="line">    axis: X</span><br><span class="line">unlimited dimensions: </span><br><span class="line">current shape = (<span class="number">7386</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 maxtmp(time, lat, lon)</span><br><span class="line">    _FillValue: nan</span><br><span class="line">    scale_factor: <span class="number">0.01</span></span><br><span class="line">    add_offset: <span class="number">273.15</span></span><br><span class="line">    units: K</span><br><span class="line">    long_name: Daily Maximum Near-Surface Air Temperature</span><br><span class="line">    standard_name: air_temperature</span><br><span class="line">    missing_value: nan</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>, <span class="number">4267</span>, <span class="number">7386</span>)</span><br><span class="line">filling on</span><br></pre></td></tr></table></figure>
-<p>数据矩阵访问，通常是掩码数组，这里是False，相当于无掩码，普通数组</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>][:]</span><br><span class="line">masked_array(data=[ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>,</span><br><span class="line">                   <span class="number">134.9803</span> , <span class="number">134.98863</span>],</span><br><span class="line">             mask=<span class="literal">False</span>,</span><br><span class="line">       fill_value=<span class="number">1e+20</span>,</span><br><span class="line">            dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>array_lon = dt_dict[<span class="string">&#x27;lon&#x27;</span>][:].data</span><br><span class="line">array([ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>, <span class="number">134.9803</span> ,</span><br><span class="line">       <span class="number">134.98863</span>], dtype=float32)</span><br></pre></td></tr></table></figure>
-<p>其他类似，后面的操作都是<strong>numy多维数组</strong>的操作了</p>
-<ul>
-<li>
-<p>访问某天的全区域的数据<code>[1,:,:]</code>，也可以输入特定经纬度索引范围</p>
-</li>
-<li>
-<p>访问某点的时间序列数据<code>[:,index_lon,index_lat]</code></p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp = dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>][<span class="number">1</span>,:,:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp</span><br><span class="line">masked_array(</span><br><span class="line">  data=[[--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        ...,</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --]],</span><br><span class="line">  mask=[[ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        ...,</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>]],</span><br><span class="line">  fill_value=nan,</span><br><span class="line">  dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp.data</span><br><span class="line">array([[nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       ...,</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>R语言</tag>
-        <tag>netCDF4</tag>
-        <tag>NC文件</tag>
       </tags>
   </entry>
   <entry>
@@ -1857,7 +1857,7 @@ height = 12\times 2.54 = 30.48cm
   <entry>
     <title>python性能(1)：multiprocessing多进程处理</title>
     <url>/posts/4b434785/</url>
-    <content><![CDATA[<p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
+    <content><![CDATA[<p>这个系列放涉及Python性能相关的处理，总的来说<font color="#dd0000">除了优化代码逻辑和数据结构，其他的就是增加资源、时间换空间、空间换时间</font>。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
 <span id="more"></span>
 <p>进程的知识点不少，方法也好多类，这里先放一个</p>
 <h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
@@ -1883,6 +1883,30 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Python</tag>
         <tag>multiprocessing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python性能(2)：大文件处理思路</title>
+    <url>/posts/a8ff5b9/</url>
+    <content><![CDATA[<p>本文小结一下处理大型文件的常规思路。Python借助Pandas处理表格文件很方便，但是涉及一下大的文件，比如需要处理单个**70G（笔记本内存一般16G）**的csv或者txt文件，显然不能够整个将其读取运存进行分析和运算，目前我的一般思路是<u>读取时分块，运算时并行，写出时压缩</u>。</p>
+<span id="more"></span>
+<h2 id="分块读取"><a class="markdownIt-Anchor" href="#分块读取"></a> 分块读取</h2>
+<blockquote></blockquote>
+<h2 id="并行运算"><a class="markdownIt-Anchor" href="#并行运算"></a> 并行运算</h2>
+<blockquote>
+<p>高效处理的一些模块和函数+Python中的多进程</p>
+</blockquote>
+<h2 id="写出压缩"><a class="markdownIt-Anchor" href="#写出压缩"></a> 写出压缩</h2>
+<blockquote>
+<p>尤其是对于中间计算过程的文件或者是仅用作备份的文件</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Python性能</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -2276,6 +2300,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
     <title>数据抓取(1)：Python网络爬虫学习与参考</title>
     <url>/posts/5374e378/</url>
     <content><![CDATA[<p>爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。</p>
+<span id="more"></span>
 <h2 id="爬虫原理"><a class="markdownIt-Anchor" href="#爬虫原理"></a> 爬虫原理</h2>
 <blockquote>
 <p>主要针对平台提供的或网站上呈现的数据。</p>
@@ -2297,7 +2322,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 </ol>
 <p>所以平台会对数据的请求进行限制（反爬措施），如增加验证码，给内容加密，限制用户和IP访问的频率等等，所以实际数据抓取的难点在于<strong>反反爬</strong>hh.</p>
 <h3 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h3>
-<h4 id="常规数据抓取"><a class="markdownIt-Anchor" href="#常规数据抓取"></a> 常规数据抓取</h4>
 <p><strong>普通网页的url提取</strong></p>
 <p>一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的</p>
 <ul>

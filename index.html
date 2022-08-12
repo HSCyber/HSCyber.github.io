@@ -92,9 +92,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">50</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">49</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">33</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">34</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -165,7 +165,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -176,7 +176,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -291,70 +291,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。</p>
-<h2 id="爬虫原理"><a class="markdownIt-Anchor" href="#爬虫原理"></a> 爬虫原理</h2>
-<blockquote>
-<p>主要针对平台提供的或网站上呈现的数据。</p>
-</blockquote>
-<h3 id="原理简介"><a class="markdownIt-Anchor" href="#原理简介"></a> 原理简介</h3>
-<p>爬虫是一个<strong>可以获取网页上的信息</strong>自动化脚本/程序。</p>
-<p>举例来说：我们打开任何的外部网站，在地址栏都会有一个连接(url)，这个网站打开之后就会自动加载页面，包括呈现的数据，比如打开淘宝会呈现商品，我们下拉会继续刷新网页提供新的商品信息……这个过程，回车打开网页即是对特定的url<strong>发送请求</strong>，url所有者（<strong>服务器端</strong>）收到请求后处理解析，然后<strong>发送响应内容</strong>，也就是我们看到的内容，不断下拉也会触发请求从而服务器动态给我们提供信息。这个过程就是一个数据请求的过程<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.1-HTTP%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">具体可自行查阅或看</a>。</p>
-<p>写爬虫也就是通过代码（此处指Python）来<strong>批量多次</strong></p>
-<ol>
-<li>按要求发送请求</li>
-<li>接收响应结果（网页信息或数据）</li>
-<li>解析并将需要的信息保存到本地</li>
-</ol>
-<p>我们的学习主要在于学会<strong>解析网页和涉及到的常用Python库的使用</strong>。</p>
-<p>对于一般的网页我们可以很顺利地完成数据抓取工作，最多多花点时间总能搞定。但是对于另一些平台，由于</p>
-<ol>
-<li>平台数据宝贵或者涉及安全利益等等，不能免费共享</li>
-<li>请求过于频繁会对平台的服务器造成较大的压力（频繁的I/O），造成额外的资源开销</li>
-</ol>
-<p>所以平台会对数据的请求进行限制（反爬措施），如增加验证码，给内容加密，限制用户和IP访问的频率等等，所以实际数据抓取的难点在于<strong>反反爬</strong>hh.</p>
-<h3 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h3>
-<h4 id="常规数据抓取"><a class="markdownIt-Anchor" href="#常规数据抓取"></a> 常规数据抓取</h4>
-<p><strong>普通网页的url提取</strong></p>
-<p>一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的</p>
-<ul>
-<li>当然，很多时候如果是浏览器的话实际上有很多可用的插件，比如这里推荐一个我一直在用的chrome插件<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/simple-mass-downloader/abdkkegmcbiomijcbdaodaflgehfffed?utm_source=chrome-ntp-icon">Simple mass downloader</a>，以及这个更高级一点的免费抓取工具<a target="_blank" rel="noopener" href="https://webscraper.io/">webscraper</a>，提供了<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?utm_source=chrome-ntp-icon">chrome插件</a>，之前我用过，它可以同来实现多个网页的复杂的抓取，而且不需要写代码，按钮点击式</li>
-<li>其他可以自行探索</li>
-</ul>
-<p><strong>API接口式抓取</strong></p>
-<p>比如<a target="_blank" rel="noopener" href="https://lbs.amap.com/api/webservice/guide/api/newpoisearch">高德开放平台</a>提供的poi搜索，就把接口都给用户准备好了，我们只需要按流程申请key，再按照自己的需求输入参数，就可以发起请求获取poi的结果，即<strong>按要求构建url发送请求，平台服务器端会自动返给我们json数据</strong></p>
-<ul>
-<li>请求的url：<a target="_blank" rel="noopener" href="https://restapi.amap.com/v5/place/text?parameters">https://restapi.amap.com/v5/place/text?parameters</a></li>
-<li>最终的输入实际大致会是：<a target="_blank" rel="noopener" href="https://restapi.amap.com/v5/place/text?key=%7B...%7D&amp;types=120000&amp;">https://restapi.amap.com/v5/place/text?key={...}&amp;types=120000&amp;</a>…</li>
-<li>然后通过代码批量自动完成该过程</li>
-</ul>
-<h2 id="学习参考"><a class="markdownIt-Anchor" href="#学习参考"></a> 学习参考</h2>
-<blockquote>
-<p>掌握了基本的网页知识和抓取工具用法之后就可以试着抓取一些数据，实践上手是学习最快的方式，尤其是被迫不得不自己动手的时候hh</p>
-</blockquote>
-<p>我个人学习爬虫是断断续续的，一开始主要是看的这位大佬的书籍《Python3网络爬虫开发实战》<a target="_blank" rel="noopener" href="https://item.jd.com/13527222.html">jd</a>和网站<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">博客</a>，先是把书看了个大概，了解网页的一些基础和工具基础，再模仿着书上的案例。</p>
-<p>然后是在工作实践中组里时长有这方面的需求，自己就不得不上手写并调试（这个过程中还需要不断地翻看别人写的博客和文档），从一些最简单的网页到复杂一些的页面，慢慢熟悉基本的抓取工具和思路。</p>
-<p>现在对常规网站的数据抓取已经不成问题，最多多花点时间。对于反爬比较厉害的网站则还不行（需要购买账号IP代理池等才能顺利抓取）。</p>
-<h3 id="一些常用的参考"><a class="markdownIt-Anchor" href="#一些常用的参考"></a> 一些常用的参考</h3>
-<ul>
-<li>
-<p>request文档：<a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">https://requests.readthedocs.io/en/latest/</a></p>
-</li>
-<li>
-<p>BeautifulSoup文档：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/</a></p>
-</li>
-<li>
-<p>Selenium文档：<a target="_blank" rel="noopener" href="https://selenium-python.readthedocs.io/">https://selenium-python.readthedocs.io/</a></p>
-</li>
-<li>
-<p>Scrapy文档：<a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html">https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html</a></p>
-</li>
-<li>
-<p>崔庆才个人爬虫站点：<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">https://cuiqingcai.com/</a></p>
-</li>
-<li>
-<p>崔书籍网页阅读版：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/0-%E7%9B%AE%E5%BD%95.md">github</a>，如爬虫基本原理详细可读：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.1-HTTP%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">HTTP基本原理</a>，<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.3-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">爬虫基本原理</a></p>
-</li>
-</ul>
-
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -665,6 +604,101 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/a8ff5b9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/a8ff5b9/" class="post-title-link" itemprop="url">python性能(2)：大文件处理思路</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-28 22:10:42" itemprop="dateCreated datePublished" datetime="2022-07-28T22:10:42+08:00">2022-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E6%80%A7%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">Python性能</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>201</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本文小结一下处理大型文件的常规思路。Python借助Pandas处理表格文件很方便，但是涉及一下大的文件，比如需要处理单个**70G（笔记本内存一般16G）**的csv或者txt文件，显然不能够整个将其读取运存进行分析和运算，目前我的一般思路是<u>读取时分块，运算时并行，写出时压缩</u>。</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4b434785/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -713,7 +747,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>939</span>
+      <span>1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -731,7 +765,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
+          <p>这个系列放涉及Python性能相关的处理，总的来说<font color="#dd0000">除了优化代码逻辑和数据结构，其他的就是增加资源、时间换空间、空间换时间</font>。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -2079,101 +2113,6 @@
           <p>本文小结JSON相关的一些知识点和读写方式，涉及内容</p>
 <p>①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例/非标准JSON文件处理</p>
 <p>首先：<code>import json</code></p>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4d972282/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-      <meta itemprop="name" content="huangsh">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huangs's Notes">
-      <meta itemprop="description" content="Stay hungry. Stay foolish.">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Huangs's Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/4d972282/" class="post-title-link" itemprop="url">Pandas(杂)：List/pandas文本包含筛选</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-06-10 19:06:19" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Pandas数据处理分析</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>865</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
           <!--noindex-->
           <!--/noindex-->
         
