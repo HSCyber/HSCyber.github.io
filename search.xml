@@ -255,34 +255,6 @@
       </tags>
   </entry>
   <entry>
-    <title>矢栅处理(杂)：geopandas常用函数小结</title>
-    <url>/posts/57d7f29/</url>
-    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
-<span id="more"></span>
-<blockquote>
-<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
-<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
-<p>创建，读取or写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
-<ul>
-<li>intersects、contains、within、touches、crosses、overlaps</li>
-<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
-<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>geopandas</tag>
-        <tag>spatialjoin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pandas(杂)：表格的各种连接方式</title>
     <url>/posts/18b022c/</url>
     <content><![CDATA[<p>简单记录一下数据库或表格连接的类型及差别，建议通过行数类辨别结果</p>
@@ -324,6 +296,34 @@
       <tags>
         <tag>join</tag>
         <tag>Pandas</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(杂)：geopandas常用函数小结</title>
+    <url>/posts/57d7f29/</url>
+    <content><![CDATA[<p>汇总一下常用的几行geopandas代码便于复用</p>
+<span id="more"></span>
+<blockquote>
+<p>geopandas一般用于处理数据量不大的文件，文件大的空间操作较慢、</p>
+<p>另外，理论上esri shapefile的文件大小上限为2Gb</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> geopandas <span class="keyword">as</span> gpd</span><br><span class="line"><span class="keyword">from</span> geopandas <span class="keyword">import</span> sjoin</span><br></pre></td></tr></table></figure>
+<p>创建，读取or写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读</span></span><br><span class="line">shapefilepath = <span class="string">&quot;..shp&quot;</span></span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">gdf = gpd.read_file(shapefilepath, encoding = <span class="string">&#x27;gbk&#x27;</span>)</span><br><span class="line"><span class="comment"># 通过df并添加集合创建</span></span><br><span class="line">df = pd.read_csv(filepath)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.lng, df.lat), crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line">gdf = gpd.GeoDataFrame(df, geometry=geometries, crs=<span class="string">&quot;EPSG:4326&quot;</span>)</span><br><span class="line"><span class="comment"># 写</span></span><br><span class="line">res0.to_file(outshapefile, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>空间连接-<a href="https://geopandas.org/en/latest/docs/user_guide/mergingdata.html">ref</a>, predicate可选参数</p>
+<ul>
+<li>intersects、contains、within、touches、crosses、overlaps</li>
+<li>how: left、right、inner，<a href="https://hscyber.github.io/posts/18b022c/">连接方式</a>含义</li>
+<li>如果pandas的版本较旧，predicate参数名称为<code>op</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">res = sjoin(left_df=gdf_points, right_df=gdf_polygon, predicate=<span class="string">&#x27;within&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon, right_df=gdf_points, predicate=<span class="string">&#x27;contains&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, predicate=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br><span class="line">res = sjoin(left_df=gdf_polygon1, right_df=gdf_polygon2, op=<span class="string">&#x27;intersects&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>geopandas</tag>
+        <tag>spatialjoin</tag>
       </tags>
   </entry>
   <entry>
@@ -874,106 +874,6 @@
       </tags>
   </entry>
   <entry>
-    <title>浅析Python中的类、模块、包</title>
-    <url>/posts/659ef075/</url>
-    <content><![CDATA[<p>类和继承是面向对象编程<a href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
-<ol>
-<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
-<li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？</li>
-</ol>
-<span id="more"></span>
-<h2 id="模块和包"><a class="markdownIt-Anchor" href="#模块和包"></a> 模块和包</h2>
-<blockquote>
-<p><a href="https://docs.python.org/3/tutorial/modules.html">官方文档的介绍——Modules in python</a></p>
-</blockquote>
-<p><strong>模块</strong>：一个<code>.py文件</code>就构成了一个模块，模块名即为去掉后缀之后的名。</p>
-<p><strong>包</strong>：一个包含<code>__init__.py</code>文件+若干子包+若干模块的<strong>文件夹</strong>，文件夹的名字即为<strong>包名</strong>，第一个文件是必须（该文件的作用即是为了防止系统将含.py文件的文件夹均识别为包）,因此有些时候github上下载别人写好的小工具包可以直接放在文件夹下import使用而不需要install。</p>
-<ul>
-<li>模块包含内置模块、标准模块以及第三方模块；包也包括内置的包、第三方包</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在交互窗口中运行，内置的模块路径在c拓展内</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> time,os,datetime,pandas</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>time</span><br><span class="line">&lt;module <span class="string">&#x27;time&#x27;</span> (built-<span class="keyword">in</span>)&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os</span><br><span class="line">&lt;module <span class="string">&#x27;os&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\os.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>datetime</span><br><span class="line">&lt;module <span class="string">&#x27;datetime&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\datetime.py&#x27;</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pandas</span><br><span class="line">&lt;module <span class="string">&#x27;pandas&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;D:\\Miniconda3\\lib\\site-packages\\pandas\\__init__.py&#x27;</span>&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>从<a href="https://www.python.org/downloads/source/">官网</a>下载初始Python的源码做一个简单的了解：</li>
-</ul>
-<img src="/posts/659ef075/image-20220518132724603.png" class alt="libs">
-<p>下载完成后进入文件夹：<u>A:\Python-3.10.4\Lib</u>，可以看到其中只有两种文件</p>
-<ol>
-<li><strong>文件夹即包</strong>，熟悉的如：json、logging、multiprocessing、urllib</li>
-<li><strong>py文件，即脚本/模块</strong>，熟悉的如：<a href="http://os.py">os.py</a>、<a href="http://re.py">re.py</a>、<a href="http://zipfile.py">zipfile.py</a></li>
-<li>一个<strong>特殊的空文件夹，site-packages</strong>，打开其中有一个文本描述，写的是：本目录用于存放第三方的包（通过pypi/conda安装的包即存放在这）</li>
-</ol>
-<p>所以，即便我们不安装额外的包，也可以使用内置的模块及标准库中的模块与包：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time, os, re</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> pool</span><br></pre></td></tr></table></figure>
-<p>Python的巨大优势就在于可拓展性和便捷，有大量的第三方包可供使用。另外，除了安装第三方包、我们也可以自己写模块和包用于调用。</p>
-<p><u>tip：自己写的py文件放在目录下可以直接import，然后使用其中的<strong>变量及函数</strong>。通常该文件写完需要调试，这时候可以将运行的代码放在</u><code>if '__main__'== __main__:</code> <u>之下，这样在其他脚本import调用该”模块时”也不会执行运行的代码。</u></p>
-<h2 id="定义类"><a class="markdownIt-Anchor" href="#定义类"></a> 定义类</h2>
-<p>构造函数：</p>
-<h2 id="何时需要类"><a class="markdownIt-Anchor" href="#何时需要类"></a> 何时需要类？</h2>
-<blockquote>
-<p>参考：<a href="https://stackoverflow.com/questions/33072570/when-should-i-be-using-classes-in-python">使用类的原因-讨论</a></p>
-</blockquote>
-<blockquote>
-<p>通常，使用Python的内置及第三方模块可以完成我们的工作，并不需要自定义类，但随着工作量的增大和复杂化，或许会有这样的需求，以pandas为例</p>
-</blockquote>
-<p>结合实际讨论，</p>
-<ol>
-<li>属性/结果的保存和即时访问：当我们通过<code>pandas.read_csv()</code>读取一个文件之后，得到一个实例化的对象<code>dataframe</code>，接下来我们可以通过columns,names,head,shape等参数访问其<strong>属性</strong>，即对象实例化之后我们可以使用和追踪它的状态，就好像创建了一个list，而不只是调用了一个方法。</li>
-<li>便于拓展和重用，可以继承，即方便别人用和自己调用，比如他人可以基于pandas开发geopandas等包，也即是依赖</li>
-<li>结构清晰，好看，从各种包的api文档（如<a href="https://pandas.pydata.org/pandas-docs/stable/reference/frame.html">pandas</a>，<a href="https://matplotlib.org/stable/gallery/index.html">matplotlib</a>，<a href="https://numpy.org/doc/stable/reference/index.html">numpy</a>，<a href="https://geopandas.org/en/latest/docs/reference.html">geopandas</a>……）我们可以看看，其组织结构清楚，便于查阅……</li>
-<li>……</li>
-</ol>
-<p><strong>何时使用？</strong></p>
-<p>（虽然一直在享受着类的便捷，但个人还没遇到一定得用类的情况hh）</p>
-<ul>
-<li>当工作简单或者只是实现一个或者多个函数时，不需要。类的重要一点就是属性和方法组装在了一起，如果只是一个一次性的处理脚本不需要类</li>
-<li>编写开源包和模块时</li>
-<li>工作量比较大，代码组织感觉比较乱时，可以考虑（理理逻辑，通过多个函数/脚本也可以写出结构清晰的脚本）。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>类</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(6)：点矢量提取栅格值extract</title>
-    <url>/posts/2f2d96ec/</url>
-    <content><![CDATA[<p>基于Python完成，（批量）用点矢量来提取栅格数据中的值。数据少也可使用Arcgis中的<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-values-to-points.htm">Extract Values to Points</a>及<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-multi-values-to-points.htm">multi</a>。</p>
-<span id="more"></span>
-<h2 id="思路及实现"><a class="markdownIt-Anchor" href="#思路及实现"></a> 思路及实现</h2>
-<blockquote>
-<p>本文<a href="https://mp.weixin.qq.com/s/aS9prn2fFoLFl2tgkfysDQ">转载</a>自公众号【GIS与Climate】，该号主是我一个所的师兄，他的公众号会频繁推送他研究中GIS相关的一些处理和分析，包括深度学习，推荐关注~</p>
-</blockquote>
-<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
-<p>单个栅格数据读入内存为一个<strong>二维</strong>numpy array，提取点矢量对应的栅格值实际上是读取某<strong>经纬度对应的栅格点的值（如果是投影系则是平面坐标）</strong>。</p>
-<p>数组array只能<strong>通过行列号索引</strong>，所以实现方法：</p>
-<ul>
-<li><font color="#dd0000">经纬度/平面坐标 -&gt; 栅格矩阵行列号-&gt;对应栅格值</font></li>
-<li>即将地理经纬度坐标变换到矩阵对应的行列号，本质上这是两个坐标空间的变换，也就是仿射变换。</li>
-</ul>
-<h3 id="案例"><a class="markdownIt-Anchor" href="#案例"></a> 案例</h3>
-<blockquote>
-<p>需预先确定数据的坐标系是否统一，需在统一参考系下才能正确运算</p>
-</blockquote>
-<p>rasterio包中的<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html?highlight=index#spatial-indexing">spatial index</a>方法提供了该功能的实现，自定义函数并通过apply实现，单个图层</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ExtractPointValue</span>(<span class="params">geometry,rs</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    geometry: geodataframe的geometry列</span></span><br><span class="line"><span class="string">    rs: 栅格数据</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># geometry.xy获取点几何的经纬度</span></span><br><span class="line">    x = geometry.xy[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    y = geometry.xy[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">    row, col = rs.index(x,y)</span><br><span class="line">    value = rs.read(<span class="number">1</span>)[row,col]</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"><span class="comment"># 数据读取及运算</span></span><br><span class="line">rs = rasterio.<span class="built_in">open</span>(<span class="string">&#x27;../input/rs.tif&#x27;</span>)</span><br><span class="line">gpd_points = gdp.read_file(<span class="string">&#x27;../input/shp/test_points.shp&#x27;</span>)</span><br><span class="line">gpd_points[<span class="string">&#x27;value1&#x27;</span>] = gpd_points[<span class="string">&#x27;geometry&#x27;</span>].apply(ExtractPointValue,rs=rs)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>Geopandas</tag>
-        <tag>Rasterio</tag>
-        <tag>Extract</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>矢栅处理(4)：NC文件读写</title>
     <url>/posts/448bb583/</url>
     <content><![CDATA[<p><a href="https://en.wikipedia.org/wiki/NetCDF">NC文件</a>由于便捷存储多维数据（如大范围长时间序列），因而广泛用于气候，气象数据存储及交换。python文档<a href="https://unidata.github.io/netcdf4-python/">netCDF4</a></p>
@@ -1017,6 +917,39 @@
         <tag>R语言</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(6)：点矢量提取栅格值extract</title>
+    <url>/posts/2f2d96ec/</url>
+    <content><![CDATA[<p>基于Python完成，（批量）用点矢量来提取栅格数据中的值。数据少也可使用Arcgis中的<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-values-to-points.htm">Extract Values to Points</a>及<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-multi-values-to-points.htm">multi</a>。</p>
+<span id="more"></span>
+<h2 id="思路及实现"><a class="markdownIt-Anchor" href="#思路及实现"></a> 思路及实现</h2>
+<blockquote>
+<p>本文<a href="https://mp.weixin.qq.com/s/aS9prn2fFoLFl2tgkfysDQ">转载</a>自公众号【GIS与Climate】，该号主是我一个所的师兄，他的公众号会频繁推送他研究中GIS相关的一些处理和分析，包括深度学习，推荐关注~</p>
+</blockquote>
+<h3 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h3>
+<p>单个栅格数据读入内存为一个<strong>二维</strong>numpy array，提取点矢量对应的栅格值实际上是读取某<strong>经纬度对应的栅格点的值（如果是投影系则是平面坐标）</strong>。</p>
+<p>数组array只能<strong>通过行列号索引</strong>，所以实现方法：</p>
+<ul>
+<li><font color="#dd0000">经纬度/平面坐标 -&gt; 栅格矩阵行列号-&gt;对应栅格值</font></li>
+<li>即将地理经纬度坐标变换到矩阵对应的行列号，本质上这是两个坐标空间的变换，也就是仿射变换。</li>
+</ul>
+<h3 id="案例"><a class="markdownIt-Anchor" href="#案例"></a> 案例</h3>
+<blockquote>
+<p>需预先确定数据的坐标系是否统一，需在统一参考系下才能正确运算</p>
+</blockquote>
+<p>rasterio包中的<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html?highlight=index#spatial-indexing">spatial index</a>方法提供了该功能的实现，自定义函数并通过apply实现，单个图层</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">ExtractPointValue</span>(<span class="params">geometry,rs</span>):</span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    geometry: geodataframe的geometry列</span></span><br><span class="line"><span class="string">    rs: 栅格数据</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="comment"># geometry.xy获取点几何的经纬度</span></span><br><span class="line">    x = geometry.xy[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    y = geometry.xy[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line">    row, col = rs.index(x,y)</span><br><span class="line">    value = rs.read(<span class="number">1</span>)[row,col]</span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line"><span class="comment"># 数据读取及运算</span></span><br><span class="line">rs = rasterio.<span class="built_in">open</span>(<span class="string">&#x27;../input/rs.tif&#x27;</span>)</span><br><span class="line">gpd_points = gdp.read_file(<span class="string">&#x27;../input/shp/test_points.shp&#x27;</span>)</span><br><span class="line">gpd_points[<span class="string">&#x27;value1&#x27;</span>] = gpd_points[<span class="string">&#x27;geometry&#x27;</span>].apply(ExtractPointValue,rs=rs)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Geopandas</tag>
+        <tag>Rasterio</tag>
+        <tag>Extract</tag>
       </tags>
   </entry>
   <entry>
@@ -1855,9 +1788,9 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>python性能(1)：multiprocessing多进程处理</title>
+    <title>python性能(1)：multiprocessing多进程</title>
     <url>/posts/4b434785/</url>
-    <content><![CDATA[<p>这个系列放涉及Python性能相关的处理，总的来说<font color="#dd0000">除了优化代码逻辑和数据结构，其他的就是增加资源、时间换空间、空间换时间</font>。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
+    <content><![CDATA[<p>这个系列放涉及Python性能相关的处理，总的来说-<font color="#dd0000">除了优化代码逻辑和数据结构，其他的就是增加计算资源、时间换空间、空间换时间</font>。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
 <span id="more"></span>
 <p>进程的知识点不少，方法也好多类，这里先放一个</p>
 <h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
@@ -2322,14 +2255,12 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 </ol>
 <p>所以平台会对数据的请求进行限制（反爬措施），如增加验证码，给内容加密，限制用户和IP访问的频率等等，所以实际数据抓取的难点在于<strong>反反爬</strong>hh.</p>
 <h3 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h3>
-<p><strong>普通网页的url提取</strong></p>
-<p>一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的</p>
+<p>普通网页的url提取：一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的</p>
 <ul>
 <li>当然，很多时候如果是浏览器的话实际上有很多可用的插件，比如这里推荐一个我一直在用的chrome插件<a href="https://chrome.google.com/webstore/detail/simple-mass-downloader/abdkkegmcbiomijcbdaodaflgehfffed?utm_source=chrome-ntp-icon">Simple mass downloader</a>，以及这个更高级一点的免费抓取工具<a href="https://webscraper.io/">webscraper</a>，提供了<a href="https://chrome.google.com/webstore/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?utm_source=chrome-ntp-icon">chrome插件</a>，之前我用过，它可以同来实现多个网页的复杂的抓取，而且不需要写代码，按钮点击式</li>
 <li>其他可以自行探索</li>
 </ul>
-<p><strong>API接口式抓取</strong></p>
-<p>比如<a href="https://lbs.amap.com/api/webservice/guide/api/newpoisearch">高德开放平台</a>提供的poi搜索，就把接口都给用户准备好了，我们只需要按流程申请key，再按照自己的需求输入参数，就可以发起请求获取poi的结果，即<strong>按要求构建url发送请求，平台服务器端会自动返给我们json数据</strong></p>
+<p>API接口式抓取：比如<a href="https://lbs.amap.com/api/webservice/guide/api/newpoisearch">高德开放平台</a>提供的poi搜索，就把接口都给用户准备好了，我们只需要按流程申请key，再按照自己的需求输入参数，就可以发起请求获取poi的结果，即<strong>按要求构建url发送请求，平台服务器端会自动返给我们json数据</strong></p>
 <ul>
 <li>请求的url：<a href="https://restapi.amap.com/v5/place/text?parameters">https://restapi.amap.com/v5/place/text?parameters</a></li>
 <li>最终的输入实际大致会是：<a href="https://restapi.amap.com/v5/place/text?key=%7B...%7D&amp;types=120000&amp;">https://restapi.amap.com/v5/place/text?key={...}&amp;types=120000&amp;</a>…</li>
@@ -2588,7 +2519,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <tag>Python</tag>
         <tag>VSCode</tag>
         <tag>Tools</tag>
-        <tag>数据处理分析</tag>
       </tags>
   </entry>
 </search>
