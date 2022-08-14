@@ -30,17 +30,17 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="OSM地图数据是志愿地理信息数据(VGI)的代表，更新快(天)覆盖区域广，在大区域研究中其数据尤其是路网应用广泛。这里简单介绍一下数据下载渠道及osm格式转换即shapefile的通用读写代码。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220814171859333.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220814172620611.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/42111e30/img1.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/42111e30/img2.png">
 <meta property="article:published_time" content="2022-08-08T05:50:52.000Z">
-<meta property="article:modified_time" content="2022-08-14T11:57:29.726Z">
+<meta property="article:modified_time" content="2022-08-14T12:03:39.664Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="OpenStreetMap">
 <meta property="article:tag" content="GDAL">
 <meta property="article:tag" content="shapefile读写">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20220814171859333.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/42111e30/img1.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/42111e30/">
@@ -315,15 +315,15 @@
 <li>但是可能会发现有的国家并没有提供，仅提供了.som.pbf数据或者bz2的数据</li>
 <li>shapefile的文件数据是按照数据类型（poi、路网、土地利用等等提供，是转换好的），但.osm的数据则是原始格式，pbf直接在qgis打开可以看到5个文件（点、线、面存储）</li>
 </ul>
-<img src="/posts/undefined/image-20220814171859333.png" class alt="image-20220814171859333">
-<img src="/posts/undefined/image-20220814172620611.png" class alt="image-20220814172620611">
+<img src="/posts/42111e30/img1.png" class alt="image1">
+<img src="/posts/42111e30/img2.png" class alt="image2">
 <h2 id="数据读写"><a class="markdownIt-Anchor" href="#数据读写"></a> 数据读写</h2>
 <blockquote>
-<p>osm文件实质就是多个矢量图层组成的文件，读取之后按照shapefile图层读写方式处理即可</p>
-<p>数据量少可以直接使用相关插件完成转换及导出。量大则可以考虑开源的命令行工具或代码完成处理</p>
+<p>osm文件实质就是多个矢量图层组成的文件，读取之后按照shapefile图层读写方式处理即可。数据量少可以直接使用相关插件完成转换及导出。量大则可以考虑开源的命令行工具或代码完成处理</p>
 </blockquote>
 <p>已知的可用工具：QGIS可以直接打开导出shape，ArcMap<a target="_blank" rel="noopener" href="https://github.com/Esri/arcgis-osm-editor">插件</a>?</p>
-<p>由于是矢量图层，直接使用GDAL中的矢量处理模块<a target="_blank" rel="noopener" href="https://pcjericks.github.io/py-gdalogr-cookbook/index.html">ogr</a>完成处理，为了便于理解，读与写分开展示，实际上可以直接读取并完成写出。几何类型<strong>WKBGeometryType</strong>对应的<a target="_blank" rel="noopener" href="https://gis.stackexchange.com/questions/239289/gdal-ogr-python-getgeomtype-method-returns-integer-what-is-the-matching-geo">代码</a></p>
+<p>由于是矢量图层，直接使用GDAL中的矢量处理模块<a target="_blank" rel="noopener" href="https://pcjericks.github.io/py-gdalogr-cookbook/index.html">ogr</a>完成处理</p>
+<p>为了便于理解，读与写分开展示，实际上可以直接读取并完成写出。几何类型WKBGeometryType对应的<a target="_blank" rel="noopener" href="https://gis.stackexchange.com/questions/239289/gdal-ogr-python-getgeomtype-method-returns-integer-what-is-the-matching-geo">代码</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> osgeo <span class="keyword">import</span> ogr, osr</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inDS = ogr.Open(<span class="string">&#x27;./moldova-latest.osm.pbf&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inDS.GetLayerCount()</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>layer = inDS.GetLayer(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>layer.GetGeomType()</span><br><span class="line"><span class="number">2</span> </span><br><span class="line"><span class="comment"># 输出可以看到5种类型分别为1 2 5 6 7</span></span><br><span class="line"><span class="comment"># ogr.wkbPoint = 1</span></span><br><span class="line"><span class="comment"># ogr.wkbLineString = 2</span></span><br><span class="line"><span class="comment"># ogr.wkbMultiLineString = 5</span></span><br><span class="line"><span class="comment"># ogr.wkbMultiPolygon = 6</span></span><br><span class="line"><span class="comment"># ogr.wkbGeometryCollection = 7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lydefn = layer.GetLayerDefn() </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lydefn.GetFieldCount()</span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="comment"># 9列</span></span><br></pre></td></tr></table></figure>
 <p>读shape的字段，以线图层为例</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取图层 定义及字段</span></span><br><span class="line">lydefn = layer.GetLayerDefn() </span><br><span class="line">fieldlist = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lydefn.GetFieldCount()):</span><br><span class="line">    fddefn = lydefn.GetFieldDefn(i)</span><br><span class="line">    fddict = &#123;</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>:fddefn.GetName(),</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>:fddefn.GetType(),</span><br><span class="line">        <span class="string">&#x27;width&#x27;</span>:fddefn.GetWidth(),</span><br><span class="line">        <span class="string">&#x27;decimal&#x27;</span>:fddefn.GetPrecision()&#125;</span><br><span class="line">    fieldlist.append(fddict)</span><br><span class="line">fieldlist</span><br><span class="line"><span class="comment"># [&#x27;osm_id&#x27;, &#x27;name&#x27;, &#x27;highway&#x27;, &#x27;waterway&#x27;, &#x27;aerialway&#x27;, &#x27;barrier&#x27;, &#x27;man_made&#x27;, &#x27;z_order&#x27;, &#x27;other_tags&#x27;]</span></span><br></pre></td></tr></table></figure>
