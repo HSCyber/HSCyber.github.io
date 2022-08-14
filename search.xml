@@ -11,7 +11,6 @@
 <p><a href="https://hscyber.github.io/posts/3c868742/">Python处理Json文件</a></p>
 <p><a href="https://hscyber.github.io/posts/da405e24/">正则表达式re模块用法</a></p>
 <h3 id="python环境"><a class="markdownIt-Anchor" href="#python环境"></a> Python环境</h3>
-<h2 id><a class="markdownIt-Anchor" href="#"></a> </h2>
 ]]></content>
       <categories>
         <category>Python基础</category>
@@ -65,6 +64,25 @@
       </categories>
       <tags>
         <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python文件路径及目录批处理</title>
+    <url>/posts/290b74f/</url>
+    <content><![CDATA[<p>经常需要批量操作文件夹及文件路径，遂汇总一下Python操作文件夹目(foulder)及文件(file path)的函数以便速查。个人最常用的几个内置模块：<a href="https://docs.python.org/zh-cn/3/library/os.html">os</a>、<a href="https://docs.python.org/zh-cn/3/library/glob.html">glob</a>及<a href="https://docs.python.org/zh-cn/3/library/shutil.html">shutil</a>，包括：<u>文件路径</u>的<strong>批量-读取、重命名、删除、移动</strong>以及<u>目录</u>的创建、重命名、删除、移动。</p>
+<span id="more"></span>
+<p>导入模块，其他的内置模块还有<a href="https://docs.python.org/zh-cn/3/library/pathlib.html">pathlib</a>，<a href="https://docs.python.org/zh-tw/3/library/fnmatch.html">fnmatch</a>，可以相结合实现更多条件的操作。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os, fnmatch</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> shutil</span><br></pre></td></tr></table></figure>
+<h2 id="文件路径操作"><a class="markdownIt-Anchor" href="#文件路径操作"></a> 文件路径操作</h2>
+<h2 id="文件目录操作"><a class="markdownIt-Anchor" href="#文件目录操作"></a> 文件目录操作</h2>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>文件管理</tag>
+        <tag>文件夹管理</tag>
       </tags>
   </entry>
   <entry>
@@ -133,6 +151,45 @@
         <tag>爬虫</tag>
         <tag>Python</tag>
         <tag>数据抓取</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(杂)：OSM数据下载及shapefile读写</title>
+    <url>/posts/42111e30/</url>
+    <content><![CDATA[<p><a href="https://en.wikipedia.org/wiki/OpenStreetMap">OSM</a>地图数据是志愿地理信息数据<a href="https://en.wikipedia.org/wiki/Volunteered_geographic_information">(VGI)</a>的代表，更新快(<strong>天</strong>)覆盖区域广，在大区域研究中其数据尤其是路网应用广泛。这里简单介绍一下数据下载渠道及osm格式转换即<strong>shapefile的通用读写代码</strong>。</p>
+<span id="more"></span>
+<p>涉及多个国家的研究可能没有其他可替代的全球数据产品，所以这个数据应用很广。官网下载并不方便，可用通过<a href="http://download.geofabrik.de/index.html">Geofabrik</a>下载对应区域和国家的shape文件，其中中国的shapefile文件是完全开放的：</p>
+<ul>
+<li>下载<a href="http://download.geofabrik.de/asia/china.html#">路径</a>，点击[raw directory index]可以下载历年的数据</li>
+<li>但是可能会发现有的国家并没有提供，仅提供了.som.pbf数据或者bz2的数据</li>
+<li>shapefile的文件数据是按照数据类型（poi、路网、土地利用等等提供，是转换好的），但.osm的数据则是原始格式，pbf直接在qgis打开可以看到5个文件（点、线、面存储）</li>
+</ul>
+<img src="/posts/undefined/image-20220814171859333.png" class alt="image-20220814171859333">
+<img src="/posts/undefined/image-20220814172620611.png" class alt="image-20220814172620611">
+<h2 id="数据读写"><a class="markdownIt-Anchor" href="#数据读写"></a> 数据读写</h2>
+<blockquote>
+<p>osm文件实质就是多个矢量图层组成的文件，读取之后按照shapefile图层读写方式处理即可</p>
+<p>数据量少可以直接使用相关插件完成转换及导出。量大则可以考虑开源的命令行工具或代码完成处理</p>
+</blockquote>
+<p>已知的可用工具：QGIS可以直接打开导出shape，ArcMap<a href="https://github.com/Esri/arcgis-osm-editor">插件</a>?</p>
+<p>由于是矢量图层，直接使用GDAL中的矢量处理模块<a href="https://pcjericks.github.io/py-gdalogr-cookbook/index.html">ogr</a>完成处理，为了便于理解，读与写分开展示，实际上可以直接读取并完成写出。几何类型<strong>WKBGeometryType</strong>对应的<a href="https://gis.stackexchange.com/questions/239289/gdal-ogr-python-getgeomtype-method-returns-integer-what-is-the-matching-geo">代码</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> osgeo <span class="keyword">import</span> ogr, osr</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inDS = ogr.Open(<span class="string">&#x27;./moldova-latest.osm.pbf&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>inDS.GetLayerCount()</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>layer = inDS.GetLayer(<span class="number">1</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>layer.GetGeomType()</span><br><span class="line"><span class="number">2</span> </span><br><span class="line"><span class="comment"># 输出可以看到5种类型分别为1 2 5 6 7</span></span><br><span class="line"><span class="comment"># ogr.wkbPoint = 1</span></span><br><span class="line"><span class="comment"># ogr.wkbLineString = 2</span></span><br><span class="line"><span class="comment"># ogr.wkbMultiLineString = 5</span></span><br><span class="line"><span class="comment"># ogr.wkbMultiPolygon = 6</span></span><br><span class="line"><span class="comment"># ogr.wkbGeometryCollection = 7</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lydefn = layer.GetLayerDefn() </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>lydefn.GetFieldCount()</span><br><span class="line"><span class="number">9</span></span><br><span class="line"><span class="comment"># 9列</span></span><br></pre></td></tr></table></figure>
+<p>读shape的字段，以线图层为例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#获取图层 定义及字段</span></span><br><span class="line">lydefn = layer.GetLayerDefn() </span><br><span class="line">fieldlist = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(lydefn.GetFieldCount()):</span><br><span class="line">    fddefn = lydefn.GetFieldDefn(i)</span><br><span class="line">    fddict = &#123;</span><br><span class="line">        <span class="string">&#x27;name&#x27;</span>:fddefn.GetName(),</span><br><span class="line">        <span class="string">&#x27;type&#x27;</span>:fddefn.GetType(),</span><br><span class="line">        <span class="string">&#x27;width&#x27;</span>:fddefn.GetWidth(),</span><br><span class="line">        <span class="string">&#x27;decimal&#x27;</span>:fddefn.GetPrecision()&#125;</span><br><span class="line">    fieldlist.append(fddict)</span><br><span class="line">fieldlist</span><br><span class="line"><span class="comment"># [&#x27;osm_id&#x27;, &#x27;name&#x27;, &#x27;highway&#x27;, &#x27;waterway&#x27;, &#x27;aerialway&#x27;, &#x27;barrier&#x27;, &#x27;man_made&#x27;, &#x27;z_order&#x27;, &#x27;other_tags&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>读shape的要素</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 读取要素</span></span><br><span class="line">geomlist = []</span><br><span class="line">featurelist = []</span><br><span class="line">feature = layer.GetNextFeature() <span class="comment">#获得第一个要素</span></span><br><span class="line"><span class="keyword">while</span> feature <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    geom = feature.GetGeometryRef()</span><br><span class="line">    geomlist.append(geom.ExportToWkt())</span><br><span class="line">    feature = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> fd <span class="keyword">in</span> fieldlist:</span><br><span class="line">        feature[fd[<span class="string">&#x27;name&#x27;</span>]] = feature.GetField(fd[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">    featurelist.append(feature)</span><br><span class="line">    feature = layer.GetNextFeature()</span><br><span class="line">ds=<span class="literal">None</span> <span class="comment"># 释放数据源</span></span><br><span class="line"><span class="comment"># 预览数据</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="built_in">len</span>(featurelist)</span><br><span class="line"><span class="number">39008</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>featurelist[<span class="number">0</span>]</span><br><span class="line">&#123;<span class="string">&#x27;osm_id&#x27;</span>: <span class="string">&#x27;4529536&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;name&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;highway&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;waterway&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;aerialway&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;barrier&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;man_made&#x27;</span>: <span class="literal">None</span>,</span><br><span class="line"> <span class="string">&#x27;z_order&#x27;</span>: <span class="number">0</span>,</span><br><span class="line"> <span class="string">&#x27;other_tags&#x27;</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>写shape,根据数据类型，就可以找到想要提取的文件并写出：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建输出文件</span></span><br><span class="line">outShapefile = <span class="string">&quot;./data_line2.shp&quot;</span></span><br><span class="line">outDriver = ogr.GetDriverByName(<span class="string">&quot;ESRI Shapefile&quot;</span>)</span><br><span class="line">outDS = outDriver.CreateDataSource(outShapefile)</span><br><span class="line">srs = osr.SpatialReference()</span><br><span class="line">srs.ImportFromEPSG(<span class="number">4326</span>)</span><br><span class="line">out_layer = outDS.CreateLayer(outShapefile, srs, geom_type=ogr.wkbLineString, options = [<span class="string">&#x27;ENCODING=UTF-8&#x27;</span>])</span><br><span class="line"><span class="comment"># 写入字段</span></span><br><span class="line"><span class="keyword">for</span> fd <span class="keyword">in</span> fieldlist:</span><br><span class="line">    field = ogr.FieldDefn(fd[<span class="string">&#x27;name&#x27;</span>],fd[<span class="string">&#x27;type&#x27;</span>])</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;width&#x27;</span> <span class="keyword">in</span> fd:</span><br><span class="line">        field.SetWidth(fd[<span class="string">&#x27;width&#x27;</span>])</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;decimal&#x27;</span> <span class="keyword">in</span> fd:</span><br><span class="line">        field.SetPrecision(fd[<span class="string">&#x27;decimal&#x27;</span>])</span><br><span class="line">    out_layer.CreateField(field)</span><br><span class="line"><span class="comment"># 写入要素</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(featurelist)): </span><br><span class="line">    geom = ogr.CreateGeometryFromWkt(geomlist[i])</span><br><span class="line">    <span class="comment"># 创建空行</span></span><br><span class="line">    newfeature = ogr.Feature(out_layer.GetLayerDefn())</span><br><span class="line">    newfeature.SetGeometry(geom)</span><br><span class="line">    <span class="comment"># 写入字段及值</span></span><br><span class="line">    <span class="keyword">for</span> fd <span class="keyword">in</span> fieldlist: </span><br><span class="line">        fieldname = fd[<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">        infeature = featurelist[i]</span><br><span class="line">        newfeature.SetField(fieldname, infeature[fieldname]) </span><br><span class="line">    out_layer.CreateFeature(newfeature)</span><br><span class="line"><span class="comment"># 释放数据源并完成写出</span></span><br><span class="line">inDS=<span class="literal">None</span> </span><br><span class="line">outDS = <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>以上代码可以自行简化合并为一个部分，且可以根据需求进一步对shape进行分类导出操作。由于暂无需求暂不展开。</p>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>OpenStreetMap</tag>
+        <tag>GDAL</tag>
+        <tag>shapefile读写</tag>
       </tags>
   </entry>
   <entry>
@@ -420,8 +477,8 @@
       <tags>
         <tag>GeoTIFF</tag>
         <tag>Rasterio</tag>
-        <tag>栅格文件读写</tag>
         <tag>GDAL</tag>
+        <tag>栅格文件读写</tag>
       </tags>
   </entry>
   <entry>
