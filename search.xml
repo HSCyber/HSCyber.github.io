@@ -75,6 +75,7 @@
 <p>.ipynb后缀含义是ipython notebook, 从ipython逐渐发展起来的。这种文本与代码共存且交互式运行的模式很流行，还方便学习、共享和教学，如R中的.rmd，matlab中的.mlx。</p>
 </blockquote>
 <p><code>.ipynb</code>是使用jupyter notebook/lab写代码的文件格式，最初只能在jupyter notebook中打开，不便查看，除<a href="https://code.visualstudio.com/">vscode</a>，我们可以借助一些工具/插件(<a href="https://github.com/QL-Win/QuickLook">QuickLook</a>, <a href="https://nteract.io/">nteract</a>, )<font color="#dd0000">在不打开jupyter的情况下以自带格式方便查看</font>。</p>
+<span id="more"></span>
 <h2 id="vscode查看及编辑"><a class="markdownIt-Anchor" href="#vscode查看及编辑"></a> vscode查看及编辑</h2>
 <blockquote>
 <p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">具体可参考官网</a>：</p>
@@ -209,8 +210,8 @@
         <category>Python爬虫</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>爬虫</tag>
+        <tag>Python</tag>
         <tag>数据抓取</tag>
       </tags>
   </entry>
