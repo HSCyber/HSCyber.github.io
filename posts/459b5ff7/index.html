@@ -23,19 +23,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
+    <meta name="description" content="初步小结一下图形保存本地的常用设置（可用于论文出图），通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="matplotlib基础(3)：图片存储格式及参数设置">
 <meta property="og:url" content="https://hscyber.github.io/posts/459b5ff7/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
+<meta property="og:description" content="初步小结一下图形保存本地的常用设置（可用于论文出图），通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f1.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f3.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f2.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f4.png">
 <meta property="article:published_time" content="2022-08-20T04:38:30.000Z">
-<meta property="article:modified_time" content="2022-08-20T07:55:06.632Z">
+<meta property="article:modified_time" content="2022-08-20T07:59:20.610Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -103,6 +103,7 @@
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -307,7 +308,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
+        <p>初步小结一下图形保存本地的常用设置（可用于<strong>论文出图</strong>），通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
 <span id="more"></span>
 <p>需要说明的是，这一步是<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">fig.save()</a>，即保存画布的步骤，这时<u>已经无法再调画布上的ax的图形，通常只能调节</u>：</p>
 <ol>

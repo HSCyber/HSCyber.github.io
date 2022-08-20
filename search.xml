@@ -72,7 +72,7 @@
   <entry>
     <title>论文学习(1)：Generalized Linear Mixed Models</title>
     <url>/posts/ca790165/</url>
-    <content><![CDATA[<p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+    <content><![CDATA[<p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
 <span id="more"></span>
 <h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
 <blockquote>
@@ -122,7 +122,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
   <entry>
     <title>matplotlib基础(3)：图片存储格式及参数设置</title>
     <url>/posts/459b5ff7/</url>
-    <content><![CDATA[<p>初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
+    <content><![CDATA[<p>初步小结一下图形保存本地的常用设置（可用于<strong>论文出图</strong>），通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
 <span id="more"></span>
 <p>需要说明的是，这一步是<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">fig.save()</a>，即保存画布的步骤，这时<u>已经无法再调画布上的ax的图形，通常只能调节</u>：</p>
 <ol>
