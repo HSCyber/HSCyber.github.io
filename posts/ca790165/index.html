@@ -23,26 +23,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+    <meta name="description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文学习(1)：Generalized Linear Mixed Models">
 <meta property="og:url" content="https://hscyber.github.io/posts/ca790165/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+<meta property="og:description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f0.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f1.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f2.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f3.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f4.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f0.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f1.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f2.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f3.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f4.png">
 <meta property="article:published_time" content="2022-08-20T06:30:33.000Z">
-<meta property="article:modified_time" content="2022-08-20T07:18:21.465Z">
+<meta property="article:modified_time" content="2022-08-20T07:53:15.201Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="论文阅读">
 <meta property="article:tag" content="GLMM">
 <meta property="article:tag" content="GLM">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/f0.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/ca790165/f0.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/ca790165/">
@@ -309,7 +309,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,<u>Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)</u><a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+        <p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
 <span id="more"></span>
 <h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
 <blockquote>
@@ -325,21 +325,21 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
 <p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
 <p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
-<img src="/posts/undefined/f0.png" class>
+<img src="/posts/ca790165/f0.png" class>
 <h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
 <blockquote>
 <p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
 </blockquote>
-<img src="/posts/undefined/f1.png" class>
-<img src="/posts/undefined/f2.png" class alt="image-20220820145710262">
+<img src="/posts/ca790165/f1.png" class>
+<img src="/posts/ca790165/f2.png" class alt="image-20220820145710262">
 <h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
 <p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
-<img src="/posts/undefined/f3.png" class alt="image-20220820145641791">
+<img src="/posts/ca790165/f3.png" class alt="image-20220820145641791">
 <h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
 <blockquote>
 <p>具体情况具体分析，初步实践可以看一下这个<a target="_blank" rel="noopener" href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
 </blockquote>
-<img src="/posts/undefined/f4.png" class alt="f4">
+<img src="/posts/ca790165/f4.png" class alt="f4">
 <h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
 <blockquote>
 <p>Bolker另一篇高引用文章(引用52498)，<a target="_blank" rel="noopener" href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
@@ -383,8 +383,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/459b5ff7/" rel="prev" title="matplotlib基础(3)：图片存储常用格式及参数设置">
-                  <i class="fa fa-chevron-left"></i> matplotlib基础(3)：图片存储常用格式及参数设置
+                <a href="/posts/459b5ff7/" rel="prev" title="matplotlib基础(3)：图片存储格式及参数设置">
+                  <i class="fa fa-chevron-left"></i> matplotlib基础(3)：图片存储格式及参数设置
                 </a>
             </div>
             <div class="post-nav-item">

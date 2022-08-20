@@ -25,31 +25,32 @@
 
     <meta name="description" content="初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="matplotlib基础(3)：图片存储常用格式及参数设置">
+<meta property="og:title" content="matplotlib基础(3)：图片存储格式及参数设置">
 <meta property="og:url" content="https://hscyber.github.io/posts/459b5ff7/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见上篇。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f1.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f3.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/f2.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f1.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f3.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f2.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/459b5ff7/f4.png">
 <meta property="article:published_time" content="2022-08-20T04:38:30.000Z">
-<meta property="article:modified_time" content="2022-08-20T07:50:27.084Z">
+<meta property="article:modified_time" content="2022-08-20T07:55:06.632Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/f1.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/459b5ff7/f1.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/459b5ff7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/459b5ff7/","path":"posts/459b5ff7/","title":"matplotlib基础(3)：图片存储常用格式及参数设置"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/459b5ff7/","path":"posts/459b5ff7/","title":"matplotlib基础(3)：图片存储格式及参数设置"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>matplotlib基础(3)：图片存储常用格式及参数设置 | Huangs's Notes</title>
+<title>matplotlib基础(3)：图片存储格式及参数设置 | Huangs's Notes</title>
   
 
 
@@ -246,12 +247,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="matplotlib基础(3)：图片存储常用格式及参数设置 | Huangs's Notes">
+      <meta itemprop="name" content="matplotlib基础(3)：图片存储格式及参数设置 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          matplotlib基础(3)：图片存储常用格式及参数设置
+          matplotlib基础(3)：图片存储格式及参数设置
         </h1>
 
         <div class="post-meta-container">
@@ -322,18 +323,19 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">fig, (ax1, ax2) = plt.subplots(nrows =<span class="number">1</span> ,ncols=<span class="number">2</span>, figsize=(<span class="number">21</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># 图一参考</span></span><br><span class="line">N = <span class="number">21</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">11</span>)</span><br><span class="line">y = [<span class="number">3.9</span>, <span class="number">4.4</span>, <span class="number">10.8</span>, <span class="number">10.3</span>, <span class="number">11.2</span>, <span class="number">13.1</span>, <span class="number">14.1</span>,  <span class="number">9.9</span>, <span class="number">13.9</span>, <span class="number">15.1</span>, <span class="number">12.5</span>]</span><br><span class="line"><span class="comment"># fit a linear curve an estimate its y-values and their error.</span></span><br><span class="line">a, b = np.polyfit(x, y, deg=<span class="number">1</span>)</span><br><span class="line">y_est = a * x + b</span><br><span class="line">y_err = x.std() * np.sqrt(<span class="number">1</span>/<span class="built_in">len</span>(x) +(x - x.mean())**<span class="number">2</span> / np.<span class="built_in">sum</span>((x - x.mean())**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">ax1.plot(x, y_est, <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">ax1.fill_between(x, y_est - y_err, y_est + y_err, alpha=<span class="number">0.2</span>)</span><br><span class="line">ax1.plot(x, y, <span class="string">&#x27;o&#x27;</span>, ms=<span class="number">4</span>, color=<span class="string">&#x27;tab:red&#x27;</span>)</span><br><span class="line"><span class="comment"># 图2</span></span><br><span class="line">sc = ax2.scatter([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">2</span>], c=[<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;YLabel&#x27;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;XLabel&#x27;</span>, loc=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">cbar = fig.colorbar(sc)</span><br><span class="line">cbar.set_label(<span class="string">&quot;ZLabel&quot;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.pdf&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="png"><a class="markdownIt-Anchor" href="#png"></a> png</h3>
 <p>结果图，置入word刚好合适，四周边距还可以根据要求调整</p>
-<img src="/posts/undefined/f1.png" class alt="f1">
+<img src="/posts/459b5ff7/f1.png" class alt="f1">
 <h3 id="细节矢量图svg"><a class="markdownIt-Anchor" href="#细节矢量图svg"></a> 细节矢量图svg</h3>
 <p>使用浏览器打开即可预览，或者可以打开AI，进行进一步地拼图或调整图层等操作</p>
-<img src="/posts/undefined/f3.png" class alt="f3">
+<img src="/posts/459b5ff7/f3.png" class alt="f3">
 <h3 id="细节矢量图pdf"><a class="markdownIt-Anchor" href="#细节矢量图pdf"></a> 细节矢量图pdf</h3>
 <p>如下图，按设定画布固定大小的pdf，其实期刊论文的发表附图都要求使用pdf等矢量格式，因为高清无损！正文不方便，但在论文支撑材料/附件中可以生成PDF最后拼接即可。</p>
-<img src="/posts/undefined/f2.png" class alt="f2">
+<img src="/posts/459b5ff7/f2.png" class alt="f2">
 <h2 id="多页pdf"><a class="markdownIt-Anchor" href="#多页pdf"></a> 多页pdf</h2>
 <p>单个figure保存至pdf，比如我这里绘制了一幅6行3列的组图，保存为一页pdf文件，当然也可以直接保存为png或其他格式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">fig, axes = plt.subplots(nrows =<span class="number">6</span> ,ncols=<span class="number">3</span>, figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">axes = axes.flatten()</span><br><span class="line"><span class="keyword">for</span> ax <span class="keyword">in</span> axes:</span><br><span class="line">    ax.plot(...)</span><br><span class="line">    ax.text(...)</span><br><span class="line">fig.savefig(save_pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>多个figure保存为多页pdf，<code>PdfPages</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line"></span><br><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">pdf = PdfPages(save_pdf) <span class="comment"># 打开文件</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df.columns.to_list():</span><br><span class="line">    values = df[col].to_numpy()</span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    ax.hist(values,<span class="number">50</span>)</span><br><span class="line">    fig.savefig(pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>) <span class="comment"># 保存</span></span><br><span class="line">    plt.close()</span><br><span class="line">pdf.close() <span class="comment"># 保存</span></span><br></pre></td></tr></table></figure>
+<img src="/posts/459b5ff7/f4.png" class alt="image">
 
     </div>
 
@@ -353,7 +355,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/459b5ff7/" title="matplotlib基础(3)：图片存储常用格式及参数设置">https://hscyber.github.io/posts/459b5ff7/</a>
+      <a href="https://hscyber.github.io/posts/459b5ff7/" title="matplotlib基础(3)：图片存储格式及参数设置">https://hscyber.github.io/posts/459b5ff7/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
