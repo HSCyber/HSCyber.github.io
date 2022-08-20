@@ -430,6 +430,49 @@
       </tags>
   </entry>
   <entry>
+    <title>文献篇(2) 论文下载</title>
+    <url>/posts/99dce68a/</url>
+    <content><![CDATA[<blockquote>
+<p>个人平时下载文献的流程和几种方式…</p>
+</blockquote>
+<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
+<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
+<span id="more"></span>
+<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
+<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
+<ol>
+<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
+<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
+<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
+</ol>
+<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
+<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
+<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
+<blockquote>
+<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
+<p>一般前面的操作不行我才会到scihub求助</p>
+</blockquote>
+<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
+<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
+<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
+<blockquote>
+<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
+</blockquote>
+<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
+<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
+<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
+<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
+<p>以上~</p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>论文下载</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>文献篇(3) 如何开展研究背景调研和总结？</title>
     <url>/posts/e8c71149/</url>
     <content><![CDATA[<blockquote>
@@ -473,49 +516,6 @@
       </categories>
       <tags>
         <tag>文献</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文献篇(2) 论文下载</title>
-    <url>/posts/99dce68a/</url>
-    <content><![CDATA[<blockquote>
-<p>个人平时下载文献的流程和几种方式…</p>
-</blockquote>
-<p>今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
-<span id="more"></span>
-<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
-<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
-<ol>
-<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
-<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
-<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
-</ol>
-<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
-<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
-<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
-<blockquote>
-<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
-<p>一般前面的操作不行我才会到scihub求助</p>
-</blockquote>
-<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
-<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
-<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
-<blockquote>
-<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
-</blockquote>
-<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
-<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
-<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
-<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
-<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
-<p>以上~</p>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>英文论文下载</tag>
       </tags>
   </entry>
   <entry>
@@ -1329,34 +1329,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo框架</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>随笔随记-2022/520</title>
     <url>/posts/29d41ed/</url>
     <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
@@ -1425,7 +1397,35 @@ Today I know: THIS IS LIFE!</p>
       </categories>
   </entry>
   <entry>
-    <title>matplotlib绘图基础(2)：绘图逻辑与输出尺寸/格式</title>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Hexo框架</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>matplotlib基础(2)：绘图逻辑与输出尺寸/格式</title>
     <url>/posts/5524eff4/</url>
     <content><![CDATA[<p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
 <span id="more"></span>
@@ -1529,14 +1529,15 @@ Today I know: THIS IS LIFE!</p>
 <p>散点图的点默认尺寸为rcParams[‘lines.markersize’] ** 2=1.27cm²，<strong>，注意代表的是散点圆的面积</strong></p>
 <h3 id="尺寸计算原理"><a class="markdownIt-Anchor" href="#尺寸计算原理"></a> 尺寸计算原理</h3>
 <blockquote>
-<p>hexo默认公式LATEX渲染有问题，待修正</p>
+<p>设置的时候只需要用实际预期长度除以2.54。</p>
 </blockquote>
 <p>图像输出的实际尺寸大小计算及距举例，<strong>1厘米(cm)=0.394英寸(inch)， 1英寸=2.54厘米</strong></p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>o</mi><mi>u</mi><mi>t</mi><mtext> </mtext><mi>i</mi><mi>m</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo stretchy="false">(</mo><mi>c</mi><mi>m</mi><mo stretchy="false">)</mo><mo>=</mo><mi>d</mi><mi>p</mi><mi>i</mi><mo>×</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>÷</mo><mfrac><mrow><mi>d</mi><mi>p</mi><mi>i</mi></mrow><mn>2.54</mn></mfrac><mo>=</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>×</mo><mn>2.54</mn><mspace linebreak="newline"></mspace><mi>d</mi><mi>p</mi><mi>i</mi><mo>=</mo><mn>300</mn><mo separator="true">,</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>=</mo><mo stretchy="false">(</mo><mn>6</mn><mo separator="true">,</mo><mn>12</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>w</mi><mi>i</mi><mi>d</mi><mi>t</mi><mi>h</mi><mo>=</mo><mn>6</mn><mo>×</mo><mn>300</mn><mo>÷</mo><mfrac><mn>300</mn><mn>2.54</mn></mfrac><mo>=</mo><mn>15.24</mn><mi>c</mi><mi>m</mi><mspace linebreak="newline"></mspace><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo>=</mo><mn>12</mn><mo>×</mo><mn>2.54</mn><mo>=</mo><mn>30.48</mn><mi>c</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">out\ imagesize(cm)=dpi\times figsize\div \frac{dpi}{2.54}=figsize\times 2.54 \\
-dpi = 300, figsize = (6,12) \\
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>i</mi><mi>m</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo stretchy="false">(</mo><mi>c</mi><mi>m</mi><mo stretchy="false">)</mo><mo>=</mo><mi>d</mi><mi>p</mi><mi>i</mi><mo>×</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>÷</mo><mfrac><mrow><mi>d</mi><mi>p</mi><mi>i</mi></mrow><mn>2.54</mn></mfrac><mspace linebreak="newline"></mspace><mo>=</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>×</mo><mn>2.54</mn><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">imagesize(cm)=dpi\times figsize\div \frac{dpi}{2.54}\\=figsize\times 2.54 \\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span><span class="mspace newline"></span></span></span></span></p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mi>i</mi><mo>=</mo><mn>300</mn><mo separator="true">,</mo><mi>f</mi><mi>i</mi><mi>g</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo>=</mo><mo stretchy="false">(</mo><mn>6</mn><mo separator="true">,</mo><mn>12</mn><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>w</mi><mi>i</mi><mi>d</mi><mi>t</mi><mi>h</mi><mo>=</mo><mn>6</mn><mo>×</mo><mn>300</mn><mo>÷</mo><mfrac><mn>300</mn><mn>2.54</mn></mfrac><mo>=</mo><mn>15.24</mn><mi>c</mi><mi>m</mi><mspace linebreak="newline"></mspace><mi>h</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo>=</mo><mn>12</mn><mo>×</mo><mn>2.54</mn><mo>=</mo><mn>30.48</mn><mi>c</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">dpi = 300, figsize = (6,12) \\
 width = 6\times 300 \div \frac{300}{2.54}=15.24cm \\
 height = 12\times 2.54 = 30.48cm
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">t</span><span class="mspace"> </span><span class="mord mathnormal">i</span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">e</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mopen">(</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.0574399999999997em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3714399999999998em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord">.</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">8</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span></span></span></span></span></p>
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">s</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">6</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">÷</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span><span class="mord">0</span><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord">.</span><span class="mord">2</span><span class="mord">4</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">h</span><span class="mord mathnormal">e</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">.</span><span class="mord">5</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">0</span><span class="mord">.</span><span class="mord">4</span><span class="mord">8</span><span class="mord mathnormal">c</span><span class="mord mathnormal">m</span></span></span></span></span></p>
 <p><strong>分辨率</strong>/resolution的度量-dpi：指每英寸点数Dots per inch/每厘米点数</p>
 <p><strong>像素密度</strong>测量指标：ppi; pixels/cm ppcm</p>
 <ul>
@@ -1634,7 +1635,47 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>matplotlib绘图基础(1)：图的组成元素</title>
+    <title>matplotlib基础(3)：图片存储常用格式及参数设置</title>
+    <url>/posts/459b5ff7/</url>
+    <content><![CDATA[<p>初步小结一下图形保存本地的常用设置，通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
+<span id="more"></span>
+<p>需要说明的是，这一步是<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">fig.save()</a>，即保存画布的步骤，这时<u>已经无法再调画布上的ax的图形，通常只能调节</u>：</p>
+<ol>
+<li>画布的背景颜色<strong>facecolor</strong>、边框颜色<strong>edgecolor</strong></li>
+<li>图形四周默认的空白间距<strong>pad_inches</strong>，精细调节则<strong>bbox_inches</strong>，，多个ax的紧凑程度<strong>bbox_inches</strong></li>
+<li>保存文件的文件格式及路径、清晰度<strong>dpi</strong></li>
+</ol>
+<p><font color="#dd0000">常规出图png即可，论文成图简单可png，较复杂细节多的可出无损矢量图svg或pdf，</font>此外svg格式的结果可以在<strong>Adobe Illustrator</strong>中调节，下文简单介绍。(地图保存也可以输出问svg或pdf，ArcMap&amp;QGIS均可)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">120</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.size&#x27;</span>]=<span class="number">10.5</span></span><br><span class="line">cm = <span class="number">1</span>/<span class="number">2.54</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#0.5代表1.27cm的间距</span></span><br><span class="line">fig.savefig(<span class="string">&#x27;../test.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">&#x27;../test.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">&#x27;../test.pdf&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="出图对比"><a class="markdownIt-Anchor" href="#出图对比"></a> 出图对比</h2>
+<p>出图举例：此处目的是展示出图，从官网拉两张图拼接示意<a href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html#sphx-glr-gallery-lines-bars-and-markers-fill-between-demo-py">f1</a>，<a href="https://matplotlib.org/stable/gallery/subplots_axes_and_figures/axis_labels_demo.html#sphx-glr-gallery-subplots-axes-and-figures-axis-labels-demo-py">f2</a>，导入模块，修改路径运行代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fig, (ax1, ax2) = plt.subplots(nrows =<span class="number">1</span> ,ncols=<span class="number">2</span>, figsize=(<span class="number">21</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># 图一参考</span></span><br><span class="line">N = <span class="number">21</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">11</span>)</span><br><span class="line">y = [<span class="number">3.9</span>, <span class="number">4.4</span>, <span class="number">10.8</span>, <span class="number">10.3</span>, <span class="number">11.2</span>, <span class="number">13.1</span>, <span class="number">14.1</span>,  <span class="number">9.9</span>, <span class="number">13.9</span>, <span class="number">15.1</span>, <span class="number">12.5</span>]</span><br><span class="line"><span class="comment"># fit a linear curve an estimate its y-values and their error.</span></span><br><span class="line">a, b = np.polyfit(x, y, deg=<span class="number">1</span>)</span><br><span class="line">y_est = a * x + b</span><br><span class="line">y_err = x.std() * np.sqrt(<span class="number">1</span>/<span class="built_in">len</span>(x) +(x - x.mean())**<span class="number">2</span> / np.<span class="built_in">sum</span>((x - x.mean())**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">ax1.plot(x, y_est, <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">ax1.fill_between(x, y_est - y_err, y_est + y_err, alpha=<span class="number">0.2</span>)</span><br><span class="line">ax1.plot(x, y, <span class="string">&#x27;o&#x27;</span>, ms=<span class="number">4</span>, color=<span class="string">&#x27;tab:red&#x27;</span>)</span><br><span class="line"><span class="comment"># 图2</span></span><br><span class="line">sc = ax2.scatter([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">2</span>], c=[<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;YLabel&#x27;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;XLabel&#x27;</span>, loc=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">cbar = fig.colorbar(sc)</span><br><span class="line">cbar.set_label(<span class="string">&quot;ZLabel&quot;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.pdf&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="png"><a class="markdownIt-Anchor" href="#png"></a> png</h3>
+<p>结果图，置入word刚好合适，四周边距还可以根据要求调整</p>
+<img src="/posts/undefined/f1.png" class alt="f1">
+<h3 id="细节矢量图svg"><a class="markdownIt-Anchor" href="#细节矢量图svg"></a> 细节矢量图svg</h3>
+<p>使用浏览器打开即可预览，或者可以打开AI，进行进一步地拼图或调整图层等操作</p>
+<img src="/posts/undefined/f3.png" class alt="f3">
+<h3 id="细节矢量图pdf"><a class="markdownIt-Anchor" href="#细节矢量图pdf"></a> 细节矢量图pdf</h3>
+<p>如下图，按设定画布固定大小的pdf，其实期刊论文的发表附图都要求使用pdf等矢量格式，因为高清无损！正文不方便，但在论文支撑材料/附件中可以生成PDF最后拼接即可。</p>
+<img src="/posts/undefined/f2.png" class alt="f2">
+<h2 id="多页pdf"><a class="markdownIt-Anchor" href="#多页pdf"></a> 多页pdf</h2>
+<p>单个figure保存至pdf，比如我这里绘制了一幅6行3列的组图，保存为一页pdf文件，当然也可以直接保存为png或其他格式：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">fig, axes = plt.subplots(nrows =<span class="number">6</span> ,ncols=<span class="number">3</span>, figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">axes = axes.flatten()</span><br><span class="line"><span class="keyword">for</span> ax <span class="keyword">in</span> axes:</span><br><span class="line">    ax.plot(...)</span><br><span class="line">    ax.text(...)</span><br><span class="line">fig.savefig(save_pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>多个figure保存为多页pdf，<code>PdfPages</code>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line"></span><br><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">pdf = PdfPages(save_pdf) <span class="comment"># 打开文件</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df.columns.to_list():</span><br><span class="line">    values = df[col].to_numpy()</span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    ax.hist(values,<span class="number">50</span>)</span><br><span class="line">    fig.savefig(pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>) <span class="comment"># 保存</span></span><br><span class="line">    plt.close()</span><br><span class="line">pdf.close() <span class="comment"># 保存</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python可视化</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>matplotlib基础(1)：图的组成元素</title>
     <url>/posts/8dfff56a/</url>
     <content><![CDATA[<p><strong>绘图技能</strong>是我一直想要拓展和延伸的一个技能。这一方面需要通过大量的输入来学习别人对图表的设计和呈现，学习色彩、布局等等……另一方面还要能够用代码来实现，而需要基于代码的可视化是一个比较繁琐的内容，需要学习和积累。故在此开始记录自己Python可视化的学习过程，当然，也便于代码的复用。本文主要涉及内容：</p>
 <ol>
@@ -1669,7 +1710,7 @@ height = 12\times 2.54 = 30.48cm
 <li><strong>Line points</strong>…：绘制的图形，也就是我们要在axes上画的东西</li>
 <li><strong>Legend</strong>：图例，每个axes都可以根据其上绘制的图形生成图例，也可以不依赖图形单独创建。</li>
 <li><strong>Grid</strong>：网格线，自行选择是否添加（按照主副刻度线生成）</li>
-<li>**Text：**文本，可以作为注释说明添加到图上
+<li><strong>Text</strong>：文本，可以作为注释说明添加到图上
 <ul>
 <li><strong>Annotation</strong>：可以添加连接线/箭头的文本，注释</li>
 </ul>
@@ -1836,6 +1877,96 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>Pandas(杂)：字符串列拆分及合并</title>
+    <url>/posts/374675e0/</url>
+    <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
+<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
+<span id="more"></span>
+<img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
+<h2 id="分列"><a class="markdownIt-Anchor" href="#分列"></a> 分列</h2>
+<blockquote>
+<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.split.html">Series.str.split()</a></p>
+<p>该方法支持正则表达式</p>
+</blockquote>
+<p>处理高德Poi数据时发现有一列<strong>typename</strong>是这样的：</p>
+<ul>
+<li>汽车服务;汽车服务相关;汽车服务相关</li>
+<li>生活服务;人才市场;人才市场</li>
+<li>餐饮服务;中餐厅;中餐厅</li>
+</ul>
+<p>分别代表大中小类别，因此通过如下代码切分</p>
+<ul>
+<li><code>expand=True</code>表示将拆分的字符串展开为单独的列</li>
+<li><code>n</code>指定拆分的分隔符个数，默认0/-1全部拆分</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试数据，原始df过大</span></span><br><span class="line">df_sample = df.sample(<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 直接切分，预览结果发现得到五列，后两列大量为None,有的小类过细</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, expand=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 因此最终的切分代码</span></span><br><span class="line">df_sample[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]] = df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, n=<span class="number">2</span>, expand=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="合并"><a class="markdownIt-Anchor" href="#合并"></a> 合并</h2>
+<blockquote>
+<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.cat.html">Series.str.cat()</a></p>
+<p>补充的其他方法，另见<a href="https://sparkbyexamples.com/pandas/pandas-combine-two-columns-of-text-in-dataframe/">参考2</a></p>
+</blockquote>
+<p>确保各类为文本/字符串类型，否则先转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;type1&#x27;] = df[&#x27;type1&#x27;].astype(str)</span></span><br><span class="line"><span class="comment"># 最直接的是字符串相加</span></span><br><span class="line">df_sample[<span class="string">&quot;typename2&quot;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].astype(<span class="built_in">str</span>) +<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type2&quot;</span>]+<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type3&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并方式2</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename2&#x27;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].<span class="built_in">str</span>.cat(df_sample[[<span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]], sep=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字符串join函数</span></span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].agg(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="keyword">lambda</span> x: <span class="string">&quot;-&quot;</span>.join(x), axis =<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>表格分列及合并</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>论文学习(1)：Generalized Linear Mixed Models</title>
+    <url>/posts/ca790165/</url>
+    <content><![CDATA[<p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8000,<u>Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)</u><a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+<span id="more"></span>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<blockquote>
+<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差</strong>因此不能直接进行建模。</p>
+</blockquote>
+<p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
+<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
+Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
+<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
+<blockquote>
+<p>自行阅读，本文的核心内容都通过图表的形式呈现了，很友好，尤其是一开始的统计相关的一些知识总结。</p>
+</blockquote>
+<h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
+<p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
+<p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
+<img src="/posts/undefined/f0.png" class>
+<h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
+<blockquote>
+<p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
+</blockquote>
+<img src="/posts/undefined/f1.png" class>
+<img src="/posts/undefined/f2.png" class alt="image-20220820145710262">
+<h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
+<p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
+<img src="/posts/undefined/f3.png" class alt="image-20220820145641791">
+<h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
+<blockquote>
+<p>具体情况具体分析，初步实践可以看一下这个<a href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
+</blockquote>
+<img src="/posts/undefined/f4.png" class alt="f4">
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<blockquote>
+<p>Bolker另一篇高引用文章(引用52498)，<a href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
+</blockquote>
+<p>Bolker, Benjamin M., et al. “Generalized linear mixed models: a practical guide for ecology and evolution.” <em>Trends in ecology &amp; evolution</em> 24.3 (2009): 127-135.</p>
+<p>Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2015). Fitting Linear Mixed-Effects Models Using lme4. <em>Journal of Statistical Software</em>, <em>67</em>(1), 1–48. <a href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a></p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>论文阅读</tag>
+        <tag>GLMM</tag>
+        <tag>GLM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python文件路径及目录批处理</title>
     <url>/posts/290b74f/</url>
     <content><![CDATA[<p>经常需要批量操作文件夹及文件路径，遂汇总一下Python操作文件夹目(foulder)及文件(file path)的函数以便速查。常用的几个内置模块：<a href="https://docs.python.org/zh-cn/3/library/os.html">os</a>、<a href="https://docs.python.org/zh-cn/3/library/glob.html">glob</a>及<a href="https://docs.python.org/zh-cn/3/library/shutil.html">shutil</a>，包括：<u>文件路径</u>的<strong>批量-读取、重命名、删除、移动</strong>以及<u>目录</u>的创建、重命名、删除、移动。结合条件判断可以实现各类操作。</p>
@@ -1876,46 +2007,6 @@ height = 12\times 2.54 = 30.48cm
         <tag>Python</tag>
         <tag>文件管理</tag>
         <tag>文件夹管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas(杂)：字符串列拆分及合并</title>
-    <url>/posts/374675e0/</url>
-    <content><![CDATA[<p>pandas处理表格时，<strong>字符串</strong>列的<u>拆分及合并</u>操作，类似于excel中的分列</p>
-<p>1.根据分隔符将一列<strong>拆</strong>成多列;      2.将多列进行<strong>合并</strong></p>
-<span id="more"></span>
-<img src="/posts/374675e0/image-20220531130906473.png" class alt="image-20220531130906473">
-<h2 id="分列"><a class="markdownIt-Anchor" href="#分列"></a> 分列</h2>
-<blockquote>
-<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.split.html">Series.str.split()</a></p>
-<p>该方法支持正则表达式</p>
-</blockquote>
-<p>处理高德Poi数据时发现有一列<strong>typename</strong>是这样的：</p>
-<ul>
-<li>汽车服务;汽车服务相关;汽车服务相关</li>
-<li>生活服务;人才市场;人才市场</li>
-<li>餐饮服务;中餐厅;中餐厅</li>
-</ul>
-<p>分别代表大中小类别，因此通过如下代码切分</p>
-<ul>
-<li><code>expand=True</code>表示将拆分的字符串展开为单独的列</li>
-<li><code>n</code>指定拆分的分隔符个数，默认0/-1全部拆分</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 测试数据，原始df过大</span></span><br><span class="line">df_sample = df.sample(<span class="number">500</span>)</span><br><span class="line"><span class="comment"># 直接切分，预览结果发现得到五列，后两列大量为None,有的小类过细</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, expand=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># 因此最终的切分代码</span></span><br><span class="line">df_sample[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]] = df_sample[<span class="string">&#x27;typename&#x27;</span>].<span class="built_in">str</span>.split(<span class="string">&#x27;;&#x27;</span>, n=<span class="number">2</span>, expand=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="合并"><a class="markdownIt-Anchor" href="#合并"></a> 合并</h2>
-<blockquote>
-<p>参考api介绍: <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.cat.html">Series.str.cat()</a></p>
-<p>补充的其他方法，另见<a href="https://sparkbyexamples.com/pandas/pandas-combine-two-columns-of-text-in-dataframe/">参考2</a></p>
-</blockquote>
-<p>确保各类为文本/字符串类型，否则先转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;type1&#x27;] = df[&#x27;type1&#x27;].astype(str)</span></span><br><span class="line"><span class="comment"># 最直接的是字符串相加</span></span><br><span class="line">df_sample[<span class="string">&quot;typename2&quot;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].astype(<span class="built_in">str</span>) +<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type2&quot;</span>]+<span class="string">&quot;-&quot;</span>+ df_sample[<span class="string">&quot;type3&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并方式2</span></span><br><span class="line">df_sample[<span class="string">&#x27;typename2&#x27;</span>] = df_sample[<span class="string">&#x27;type1&#x27;</span>].<span class="built_in">str</span>.cat(df_sample[[<span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]], sep=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用字符串join函数</span></span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].agg(<span class="string">&quot;-&quot;</span>.join, axis=<span class="number">1</span>)</span><br><span class="line">df[<span class="string">&quot;typename2&quot;</span>] = df[[<span class="string">&#x27;type1&#x27;</span>, <span class="string">&#x27;type2&#x27;</span>, <span class="string">&#x27;type3&#x27;</span>]].apply(<span class="keyword">lambda</span> x: <span class="string">&quot;-&quot;</span>.join(x), axis =<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>表格分列及合并</tag>
       </tags>
   </entry>
   <entry>
