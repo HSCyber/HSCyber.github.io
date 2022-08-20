@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文学习(1)：Generalized Linear Mixed Models">
+<meta property="og:url" content="https://hscyber.github.io/posts/ca790165/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f0.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f1.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f2.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f3.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f4.png">
+<meta property="article:published_time" content="2022-08-20T06:30:33.000Z">
+<meta property="article:modified_time" content="2022-08-20T12:17:47.043Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="论文阅读">
+<meta property="article:tag" content="GLMM">
+<meta property="article:tag" content="GLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/ca790165/f0.png">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/ca790165/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/ca790165/","path":"posts/ca790165/","title":"论文学习(1)：Generalized Linear Mixed Models"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文学习(1)：Generalized Linear Mixed Models | Huangs's Notes</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text"> 摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text"> 内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text"> 概念表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.2.</span> <span class="nav-text"> 模型参数估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text"> 模型推断方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%BB%BA%E6%A8%A1%E6%8C%87%E5%8D%97"><span class="nav-number">2.4.</span> <span class="nav-text"> 完整建模指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/ca790165/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="论文学习(1)：Generalized Linear Mixed Models | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文学习(1)：Generalized Linear Mixed Models
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-20 14:30:33" itemprop="dateCreated datePublished" datetime="2022-08-20T14:30:33+08:00">2022-08-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">科研</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+<span id="more"></span>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<blockquote>
+<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差</strong>因此不能直接进行建模。</p>
+</blockquote>
+<p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
+<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
+Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
+<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
+<blockquote>
+<p>自行阅读，本文的核心内容都通过图表的形式呈现了，很友好，尤其是一开始的统计相关的一些知识总结。</p>
+</blockquote>
+<h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
+<p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
+<p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
+<img src="/posts/ca790165/f0.png" class>
+<h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
+<blockquote>
+<p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
+</blockquote>
+<img src="/posts/ca790165/f1.png" class>
+<img src="/posts/ca790165/f2.png" class alt="image-20220820145710262">
+<h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
+<p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
+<img src="/posts/ca790165/f3.png" class alt="image-20220820145641791">
+<h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
+<blockquote>
+<p>具体情况具体分析，初步实践可以看一下这个<a target="_blank" rel="noopener" href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
+</blockquote>
+<img src="/posts/ca790165/f4.png" class alt="f4">
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<blockquote>
+<p>Bolker另一篇高引用文章(引用52498)，<a target="_blank" rel="noopener" href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
+</blockquote>
+<p>Bolker, Benjamin M., et al. “Generalized linear mixed models: a practical guide for ecology and evolution.” <em>Trends in ecology &amp; evolution</em> 24.3 (2009): 127-135.</p>
+<p>Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2015). Fitting Linear Mixed-Effects Models Using lme4. <em>Journal of Statistical Software</em>, <em>67</em>(1), 1–48. <a target="_blank" rel="noopener" href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a></p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/ca790165/" title="论文学习(1)：Generalized Linear Mixed Models">https://hscyber.github.io/posts/ca790165/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 论文阅读</a>
+              <a href="/tags/GLMM/" rel="tag"><i class="fa fa-tag"></i> GLMM</a>
+              <a href="/tags/GLM/" rel="tag"><i class="fa fa-tag"></i> GLM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/459b5ff7/" rel="prev" title="matplotlib基础(3)：图片存储格式及参数设置">
+                  <i class="fa fa-chevron-left"></i> matplotlib基础(3)：图片存储格式及参数设置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/ca790165/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

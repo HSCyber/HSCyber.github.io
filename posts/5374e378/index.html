@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据抓取(1)：Python网络爬虫学习与参考">
+<meta property="og:url" content="https://hscyber.github.io/posts/5374e378/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-12T11:13:35.000Z">
+<meta property="article:modified_time" content="2022-08-13T13:46:08.285Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="数据抓取">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/5374e378/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/5374e378/","path":"posts/5374e378/","title":"数据抓取(1)：Python网络爬虫学习与参考"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>数据抓取(1)：Python网络爬虫学习与参考 | Huangs's Notes</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">60</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">12</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">42</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%AC%E8%99%AB%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text"> 爬虫原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E4%B9%A0%E5%8F%82%E8%80%83"><span class="nav-number">2.</span> <span class="nav-text"> 学习参考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%B8%B8%E7%94%A8%E7%9A%84%E5%8F%82%E8%80%83"><span class="nav-number">2.1.</span> <span class="nav-text"> 一些常用的参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">3.</span> <span class="nav-text"> 补充</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/5374e378/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="数据抓取(1)：Python网络爬虫学习与参考 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据抓取(1)：Python网络爬虫学习与参考
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-12 19:13:35" itemprop="dateCreated datePublished" datetime="2022-08-12T19:13:35+08:00">2022-08-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E7%88%AC%E8%99%AB/" itemprop="url" rel="index"><span itemprop="name">Python爬虫</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。</p>
+<span id="more"></span>
+<h2 id="爬虫原理"><a class="markdownIt-Anchor" href="#爬虫原理"></a> 爬虫原理</h2>
+<blockquote>
+<p>主要针对平台提供的或网站上呈现的数据。</p>
+</blockquote>
+<p>爬虫是一个<strong>可以获取网页上的信息</strong>自动化脚本/程序。举例来说：我们打开任何的外部网站，在地址栏都会有一个连接(url)，这个网站打开之后就会自动加载页面，包括呈现的数据，比如打开淘宝会呈现商品，我们下拉会继续刷新网页提供新的商品信息……这个过程，回车打开网页即是对特定的url<strong>发送请求</strong>，url所有者（<strong>服务器端</strong>）收到请求后处理解析，然后<strong>发送响应内容</strong>，也就是我们看到的内容，不断下拉也会触发请求从而服务器动态给我们提供信息。这个过程就是一个数据请求的过程。写爬虫也就是通过代码（此处指Python）来实现<strong>批量多次</strong></p>
+<ol>
+<li>按要求发送请求</li>
+<li>接收响应结果（网页信息或数据）</li>
+<li>解析并将需要的信息保存到本地</li>
+</ol>
+<p>我们的学习主要在于学会<strong>解析网页和涉及到的常用Python库的使用</strong>。对于一般的网页可以很顺利地完成数据抓取工作，最多多花点时间。但是对于另一些平台，处于一些原因，会对数据的请求进行限制（反爬措施），如增加验证码，给内容加密，限制用户和IP访问的频率等等，所以实际数据抓取的难点在于<strong>反反爬</strong>hh，如</p>
+<ol>
+<li>平台数据宝贵或者涉及安全利益等等，不能免费共享</li>
+<li>请求过于频繁会对平台的服务器造成较大的压力（频繁的I/O），造成额外的资源开销</li>
+</ol>
+<h2 id="学习参考"><a class="markdownIt-Anchor" href="#学习参考"></a> 学习参考</h2>
+<blockquote>
+<p>掌握了基本的网页知识和抓取工具用法之后就可以试着抓取一些数据，实践上手是学习最快的方式，尤其是被迫不得不自己动手的时候hh</p>
+</blockquote>
+<p>我个人学习爬虫是断断续续的，一开始主要是看的这位大佬的书籍《Python3网络爬虫开发实战》<a target="_blank" rel="noopener" href="https://item.jd.com/13527222.html">jd</a>和网站<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">博客</a>，先是把书看了个大概，了解网页的一些基础和工具基础，再模仿着书上的案例。然后是在工作实践中组里时长有这方面的需求，自己就不得不上手写并调试（这个过程中还需要不断地翻看别人写的博客和文档），从一些最简单的网页到复杂一些的页面，慢慢熟悉基本的抓取工具和思路。</p>
+<p>现在常规网站的数据抓取已经不成问题，多花点时间能搞定。但对于反爬比较厉害的网站则还不行（需要购买账号IP代理池等才能顺利抓取）。</p>
+<h3 id="一些常用的参考"><a class="markdownIt-Anchor" href="#一些常用的参考"></a> 一些常用的参考</h3>
+<ul>
+<li>
+<p>request文档：<a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">requests</a></p>
+</li>
+<li>
+<p>BeautifulSoup文档：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">bs4</a></p>
+</li>
+<li>
+<p>Selenium文档：<a target="_blank" rel="noopener" href="https://selenium-python.readthedocs.io/">Selenium</a></p>
+</li>
+<li>
+<p>Scrapy文档：<a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html">Scrapy</a></p>
+</li>
+<li>
+<p>崔庆才个人爬虫站点：<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">https://cuiqingcai.com/</a></p>
+</li>
+<li>
+<p>崔书籍网页阅读版：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/0-%E7%9B%AE%E5%BD%95.md">github</a>，如爬虫基本原理详细可读：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.1-HTTP%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">HTTP基本原理</a>，<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.3-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">爬虫基本原理</a></p>
+</li>
+</ul>
+<h2 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h2>
+<p>普通网页的url提取：一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的。</p>
+<ul>
+<li>当然，很多时候如果是浏览器的话实际上有很多可用的插件，比如这里推荐一个我一直在用的chrome插件<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/simple-mass-downloader/abdkkegmcbiomijcbdaodaflgehfffed?utm_source=chrome-ntp-icon">Simple mass downloader</a>，以及这个更高级一点的免费抓取工具<a target="_blank" rel="noopener" href="https://webscraper.io/">webscraper</a>，提供了<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?utm_source=chrome-ntp-icon">chrome插件</a>，之前我用过，它可以同来实现多个网页的复杂的抓取，而且不需要写代码，按钮点击式</li>
+</ul>
+<p>API接口式抓取：比如<a target="_blank" rel="noopener" href="https://lbs.amap.com/api/webservice/guide/api/newpoisearch">高德开放平台</a>提供的poi搜索，就把接口都给用户准备好了，我们只需要按流程申请key，再按照自己的需求输入参数，就可以发起请求获取poi的结果，即<strong>按要求构建url发送请求，平台服务器端会自动返给我们json数据</strong></p>
+<ul>
+<li>如请求的url：<a target="_blank" rel="noopener" href="https://restapi.amap.com/v5/place/text?parameters">https://restapi.amap.com/v5/place/text?parameters</a></li>
+<li>最终的输入实际大致会是：…place/text?key={…}&amp;types=120000&amp;…</li>
+<li>然后通过代码批量自动完成该过程</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/5374e378/" title="数据抓取(1)：Python网络爬虫学习与参考">https://hscyber.github.io/posts/5374e378/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%88%AC%E8%99%AB/" rel="tag"><i class="fa fa-tag"></i> 爬虫</a>
+              <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E6%8A%93%E5%8F%96/" rel="tag"><i class="fa fa-tag"></i> 数据抓取</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/42111e30/" rel="prev" title="矢栅处理(杂)：OSM数据下载及shapefile读写">
+                  <i class="fa fa-chevron-left"></i> 矢栅处理(杂)：OSM数据下载及shapefile读写
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/290b74f/" rel="next" title="Python文件路径及目录批处理">
+                  Python文件路径及目录批处理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">85k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:17</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/5374e378/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
