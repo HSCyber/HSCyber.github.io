@@ -34,7 +34,7 @@
 <meta property="og:description" content="re(Regular Expression)&#x2F;正则表达式是一个内置的文本处理模块，在进行数据处理（筛选、替换）以及网页数据抓取时十分常用  该模块的主要功能是基于给定的表达式匹配字符串中的某些内容，import re 本文参考官方文档，学习以下几点内容：1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-18T02:13:48.000Z">
-<meta property="article:modified_time" content="2022-08-13T12:41:42.558Z">
+<meta property="article:modified_time" content="2022-08-22T11:58:52.165Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="正则表达式">
 <meta property="article:tag" content="爬虫">
@@ -319,30 +319,48 @@
 <p>flages是在匹配时的附加参数，获得更加准确及干净的匹配结果，如可以选择<strong>不考虑换行，忽略大小写等</strong></p>
 </blockquote>
 <h3 id="方法及对象"><a class="markdownIt-Anchor" href="#方法及对象"></a> 方法及对象</h3>
-<p><code>re.compile(pattern, flags=0)</code>：将表达式编译为<strong>正则表达式对象</strong>以供后续使用/<strong>复用</strong></p>
+<ol>
+<li><code>re.compile(pattern, flags=0)</code>：将表达式编译为<strong>正则表达式对象</strong>以供后续使用/<strong>复用</strong>
 <ul>
 <li>输入pattern为表达式字符串，返回对象类型为 &lt;class ‘re.Pattern’&gt;，可以直接进行检索也可作为其他函数的pattern输入</li>
 </ul>
+</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pattern_ = re.<span class="built_in">compile</span>(pattern)</span><br><span class="line">result = re.match(pattern_, string)<span class="comment">#实际上就等价于re.match(pattern, string)</span></span><br><span class="line"><span class="comment"># 其他参见pattern_.search();pattern_.match();pattern_.split();pattern_.findall();...</span></span><br></pre></td></tr></table></figure>
-<p><code>re.findall(pattern, string, flags=0)</code>：常用，返回全部匹配结果，以<strong>列表list</strong>返回</p>
+<ol start="2">
+<li><code>re.findall(pattern, string, flags=0)</code>：常用，返回全部匹配结果，以<strong>列表list</strong>返回
 <ul>
 <li>通过在表达式中加括号可以实现元组分组，两个示例</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re.findall(<span class="string">r&#x27;[a-zA-Z]+&#x27;</span>, <span class="string">&#x27;Which453foot378（*&amp;…… or378 378hand378 fell378 fastest&#x27;</span>)</span><br><span class="line"><span class="comment"># 返回其中的单词 [&#x27;which&#x27;, &#x27;foot&#x27;, &#x27;or&#x27;, &#x27;hand&#x27;, &#x27;fell&#x27;, &#x27;fastest&#x27;]</span></span><br><span class="line">re.findall(<span class="string">r&#x27;(\w+)=(\d+)&#x27;</span>, <span class="string">&#x27;set width=20 and height=10&#x27;</span>)</span><br><span class="line">[(<span class="string">&#x27;width&#x27;</span>, <span class="string">&#x27;20&#x27;</span>), (<span class="string">&#x27;height&#x27;</span>, <span class="string">&#x27;10&#x27;</span>)]</span><br></pre></td></tr></table></figure>
-<ul>
 <li><code>re.finditer(pattern, string, flags=0)</code>：同上，但是返回结果为一个迭代器</li>
 </ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re.findall(<span class="string">r&#x27;[a-zA-Z]+&#x27;</span>, <span class="string">&#x27;Which453foot378（*&amp;…… or378 378hand378 fell378 fastest&#x27;</span>)</span><br><span class="line"><span class="comment"># 返回其中的单词 [&#x27;which&#x27;, &#x27;foot&#x27;, &#x27;or&#x27;, &#x27;hand&#x27;, &#x27;fell&#x27;, &#x27;fastest&#x27;]</span></span><br><span class="line">re.findall(<span class="string">r&#x27;(\w+)=(\d+)&#x27;</span>, <span class="string">&#x27;set width=20 and height=10&#x27;</span>)</span><br><span class="line">[(<span class="string">&#x27;width&#x27;</span>, <span class="string">&#x27;20&#x27;</span>), (<span class="string">&#x27;height&#x27;</span>, <span class="string">&#x27;10&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>
 <p><code>re.search(pattern, string, flags=0)</code>: 整个字符串匹配并返回满足pattern的的<strong>第一个</strong>位置，可以为空</p>
 <ul>
 <li>返回对象类型是&lt;class ‘re.Match’&gt;，如果没有匹配到，则返回None ；</li>
 </ul>
+</li>
+<li>
 <p><code>re.match(pattern, string, flags=0)</code>: 匹配字符串开头是否满足pattern并返回，不常用</p>
+</li>
+<li>
 <p><code>re.split(pattern, string, maxsplit=0, flags=0)</code>：匹配表达式分割string，如匹配逗号分开单词</p>
 <ul>
-<li>可以视为str.split(char, num)的加强版，maxsplit设置分割次数，默认全部分割</li>
-<li>如果pattern中包含了括号则会同时返回匹配到的内容及切分后的结果，示例：</li>
+<li>
+<p>可以视为str.split(char, num)的加强版，maxsplit设置分割次数，默认全部分割</p>
+</li>
+<li>
+<p>如果pattern中包含了括号则会同时返回匹配到的内容及切分后的结果，示例：</p>
+</li>
 </ul>
+</li>
+</ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re.split(<span class="string">r&#x27;\W+&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;words&#x27;, &#x27;words&#x27;, &#x27;&#x27;]</span></span><br><span class="line">re.split(<span class="string">r&#x27;(\W+)&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;.&#x27;, &#x27;&#x27;]</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
+<li>
 <p><code>re.sub(pattern, repl, string, count=0, flags=0)</code>：查找并<strong>替换</strong>string中pattern匹配的内容</p>
 <ul>
 <li>
@@ -352,6 +370,8 @@
 <p>可以视为str.replace(‘…’, ‘…’)的加强版，<code>re.``subn()</code>类似，但是会同时返回替换/匹配成功的次数</p>
 </li>
 </ul>
+</li>
+</ol>
 <h3 id="flags参数"><a class="markdownIt-Anchor" href="#flags参数"></a> flags参数</h3>
 <blockquote>
 <p>一次只能设一个</p>
