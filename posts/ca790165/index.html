@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+    <meta name="description" content="近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文学习(1)：Generalized Linear Mixed Models">
 <meta property="og:url" content="https://hscyber.github.io/posts/ca790165/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
+<meta property="og:description" content="近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)下载">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f0.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f1.png">
@@ -39,9 +39,9 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f3.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/ca790165/f4.png">
 <meta property="article:published_time" content="2022-08-20T06:30:33.000Z">
-<meta property="article:modified_time" content="2022-08-20T12:17:47.043Z">
+<meta property="article:modified_time" content="2022-08-24T14:02:19.948Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="论文阅读">
+<meta property="article:tag" content="统计">
 <meta property="article:tag" content="GLMM">
 <meta property="article:tag" content="GLM">
 <meta name="twitter:card" content="summary">
@@ -106,8 +106,8 @@
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">62</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">45</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -180,13 +180,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -277,7 +277,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index"><span itemprop="name">科研</span></a>
+          <a href="/categories/%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E4%B8%8E%E7%BB%9F%E8%AE%A1%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">空间分析与统计基础</span></a>
         </span>
     </span>
 
@@ -313,11 +313,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>近期在学习广义线性混合效应模型，学习一篇好文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+        <p>近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
 <span id="more"></span>
 <h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
 <blockquote>
-<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差</strong>因此不能直接进行建模。</p>
+<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差/截距</strong>因此不能直接进行建模。</p>
 </blockquote>
 <p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
 <p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
@@ -378,7 +378,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" rel="tag"><i class="fa fa-tag"></i> 论文阅读</a>
+              <a href="/tags/%E7%BB%9F%E8%AE%A1/" rel="tag"><i class="fa fa-tag"></i> 统计</a>
               <a href="/tags/GLMM/" rel="tag"><i class="fa fa-tag"></i> GLMM</a>
               <a href="/tags/GLM/" rel="tag"><i class="fa fa-tag"></i> GLM</a>
           </div>
