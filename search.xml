@@ -347,7 +347,7 @@
       </tags>
   </entry>
   <entry>
-    <title>image test</title>
+    <title>Hexo图片自动上传同步测试</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
 <span id="more"></span>
@@ -450,7 +450,7 @@
       </tags>
   </entry>
   <entry>
-    <title>文献篇(3) 如何开展研究背景调研和总结？</title>
+    <title>【预】文献篇(3) 如何开展研究背景调研和总结？</title>
     <url>/posts/e8c71149/</url>
     <content><![CDATA[<blockquote>
 <p>待补充</p>
@@ -536,37 +536,6 @@
       </categories>
       <tags>
         <tag>论文下载</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(5)：R语言nc转多张Geotif</title>
-    <url>/posts/ef2a4876/</url>
-    <content><![CDATA[<p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
-<span id="more"></span>
-<p>这几天的数据处理工作让我感觉Python对于栅格数据的支持不够友好，而且性能捉急，往后类似的工作尽量上手R语言做，<strong>R语言对栅格处理友好且速度更快</strong>。</p>
-<h2 id="包"><a class="markdownIt-Anchor" href="#包"></a> 包</h2>
-<p>安装</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ncdf4&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;raster&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;rgdal&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>文档查看：<a href="https://cran.r-project.org/web/packages/raster/index.html">raster 包</a>，<a href="https://cran.r-project.org/web/packages/raster/raster.pdf">API文档</a>，<a href="https://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a></p>
-<h2 id="nc写tif"><a class="markdownIt-Anchor" href="#nc写tif"></a> nc写tif</h2>
-<ol>
-<li>基于研究区裁剪数据</li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ncdf4<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>raster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rgdal<span class="punctuation">)</span></span><br><span class="line">study_area <span class="operator">=</span> <span class="string">&quot;A:/my_research/Studyarea.shp&quot;</span></span><br><span class="line">extent <span class="operator">&lt;-</span> shapefile<span class="punctuation">(</span>study_area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>读取文件并拆分，循环写入</li>
-<li>说明（可以自行输出中间过程文件查看）：ncbr输出即为读入的nc文件，包含其数据的维度及名称等等，自行查看</li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outdir <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/tif/prep/&quot;</span></span><br><span class="line">ncfile <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/China_1km_prep_2017.nc&quot;</span></span><br><span class="line">ncbr <span class="operator">=</span> brick<span class="punctuation">(</span>ncfile<span class="punctuation">,</span>varname <span class="operator">=</span> <span class="string">&quot;prep&quot;</span><span class="punctuation">,</span>lvar<span class="operator">=</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">filenames <span class="operator">=</span> paste0<span class="punctuation">(</span>outdir<span class="punctuation">,</span>ncbr<span class="operator">@</span>data<span class="operator">@</span><span class="built_in">names</span><span class="punctuation">,</span><span class="string">&quot;.tif&quot;</span><span class="punctuation">)</span></span><br><span class="line">nlayers <span class="operator">=</span> <span class="built_in">length</span><span class="punctuation">(</span>filenames<span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span>nlayers<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  r <span class="operator">=</span> ncbr<span class="punctuation">[[</span>i<span class="punctuation">]</span><span class="punctuation">]</span> <span class="comment">#取一个图层</span></span><br><span class="line">  rc <span class="operator">=</span> crop<span class="punctuation">(</span>r<span class="punctuation">,</span>shp<span class="punctuation">)</span> <span class="comment"># 范围筛选</span></span><br><span class="line">  writeRaster<span class="punctuation">(</span>rc<span class="punctuation">,</span> filenames<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> bylayer<span class="operator">=</span><span class="literal">TRUE</span><span class="punctuation">,</span> format <span class="operator">=</span> <span class="string">&quot;GTiff&quot;</span><span class="punctuation">,</span>overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>options<span class="operator">=</span><span class="string">&quot;COMPRESS=LZW&quot;</span><span class="punctuation">,</span>NAflag<span class="operator">=</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>不过貌似不能直接按照shapefile边界形状裁剪？</p>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>R语言</tag>
-        <tag>GeoTIFF</tag>
-        <tag>nc文件</tag>
       </tags>
   </entry>
   <entry>
@@ -752,6 +721,37 @@
       </categories>
       <tags>
         <tag>R语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(5)：R语言nc转多张Geotif</title>
+    <url>/posts/ef2a4876/</url>
+    <content><![CDATA[<p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
+<span id="more"></span>
+<p>这几天的数据处理工作让我感觉Python对于栅格数据的支持不够友好，而且性能捉急，往后类似的工作尽量上手R语言做，<strong>R语言对栅格处理友好且速度更快</strong>。</p>
+<h2 id="包"><a class="markdownIt-Anchor" href="#包"></a> 包</h2>
+<p>安装</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ncdf4&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;raster&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;rgdal&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>文档查看：<a href="https://cran.r-project.org/web/packages/raster/index.html">raster 包</a>，<a href="https://cran.r-project.org/web/packages/raster/raster.pdf">API文档</a>，<a href="https://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a></p>
+<h2 id="nc写tif"><a class="markdownIt-Anchor" href="#nc写tif"></a> nc写tif</h2>
+<ol>
+<li>基于研究区裁剪数据</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ncdf4<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>raster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rgdal<span class="punctuation">)</span></span><br><span class="line">study_area <span class="operator">=</span> <span class="string">&quot;A:/my_research/Studyarea.shp&quot;</span></span><br><span class="line">extent <span class="operator">&lt;-</span> shapefile<span class="punctuation">(</span>study_area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>读取文件并拆分，循环写入</li>
+<li>说明（可以自行输出中间过程文件查看）：ncbr输出即为读入的nc文件，包含其数据的维度及名称等等，自行查看</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outdir <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/tif/prep/&quot;</span></span><br><span class="line">ncfile <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/China_1km_prep_2017.nc&quot;</span></span><br><span class="line">ncbr <span class="operator">=</span> brick<span class="punctuation">(</span>ncfile<span class="punctuation">,</span>varname <span class="operator">=</span> <span class="string">&quot;prep&quot;</span><span class="punctuation">,</span>lvar<span class="operator">=</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">filenames <span class="operator">=</span> paste0<span class="punctuation">(</span>outdir<span class="punctuation">,</span>ncbr<span class="operator">@</span>data<span class="operator">@</span><span class="built_in">names</span><span class="punctuation">,</span><span class="string">&quot;.tif&quot;</span><span class="punctuation">)</span></span><br><span class="line">nlayers <span class="operator">=</span> <span class="built_in">length</span><span class="punctuation">(</span>filenames<span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span>nlayers<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  r <span class="operator">=</span> ncbr<span class="punctuation">[[</span>i<span class="punctuation">]</span><span class="punctuation">]</span> <span class="comment">#取一个图层</span></span><br><span class="line">  rc <span class="operator">=</span> crop<span class="punctuation">(</span>r<span class="punctuation">,</span>shp<span class="punctuation">)</span> <span class="comment"># 范围筛选</span></span><br><span class="line">  writeRaster<span class="punctuation">(</span>rc<span class="punctuation">,</span> filenames<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> bylayer<span class="operator">=</span><span class="literal">TRUE</span><span class="punctuation">,</span> format <span class="operator">=</span> <span class="string">&quot;GTiff&quot;</span><span class="punctuation">,</span>overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>options<span class="operator">=</span><span class="string">&quot;COMPRESS=LZW&quot;</span><span class="punctuation">,</span>NAflag<span class="operator">=</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>不过貌似不能直接按照shapefile边界形状裁剪？</p>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>R语言</tag>
+        <tag>GeoTIFF</tag>
+        <tag>nc文件</tag>
       </tags>
   </entry>
   <entry>
@@ -959,6 +959,20 @@
         <tag>Python</tag>
         <tag>类</tag>
         <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【预】GIS基础(2)：ArcGIS常用工具清单及用途概述</title>
+    <url>/posts/286d5938/</url>
+    <content><![CDATA[<p>ArcGIS是进行空间数据处理分析及制图的常用软件，功能强大。尽管esri截止10.7已停止对其的维护转向ArcGIS Pro，但平时用的还是以ArcGIS为主。在此罗列一下其基本功能及<strong>工具箱ArcToolbox模块常规用途</strong>以供查阅。</p>
+<span id="more"></span>
+<p>大学时候开始接触的ArcGIS，从陌生到逐渐熟练使用工具，到使用ArcPy批处理，再到现在的转向主Python处理以及QGIS。</p>
+]]></content>
+      <categories>
+        <category>GIS基础</category>
+      </categories>
+      <tags>
+        <tag>ArcGIS</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,6 +1360,25 @@
       <tags>
         <tag>GeoTIFF</tag>
         <tag>栅格数据压缩</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【预】GIS基础(1)：浅析地理/投影坐标系</title>
+    <url>/posts/c82d0555/</url>
+    <content><![CDATA[<p><strong>空间参考</strong>即地理/投影坐标系是地理研究、GIS数据处理及空间分析的基础。好早就学，但直到现在寒假也还是好像懂但又不怎么懂的一个点。在此希望基于资料和自己当前的理解及实践，用尽可能短的篇幅小结一下：<strong>(1)  空间参考、地理/投影坐标系相关的概念；(2) 常用坐标系及选择依据；(3) 软件(ArcGIS/QGIS)及代码(Python/R)的坐标系(批)处理方式。</strong></p>
+<span id="more"></span>
+<h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
+<h2 id="坐标系选择"><a class="markdownIt-Anchor" href="#坐标系选择"></a> 坐标系选择</h2>
+<h2 id="设置及转换"><a class="markdownIt-Anchor" href="#设置及转换"></a> 设置及转换</h2>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
+]]></content>
+      <categories>
+        <category>GIS基础</category>
+      </categories>
+      <tags>
+        <tag>坐标系</tag>
+        <tag>GIS</tag>
       </tags>
   </entry>
   <entry>
@@ -1961,6 +1994,37 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</title>
+    <url>/posts/4270937d/</url>
+    <content><![CDATA[<p>看最新的文献(尤其是<strong>top</strong>)是必要的，尤其是在比较热门的领域。一方面可以学习膜拜借鉴收获灵感，开阔研究思路，同时也能熟悉自己学科或工作相关的当前的国际研究热点/前言理论方法，有助于论文选题，工作开展及撰写。<strong>地理</strong>方面，国内的文章可以通过期刊官网和一些公众号，英文SCI则主要借助RSS（需要梯子）。关于论文检索和下载可以看之前的<a href="https://hscyber.github.io/posts/33f7b1b7/">论文检索</a>、<a href="https://hscyber.github.io/posts/99dce68a/">论文下载</a></p>
+<span id="more"></span>
+<h2 id="rss订阅"><a class="markdownIt-Anchor" href="#rss订阅"></a> RSS订阅</h2>
+<blockquote>
+<p>大三开始接触了RSS，从那之后便一直使用RSS来追踪特定英文期刊及自己感兴趣方向的文章，收获良多，也可以跟踪一些<strong>其他平台如少数派、国家地理</strong>等等。</p>
+</blockquote>
+<p><font color="#dd0000">RSS平台可以自动抓取订阅源的推送更新，因此我们可以不打开期刊就批量看到最近文章及摘要</font>。</p>
+<p>我个人的话英文除了顶刊（NSP及子刊以及一区）还会关注一些灾害及环境生态领域的较好的杂志，中文少，我一般只关注地理学报及地球信息科学学报等期刊，因人而异。</p>
+<p>RSS订阅平台很多，我用的是免费网页版的<a href="https://www.inoreader.com/apps">inoreader</a>，需要梯子，以下是简要使用步骤：</p>
+<ol>
+<li>注册并登陆账号</li>
+<li>批量检索期刊出版社：如<a href="https://www.nature.com/">Nature</a>，<a href="https://www.science.org/">Science</a>，<a href="https://www.pnas.org/loi/pnas">PNAS</a>，<a href="https://www.elsevier.com/books-and-journals/elsevier">ELESVIER</a>，<a href="https://www.tandfonline.com/action/showPublications?pubType=journal">tandfonline</a>，Springer，Wiley，MDPI</li>
+<li>进入期刊主页，找subscribe类似的字样，找到RSS即可，据我目前的是NSP及其子刊，ELESVIER等主流期刊都提供了RSS订阅。另外，<strong>NSP等一些出版商支持高级检索关键词RSS订阅</strong>。</li>
+<li>结合自己的兴趣订阅期刊并归类，接下来就是自己一周打开一次网页查看最新文章即可，感兴趣的<strong>星标</strong></li>
+</ol>
+<h3 id="操作示例"><a class="markdownIt-Anchor" href="#操作示例"></a> 操作示例</h3>
+<img src="/posts/undefined/image-20220826174114761.png" class alt="image-20220826174114761">
+<img src="/posts/undefined/image-20220826173931032.png" class alt="image-20220826173931032">
+<img src="/posts/undefined/image-20220826174023680.png" class alt="image-20220826174023680">
+<img src="/posts/undefined/image-20220826173446841.png" class alt="image-20220826173446841">
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>期刊</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>论文学习(1)：Generalized Linear Mixed Models</title>
     <url>/posts/ca790165/</url>
     <content><![CDATA[<p>近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
@@ -2009,6 +2073,63 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <tag>GLMM</tag>
         <tag>GLM</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>【转载】快速提升学术论文写作能力的1313法则</title>
+    <url>/posts/81af99e4/</url>
+    <content><![CDATA[<p>全文原封不动转载自公众号“学术海豹”,3实际上也可以是更多。</p>
+<span id="more"></span>
+<blockquote>
+<p>推文是组里已经毕业的优秀博士师兄之前写的2020，可惜我刚入学的时候师兄就毕业了没能和师兄当面取经而且师兄现在在公司不更新了hh</p>
+</blockquote>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>上一篇公众号文章发出去之后，后台有些同学给我留言，对我写的内容表达了肯定，或者提了一些很有价值的问题，我都一一作了回复。感谢大家的阅读，写这些内容就是希望能够帮助到刚踏入学术圈的同学们。</p>
+<p>前几天因为导师给了个急活，忙得没有时间和精力来写公众号文章。今天得空来谈一下我认识到的学术论文写作，这里说的“学术论文”包括了英文SCI和中文期刊论文。作为现代社会的八股文，学术论文的写作真的是个非常折磨人的事，尤其是<font color="#dd0000">写第一篇学术论文的时候，大部分同学往往毫无章法</font>，瞎写一通，反复修改，浪费大量时间。我记得自己第1篇英文SCI论文从2017年3月上旬开始动笔写，到2017年6月28日正式投稿出去，耗费了至少3个半月时间，期间根据老师们的意见至少大改了5次，在最后投出去的稿件中第一次写的内容基本没用上，尤其是前言和讨论部分，整个写作过程踩了无数坑。这几个月指导师弟写他的第一篇SCI英文论文，发现好多同样的问题也会在他的身上出现。</p>
+<p>需要特别说明的是，我也还处在学术论文写作的学习和锤炼阶段，由于水平有限，本文表述的观点可能存在偏差，所以有任何问题欢迎大家留言批评指正。我会在文末开通留言功能，并着重把真诚的批评和有效的建议贴出来，方便大家沟通交流，兼听则明。</p>
+<h2 id="本文针对的问题"><a class="markdownIt-Anchor" href="#本文针对的问题"></a> 本文针对的问题</h2>
+<p>在此，我总结一下自己和师弟最开始写学术论文所遇到的共性问题，这应该也是很多第一次进行学术论文写作的同学会遇到的问题。</p>
+<p>（1）<font color="#dd0000">不清楚如何提炼和突出科学问题和论文亮点</font>。“画龙画虎难画骨”，核心科学问题和亮点贡献就是一篇文章的骨骼和灵魂，一篇论文投出去后不被拒稿，很大程度上是看你是否清晰地提炼和表达了论文的核心问题和贡献。如何提炼核心问题，然后针对这个核心问题进行明确地拆解，并写明得到的核心结论和亮点贡献，是需要每篇文章尤其注重的。</p>
+<p>（2）<font color="#dd0000">搞不懂论文各部分的组织结构和侧重点</font>。学术论文就像鸟笼里的鸟，具有非常明确的限制和有限的写作自由。每部分应该写什么，结构是怎么样的，如何组织和规范语言，都有强烈的规律可循，并不是胡乱写的。可惜的是，大多数学生最开始写学术论文时，只是理解了摘要、数据方法、结果、讨论、结论这些词的字面意思，并不清楚这些词背后代表的组织逻辑和表述重点是什么。</p>
+<p>（3）<font color="#dd0000">不了解学术论文写作的表达规矩和内在逻辑</font>。每个人写作都有自己的表述风格，但是学术论文写作在表达的方式和逻辑上有特定的要求，每段的开头、中间、结尾怎么写，前后两句和上下两段之间如何有序衔接，都是有要求的。这样规矩出现的目的其实是为了尽可能让大家清晰规范地传达出自己的学术观点。就算杜甫李白写诗都还要求对仗工整和平仄押韵呢，但这些规矩并不妨碍他们表达自己的观点，学术论文也是同样的道理啊。</p>
+<h2 id="学术论文写作1313法则"><a class="markdownIt-Anchor" href="#学术论文写作1313法则"></a> 学术论文写作1313法则</h2>
+<p>针对以上问题，我提出<font color="#dd0000">学术论文写作1313法则</font>，记住这个规律可有效提升学术论文写作的表达能力和逻辑性。</p>
+<ul>
+<li><font color="#dd0000">第一个“13”法则是针对全文而言的</font>，具体是指全文要提炼<font color="#dd0000">1个核心问题</font>，然后将这个核心问题在论文结果部分拆解为<font color="#dd0000">3个子问题</font>来进行详细阐述，从而在整体上准确控制全文表达的逻辑性。</li>
+<li><font color="#dd0000">第二个“13”法则是针对每段话而言的</font>，具体是指每段话开头就要用<font color="#dd0000">1句话概括</font>这段要表达的主要内容，然后分<font color="#dd0000">3条观点</font>对段首的话进行分别阐述。当然，这里的<strong>3是虚指</strong>，也可以用更多条观点来表达。</li>
+</ul>
+<p>下面对论文每部分进行讲解，并将1313法则贯串于本文讲解过程中。为方便本文的表达和大家的理解，我接下来将结合自己前一段时间写的<strong>疫情论文</strong>《基于多源时空大数据的区际迁徙人群多层次空间分布估算模型—以COVID-19疫情期间自武汉迁出人群为例》来进行讲解，大家可以关注公众号后回复<strong>paper</strong>来获取全文，或者自行到CNKI下载全文。</p>
+<h3 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h3>
+<p>引言部分通常包括5段话，需要达到4个目的，具体如下：</p>
+<p><font color="#dd0000">第1段，介绍研究背景，并说明你的研究问题为什么是重要的</font>。比如在疫情论文中，我全文目的是为了计算封城前从武汉流入到湖北省各地的人群数量及其空间分布，那么在引言第一段中，我先就说明了武汉封城前人群大量流入湖北省其他各地级市这一事实，并指出准确计算这部分人群在湖北省内的空间分布特征，对于疫情防控决策的制定是非常重要的，这样我的研究才有很强的现实意义。同时，我还说明了计算人群空间分布所面临的核心学术问题和限制是什么。总之，第一段需要说清楚全文研究问题的学术价值或者现实价值，告诉别人研究这个问题是非常重要且急迫的。</p>
+<p><font color="#dd0000">第2-3段，综述现有研究进展，并结合本文的研究问题，说明现有研究存在的不足</font>，从而进一步表明本文研究的必要性，并引出本文的核心贡献和亮点。这里就需要利用第二个“13”法则来写作了。在疫情论文中，第1段结尾我提出解决区际人群空间分布估算的关键在于结合节假日人口迁徙网络分析方法和动态人口估算方法，因此第2、3段我分别对节假日人口迁徙网络分析方法、动态人口估算方法进行综述。以第3段为例，我在段首第1句话就说明动态人口估算的核心思想是什么。然后，提出现有动态人口估算方法可分为三类，并对这三类进行分别阐述。最后，结合全文的研究问题，对现有动态人口估算方法的优点和不足进行评述。</p>
+<p><font color="#dd0000">第4段，清楚说明全文的核心贡献和亮点</font>。这一段非常重要，用来引导评审人明确和认可你文章价值的。这段话要表达的中心思想就是“研究本文的问题将有助于解决某关键的学术问题和重要的现实问题”，一般3-4句话就能说明白了。在疫情论文中，因为当时时间非常紧张，我脑子一下子抽风忘写了…如果要写的话，我会进行如下表达:“总的来看，已有研究很少关注区际迁徙人群的多层次空间分布估算这一问题，这一问题的解决将有助于深入了解区际迁徙人群的规模以及其在区域内部的空间分布及动态变化的特征，进而为突发重大公共卫生事件中空间防疫决策的制定提供快速有效的科学支撑”。</p>
+<p><font color="#dd0000">第5段，概述本文的主要研究内容，并对接下来的内容安排进行说明</font>。这一段大家写起来都相对容易，只需要注意表述时注意使用首先、然后、接下来、最后这样的类似句式对内容进行拆分既可，这样看起来逻辑性会强很多。</p>
+<h3 id="数据和方法"><a class="markdownIt-Anchor" href="#数据和方法"></a> 数据和方法</h3>
+<p><font color="#dd0000">数据部分，需要把每种数据的关键信息都表述到</font>。比如，对于GIS和遥感领域的常用数据，通常需要介绍其<strong>来源、空间分辨率、时间分辨率、用到了哪些时段的数据、一句话简单说明这个数据在全文用来干啥的</strong>。有些模型的数据还需要简单说明数据生成的过程或原理等。</p>
+<p><font color="#dd0000">方法部分，需要用到第二个“13”法则</font>。首先用一段话概述方法部分的内容，然后有一个全文的数据分析流程图，方便大家从整体上快速了解你的研究方案和分析思路，这张图有些同学会忘记画，所以这里重点说明一下。然后，对将全文的方法拆分为几个子部分，分别加上一个小标题，再进行详细表述。</p>
+<h3 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h3>
+<p>结论部分，需要同时用到第一个和第二个“13”法则。</p>
+<p>首先，<font color="#dd0000">结论部分的整体结构需要用到第一个“13”法则</font>。**结论部分的三个小节是对全文研究问题的拆解，每个小节要具体阐述一个子问题，合起来就支撑了全文的研究问题。**比如疫情论文中，我的研究问题是COVID-19疫情期间湖北各地级市自武汉迁出人群的多层次空间分布估算，在结论部分我包含了三个子问题，具体如下：</p>
+<p><em>3.1 春节期间地级市尺度人群变化特征</em></p>
+<p><em>3.2 春节期间各地级市由武汉迁入人群的分布特征</em></p>
+<p><em>3.3 春节期间区县尺度人群变化特征。</em></p>
+<p>可以看出，这三个问题都是围绕我的研究问题展开的，而且有前后递进关系，合起来就从不同尺度上阐明了各地级市自武汉迁出人群的多层次空间分布特征。</p>
+<p>然后，<font color="#dd0000">每段话都需要尽量用到第二个“13”法则</font>。**段落开头就用一段话说清楚这段的核心内容、观点或结论，然后分（1）、（2）、（3）点来说明这段要表达的内容。**很多同学在结果描述部分容易泛泛而谈，让人不容易读懂其内容的逻辑感和层次感，尤其是GIS或遥感领域的空间分析结果，时空规律往往非常多而且杂乱，让人无从下手进行表述。针对类似的情况，严格采用第二个“13”法则，强制自己分条来表述结果，会很好的促进让自己在写作过程中思考和梳理结果。如果你没法对结果应用第二个“13”法则，那就说明对结果的梳理和总结还不到位，这时候就要尤其注意了。结果阐述其实也有规律可循的，比如对于空间分析结果，一般都是先说明整体的空间模式，然后针对不同区域说明正常或异常的空间模式，并对导致这一空间模式的原因进行简要分析。</p>
+<h3 id="讨论"><a class="markdownIt-Anchor" href="#讨论"></a> 讨论</h3>
+<p>讨论部分应该讨论一些什么，其实是个挺难把握的问题。记得经常给我改文章的梁老师说：“中国学生写文章总是讨论的不够深入和精彩，文章读起来就干巴巴的”。讨论部分最容易看出一个人对自己学术领域了解的深入和全面的程度，需要大量文献阅读和独立思考才能逐步提升讨论部分的写作质量。一般来说，针对刚进行学术论文写作的同学，可以从以下几个方面展开讨论：对部分结果出现的原因进行解释和讨论；与同类研究结果进行对比，发现共通的或新的知识或规律；对数据、方法的不确定性进行讨论；对本研究可能推动哪些研究问题或相关领域发展进行讨论。</p>
+<p>讨论部分也需要用到第二个“13”法则。首先，将讨论部分分为三到四个子部分，给每个子部分起一个标题，然后对每个子部分进行分条阐述。在疫情论文中，我的讨论分为两大部分：基于春节期间人群流动模式的未来疫情发展判断、不确定性分析。其中，基于春节期间人群流动模式的未来疫情发展判断又分为三个小部分，不确定性分析则分为4个小部分。</p>
+<h3 id="结论-2"><a class="markdownIt-Anchor" href="#结论-2"></a> 结论</h3>
+<p>很多同学对结论部分要写的内容存在误解，结论部分的写作最后要达到的效果是：<font color="#dd0000">别人不看你论文其他部分，只看结论部分就能快速知道你的研究问题是什么、你用了什么数据和方法流程来进行研究、你得到了哪些主要结论</font>。因而，<strong>结论部分通常包括三部分</strong>，首先第一段话说明你研究针对的问题，采用的数据和主要方法是什么。然后，分条阐述全文的主要结论。最后，用一小段话总结全文研究内容，例如疫情论文中，我用的总结性语句是“总体来说，本文提出一种融合多源地理时空大数据的区际迁徙人群多层次空间分布动态估算模型，实现了 2020年1月24日除夕前从武汉流入湖北省内各市县及其农村地区人群数量的快速估算及空间特征分析”。</p>
+<h3 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h3>
+<p>摘要部分先用一两句话说明本研究的重要性。然后，说明我们的研究问题是什么，主要用了什么方法。最后，选择一些亮点的结果进行展示，最好也分条写。大概200-300字左右即可。</p>
+<h2 id="总结回顾"><a class="markdownIt-Anchor" href="#总结回顾"></a> 总结回顾</h2>
+<p>初次进行学术论文写作时容易遇到的三个问题包括：不清楚如何提炼和突出科学问题和论文亮点、搞不懂论文各部分的组织结构和侧重点、不了解学术论文写作的表达规矩和内在逻辑。</p>
+<p>针对以上问题，本文提出<font color="#dd0000">学术论文写作1313法则。第一个“13”法则</font>是针对全文而言的，具体是指全文要提炼1个核心问题，然后将这个核心问题在论文结果部分拆解为3个子问题来进行详细阐述，从而在整体上准确控制全文表达的逻辑性。<font color="#dd0000">第二个“13”法则</font>是针对每段话而言的，具体是指每段话开头就要用1句话概括这段要表达的主要内容，然后分3条观点对段首的话进行分别阐述。实际上，学术论文写作1313法则背后强调的思想是一定要对论文的问题和内容进行逐层地拆解和表达，让段落、小节、研究主题之间相互支撑和关联，使文章内容成为一个有机的整体。</p>
+<p>如果觉得这篇公众号文章能够帮助到你身边其他同学朋友，也请点个<strong>在看</strong>或者积极<strong>转发</strong>哈，让更多处在困扰中的同学能汇聚到一起共同学习探讨。如果你觉得还有什么不清楚的地方或者想继续了解的问题，欢迎在下面的留言墙里告诉我。</p>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
   </entry>
   <entry>
     <title>计算机相关(杂)：列或者行优先顺序</title>
@@ -2546,7 +2667,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>统计基础(1)：概念学习与理解1</title>
+    <title>【预】统计基础(1)：概念学习与理解1</title>
     <url>/posts/aff1e629/</url>
     <content><![CDATA[<p>近期在进行统计广义回归建模及不断查阅请教的过程中温习、学习了一些统计相关的概念，也有了更多的理解，准备结合之前上课的笔记和看的一些书籍/博客陆续整理一下基础概念，以加深理解及便于复用。持续更新…</p>
 <span id="more"></span>
@@ -2554,6 +2675,16 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <h2 id="分布"><a class="markdownIt-Anchor" href="#分布"></a> 分布</h2>
 <h2 id="样本与估计"><a class="markdownIt-Anchor" href="#样本与估计"></a> 样本与估计</h2>
 <h2 id="统计假设检验"><a class="markdownIt-Anchor" href="#统计假设检验"></a> 统计假设检验</h2>
+]]></content>
+      <categories>
+        <category>空间分析与统计基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>【预】回归建模(2)：变量预览及预处理</title>
+    <url>/posts/5663ac13/</url>
+    <content><![CDATA[<p>在建模前不论是机器学习还是统计模型(统计模型尤其)首先需要对变量有深入的了解，包括其数值类型、服从的分布等等，并针对不同数据可能的异常值进行不同的预处理，标准化？log变换？剔除？等，快速通过Python/R进行出图探索。</p>
+<span id="more"></span>
 ]]></content>
       <categories>
         <category>空间分析与统计基础</category>
