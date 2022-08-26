@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/text-shadow.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/anatomy.png">
 <meta property="article:published_time" content="2022-05-21T08:23:57.000Z">
-<meta property="article:modified_time" content="2022-08-20T04:38:59.564Z">
+<meta property="article:modified_time" content="2022-08-26T10:31:23.522Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -102,7 +102,7 @@
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">65</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
@@ -182,7 +182,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -365,7 +365,7 @@
 <li>lines：线，如tick,line……</li>
 <li>texts：文本，如label title……</li>
 </ul>
-<p>多数情况下我们都是使用绘图自带的<strong>默认</strong>设置，但是实际上，一张图的**任一组成部分即上述部件都能够被访问和调整！**如我们可以像下面这样直接设置每个label加粗，<strong>这些方法都能够在文档中快速找到</strong>：</p>
+<p>多数情况下我们都是使用绘图自带的<strong>默认</strong>设置，但是实际上，<font color="#dd0000">一张图的任一组成部分即上述部件都能够被访问和调整</font>如我们可以像下面这样直接设置每个label加粗，<strong>这些方法都能够在文档中快速找到</strong>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xaxis().get_ticklabels():</span><br><span class="line">    label.set_fontweight(<span class="string">&quot;bold&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 <p>🔥想强调的是，每个部件在我们创建了一个图形之后就有了<strong>类</strong>对应的<strong>实例</strong>（对类不熟悉的可以移步<a href="https://hscyber.github.io/posts/659ef075/">Python中的类</a>），通过查阅<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/index.html">文档</a>我们可以看到该对象的<strong>所有属性及方法</strong>，进一步地我们可以按需检索并实现我们对图形想要进行的<strong>任意设置或调整</strong>，下面开始介绍并举例：</p>
 <h2 id="主要部件详解"><a class="markdownIt-Anchor" href="#主要部件详解"></a> 主要部件详解</h2>
