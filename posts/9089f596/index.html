@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="I-tMVJFaVoqHor7XEUJw3u64FtzJQCAh5hiSvbm6Vuk">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="承接上文，接下来记录一下当前我Python环境的配置及Vscode、pycharm软件安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python环境(2)：安装及配置">
+<meta property="og:url" content="https://hscyber.github.io/posts/9089f596/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="承接上文，接下来记录一下当前我Python环境的配置及Vscode、pycharm软件安装">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827202632781.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827203348746.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827203633874.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827204858425.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827204113884.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827205304096.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827205438092.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827205501698.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827205747159.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20220827210259673.png">
+<meta property="article:published_time" content="2022-08-27T13:54:58.000Z">
+<meta property="article:modified_time" content="2022-08-27T14:13:55.766Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="Python环境配置">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20220827202632781.png">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/9089f596/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/9089f596/","path":"posts/9089f596/","title":"Python环境(2)：安装及配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python环境(2)：安装及配置 | Huangs's Notes</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">66</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minicondaanaconda%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text"> Miniconda&#x2F;Anaconda安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text"> 步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text"> 编辑器安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode"><span class="nav-number">2.1.</span> <span class="nav-text"> vscode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pycharm"><span class="nav-number">2.2.</span> <span class="nav-text"> pycharm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text"> Python安装</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/9089f596/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python环境(2)：安装及配置 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python环境(2)：安装及配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-27 21:54:58" itemprop="dateCreated datePublished" datetime="2022-08-27T21:54:58+08:00">2022-08-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>承接<a href>上文</a>，接下来记录一下当前我Python环境的配置及Vscode、pycharm软件安装</p>
+<span id="more"></span>
+<h2 id="minicondaanaconda安装"><a class="markdownIt-Anchor" href="#minicondaanaconda安装"></a> Miniconda/Anaconda安装</h2>
+<blockquote>
+<p>个人目前使用的环境，并不适用于每个人</p>
+</blockquote>
+<p>GIS个人均推荐3.9版本。Miniconda是Anaconda的精简版，前者仅安装Python和Conda环境及必要的基础包；后者会自动安装jupyter lab、Spyder编辑器且base环境初始自动安装了较多的数据处理分析包。视情况选择</p>
+<h3 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h3>
+<ol>
+<li>网站下载<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>或<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/distribution">Anaconda</a>，并双击运行,<strong>Next</strong></li>
+<li>选择用户，如果是个人电脑一般无所谓<strong>Just Me</strong>即可，服务器或多用户电脑安装则可以考虑全体用户</li>
+<li>安装目录，可以默认也可以更改，如我会直接放在C盘或者D盘<strong>D:\moniconda3</strong></li>
+<li>完成安装后，可以看到最近安装程序Anaconda下有<strong>Anaconda prompt</strong>，通过该程序启动cmd并自动激活<strong>base环境</strong>，如：</li>
+</ol>
+<img src="/posts/undefined/image-20220827202632781.png" class alt="image-20220827202632781">
+<ol>
+<li>该环境激活后相当于进入了默认的Conda环境，可以在此进行新环境的创建及维护、包管理等等，但不建议在base环境中安装过多的包，而建议新建多个环境用于不同版本/类型的工作，环境隔离的重要性和好处暂不展开。关于环境及包的管理以及常用命令见<a href>(3)环境及包管理</a></li>
+<li>如果是安装Miniconda，为了能在vscode中运行jupyter，需要在对应的环境中安装ipykernel，由于环境隔离，每个新环境都需要各自安装。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge ipykernel</span><br></pre></td></tr></table></figure>
+<h2 id="编辑器安装"><a class="markdownIt-Anchor" href="#编辑器安装"></a> 编辑器安装</h2>
+<blockquote>
+<p>个人只用过vscode和pycharm，进入官网下载安装即可。<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">vsode官网下载</a>，<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm社区版下载</a></p>
+<p>安装过程，建议勾选”将打开文件添加到右键菜单”，方便在任意文件夹右击新建脚本</p>
+</blockquote>
+<h3 id="vscode"><a class="markdownIt-Anchor" href="#vscode"></a> vscode</h3>
+<p>官方文档<a target="_blank" rel="noopener" href="https://code.visualstudio.com/api">VSCode API</a>，安装插件Learn:<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Jupyter Notebooks in VS Code</a></p>
+<p>进入文件夹，启动，也可以在程序栏启动并切换工程目录，几个注意的点</p>
+<ol>
+<li>新建文件时选择jupyter或者文本文件，先保存再编写代码运行</li>
+<li>对于Python代码，需要打开终端并通过cd进入对应环境，再python输入py脚本名运行代码（配合tab键提示文件名）</li>
+<li>一般会自动检测本地安装的jupyter环境，如果没有，可以手动添加, 依次点击文件→首选项→设置→拓展→python→<strong>Conda Path</strong>添加进入setting.json编辑文件添加如下即可</li>
+<li>添加用户配置片段</li>
+<li>其他的诸如主题、字体等等自行设置即可</li>
+</ol>
+<img src="/posts/undefined/image-20220827203348746.png" class alt="image-20220827203348746">
+<img src="/posts/undefined/image-20220827203633874.png" class alt="image-20220827203633874">
+<img src="/posts/undefined/image-20220827204858425.png" class alt="image-20220827204858425">
+<img src="/posts/undefined/image-20220827204113884.png" class alt="image-20220827204113884">
+<p>为python脚本添加用户片段信息的方式，在文件/file-&gt;首选项/reference-&gt;配置用户代码片段/user snippets，更多的可以看<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#:~:text=Single%2Dlanguage%20user%2Ddefined%20snippets,for%20which%20it%20is%20defined.">文档</a>我这里是：</p>
+<p><code>$CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</code></p>
+<img src="/posts/undefined/image-20220827205304096.png" class alt="image-20220827205304096">
+<p>用法输入英文headerz找到对应提示即可，效果如下：</p>
+<img src="/posts/undefined/image-20220827205438092.png" class alt="image-20220827205438092">
+<img src="/posts/undefined/image-20220827205501698.png" class alt="image-20220827205501698">
+<h3 id="pycharm"><a class="markdownIt-Anchor" href="#pycharm"></a> pycharm</h3>
+<p>下载并完成安装后，一路<strong>next</strong>既可以，这里其他不建议勾选，是否添加环境路径试情况，随时也可以自行添加，运行后打开一个工程目录（即防止代码的文件）。</p>
+<ul>
+<li>一般会自动检索环境，建议手动添加一下确认</li>
+<li>其他的设置均可自定搜索查阅</li>
+</ul>
+<img src="/posts/undefined/image-20220827205747159.png" class alt="image-20220827205747159">
+<img src="/posts/undefined/image-20220827210259673.png" class alt="image-20220827210259673">
+<h2 id="python安装"><a class="markdownIt-Anchor" href="#python安装"></a> Python安装</h2>
+<p>如果安装了Miniconda可以不安装Python，因为其他需求需要安装的话去此处找到对应的版本下载安装即可。至于安装步骤，可以全程点击下一步。具体内容可以看一下第一节的安装python</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/9089f596/" title="Python环境(2)：安装及配置">https://hscyber.github.io/posts/9089f596/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" rel="tag"><i class="fa fa-tag"></i> Python环境配置</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/c5ac1642/" rel="prev" title="Python环境(1)：基础知识">
+                  <i class="fa fa-chevron-left"></i> Python环境(1)：基础知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/42743416/" rel="next" title="Python环境(3)：环境及包管理Conda+pypi">
+                  Python环境(3)：环境及包管理Conda+pypi <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">102k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:33</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/9089f596/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
