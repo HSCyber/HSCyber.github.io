@@ -7,9 +7,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
   <link rel="mask-icon" href="/images/logo.svg" color="#222">
   <link rel="manifest" href="/manifest.json">
   <meta name="google-site-verification" content="I-tMVJFaVoqHor7XEUJw3u64FtzJQCAh5hiSvbm6Vuk">
@@ -26,17 +26,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="从Python到R~  相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过类比熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及  基本语法，数据类型 常用函数，流程控制（写循环） 文件读写及数据框的常规操作">
+    <meta name="description" content="从Python到R  相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过类比熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及  基本语法，数据类型 常用函数，流程控制（写循环） 文件读写及数据框的常规操作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言学习(1)：基础">
 <meta property="og:url" content="https://hscyber.github.io/posts/7b2f7b5e/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="从Python到R~  相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过类比熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及  基本语法，数据类型 常用函数，流程控制（写循环） 文件读写及数据框的常规操作">
+<meta property="og:description" content="从Python到R  相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过类比熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及  基本语法，数据类型 常用函数，流程控制（写循环） 文件读写及数据框的常规操作">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/7b2f7b5e/dataframe.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/7b2f7b5e/dataframe.png">
 <meta property="article:published_time" content="2022-06-08T08:57:54.000Z">
-<meta property="article:modified_time" content="2022-08-13T12:41:07.218Z">
+<meta property="article:modified_time" content="2022-08-27T14:37:42.409Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="R语言">
 <meta name="twitter:card" content="summary">
@@ -102,7 +102,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">66</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">55</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">56</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -309,7 +309,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p><strong>从Python到R</strong>~</p>
+<p><strong>从Python到R</strong></p>
 </blockquote>
 <p>相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过<strong>类比</strong>熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及</p>
 <ol>
@@ -507,6 +507,23 @@
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
   </li>
 </ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
 </div>
 
           <div class="post-tags">
