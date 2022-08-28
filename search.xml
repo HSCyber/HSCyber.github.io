@@ -242,7 +242,7 @@
 <span id="more"></span>
 <h2 id="前言-python学习"><a class="markdownIt-Anchor" href="#前言-python学习"></a> 前言-Python学习</h2>
 <blockquote>
-<p>官方/包的发布者提供的教程文档及接口文档**Documentary及API **是很好的学习和应用教材。</p>
+<p>官方/包的发布者提供的教程文档及接口文档Documentary及API是很好的学习和应用教材。</p>
 </blockquote>
 <p>Python是一门高效易用的语言，语法简洁，入门上手很快，但实际中我们开展的绝大部分数据工作主要基于大量已有的<strong>包(packages)<font color="#dd0000">实质上就是其他人已经实现并封装的大量py脚本</font></strong>。因此，从应用的角度来说，学习Python更重要的是在了解其基本语法、对象及函数使用等的基础上→<strong>学会快速上手使用包并熟悉各种常用包的功能</strong>，熟能生巧，在具体的案例中思考及学习。<u>但是，</u></p>
 <ul>
@@ -258,7 +258,7 @@
 <li>解释器读一遍代码，确认没逻辑问题并根据代码的import找环境目录下的调用的包，逐步执行</li>
 <li>按代码逻辑逐步执行指令，返回结果……</li>
 </ol>
-<p>所以我们运行代码不一定需要借助软件或者工具，安装后之后打开目录在cmd中运行也可。找到python.exe直接右击，我们会发现自动弹出一个cmd并提示可以运行代码。Python安装了些什么看后续的推文（2）。接下来需要了解一下命令行及环境变量</p>
+<p>所以我们运行代码不一定需要借助软件或者工具，安装后之后打开目录在cmd中运行也可。找到python.exe直接右击，我们会发现自动弹出一个cmd并提示可以运行代码。Python安装了些什么看下文。接下来需要了解一下命令行及环境变量</p>
 <h2 id="命令行"><a class="markdownIt-Anchor" href="#命令行"></a> 命令行</h2>
 <blockquote>
 <p>命令提示符CMD(command)，是 Windows 系统的一种命令行操作工具，<strong>接收用户命令来完成一些系统或程序操作</strong></p>
@@ -285,15 +285,8 @@
 </blockquote>
 <p><strong>添加环境变量可以让我们可以更方便地调用本地文件夹中的应用程序</strong></p>
 <ul>
-<li>
-<p>未添加环境变量之前，每次都需要进入指定目录才能运行目录下的程序(.exe)，对于使用频繁的程序来说显得麻烦，因此可将其exe所在的路径添加到系统环境变量下的Path解释器变量，添加之后，直接在<strong>cmd</strong>中输入名称如<code>Python</code>就可以运行/调用指定目录下的可执行文件(windows中一般是指exe)，省略后缀。</p>
-</li>
-<li>
-<p>若是涉及多个Python或多个不同版本但同名的程序，可以重命名exe的名字(不影响使用)，如python37, python38</p>
-</li>
-<li>
-<p>还有更多的问题可自行查阅</p>
-</li>
+<li>未添加环境变量之前，每次都需要进入指定目录才能运行目录下的程序(.exe)，对于使用频繁的程序来说显得麻烦，因此可将其exe所在的路径添加到系统环境变量下的Path解释器变量，添加之后，直接在<strong>cmd</strong>中输入名称如<code>Python</code>就可以运行/调用指定目录下的可执行文件(windows中一般是指exe)，省略后缀。</li>
+<li>若是涉及多个Python或多个不同版本但同名的程序，可以重命名exe的名字(不影响使用)，如python37, python38</li>
 </ul>
 <p>比如我安装Anaconda或Miniconda并添加环境变量后，打开cmd输入<strong>ipython/python</strong>即可以运行Python（实际上运行的是D:\Miniconda3\Scripts\ipython.exe）：</p>
 <img src="/posts/c5ac1642/image-20220827171710015.png" class alt="image-20220827171710015">
@@ -343,11 +336,9 @@
 <li>
 <p>交互模式：直接打开命令行输入<code>Python</code>，如果已添加环境变量（下节会讲），则会出现交互运行模式，其他的还有ipython模式，jupyter notebook自带，jupyter的文件后缀<code>.ipynb</code>即是<code>ipython notebook</code>的意思</p>
 <img src="/posts/c5ac1642/image-20211023111239766.png" class alt="image-20211023111239766">
-<ul>
-<li><code>exit()</code>退出，<strong>cmd</strong>常用；题外话退出数据库环境(如mysql mongodb)则用<code>quit()</code></li>
-</ul>
 </li>
 </ol>
+<p><code>exit()</code>退出，<strong>cmd</strong>常用；题外话退出数据库环境(如mysql mongodb)则用<code>quit()</code></p>
 ]]></content>
       <categories>
         <category>Python基础</category>
@@ -491,7 +482,7 @@
   <entry>
     <title>【预】GIS基础(1)：浅析地理/投影坐标系;转换脚本</title>
     <url>/posts/c82d0555/</url>
-    <content><![CDATA[<p><strong>空间参考</strong>即地理/投影坐标系是地理研究、GIS数据处理及空间分析的基础。好早就学，但直到现在寒假也还是好像懂但又不怎么懂的一个点。在此希望基于资料和自己当前的理解及实践，用尽可能短的篇幅小结一下：<strong>(1)  空间参考、地理/投影坐标系相关的概念；(2) 常用坐标系及选择依据；(3) 软件(ArcGIS/QGIS)及代码(Python/R)的坐标系(批)处理方式。</strong></p>
+    <content><![CDATA[<p><strong>空间参考</strong>即地理/投影坐标系是地理研究、GIS数据处理及空间分析的基础。好早就学，但直到现在也还是好像懂但又不怎么懂的一个点。在此希望基于资料和自己当前的理解及实践，用尽可能短的篇幅小结一下：<strong>(1)  空间参考、地理/投影坐标系相关的概念；(2) 常用坐标系及选择依据；(3) 软件(ArcGIS/QGIS)及代码(Python/R)的坐标系(批)处理方式。</strong></p>
 <span id="more"></span>
 <h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
 <h2 id="坐标系选择"><a class="markdownIt-Anchor" href="#坐标系选择"></a> 坐标系选择</h2>
@@ -3359,6 +3350,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
 <span id="more"></span>
+<img src="/posts/2852138d/WallpaperStudio10-19184.jpg" class alt="WallpaperStudio10-19184">
 <img src="/posts/2852138d/test.png" class alt="image">
 ]]></content>
       <categories>
