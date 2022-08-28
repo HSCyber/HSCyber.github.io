@@ -35,7 +35,7 @@
 <meta property="og:description" content="承接Python环境(2)：安装及配置，此处记录环境及包管理，同时汇总一下常用的环境及包管理命令以便速查">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-27T13:55:03.000Z">
-<meta property="article:modified_time" content="2022-08-27T14:33:14.182Z">
+<meta property="article:modified_time" content="2022-08-28T11:18:41.330Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python环境配置">
 <meta name="twitter:card" content="summary">
@@ -157,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text"> 基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E7%8E%AF%E5%A2%83%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> Conda环境&#x2F;包管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98debug"><span class="nav-number">3.</span> <span class="nav-text"> 问题debug</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text"> 基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85package"><span class="nav-number">1.1.</span> <span class="nav-text"> 包Package</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E4%BB%93%E5%BA%93repository"><span class="nav-number">1.2.</span> <span class="nav-text"> 包仓库repository</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83environment"><span class="nav-number">1.3.</span> <span class="nav-text"> 环境Environment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E7%8E%AF%E5%A2%83%E5%8C%85%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> Conda环境&#x2F;包管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98debug"><span class="nav-number">3.</span> <span class="nav-text"> 问题debug</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -193,7 +193,7 @@
         <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/1126456109@qq.com" title="E-Mail → 1126456109@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+        <a href="msilto:1126456109@qq.com" title="E-Mail → msilto:1126456109@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
   <div class="cc-license site-overview-item animated" itemprop="license">
@@ -289,7 +289,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>74</span>
+      <span>808</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -311,6 +311,25 @@
         <p>承接<a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)：安装及配置</a>，此处记录环境及包管理，同时汇总一下常用的环境及包管理命令以便速查</p>
 <span id="more"></span>
 <h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
+<h3 id="包package"><a class="markdownIt-Anchor" href="#包package"></a> 包Package</h3>
+<blockquote>
+<p>关于这块之前也写过一点<a href="https://hscyber.github.io/posts/659ef075/">Python中的类、模块、包</a></p>
+</blockquote>
+<p><strong>模块</strong><a target="_blank" rel="noopener" href="https://docs.python.org/3/tutorial/modules.html">Modules</a>：一个.py文件就构成了一个模块，模块名即为去掉后缀之后的名。模块包含内置模块、标准模块以及第三方模块</p>
+<p><strong>包</strong>：一个包含<code>__init__.py</code>文件(包的标识文件)+若干子包+若干模块的文件夹，文件夹名字即为包名，包的位置位于<strong>Lib文件夹下，三方包位于site-packages</strong></p>
+<ul>
+<li>初始安装Python自带的包是<font color="#dd0000">内置的包，不需要额外安装即可调用</font>、更多的是<font color="#dd0000">第三方包</font>，个人或者团体或社区各自开发和维护的包，需要<strong>安装</strong></li>
+<li>Python的巨大优势即在于可拓展性和便捷，有大量的第三方包可供使用。另外，、我们也可以自己写模块和包用于调用，也可以发布自己的包到<strong>包仓库</strong>供别人使用，包默认都托管在Github上</li>
+<li>开源社区的力量很强大，如这里就列出了大量GIS相关的可用的包<a target="_blank" rel="noopener" href="https://ecosystem.pythongis.org/">Python×GIS</a></li>
+</ul>
+<p>但是，由于<font color="#dd0000">不同的包维护的群体(数量/质量)不一致，因此导致了不同的包更新频率和问题解决的速度都不一样，而不同的包之间又存在相互依赖关系，这就容易导致常见的Inconsistency问题，即由于包的版本不一致会引发错误，尤其是当包进行大版本更新，如2.1.x-2.2.x甚至从2.x-&gt;3.x，代码运行就可能出错</font></p>
+<p>这也就是Conda; Conda forge等包仓库、环境管理工具出现的原因。因此除了尽量选择维护快优化得比较好的包之外，还可以优先通过Conda等工具进行包管理，下面就看一下包仓库。</p>
+<h3 id="包仓库repository"><a class="markdownIt-Anchor" href="#包仓库repository"></a> 包仓库repository</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/">官方提供的最完整的包仓库(PyPI)</a>-The Python Package Index ，任何人都可以在上面发布自己写的包,安装完Python或者conda都会自动安装pypi。</li>
+<li>Conda</li>
+</ul>
+<h3 id="环境environment"><a class="markdownIt-Anchor" href="#环境environment"></a> 环境Environment</h3>
 <h2 id="conda环境包管理"><a class="markdownIt-Anchor" href="#conda环境包管理"></a> Conda环境/包管理</h2>
 <h2 id="问题debug"><a class="markdownIt-Anchor" href="#问题debug"></a> 问题debug</h2>
 
@@ -387,13 +406,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">102k</span>
+    <span title="站点总字数">103k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:33</span>
+    <span title="站点阅读时长">1:34</span>
   </span>
 </div>
 <div class="busuanzi-count">
