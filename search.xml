@@ -45,6 +45,7 @@
 <p><a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)：安装及配置</a></p>
 <p><a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理Conda+pypi</a></p>
 <p><a href="https://hscyber.github.io/posts/911c717a/">Python环境(4)：环境迁移及共享</a></p>
+<p><a href="https://hscyber.github.io/posts/364976c7/">Python环境(杂)：conda update CondaHTTPError</a></p>
 <h3 id="基础操作"><a class="markdownIt-Anchor" href="#基础操作"></a> 基础操作</h3>
 <p><a href="https://hscyber.github.io/posts/659ef075/">浅析Python中的类、模块、包</a></p>
 <p><a href="https://hscyber.github.io/posts/a0dd2ef9/">Python中的时间格式(1)：详细版</a></p>
@@ -108,8 +109,8 @@
 <span id="more"></span>
 <p>既然是网络问题一般都可以，挂梯子解决，比如我这里用clash代理，进入CMD后切换环境，再安装即可</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda activate base</span><br><span class="line">conda activate gis</span><br><span class="line">conda install -c conda-forge seaborn</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/image-20220828232228135.png" class alt="image-20220828232228135">
-<img src="/posts/undefined/image-20220828232300210.png" class alt="image-20220828232300210">
+<img src="/posts/364976c7/image1.png" class alt="name">
+<img src="/posts/364976c7/image2.png" class alt="name2">
 ]]></content>
       <categories>
         <category>Python基础</category>
