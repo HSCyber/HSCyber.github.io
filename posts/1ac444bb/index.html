@@ -34,7 +34,7 @@
 <meta property="og:description" content="今天与同学交流的一个问题：如果提取一个栅格数据tif中特定的值并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-30T13:40:04.000Z">
-<meta property="article:modified_time" content="2022-08-30T13:49:43.484Z">
+<meta property="article:modified_time" content="2022-08-30T15:34:48.339Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="rasterio">
@@ -309,7 +309,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>今天与同学交流的一个问题：如果提取一个栅格数据tif中特定的值并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
+        <p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
 <span id="more"></span>
 <p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
 <h2 id="非并行"><a class="markdownIt-Anchor" href="#非并行"></a> 非并行</h2>
