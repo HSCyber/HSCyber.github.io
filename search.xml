@@ -567,28 +567,6 @@
       </tags>
   </entry>
   <entry>
-    <title>栅格处理(杂)：栅格重分类或特定值转图层(批处理)</title>
-    <url>/posts/1ac444bb/</url>
-    <content><![CDATA[<p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
-<span id="more"></span>
-<p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
-<h2 id="非并行"><a class="markdownIt-Anchor" href="#非并行"></a> 非并行</h2>
-<p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#未安装包可以先安装 conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(files)</span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="并行"><a class="markdownIt-Anchor" href="#并行"></a> 并行</h2>
-<p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reclass</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">    files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    </span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(reclass, files)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>rasterio</tag>
-        <tag>reclass</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>矢栅处理(3)：Python读写GeoTIFF文件</title>
     <url>/posts/f61ccf5/</url>
     <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
@@ -710,6 +688,28 @@
         <tag>GeoTIFF</tag>
         <tag>GDAL</tag>
         <tag>栅格文件读写</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>栅格处理(杂)：栅格重分类或特定值转图层(批处理)</title>
+    <url>/posts/1ac444bb/</url>
+    <content><![CDATA[<p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
+<span id="more"></span>
+<p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
+<h2 id="非并行"><a class="markdownIt-Anchor" href="#非并行"></a> 非并行</h2>
+<p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#未安装包可以先安装 conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(files)</span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="并行"><a class="markdownIt-Anchor" href="#并行"></a> 并行</h2>
+<p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reclass</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">    files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    </span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(reclass, files)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>rasterio</tag>
+        <tag>reclass</tag>
       </tags>
   </entry>
   <entry>
@@ -2283,6 +2283,48 @@ a_{21} &amp; a_{22} &amp; a_{23}
       </tags>
   </entry>
   <entry>
+    <title>pyinstaller最小化打包py脚本为可执行exe</title>
+    <url>/posts/9acc11ef/</url>
+    <content><![CDATA[<p>今天帮同学打包py脚本为可执行程序exe时遇到了文件过大的问题（基于conda环境&amp;<a href="https://pyinstaller.org/en/stable/installation.html">pyinstaller</a>），网上查了一下但是很多方案都没说明问题，在此记录一下简要方案以及个人案例。</p>
+<span id="more"></span>
+<p>包安装</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install pyinstaller</span><br><span class="line"><span class="comment"># or upgrade to a newer version:</span></span><br><span class="line">pip install --upgrade pyinstaller</span><br></pre></td></tr></table></figure>
+<p>py打包为exe可以干嘛？<strong>不需要安装Python软件环境即可执行程序完成响应的处理，便于共享和处理</strong></p>
+<h2 id="步骤及案例参考"><a class="markdownIt-Anchor" href="#步骤及案例参考"></a> 步骤及案例参考</h2>
+<p><strong>原因</strong>：如果直接使用conda环境进行打包会出现文件过大的问题，通常是因为<mark>基于conda安装的包会比正常pip安装的包更大</mark>，打包时会增加依赖，导致最终的exe很大，如只要是包含numpy或者pandas模块的py脚本打包，基本都会大于200M，测试过程略（可以自行新建环境测试包依赖），因此建议是<strong>新建环境安装包并打包</strong>。这里我一开始<strong>直接打包是300M，新环境中打包后为29M</strong></p>
+<h3 id="新建环境并安装"><a class="markdownIt-Anchor" href="#新建环境并安装"></a> 新建环境并安装</h3>
+<p>更多包和环境管理可见<a href="https://hscyber.github.io/posts/42743416/">Python环境管理</a>，打开命令行依次执行，<font color="#dd0000">包通过pip命令安装</font></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">conda create -n exe python=3.8</span><br><span class="line">conda activate exe</span><br><span class="line">pip install --upgrade pyinstaller</span><br><span class="line">pip install pandas</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装pandas会直接安装numpy及其依赖，如果有其他包也直接pip安装</span></span><br></pre></td></tr></table></figure>
+<h3 id="打包"><a class="markdownIt-Anchor" href="#打包"></a> 打包</h3>
+<p>打包会在目录下默认生成临时文件夹Building及包含exe的dist文件夹，可以添加参数指定位置，或生成后删除即可。<a href="https://pyinstaller.org/en/stable/usage.html#options">参数解释</a></p>
+<ul>
+<li>-F 指定生成单个exe程序</li>
+<li>–distpath后跟的是exe文件存放路径</li>
+<li>–workpath后跟的是中间过程文件路径</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入指定要打包的脚本文件夹</span></span><br><span class="line">cd C:\Users\huangs\Desktop\test</span><br><span class="line">pyinstaller -F myscript.py</span><br><span class="line">pyinstaller -F myscript.py --distpath C:\Users\huangs\Desktop\test\res --workpath C:\Users\huangs\Desktop\test\res</span><br></pre></td></tr></table></figure>
+<h3 id="案例"><a class="markdownIt-Anchor" href="#案例"></a> 案例</h3>
+<blockquote>
+<p>距离一下应用的场景</p>
+</blockquote>
+<p>比如我有这样一个任务，每周下载数据并将其按天和城市提取为csv，下载的文件为多个zip压缩文件，压缩文件中为原始的txt，我需要<strong>定期多次</strong>下载数据并转换。也可以给他人共享</p>
+<ul>
+<li>每次都要打开脚本运行会有点心烦，但是又必须经常检查是否下载缺失，于是就可以将脚本转换为exe，将下载的压缩包统统丢进一个文件夹，然后双击exe自动提取和去重文件并转换为按天分割的csv。</li>
+</ul>
+<p>写好脚本后进行以下改动，主要是注意一下<strong>路径问题即可，将所有的绝对路径改成相对路径</strong>，涉及文件输出可以新建文件夹<strong>mkdir</strong>，涉及路径则使用<strong>os.path.join</strong>拼接，更多文件/文件夹操作可<a href="https://hscyber.github.io/posts/290b74f/">参考</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 判断文件夹是否存在并新建的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isExists:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这里默认获取当前路径，即将exe放在指定文件夹下即可执行</span></span><br><span class="line">root = os.getcwd()</span><br><span class="line"><span class="comment"># process</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">outfounder = os.path.join(root, <span class="string">&#x27;tables&#x27;</span>)</span><br><span class="line">outfounder = create_dir(outfounder)</span><br><span class="line"><span class="meta">... </span>   </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outcsvs)):</span><br><span class="line">    <span class="built_in">print</span>(names[i])</span><br><span class="line">    path = os.path.join(outfounder,names[i])</span><br><span class="line">    outcsvs[i].to_csv(path, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>如果是需要手动指定路径：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">root=<span class="built_in">input</span>(<span class="string">&#x27;请输入data_zip路径:  &#x27;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>pyinstaller</tag>
+        <tag>exe</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>正则表达式re模块用法</title>
     <url>/posts/da405e24/</url>
     <content><![CDATA[<p>re(Regular Expression)/正则表达式是一个内置的文本处理模块，在进行<strong>数据处理（筛选、替换）以及网页数据</strong>抓取时十分常用该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
@@ -2973,7 +3015,7 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 </ul>
 <h3 id="环境管理命令"><a class="markdownIt-Anchor" href="#环境管理命令"></a> 环境管理命令</h3>
 <p>创建新环境，比如这里创建一个Python3.9版本的环境，取名为gis</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create  -n gis python=<span class="number">3.9</span></span><br><span class="line"><span class="comment"># 基于base环境安装一个新环境</span></span><br><span class="line">conda create --name base2 --clone base</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda create -n gis python=<span class="number">3.9</span></span><br><span class="line"><span class="comment"># 基于base环境安装一个新环境</span></span><br><span class="line">conda create --name base2 --clone base</span><br></pre></td></tr></table></figure>
 <p>查看当前所有的环境，以下一致，</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda env <span class="built_in">list</span></span><br><span class="line">conda info --envs</span><br><span class="line"><span class="comment"># 查看当前环境的信息：配置、路径、channels及缓存等</span></span><br><span class="line">conda info</span><br></pre></td></tr></table></figure>
 <p>激活和退出环境，比如我这里有环境名为geo39</p>
@@ -3177,41 +3219,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>如何快速查看或预览ipynb文件</title>
-    <url>/posts/75ba419a/</url>
-    <content><![CDATA[<p><code>.ipynb</code>是使用jupyter notebook/lab写代码的文件格式，最初只能在jupyter notebook中打开，不便查看，但除<a href="https://code.visualstudio.com/">vscode</a>，还可以借助一些工具/插件(<a href="https://github.com/QL-Win/QuickLook">QuickLook</a>, <a href="https://nteract.io/">nteract</a>, )<font color="#dd0000">在不打开jupyter的情况下以自带格式方便查看</font>。</p>
-<span id="more"></span>
-<p><strong>.ipynb</strong>后缀含义是ipython notebook, 从ipython逐渐发展起来的。这种文本与代码共存且交互式运行的模式很流行，还方便学习、共享和教学，类似的还有R中的.rmd，matlab中的.mlx。</p>
-<h2 id="vscode查看及编辑"><a class="markdownIt-Anchor" href="#vscode查看及编辑"></a> vscode查看及编辑</h2>
-<blockquote>
-<p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">具体可参考官网</a>：</p>
-</blockquote>
-<p>vscode十分轻巧，安装插件之后可以很方便的创建和编辑jupyter notebook文件，同时有很方便的面板视图和分屏查看等，如下是我的一个日常编辑环境距离。习惯了pycharm可能会发现vscode运行py文件不够直接，需要多几步设置</p>
-<img src="/posts/75ba419a/vscode.png" class alt="vscode">
-<h2 id="quicklook快速预览"><a class="markdownIt-Anchor" href="#quicklook快速预览"></a> QuickLook快速预览</h2>
-<blockquote>
-<p><a href="https://github.com/QL-Win/QuickLook">QuickLook</a>，一个用于window上文件快速预览的开源项目，现在也可以通过微软应用商店下载</p>
-</blockquote>
-<p>功能：运行后只需要按<strong>空格键</strong>就可以在<strong>不打开编辑器/app</strong>的情况下快速预览文本文件如csv txt md以及图片、压缩包、pdf等等(<a href="https://github.com/QL-Win/QuickLook/wiki/Supported-File-Types">默认支持的类型</a>)，通过下载安装<a href="https://github.com/QL-Win/QuickLook/wiki/Available-Plugins">插件</a>还可以预览office shapefile .ipynb…安装方式也很简单，下载后空格预览即执行安装。尤其查看<strong>大型的csv</strong>很方便快捷。</p>
-<img src="/posts/75ba419a/csv.png" class alt="csv">
-<p><strong>空格预览</strong>jupyter notebook示例：</p>
-<img src="/posts/75ba419a/jupyter.png" class alt="jupyter">
-<h2 id="nteract打开查看"><a class="markdownIt-Anchor" href="#nteract打开查看"></a> nteract打开查看</h2>
-<p>下载软件<a href="https://nteract.io/">nteract</a>，选择打开方式即可查看</p>
-<img src="/posts/75ba419a/nteract.png" class alt="nteract">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>QuickLook</tag>
-        <tag>jupyter</tag>
-        <tag>VScode</tag>
-        <tag>nteract</tag>
-        <tag>Tools</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>订阅了Typora~</title>
     <url>/posts/34eb4d05/</url>
     <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
@@ -3226,8 +3233,8 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Tools</tag>
         <tag>Typora</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -3308,70 +3315,50 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Tools</tag>
         <tag>Typora</tag>
+        <tag>Tools</tag>
         <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
-    <title>【GIS基础及时空数据处理分析汇总】</title>
-    <url>/posts/9ce60930/</url>
-    <content><![CDATA[<center>持续更新...</center>
+    <title>如何快速查看或预览ipynb文件</title>
+    <url>/posts/75ba419a/</url>
+    <content><![CDATA[<p><code>.ipynb</code>是使用jupyter notebook/lab写代码的文件格式，最初只能在jupyter notebook中打开，不便查看，但除<a href="https://code.visualstudio.com/">vscode</a>，还可以借助一些工具/插件(<a href="https://github.com/QL-Win/QuickLook">QuickLook</a>, <a href="https://nteract.io/">nteract</a>, )<font color="#dd0000">在不打开jupyter的情况下以自带格式方便查看</font>。</p>
 <span id="more"></span>
-<h2 id="gis基础及空间数据处理"><a class="markdownIt-Anchor" href="#gis基础及空间数据处理"></a> GIS基础及空间数据处理</h2>
-<h3 id="gis基础"><a class="markdownIt-Anchor" href="#gis基础"></a> GIS基础</h3>
-<p><a href="https://hscyber.github.io/posts/c82d0555/">GIS基础(1)：浅析地理/投影坐标系</a></p>
-<p><a href="https://hscyber.github.io/posts/286d5938/">GIS基础(2)：ArcGIS常用工具清单及用途概述</a></p>
-<h3 id="矢量及栅格数据基础"><a class="markdownIt-Anchor" href="#矢量及栅格数据基础"></a> 矢量及栅格数据基础</h3>
-<p><a href="https://hscyber.github.io/posts/54103437/">矢栅处理(1)：分区统计sjoin|zonal</a></p>
-<p><a href="https://hscyber.github.io/posts/a9be2430/">矢栅处理(2)：GeoTIFF数值类型及压缩</a></p>
-<p><a href="https://hscyber.github.io/posts/f61ccf5/">矢栅处理(3)：Python读和写TIFF文件</a></p>
-<p><a href="https://hscyber.github.io/posts/448bb583/">矢栅处理(4)：Python读取NC文件</a></p>
-<p><a href="https://hscyber.github.io/posts/ef2a4876/">矢栅处理(5)：R语言nc转多张Geotif</a></p>
-<p><a href="https://hscyber.github.io/posts/2f2d96ec/">矢栅处理(6)：点矢量提取栅格值extract</a></p>
-<p><a href="https://hscyber.github.io/posts/57d7f29/">矢栅处理(杂)：geopandas常用函数小结</a></p>
-<p><a href="https://hscyber.github.io/posts/42111e30/">矢量处理(杂)：OSM数据下载及shapefile读写</a></p>
-<p><a href="https://hscyber.github.io/posts/1ac444bb/">栅格处理(杂)：栅格重分类或特定值转图层(批处理)</a></p>
-<h3 id="pandas数据处理"><a class="markdownIt-Anchor" href="#pandas数据处理"></a> Pandas数据处理</h3>
-<p><a href="https://hscyber.github.io/posts/f9c7a8a1/">Pandas(1)：数据选取/条件筛选小结</a></p>
-<p><a href="https://hscyber.github.io/posts/18b022c/">Pandas(杂)：表格的各种连接方式</a></p>
-<p><a href="https://hscyber.github.io/posts/4d972282/">Pandas(杂)：List/pandas文本包含筛选</a></p>
-<p><a href="https://hscyber.github.io/posts/374675e0/">Pandas(杂)：字符串列拆分及合并</a></p>
-<p><a href="https://hscyber.github.io/posts/a234f8ea/">Pandas(杂)：多表格写出excel</a></p>
-<h2 id="时间序列"><a class="markdownIt-Anchor" href="#时间序列"></a> 时间序列</h2>
-<h3 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h3>
-<p><a href="https://hscyber.github.io/posts/6e05178d/">时间序列(1)：LOESS(STL)时间序列分解</a></p>
+<p><strong>.ipynb</strong>后缀含义是ipython notebook, 从ipython逐渐发展起来的。这种文本与代码共存且交互式运行的模式很流行，还方便学习、共享和教学，类似的还有R中的.rmd，matlab中的.mlx。</p>
+<h2 id="vscode查看及编辑"><a class="markdownIt-Anchor" href="#vscode查看及编辑"></a> vscode查看及编辑</h2>
+<blockquote>
+<p><a href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">具体可参考官网</a>：</p>
+</blockquote>
+<p>vscode十分轻巧，安装插件之后可以很方便的创建和编辑jupyter notebook文件，同时有很方便的面板视图和分屏查看等，如下是我的一个日常编辑环境距离。习惯了pycharm可能会发现vscode运行py文件不够直接，需要多几步设置</p>
+<img src="/posts/75ba419a/vscode.png" class alt="vscode">
+<h2 id="quicklook快速预览"><a class="markdownIt-Anchor" href="#quicklook快速预览"></a> QuickLook快速预览</h2>
+<blockquote>
+<p><a href="https://github.com/QL-Win/QuickLook">QuickLook</a>，一个用于window上文件快速预览的开源项目，现在也可以通过微软应用商店下载</p>
+</blockquote>
+<p>功能：运行后只需要按<strong>空格键</strong>就可以在<strong>不打开编辑器/app</strong>的情况下快速预览文本文件如csv txt md以及图片、压缩包、pdf等等(<a href="https://github.com/QL-Win/QuickLook/wiki/Supported-File-Types">默认支持的类型</a>)，通过下载安装<a href="https://github.com/QL-Win/QuickLook/wiki/Available-Plugins">插件</a>还可以预览office shapefile .ipynb…安装方式也很简单，下载后空格预览即执行安装。尤其查看<strong>大型的csv</strong>很方便快捷。</p>
+<img src="/posts/75ba419a/csv.png" class alt="csv">
+<p><strong>空格预览</strong>jupyter notebook示例：</p>
+<img src="/posts/75ba419a/jupyter.png" class alt="jupyter">
+<h2 id="nteract打开查看"><a class="markdownIt-Anchor" href="#nteract打开查看"></a> nteract打开查看</h2>
+<p>下载软件<a href="https://nteract.io/">nteract</a>，选择打开方式即可查看</p>
+<img src="/posts/75ba419a/nteract.png" class alt="nteract">
 ]]></content>
       <categories>
-        <category>时空数据处理分析</category>
+        <category>Tools</category>
       </categories>
       <tags>
-        <tag>GIS</tag>
+        <tag>Tools</tag>
+        <tag>QuickLook</tag>
+        <tag>jupyter</tag>
+        <tag>VScode</tag>
+        <tag>nteract</tag>
       </tags>
   </entry>
   <entry>
-    <title>【Python可视化相关笔记汇总】</title>
-    <url>/posts/5144b1ce/</url>
-    <content><![CDATA[<center>关于Python可视化的内容，持续更新...</center>
-<span id="more"></span>
-<h2 id="matplotlib"><a class="markdownIt-Anchor" href="#matplotlib"></a> Matplotlib</h2>
-<h3 id="基础篇"><a class="markdownIt-Anchor" href="#基础篇"></a> 基础篇</h3>
-<p><a href="https://hscyber.github.io/posts/8dfff56a/">matplotlib基础(1)：图的组成元素</a></p>
-<p><a href="https://hscyber.github.io/posts/5524eff4/">matplotlib基础(2)：绘图逻辑与输出尺寸/格式</a></p>
-<p><a href="https://hscyber.github.io/posts/459b5ff7/">matplotlib基础(3)：图片存储常用格式及参数设置</a></p>
-<p><a href="https://hscyber.github.io/posts/152b5c56/">matplotlib基础(杂)：边框spines及刻度ticks/labels属性设置及隐藏</a></p>
-]]></content>
-      <categories>
-        <category>Python可视化</category>
-      </categories>
-      <tags>
-        <tag>Matplotlib</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【笔记内容大类汇总】</title>
+    <title>【笔记内容部分汇总】</title>
     <url>/posts/6ce40869/</url>
-    <content><![CDATA[<center>最近更新时间：2022/09/01，查看左侧目录</center>
+    <content><![CDATA[<center>最近更新时间：2022/09/01，查看左侧目录；详细类别见分类</center>
 <span id="more"></span>
 <h2 id="python基础相关"><a class="markdownIt-Anchor" href="#python基础相关"></a> Python基础相关</h2>
 <h3 id="python环境"><a class="markdownIt-Anchor" href="#python环境"></a> Python环境</h3>
@@ -3429,12 +3416,64 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <p><a href="https://hscyber.github.io/posts/ca790165/">论文学习(1)：Generalized Linear Mixed Models</a></p>
 <p><a href="https://hscyber.github.io/posts/aff1e629/">【预】统计基础(1)：概念学习与理解1</a></p>
 <p><a href="https://hscyber.github.io/posts/5663ac13/">【预】回归建模(2)：变量预览及预处理</a></p>
+]]></content>
+      <tags>
+        <tag>笔记库分类</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【GIS基础及时空数据处理分析汇总】</title>
+    <url>/posts/9ce60930/</url>
+    <content><![CDATA[<center>持续更新...</center>
+<span id="more"></span>
+<h2 id="gis基础及空间数据处理"><a class="markdownIt-Anchor" href="#gis基础及空间数据处理"></a> GIS基础及空间数据处理</h2>
+<h3 id="gis基础"><a class="markdownIt-Anchor" href="#gis基础"></a> GIS基础</h3>
+<p><a href="https://hscyber.github.io/posts/c82d0555/">GIS基础(1)：浅析地理/投影坐标系</a></p>
+<p><a href="https://hscyber.github.io/posts/286d5938/">GIS基础(2)：ArcGIS常用工具清单及用途概述</a></p>
+<h3 id="矢量及栅格数据基础"><a class="markdownIt-Anchor" href="#矢量及栅格数据基础"></a> 矢量及栅格数据基础</h3>
+<p><a href="https://hscyber.github.io/posts/54103437/">矢栅处理(1)：分区统计sjoin|zonal</a></p>
+<p><a href="https://hscyber.github.io/posts/a9be2430/">矢栅处理(2)：GeoTIFF数值类型及压缩</a></p>
+<p><a href="https://hscyber.github.io/posts/f61ccf5/">矢栅处理(3)：Python读和写TIFF文件</a></p>
+<p><a href="https://hscyber.github.io/posts/448bb583/">矢栅处理(4)：Python读取NC文件</a></p>
+<p><a href="https://hscyber.github.io/posts/ef2a4876/">矢栅处理(5)：R语言nc转多张Geotif</a></p>
+<p><a href="https://hscyber.github.io/posts/2f2d96ec/">矢栅处理(6)：点矢量提取栅格值extract</a></p>
+<p><a href="https://hscyber.github.io/posts/57d7f29/">矢栅处理(杂)：geopandas常用函数小结</a></p>
+<p><a href="https://hscyber.github.io/posts/42111e30/">矢量处理(杂)：OSM数据下载及shapefile读写</a></p>
+<p><a href="https://hscyber.github.io/posts/1ac444bb/">栅格处理(杂)：栅格重分类或特定值转图层(批处理)</a></p>
+<h3 id="pandas数据处理"><a class="markdownIt-Anchor" href="#pandas数据处理"></a> Pandas数据处理</h3>
+<p><a href="https://hscyber.github.io/posts/f9c7a8a1/">Pandas(1)：数据选取/条件筛选小结</a></p>
+<p><a href="https://hscyber.github.io/posts/18b022c/">Pandas(杂)：表格的各种连接方式</a></p>
+<p><a href="https://hscyber.github.io/posts/4d972282/">Pandas(杂)：List/pandas文本包含筛选</a></p>
+<p><a href="https://hscyber.github.io/posts/374675e0/">Pandas(杂)：字符串列拆分及合并</a></p>
+<p><a href="https://hscyber.github.io/posts/a234f8ea/">Pandas(杂)：多表格写出excel</a></p>
 <h2 id="时间序列"><a class="markdownIt-Anchor" href="#时间序列"></a> 时间序列</h2>
 <h3 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h3>
 <p><a href="https://hscyber.github.io/posts/6e05178d/">时间序列(1)：LOESS(STL)时间序列分解</a></p>
 ]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
       <tags>
-        <tag>笔记库分类</tag>
+        <tag>GIS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Python可视化相关笔记汇总】</title>
+    <url>/posts/5144b1ce/</url>
+    <content><![CDATA[<center>关于Python可视化的内容，持续更新...</center>
+<span id="more"></span>
+<h2 id="matplotlib"><a class="markdownIt-Anchor" href="#matplotlib"></a> Matplotlib</h2>
+<h3 id="基础篇"><a class="markdownIt-Anchor" href="#基础篇"></a> 基础篇</h3>
+<p><a href="https://hscyber.github.io/posts/8dfff56a/">matplotlib基础(1)：图的组成元素</a></p>
+<p><a href="https://hscyber.github.io/posts/5524eff4/">matplotlib基础(2)：绘图逻辑与输出尺寸/格式</a></p>
+<p><a href="https://hscyber.github.io/posts/459b5ff7/">matplotlib基础(3)：图片存储常用格式及参数设置</a></p>
+<p><a href="https://hscyber.github.io/posts/152b5c56/">matplotlib基础(杂)：边框spines及刻度ticks/labels属性设置及隐藏</a></p>
+]]></content>
+      <categories>
+        <category>Python可视化</category>
+      </categories>
+      <tags>
+        <tag>Matplotlib</tag>
       </tags>
   </entry>
   <entry>
