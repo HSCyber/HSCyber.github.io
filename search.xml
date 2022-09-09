@@ -73,7 +73,7 @@
 <span id="more"></span>
 <h2 id="坐标系"><a class="markdownIt-Anchor" href="#坐标系"></a> 坐标系</h2>
 <p>除了画布的坐标系（FC/NFC），还包括数据本身的坐标系（DC）以及标准化的坐标系（NDC）</p>
-<img src="/posts/undefined/cs.png" class>
+<img src="/posts/66a3b602/cs.png" class>
 <p>注释绘制举例（待完善）</p>
 <h2 id="极坐的映射"><a class="markdownIt-Anchor" href="#极坐的映射"></a> 极坐的映射</h2>
 <blockquote>
