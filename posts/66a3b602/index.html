@@ -26,16 +26,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在图形内添加文本、辅助线、箭头、图例等装饰品时常用，如通过归一化坐标，可将文本注释放置在每张图想要的位置而不需要关心具体数值，如放在正中间(0.5, 0.5)。">
+    <meta name="description" content="绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在图形内添加文本、辅助线、箭头、图例等装说明时常用，如可将文本放置在每张图想要的位置如正中间(0.5, 0.5)而不需要关心具体数值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="matplotlib基础(4)：绘图坐标系-相对位置确定">
+<meta property="og:title" content="matplotlib基础(4)：绘图坐标系及注释的摆放位置">
 <meta property="og:url" content="https://hscyber.github.io/posts/66a3b602/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在图形内添加文本、辅助线、箭头、图例等装饰品时常用，如通过归一化坐标，可将文本注释放置在每张图想要的位置而不需要关心具体数值，如放在正中间(0.5, 0.5)。">
+<meta property="og:description" content="绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在图形内添加文本、辅助线、箭头、图例等装说明时常用，如可将文本放置在每张图想要的位置如正中间(0.5, 0.5)而不需要关心具体数值。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/66a3b602/cs.png">
 <meta property="article:published_time" content="2022-09-09T14:47:54.000Z">
-<meta property="article:modified_time" content="2022-09-09T15:27:58.850Z">
+<meta property="article:modified_time" content="2022-09-10T05:29:11.811Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -50,10 +50,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/66a3b602/","path":"posts/66a3b602/","title":"matplotlib基础(4)：绘图坐标系-相对位置确定"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/66a3b602/","path":"posts/66a3b602/","title":"matplotlib基础(4)：绘图坐标系及注释的摆放位置"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>matplotlib基础(4)：绘图坐标系-相对位置确定 | Huangs's Notes</title>
+<title>matplotlib基础(4)：绘图坐标系及注释的摆放位置 | Huangs's Notes</title>
   
 
 
@@ -162,7 +162,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="nav-number">1.</span> <span class="nav-text"> 坐标系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E5%9D%90%E7%9A%84%E6%98%A0%E5%B0%84"><span class="nav-number">2.</span> <span class="nav-text"> 极坐的映射</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E7%B3%BB%E5%8F%8A%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text"> 坐标系及转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text"> 基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B1-%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A"><span class="nav-number">1.2.</span> <span class="nav-text"> 案例1-文本注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B2-%E7%BA%BF%E6%AE%B5%E6%B3%A8%E9%87%8A"><span class="nav-number">1.3.</span> <span class="nav-text"> 案例2-线段注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B3-%E7%9F%A9%E5%BD%A2%E6%B3%A8%E9%87%8A"><span class="nav-number">1.4.</span> <span class="nav-text"> 案例3-矩形注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B4-%E7%BB%98%E5%9B%BA%E5%AE%9A%E7%9A%84%E5%9C%86%E5%BD%A2"><span class="nav-number">1.5.</span> <span class="nav-text"> 案例4-绘固定的圆形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%81%E5%9D%90%E6%A0%87"><span class="nav-number">2.</span> <span class="nav-text"> 极坐标</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -253,12 +253,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="matplotlib基础(4)：绘图坐标系-相对位置确定 | Huangs's Notes">
+      <meta itemprop="name" content="matplotlib基础(4)：绘图坐标系及注释的摆放位置 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          matplotlib基础(4)：绘图坐标系-相对位置确定
+          matplotlib基础(4)：绘图坐标系及注释的摆放位置
         </h1>
 
         <div class="post-meta-container">
@@ -294,7 +294,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>177</span>
+      <span>263</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -313,13 +313,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在<mark>图形内添加文本、辅助线、箭头、图例等装饰品时常用</mark>，如通过归一化坐标，可将文本注释放置在每张图想要的位置而不需要关心具体数值，如放在正中间(0.5, 0.5)。</p>
+        <p>绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在<mark>图形内添加文本、辅助线、箭头、图例等装说明时常用</mark>，如可将文本放置在每张图想要的位置如正中间(0.5, 0.5)而不需要关心具体数值。</p>
 <span id="more"></span>
-<h2 id="坐标系"><a class="markdownIt-Anchor" href="#坐标系"></a> 坐标系</h2>
+<h2 id="坐标系及转换"><a class="markdownIt-Anchor" href="#坐标系及转换"></a> 坐标系及转换</h2>
+<h3 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h3>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/advanced/transforms_tutorial.html">https://matplotlib.org/stable/tutorials/advanced/transforms_tutorial.html</a></p>
+</blockquote>
 <p>除了画布的坐标系（FC/NFC），还包括数据本身的坐标系（DC）以及标准化的坐标系（NDC）</p>
 <img src="/posts/66a3b602/cs.png" class>
-<p>注释绘制举例（待完善）</p>
-<h2 id="极坐的映射"><a class="markdownIt-Anchor" href="#极坐的映射"></a> 极坐的映射</h2>
+<h3 id="案例1-文本注释"><a class="markdownIt-Anchor" href="#案例1-文本注释"></a> 案例1-文本注释</h3>
+<h3 id="案例2-线段注释"><a class="markdownIt-Anchor" href="#案例2-线段注释"></a> 案例2-线段注释</h3>
+<h3 id="案例3-矩形注释"><a class="markdownIt-Anchor" href="#案例3-矩形注释"></a> 案例3-矩形注释</h3>
+<h3 id="案例4-绘固定的圆形"><a class="markdownIt-Anchor" href="#案例4-绘固定的圆形"></a> 案例4-绘固定的圆形</h3>
+<h2 id="极坐标"><a class="markdownIt-Anchor" href="#极坐标"></a> 极坐标</h2>
 <blockquote>
 <p>暂不展开</p>
 </blockquote>
@@ -342,7 +349,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/66a3b602/" title="matplotlib基础(4)：绘图坐标系-相对位置确定">https://hscyber.github.io/posts/66a3b602/</a>
+      <a href="https://hscyber.github.io/posts/66a3b602/" title="matplotlib基础(4)：绘图坐标系及注释的摆放位置">https://hscyber.github.io/posts/66a3b602/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
