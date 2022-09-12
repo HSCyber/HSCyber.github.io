@@ -67,7 +67,41 @@
       </tags>
   </entry>
   <entry>
-    <title>个人电脑管理(2)：数据清理备份以便系统重装</title>
+    <title>电脑重装系统Ubuntu22.04.1 LTS记录</title>
+    <url>/posts/2fb61b4d/</url>
+    <content><![CDATA[<p>记录一下旧笔记本重装Ubuntu Desktop22.04.1 LTS的简要过程</p>
+<span id="more"></span>
+<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
+<ol>
+<li>下载<a href="https://rufus.ie/zh/">rufus</a>以及<a href="https://ubuntu.com/download/desktop">ubuntu destop镜像</a>创建启动盘，参数默认即可</li>
+<li>按照<a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">官网教程</a>逐步安装并完成更新，电脑启动项自查，见参考<a href="https://zhuanlan.zhihu.com/p/496107394">知乎</a></li>
+<li>安装vim ，切换系统镜像源为阿里源，备份初始文件再使用vim编辑器操作，清空之前的内容，<code>i</code>复制粘贴内容，再输入<code>=</code>以及<code>:wq</code>保存并退出，然后再<code>sudo apt-get update &amp;&amp; apt-get upgrade</code></li>
+<li>安装搜狗输入法<a href="https://shurufa.sogou.com/linux">下载.deb</a>，后续参考这个<a href="https://www.cnblogs.com/star-another/p/16298866.html">教程</a></li>
+<li>下载配置<a href="https://github.com/Dreamacro/clash/releases">clash for linux</a>以访问谷歌【参考代理教程】</li>
+<li>安装<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>并登陆完成同步</li>
+<li>安装<a href="https://im.qq.com/linuxqq/download.html">腾讯QQ</a>，腾讯<a href="https://meeting.tencent.com/download?mfrom=OfficialIndex_TopBanner1_Download">会议</a></li>
+<li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
+<li>QGIS for ubuntu【可选】</li>
+<li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
+</ol>
+<h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
+<ol>
+<li>window上制作启动盘推荐rufus</li>
+<li>vim编辑器的使用可先掌握基本的插入 复制粘贴及保存</li>
+<li>typora激活失败可以选择离线激活</li>
+<li>……</li>
+</ol>
+]]></content>
+      <categories>
+        <category>计算机软硬件知识</category>
+      </categories>
+      <tags>
+        <tag>重装系统</tag>
+        <tag>ubunt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑管理(杂)：数据清理备份以便系统重装</title>
     <url>/posts/3d00caa6/</url>
     <content><![CDATA[<p>这两天准备重装一下旧笔记本，记录一下过程。先是数据的清理和备份，由于应用可以直接参考我的台式机所以仅迁移数据，如果是单电脑最好记录一下现在用的一些主要的应用程序避免遗漏。主要备份内容：</p>
 <span id="more"></span>
@@ -96,7 +130,7 @@
       </tags>
   </entry>
   <entry>
-    <title>个人电脑管理(1)：笔记本电池不耐用？换电池？</title>
+    <title>电脑管理(杂)：笔记本电池不耐用？换电池？</title>
     <url>/posts/39c4a07/</url>
     <content><![CDATA[<p>笔记本电脑用久了尤其是游戏本发现电池会很不耐用甚至是不插外接电源都没法工作，这时候可能需要<strong>更换电池</strong>，但换之前先排查一下是不是有<strong>异常耗电</strong>的情况……主要针对<strong>WINDOWS</strong></p>
 <span id="more"></span>
@@ -1115,8 +1149,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>GDAL</tag>
         <tag>OpenStreetMap</tag>
+        <tag>GDAL</tag>
         <tag>shapefile读写</tag>
       </tags>
   </entry>
@@ -1419,8 +1453,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       <tags>
         <tag>Rasterio</tag>
         <tag>GeoTIFF</tag>
-        <tag>栅格文件读写</tag>
         <tag>GDAL</tag>
+        <tag>栅格文件读写</tag>
       </tags>
   </entry>
   <entry>
