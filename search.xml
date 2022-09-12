@@ -83,7 +83,12 @@
 <li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
 <li>QGIS for ubuntu【可选】</li>
 <li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
+<li>安装Miniconda3并迁移配置之前的环境，基于yml文件</li>
+<li>安装vs code</li>
+<li>安装gotohttp</li>
+<li>……</li>
 </ol>
+<img src="/posts/2fb61b4d/image-20220912223323738.png" class alt="image-20220912223323738">
 <h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
 <ol>
 <li>window上制作启动盘推荐rufus</li>
