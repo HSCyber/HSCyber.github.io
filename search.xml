@@ -69,11 +69,11 @@
   <entry>
     <title>栅格处理(杂)：ArcGIS处理栅格时压缩</title>
     <url>/posts/7a29f7e7/</url>
-    <content><![CDATA[<p>ArcGIS处理栅格数据时如常用的<mark>裁剪</mark>默认并不会压缩，因此生成文件会很大（之前对比过<a href="https://hscyber.github.io/posts/a9be2430/">压缩</a>的区别），一般需要在工具箱的环境参数里设置数据压缩格式<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>。此外，如果栅格处理会报错，一般需要<strong>关闭并行</strong>。</p>
+    <content><![CDATA[<p>ArcGIS处理栅格数据时如常用的<mark>栅格裁剪</mark>默认并不会压缩，因此生成文件会很大（之前对比过<a href="https://hscyber.github.io/posts/a9be2430/">压缩</a>的区别），一般需要在工具箱的环境参数里设置数据压缩格式<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>。此外，如果栅格处理会报错，一般需要<strong>关闭并行</strong>。</p>
 <span id="more"></span>
 <h3 id="栅格压缩与并行设置"><a class="markdownIt-Anchor" href="#栅格压缩与并行设置"></a> 栅格压缩与并行设置</h3>
-<p>ArcGIS环境变量设置<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，举例：Data Management Tools.tbx\Raster\Raster Processing\Clip</p>
-<img src="/posts/undefined/image-20220915220258372.png" class alt="image-20220915220258372">
+<p>ArcGIS环境变量设置<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，裁剪栅格举例：Data Management Tools.tbx\Raster\Raster Processing\Clip。</p>
+<img src="/posts/7a29f7e7/image.png" class alt="image">
 <p>如果是ArcPy代码</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line">arcpy.env.parallelProcessingFactor = <span class="string">&quot;0&quot;</span></span><br><span class="line">arcpy.env.compression = <span class="string">&quot;LZW&quot;</span></span><br><span class="line"><span class="comment"># 常用，设置覆盖输出</span></span><br><span class="line">arcpy.env.overwriteOutput = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -1283,8 +1283,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>R语言</tag>
         <tag>Python</tag>
+        <tag>R语言</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
       </tags>
