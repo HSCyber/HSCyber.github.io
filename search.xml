@@ -1049,9 +1049,10 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <img src="/posts/75ba419a/nteract.png" class alt="nteract">
 ]]></content>
       <categories>
-        <category>Tools</category>
+        <category>Python基础</category>
       </categories>
       <tags>
+        <tag>Python环境配置</tag>
         <tag>QuickLook</tag>
         <tag>jupyter</tag>
         <tag>VScode</tag>
