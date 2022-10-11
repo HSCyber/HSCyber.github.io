@@ -67,13 +67,64 @@
       </tags>
   </entry>
   <entry>
-    <title>matplotlib基础(5)：绘制多图的精准布局</title>
-    <url>/posts/4c34a09/</url>
-    <content><![CDATA[<p>作图时经常需要<mark>绘制多幅图并进行布局调整</mark>，……。</p>
+    <title>对近来生活的思考和一点自我反思</title>
+    <url>/posts/1d48db90/</url>
+    <content><![CDATA[<p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
 <span id="more"></span>
-<h2 id="出草图"><a class="markdownIt-Anchor" href="#出草图"></a> 出草图</h2>
-<h2 id="常规布局"><a class="markdownIt-Anchor" href="#常规布局"></a> 常规布局</h2>
-<h2 id="高级布局"><a class="markdownIt-Anchor" href="#高级布局"></a> 高级布局</h2>
+<h3 id="闲言碎语-不知所云"><a class="markdownIt-Anchor" href="#闲言碎语-不知所云"></a> 闲言碎语-不知所云</h3>
+<blockquote>
+<p>人是一根会思考的芦苇</p>
+</blockquote>
+<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
+<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
+<p>最大的收获大致在于：认识到了人的有限性和平凡，接纳和更好地认识了自己，自己的特质与优缺点，也认识到了人具有的巨大潜力和可塑性，没有什么是不能够改变的，缺的是主动性、认知、勇气、行动，没有那么多借口。焦虑是允许的，积极拥抱。每天我们都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不在再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知和探求，余下的是大概是爱情与工作/事业。</p>
+<p>我们好像讨厌工作，抗拒工作，将至视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，我们也别无选择，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造价值和表达自我，开拓自己心中的森林。警惕被动而不加思考地比较与自欺，罗翔老师说，内卷的本质是不把人当人。虽然我知道好像不只是内卷如此。</p>
+<p>**我们来的时候，什么也没有。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多。**不少人说，25岁之后人才真正成年。我想，这肯定也是个虚岁，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但是，二十几岁的年纪，一个人再天才再有帮助，所能达到的水平也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能成长。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能永远也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
+<p>我们都有自己的道路，不应被时间和他人而定义自己或是自己的阶段，只需要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
+<h3 id="关于提高效率的几点反思"><a class="markdownIt-Anchor" href="#关于提高效率的几点反思"></a> 关于提高效率的几点反思。</h3>
+<ol>
+<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
+<li>我们<strong>不可能什么都有，适当遏止内心纷繁的一些渴望</strong>。减少虚荣，**我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑。**不能抵挡诱惑就关闭通道，关闭信息通报，比如你可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
+<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
+<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready——乔布斯. 假如做事都要面面顾到，那就什么事情都不能做了（——鲁迅）。我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
+<li>接上，<strong>不要过度准备和过分焦虑</strong>。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，你的焦虑和恐惧于事无补，你焦虑改变不了明天，反而会影响今天的心情，你的恐惧也改变不了明天，因为人生唯一应该恐惧的就是恐惧本身；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
+<li>难过无法自抑压抑不能自释的时候-多寻求帮助与关怀，我知道失望与难过很难感同身受，但倾述和释放会让我们好很多。</li>
+<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起，有小伙伴很多时候会让我们更具热情。</li>
+<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
+<li>……</li>
+</ol>
+<p>2022/10/11 22:59</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>matplotlib基础(5)：文本与辅助线的添加及属性设置</title>
+    <url>/posts/4c34a09/</url>
+    <content><![CDATA[<p>如果在图中的适当位置<mark>添加辅助线及文本，并设置其属性</mark>，……。</p>
+<span id="more"></span>
+<h2 id="文本属性与布局"><a class="markdownIt-Anchor" href="#文本属性与布局"></a> 文本属性与布局</h2>
+<blockquote>
+<p><a href="https://matplotlib.org/devdocs/tutorials/text/text_props.html">详细可参考</a></p>
+</blockquote>
+<h2 id="axtext文本"><a class="markdownIt-Anchor" href="#axtext文本"></a> ax.text文本</h2>
+<blockquote>
+<p><a href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.axes.Axes.text.html">api</a></p>
+</blockquote>
+<h2 id="辅助线"><a class="markdownIt-Anchor" href="#辅助线"></a> 辅助线</h2>
+<h3 id="axvlines垂直线"><a class="markdownIt-Anchor" href="#axvlines垂直线"></a> ax.vlines垂直线</h3>
+<blockquote>
+<p>Axes.vlines(x, ymin, ymax, …)——Plot <strong>vertical</strong> lines at each <em>x</em> from <em>ymin</em> to <em>ymax</em>.</p>
+</blockquote>
+<h3 id="axhlines水平线"><a class="markdownIt-Anchor" href="#axhlines水平线"></a> ax.hlines水平线</h3>
+<blockquote>
+<p>Axes.hlines(y, xmin, xmax,…)——Plot <strong>horizontal</strong> lines at each <em>y</em> from <em>xmin</em> to <em>xmax</em>.</p>
+</blockquote>
+<h3 id="axline任意线"><a class="markdownIt-Anchor" href="#axline任意线"></a> axline任意线</h3>
+<blockquote>
+<p>可以绘制斜线，如回归拟合线<a href="https://matplotlib.org/devdocs/gallery/specialty_plots/anscombe.html#sphx-glr-gallery-specialty-plots-anscombe-py">example</a>——Axes.axline(xy1, xy2=None, *, slope=None)…</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Python可视化</category>
@@ -84,7 +135,7 @@
       </tags>
   </entry>
   <entry>
-    <title>matplotlib基础(4)：绘图坐标系及注释位置控制-上</title>
+    <title>matplotlib基础(4)：绘图坐标系及注释位置控制</title>
     <url>/posts/66a3b602/</url>
     <content><![CDATA[<p>绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在<mark>图形内添加文本、辅助线、箭头、图例等装说明时常用</mark>，如可将文本放置在每张图想要的位置如正中间(0.5, 0.5)而不需要关心具体数值。由于自己之前作图遇到过，还增加了一个<strong>绘制固定大小正圆</strong>的实现方式。</p>
 <span id="more"></span>
@@ -1995,11 +2046,11 @@ height = 12\times 2.54 = 30.48cm
 <p>时间格式转换</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入时即转换</span></span><br><span class="line">df = pd.read_csv(filepath, parse_dates=[<span class="string">&#x27;time&#x27;</span>,<span class="string">&#x27;date&#x27;</span>], encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是字符串则</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是时间格式转字符串</span></span><br><span class="line"><span class="comment"># df[&#x27;time_str&#x27;]=df[&#x27;time&#x27;].astype(str)； strftime()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>时间序列的拆分合并</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%D&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date2&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>时间序列范围筛选</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">5</span>)) &amp; (df.time &lt;= pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">23</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">6</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
 <p><a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">创建序列</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2018-01-01&#x27;</span>, closed=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围pandas&lt;1.4版本</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围pandas&gt;1.4版本</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2018-01-01&#x27;</span>, closed=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围pandas&lt;1.4版本,参数名为closed, pandas&gt;1.4版本为inclusive</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一月份的时间数据，按天，按小时</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>, freq=<span class="string">&#x27;H&#x27;</span>) </span><br></pre></td></tr></table></figure>
 <h2 id="计算脚本时长"><a class="markdownIt-Anchor" href="#计算脚本时长"></a> 计算脚本时长</h2>
 <p>对于python <code>.py</code>脚本</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">seconds = time.time() - start_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Time Taken:&#x27;</span>, time.strftime(<span class="string">&quot;%H:%M:%S&quot;</span>,time.gmtime(seconds)))</span><br></pre></td></tr></table></figure>

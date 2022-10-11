@@ -26,29 +26,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords，或选择属于某个list的行……">
+    <meta name="description" content="尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pandas(杂)：List&#x2F;pandas文本包含筛选">
-<meta property="og:url" content="https://hscyber.github.io/posts/4d972282/">
+<meta property="og:title" content="对近来生活的思考和一点自我反思">
+<meta property="og:url" content="https://hscyber.github.io/posts/1d48db90/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="处理文本或字符串数据常需要对内容进行关键词筛选，如选出表格df中包含某几个关键词的行，选出某个列表texts中所有包含某些关键词的句子keywords，或选择属于某个list的行……">
+<meta property="og:description" content="尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-10T11:06:19.000Z">
-<meta property="article:modified_time" content="2022-08-13T12:41:21.157Z">
+<meta property="article:published_time" content="2022-10-11T12:49:13.000Z">
+<meta property="article:modified_time" content="2022-10-11T14:59:50.216Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="Pandas">
-<meta property="article:tag" content="文本筛选">
+<meta property="article:tag" content="Python GIS Matplotlib">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://hscyber.github.io/posts/4d972282/">
+<link rel="canonical" href="https://hscyber.github.io/posts/1d48db90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/4d972282/","path":"posts/4d972282/","title":"Pandas(杂)：List/pandas文本包含筛选"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/1d48db90/","path":"posts/1d48db90/","title":"对近来生活的思考和一点自我反思"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Pandas(杂)：List/pandas文本包含筛选 | Huangs's Notes</title>
+<title>对近来生活的思考和一点自我反思 | Huangs's Notes</title>
   
 
 
@@ -157,7 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.</span> <span class="nav-text"> 字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E5%8C%85%E5%90%AB"><span class="nav-number">2.</span> <span class="nav-text"> 列表包含</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%B2%E8%A8%80%E7%A2%8E%E8%AF%AD-%E4%B8%8D%E7%9F%A5%E6%89%80%E4%BA%91"><span class="nav-number">1.</span> <span class="nav-text"> 闲言碎语-不知所云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87%E7%9A%84%E5%87%A0%E7%82%B9%E5%8F%8D%E6%80%9D"><span class="nav-number">2.</span> <span class="nav-text"> 关于提高效率的几点反思。</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -235,7 +234,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4d972282/">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/1d48db90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar2.jpg">
@@ -248,12 +247,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Pandas(杂)：List/pandas文本包含筛选 | Huangs's Notes">
+      <meta itemprop="name" content="对近来生活的思考和一点自我反思 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Pandas(杂)：List/pandas文本包含筛选
+          对近来生活的思考和一点自我反思
         </h1>
 
         <div class="post-meta-container">
@@ -264,7 +263,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-06-10 19:06:19" itemprop="dateCreated datePublished" datetime="2022-06-10T19:06:19+08:00">2022-06-10</time>
+      <time title="创建时间：2022-10-11 20:49:13" itemprop="dateCreated datePublished" datetime="2022-10-11T20:49:13+08:00">2022-10-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -272,7 +271,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Pandas数据处理分析</span></a>
+          <a href="/categories/%E7%94%9F%E6%B4%BB%E6%BC%AB%E6%AD%A5/" itemprop="url" rel="index"><span itemprop="name">生活漫步</span></a>
         </span>
     </span>
 
@@ -289,14 +288,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>865</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -308,26 +307,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
+        <p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
 <span id="more"></span>
-<h2 id="字符串"><a class="markdownIt-Anchor" href="#字符串"></a> 字符串</h2>
+<h3 id="闲言碎语-不知所云"><a class="markdownIt-Anchor" href="#闲言碎语-不知所云"></a> 闲言碎语-不知所云</h3>
 <blockquote>
-<p>子串包含行筛选</p>
+<p>人是一根会思考的芦苇</p>
 </blockquote>
-<p>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</p>
-<p>pandas可通过<code>df['text'].str.contains(&quot;keyword1|keyword2...&quot;)</code></p>
-<p>代码举例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-<p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<h2 id="列表包含"><a class="markdownIt-Anchor" href="#列表包含"></a> 列表包含</h2>
-<p>列表推导</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newlist = [text <span class="keyword">for</span> text <span class="keyword">in</span> texts <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> text <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
-<p>如果是列元素是否包含于<strong>list</strong>的筛选：</p>
-<ul>
-<li><code>df2 = df1.loc[df1['ID'].isin(keywords)]</code></li>
-<li>取反则加<code>~</code>，如用户筛选：</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
+<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
+<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
+<p>最大的收获大致在于：认识到了人的有限性和平凡，接纳和更好地认识了自己，自己的特质与优缺点，也认识到了人具有的巨大潜力和可塑性，没有什么是不能够改变的，缺的是主动性、认知、勇气、行动，没有那么多借口。焦虑是允许的，积极拥抱。每天我们都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不在再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知和探求，余下的是大概是爱情与工作/事业。</p>
+<p>我们好像讨厌工作，抗拒工作，将至视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，我们也别无选择，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造价值和表达自我，开拓自己心中的森林。警惕被动而不加思考地比较与自欺，罗翔老师说，内卷的本质是不把人当人。虽然我知道好像不只是内卷如此。</p>
+<p>**我们来的时候，什么也没有。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多。**不少人说，25岁之后人才真正成年。我想，这肯定也是个虚岁，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但是，二十几岁的年纪，一个人再天才再有帮助，所能达到的水平也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能成长。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能永远也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
+<p>我们都有自己的道路，不应被时间和他人而定义自己或是自己的阶段，只需要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
+<h3 id="关于提高效率的几点反思"><a class="markdownIt-Anchor" href="#关于提高效率的几点反思"></a> 关于提高效率的几点反思。</h3>
+<ol>
+<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
+<li>我们<strong>不可能什么都有，适当遏止内心纷繁的一些渴望</strong>。减少虚荣，**我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑。**不能抵挡诱惑就关闭通道，关闭信息通报，比如你可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
+<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
+<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready——乔布斯. 假如做事都要面面顾到，那就什么事情都不能做了（——鲁迅）。我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
+<li>接上，<strong>不要过度准备和过分焦虑</strong>。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，你的焦虑和恐惧于事无补，你焦虑改变不了明天，反而会影响今天的心情，你的恐惧也改变不了明天，因为人生唯一应该恐惧的就是恐惧本身；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
+<li>难过无法自抑压抑不能自释的时候-多寻求帮助与关怀，我知道失望与难过很难感同身受，但倾述和释放会让我们好很多。</li>
+<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起，有小伙伴很多时候会让我们更具热情。</li>
+<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
+<li>……</li>
+</ol>
+<p>2022/10/11 22:59</p>
 
     </div>
 
@@ -347,7 +351,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/4d972282/" title="Pandas(杂)：List&#x2F;pandas文本包含筛选">https://hscyber.github.io/posts/4d972282/</a>
+      <a href="https://hscyber.github.io/posts/1d48db90/" title="对近来生活的思考和一点自我反思">https://hscyber.github.io/posts/1d48db90/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -355,23 +359,16 @@
 </ul>
 </div>
 
-          <div class="post-tags">
-              <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
-              <a href="/tags/%E6%96%87%E6%9C%AC%E7%AD%9B%E9%80%89/" rel="tag"><i class="fa fa-tag"></i> 文本筛选</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/e8c71149/" rel="prev" title="【预】文献篇(3) 如何开展研究背景调研和总结？">
-                  <i class="fa fa-chevron-left"></i> 【预】文献篇(3) 如何开展研究背景调研和总结？
+                <a href="/posts/4c34a09/" rel="prev" title="matplotlib基础(5)：文本与辅助线的添加及属性设置">
+                  <i class="fa fa-chevron-left"></i> matplotlib基础(5)：文本与辅助线的添加及属性设置
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/979af058/" rel="next" title="【研究生新手笔记汇总】">
-                  【研究生新手笔记汇总】 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -461,7 +458,7 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/4d972282/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/1d48db90/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>
