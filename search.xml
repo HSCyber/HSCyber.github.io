@@ -100,6 +100,23 @@
       </categories>
   </entry>
   <entry>
+    <title>matplotlib基础(6)：绘制多图的精准布局</title>
+    <url>/posts/cddc42b6/</url>
+    <content><![CDATA[<p>作图时经常需要<mark>绘制多幅图并进行布局调整</mark>，……。</p>
+<span id="more"></span>
+<h2 id="出草图"><a class="markdownIt-Anchor" href="#出草图"></a> 出草图</h2>
+<h2 id="常规布局"><a class="markdownIt-Anchor" href="#常规布局"></a> 常规布局</h2>
+<h2 id="高级布局"><a class="markdownIt-Anchor" href="#高级布局"></a> 高级布局</h2>
+]]></content>
+      <categories>
+        <category>Python可视化</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Matplotlib</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>matplotlib基础(5)：文本与辅助线的添加及属性设置</title>
     <url>/posts/4c34a09/</url>
     <content><![CDATA[<p>如果在图中的适当位置<mark>添加辅助线及文本，并设置其属性</mark>，……。</p>
