@@ -33,15 +33,15 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="记录一下在ubuntu系统上安装qgis的过程，参考qgis官方网站及youtube。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/qgis.jpg">
+<meta property="og:image" content="https://hscyber.github.io/posts/ec7147e8/qgis.jpg">
 <meta property="article:published_time" content="2022-10-19T10:40:56.000Z">
-<meta property="article:modified_time" content="2022-10-19T10:51:15.334Z">
+<meta property="article:modified_time" content="2022-10-19T11:07:46.980Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="QGIS">
 <meta property="article:tag" content="ubuntu">
 <meta property="article:tag" content="软件安装">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/qgis.jpg">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/ec7147e8/qgis.jpg">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/ec7147e8/">
@@ -101,9 +101,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">92</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">72</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">73</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -175,7 +175,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -186,7 +186,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-count">92</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -320,7 +320,7 @@
 <p>如果遇到443等问题和镜像有关，<strong>多执行几次</strong>一般就能通过，打开terminal(<code>ctrl+alt+t</code>)-复制命令(<code>ctrl + c</code>)-粘贴到命令行(<code>ctrl+shift+v</code>)，<code>enter</code>。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install gnupg software-properties-common</span><br><span class="line">sudo mkdir -m755 -p /etc/apt/keyrings # 22以上版本本命令可以省略</span><br><span class="line">sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加仓库源，这里也可以在软件与更新程序中内手动添加</span></span><br><span class="line">sudo add-apt-repository &quot;deb https://qgis.org/ubuntu $(lbs_release -c -s) main&quot;</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install qgis qgis-plugin-grass</span><br></pre></td></tr></table></figure>
 <p>安装后在软件中即可找到，打开即可正常使用：</p>
-<img src="/posts/undefined/qgis.jpg" class alt="qgis">
+<img src="/posts/ec7147e8/qgis.jpg" class alt="qgis">
 
     </div>
 
@@ -363,6 +363,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/posts/8a34f949/" rel="next" title="Pandas(杂)：读取不同空格数的txt或csv">
+                  Pandas(杂)：读取不同空格数的txt或csv <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://hscyber.github.io/posts/8a34f949/</loc>
+    
+    <lastmod>2022-10-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/posts/2fb61b4d/</loc>
     
     <lastmod>2022-10-19</lastmod>
@@ -1054,6 +1063,13 @@
   </url>
   
   <url>
+    <loc>https://hscyber.github.io/tags/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E7%AD%9B%E9%80%89/</loc>
+    <lastmod>2022-10-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/tags/dropna/</loc>
     <lastmod>2022-10-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -1075,14 +1091,14 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E7%AD%9B%E9%80%89/</loc>
+    <loc>https://hscyber.github.io/tags/%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/</loc>
     <lastmod>2022-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/%E6%95%B0%E6%8D%AE%E8%BE%93%E5%87%BA/</loc>
+    <loc>https://hscyber.github.io/tags/read-csv/</loc>
     <lastmod>2022-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
