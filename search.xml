@@ -517,6 +517,37 @@
       </tags>
   </entry>
   <entry>
+    <title>矢栅处理(5)：R语言nc转多张Geotif</title>
+    <url>/posts/ef2a4876/</url>
+    <content><![CDATA[<p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
+<span id="more"></span>
+<p>这几天的数据处理工作让我感觉Python对于栅格数据的支持不够友好，而且性能捉急，往后类似的工作尽量上手R语言做，<strong>R语言对栅格处理友好且速度更快</strong>。</p>
+<h2 id="包"><a class="markdownIt-Anchor" href="#包"></a> 包</h2>
+<p>安装</p>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ncdf4&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;raster&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;rgdal&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>文档查看：<a href="https://cran.r-project.org/web/packages/raster/index.html">raster 包</a>，<a href="https://cran.r-project.org/web/packages/raster/raster.pdf">API文档</a>，<a href="https://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a></p>
+<h2 id="nc写tif"><a class="markdownIt-Anchor" href="#nc写tif"></a> nc写tif</h2>
+<ol>
+<li>基于研究区裁剪数据</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ncdf4<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>raster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rgdal<span class="punctuation">)</span></span><br><span class="line">study_area <span class="operator">=</span> <span class="string">&quot;A:/my_research/Studyarea.shp&quot;</span></span><br><span class="line">extent <span class="operator">&lt;-</span> shapefile<span class="punctuation">(</span>study_area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>读取文件并拆分，循环写入</li>
+<li>说明（可以自行输出中间过程文件查看）：ncbr输出即为读入的nc文件，包含其数据的维度及名称等等，自行查看</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outdir <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/tif/prep/&quot;</span></span><br><span class="line">ncfile <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/China_1km_prep_2017.nc&quot;</span></span><br><span class="line">ncbr <span class="operator">=</span> brick<span class="punctuation">(</span>ncfile<span class="punctuation">,</span>varname <span class="operator">=</span> <span class="string">&quot;prep&quot;</span><span class="punctuation">,</span>lvar<span class="operator">=</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">filenames <span class="operator">=</span> paste0<span class="punctuation">(</span>outdir<span class="punctuation">,</span>ncbr<span class="operator">@</span>data<span class="operator">@</span><span class="built_in">names</span><span class="punctuation">,</span><span class="string">&quot;.tif&quot;</span><span class="punctuation">)</span></span><br><span class="line">nlayers <span class="operator">=</span> <span class="built_in">length</span><span class="punctuation">(</span>filenames<span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span>nlayers<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  r <span class="operator">=</span> ncbr<span class="punctuation">[[</span>i<span class="punctuation">]</span><span class="punctuation">]</span> <span class="comment">#取一个图层</span></span><br><span class="line">  rc <span class="operator">=</span> crop<span class="punctuation">(</span>r<span class="punctuation">,</span>shp<span class="punctuation">)</span> <span class="comment"># 范围筛选</span></span><br><span class="line">  writeRaster<span class="punctuation">(</span>rc<span class="punctuation">,</span> filenames<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> bylayer<span class="operator">=</span><span class="literal">TRUE</span><span class="punctuation">,</span> format <span class="operator">=</span> <span class="string">&quot;GTiff&quot;</span><span class="punctuation">,</span>overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>options<span class="operator">=</span><span class="string">&quot;COMPRESS=LZW&quot;</span><span class="punctuation">,</span>NAflag<span class="operator">=</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>不过貌似不能直接按照shapefile边界形状裁剪？</p>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>R语言</tag>
+        <tag>GeoTIFF</tag>
+        <tag>nc文件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>矢栅处理(杂)：OSM数据下载及shapefile读写</title>
     <url>/posts/42111e30/</url>
     <content><![CDATA[<p><a href="https://en.wikipedia.org/wiki/OpenStreetMap">OSM</a>地图数据是志愿地理信息数据<a href="https://en.wikipedia.org/wiki/Volunteered_geographic_information">(VGI)</a>的代表，更新快(<strong>天</strong>)覆盖区域广，在大区域研究中其数据尤其是路网应用广泛。这里简单介绍一下数据下载渠道及osm格式转换即<strong>shapefile的通用读写代码</strong>。</p>
@@ -553,37 +584,6 @@
         <tag>OpenStreetMap</tag>
         <tag>GDAL</tag>
         <tag>shapefile读写</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>矢栅处理(5)：R语言nc转多张Geotif</title>
-    <url>/posts/ef2a4876/</url>
-    <content><![CDATA[<p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
-<span id="more"></span>
-<p>这几天的数据处理工作让我感觉Python对于栅格数据的支持不够友好，而且性能捉急，往后类似的工作尽量上手R语言做，<strong>R语言对栅格处理友好且速度更快</strong>。</p>
-<h2 id="包"><a class="markdownIt-Anchor" href="#包"></a> 包</h2>
-<p>安装</p>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ncdf4&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;raster&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;rgdal&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>文档查看：<a href="https://cran.r-project.org/web/packages/raster/index.html">raster 包</a>，<a href="https://cran.r-project.org/web/packages/raster/raster.pdf">API文档</a>，<a href="https://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a></p>
-<h2 id="nc写tif"><a class="markdownIt-Anchor" href="#nc写tif"></a> nc写tif</h2>
-<ol>
-<li>基于研究区裁剪数据</li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ncdf4<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>raster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rgdal<span class="punctuation">)</span></span><br><span class="line">study_area <span class="operator">=</span> <span class="string">&quot;A:/my_research/Studyarea.shp&quot;</span></span><br><span class="line">extent <span class="operator">&lt;-</span> shapefile<span class="punctuation">(</span>study_area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>读取文件并拆分，循环写入</li>
-<li>说明（可以自行输出中间过程文件查看）：ncbr输出即为读入的nc文件，包含其数据的维度及名称等等，自行查看</li>
-</ol>
-<figure class="highlight r"><table><tr><td class="code"><pre><span class="line">outdir <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/tif/prep/&quot;</span></span><br><span class="line">ncfile <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/China_1km_prep_2017.nc&quot;</span></span><br><span class="line">ncbr <span class="operator">=</span> brick<span class="punctuation">(</span>ncfile<span class="punctuation">,</span>varname <span class="operator">=</span> <span class="string">&quot;prep&quot;</span><span class="punctuation">,</span>lvar<span class="operator">=</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">filenames <span class="operator">=</span> paste0<span class="punctuation">(</span>outdir<span class="punctuation">,</span>ncbr<span class="operator">@</span>data<span class="operator">@</span><span class="built_in">names</span><span class="punctuation">,</span><span class="string">&quot;.tif&quot;</span><span class="punctuation">)</span></span><br><span class="line">nlayers <span class="operator">=</span> <span class="built_in">length</span><span class="punctuation">(</span>filenames<span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span>nlayers<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  r <span class="operator">=</span> ncbr<span class="punctuation">[[</span>i<span class="punctuation">]</span><span class="punctuation">]</span> <span class="comment">#取一个图层</span></span><br><span class="line">  rc <span class="operator">=</span> crop<span class="punctuation">(</span>r<span class="punctuation">,</span>shp<span class="punctuation">)</span> <span class="comment"># 范围筛选</span></span><br><span class="line">  writeRaster<span class="punctuation">(</span>rc<span class="punctuation">,</span> filenames<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> bylayer<span class="operator">=</span><span class="literal">TRUE</span><span class="punctuation">,</span> format <span class="operator">=</span> <span class="string">&quot;GTiff&quot;</span><span class="punctuation">,</span>overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>options<span class="operator">=</span><span class="string">&quot;COMPRESS=LZW&quot;</span><span class="punctuation">,</span>NAflag<span class="operator">=</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>不过貌似不能直接按照shapefile边界形状裁剪？</p>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>R语言</tag>
-        <tag>GeoTIFF</tag>
-        <tag>nc文件</tag>
       </tags>
   </entry>
   <entry>
@@ -727,8 +727,8 @@
       </categories>
       <tags>
         <tag>Rasterio</tag>
-        <tag>GDAL</tag>
         <tag>GeoTIFF</tag>
+        <tag>GDAL</tag>
         <tag>栅格文件读写</tag>
       </tags>
   </entry>
@@ -952,6 +952,26 @@
       </tags>
   </entry>
   <entry>
+    <title>【预】GIS基础(1)：浅析地理/投影坐标系;转换脚本</title>
+    <url>/posts/c82d0555/</url>
+    <content><![CDATA[<p><strong>空间参考</strong>即地理/投影坐标系是地理研究、GIS数据处理及空间分析的基础。好早就学，但直到现在也还是好像懂但又不怎么懂的一个点。在此希望基于资料和自己当前的理解及实践，用尽可能短的篇幅小结一下：<strong>(1)  空间参考、地理/投影坐标系相关的概念；(2) 常用坐标系及选择依据；(3) 软件(ArcGIS/QGIS)及代码(Python/R)的坐标系(批)处理方式。</strong></p>
+<span id="more"></span>
+<h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
+<h2 id="坐标系选择"><a class="markdownIt-Anchor" href="#坐标系选择"></a> 坐标系选择</h2>
+<h2 id="设置及转换"><a class="markdownIt-Anchor" href="#设置及转换"></a> 设置及转换</h2>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
+<h2 id="补充资源"><a class="markdownIt-Anchor" href="#补充资源"></a> 补充资源</h2>
+]]></content>
+      <categories>
+        <category>GIS基础</category>
+      </categories>
+      <tags>
+        <tag>坐标系</tag>
+        <tag>GIS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/posts/4a17b156/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -980,26 +1000,6 @@
       </tags>
   </entry>
   <entry>
-    <title>【预】GIS基础(1)：浅析地理/投影坐标系;转换脚本</title>
-    <url>/posts/c82d0555/</url>
-    <content><![CDATA[<p><strong>空间参考</strong>即地理/投影坐标系是地理研究、GIS数据处理及空间分析的基础。好早就学，但直到现在也还是好像懂但又不怎么懂的一个点。在此希望基于资料和自己当前的理解及实践，用尽可能短的篇幅小结一下：<strong>(1)  空间参考、地理/投影坐标系相关的概念；(2) 常用坐标系及选择依据；(3) 软件(ArcGIS/QGIS)及代码(Python/R)的坐标系(批)处理方式。</strong></p>
-<span id="more"></span>
-<h2 id="基础概念"><a class="markdownIt-Anchor" href="#基础概念"></a> 基础概念</h2>
-<h2 id="坐标系选择"><a class="markdownIt-Anchor" href="#坐标系选择"></a> 坐标系选择</h2>
-<h2 id="设置及转换"><a class="markdownIt-Anchor" href="#设置及转换"></a> 设置及转换</h2>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
-<h3 id="软件"><a class="markdownIt-Anchor" href="#软件"></a> 软件</h3>
-<h2 id="补充资源"><a class="markdownIt-Anchor" href="#补充资源"></a> 补充资源</h2>
-]]></content>
-      <categories>
-        <category>GIS基础</category>
-      </categories>
-      <tags>
-        <tag>坐标系</tag>
-        <tag>GIS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo图片自动上传同步测试</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -1009,74 +1009,6 @@
 ]]></content>
       <categories>
         <category>Tools</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>随笔随记-2022/520</title>
-    <url>/posts/29d41ed/</url>
-    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
-<p>When I started loving myself, Charlie Chaplin</p>
-<span id="more"></span>
-<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
-<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
-<blockquote>
-<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
-</blockquote>
-<p>When I started loving myself<br>
-I understood that I’m always and at any given opportunity<br>
-in the right place at the right time.<br>
-And I understood that all that happens is right –<br>
-from then on I could be calm.<br>
-Today I know: It’s called TRUST.</p>
-<p>When I started to love myself I understood how much it can offend somebody<br>
-When I tried to force my desires on this person,<br>
-even though I knew the time is not right and the person was not ready for it,<br>
-and even though this person was me.<br>
-Today I know: It’s called LETTING GO</p>
-<p>When I started loving myself<br>
-I could recognize that emotional pain and grief<br>
-are just warnings for me to not live against my own truth.<br>
-Today I know: It’s called AUTHENTICALLY BEING.</p>
-<p>When I started loving myself<br>
-I stopped longing for another life<br>
-and could see that everything around me was a request to grow.<br>
-Today I know: It’s called MATURITY.</p>
-<p>When I started loving myself<br>
-I stopped depriving myself of my free time<br>
-and stopped sketching further magnificent projects for the future.<br>
-Today I only do what’s fun and joy for me,<br>
-what I love and what makes my heart laugh,<br>
-in my own way and in my tempo.<br>
-Today I know: it’s called HONESTY.</p>
-<p>When I started loving myself<br>
-I escaped from all what wasn’t healthy for me,<br>
-from dishes, people, things, situations<br>
-and from everything pulling me down and away from myself.<br>
-In the beginning I called it the “healthy egoism”,<br>
-but today I know: it’s called SELF-LOVE.</p>
-<p>When I started loving myself<br>
-I stopped wanting to be always right<br>
-thus I’ve been less wrong.<br>
-Today I’ve recognized: it’s called HUMBLENESS.</p>
-<p>When I started loving myself<br>
-I refused to live further in the past<br>
-and worry about my future.<br>
-Now I live only at this moment where EVERYTHING takes place,<br>
-like this I live every day and I call it CONSCIOUSNESS.</p>
-<p>When I started loving myself<br>
-I recognized, that my thinking<br>
-can make me miserable and sick.<br>
-When I requested for my heart forces,<br>
-my mind got an important partner.<br>
-Today I call this connection HEART WISDOM.</p>
-<p>We do not need to fear further discussions,<br>
-conflicts and problems with ourselves and others<br>
-since even stars sometimes bang on each other<br>
-and create new worlds.<br>
-Today I know: THIS IS LIFE!</p>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
       </categories>
   </entry>
   <entry>
@@ -1103,42 +1035,6 @@ Today I know: THIS IS LIFE!</p>
 </ol>
 <p>今天继续打卡了奥森跑道，北京初秋的夜晚竟已冷得不能穿夏装了。组会后的周末，睡个好觉。周末两天flag~把欠下的笔记补好。</p>
 <p>2022/08/26 23:36</p>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>对近来生活的思考和一点自我反思</title>
-    <url>/posts/1d48db90/</url>
-    <content><![CDATA[<p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
-<span id="more"></span>
-<h3 id="闲言碎语-不知所云"><a class="markdownIt-Anchor" href="#闲言碎语-不知所云"></a> 闲言碎语-不知所云</h3>
-<blockquote>
-<p>人是一根会思考的芦苇</p>
-</blockquote>
-<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
-<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
-<p>最大的收获大致在于：认识到了人的有限性和平凡，接纳和更好地认识了自己，自己的特质与优缺点，也认识到了人具有的巨大潜力和可塑性，没有什么是不能够改变的，缺的是主动性、认知、勇气、行动，没有那么多借口。焦虑是允许的，积极拥抱。每天我们都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知和探求，余下的是大概是爱情与工作/事业。</p>
-<p>我们好像讨厌工作，抗拒工作，将之视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，我们也别无选择，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造价值和表达自我，开拓自己心中的森林。警惕被动而不加思考地比较与自欺，罗翔老师说，内卷的本质是不把人当人。虽然我知道好像不只是内卷如此。</p>
-<p><strong>我们来的时候，什么也没有，不妨大胆一些。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多</strong>。不少人说，25岁之后人才真正成年。我想，这肯定也是个虚数，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但是，二十几岁的年纪，一个人再天才再有帮助，所能达到的水平也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能成长。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能永远也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
-<p>我们都有自己的道路，不应被时间和他人而定义自己或是自己的阶段，只需要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
-<h3 id="关于提高效率的几点反思"><a class="markdownIt-Anchor" href="#关于提高效率的几点反思"></a> 关于提高效率的几点反思。</h3>
-<blockquote>
-<p>热爱、爱、渴望和目标永远是最纯净的力量源泉。</p>
-</blockquote>
-<ol>
-<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
-<li>我们<strong>不可能什么都有，适当遏止内心纷繁的一些渴望</strong>。减少虚荣，**我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑。**不能抵挡诱惑就关闭通道，关闭信息通报，比如你可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
-<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
-<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready. 我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
-<li>接上，<strong>不要过度准备和过分焦虑</strong>。假如做事都要面面顾到，那就什么事情都不能做了。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，焦虑和恐惧于事无补，焦虑改变不了明天，反而会影响今天的心情，恐惧也改变不了明天，因为人生唯一应该恐惧的就是恐惧本身；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
-<li>难过无法自抑压抑不能自释的时候-多寻求帮助与关怀，我知道失望与难过很难感同身受，但倾述和释放会让我们好很多。</li>
-<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起，有小伙伴很多时候会让我们更具热情。</li>
-<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
-<li>……</li>
-</ol>
-<p>2022/10/11 22:59</p>
 ]]></content>
       <categories>
         <category>生活漫步</category>
@@ -1353,6 +1249,110 @@ height = 12\times 2.54 = 30.48cm
         <tag>出图尺寸</tag>
         <tag>分辨率</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>对近来生活的思考和一点自我反思</title>
+    <url>/posts/1d48db90/</url>
+    <content><![CDATA[<p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
+<span id="more"></span>
+<h3 id="闲言碎语-不知所云"><a class="markdownIt-Anchor" href="#闲言碎语-不知所云"></a> 闲言碎语-不知所云</h3>
+<blockquote>
+<p>人是一根会思考的芦苇</p>
+</blockquote>
+<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
+<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
+<p>最大的收获大致在于：认识到了人的有限性和平凡，接纳和更好地认识了自己，自己的特质与优缺点，也认识到了人具有的巨大潜力和可塑性，没有什么是不能够改变的，缺的是主动性、认知、勇气、行动，没有那么多借口。焦虑是允许的，积极拥抱。每天我们都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知和探求，余下的是大概是爱情与工作/事业。</p>
+<p>我们好像讨厌工作，抗拒工作，将之视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，我们也别无选择，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造价值和表达自我，开拓自己心中的森林。警惕被动而不加思考地比较与自欺，罗翔老师说，内卷的本质是不把人当人。虽然我知道好像不只是内卷如此。</p>
+<p><strong>我们来的时候，什么也没有，不妨大胆一些。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多</strong>。不少人说，25岁之后人才真正成年。我想，这肯定也是个虚数，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但是，二十几岁的年纪，一个人再天才再有帮助，所能达到的水平也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能成长。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能永远也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
+<p>我们都有自己的道路，不应被时间和他人或是什么其他的东西而定义自己或是自己的阶段，只需要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
+<h3 id="关于提高效率的几点反思"><a class="markdownIt-Anchor" href="#关于提高效率的几点反思"></a> 关于提高效率的几点反思。</h3>
+<blockquote>
+<p>热爱、爱、渴望和目标永远是最纯净的力量源泉。</p>
+</blockquote>
+<ol>
+<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
+<li>我们<strong>不可能什么都有，适当遏止内心纷繁的一些渴望</strong>。减少虚荣，**我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑。**不能抵挡诱惑就关闭通道，关闭信息通报，比如你可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
+<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
+<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready. 我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
+<li>接上，<strong>不要过度准备和过分焦虑</strong>。假如做事都要面面顾到，那就什么事情都不能做了。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，焦虑和恐惧于事无补，焦虑改变不了明天，反而会影响今天的心情，恐惧也改变不了明天，因为人生唯一应该恐惧的就是恐惧本身；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
+<li>难过无法自抑压抑不能自释的时候-多寻求帮助与关怀，我知道失望与难过很难感同身受，但倾述和释放会让我们好很多。</li>
+<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起，有小伙伴很多时候会让我们更具热情。</li>
+<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
+<li>……</li>
+</ol>
+<p>2022/10/11 22:59</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>随笔随记-2022/520</title>
+    <url>/posts/29d41ed/</url>
+    <content><![CDATA[<p>今天是2022年5月20日，加了一天的班赶材料，这会闲下来，贴一首诗…</p>
+<p>When I started loving myself, Charlie Chaplin</p>
+<span id="more"></span>
+<h2 id="when-i-started-loving-myself"><a class="markdownIt-Anchor" href="#when-i-started-loving-myself"></a> When I started loving myself</h2>
+<h2 id="当我开始爱自己"><a class="markdownIt-Anchor" href="#当我开始爱自己"></a> 当我开始爱自己</h2>
+<blockquote>
+<p>The poem below was written by Charlie Chaplin on his 70th birthday,  April 16, 1959. <a href="https://charterforcompassion.org/attributes-of-compassion/when-i-started-loving-myself">参考</a></p>
+</blockquote>
+<p>When I started loving myself<br>
+I understood that I’m always and at any given opportunity<br>
+in the right place at the right time.<br>
+And I understood that all that happens is right –<br>
+from then on I could be calm.<br>
+Today I know: It’s called TRUST.</p>
+<p>When I started to love myself I understood how much it can offend somebody<br>
+When I tried to force my desires on this person,<br>
+even though I knew the time is not right and the person was not ready for it,<br>
+and even though this person was me.<br>
+Today I know: It’s called LETTING GO</p>
+<p>When I started loving myself<br>
+I could recognize that emotional pain and grief<br>
+are just warnings for me to not live against my own truth.<br>
+Today I know: It’s called AUTHENTICALLY BEING.</p>
+<p>When I started loving myself<br>
+I stopped longing for another life<br>
+and could see that everything around me was a request to grow.<br>
+Today I know: It’s called MATURITY.</p>
+<p>When I started loving myself<br>
+I stopped depriving myself of my free time<br>
+and stopped sketching further magnificent projects for the future.<br>
+Today I only do what’s fun and joy for me,<br>
+what I love and what makes my heart laugh,<br>
+in my own way and in my tempo.<br>
+Today I know: it’s called HONESTY.</p>
+<p>When I started loving myself<br>
+I escaped from all what wasn’t healthy for me,<br>
+from dishes, people, things, situations<br>
+and from everything pulling me down and away from myself.<br>
+In the beginning I called it the “healthy egoism”,<br>
+but today I know: it’s called SELF-LOVE.</p>
+<p>When I started loving myself<br>
+I stopped wanting to be always right<br>
+thus I’ve been less wrong.<br>
+Today I’ve recognized: it’s called HUMBLENESS.</p>
+<p>When I started loving myself<br>
+I refused to live further in the past<br>
+and worry about my future.<br>
+Now I live only at this moment where EVERYTHING takes place,<br>
+like this I live every day and I call it CONSCIOUSNESS.</p>
+<p>When I started loving myself<br>
+I recognized, that my thinking<br>
+can make me miserable and sick.<br>
+When I requested for my heart forces,<br>
+my mind got an important partner.<br>
+Today I call this connection HEART WISDOM.</p>
+<p>We do not need to fear further discussions,<br>
+conflicts and problems with ourselves and others<br>
+since even stars sometimes bang on each other<br>
+and create new worlds.<br>
+Today I know: THIS IS LIFE!</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
   </entry>
   <entry>
     <title>matplotlib基础(3)：图片存储格式及参数设置</title>
@@ -1731,6 +1731,45 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>Pandas(2)：缺失值即空值na其处理(删除替换或填充)</title>
+    <url>/posts/74993542/</url>
+    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
+<span id="more"></span>
+<h2 id="空值定义"><a class="markdownIt-Anchor" href="#空值定义"></a> 空值定义</h2>
+<h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
+<h3 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h3>
+<h3 id="替换"><a class="markdownIt-Anchor" href="#替换"></a> 替换</h3>
+<h3 id="填充"><a class="markdownIt-Anchor" href="#填充"></a> 填充</h3>
+<h2 id="参考学习"><a class="markdownIt-Anchor" href="#参考学习"></a> 参考学习</h2>
+<ul>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>dropna</tag>
+        <tag>fillna</tag>
+        <tag>interpolate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pandas(1)：数据选取/条件筛选小结</title>
     <url>/posts/f9c7a8a1/</url>
     <content><![CDATA[<p>小结一下Pandas <font color="#dd0000">筛选表格数据子集</font>的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的<strong>一部分</strong>，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类,<strong>理论上基于代码我们可以实现任何想得到的处理</strong>：</p>
@@ -1804,45 +1843,6 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Pandas</tag>
         <tag>表格数据筛选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas(2)：缺失值即空值na其处理(删除替换或填充)</title>
-    <url>/posts/74993542/</url>
-    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
-<span id="more"></span>
-<h2 id="空值定义"><a class="markdownIt-Anchor" href="#空值定义"></a> 空值定义</h2>
-<h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
-<h3 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h3>
-<h3 id="替换"><a class="markdownIt-Anchor" href="#替换"></a> 替换</h3>
-<h3 id="填充"><a class="markdownIt-Anchor" href="#填充"></a> 填充</h3>
-<h2 id="参考学习"><a class="markdownIt-Anchor" href="#参考学习"></a> 参考学习</h2>
-<ul>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>dropna</tag>
-        <tag>fillna</tag>
-        <tag>interpolate</tag>
       </tags>
   </entry>
   <entry>
@@ -2349,45 +2349,6 @@ a_{21} &amp; a_{22} &amp; a_{23}
       </categories>
       <tags>
         <tag>行优先</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电脑重装系统Ubuntu22.04.1 LTS记录</title>
-    <url>/posts/2fb61b4d/</url>
-    <content><![CDATA[<p>记录一下旧笔记本重装Ubuntu Desktop22.04.1 LTS的简要过程</p>
-<span id="more"></span>
-<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
-<ol>
-<li>下载<a href="https://rufus.ie/zh/">rufus</a>以及<a href="https://ubuntu.com/download/desktop">ubuntu destop镜像</a>创建启动盘，参数默认即可</li>
-<li>按照<a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">官网教程</a>逐步安装并完成更新，电脑启动项自查，见参考<a href="https://zhuanlan.zhihu.com/p/496107394">知乎</a></li>
-<li>安装vim ，切换系统镜像源为阿里源，备份初始文件再使用vim编辑器操作，清空之前的内容，<code>i</code>复制粘贴内容，再输入<code>=</code>以及<code>:wq</code>保存并退出，然后再<code>sudo apt-get update &amp;&amp; apt-get upgrade</code></li>
-<li>安装搜狗输入法<a href="https://shurufa.sogou.com/linux">下载.deb</a>，后续参考这个<a href="https://www.cnblogs.com/star-another/p/16298866.html">教程</a></li>
-<li>下载配置<a href="https://github.com/Dreamacro/clash/releases">clash for linux</a>以访问谷歌【参考代理教程】</li>
-<li>安装<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>并登陆完成同步</li>
-<li>安装<a href="https://im.qq.com/linuxqq/download.html">腾讯QQ</a>，腾讯<a href="https://meeting.tencent.com/download?mfrom=OfficialIndex_TopBanner1_Download">会议</a></li>
-<li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
-<li>QGIS for ubuntu【可选】</li>
-<li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
-<li>安装Miniconda3并迁移配置之前的环境，基于yml文件</li>
-<li>安装vs code</li>
-<li>安装gotohttp</li>
-<li>……</li>
-</ol>
-<img src="/posts/2fb61b4d/image-20220912223323738.png" class alt="image-20220912223323738">
-<h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
-<ol>
-<li>window上制作启动盘推荐rufus</li>
-<li>vim编辑器的使用可先掌握基本的插入 复制粘贴及保存</li>
-<li>typora激活失败可以选择离线激活</li>
-<li>……</li>
-</ol>
-]]></content>
-      <categories>
-        <category>计算机软硬件知识</category>
-      </categories>
-      <tags>
-        <tag>重装系统</tag>
-        <tag>ubunt</tag>
       </tags>
   </entry>
   <entry>
@@ -2923,6 +2884,44 @@ a_{21} &amp; a_{22} &amp; a_{23}
       </tags>
   </entry>
   <entry>
+    <title>Python中的时间格式(2)：速查版</title>
+    <url>/posts/13994161/</url>
+    <content><![CDATA[<p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
+<span id="more"></span>
+<p>一般只用<code>datetime</code>这个库即可</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, hour</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h2 id="常规时间格式处理"><a class="markdownIt-Anchor" href="#常规时间格式处理"></a> 常规时间格式处理</h2>
+<p>转换，将根据字符串的模式匹配并生成时间格式</p>
+<p>时间格式之后就可以按照自己的要求进行转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字符串转时间</span></span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16:30:00&quot;</span>, <span class="string">&quot;%d/%m/%y %H:%M:%S&quot;</span>)</span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16&quot;</span>, <span class="string">&quot;%d/%m/%y %H&quot;</span>)</span><br><span class="line">year,month, udate = dt.year, dt.month, dt.date()</span><br><span class="line"><span class="comment"># 时间转字符串</span></span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y/%m/%d&quot;</span>)</span><br><span class="line"><span class="comment"># 时间加减，如加时区</span></span><br><span class="line">time_bj = time_utc+ timedelta(hours=<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="pandas时间序列处理"><a class="markdownIt-Anchor" href="#pandas时间序列处理"></a> pandas时间序列处理</h2>
+<blockquote>
+<p>建议是写出文件的时候转成字符串，在读取处理的时候则使用datetime格式便于计算和绘图等等</p>
+</blockquote>
+<p>时间格式转换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入时即转换</span></span><br><span class="line">df = pd.read_csv(filepath, parse_dates=[<span class="string">&#x27;time&#x27;</span>,<span class="string">&#x27;date&#x27;</span>], encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是字符串则</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是时间格式转字符串</span></span><br><span class="line"><span class="comment"># df[&#x27;time_str&#x27;]=df[&#x27;time&#x27;].astype(str)； strftime()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>时间序列的拆分合并</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>时间序列范围筛选</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">5</span>)) &amp; (df.time &lt;= pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">23</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">6</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">创建序列</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2018-01-01&#x27;</span>, closed=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围pandas&lt;1.4版本,参数名为closed, pandas&gt;1.4版本为inclusive</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一月份的时间数据，按天，按小时</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>, freq=<span class="string">&#x27;H&#x27;</span>) </span><br></pre></td></tr></table></figure>
+<h2 id="计算脚本时长"><a class="markdownIt-Anchor" href="#计算脚本时长"></a> 计算脚本时长</h2>
+<p>对于python <code>.py</code>脚本</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">seconds = time.time() - start_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Time Taken:&#x27;</span>, time.strftime(<span class="string">&quot;%H:%M:%S&quot;</span>,time.gmtime(seconds)))</span><br></pre></td></tr></table></figure>
+<p>对于jupyter notebook/lab, 运行单元格加一行，如果是vscode则不需要</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%time</span><br><span class="line">my process...</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python基础</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>时间格式</tag>
+        <tag>datetime</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Python中的时间格式(1)：详细版</title>
     <url>/posts/a0dd2ef9/</url>
     <content><![CDATA[<p>时间格式是一类较特殊也十分普遍的格式，大量数据都含有时间信息，在实际的学习中会经常接触。最近有创建、处理或转换时间序列数据的需求，因此做一个梳理并汇总以便在后续遇到相关处理时可以拿来即用，还有另一个简化的<a href="https://hscyber.github.io/posts/13994161">速查版</a>。本文主要涉及内容：</p>
@@ -3099,44 +3098,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 ……</p>
 </blockquote>
 <p>有了以上的基础，在实际中可以灵活按需涉及方案排列组合等实现想要的结果……</p>
-]]></content>
-      <categories>
-        <category>Python基础</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>时间格式</tag>
-        <tag>datetime</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python中的时间格式(2)：速查版</title>
-    <url>/posts/13994161/</url>
-    <content><![CDATA[<p>前面花时间整理了一下Python中时间格式的几个基础模块的用法，主要是针对<a href="https://hscyber.github.io/posts/a0dd2ef9/">时间格式的表达及转换</a>。不过发现有些冗余不好找，因此整一个速查的版本方便自己快速<strong>复制粘贴</strong>。</p>
-<span id="more"></span>
-<p>一般只用<code>datetime</code>这个库即可</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime, date, hour</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> timedelta</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
-<h2 id="常规时间格式处理"><a class="markdownIt-Anchor" href="#常规时间格式处理"></a> 常规时间格式处理</h2>
-<p>转换，将根据字符串的模式匹配并生成时间格式</p>
-<p>时间格式之后就可以按照自己的要求进行转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 字符串转时间</span></span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16:30:00&quot;</span>, <span class="string">&quot;%d/%m/%y %H:%M:%S&quot;</span>)</span><br><span class="line">dt = datetime.strptime(<span class="string">&quot;21/11/06 16&quot;</span>, <span class="string">&quot;%d/%m/%y %H&quot;</span>)</span><br><span class="line">year,month, udate = dt.year, dt.month, dt.date()</span><br><span class="line"><span class="comment"># 时间转字符串</span></span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y-%m-%d %H&quot;</span>)</span><br><span class="line">t_str = dt.strftime(<span class="string">&quot;%Y/%m/%d&quot;</span>)</span><br><span class="line"><span class="comment"># 时间加减，如加时区</span></span><br><span class="line">time_bj = time_utc+ timedelta(hours=<span class="number">8</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="pandas时间序列处理"><a class="markdownIt-Anchor" href="#pandas时间序列处理"></a> pandas时间序列处理</h2>
-<blockquote>
-<p>建议是写出文件的时候转成字符串，在读取处理的时候则使用datetime格式便于计算和绘图等等</p>
-</blockquote>
-<p>时间格式转换</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入时即转换</span></span><br><span class="line">df = pd.read_csv(filepath, parse_dates=[<span class="string">&#x27;time&#x27;</span>,<span class="string">&#x27;date&#x27;</span>], encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是字符串则</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>]=pd.to_datetime(df[<span class="string">&#x27;time_str&#x27;</span>].astype(<span class="built_in">str</span>), <span class="built_in">format</span>=<span class="string">&#x27;%Y/%m/%d&#x27;</span>)</span><br><span class="line"><span class="comment"># 如果是时间格式转字符串</span></span><br><span class="line"><span class="comment"># df[&#x27;time_str&#x27;]=df[&#x27;time&#x27;].astype(str)； strftime()</span></span><br><span class="line">df[<span class="string">&#x27;time_str&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%m-%d-%Y&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>时间序列的拆分合并</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 合并</span></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;year&#x27;</span>: [<span class="number">2015</span>, <span class="number">2016</span>],<span class="string">&#x27;month&#x27;</span>: [<span class="number">2</span>, <span class="number">3</span>],<span class="string">&#x27;day&#x27;</span>: [<span class="number">4</span>, <span class="number">5</span>],<span class="string">&#x27;hour&#x27;</span>:[<span class="number">10</span>,<span class="number">20</span>]&#125;)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = pd.to_datetime(df[[<span class="string">&#x27;year&#x27;</span>,<span class="string">&#x27;month&#x27;</span>,<span class="string">&#x27;day&#x27;</span>]])</span><br><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] = pd.to_datetime(df.date) + pd.to_timedelta(df.hour, unit=<span class="string">&#x27;h&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#拆分/转换示例</span></span><br><span class="line">df[<span class="string">&#x27;day&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;hour&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%H&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">df[<span class="string">&#x27;date&#x27;</span>] = df[<span class="string">&#x27;time&#x27;</span>].dt.strftime(<span class="string">&#x27;%x&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>时间序列范围筛选</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># df[&#x27;time&#x27;]为时间格式：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">5</span>)) &amp; (df.time &lt;= pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">23</span>))]</span><br><span class="line">df2 = df.loc[(df.time &lt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">23</span>,<span class="number">6</span>)) | (df.time &gt; pd.datetime(<span class="number">2017</span>,<span class="number">8</span>,<span class="number">27</span>,<span class="number">0</span>))]</span><br><span class="line"><span class="comment"># df[&#x27;time&#x27;]为字符串：</span></span><br><span class="line">df2 = df.loc[(df.time &gt; <span class="string">&#x27;2017-08-20 00:00:00&#x27;</span>) &amp; (df.time &lt; <span class="string">&#x27;2017-08-26 00:00:00&#x27;</span>)]</span><br></pre></td></tr></table></figure>
-<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">创建序列</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建序列， 可以直接接收</span></span><br><span class="line"><span class="comment"># 默认都是ISO 8601 格式 YYYY-MM-DD, &#x27;2018-01-01 03:00:00&#x27;</span></span><br><span class="line">df[<span class="string">&#x27;time&#x27;</span>] = pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>, freq=<span class="string">&#x27;D&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, end=<span class="string">&#x27;1/08/2018&#x27;</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>) <span class="comment">#8天</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;1/1/2018&#x27;</span>, periods=<span class="number">8</span>, freq=<span class="string">&#x27;2M&#x27;</span>)  <span class="comment">#8天，两天之间间隔为两个月</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2018-01-01&#x27;</span>, end=<span class="string">&#x27;2018-02-01&#x27;</span>, freq=<span class="string">&#x27;3H&#x27;</span>)</span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2018-01-01&#x27;</span>, closed=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围pandas&lt;1.4版本,参数名为closed, pandas&gt;1.4版本为inclusive</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一月份的时间数据，按天，按小时</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>) <span class="comment">#创建指定月份的日期范围</span></span><br><span class="line">pd.date_range(start=<span class="string">&#x27;2017-01-01&#x27;</span>, end=<span class="string">&#x27;2017-02-01&#x27;</span>, inclusive=<span class="string">&#x27;left&#x27;</span>, freq=<span class="string">&#x27;H&#x27;</span>) </span><br></pre></td></tr></table></figure>
-<h2 id="计算脚本时长"><a class="markdownIt-Anchor" href="#计算脚本时长"></a> 计算脚本时长</h2>
-<p>对于python <code>.py</code>脚本</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">seconds = time.time() - start_time</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Time Taken:&#x27;</span>, time.strftime(<span class="string">&quot;%H:%M:%S&quot;</span>,time.gmtime(seconds)))</span><br></pre></td></tr></table></figure>
-<p>对于jupyter notebook/lab, 运行单元格加一行，如果是vscode则不需要</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">%%time</span><br><span class="line">my process...</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Python基础</category>
@@ -3525,16 +3486,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
-    <title>【预】回归建模(2)：变量预览及预处理</title>
-    <url>/posts/5663ac13/</url>
-    <content><![CDATA[<p>在建模前不论是机器学习还是统计模型(统计模型尤其)首先需要对变量有深入的了解，包括其数值类型、服从的分布等等，并针对不同数据可能的异常值进行不同的预处理，标准化？log变换？剔除？等，快速通过Python/R进行出图探索。</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>空间分析与统计基础</category>
-      </categories>
-  </entry>
-  <entry>
     <title>【预】统计基础(1)：概念学习与理解1</title>
     <url>/posts/aff1e629/</url>
     <content><![CDATA[<p>近期在进行统计广义回归建模及不断查阅请教的过程中温习、学习了一些统计相关的概念，也有了更多的理解，准备结合之前上课的笔记和看的一些书籍/博客陆续整理一下基础概念，以加深理解及便于复用。持续更新…</p>
@@ -3543,6 +3494,16 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
 <h2 id="分布"><a class="markdownIt-Anchor" href="#分布"></a> 分布</h2>
 <h2 id="样本与估计"><a class="markdownIt-Anchor" href="#样本与估计"></a> 样本与估计</h2>
 <h2 id="统计假设检验"><a class="markdownIt-Anchor" href="#统计假设检验"></a> 统计假设检验</h2>
+]]></content>
+      <categories>
+        <category>空间分析与统计基础</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>【预】回归建模(2)：变量预览及预处理</title>
+    <url>/posts/5663ac13/</url>
+    <content><![CDATA[<p>在建模前不论是机器学习还是统计模型(统计模型尤其)首先需要对变量有深入的了解，包括其数值类型、服从的分布等等，并针对不同数据可能的异常值进行不同的预处理，标准化？log变换？剔除？等，快速通过Python/R进行出图探索。</p>
+<span id="more"></span>
 ]]></content>
       <categories>
         <category>空间分析与统计基础</category>
@@ -3975,6 +3936,68 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <tag>时间序列分解</tag>
         <tag>statsmodels</tag>
         <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑重装系统Ubuntu22.04.1 LTS记录</title>
+    <url>/posts/2fb61b4d/</url>
+    <content><![CDATA[<p>记录一下旧笔记本重装Ubuntu Desktop22.04.1 LTS的简要过程</p>
+<span id="more"></span>
+<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
+<ol>
+<li>下载<a href="https://rufus.ie/zh/">rufus</a>以及<a href="https://ubuntu.com/download/desktop">ubuntu destop镜像</a>创建启动盘，参数默认即可</li>
+<li>按照<a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">官网教程</a>逐步安装并完成更新，电脑启动项自查，见参考<a href="https://zhuanlan.zhihu.com/p/496107394">知乎</a></li>
+<li>安装vim ，切换系统镜像源为阿里源，备份初始文件再使用vim编辑器操作，清空之前的内容，<code>i</code>复制粘贴内容，再输入<code>=</code>以及<code>:wq</code>保存并退出，然后再<code>sudo apt-get update &amp;&amp; apt-get upgrade</code></li>
+<li>安装搜狗输入法<a href="https://shurufa.sogou.com/linux">下载.deb</a>，后续参考这个<a href="https://www.cnblogs.com/star-another/p/16298866.html">教程</a></li>
+<li>下载配置<a href="https://github.com/Dreamacro/clash/releases">clash for linux</a>以访问谷歌【参考代理教程】</li>
+<li>安装<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>并登陆完成同步</li>
+<li>安装<a href="https://im.qq.com/linuxqq/download.html">腾讯QQ</a>，腾讯<a href="https://meeting.tencent.com/download?mfrom=OfficialIndex_TopBanner1_Download">会议</a></li>
+<li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
+<li>QGIS for ubuntu【可选】</li>
+<li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
+<li>安装Miniconda3并迁移配置之前的环境，基于yml文件</li>
+<li>安装vs code</li>
+<li>安装gotohttp</li>
+<li>……</li>
+</ol>
+<img src="/posts/2fb61b4d/image-20220912223323738.png" class alt="image-20220912223323738">
+<h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
+<ol>
+<li>window上制作启动盘推荐rufus</li>
+<li>vim编辑器的使用可先掌握基本的插入 复制粘贴及保存</li>
+<li>typora激活失败可以选择离线激活</li>
+<li>……</li>
+</ol>
+]]></content>
+      <categories>
+        <category>ubuntu</category>
+      </categories>
+      <tags>
+        <tag>重装系统</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>linux系统ubuntu22.04安装qgis</title>
+    <url>/posts/ec7147e8/</url>
+    <content><![CDATA[<p>记录一下在ubuntu系统上安装qgis的过程，参考<a href="https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu">qgis官方网站</a>及<a href="https://www.youtube.com/watch?v=vbZI1dya6io">youtube</a>。</p>
+<span id="more"></span>
+<h2 id="安装过程及命令记录"><a class="markdownIt-Anchor" href="#安装过程及命令记录"></a> 安装过程及命令记录</h2>
+<blockquote>
+<p>安装过程基本上是step by step，唯一需要转换一下的地方是添加源</p>
+</blockquote>
+<p>如果遇到443等问题和镜像有关，<strong>多执行几次</strong>一般就能通过，打开terminal(<code>ctrl+alt+t</code>)-复制命令(<code>ctrl + c</code>)-粘贴到命令行(<code>ctrl+shift+v</code>)，<code>enter</code>。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install gnupg software-properties-common</span><br><span class="line">sudo mkdir -m755 -p /etc/apt/keyrings # 22以上版本本命令可以省略</span><br><span class="line">sudo wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加仓库源，这里也可以在软件与更新程序中内手动添加</span></span><br><span class="line">sudo add-apt-repository &quot;deb https://qgis.org/ubuntu $(lbs_release -c -s) main&quot;</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install qgis qgis-plugin-grass</span><br></pre></td></tr></table></figure>
+<p>安装后在软件中即可找到，打开即可正常使用：</p>
+<img src="/posts/undefined/qgis.jpg" class alt="qgis">
+]]></content>
+      <categories>
+        <category>ubuntu</category>
+      </categories>
+      <tags>
+        <tag>QGIS</tag>
+        <tag>ubuntu</tag>
+        <tag>软件安装</tag>
       </tags>
   </entry>
   <entry>
