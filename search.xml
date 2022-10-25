@@ -3,7 +3,7 @@
   <entry>
     <title>【笔记内容部分汇总】</title>
     <url>/posts/6ce40869/</url>
-    <content><![CDATA[<center>最近更新时间：2022/09/01，查看左侧目录；详细类别见分类</center>
+    <content><![CDATA[<center>最近更新时间：2022/10/23，查看左侧目录；详细类别见分类</center>
 <span id="more"></span>
 <h2 id="python基础相关"><a class="markdownIt-Anchor" href="#python基础相关"></a> Python基础相关</h2>
 <h3 id="python环境"><a class="markdownIt-Anchor" href="#python环境"></a> Python环境</h3>
@@ -11,7 +11,9 @@
 <p><a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)：安装及配置</a></p>
 <p><a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理Conda+pypi</a></p>
 <p><a href="https://hscyber.github.io/posts/911c717a/">Python环境(4)：环境迁移及共享</a></p>
+<p><a href="https://hscyber.github.io/posts/d452592e/">Python环境(5)：win/linux配置即用conda环境以运行脚本</a></p>
 <p><a href="https://hscyber.github.io/posts/364976c7/">Python环境(杂)：conda update CondaHTTPError</a></p>
+<p><a href="https://hscyber.github.io/posts/75ba419a/">如何快速查看或预览ipynb文件</a></p>
 <h3 id="python性能"><a class="markdownIt-Anchor" href="#python性能"></a> Python性能</h3>
 <p><a href="https://hscyber.github.io/posts/4b434785/">python性能(1)：multiprocessing多进程</a></p>
 <p><a href="https://hscyber.github.io/posts/a8ff5b9/">python性能(2)：大文件处理思路</a></p>
@@ -22,11 +24,15 @@
 <p><a href="https://hscyber.github.io/posts/3c868742/">Python处理Json文件</a></p>
 <p><a href="https://hscyber.github.io/posts/da405e24/">正则表达式re模块用法</a></p>
 <p><a href="https://hscyber.github.io/posts/290b74f/">Python文件路径及目录批处理</a></p>
+<p><a href="https://hscyber.github.io/posts/9acc11ef/">pyinstaller最小化打包py脚本为可执行exe</a></p>
 <h2 id="python可视化"><a class="markdownIt-Anchor" href="#python可视化"></a> Python可视化</h2>
 <h3 id="matplotlib基础篇"><a class="markdownIt-Anchor" href="#matplotlib基础篇"></a> Matplotlib基础篇</h3>
 <p><a href="https://hscyber.github.io/posts/8dfff56a/">matplotlib基础(1)：图的组成元素</a></p>
 <p><a href="https://hscyber.github.io/posts/5524eff4/">matplotlib基础(2)：绘图逻辑与输出尺寸/格式</a></p>
 <p><a href="https://hscyber.github.io/posts/459b5ff7/">matplotlib基础(3)：图片存储常用格式及参数设置</a></p>
+<p><a href="https://hscyber.github.io/posts/66a3b602/">matplotlib基础(4)：绘图坐标系及注释位置控制</a></p>
+<p><a href="https://hscyber.github.io/posts/4c34a09/">matplotlib基础(5)：文本与辅助线的添加及属性设置</a></p>
+<p><a href="https://hscyber.github.io/posts/cddc42b6/">matplotlib基础(6)：绘制多图的精准布局</a></p>
 <p><a href="https://hscyber.github.io/posts/152b5c56/">matplotlib基础(杂)：边框spines及刻度ticks/labels属性设置及隐藏</a></p>
 <h2 id="gis基础及空间数据处理"><a class="markdownIt-Anchor" href="#gis基础及空间数据处理"></a> GIS基础及空间数据处理</h2>
 <h3 id="gis基础"><a class="markdownIt-Anchor" href="#gis基础"></a> GIS基础</h3>
@@ -44,17 +50,25 @@
 <p><a href="https://hscyber.github.io/posts/1ac444bb/">栅格处理(杂)：栅格重分类或特定值转图层(批处理)</a></p>
 <h3 id="pandas数据处理"><a class="markdownIt-Anchor" href="#pandas数据处理"></a> Pandas数据处理</h3>
 <p><a href="https://hscyber.github.io/posts/f9c7a8a1/">Pandas(1)：数据选取/条件筛选小结</a></p>
+<p><a href="https://hscyber.github.io/posts/74993542/">Pandas(2)：缺失值即空值na其处理(删除替换或填充)</a></p>
 <p><a href="https://hscyber.github.io/posts/18b022c/">Pandas(杂)：表格的各种连接方式</a></p>
 <p><a href="https://hscyber.github.io/posts/4d972282/">Pandas(杂)：List/pandas文本包含筛选</a></p>
 <p><a href="https://hscyber.github.io/posts/374675e0/">Pandas(杂)：字符串列拆分及合并</a></p>
 <p><a href="https://hscyber.github.io/posts/a234f8ea/">Pandas(杂)：多表格写出excel</a></p>
+<p><a href="https://hscyber.github.io/posts/8a34f949/">Pandas(杂)：读取不同空格数的txt或csv</a></p>
+<h2 id="电脑系统相关"><a class="markdownIt-Anchor" href="#电脑系统相关"></a> 电脑/系统相关</h2>
+<p><a href="https://hscyber.github.io/posts/2fb61b4d/">电脑重装系统Ubuntu22.04.1 LTS记录</a></p>
+<p><a href="https://hscyber.github.io/posts/ec7147e8/">linux系统ubuntu22.04安装qgis</a></p>
+<p><a href="https://hscyber.github.io/posts/39c4a07/">电脑管理(杂)：笔记本电池不耐用？换电池？</a></p>
+<p><a href="https://hscyber.github.io/posts/3d00caa6/">电脑管理(杂)：数据清理备份以便系统重装</a></p>
+<p><a href="https://hscyber.github.io/posts/f202eaf6/">计算机软硬件(杂)：驱动及显卡驱动</a></p>
 <h2 id="研究生相关"><a class="markdownIt-Anchor" href="#研究生相关"></a> 研究生相关</h2>
 <h3 id="文献与跟踪"><a class="markdownIt-Anchor" href="#文献与跟踪"></a> 文献与跟踪</h3>
 <p><a href="https://hscyber.github.io/posts/33f7b1b7/">文献篇(1) 论文检索</a></p>
 <p><a href="https://hscyber.github.io/posts/99dce68a/">文献篇(2) 论文下载</a></p>
 <p><a href="https://hscyber.github.io/posts/e8c71149/">文献篇(3) 如何开展研究背景调研和总结？</a></p>
 <p><a href="https://hscyber.github.io/posts/4270937d/">研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</a></p>
-<h3 id="杂"><a class="markdownIt-Anchor" href="#杂"></a> 杂</h3>
+<h3 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h3>
 <p><a href="https://hscyber.github.io/posts/81af99e4/">快速提升学术论文写作能力的1313法则</a></p>
 <p><a href="https://hscyber.github.io/posts/9730787a/">数据处理习惯</a></p>
 <h3 id="统计相关"><a class="markdownIt-Anchor" href="#统计相关"></a> 统计相关</h3>
@@ -401,7 +415,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Python环境(5)：win/linux配置现成conda环境以运行脚本</title>
+    <title>Python环境(5)：win/linux配置即用conda环境以运行脚本</title>
     <url>/posts/d452592e/</url>
     <content><![CDATA[<p>【conda基础环境完结篇5】前面已经记录了一些<a href="https://hscyber.github.io/tags/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">基础概念和如何安装配置环境</a>，这里<mark>共享我本机的conda环境（涵盖常见矢量栅格处理包）</mark>，可以直接下载yml文件安装，安装完即可用，也可在其他系统中直接安装如ubuntu系统，输入相应的命令完成配置。所以如果从0开始配置环境的话，只需参照<a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)</a>及本博客。</p>
 <span id="more"></span>
@@ -1354,11 +1368,11 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </categories>
       <tags>
         <tag>Python环境配置</tag>
-        <tag>Tools</tag>
         <tag>QuickLook</tag>
         <tag>jupyter</tag>
         <tag>VScode</tag>
         <tag>nteract</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -3457,8 +3471,8 @@ height = 12\times 2.54 = 30.48cm
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
         <tag>Tools</tag>
+        <tag>Typora</tag>
         <tag>Markdown</tag>
       </tags>
   </entry>
@@ -3477,8 +3491,8 @@ height = 12\times 2.54 = 30.48cm
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
         <tag>Tools</tag>
+        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
