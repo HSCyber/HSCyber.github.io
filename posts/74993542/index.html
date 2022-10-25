@@ -34,7 +34,7 @@
 <meta property="og:description" content="常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-17T11:01:13.000Z">
-<meta property="article:modified_time" content="2022-10-21T14:55:51.308Z">
+<meta property="article:modified_time" content="2022-10-25T12:53:55.348Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Pandas">
 <meta property="article:tag" content="dropna">
@@ -159,7 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%80%BC%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text"> 空值定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> 值的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4dropna"><span class="nav-number">2.1.</span> <span class="nav-text"> 删除dropna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A1%AB%E5%85%85fillna"><span class="nav-number">2.2.</span> <span class="nav-text"> 填充fillna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%80%BCinterpolate"><span class="nav-number">2.3.</span> <span class="nav-text"> 插值interpolate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text"> 参考学习</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A9%BA%E5%80%BC%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text"> 空值定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text"> 值的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%8C%E6%88%96%E5%88%97dropna"><span class="nav-number">2.1.</span> <span class="nav-text"> 删除行或列dropna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A1%AB%E5%85%85fillna"><span class="nav-number">2.2.</span> <span class="nav-text"> 填充fillna</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%80%BCinterpolate"><span class="nav-number">2.3.</span> <span class="nav-text"> 插值interpolate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.</span> <span class="nav-text"> 参考学习</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -291,14 +291,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -323,13 +323,13 @@
 <li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
 <li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
 </ol>
-<p>如何判断是否为空值：<strong>df.isna(); df.notna()</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
+<p>如何<strong>判断</strong>是否为空值：<strong>df.isna(); df.notna()</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
 <ul>
 <li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
 </ul>
 <h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
 <p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
-<h3 id="删除dropna"><a class="markdownIt-Anchor" href="#删除dropna"></a> 删除dropna</h3>
+<h3 id="删除行或列dropna"><a class="markdownIt-Anchor" href="#删除行或列dropna"></a> 删除行或列dropna</h3>
 <p>DataFrame.dropna(axis=0, how=[‘any’, ‘all’], thresh, subset=None, inplace=False…)</p>
 <ul>
 <li><strong>axis</strong>=0表示默认删除包含空值的<strong>行</strong></li>
@@ -337,10 +337,15 @@
 <li><strong>how</strong>表示是<strong>全部</strong>为None才删除还是<strong>只要存在</strong>None就删除</li>
 <li><strong>thresh</strong>与how不能同时工作，表示<strong>删除多少个</strong></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<p>常用<code>df.dropna(subset=[])</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line"><span class="comment"># 只要存在空值就将列删除</span></span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;any&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
 <h3 id="填充fillna"><a class="markdownIt-Anchor" href="#填充fillna"></a> 填充fillna</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>常用的是<code>df.fillna(0)</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">df</span><br><span class="line">     A    B   C    D</span><br><span class="line"><span class="number">0</span>  NaN  <span class="number">2.0</span> NaN  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span> NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  NaN NaN  NaN</span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span> NaN  <span class="number">4.0</span></span><br><span class="line"><span class="comment"># 全部填充</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)<span class="comment"># 每一列只填充一次</span></span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  <span class="number">1.0</span>  NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span>  NaN  <span class="number">4.0</span></span><br></pre></td></tr></table></figure>
 <h3 id="插值interpolate"><a class="markdownIt-Anchor" href="#插值interpolate"></a> 插值interpolate</h3>
+<p>关于时间序列的插值可以参阅<a target="_blank" rel="noopener" href="https://walkenho.github.io/interpolating-time-series-p1-pandas/">此处</a>，默认为线性插值(method=“linear”)，常用，但默认不会填充第一个空值，需要填充时可以加上<strong>limit_direction</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate()</span><br><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate(limit_direction=‘both’)</span><br><span class="line"><span class="comment"># 所有列进行填充</span></span><br><span class="line">df = df.interpolate(limit_direction=‘both’)</span><br></pre></td></tr></table></figure>
+<p>多项式插值<code>df.interpolate(method='polynomial', order=2)</code></p>
 <h2 id="参考学习"><a class="markdownIt-Anchor" href="#参考学习"></a> 参考学习</h2>
 <ul>
 <li>
@@ -436,13 +441,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">144k</span>
+    <span title="站点总字数">145k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:11</span>
+    <span title="站点阅读时长">2:12</span>
   </span>
 </div>
 <div class="busuanzi-count">
