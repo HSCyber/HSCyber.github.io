@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hscyber.github.io/posts/af6efebd/</loc>
+    
+    <lastmod>2022-11-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://hscyber.github.io/posts/cdacb688/</loc>
     
     <lastmod>2022-11-08</lastmod>
@@ -1215,6 +1224,20 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/</loc>
+    <lastmod>2022-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/CPU/</loc>
+    <lastmod>2022-11-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/GPU/</loc>
     <lastmod>2022-11-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

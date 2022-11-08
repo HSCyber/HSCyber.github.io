@@ -81,6 +81,58 @@
       </tags>
   </entry>
   <entry>
+    <title>计算机软硬件(杂)：GPU与CPU的对比</title>
+    <url>/posts/af6efebd/</url>
+    <content><![CDATA[<p>初步了解一下GPU和CPU的区别，尤其是GPU为什么能够<strong>加速运算</strong>。</p>
+<span id="more"></span>
+<h2 id="简要对比"><a class="markdownIt-Anchor" href="#简要对比"></a> 简要对比</h2>
+<h3 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h3>
+<p><mark>CPU(central processing unit)</mark>：一台计算机包含处理器、输入输出部件、内存、总线等部件，其中，CPU是一台计算机中用于<strong>执行指令</strong>的核心部件， 由数百万个晶体管构成，可以有多个核也就是多核。</p>
+<p><mark>GPU(graphics processing unit)</mark>：也是一种处理器，由许多更小、更专业的内核组成。将一个处理任务划分并跨多个内核处理时。</p>
+<ul>
+<li>GPU 最初设计用于为计算机图形和视频游戏机创建图像，但自 2010 年初以来，GPU 还用于加速涉及量数据的计算。</li>
+<li>CPU 永远无法完全被 GPU 取代：GPU 通过允许应用程序内的<strong>重复计算并行运行</strong>，而主程序继续在 CPU 上运行，从而补充了 CPU 架构。CPU 可以被认为是整个系统的任务主管，协调广泛的<mark>通用</mark>计算任务，而 <strong>GPU 执行范围更窄的更专业的任务（通常是数学任务）</strong>。与 CPU 相比，GPU 可以利用<strong>并行</strong>性的力量在相同的时间内完成更多的工作。</li>
+<li>简言之：CPU更通用且智能，GPU功能窄但是特定任务可以很快。</li>
+</ul>
+<h3 id="区别"><a class="markdownIt-Anchor" href="#区别"></a> 区别</h3>
+<ul>
+<li>图：GPU有更多晶体管，更多计算单元</li>
+</ul>
+<img src="/posts/undefined/GPU-transistor-625x314.png" class alt="img">
+<ul>
+<li>图：在 CPU 上，每个线程都会最小化数据访问时间（白条）。在单个时间片内，线程尽可能多地完成工作（绿色条）。为了实现这一点，CPU 需要<strong>低延迟</strong>，这需要大缓存和复杂的控制逻辑。缓存在每个核心只有几个线程时工作得最好，因为线程之间的上下文切换很昂贵</li>
+<li>而GPU则可以<strong>频繁切换线程</strong>完成运算，同时运行上千个进程，从而大幅提高数据吞吐量。</li>
+</ul>
+<img src="/posts/undefined/image-20221108230831871.png" class alt="image-20221108230831871">
+<p>共同点：两者都是关键的计算引擎；两者都是基于硅的微处理器。区别：</p>
+<ul>
+<li>CPU 具有庞大而广泛的指令集，可以管理计算机的每个输入和输出， 适用于各种各样的工作负载，尤其是那些延迟或每核性能很重要的工作负载。作为一个强大的执行引擎，CPU 将其较少数量的内核集中在单个任务和快速完成任务上。</li>
+<li>CPU串行计算，GPU 最适合重复性和高度并行的计算任务，可以加速 CPU 在给定时间内可以处理的数据量。除了视频渲染，GPU 在机器学习、金融模拟和风险建模以及许多其他类型的科学计算方面表现出色。</li>
+<li>数量，单个CPU的核数通常较少，但如果向同一台服务器添加 4 到 8 个 GPU 可以提供多达 40,000 个额外的内核。</li>
+<li>单个 CPU 内核比单个 GPU 内核更快（根据 CPU 时钟速度衡量）和更智能（根据可用指令集衡量）</li>
+<li>……</li>
+</ul>
+<h2 id="显卡"><a class="markdownIt-Anchor" href="#显卡"></a> 显卡</h2>
+<blockquote>
+<p>待补充</p>
+</blockquote>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li>书籍《计算机组成与体系结构》</li>
+<li><a href="https://www.heavy.ai/technical-glossary/cpu-vs-gpu">https://www.heavy.ai/technical-glossary/cpu-vs-gpu</a></li>
+<li><a href="https://www.intel.com/content/www/us/en/products/docs/processors/cpu-vs-gpu.html">CPU vs. GPU: Making the Most of Both</a></li>
+<li><a href="https://developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/">https://developer.nvidia.com/blog/cuda-refresher-reviewing-the-origins-of-gpu-computing/</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>计算机软硬件知识</category>
+      </categories>
+      <tags>
+        <tag>CPU</tag>
+        <tag>GPU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pandas(3)：pivot_table数据透视表分类汇总统计用法速记</title>
     <url>/posts/cdacb688/</url>
     <content><![CDATA[<p>groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视<mark>pd.pivot_table</mark>。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下<strong>常用写法以及函数</strong>（如统计某列的<strong>唯一值数量</strong>）</p>
