@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="I-tMVJFaVoqHor7XEUJw3u64FtzJQCAh5hiSvbm6Vuk">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视pd.pivot_table。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下常用写法以及函数（如统计某列的唯一值数量）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pandas(3)：pivot_table数据透视表分类汇总统计用法速记">
+<meta property="og:url" content="https://hscyber.github.io/posts/cdacb688/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视pd.pivot_table。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下常用写法以及函数（如统计某列的唯一值数量）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-08T11:37:45.000Z">
+<meta property="article:modified_time" content="2022-11-08T13:48:50.959Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="Pandas">
+<meta property="article:tag" content="pivot_table">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/cdacb688/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/cdacb688/","path":"posts/cdacb688/","title":"Pandas(3)：pivot_table数据透视表分类汇总统计用法速记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Pandas(3)：pivot_table数据透视表分类汇总统计用法速记 | Huangs's Notes</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">96</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">75</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text"> 函数参数详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E8%A1%A8"><span class="nav-number">2.</span> <span class="nav-text"> 结果表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%97%E4%B8%BE"><span class="nav-number">3.</span> <span class="nav-text"> 常用函数列举</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar2.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">96</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="msilto:1126456109@qq.com" title="E-Mail → msilto:1126456109@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/cdacb688/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Pandas(3)：pivot_table数据透视表分类汇总统计用法速记 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Pandas(3)：pivot_table数据透视表分类汇总统计用法速记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-08 19:37:45" itemprop="dateCreated datePublished" datetime="2022-11-08T19:37:45+08:00">2022-11-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Pandas数据处理分析</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视<mark>pd.pivot_table</mark>。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下<strong>常用写法以及函数</strong>（如统计某列的<strong>唯一值数量</strong>）</p>
+<span id="more"></span>
+<h2 id="函数参数详解"><a class="markdownIt-Anchor" href="#函数参数详解"></a> 函数参数详解</h2>
+<blockquote>
+<p>该方法用于对数据按照指定类别字段进行<strong>分类汇总/统计</strong>，以下为我对该方法的使用理解。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pandas.pivot_table</a>(data, values=None, index=None, columns=None, aggfunc=‘mean’, fill_value=None, margins=False, dropna=True, margins_name=‘All’, observed=False, sort=True)，这里的每个参数基本都常用，举例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># 这里有一张轨迹信息表，我想按照城市统计轨迹的条数和唯一用户数...</span></span><br><span class="line">df = pd.read_csv(...)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f_unique</span>(<span class="params">xlist</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(np.unique(xlist))</span><br><span class="line">reslut = pd.pivot_table(df,index=[<span class="string">&#x27;citycode&#x27;</span>, <span class="string">&#x27;cityname&#x27;</span>],values=[<span class="string">&#x27;track_id&#x27;</span>, <span class="string">&#x27;user_id&#x27;</span>], aggfunc=&#123;<span class="string">&#x27;tid&#x27;</span>:[np.mean, f_unique],<span class="string">&#x27;user_id&#x27;</span>:f_unique&#125;,fill_value=<span class="number">0</span>,margins=<span class="literal">False</span>))</span><br><span class="line">reslut = reslut.reset_index()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>data，fill_value，dropna望文生义即可，margins即是否求一个行列的总和。</p>
+</li>
+<li>
+<p><strong>index</strong>：用来分组汇总的要素，比如我这里按城市分组，这里的分组就是<strong>拆分再组合</strong>，即按照城市拆开分别用同样的方法运算，再组合成一张表。</p>
+</li>
+<li>
+<p><strong>values</strong>：需要计算统计的<strong>指标列名</strong>，比如这里是轨迹的id和用户id。</p>
+</li>
+<li>
+<p><strong>columns</strong>：这里是另一个维度的分组变量，是对指标的数值进行分组，比如我这里还有一列用来指示轨迹的年份，那么就会按年，<strong>在index分组切分之后的基础上再分组</strong>用于计算。通常用于类别变量，比如指标值有a b c 三种数值，需要分别统计。</p>
+<ul>
+<li>observed与columns组合使用，即可以对指标的数值类进行进一步的筛选</li>
+</ul>
+</li>
+<li>
+<p><strong>aggfunc</strong>：统计的方式，默认为求均值。这里实际上是对每一个最小拆分后的组分进行计算，再连接到index及columns。即函数的输入<strong>可以视为df的某列的一些元素</strong>，一维序列series！比如这里每次计算的是<strong>面向一个城市的track_id组成的列表</strong>，理解了这个就方便我们写自定义函数了</p>
+<ul>
+<li>每个指标都可以应用多个函数，通过列表指定即可，如[np.sum, np.mean,…]</li>
+<li>也可以使用pandas series支持的函数unique();nunque()，如<code>f_unique = lambda x: len(x.unique())</code></li>
+</ul>
+</li>
+<li>
+<p>其中，如果不按上述方式用字典指定values对应的函数则会每个指标都应用函数，如<code>aggfunc = [np.sum, np.mean]</code>则会计算track_id和user_id两列的求和及均值，得到四列</p>
+</li>
+</ul>
+<h2 id="结果表"><a class="markdownIt-Anchor" href="#结果表"></a> 结果表</h2>
+<p>得到的结果通常具有多维索引，且列名不符合预期，此时可以进行如下调整：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reslut = reslut.reset_index()</span><br></pre></td></tr></table></figure>
+<p>如果列是多重索引，可以先转成字典再计算值得到目标列名再替换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(reslut.columns)</span><br><span class="line"><span class="comment"># 具体列如何视情况分析</span></span><br><span class="line">cols_dict = <span class="built_in">dict</span>(reslut.columns)</span><br><span class="line">cols2 = <span class="built_in">list</span>(cols_dict.keys())</span><br><span class="line"><span class="comment"># 替换新列</span></span><br><span class="line">reslut.columns = cols2</span><br></pre></td></tr></table></figure>
+<h2 id="常用函数列举"><a class="markdownIt-Anchor" href="#常用函数列举"></a> 常用函数列举</h2>
+<p>前面已经分析过，实际上<strong>函数计算的对象是针对最小拆分单元</strong>（扁平一维序列series），那么就可以将其视为一个list进行任意个性化的统计。np自带的函数有</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">np.unique()查找数组的唯一元素</span><br><span class="line">np.isin()返回一个布尔数组，如果的元素在指定<span class="built_in">list</span>中，则返回 <span class="literal">True</span>，否则返回 <span class="literal">False</span></span><br><span class="line">np.count_nonzero计算非<span class="number">0</span>值的个数</span><br><span class="line"></span><br><span class="line">argmax()返回沿轴的最大值的索引。</span><br><span class="line">nanargmax()返回指定轴中最大值的索引，忽略 NaN。</span><br><span class="line">argmin()返回沿轴的最小值的索引。</span><br><span class="line">nanargmin()返回指定轴中最小值的索引，忽略 NaN。</span><br><span class="line"></span><br><span class="line">ptp()沿轴的值范围（最大值 - 最小值），极差。</span><br><span class="line">median()计算沿指定轴的中位数。</span><br><span class="line">average()计算沿指定轴的加权平均值。</span><br><span class="line">mean()计算沿指定轴的算术平均值。</span><br><span class="line">std()计算沿指定轴的标准偏差。</span><br><span class="line">var()计算沿指定轴的方差。</span><br><span class="line">nanmedian()计算沿指定轴的中位数，同时忽略 NaN。</span><br><span class="line">nanmean()计算沿指定轴的算术平均值，忽略 NaN。</span><br><span class="line">nanstd()计算沿指定轴的标准偏差，同时忽略 NaN。</span><br><span class="line">nanvar()计算沿指定轴的方差，同时忽略 NaN。</span><br><span class="line"></span><br><span class="line">percentile()沿指定轴计算数据的第 q 个百分位数。</span><br><span class="line">nanpercentile()计算沿指定轴的数据的第 q 个百分位数，同时忽略 nan 值。</span><br><span class="line">quantile()沿指定轴计算数据的第 q 个分位数。</span><br><span class="line">nanquantile()沿指定轴计算数据的第 q 个分位数，同时忽略 nan 值。</span><br></pre></td></tr></table></figure>
+<p>函数的具体用法可以在numpy文档搜素：</p>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.set.html">https://numpy.org/doc/stable/reference/routines.set.html</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.sort.html">https://numpy.org/doc/stable/reference/routines.sort.html</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.statistics.html">https://numpy.org/doc/stable/reference/routines.statistics.html</a></p>
+</li>
+</ul>
+<p>其他的更加复杂的，多条件的统计或计算则可以通过<mark>自定义函数</mark>完成</p>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/cdacb688/" title="Pandas(3)：pivot_table数据透视表分类汇总统计用法速记">https://hscyber.github.io/posts/cdacb688/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
+              <a href="/tags/pivot-table/" rel="tag"><i class="fa fa-tag"></i> pivot_table</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/f202eaf6/" rel="prev" title="计算机软硬件(杂)：驱动及显卡驱动">
+                  <i class="fa fa-chevron-left"></i> 计算机软硬件(杂)：驱动及显卡驱动
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">149k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:15</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/cdacb688/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>
