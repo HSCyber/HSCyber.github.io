@@ -86,7 +86,7 @@
     <content><![CDATA[<p>服务器上手需要一些基础，但jupyter等类似平台的<mark>远程服务</mark>可以使我们在本机（windows等）访问远程的笔记本及数据，进行<strong>本地化的操作和处理</strong>，从而简化地很方便！包括数据处理、机器学习等后续应该会用到，此外也可用于<mark>协作</mark>写代码。</p>
 <span id="more"></span>
 <p>示例：10.168.210.201为统一局域网下的另一台电脑，如果公网访问–也类似</p>
-<img src="/posts/undefined/image-20221116202827246.png" class alt="image-20221116202827246">
+<img src="/posts/488f31bc/image-20221116202827246.png" class alt="image-20221116202827246">
 <h2 id="步骤参考"><a class="markdownIt-Anchor" href="#步骤参考"></a> 步骤参考</h2>
 <blockquote>
 <p>环境的配置可以参考一下之前的笔记 <a href="https://hscyber.github.io/tags/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Python环境配置</a>，以下假设服务器具有终端及图形界面，但是对于没有图形界面的服务器要保持代码后台运行且<strong>不占用终端</strong>则需要结合&amp;以及nohup等命令，以及SSH，暂不展开</p>
@@ -1597,10 +1597,10 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       <tags>
         <tag>Python环境配置</tag>
         <tag>jupyter</tag>
+        <tag>Tools</tag>
         <tag>QuickLook</tag>
         <tag>VScode</tag>
         <tag>nteract</tag>
-        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -3676,6 +3676,7 @@ height = 12\times 2.54 = 30.48cm
 <li>如果不想付费永久订阅可以尝试下载旧版<a href="https://typora.io/windows/dev_release.html">&lt;1.0</a>，并在安装后设置该软件禁止使用网络</li>
 <li>且markdown编辑器有挺多，可以自行尝试探索</li>
 </ul>
+<h3 id="一些设置"><a class="markdownIt-Anchor" href="#一些设置"></a> 一些设置</h3>
 <p><strong>md文件是纯文本文件，记事本可查看，typora等只是提供了更便捷的编辑功能以及样式功能</strong></p>
 <ol>
 <li>在准备用来记笔记的文件夹下新建txt并将后缀修改为<code>.md</code></li>
@@ -3697,20 +3698,26 @@ height = 12\times 2.54 = 30.48cm
 </ol>
 </li>
 </ol>
+<h3 id="主题选择"><a class="markdownIt-Anchor" href="#主题选择"></a> 主题选择</h3>
+<p>在主题仓库查看下载自己喜欢的主题（压缩包，主要是一些.css文件）。再按提示将其放在对应的文件夹里重启即可使用</p>
+<p><a href="https://theme.typora.io/">https://theme.typora.io/</a></p>
+<ul>
+<li>懂css也可以自己修改或定制</li>
+</ul>
 ]]></content>
       <categories>
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Tools</tag>
         <tag>Typora</tag>
+        <tag>Tools</tag>
         <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
     <title>订阅了Typora~</title>
     <url>/posts/34eb4d05/</url>
-    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！</p>
+    <content><![CDATA[<p><a href="https://typora.io/">Topora</a>是一款简洁、优雅的markdown编辑器，加上首创的<strong>所见即所得</strong>风格，自定义主题等，我一直用来记笔记写文本，很推荐！教程可以看<a href="https://hscyber.github.io/posts/c694f527/">Markdown语法及Typora使用简介</a></p>
 <span id="more"></span>
 <p>遗憾的是，今天下午发现typora旧的测试版已经无法打开，强制要求购买序列号。作为忠实粉的我最后尝试了一下一个翻版的开源软件<a href="https://github.com/marktext/marktext">MarkText</a>，也挺好用，能够实现一样的功能，体验上除了主题外观好像差别不大，在图片方面似乎做的更好，但我实在是习惯了Typora，所以选择了入手支持</p>
 <ul>
@@ -3722,8 +3729,8 @@ height = 12\times 2.54 = 30.48cm
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Tools</tag>
         <tag>Typora</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
