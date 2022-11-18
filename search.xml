@@ -1597,10 +1597,10 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       <tags>
         <tag>Python环境配置</tag>
         <tag>jupyter</tag>
-        <tag>Tools</tag>
         <tag>QuickLook</tag>
         <tag>VScode</tag>
         <tag>nteract</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -3698,6 +3698,22 @@ height = 12\times 2.54 = 30.48cm
 </ol>
 </li>
 </ol>
+<h3 id="快捷键"><a class="markdownIt-Anchor" href="#快捷键"></a> 快捷键</h3>
+<p>些最常用的快捷键，更多可参考<a href="https://markdown.com.cn/basic-syntax/">https://markdown.com.cn/basic-syntax/</a></p>
+<ul>
+<li>
+<p>ctrl+123456可以设置对应的几级标题；</p>
+</li>
+<li>
+<p>书写列表的时候，tab是往右缩进，shift+tab是往左缩进</p>
+</li>
+<li>
+<p>ctrl+T是插入表格</p>
+</li>
+<li>
+<p>……</p>
+</li>
+</ul>
 <h3 id="主题选择"><a class="markdownIt-Anchor" href="#主题选择"></a> 主题选择</h3>
 <p>在主题仓库查看下载自己喜欢的主题（压缩包，主要是一些.css文件）。再按提示将其放在对应的文件夹里重启即可使用</p>
 <p><a href="https://theme.typora.io/">https://theme.typora.io/</a></p>
@@ -3709,8 +3725,8 @@ height = 12\times 2.54 = 30.48cm
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
         <tag>Tools</tag>
+        <tag>Typora</tag>
         <tag>Markdown</tag>
       </tags>
   </entry>
@@ -3729,8 +3745,8 @@ height = 12\times 2.54 = 30.48cm
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
         <tag>Tools</tag>
+        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
