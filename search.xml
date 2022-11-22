@@ -140,10 +140,11 @@
   <entry>
     <title>Pandas(杂)：指定多列进行求和生成新列</title>
     <url>/posts/349d0aa/</url>
-    <content><![CDATA[<p>cols=df.columns[2:] ; cols = […]   #指定列名，再求和即可，其他的如mean; max; median; std; …</p>
-<p>df[‘sum’] = df[cols].sum(axis=1)    #如果是针对行列的序号 ，如    df.iloc[:, 2:10].sum(axis=1)</p>
+    <content><![CDATA[<p><code>cols=df.columns[2:] ; cols = [...] </code>  #指定列名，再求和即可</p>
+<p><code>df[‘sum’] = df[cols].sum(axis=1) </code></p>
 <span id="more"></span>
-<p>更为复杂的计算则可以通过df.apply()自定义函数实现</p>
+<p>如果是针对行列的序号 ，则写出如    <code>df.iloc[:, 2:10].sum(axis=1)</code></p>
+<p>其他的如mean; max; median; std; …，更为复杂的计算则可以通过df.apply()自定义函数实现</p>
 ]]></content>
       <categories>
         <category>Pandas数据处理分析</category>
