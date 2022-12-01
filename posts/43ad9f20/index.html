@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="通常访问谷歌需要一些方式，这里记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具Clash(支持win&#x2F;mac&#x2F;linux&#x2F;android)的使用；3-自定义浏览器规则模式(Rule)。">
+    <meta name="description" content="通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具Clash(支持win&#x2F;mac&#x2F;linux&#x2F;android)的使用；3-自定义浏览器规则模式(Rule)。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="网络代理工具：clash的使用以及自定义规则代理切换">
+<meta property="og:title" content="网络代理工具Clash的使用及规则代理切换">
 <meta property="og:url" content="https://hscyber.github.io/posts/43ad9f20/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="通常访问谷歌需要一些方式，这里记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具Clash(支持win&#x2F;mac&#x2F;linux&#x2F;android)的使用；3-自定义浏览器规则模式(Rule)。">
+<meta property="og:description" content="通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具Clash(支持win&#x2F;mac&#x2F;linux&#x2F;android)的使用；3-自定义浏览器规则模式(Rule)。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202000821947.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202003231976.png">
@@ -41,9 +41,11 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004702487.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004905135.png">
 <meta property="article:published_time" content="2022-12-01T15:09:23.000Z">
-<meta property="article:modified_time" content="2022-12-01T16:51:03.440Z">
+<meta property="article:modified_time" content="2022-12-01T16:58:42.676Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="clash">
+<meta property="article:tag" content="Clash">
+<meta property="article:tag" content="Proxy">
+<meta property="article:tag" content="SwitchyOmega">
 <meta property="article:tag" content="Tools">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202000821947.png">
@@ -53,10 +55,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/43ad9f20/","path":"posts/43ad9f20/","title":"网络代理工具：clash的使用以及自定义规则代理切换"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/43ad9f20/","path":"posts/43ad9f20/","title":"网络代理工具Clash的使用及规则代理切换"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>网络代理工具：clash的使用以及自定义规则代理切换 | Huangs's Notes</title>
+<title>网络代理工具Clash的使用及规则代理切换 | Huangs's Notes</title>
   
 
 
@@ -106,7 +108,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">101</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">103</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">79</span></a></li>
       <li class="menu-item menu-item-search">
@@ -191,7 +193,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-count">103</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -256,12 +258,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="网络代理工具：clash的使用以及自定义规则代理切换 | Huangs's Notes">
+      <meta itemprop="name" content="网络代理工具Clash的使用及规则代理切换 | Huangs's Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          网络代理工具：clash的使用以及自定义规则代理切换
+          网络代理工具Clash的使用及规则代理切换
         </h1>
 
         <div class="post-meta-container">
@@ -316,7 +318,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>通常访问谷歌需要一些方式，这里记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
+        <p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
 <span id="more"></span>
 <h2 id="代理简介"><a class="markdownIt-Anchor" href="#代理简介"></a> 代理简介</h2>
 <p>详细的可以参见<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a target="_blank" rel="noopener" href="https://www.google.com/">Google</a>；<a target="_blank" rel="noopener" href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的<mark>代理服务器(<mark>如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个</mark>桥梁</mark>的作用，这即是代理服务的作用。如下图，几点说明：</p>
@@ -349,6 +351,7 @@
 <li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li>
 <li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li>
 <li>访问网页测试<a target="_blank" rel="noopener" href="https://www.google.com/%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%B7%B2%E7%BB%8F%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%AF%95">https://www.google.com/，如果可以访问，已经设置完毕</a></li>
+<li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li>
 </ol>
 <p>操作示意：</p>
 <img src="/posts/43ad9f20/image-20221202003231976.png" class alt="image-20221202003231976">
@@ -387,7 +390,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://hscyber.github.io/posts/43ad9f20/" title="网络代理工具：clash的使用以及自定义规则代理切换">https://hscyber.github.io/posts/43ad9f20/</a>
+      <a href="https://hscyber.github.io/posts/43ad9f20/" title="网络代理工具Clash的使用及规则代理切换">https://hscyber.github.io/posts/43ad9f20/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -396,7 +399,9 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/clash/" rel="tag"><i class="fa fa-tag"></i> clash</a>
+              <a href="/tags/Clash/" rel="tag"><i class="fa fa-tag"></i> Clash</a>
+              <a href="/tags/Proxy/" rel="tag"><i class="fa fa-tag"></i> Proxy</a>
+              <a href="/tags/SwitchyOmega/" rel="tag"><i class="fa fa-tag"></i> SwitchyOmega</a>
               <a href="/tags/Tools/" rel="tag"><i class="fa fa-tag"></i> Tools</a>
           </div>
 
