@@ -83,27 +83,26 @@
   <entry>
     <title>工具推荐(2)：一些我在用的小软件(win)</title>
     <url>/posts/462e4139/</url>
-    <content><![CDATA[<p>除了<a href>插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的小工具/软件，大部分是开源的，都比较轻巧，随用随开（windows）。</p>
+    <content><![CDATA[<p>除了<a href="https://hscyber.github.io/posts/efdcabd/">插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的小工具/软件，大部分是开源的，都比较轻巧，随用随开（windows）。</p>
 <span id="more"></span>
 <p><mark>实用/通用工具类</mark></p>
 <ol>
 <li>[quicklook], [snipaste], [Treesize], [Drawboard pdf], [Mircosoft to do], [terminal]</li>
-<li>Listary：<a href="https://www.listary.com/download">https://www.listary.com/download</a></li>
-<li>Path Copy Copy：<a href="https://pathcopycopy.github.io/">https://pathcopycopy.github.io/</a></li>
-<li>WinRAR：<a href="https://www.win-rar.com/start.html?&amp;L=0">https://www.win-rar.com/start.html?&amp;L=0</a></li>
-<li>7-zip：<a href="https://www.7-zip.org/download.html">https://www.7-zip.org/download.html</a></li>
-<li>Mathpix Snipping Tool：<a href="https://mathpix.com/">https://mathpix.com/</a></li>
-<li>GotoHTTP：</li>
-<li>Typora：<a href="https://typora.io/">https://typora.io/</a></li>
+<li>[everything]、<a href="https://www.listary.com/download">Listary</a>：</li>
+<li><a href="https://pathcopycopy.github.io/">Path Copy Copy</a>：</li>
+<li><a href="https://www.win-rar.com/start.html?&amp;L=0">WinRAR</a>、<a href="https://www.7-zip.org/download.html">7-zip</a>：</li>
+<li><a href="https://mathpix.com/">Mathpix Snipping Tool</a>：</li>
+<li><a href="https://gotohttp.com/">GotoHTTP</a>：跨平台便捷远程连接/协作工具(收费但便宜)</li>
+<li><a href="https://typora.io/">Typora</a>：我一直用来记笔记的软件，<a href="https://hscyber.github.io/posts/c694f527/">Markdown语法及Typora使用简介</a>，markdown语法在很多地方通用。</li>
 </ol>
 <p><mark>图文编辑类</mark></p>
 <ol>
 <li>adobepdf reader：打印机查看pdf</li>
 <li>Screentogif：</li>
-<li>oCam：</li>
-<li>PotPlayer 64 bit：<a href="https://potplayer.en.softonic.com/">https://potplayer.en.softonic.com/</a></li>
+<li>oCam：轻巧的高清录屏工具</li>
+<li><a href="https://potplayer.en.softonic.com/">PotPlayer 64 bit</a>：视频播放器</li>
 <li>Adobe Illustrator/photoshop：公众号-科研sci绘图</li>
-<li>Visio：拼夕夕</li>
+<li>Visio：制图工具，可以通过拼夕夕</li>
 </ol>
 <p><mark>编程开发类</mark></p>
 <ol>
@@ -148,9 +147,9 @@
 </ol>
 <p><mark>其他</mark></p>
 <ol>
-<li>Win10：<a href="https://www.microsoft.com/zh-cn/software-download/windows10">https://www.microsoft.com/zh-cn/software-download/windows10</a></li>
-<li>Office login： <a href="https://www.office.com/">https://www.office.com/</a></li>
-<li></li>
+<li><a href="https://www.microsoft.com/zh-cn/software-download/windows10">Win10</a></li>
+<li><a href="https://www.office.com/">Office login</a></li>
+<li><a href="https://onedrive.live.com/">OneDriver login</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -185,7 +184,7 @@
   <entry>
     <title>工具推荐(1)：一些我在用的Chrom插件</title>
     <url>/posts/efdcabd/</url>
-    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的[Chrom插件(<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon</a>)。</p>
+    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p>
 <span id="more"></span>
 <p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
 <h3 id="插件枚举"><a class="markdownIt-Anchor" href="#插件枚举"></a> 插件枚举</h3>
@@ -195,13 +194,13 @@
 </li>
 <li>
 <p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
- <img src="/posts/undefined/image-20221204123940921.png" class alt="image-20221204123940921">
+ <img src="/posts/efdcabd/image-20221204123940921.png" class alt="image-20221204123940921">
 </li>
 <li>
 <p>Imagus：鼠标悬停在图片上是可以<mark>放大预览</mark>缩略图，查看更高清的图片(原始分辨率)。</p>
 <ul>
 <li>
-<img src="/posts/undefined/image-20221204124504104.png" class alt="image-20221204124504104">
+<img src="/posts/efdcabd/image-20221204124504104.png" class alt="image-20221204124504104">
 </li>
 </ul>
 </li>
@@ -212,7 +211,7 @@
 <p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个<mark>小爬虫</mark>，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，<mark>如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处</mark>：</p>
 <ul>
 <li>
-<img src="/posts/undefined/image-20221204125413077.png" class alt="image-20221204125413077">
+<img src="/posts/efdcabd/image-20221204125413077.png" class alt="image-20221204125413077">
 </li>
 </ul>
 </li>
@@ -2245,8 +2244,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>R语言</tag>
         <tag>Python</tag>
+        <tag>R语言</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
       </tags>
