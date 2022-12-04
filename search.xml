@@ -81,6 +81,87 @@
       </tags>
   </entry>
   <entry>
+    <title>工具推荐(2)：一些我在用的小软件(win)</title>
+    <url>/posts/462e4139/</url>
+    <content><![CDATA[<p>除了<a href>插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的小工具/软件，大部分是开源的，都比较轻巧，随用随开（windows）。</p>
+<span id="more"></span>
+<p><mark>实用/通用工具类</mark></p>
+<ol>
+<li>[quicklook], [snipaste], [Treesize], [Drawboard pdf], [Mircosoft to do], [terminal]</li>
+<li>Listary：<a href="https://www.listary.com/download">https://www.listary.com/download</a></li>
+<li>Path Copy Copy：<a href="https://pathcopycopy.github.io/">https://pathcopycopy.github.io/</a></li>
+<li>WinRAR：<a href="https://www.win-rar.com/start.html?&amp;L=0">https://www.win-rar.com/start.html?&amp;L=0</a></li>
+<li>7-zip：<a href="https://www.7-zip.org/download.html">https://www.7-zip.org/download.html</a></li>
+<li>Mathpix Snipping Tool：<a href="https://mathpix.com/">https://mathpix.com/</a></li>
+<li>GotoHTTP：</li>
+<li>Typora：<a href="https://typora.io/">https://typora.io/</a></li>
+</ol>
+<p><mark>图文编辑类</mark></p>
+<ol>
+<li>adobepdf reader：打印机查看pdf</li>
+<li>Screentogif：</li>
+<li>oCam：</li>
+<li>PotPlayer 64 bit：<a href="https://potplayer.en.softonic.com/">https://potplayer.en.softonic.com/</a></li>
+<li>Adobe Illustrator/photoshop：公众号-科研sci绘图</li>
+<li>Visio：拼夕夕</li>
+</ol>
+<p><mark>编程开发类</mark></p>
+<ol>
+<li>Notepad++：</li>
+<li>vscode</li>
+<li>pycharm</li>
+<li>Anaconda、Miconda：<a href="https://www.anaconda.com/">https://www.anaconda.com/</a></li>
+<li>Notepad++：</li>
+<li>RStudio：<a href="https://www.rstudio.com/products/rstudio/download/">https://www.rstudio.com/products/rstudio/download/</a></li>
+<li>mongodb：<a href="https://www.mongodb.com/try/download/community">https://www.mongodb.com/try/download/community</a></li>
+<li>mysql 57：<a href="https://dev.mysql.com/downloads/mysql/5.7.html">https://dev.mysql.com/downloads/mysql/5.7.html</a></li>
+</ol>
+<p><mark>GIS专业</mark></p>
+<ol>
+<li>
+<p>QGIS：<a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a></p>
+</li>
+<li>
+<p>ArcGIS Pro：<a href="https://malagis.com/category/gis-software/">https://malagis.com/category/gis-software/</a></p>
+</li>
+<li>
+<p>ArcGIS Destop：<a href="https://malagis.com/category/gis-software/">https://malagis.com/category/gis-software/</a></p>
+</li>
+<li>
+<p>Geoda：<a href="https://geodacenter.github.io/download.html">https://geodacenter.github.io/download.html</a></p>
+</li>
+<li>
+<p>Goole Earth：<a href="https://www.google.com/earth/download/gep/agree.html">https://www.google.com/earth/download/gep/agree.html</a></p>
+</li>
+<li>
+<p>Coredraw：某宝或拼夕夕</p>
+</li>
+<li>
+<p>nc文件查看：<a href="https://www.giss.nasa.gov/tools/panoply/">https://www.giss.nasa.gov/tools/panoply/</a></p>
+</li>
+</ol>
+<p><mark>科研相关</mark></p>
+<ol>
+<li>rss：<a href="https://www.inoreader.com/apps">https://www.inoreader.com/apps</a></li>
+<li>Mendeley Desktop：<a href="https://www.mendeley.com/guides/desktop">https://www.mendeley.com/guides/desktop</a></li>
+<li>Gephi：文献/文本挖掘，共现分析、聚类等</li>
+</ol>
+<p><mark>其他</mark></p>
+<ol>
+<li>Win10：<a href="https://www.microsoft.com/zh-cn/software-download/windows10">https://www.microsoft.com/zh-cn/software-download/windows10</a></li>
+<li>Office login： <a href="https://www.office.com/">https://www.office.com/</a></li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>效率</tag>
+        <tag>工具推荐</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>matplotlib绘图常用代码速查</title>
     <url>/posts/12d20fad/</url>
     <content><![CDATA[<p>【持续扩充】由于经常使用Matplotlib绘制<mark>草图</mark>，发现需要时常去找一些之前的代码，因此便将<strong>常用代码</strong>和有人整理的<strong>速查备忘录</strong>贴于此处便于查看。</p>
@@ -100,6 +181,57 @@
       <categories>
         <category>Python可视化</category>
       </categories>
+  </entry>
+  <entry>
+    <title>工具推荐(1)：一些我在用的Chrom插件</title>
+    <url>/posts/efdcabd/</url>
+    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的[Chrom插件(<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon</a>)。</p>
+<span id="more"></span>
+<p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
+<h3 id="插件枚举"><a class="markdownIt-Anchor" href="#插件枚举"></a> 插件枚举</h3>
+<ol>
+<li>
+<p>Google translate：谷歌右键翻译服务</p>
+</li>
+<li>
+<p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
+ <img src="/posts/undefined/image-20221204123940921.png" class alt="image-20221204123940921">
+</li>
+<li>
+<p>Imagus：鼠标悬停在图片上是可以<mark>放大预览</mark>缩略图，查看更高清的图片(原始分辨率)。</p>
+<ul>
+<li>
+<img src="/posts/undefined/image-20221204124504104.png" class alt="image-20221204124504104">
+</li>
+</ul>
+</li>
+<li>
+<p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p>
+</li>
+<li>
+<p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个<mark>小爬虫</mark>，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，<mark>如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处</mark>：</p>
+<ul>
+<li>
+<img src="/posts/undefined/image-20221204125413077.png" class alt="image-20221204125413077">
+</li>
+</ul>
+</li>
+<li>
+<p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Chrom插件</tag>
+        <tag>crxMouse</tag>
+        <tag>Imagus</tag>
+        <tag>SwitchyOmega</tag>
+        <tag>WebScraper</tag>
+        <tag>downloader</tag>
+      </tags>
   </entry>
   <entry>
     <title>文献篇(3) 如何开展研究背景调研和总结？</title>
@@ -324,9 +456,9 @@
         <category>Tools</category>
       </categories>
       <tags>
+        <tag>SwitchyOmega</tag>
         <tag>Clash</tag>
         <tag>Proxy</tag>
-        <tag>SwitchyOmega</tag>
         <tag>Tools</tag>
       </tags>
   </entry>
