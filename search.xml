@@ -101,7 +101,7 @@
 </li>
 </ul>
 </li>
-<li><a href="https://www.den4b.com/products/renamer">ReNamer</a>：可以根据自定义的规则批量重命名文件，比如添加前缀后缀，删除等等，当然也可以自己写代码，参考Python关于文件路径及目录批处理](<a href="https://hscyber.github.io/posts/290b74f/">https://hscyber.github.io/posts/290b74f/</a>)
+<li><a href="https://www.den4b.com/products/renamer">ReNamer</a>：可以根据自定义的规则批量重命名文件，比如添加前缀后缀，删除等等，<strong>设置完规则后可以预览</strong>，也不用担心误操作。当然也可以自己写代码，参考Python关于文件路径及目录批处理](<a href="https://hscyber.github.io/posts/290b74f/">https://hscyber.github.io/posts/290b74f/</a>)
 <ul>
 <li>
 <img src="/posts/462e4139/image-20221205202332811.png" class alt="image-20221205202332811">
@@ -2496,8 +2496,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </categories>
       <tags>
         <tag>Rasterio</tag>
-        <tag>GeoTIFF</tag>
         <tag>GDAL</tag>
+        <tag>GeoTIFF</tag>
         <tag>栅格文件读写</tag>
       </tags>
   </entry>
