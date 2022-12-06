@@ -85,7 +85,22 @@
     <url>/posts/462e4139/</url>
     <content><![CDATA[<p>除了<a href="https://hscyber.github.io/posts/efdcabd/">插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的小工具/软件，大部分是开源的，都比较轻巧，随用随开（windows）。</p>
 <span id="more"></span>
-<p><mark>实用/通用工具类</mark></p>
+<blockquote>
+<p>备注：工具尽管小，但后台耗电暂未经过测试，如果使用笔记本等发现耗电高则可以视情况使用，一般无碍。</p>
+</blockquote>
+<p><mark>微软官方开源小工具集合</mark></p>
+<ul>
+<li>
+<p><a href="https://github.com/microsoft/PowerToys">PowerToys</a>，下载<a href="https://github.com/microsoft/PowerToys/releases/tag/v0.64.1">链接</a>或者进入<a href="https://aka.ms/getPowertoys">应用商店下载</a></p>
+</li>
+<li>
+<p>目前集成了17个小工具，包括：<font color="#dd0000">布局、文件进程查找、唤醒、图像尺寸调整、鼠标增强特效、OCR、文件批量重命名、host编辑等等</font>，根据需求进行选用。</p>
+</li>
+<li>
+<img src="/posts/462e4139/image-20221206124231152.png" class alt="image-20221206124231152">
+</li>
+</ul>
+<p><mark>实用/通用工具类(前七个也已集成到微软应用商店)</mark></p>
 <ol>
 <li><a href="https://github.com/QL-Win/QuickLook">quicklook</a>：大小文件不打开即可快速预览，支持office txt csv/excel jupyter shp等的预览，关于<a href="https://hscyber.github.io/posts/75ba419a/#nteract%E6%89%93%E5%BC%80%E6%9F%A5%E7%9C%8B">jupyter预览</a>
 <ul>
