@@ -2336,8 +2336,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>R语言</tag>
+        <tag>Python</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
       </tags>
