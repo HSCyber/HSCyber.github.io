@@ -83,10 +83,11 @@
   <entry>
     <title>工具推荐(2)：一些我在用的工具与软件</title>
     <url>/posts/462e4139/</url>
-    <content><![CDATA[<p>除了<a href="https://hscyber.github.io/posts/efdcabd/">插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的电脑(小)工具/软件，大部分是开源的，都比较轻巧，随用随开（windows），还有一些编程及一些GIS专业软件，个别附带贴了一些参考文档和个人笔记。都附链接，便于之后自己<strong>重装系统</strong>后在此下载。</p>
+    <content><![CDATA[<p>除了<a href="https://hscyber.github.io/posts/efdcabd/">插件</a>，再放一些个人<strong>在用的</strong>觉得较实用的电脑(小)工具/软件，大部分是开源的，都比较轻巧，随用随开（windows），还有一些编程及一些GIS专业软件，个别附带贴了一些参考文档和个人笔记。</p>
 <span id="more"></span>
+<p><mark>都附链接，也便于之后自己重装系统/换电脑后在此下载</mark>。无序合集：<a href="https://github.com/microsoft/PowerToys">PowerToys</a>, <a href="https://github.com/QL-Win/QuickLook">quicklook</a>, <a href="https://www.snipaste.com/">snipaste</a>, <a href="https://www.den4b.com/products/renamer">ReNamer</a>, <a href="https://www.jam-software.com/treesize_free?ca=1">Treesize</a>, <a href="https://www.drawboard.com/pdf">Drawboard pdf</a>, <a href="https://todo.microsoft.com/tasks/">Mircosoft to do</a>, <a href="https://github.com/microsoft/terminal">Windows Terminal</a>, <a href="https://www.voidtools.com/zh-cn/downloads/">everything</a>、<a href="https://www.listary.com/download">Listary</a>, <a href="https://pathcopycopy.github.io/">Path Copy Copy</a>, <a href="https://www.win-rar.com/start.html?&amp;L=0">WinRAR</a>、<a href="https://www.7-zip.org/download.html">7-zip</a>, <a href="https://gotohttp.com/">GotoHTTP</a>, <a href="https://mathpix.com/">Mathpix Snipping Tool</a>, <a href="https://typora.io/">Typora</a>, <a href="https://www.draw.io/">draw.io</a>, <a href="https://www.xm1math.net/texmaker/">Texmaker</a>, <a href="https://www.overleaf.com/">Oberleaf</a>, <a href="https://product.mdnice.com/">MdNice</a>, <a href="https://www.adobe.com/cn/acrobat.html">Adobe Acrobat DC</a>, <a href="https://ocam.en.download.it/">oCam</a>, <a href="https://potplayer.en.softonic.com/">PotPlayer</a>, <a href="https://www.screentogif.com/">Screentogif</a>, <a href="https://notepad-plus-plus.org/downloads/">Notepad++</a>, <a href="https://code.visualstudio.com/">vscode</a>、<a href="https://www.jetbrains.com/">pycharm</a>, <a href="https://www.anaconda.com/">Anaconda、Miconda</a>, <a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>, <a href="https://www.mongodb.com/try/download/community">mongodb</a>、<a href="https://dev.mysql.com/downloads/mysql/5.7.html">mysql 57</a>, <a href="https://qgis.org/en/site/forusers/download.html">QGIS</a>, <a href="https://malagis.com/category/gis-software/">ArcGIS Destop</a>、<a href="https://malagis.com/category/gis-software/">ArcGIS Pro</a>, <a href="https://geodacenter.github.io/download.html">Geoda</a>, <a href="https://www.google.com/earth/download/gep/agree.html">Goole Earth pro</a>, <a href="http://www.bigemap.com/">BigeMap office</a>, <a href="https://www.coreldraw.com/en/">Coredraw</a>, <a href="https://www.giss.nasa.gov/tools/panoply/">panoply-view nc</a>, <a href="https://www.inoreader.com/apps">inoreader: RSS</a>, <a href="https://www.mendeley.com/guides/desktop">Mendeley Desktop</a>, <a href="https://www.zotero.org/">zotero</a>, <a href="https://gephi.org/">Gephi</a>, <a href="https://www.diskgenius.com/">DiskGenius</a>, <a href="https://www.microsoft.com/zh-cn/software-download/windows10">Win10</a>……</p>
 <h2 id="通用类"><a class="markdownIt-Anchor" href="#通用类"></a> 通用类</h2>
-<p>一些小工具/平台的产生是特定情境下自然而然的需求，<strong>减少重复劳动并提高体验</strong>。开源使得我得以共享，包括一些专业的GIS软件和平台。当然，对于一些好的产品/服务，我也会做坚定的付费支持者。</p>
+<p>一些小工具/平台的产生是特定情境下自然而然的需求，<strong>减少重复劳动并提高体验</strong>。我也是<font color="#dd0000">应自己需求陆续检索并接触到这些软件</font>，开源则使得我得以共享，包括一些专业的GIS软件和平台。当然，对于一些好的产品/服务，我也会做坚定的付费支持者。</p>
 <blockquote>
 <p>工具尽管小，但后台耗电暂未经过测试，若使用笔记本等发现耗电高则可以视情况使用，一般无碍。</p>
 </blockquote>
@@ -140,7 +141,7 @@
 </ul>
 </li>
 <li><a href="https://todo.microsoft.com/tasks/">Mircosoft to do</a>：之前用过一段时间的todo list，支持手机电脑同步</li>
-<li><a href>Windows Terminal</a>：windows上的终端，可以美化一下CMD，自行探索
+<li><a href="https://github.com/microsoft/terminal">Windows Terminal</a>：windows上的终端，可以美化一下CMD，自行探索
 <ul>
 <li>
 <img src="/posts/462e4139/image-20221204163612317.png" class alt="image-20221204163612317">
@@ -157,7 +158,7 @@
 <ol>
 <li><a href="https://mathpix.com/">Mathpix Snipping Tool</a>：数学<strong>公式</strong>截图直接转——office、markdown、latex代码，避免手动输</li>
 <li><a href="https://typora.io/">Typora</a>：我一直用来记笔记的软件，<a href="https://hscyber.github.io/posts/c694f527/">Markdown语法及Typora使用简介</a>，markdown语法在很多地方通用。</li>
-<li>PPT、<a href="http://draw.io">draw.io</a>、Visio：制图（尤其是流程图、技术路线图）绘制软件，visio可以通过拼夕夕</li>
+<li>PPT、<a href="https://www.draw.io/">draw.io</a>、Visio：制图（尤其是流程图、技术路线图）绘制软件，visio可以通过拼夕夕</li>
 <li><a href="https://www.xm1math.net/texmaker/">Texmaker</a>：Latex轻巧编辑器，类似的编辑器很多，这是我目前的选择</li>
 <li><a href="https://www.overleaf.com/">Oberleaf</a>：非常好用的在线Latex编辑器和云共享平台，入门<a href="https://www.overleaf.com/learn">文档</a>
 <ul>
@@ -167,7 +168,7 @@
 </ul>
 </li>
 <li><a href="https://product.mdnice.com/">MdNice</a>：最近刚接触的一个不错的markdown笔记兼排版软件，因为网页版提供了免费的图床（图片云存储），用于<font color="#dd0000">微信公众号排版</font>比typora方便。</li>
-<li>Adobe Acrobat DC：查看、编辑、合并pdf等，公众号-科研sci绘图下载
+<li><a href="https://www.adobe.com/cn/acrobat.html">Adobe Acrobat DC</a>：查看、编辑、合并pdf等，公众号-科研sci绘图下载破解版
 <ul>
 <li>
 <img src="/posts/462e4139/image-20221206133353481.png" class alt="image-20221206133353481">
@@ -175,8 +176,8 @@
 </ul>
 </li>
 <li><a href="https://ocam.en.download.it/">oCam</a>：轻巧的高清录屏工具</li>
-<li><a href="https://potplayer.en.softonic.com/">PotPlayer 64 bit</a>：视频播放器</li>
-<li>Screentogif(<a href="https://www.screentogif.com/">https://www.screentogif.com/</a>)：图片转gif
+<li><a href="https://potplayer.en.softonic.com/">PotPlayer</a>：视频播放器</li>
+<li><a href="https://www.screentogif.com/">Screentogif</a>：图片转gif
 <ul>
 <li>
 <img src="/posts/462e4139/image-20221204163924695.png" class alt="image-20221204163924695">
@@ -189,7 +190,7 @@
 <p><mark>编程开发类</mark></p>
 <ol>
 <li><a href="https://notepad-plus-plus.org/downloads/">Notepad++</a>：文本或代码查看（替换本地的txt），也可以用于coding</li>
-<li>vscode、pycharm：代码编辑器，安装及配置可参考<a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)</a></li>
+<li><a href="https://code.visualstudio.com/">vscode</a>、<a href="https://www.jetbrains.com/">pycharm</a>：代码编辑器，安装及配置可参考<a href="https://hscyber.github.io/posts/9089f596/">Python环境(2)</a></li>
 <li><a href="https://www.anaconda.com/">Anaconda、Miconda</a>：Python环境及管理，详情可参考<a href="https://hscyber.github.io/tags/Python%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Python环境</a></li>
 <li><a href="https://www.rstudio.com/products/rstudio/download/">RStudio</a>：R语言常用编辑器</li>
 <li><a href="https://www.mongodb.com/try/download/community">mongodb</a>、<a href="https://dev.mysql.com/downloads/mysql/5.7.html">mysql 57</a>：数据库</li>
@@ -214,8 +215,8 @@
 </li>
 <li><a href="https://www.google.com/earth/download/gep/agree.html">Goole Earth pro</a>：谷歌地球桌面端，需要梯</li>
 <li><a href="http://www.bigemap.com/">BigeMap office</a>：国产地图软件，可用于查看高精度的中国地图数据，分辨率很高很清晰，接口来自<a href="https://datacloud.geovisearth.com/support/map/summary">星球地图</a>，可以<font color="#dd0000">将接口接入QGIS的XYZ图层添加服务</font>实现本地调用预览</li>
-<li>Coredraw：矢量制图、类似于AI，某宝或拼夕夕</li>
-<li><a href="https://www.giss.nasa.gov/tools/panoply/">nc文件查看</a>：NASA开发的用于查看nc文件的工具</li>
+<li><a href="https://www.coreldraw.com/en/">Coredraw</a>：矢量制图、类似于AI，某宝或拼夕夕</li>
+<li><a href="https://www.giss.nasa.gov/tools/panoply/">panoply-nc查看</a>：NASA开发的用于查看nc文件的工具</li>
 </ol>
 <p><mark>科研相关</mark></p>
 <ol>
@@ -232,7 +233,7 @@
 </ol>
 <p><mark>其他</mark></p>
 <ol>
-<li>DiskGenius：系统重装，多系统安装、引导项查看软件</li>
+<li><a href="https://www.diskgenius.com/">DiskGenius</a>：系统分区管理，多系统安装、引导项查看等</li>
 <li><a href="https://www.microsoft.com/zh-cn/software-download/windows10">Win10</a></li>
 <li><a href="https://www.office.com/">Office login</a></li>
 <li><a href="https://onedrive.live.com/">OneDriver login</a></li>
