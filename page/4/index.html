@@ -98,7 +98,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">109</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">84</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">85</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -161,7 +161,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="huangsh"
-      src="/uploads/avatar2.jpg">
+      src="/uploads/avatar.jpg">
   <p class="site-author-name" itemprop="name">huangsh</p>
   <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
 </div>
@@ -169,7 +169,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -234,10 +234,127 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/69110d48/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/69110d48/" class="post-title-link" itemprop="url">DLL文件及conda模块加载失败</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-18 15:30:18" itemprop="dateCreated datePublished" datetime="2022-07-18T15:30:18+08:00">2022-07-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/69110d48/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/69110d48/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/posts/69110d48/"></span>
+    </span>
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/6e05178d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -355,7 +472,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/da405e24/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -472,7 +589,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/54103437/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -590,7 +707,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/15750410/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -710,7 +827,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/9ce60930/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -827,7 +944,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/f9c7a8a1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -949,7 +1066,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/9730787a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1067,7 +1184,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/3c868742/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1186,7 +1303,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/979af058/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1294,7 +1411,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/4d972282/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1411,7 +1528,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/99dce68a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1529,7 +1646,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/7b2f7b5e/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1654,7 +1771,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/c694f527/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1771,7 +1888,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/34eb4d05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -1888,7 +2005,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/374675e0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -2006,7 +2123,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/33f7b1b7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -2123,7 +2240,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/8dfff56a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -2245,7 +2362,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/29d41ed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -2363,7 +2480,7 @@
     <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/5144b1ce/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
       <meta itemprop="name" content="huangsh">
     </span>
 
@@ -2469,128 +2586,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/659ef075/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-      <meta itemprop="name" content="huangsh">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Huangs's Notes">
-      <meta itemprop="description" content="Stay hungry. Stay foolish.">
-    </span>
-    
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Huangs's Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/659ef075/" class="post-title-link" itemprop="url">浅析Python中的类、模块、包</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-16 19:24:47" itemprop="dateCreated datePublished" datetime="2022-05-16T19:24:47+08:00">2022-05-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Python基础</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/659ef075/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/posts/659ef075/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/posts/659ef075/"></span>
-    </span>
-  
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-		  
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>类和继承是面向对象编程<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Object-oriented_programming">(OOP)</a>中的重要概念，Python中的大量模块等也都是基于类实现的；模块和包是Python可拓展性和便捷性的支撑，也是我们接触最多的内容。了解Python中的类、模块和包一方面有助于强化写代码时候的<strong>逻辑</strong>（更清楚地知道自己写的代码-每一步是在干嘛）、提高效率，同时便于我们更好地<strong>读懂</strong>并复制粘贴别人的代码。本文主要内容：</p>
-<ol>
-<li>Python中的<strong>模块(module)<strong>和</strong>包(package)</strong></li>
-<li>Python中如何定义<strong>类(class)</strong></li>
-<li>什么时候需要类？</li>
-</ol>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -2621,7 +2616,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:32</span>
+    <span title="站点阅读时长">2:33</span>
   </span>
 </div>
 <div class="busuanzi-count">
