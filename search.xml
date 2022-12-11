@@ -2441,8 +2441,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>OpenStreetMap</tag>
         <tag>GDAL</tag>
+        <tag>OpenStreetMap</tag>
         <tag>shapefile读写</tag>
       </tags>
   </entry>
@@ -2746,8 +2746,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       <tags>
         <tag>Rasterio</tag>
         <tag>GeoTIFF</tag>
-        <tag>GDAL</tag>
         <tag>栅格文件读写</tag>
+        <tag>GDAL</tag>
       </tags>
   </entry>
   <entry>
