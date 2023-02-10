@@ -2936,8 +2936,8 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>R语言</tag>
         <tag>Python</tag>
+        <tag>R语言</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
       </tags>
@@ -2999,7 +2999,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <ul>
 <li><mark>paras是一个列表，每个元素都是一个函数f的输入参数</mark></li>
 <li>对于<mark>固定参数</mark>，如路径path或者其他则可以定义全局参数放在开始或者放在函数内部</li>
-<li>对于更复杂的，如果不同元素拼接，可自行<mark>构造参数的列表</mark>，如可使用列表运算符
+<li>对于更复杂的，如果不同元素拼接，可自行<mark>构造参数的列表</mark>，如可使用列表运算符，或结合range函数
 <ul>
 <li>数量增加<code>*</code>：<code>a = [1,2,3]; b = a*2;   b = [1,2,3,1,2,3]</code></li>
 </ul>
@@ -3011,7 +3011,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <ul>
 <li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> isExists:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isExists:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这也是很常用的一个df拆分函数</span></span><br><span class="line"><span class="keyword">for</span> year,table <span class="keyword">in</span> df.groupby(<span class="string">&#x27;year&#x27;</span>):</span><br><span class="line">    outdir = create_dir(<span class="built_in">dir</span>+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(year))</span><br><span class="line">    ...</span><br><span class="line">    outfile = outdir+...+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    table.to_csv(..., encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Python性能</category>
