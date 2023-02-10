@@ -78,7 +78,7 @@
 <p><a href="https://hscyber.github.io/posts/b441b64d/">研究跟踪(3)：学习国内外研究团队及学者的研究工作</a></p>
 <p><a href="https://hscyber.github.io/posts/81af99e4/">写作篇(1)：快速提升学术论文写作能力的1313法则</a></p>
 <h3 id="杂项"><a class="markdownIt-Anchor" href="#杂项"></a> 杂项</h3>
-<p><a href="https://hscyber.github.io/posts/9730787a/">杂项(1)：数据处理习惯及VSCode使用简介</a><a href="https://hscyber.github.io/posts/9730787a/">https://hscyber.github.io/posts/9730787a/</a>)</p>
+<p><a href="https://hscyber.github.io/posts/9730787a/">杂项(1)：数据处理习惯及VSCode使用简介</a></p>
 <h3 id="统计相关"><a class="markdownIt-Anchor" href="#统计相关"></a> 统计相关</h3>
 <p><a href="https://hscyber.github.io/posts/ca790165/">论文学习(1)：Generalized Linear Mixed Models</a></p>
 <p><a href="https://hscyber.github.io/posts/aff1e629/">【预】统计基础(1)：概念学习与理解1</a></p>
@@ -297,6 +297,84 @@
         <tag>GIS</tag>
         <tag>效率</tag>
         <tag>工具推荐</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>了解一下中英文字体和分类</title>
+    <url>/posts/44ded5de/</url>
+    <content><![CDATA[<p>字体<a href="https://en.wikipedia.org/wiki/Typeface">Typeface</a>，在撰写文稿、PPT以及制图等等都会有一个字体选择的问题，因此了解一下相关知识。此外，不同语言字体的设计是非常繁琐的过程，尤其是面向中文，有的字体对一些字会有所遗漏。为了使用方便，多数情况下我会选择最常用的那些经典字体即可，如Arial, Calibri, Helvetica, Times New Roman等，本网站用的是Noto Serif SC。</p>
+<span id="more"></span>
+<h2 id="中文字体"><a class="markdownIt-Anchor" href="#中文字体"></a> 中文字体</h2>
+<p>中文没有查到相关的比较好的分类，主要是<strong>宋体、黑体、楷体</strong>及他们的变体。个人常用的字体：<u>宋体、仿宋、华文中宋、微软雅黑、方正字体家族</u></p>
+<ul>
+<li>如果是<strong>印刷</strong>则推荐宋体家族</li>
+<li><strong>屏幕</strong>展示微软雅黑等等</li>
+</ul>
+<h2 id="英文字体"><a class="markdownIt-Anchor" href="#英文字体"></a> 英文字体</h2>
+<blockquote>
+<p>Matplotlib中的<strong>Serif, Sans Serif, Monospace</strong>都是指大类字体，设置具体的字体需要多设置一步指明具体字体</p>
+</blockquote>
+<p>字体大类，每类都包含很多种可选字体，可分为三类：<strong>衬线、非衬线和其他</strong>：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Serif">Serif</a>：衬线体，笔画的末尾有“衬线”，棱角分明一些，似乎对<font color="#dd0000">印刷</font>更为友好，见下图，常用的如
+<ol>
+<li>Adobe Garamond字体，是衬线字体的典范。</li>
+<li>Times New Roman，最初基于Plantin 字体设计的新的更适合报纸排版的字体</li>
+<li>Courier：过去打字机打出来的字体样式</li>
+<li>适合长文阅读的文字：Georgia, Droid Serif, Cambria</li>
+<li>Noto Serif SC：Noto Serif Simplified Chinese简体中文</li>
+</ol>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Sans-serif">Sans Serif</a>：无衬线体，如
+<ol>
+<li>Arial(等线体)：设计的目的是在电脑屏幕上不同分辨率下的可读性，万能字体，window当前的默认字体</li>
+<li>Calibri：2007年开始取代Times New Roman成为了Microsoft 很多软件的默认字体，当前为Arial</li>
+<li>Helvetica：无衬线字体经典之作！！是世界排名第一的字体，被无数的企业使用作为标准字，也是苹果电脑的御用字体。</li>
+<li>Consolas：代码阅读</li>
+<li>Noto Sans SC：Noto Sans Simplified Chinese简体中文</li>
+<li>适合长文阅读的文字：Lucida Grande、Roboto、Open Sans</li>
+</ol>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Monospaced_font">Monospace</a>：等宽字体</li>
+<li>其他：Handwriting, Fantasy, <a href="https://en.wikipedia.org/wiki/Cursive">Cursive草书</a></li>
+</ol>
+<img src="/posts/undefined/image-20230205164158301.png" class alt="image-20230205164158301">
+<img src="/posts/undefined/image-20230205164521485.png" class alt="image-20230205164521485">
+<h2 id="更多可以参考"><a class="markdownIt-Anchor" href="#更多可以参考"></a> 更多可以参考</h2>
+<ul>
+<li><a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
+<li><a href="https://www.zhihu.com/question/23210530">https://www.zhihu.com/question/23210530</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>暂未分类</category>
+      </categories>
+      <tags>
+        <tag>字体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(杂)：read_csv报错&quot; EOF inside string starting&quot;</title>
+    <url>/posts/a682ffbd/</url>
+    <content><![CDATA[<p>在读取csv文件时（尤其是对于大文件），若一些行有bug，比如文本中出行有多余的分隔号、某一行有错误字符导致READ CSV报错，记录一下解决方案。</p>
+<span id="more"></span>
+<p>最常规的读取大文件并跳过错行（For Pandas &lt; 1.3.0 try error_bad_lines=False）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">                 on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">                 low_memory=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>如果还是报错，使用Python解析引擎，但是此时速度会下降，low_memory则默认为C引擎：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">            on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">            engine=<span class="string">&#x27;python&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>参考:</p>
+<ul>
+<li><a href="https://www.shanelynn.ie/pandas-csv-error-error-tokenizing-data-c-error-eof-inside-string-starting-at-line/">EOF inside string starting at line</a>;</li>
+<li><a href="https://stackoverflow.com/questions/18039057/python-pandas-error-tokenizing-data">Pandas Error tokenizing data</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>EOF</tag>
+        <tag>read_csv</tag>
       </tags>
   </entry>
   <entry>
@@ -2630,7 +2708,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>glob(path+<span class="string">&quot;/*/*/*.csv&quot;</span>)</span><br><span class="line">[<span class="string">&#x27;C:\\Users\\huangs\\Desktop\\test\\dir2\\北京\\北京.csv&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;C:\\Users\\huangs\\Desktop\\test\\dir2\\江西\\上饶.csv&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;C:\\Users\\huangs\\Desktop\\test\\dir2\\江西\\九江.csv&#x27;</span>, ...]</span><br></pre></td></tr></table></figure>
 <p>获取文件信息等</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>file = <span class="string">r&#x27;C:\\Users\\huangs\\Desktop\\test\\dir2\\江西\\上饶.csv&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.path.split(file)</span><br><span class="line">(<span class="string">&#x27;C:\\\\Users\\\\huangs\\\\Desktop\\\\test\\\\dir2\\\\江西&#x27;</span>, <span class="string">&#x27;上饶.csv&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.path.splitext(file)[-<span class="number">1</span>]</span><br><span class="line"><span class="string">&#x27;.csv&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>os.path.basename(file)</span><br><span class="line"><span class="string">&#x27;上饶.csv&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="删改移动复制"><a class="markdownIt-Anchor" href="#删改移动复制"></a> 删改移动复制</h3>
+<h3 id="删改重命名移动复制"><a class="markdownIt-Anchor" href="#删改重命名移动复制"></a> 删改重命名移动复制</h3>
 <p><code>os. rename + remove</code></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.rename(src, dst,...)</span><br><span class="line">os.rename(filename, new_filename)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;.csv&#x27;</span> <span class="keyword">in</span> file:</span><br><span class="line">        os.remove(file)</span><br></pre></td></tr></table></figure>
 <p>移动<code>shutil.move(src, dst)</code>，如将指定目录的文件移动到新目录</p>
@@ -2917,8 +2995,17 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> cpu_count</span><br><span class="line"><span class="built_in">print</span>(cpu_count())</span><br></pre></td></tr></table></figure>
 <p>上面的函数查看电脑CPU的核数/即最大并行进程数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="comment"># 也可以定义全局参数用于函数内</span></span><br><span class="line">root = <span class="string">&quot;...&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
-<p>如果有多个参数，则可以将参数用元组封装传参后再拆包</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> year <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<p>如果有多个参数，则可以将参数用元组封装传参后再拆包，如下示例：</p>
+<ul>
+<li><mark>paras是一个列表，每个元素都是一个函数f的输入参数</mark></li>
+<li>对于<mark>固定参数</mark>，如路径path或者其他则可以定义全局参数放在开始或者放在函数内部</li>
+<li>对于更复杂的，如果不同元素拼接，可自行<mark>构造参数的列表</mark>，如可使用列表运算符
+<ul>
+<li>数量增加<code>*</code>：<code>a = [1,2,3]; b = a*2;   b = [1,2,3,1,2,3]</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(day)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># days</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> day <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
 <p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
 <ul>
