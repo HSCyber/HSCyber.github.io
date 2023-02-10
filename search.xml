@@ -338,8 +338,8 @@
 <li><a href="https://en.wikipedia.org/wiki/Monospaced_font">Monospace</a>：等宽字体</li>
 <li>其他：Handwriting, Fantasy, <a href="https://en.wikipedia.org/wiki/Cursive">Cursive草书</a></li>
 </ol>
-<img src="/posts/undefined/image-20230205164158301.png" class alt="image-20230205164158301">
-<img src="/posts/undefined/image-20230205164521485.png" class alt="image-20230205164521485">
+<img src="/posts/44ded5de/image-20230205164158301.png" class alt="image-20230205164158301">
+<img src="/posts/44ded5de/image-20230205164521485.png" class alt="image-20230205164521485">
 <h2 id="更多可以参考"><a class="markdownIt-Anchor" href="#更多可以参考"></a> 更多可以参考</h2>
 <ul>
 <li><a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
@@ -3005,7 +3005,7 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 </ul>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, day = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(day)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># days</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> day <span class="keyword">in</span> days]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, date = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(date)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    files = glob(<span class="string">r&quot;A:\Data\indata\*.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># 此处我通过循环构造参数列表，days和files数量相同</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> date <span class="keyword">in</span> dates]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
 <p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
 <ul>
