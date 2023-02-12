@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-02-12T09:33:16.407Z</updated>
+  <updated>2023-02-12T10:54:17.921Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>是动物</title>
+    <link href="https://hscyber.github.io/posts/3e450d8f/"/>
+    <id>https://hscyber.github.io/posts/3e450d8f/</id>
+    <published>2023-02-12T10:43:49.000Z</published>
+    <updated>2023-02-12T10:54:17.921Z</updated>
+    
+    <content type="html"><![CDATA[<p>2月11日，也就是昨天，我在北京动物园转了一圈，约莫着有两个小时，其间多次想结束行程，但一股一探究竟的“好奇心”趋势我看完了大部分展馆，结束后心情复杂，加之天气阴冷，导致疲惫不堪，饱餐一顿回宿舍后沉沉入睡，第二天起来还是有念想，我想我不得不写点，好将这些情绪暂存在别处。</p><span id="more"></span>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;2月11日，也就是昨天，我在北京动物园转了一圈，约莫着有两个小时，其间多次想结束行程，但一股一探究竟的“好奇心”趋势我看完了大部分展馆，结束后心情复杂，加之天气阴冷，导致疲惫不堪，饱餐一顿回宿舍后沉沉入睡，第二天起来还是有念想，我想我不得不写点，好将这些情绪暂存在别处。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生活漫步" scheme="https://hscyber.github.io/categories/%E7%94%9F%E6%B4%BB%E6%BC%AB%E6%AD%A5/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Matplotlib基础(杂)：中文及英文字体设置</title>
@@ -452,29 +471,6 @@
     <category term="驱动" scheme="https://hscyber.github.io/tags/%E9%A9%B1%E5%8A%A8/"/>
     
     <category term="显卡驱动" scheme="https://hscyber.github.io/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pandas(杂)：读取不同空格数的txt或csv</title>
-    <link href="https://hscyber.github.io/posts/8a34f949/"/>
-    <id>https://hscyber.github.io/posts/8a34f949/</id>
-    <published>2022-10-19T11:00:04.000Z</published>
-    <updated>2022-10-19T11:08:01.306Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（<mark>\t</mark>&gt;）分隔，其中最后两年的数据<strong>是不等数量的空格分列</strong>，因此需要统一格式。</p><span id="more"></span><p>原始如下图，最后处理成单个空格或制表符分隔，\t或默认</p><img src="/posts/8a34f949/image-20221019190325307.png" class alt="image-20221019190325307"><p>pandas可以读取csv txt等文本文件，<code>read_csv(sep=“\s”)</code>即可，示例：</p><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line">files = glob(<span class="string">r&quot;D:\气象局数据\天尺度气象数据\存档\201911-202106\*.txt&quot;</span>)</span><br><span class="line">outdir = <span class="string">r&quot;D:\气象局数据\天尺度气象数据\存档\201911-202106-2\\&quot;</span></span><br><span class="line"><span class="comment"># 遍历写出即可，head=None因为这里忽略表头</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file, header=<span class="literal">None</span>,sep=<span class="string">&#x27;\s+&#x27;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    df.to_csv(outdir+os.path.basename(file),index=<span class="literal">False</span>,header=<span class="literal">None</span>,encoding = <span class="string">&#x27;utf-8&#x27;</span>,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（&lt;mark&gt;\t&lt;/mark&gt;&amp;gt;）分隔，其中最后两年的数据&lt;strong&gt;是不等数量的空格分列&lt;/strong&gt;，因此需要统一格式。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Pandas数据处理分析" scheme="https://hscyber.github.io/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/"/>
-    
-    
-    <category term="Pandas" scheme="https://hscyber.github.io/tags/Pandas/"/>
-    
-    <category term="read_csv" scheme="https://hscyber.github.io/tags/read-csv/"/>
     
   </entry>
   
