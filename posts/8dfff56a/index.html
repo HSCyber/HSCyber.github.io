@@ -35,8 +35,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/text-shadow.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/anatomy.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/8dfff56a/matplotlib-pbpython-example.png">
 <meta property="article:published_time" content="2022-05-21T08:23:57.000Z">
-<meta property="article:modified_time" content="2022-12-30T11:17:21.557Z">
+<meta property="article:modified_time" content="2023-02-13T11:23:41.248Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -370,14 +371,11 @@
 </ul>
 </li>
 <li>
-<p><strong>Artist</strong> : <strong>Everything on the figure</strong>, including Figure, Axes, and Axis objects, is an artist. 理解为图元素。</p>
-<ul>
-<li>组成<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/_images/inheritance-746d7ad5b4a3ecbadc51ab040f5d995f5c6ecc71.png">图</a></li>
-</ul>
+<p><strong>Artist</strong> : <strong>Everything on the figure</strong>, including Figure, Axes, and Axis objects, is an artist. 理解为图元素。组成<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/_images/inheritance-746d7ad5b4a3ecbadc51ab040f5d995f5c6ecc71.png">图</a></p>
 </li>
 </ul>
-<p>了解了组成部件，之后我们的学习任务主要就是了解和属性各个部件繁多的<strong>属性和属性调整的方法</strong>，以及组合。</p>
-<p>下一节即有针对性地看一下各个元素的属性方法等</p>
+<p>了解了组成部件，之后我们的学习任务主要就是了解和属性各个部件繁多的<strong>属性和属性调整的方法</strong>，以及组合。下一节即有针对性地看一下各个元素的属性方法等。<img src="/posts/8dfff56a/matplotlib-pbpython-example.png" class></p>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/introductory/lifecycle.html">教程</a>; <a target="_blank" rel="noopener" href="https://pbpython.com/effective-matplotlib.html">绘图思路快速入门</a></p>
 <h3 id="图的基本单元"><a class="markdownIt-Anchor" href="#图的基本单元"></a> 图的基本单元</h3>
 <p>任意的一张图，本质上是由以下三种要素的组合（莫明想起了GIS里的点线面hh）：</p>
 <ul>
@@ -389,8 +387,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">5</span>,<span class="number">2</span>))</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> ax.get_xaxis().get_ticklabels():</span><br><span class="line">    label.set_fontweight(<span class="string">&quot;bold&quot;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
 <p>🔥想强调的是，每个部件在我们创建了一个图形之后就有了<strong>类</strong>对应的<strong>实例</strong>（对类不熟悉的可以移步<a href="https://hscyber.github.io/posts/659ef075/">Python中的类</a>），通过查阅<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/index.html">文档</a>我们可以看到该对象的<strong>所有属性及方法</strong>，进一步地我们可以按需检索并实现我们对图形想要进行的<strong>任意设置或调整</strong>，下面开始介绍并举例：</p>
 <h2 id="主要部件详解"><a class="markdownIt-Anchor" href="#主要部件详解"></a> 主要部件详解</h2>
-<p>虽然有文档，但是我还是要熟悉一些常见的属性方法，以使我们能够<strong>快速出图</strong>，至于最终成图的细节则可以再细扣</p>
-<p>另外，以下所有均来自<u>Matplotlib3.5官方文档</u>，一些参数细节暂不展开讲，在后续的总结中再慢慢铺开</p>
+<p>虽然有文档，但是我还是要熟悉一些常见的属性方法，以使我们能够<strong>快速出图</strong>，至于最终成图的细节则可以再细扣。另外，以下所有均来自<u>Matplotlib3.5官方文档</u>，一些参数细节暂不展开讲，在后续的总结中再慢慢铺开</p>
 <h3 id="figure"><a class="markdownIt-Anchor" href="#figure"></a> Figure</h3>
 <blockquote>
 <p><code>class matplotlib.figure.Figure</code>, <a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure">类的属性及方法</a></p>
