@@ -33,14 +33,14 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="本笔记记录一下Numpy的一些基础，包括：（1）ndarray的数据结构及数值类型；（2）常见操作（Creation&#x2F;Indexing&#x2F;Reshaping&#x2F;Broadcasting）的Quick References。学习资料">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20230213214902234.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/8cb7c931/image-20230213214902234.png">
 <meta property="article:published_time" content="2023-02-13T13:13:15.000Z">
-<meta property="article:modified_time" content="2023-02-13T14:04:44.627Z">
+<meta property="article:modified_time" content="2023-02-13T14:04:53.931Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Numpy">
 <meta property="article:tag" content="ndarray">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20230213214902234.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/8cb7c931/image-20230213214902234.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/8cb7c931/">
@@ -374,7 +374,7 @@
 <h3 id="数据类型datatype"><a class="markdownIt-Anchor" href="#数据类型datatype"></a> 数据类型DataType</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x.dtype</span><br><span class="line">dtype(<span class="string">&#x27;int32&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <p>第一列为类型，第二列为简称，第三列为字节数、第四列为可以表达的数值范围</p>
-<img src="/posts/undefined/image-20230213214902234.png" class alt="image-20230213214902234">
+<img src="/posts/8cb7c931/image-20230213214902234.png" class alt="image-20230213214902234">
 <h3 id="创建多维数组creation"><a class="markdownIt-Anchor" href="#创建多维数组creation"></a> 创建多维数组Creation</h3>
 <p>常见函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Z = np.zeros(<span class="number">9</span>) <span class="comment"># [0,0,0,0,0,0,0,0,0]</span></span><br><span class="line">Z = np.ones(<span class="number">9</span>)</span><br><span class="line">Z = np.array([<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">Z = <span class="number">2</span>*np.ones(<span class="number">9</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">Z = np.arange(<span class="number">9</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,...,<span class="number">8</span>]</span><br><span class="line"><span class="comment"># 转成3行三列</span></span><br><span class="line">Z = np.arange(<span class="number">9</span>).reshape(<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定间隔生成</span></span><br><span class="line">Z = np.linspace(<span class="number">0</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>[<span class="number">0.00</span>, <span class="number">0.25</span>, <span class="number">0.50</span>, <span class="number">0.75</span>, <span class="number">1.00</span>]</span><br><span class="line"><span class="comment"># 创建格网</span></span><br><span class="line">np.grid[<span class="number">0</span>:<span class="number">3</span>,<span class="number">0</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
