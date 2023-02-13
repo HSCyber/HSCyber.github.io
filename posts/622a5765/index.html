@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="4x9nh5naIcZcY5E724zToiyhCRmgrZmrzuUXHkxhkgU">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="临近正式开学，想起从过年前开始写的总结断断续续愣是现在也没写完（返校后直接抛之脑后了属于是），便抽空来此填填坑。回顾过去一年时间精力的花销很重要，洞察过去才能更好的走好当下和之后的路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022年度总结">
+<meta property="og:url" content="https://hscyber.github.io/posts/622a5765/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="临近正式开学，想起从过年前开始写的总结断断续续愣是现在也没写完（返校后直接抛之脑后了属于是），便抽空来此填填坑。回顾过去一年时间精力的花销很重要，洞察过去才能更好的走好当下和之后的路。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-01-20T03:20:56.000Z">
+<meta property="article:modified_time" content="2023-02-13T07:48:33.556Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="Python GIS Matplotlib">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/622a5765/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/622a5765/","path":"posts/622a5765/","title":"2022年度总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2022年度总结 | Huangs's Notes</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Huangs's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">114</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text"> 序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text"> 2022年度总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23%E6%96%B0%E5%B9%B4flags"><span class="nav-number">3.</span> <span class="nav-text"> 23新年flags</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2022%E5%B9%B4%E5%A4%A7%E5%B0%8F%E4%BA%8B%E7%BA%AA"><span class="nav-number">4.</span> <span class="nav-text"> 2022年大小事纪</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">93</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1126456109@qq.com" title="E-Mail → 1126456109@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/622a5765/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2022年度总结 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2022年度总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-20 11:20:56" itemprop="dateCreated datePublished" datetime="2023-01-20T11:20:56+08:00">2023-01-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%94%9F%E6%B4%BB%E6%BC%AB%E6%AD%A5/" itemprop="url" rel="index"><span itemprop="name">生活漫步</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/622a5765/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/622a5765/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>临近正式开学，想起从过年前开始写的总结断断续续愣是现在也没写完（返校后直接抛之脑后了属于是），便抽空来此填填坑。<font color="#dd0000">回顾过去一年时间精力的花销很重要，洞察过去才能更好的走好当下和之后的路</font>。</p>
+<span id="more"></span>
+<h2 id="序"><a class="markdownIt-Anchor" href="#序"></a> 序</h2>
+<blockquote>
+<p>思绪和情感每天都在发生着变化，我对于周遭人和事的看法有时也转瞬即变，或因为心情或因为思考或是其他。几天前洋洋洒洒记下的感想，过几天看可能又觉得不明所以，但不论如何，他们也都是真实的自我，值得留下印记。</p>
+</blockquote>
+<p>总结是回家之后百无聊赖的情况下开始动笔写的，断断续续写到了初三初四，随后就在走亲访友游山玩水中忘记了这回事。直到年后2.3日，大概初十，开组会，导师带头定下了新年目标，并让大家都即兴放松地讲讲自己的新年规划。我自然是不惧场的，我也喜欢谈感想，找到年前写的总结和规划提炼了一下，因此作为第一个讲的学生，我也算开了个好头，那一上午就在这样的活动中度过了。</p>
+<p>席间听了老师师兄师姐们的“故事”又有了很多的感想和体会，想着定要把没写完的总结写完。世事难料，一转眼就拖到了现在，现在是2023年2月13日。          于是就赶紧把之前写的再捡起来丢出去hh……</p>
+<h2 id="2022年度总结"><a class="markdownIt-Anchor" href="#2022年度总结"></a> 2022年度总结</h2>
+<blockquote>
+<p>回到老家的第二天，已经开始无聊并预感到了接下来的像往年一样的重复，想来想去，决定趁这个时间写一写年度总结[2023/01/20]。</p>
+</blockquote>
+<p>日子真的很值得记录，我常常都会有想要写下点什么的冲动。从疫情开始以来发生的许多事情，遇到的人，去过的地方，看过的读过的经历过的，很多都还记得很清楚有哭有笑，有失有得，这几年的疫情是未曾也无法预料的，往后的生活亦是，新冠已经成为了我们的烙印，n年之后，兴许也会成为一代人挂在嘴边的老故事。</p>
+<p>平淡的生活与事物也是值得记录的，时间的流逝和年岁的辗转，也会带走很多东西，就像被乡村巴士带走的王孩儿和神仙。不说别的，从县城到进村子，一路上的风景每年都是一个大变。县城里多了数不清的不知名的新店，和一些以前没有现在多出来的招牌，回镇上的路越来越通畅，新修的联通各个村镇的大路我都找不着北。到了村口，总会想起以前上学路上走到这里能闻到的猪*的味道，和旁边贴的猪饲料广告；再往前走一段，回想起金黄的一片油菜花；走到第一个小山头，会想起这块地是从小到大给我理发平头的驼背老爷爷的地，不知道他还在不在；再走到大拐弯，看到右边一排板栗树，会想起以前大清早来这里捡脱落下来的板栗，这种在树脚下趟了一晚上的板栗又脆又带点软还很甜，实乃佳品；看到那颗村子的标志性七八百年的倒栽古柏，会想起从小在这树下玩的各种游戏，和童年的小伙伴；快到家，家家户户门那排茂密的各种各样的能吃的不能吃的树，也已经被统一的稀稀拉拉几颗一模一样的人工树取代……回忆起自己以前经历过的事情，很多人或许都能讲个几天几夜，那都是独属于我们的故事。</p>
+<p>回到2022，这被疫情拆成一段一段的一年，如梦如幻的一年，好哭又好笑的一年。总结，常是从生活学习工作等等几个方面写，好像有些略显空空，便先循着手机相册先列一列今年的一些事，附在了末尾[2023/01/20]。</p>
+<blockquote>
+<p>第四天，大年初一，接着把总结收个尾。[2023/01/22]</p>
+</blockquote>
+<p>研究生，就先回顾一下学习吧</p>
+<ul>
+<li>2022下已是我研究生的第三个年头，学习或者说工作上不尽人意，多少还是懈怠了。逯哥多哥等都已经忙着毕业就业的事情，我倒还在不慌不忙的学习和干活，还经常顶着疫情出去玩耍，所以一年下来研究推进的较慢，直到年尾都没把初稿写出来，尽管结果是基本是跑完了。当然，由于组里今年很多之前的项目结题，参与了不少项目的申请工作。</li>
+<li>开始感觉到了紧迫。组里学生已经9个，22年师兄申请到了国外的交流资助，23年师兄若走，师姐一毕业，我竟即将扭头成为组里老二，在带师弟的过程中还是感觉自己捉襟见肘，也缺乏实践，很多时候想法还比较偏执；生活中也是如此，很多方面都有待进步，希望自己可以成长地快一些。</li>
+<li>一个“好”的学科和方向以及具体的选题，在我看来是十分重要的，当然，有时候也是运气使然。对专业方向和自己做的东西还是时不时会有迷茫或者低价值感，不管是大还是小，包括在大小期刊上看很多的工作，都不能够让我产生那种敬意或是热情。老师之前说这不是我应该考虑的问题，确实，我也知道，还有人说是我看的不够多，层次还不够。都有道理，但是我还是觉得懂得都懂。当然，话虽如此，我依旧是会充满热情和好奇去学习，并在过程中创造一些属于自己的东西，科研问题的过程还是挺锻炼人的。</li>
+<li>重视研究的数据，获取到什么样的数据才能开展什么样的研究，而不是真的所谓科学问题第一，对数据的认识和理解和问题的提出是一个并进的过程。</li>
+<li>还一个可能就是这个博客和公众号了。学习、记录，包括科研过程中一些技术问题的学习，都是一个打基础，输入的过程，加上自己对解决问题和新鲜事务有着不错的好奇心，收货颇丰，新的一年希望能够更加自如地应用计算机技术辅助和加快自己的研究。</li>
+<li>科研的时间实际上也是不太够的，因为22年在生活、情绪、兴趣方面倾注了更多的注意力。</li>
+</ul>
+<p>至于生活和兴趣，以前我常一周都坐在办公室里摸鱼（美其名曰是个能坐的住的人），去年则给自己加了一些生活和工作的边界感，在周末和假期去做一些自己喜欢和感兴趣的事情，包括和朋友们一起玩耍聚餐，每周运动，包括学习一些无关工作的技能：</p>
+<ul>
+<li>认识了很多的新朋友。一是所内的，算是拥抱了一个小团体了，轩轩老朱老蔡还有琳琳邓敏小辛等，在雁栖湖的时候大家都是在一个班，但是因为不在一个宿舍、不同专业等原因接触的不多，加上学业繁忙，不太熟。通过所里这段时间的各种聚餐游玩活动和“共患难”，都很熟络了，每个人都是非常直爽和真诚，愿友谊长存。</li>
+<li>二是通过“摄影”认识了一些摄友。在上半年的时候和家乐师兄聊天，我说我觉得自己的生活过得很沉重很单调，师兄建议我多找同学朋友玩耍聊天，也可以整点爱好，音乐啊什么的，摄影也行，我这相机放在这你可以用，我看你平时就还蛮喜欢拍照的。我一想也是，仔细想了一下，就买了个微单作为记录光影和生活的新工具，当然，它也确实带给了我不少的充实。最开始在知乎加了聪哥一个人，再和韩大哥建了三人的摄友群，从三个人第一次国庆见面到现在群里已经30人了，我也见过了其中10多个朋友，大家相处起来很轻松，看看风景拍拍照片，偶尔给自己拍几张喜欢的照片，非常地愉快。每个人都有闪闪发光的一面啊。</li>
+<li>三是阅读，我不是一个喜欢阅读的人，算是再次强迫自己重拾了读书的习惯，主要是非技术类的。今年买了很多书，看了不少书，有些是重温，大学时候看书好像都没看懂，寒假准备把家里一些书再带过去。即便是光看一些旧的经典书籍，也都是无止境的，所以很多书我都是有兴趣更确切的说是好奇心驱使，或是一些特别的场景或机缘下看到一个书的介绍，触动了我，便买来看看。读书最大的感触是有时会觉得小说什么的也是一个艺术品的创造的过程，美，本身就可以带来一种愉悦。很难说阅读会带给我什么帮助，但是脑子里多了一些故事，多了一些感慨，偶尔也会多一些认识和反思。</li>
+<li>最后想聊聊“艺术”，每次听到好的音乐，会让我心潮澎湃备受鼓舞，觉得这个世界是有意义的，是需要去努力创造和表达的。好的艺术作品，音乐、小说、诗歌、绘画、电影、故事亦或是独特的令人振动的作品，时时能能激起我内心深处的感动，能让我深切地感受到作为生命，生活的意义所在，在于去热爱、去创造、去爱、去充分地表达自我，展现自己独一无二的生命力。或许每个人天生就是有艺术性的，浪漫的，就像王小波写的每个人应该做自己的诗人，就像有画家说画家就不该存在……这种表达或许无关外界，就像欧文斯通笔下的梵高与伦勃朗，毛姆笔下的斯特里克兰，苦难与艺术，向往和毫无保留。死亡诗社里有一段话我很喜欢，我们我们读诗写诗，并不是因为它好玩，我们读诗写诗是因为我们是人类的一分子，而人类是充满激情的。没错，医学，法律，商业，工程，这些都是崇高的追求，足以支撑人的一生。但诗歌、美丽、浪漫、爱，这些才是我们生活的意义。</li>
+<li>当然，这是有些理想了，囿于世俗和日渐紧密的社会，很多时候还是要接地气才行，但要问所谓梦想，我还不知道，能想到的就是一定是一些无关名或利的东西。</li>
+<li>其他的残次品：英语单词还没怎么开始背；驾照才考完科一；宿舍做饭也刚开始煮米；滑冰，才去了一次，感觉差点学会；滑板，刚滑了两次，第二次摔了后没再踩过，刚能走起来；踢毽子，飞盘，好像可以替补凑数……</li>
+<li>最后可能就是运动了。健身/力量训练的学习，算是一个不错的新体验，在天宇的带领下，队伍逐渐壮大，半年多还重了4kg，对于我七八年每变的体重，属实不易；慢跑，5km/周跑持续了两个来月，冬天在园区跑了几次，来年继续坚持吧，过程尽管挺枯燥，但是能够感觉到别样的充实，当然，配速的变化和稳定也是一个鼓励。</li>
+</ul>
+<h2 id="23新年flags"><a class="markdownIt-Anchor" href="#23新年flags"></a> 23新年flags</h2>
+<blockquote>
+<p>完不完成是一回事，立肯定还是要立的hh</p>
+</blockquote>
+<p>首先是必须要的：</p>
+<ul>
+<li>手边工作的投递和新工作的推进1+1</li>
+<li>年底的博士大论文开题预备</li>
+<li>熟练机器学习深度学习应用技能</li>
+<li>坚持慢跑和锻炼</li>
+<li>坚持阅读</li>
+<li>旅行与出游</li>
+<li>宿舍厨房技能学习</li>
+<li>驾考科234</li>
+</ul>
+<p>其实是不要</p>
+<ul>
+<li>不要熬夜，从大年初一开始算！非必要不超过12.</li>
+<li>睡前不要打游戏，不要刷视频</li>
+<li>不要在工作日玩游戏或刷剧</li>
+<li>不要陷入细小而无关紧要的技术/其他问题</li>
+</ul>
+<p>其他不可控或非必须：</p>
+<ul>
+<li>青海西藏的出差</li>
+<li>与老同学的旅行，尤其是今年毕业的老同学</li>
+<li>组队自驾游，包括上方，意向城市（京郊、长沙、重庆、青岛、南京、广州、深圳……）</li>
+<li>去广州看表姐表弟以及姐的好玩的小冰</li>
+<li>技术公众号创建</li>
+<li>英语学习</li>
+<li></li>
+</ul>
+<h2 id="2022年大小事纪"><a class="markdownIt-Anchor" href="#2022年大小事纪"></a> 2022年大小事纪</h2>
+<blockquote>
+<p>一年300多天，没想到有这么多人和事和心绪值得留念，留在了我的相册，生活还是挺可爱的吧hh</p>
+</blockquote>
+<p>2022年，</p>
+<ol>
+<li>1月24日，我坐上回家的复兴号动车，25号到了县城的小屋子</li>
+<li>1月26日，接了一通视频电话，挂断后，无声，难眠</li>
+<li>1月27日，受邀与高中老师同学聚餐，小酌，席罢小简喝断片，姑且算是小事故</li>
+<li>1月28日，回到老家，准备过年</li>
+<li>2月2日，大年初二下雨天，外婆家，两辆车先后不同的位置掉沟里</li>
+<li>2月8日，乘高铁抵京，路上认识了旁边坐的老乡，下车看到了冰墩墩和雪容融</li>
+<li>2月12日，随室友天宇初次到访健身房，新的尝试</li>
+<li>2月13日，北京大雪，据称30年难得一见，与花和锌火锅聚餐，谈天说地排忧解难</li>
+<li>2月15日，杜老师邀请课题组共同聚餐，欢度元宵，迎接新年工作</li>
+<li>2月27日，与锌逛奥森及新奥游玩</li>
+<li>2月28日，与家乐师兄一起送材料后餐馆聚餐，记得店里有假山和鱼缸</li>
+<li>3月2日，第一篇文章被接收，虽工作尚不尽人意，但也舒了口气，不用再拖泥带水</li>
+<li>3月4日，课题组除老师外的师兄师姐一起新年聚餐，东北铁锅炖</li>
+<li>3月11日，与高中老同学振宇国家大剧院同看《春天的歌声》，最爱-这世界有那么多人</li>
+<li>3月18日，北京又大雪</li>
+<li>3月27日，与好朋友聚餐，28日，逛玉渊潭周边</li>
+<li>4月2日，独自在假期前一天登八达岭长城，人少，舒适出游</li>
+<li>4月3日，与好朋友一起逛奥森公园，很开心，小遗憾未找到北园的花海，晚饭新奥聚餐，逛街，买了一顶喜欢的帽子</li>
+<li>4月10日，顺利完成直博生博士资格答辩，晚上，吃了一喜日料，happy day</li>
+<li>4月16日，同锌 花 参加了其课题组奥森公园野餐，正值奥森花期，遍地紫罗兰？</li>
+<li>4月19日，初次解锁打卡奥森羽毛球馆</li>
+<li>4月23日，与逯哥，青松以及另外三位大学同学聚餐，欢迎&amp;欢送刚来且即将离京的zs，受到了zs所在单位的特产</li>
+<li>4月24日，与好朋友吃北京烤鸭，味道很赞</li>
+<li>5月3日，与老朱同往东升八郊公园野餐</li>
+<li>5月4日，疫情突发，搬主机回宿舍，奥运村长达一个月的封校即将开启</li>
+<li>5月5日，参观zs学校，交谈过往</li>
+<li>5月11日，正式全面封校</li>
+<li>……</li>
+<li>6月6日，解封回所</li>
+<li>6月7日，收到会蒙师姐给组里老师同学们寄过来的几箱樱桃特产</li>
+<li>6月10日，与轩轩等海底捞聚餐</li>
+<li>6月23日，和马上毕业的嗡嗡师姐、宏涛师兄，志峰师兄拍了合照</li>
+<li>7月8日，与轩轩等海底捞聚餐</li>
+<li>7月11日，天津无人机基地参观并参加无人机培训</li>
+<li>7月13日，观战，信息室在地理所篮球赛决赛中蝉联冠军</li>
+<li>7月19日，晚至凌晨，与家乐师兄赛丽麦小酌共谈</li>
+<li>7月20日，与锌新奥小聚并前往北园看向日葵园</li>
+<li>7月30日，京东购买的相机经过10多天终于到手</li>
+<li>8月1日晚，课题组全体师生在小悦父亲公司里聚餐，大酌一圈</li>
+<li>8月9日，与锌奥森云海肴小聚</li>
+<li>8月14日，收到朋友赠书，含卡尔维诺的佳作</li>
+<li>8月16日，组里师兄师姐师弟师妹黄门老灶聚餐</li>
+<li>8月21日，单车夜骑长安街，一人，下雨天</li>
+<li>8月22日，收到黄师傅给组里寄来的特产芒果，晚上与锌在胜利坊吃老北京火锅</li>
+<li>8月29日，提交新学期岗位任务书</li>
+<li>8月30日，与老蔡等初次体验滑冰，未学会，晚上聚餐，泰国菜</li>
+<li>8月31日，疫情突发，连夜核酸，在所里住了一晚</li>
+<li>9月1日，在所里等车转运，9月2日凌晨抵达七彩家园集中隔离点，开始坐牢</li>
+<li>9月7日，出狱</li>
+<li>9月9日，共同给老师送教师节鲜花及礼物</li>
+<li>9月10日，与花锌等日料店聚餐，大吃一顿欢庆出狱</li>
+<li>9月16日，海底捞聚餐，共同庆祝轩轩生日</li>
+<li>9月24日，与老班长、逯哥初次聚餐</li>
+<li>9月26日，前往海淀驾校通过科目一考试，险过，报名是5月初报的</li>
+<li>10月1日，与锌及其课题组师兄姐戒台寺登山</li>
+<li>10月3日，与摄友韩大哥聪哥初次会面扫街，3人群成立。在首钢工业园，国家大剧院等地拍照</li>
+<li>10月6日，与在京大学同学聚餐，少了zs，多了wxt，聊找工作的事情多</li>
+<li>10月11日，与好朋友看百年无极名画历史展览，有梵高的园丁</li>
+<li>10月13日，与悬等共同给老朱过生日，坚守两点一线，所内KFC</li>
+<li>10月15日，与锌奥森并新奥川菜馆小聚</li>
+<li>10月16日，一人往奥森北园拍花海银杏，人比花多</li>
+<li>10月22日，北锣鼓巷等地扫街，认识了几位新朋友</li>
+<li>10月23日，与琳威奥森银杏拍照，直至天黑</li>
+<li>10月25日，所内与轩等一众同志们再度聚餐</li>
+<li>11月1日，上午，二伯走了，童年往事浮现，眼泪无声</li>
+<li>11月1日，下午，与轩等共爬香山，与其好友小康初次见面并与晚上聚餐</li>
+<li>11月2日，幸运评了一等所长奖学金，算是抵掉了买相机和镜头的钱</li>
+<li>11月4日，与周师兄奥森溜达，遇到了拍星轨的大爷</li>
+<li>11月5日，与韩大哥辗转钓鱼台、玉渊潭、三里屯等地扫街，听故事</li>
+<li>11月9日，疫情突发，混检有羊，宿舍楼封了半天，虚惊一场</li>
+<li>11月13日，骑行白塔寺、故宫角楼、北海公园扫街，落日</li>
+<li>11月19日，小郭生日，与老朱轩轩等宿舍活动室聚餐</li>
+<li>11月21日，北京疫情突发，搬主机，此后封校，看世界杯，园区不记得何时开始有阳</li>
+<li>……</li>
+<li>12月10日，解封，疫情放开，身边大量同学阳或返家，此可往所里办公，期间三个室友阳</li>
+<li>12月13日，原来人是会被大风吹倒的，而且不止一次</li>
+<li>12月19日，北海公园景山公园等多地与聪打卡，与郭大初次会面，拍落日，扫街闲聊直至深夜</li>
+<li>12月22日，应该是阳了，嗓子疼，24日，两条杠</li>
+<li>12月31日，珍珠湖短程登山徒步，跨年活动，初次接触资深户外驴友</li>
+<li>1月1日，与导师、刘张师兄及其妻新年聚餐，晚自己浅浅过25岁生日</li>
+<li>1月4日，实验室年会，作为工作人员参与，并蹭盒饭</li>
+<li>1月5日，全天组会，会后与杜老师及在京师兄姐等绿院餐厅年前最后聚餐</li>
+<li>1月8日，临时起意将主机搬回所里，次日正式恢复正常办公</li>
+<li>1月9日，与天宇，黄师兄办公室三人赛丽麦聚餐</li>
+<li>1月11日，涂师姐开题，是答辩秘书</li>
+<li>1月12日，三人共往韩大哥家葬猫，撸猫</li>
+<li>1月17日，坐上回家的高铁，车子与旁边家人的5岁小女孩嬉笑一路，挥手告别</li>
+<li>1月18日，再度回到老家，准备过春节</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/622a5765/" title="2022年度总结">https://hscyber.github.io/posts/622a5765/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/a682ffbd/" rel="prev" title="Pandas(杂)：read_csv报错" EOF inside string starting"">
+                  <i class="fa fa-chevron-left"></i> Pandas(杂)：read_csv报错" EOF inside string starting"
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3e450d8f/" rel="next" title="是动物">
+                  是动物 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">194k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">2:56</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/622a5765/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"en","enable":true,"serverURL":"https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"locale":{"placeholder":"Please use international networks. 评论功能大陆网屏蔽"},"avatar":"mm","meta":["nick","mail"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/622a5765/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
