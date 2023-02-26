@@ -34,7 +34,7 @@
 <meta property="og:description" content="这个系列放涉及Python性能相关的处理，总的来说-除了优化代码逻辑和数据结构，其他的就是增加计算或存储资源、时间换空间、空间换时间。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块multiprecessing的简单使用。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-27T12:46:48.000Z">
-<meta property="article:modified_time" content="2023-02-26T13:59:48.547Z">
+<meta property="article:modified_time" content="2023-02-26T14:06:18.498Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="multiprocessing">
@@ -346,7 +346,7 @@
 <li>数量增加<code>*</code>：<code>a = [1,2,3]; b = a*2;   b = [1,2,3,1,2,3]</code></li>
 </ul>
 </li>
-<li>也可以使用starmap()，参见这个笔记</li>
+<li>也可以使用starmap()，多参数已经pandas特殊遍历用法参见<a href="https://hscyber.github.io/posts/e4ebeda1/">这个笔记</a>)</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, date = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(date)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    files = glob(<span class="string">r&quot;A:\Data\indata\*.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># 此处我通过循环构造参数列表，days和files数量相同</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> date <span class="keyword">in</span> dates]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
