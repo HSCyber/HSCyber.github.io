@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-02-13T14:04:53.931Z</updated>
+  <updated>2023-02-26T14:04:56.544Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python性能(3)：multiprocessing多个参数怎么用</title>
+    <link href="https://hscyber.github.io/posts/e4ebeda1/"/>
+    <id>https://hscyber.github.io/posts/e4ebeda1/</id>
+    <published>2023-02-26T13:38:19.000Z</published>
+    <updated>2023-02-26T14:04:56.544Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用多进程经常会遇到多个参数的问题，此时pool.map()略显麻烦，可以使用<mark>p.starmap</mark></p><span id="more"></span><h2 id="starmap用法"><a class="markdownIt-Anchor" href="#starmap用法"></a> starmap用法</h2><p>用法与<a href="https://hscyber.github.io/posts/4b434785/">之前类似</a>，只不过提供了一个更加方便的参数打包和完成自动解析的步骤</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.pool <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunction</span>(<span class="params">outpath,x,y,z</span>):</span><br><span class="line">     <span class="comment"># 此处是处理操作</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">outpath =  <span class="string">&quot;C:\Users\huangs\Desktop&quot;</span>   </span><br><span class="line">outpaths = [outpath]*<span class="number">4</span></span><br><span class="line">X = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">Y = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">Z = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="comment"># X,Y,Z为参数集合，也可以用元组包装，如X = (1,2,3,4)</span></span><br><span class="line">paras = [outpaths,X, Y, Z]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> Pool(<span class="number">8</span>) <span class="keyword">as</span> pool:</span><br><span class="line">    pool.starmap(myfunction, paras)</span><br></pre></td></tr></table></figure><p>这样实际上就会多进程执行：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myfunction(outpaths[<span class="number">0</span>],X[<span class="number">0</span>],Y[<span class="number">0</span>],Z[<span class="number">0</span>])</span><br><span class="line">myfunction(outpaths[<span class="number">1</span>],X[<span class="number">1</span>],Y[<span class="number">1</span>],Z[<span class="number">1</span>])</span><br><span class="line">......</span><br><span class="line">myfunction(outpaths[i],X[i],Y[i],Z[i])</span><br></pre></td></tr></table></figure><h2 id="pandas多行并行"><a class="markdownIt-Anchor" href="#pandas多行并行"></a> pandas多行并行</h2><p>如果能够直接构造一个函数使用pandas apply函数即可，有时候pandas的多行提取得到一些结果，不方便直接apply，可以<mark>将表拆分成多个表完成并行操作</mark>，记录一下刚刚完成的实例：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">tids, track_ids, user_ids, cities</span>):</span><br><span class="line">    <span class="comment"># 此处是操作</span></span><br><span class="line">    newrows = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tids)):</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:    </span><br><span class="line">    <span class="comment"># 原始轨迹数据表</span></span><br><span class="line">    tf = pd.read_csv(trackinfo, header=<span class="number">0</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    paras = []</span><br><span class="line">    <span class="comment"># 按照城市拆分成367个表格，每组数据作为paras的一个元素</span></span><br><span class="line">    <span class="keyword">for</span> city,table <span class="keyword">in</span> tf.groupby(<span class="string">&#x27;city&#x27;</span>):</span><br><span class="line">        tids = <span class="built_in">list</span>(table[<span class="string">&#x27;tid&#x27;</span>])</span><br><span class="line">        track_ids = <span class="built_in">list</span>(table[<span class="string">&#x27;track_id&#x27;</span>])</span><br><span class="line">        user_ids = <span class="built_in">list</span>(table[<span class="string">&#x27;user_id&#x27;</span>])</span><br><span class="line">        cities = <span class="built_in">list</span>(table[<span class="string">&#x27;city&#x27;</span>])</span><br><span class="line">        paras.append((tids,track_ids,user_ids,cities))</span><br><span class="line">    <span class="comment"># 此时paras是一个包含367个元组的列表，每个元素是一组输入</span></span><br><span class="line">    <span class="comment"># 遍历处理，函数内设循环</span></span><br><span class="line">    <span class="keyword">with</span> Pool(<span class="number">8</span>) <span class="keyword">as</span> pool:</span><br><span class="line">        pool.starmap(main, paras)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;使用多进程经常会遇到多个参数的问题，此时pool.map()略显麻烦，可以使用&lt;mark&gt;p.starmap&lt;/mark&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Python性能" scheme="https://hscyber.github.io/categories/Python%E6%80%A7%E8%83%BD/"/>
+    
+    
+    <category term="Python" scheme="https://hscyber.github.io/tags/Python/"/>
+    
+    <category term="multiprocessing" scheme="https://hscyber.github.io/tags/multiprocessing/"/>
+    
+  </entry>
   
   <entry>
     <title>Numpy基础：ndarray的理解及其常用操作</title>
@@ -439,30 +462,6 @@
     <category term="jupyter" scheme="https://hscyber.github.io/tags/jupyter/"/>
     
     <category term="服务器" scheme="https://hscyber.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Pandas(杂)：指定多列进行求和生成新列</title>
-    <link href="https://hscyber.github.io/posts/349d0aa/"/>
-    <id>https://hscyber.github.io/posts/349d0aa/</id>
-    <published>2022-11-15T14:03:24.000Z</published>
-    <updated>2022-11-22T15:49:03.528Z</updated>
-    
-    <content type="html"><![CDATA[<p><code>cols=df.columns[2:] ; cols = [...] </code>  #指定列名，再求和即可</p><p><code>df[‘sum’] = df[cols].sum(axis=1) </code></p><span id="more"></span><p>如果是针对行列的序号 ，则写出如    <code>df.iloc[:, 2:10].sum(axis=1)</code></p><p>其他的如mean; max; median; std; …，更为复杂的计算则可以通过df.apply()自定义函数实现</p>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;code&gt;cols=df.columns[2:] ; cols = [...] &lt;/code&gt;  #指定列名，再求和即可&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;df[‘sum’] = df[cols].sum(axis=1) &lt;/code&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Pandas数据处理分析" scheme="https://hscyber.github.io/categories/Pandas%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/"/>
-    
-    
-    <category term="Pandas" scheme="https://hscyber.github.io/tags/Pandas/"/>
-    
-    <category term="多列求和" scheme="https://hscyber.github.io/tags/%E5%A4%9A%E5%88%97%E6%B1%82%E5%92%8C/"/>
     
   </entry>
   
