@@ -3407,12 +3407,12 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <ul>
 <li><mark>paras是一个列表，每个元素都是一个函数f的输入参数</mark></li>
 <li>对于<mark>固定参数</mark>，如路径path或者其他则可以定义全局参数放在开始或者放在函数内部</li>
-<li>对于多个参数，可自行<mark>构造参数的列表</mark>，可使用列表运算符，或结合range函数实现
+<li>对于多个参数，可自行<strong>构造参数的列表</strong>，可使用列表运算符，或结合range函数实现
 <ul>
 <li>数量增加<code>*</code>：<code>a = [1,2,3]; b = a*2;   b = [1,2,3,1,2,3]</code></li>
 </ul>
 </li>
-<li>也可以使用starmap()，多参数已经pandas特殊遍历用法参见<a href="https://hscyber.github.io/posts/e4ebeda1/">这个笔记</a>)</li>
+<li>也可以使用<mark>starmap()</mark>，多参数以及pandas特殊遍历用法参见<a href="https://hscyber.github.io/posts/e4ebeda1/">这个笔记</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, date = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(date)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    files = glob(<span class="string">r&quot;A:\Data\indata\*.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># 此处我通过循环构造参数列表，days和files数量相同</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> date <span class="keyword">in</span> dates]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
 <h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
