@@ -34,7 +34,7 @@
 <meta property="og:description" content="常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-17T11:01:13.000Z">
-<meta property="article:modified_time" content="2022-11-27T13:36:18.034Z">
+<meta property="article:modified_time" content="2023-03-11T14:33:04.200Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Pandas">
 <meta property="article:tag" content="dropna">
@@ -309,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>2.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -336,8 +336,8 @@
 </blockquote>
 <p>pandas的数值类型基于numpy dtype，因此缺失值/空值也沿用了numpy。一些“<strong>空值</strong>”：</p>
 <ol>
-<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available</strong></li>
-<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>pd.isna(x)</strong>。</li>
+<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available.</strong>（is None）</li>
+<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>df.isna()/df.isnull/pd.isna(x)/pd.isnull(x)</strong>。</li>
 <li><strong>np.nan</strong>：该值是有值的，占内存，也是一个特殊的浮点数，因此<u>如果导出含NAN的数据会使得该列为浮点型，占用空间增大</u>。<strong>NAN含义为not a number</strong></li>
 <li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
 <li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
@@ -346,6 +346,7 @@
 <ul>
 <li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
 </ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 举例</span></span><br><span class="line"><span class="comment"># 输出某一列为空值的行</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== <span class="literal">None</span>]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== pd.NA]</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isna()]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isnull()]</span><br><span class="line"><span class="comment"># NaT</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]==pd.NaT()]</span><br></pre></td></tr></table></figure>
 <h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
 <p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
 <h3 id="删除行或列dropna"><a class="markdownIt-Anchor" href="#删除行或列dropna"></a> 删除行或列dropna</h3>
