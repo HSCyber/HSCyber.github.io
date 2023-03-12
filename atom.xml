@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-02-27T14:30:56.541Z</updated>
+  <updated>2023-03-12T13:43:08.958Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机软硬件(杂)：硬盘文件系统（NTFS/FAT32/exFAT）</title>
+    <link href="https://hscyber.github.io/posts/d360117d/"/>
+    <id>https://hscyber.github.io/posts/d360117d/</id>
+    <published>2023-03-12T13:07:47.000Z</published>
+    <updated>2023-03-12T13:43:08.958Z</updated>
+    
+    <content type="html"><![CDATA[<p>计算机系统的外部存储器有内置的硬盘、移动硬盘和U盘等，经常会注意到不同的硬盘文件类型不一样，做一些简单了解。以及，为什么有时候数据的实际大小和占据的内存不一致？</p><span id="more"></span><h2 id="类型及区别"><a class="markdownIt-Anchor" href="#类型及区别"></a> 类型及区别</h2><blockquote><p><a href="https://www.easeus.com/diskmanager/file-system.html">参考</a></p></blockquote><p><mark>文件系统</mark>是操作系统管理和操作存储器内的数据和文件的方式/数据结构。通常来说：</p><ul><li>window装系统完成后磁盘类型都是默认NTFS，大型移动硬盘或者移动固态硬盘通常为exFAT。</li><li>选择的区别主要在于<strong>文件的大小</strong>，如传输的单个最大文件大于4G，或磁盘总空间大于16T，则需要选择exFAT<ul><li>还有一个额外的点可以注意一下，计算机<strong>磁盘分区表</strong>有MBr和GPT(GUID)，如果硬盘大于<strong>2T</strong>，需要格式化为GPT，这一点在之前我用<strong>服务器</strong>的时候踩过坑，如果一开始选择了MBR，但是想扩容到2T以上，就可能需要格式化才行（磁盘的分区表类型在电脑管理-&gt;磁盘管理可以看到）。</li></ul></li></ul><img src="/posts/undefined/image-20230312212452652.png" class alt="image-20230312212452652"><h2 id="实际空间"><a class="markdownIt-Anchor" href="#实际空间"></a> 实际空间</h2><blockquote><p><a href="https://support.microsoft.com/en-us/topic/default-cluster-size-for-ntfs-fat-and-exfat-9772e6f1-e31a-00d7-e18f-73169155af95">NTFS、FAT 和 exFAT 的默认簇大小</a></p></blockquote><p>比如有时候会发现这种情况，这是我一个移动硬盘内的一个文件，因为有<mark>大量只有1kb的文件</mark>，导致空间浪费，其原因是不同文件系统的默认最小单元造成的。如exFAT 默认簇大小是 128 KB，1 B ~ 128 KB 大小的文件占用空间都是 128 KB，128 KB + 1 B ~ 256 KB 大小的文件占用空间都是 256 KB,<a href="https://www.zhihu.com/question/446551421">ref</a>。</p><ul><li>此时可以进行数据清理或者移动到其他格式的硬盘</li></ul><img src="/posts/undefined/image-20230312212759049.png" class alt="image-20230312212759049">]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;计算机系统的外部存储器有内置的硬盘、移动硬盘和U盘等，经常会注意到不同的硬盘文件类型不一样，做一些简单了解。以及，为什么有时候数据的实际大小和占据的内存不一致？&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机软硬件知识" scheme="https://hscyber.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E7%A1%AC%E4%BB%B6%E7%9F%A5%E8%AF%86/"/>
+    
+    
+    <category term="硬盘" scheme="https://hscyber.github.io/tags/%E7%A1%AC%E7%9B%98/"/>
+    
+    <category term="U盘" scheme="https://hscyber.github.io/tags/U%E7%9B%98/"/>
+    
+    <category term="文件系统" scheme="https://hscyber.github.io/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>Pandas(杂)：拼接多张表为一张表concat</title>
@@ -435,33 +460,6 @@
     
     <category term="Python可视化" scheme="https://hscyber.github.io/categories/Python%E5%8F%AF%E8%A7%86%E5%8C%96/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>网络相关(1):代理工具Clash的使用及规则代理切换</title>
-    <link href="https://hscyber.github.io/posts/43ad9f20/"/>
-    <id>https://hscyber.github.io/posts/43ad9f20/</id>
-    <published>2022-12-01T15:09:23.000Z</published>
-    <updated>2023-01-12T06:41:40.592Z</updated>
-    
-    <content type="html"><![CDATA[<p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p><span id="more"></span><h2 id="代理简介"><a class="markdownIt-Anchor" href="#代理简介"></a> 代理简介</h2><blockquote><p>不感兴趣可以直接跳转到<strong>clash配置</strong>部分。详细的可以参见<a href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。</p></blockquote><p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a href="https://www.google.com/">Google</a>；<a href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的<mark>代理服务器(<mark>如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个</mark>桥梁</mark>的作用，这即是代理服务的作用。如下图，几点说明：</p><ul><li>由于服务器访问很快，所以响应时间基本可以忽略。【当然如果很慢那说明代理不太行hh】</li><li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li><li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加快捷隐私。端口默认为7890。</li><li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，<ul><li>对于视频电影等持续访问操作则涉及到网站的<strong>会话Session</strong>等知识，暂不展开</li><li><strong>端口Port</strong>是电脑/IP地址之间通讯的地址通道，具体暂不展开</li></ul></li></ul><img src="/posts/43ad9f20/image-20221202000821947.png" class alt="image-20221202000821947"><p>有了上述大致认识之后，我们使用和调试网络代理就能够顺手一些。</p><h2 id="clash配置win"><a class="markdownIt-Anchor" href="#clash配置win"></a> clash配置(win)</h2><blockquote><p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg/releases">clash-windows/mac</a>；<a href="https://github.com/Kr328/ClashForAndroid/releases">Clash-Android</a>；<a href="https://github.com/Dreamacro/clash/releases">clash-linux</a>，ios使用Shadowrocket，配置需美区账号。</p></blockquote><p>配置步骤如下：</p><ol><li>下载软件并<font color="#dd0000">解压到文件夹</font>，windows建议放在非C盘</li><li>打开文件夹双击<font color="#dd0000">运行</font>程序clash.exe，右下角可以看到小猫咪,打开</li><li>在<font color="#dd0000">Profiles</font>配置文件界面将订阅链接粘贴到地址栏下载<font color="#dd0000">Download</font>，然后选中刚刚刷新的配置<ul><li>常见问题，这里初次更新/下载订阅时一般需要确保clash的系统代理处在<strong>关闭</strong>状态，原理见上。</li></ul></li><li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li><li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li><li>访问网页测试<a href="https://www.google.com/%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%B7%B2%E7%BB%8F%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%AF%95">https://www.google.com/，如果可以访问，已经设置完毕</a></li><li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li></ol><p>操作示意：</p><img src="/posts/43ad9f20/image-20221202003231976.png" class alt="image-20221202003231976"><img src="/posts/43ad9f20/image-20221202003619895.png" class alt="image-20221202003619895"><img src="/posts/43ad9f20/image-20221202003734064.png" class alt="image-20221202003734064"><h2 id="故障排查"><a class="markdownIt-Anchor" href="#故障排查"></a> 故障排查</h2><blockquote><p>如果平台有故障我会及时更新，尽量使用较新的软件</p></blockquote><ol><li>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新，如果依旧无效或失败，</li><li>检查电脑代理设置，设置为自动检测（会自动调整设置），再更新订阅</li><li>缓存或DNS污染等其他问题导致，重开再更新订阅，或者重启</li><li></li></ol><h2 id="浏览器rule设置插件"><a class="markdownIt-Anchor" href="#浏览器rule设置插件"></a> 浏览器Rule设置(插件)</h2><p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事。</p><p>我这里使用的插件为<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>，使用参考步骤</p><ol><li>设置代理的访问情景模式，随意取名，如Clash，设置代理<font color="#dd0000">协议为SOCKS5，代理服务器为127.0.1，代理端口为7890</font>.</li><li>新建自动选择模式，下载规则配置文件，设置规则访问方式，默认为直连，规则为Clash</li><li>平时使用过程中可以在按钮出切换直连（不代理）或系统代理或其他，也可以添加规则，即<font color="#dd0000">发现某个网站内网才能访问或者更快，那我就添加一个规则</font>，同理。</li><li>以上</li></ol><p>界面示意：</p><img src="/posts/43ad9f20/image-20221202004615019.png" class alt="image-20221202004615019"><img src="/posts/43ad9f20/image-20221202004702487.png" class alt="image-20221202004702487"><p>比如这里我设置地理所官网为直连。</p><img src="/posts/43ad9f20/image-20221202004905135.png" class alt="image-20221202004905135">]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具&lt;a href=&quot;https://github.com/Dreamacro/clash&quot;&gt;Clash&lt;/a&gt;(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Tools" scheme="https://hscyber.github.io/categories/Tools/"/>
-    
-    
-    <category term="SwitchyOmega" scheme="https://hscyber.github.io/tags/SwitchyOmega/"/>
-    
-    <category term="Clash" scheme="https://hscyber.github.io/tags/Clash/"/>
-    
-    <category term="Proxy" scheme="https://hscyber.github.io/tags/Proxy/"/>
-    
-    <category term="Tools" scheme="https://hscyber.github.io/tags/Tools/"/>
     
   </entry>
   
