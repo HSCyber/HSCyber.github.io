@@ -301,6 +301,29 @@
       </tags>
   </entry>
   <entry>
+    <title>栅格处理(杂)：添加空间索引显著加快矢量定位及运算</title>
+    <url>/posts/6f6e706b/</url>
+    <content><![CDATA[<p>这几天在处理格网内点统计（面上的点），缓冲区内统计等，会遇到特别慢的情况，这时候对点图层添加<mark>空间索引</mark>（几秒完成）之后，再进行处理，从几十分钟的操作降至十几秒。</p>
+<span id="more"></span>
+<p><a href="https://gistbok.ucgis.org/bok-topics/spatial-indexing">空间索引</a>是一种允许有效访问空间对象的数据结构。这是空间数据库常用的技术。如果没有索引，任何对特征的搜索都需要对数据库中的每条记录进行“顺序扫描”，从而导致处理时间更长。在空间索引构建过程中，最小外接矩形作为对象的近似。跨商业和开源数据库的各种类型的空间索引产生可衡量的性能差异。空间索引技术在时间关键型应用程序和空间<strong>大数据</strong>处理中发挥着核心作用。</p>
+<p>小数据影响不大，主要是量大些的数据</p>
+<ol>
+<li>如果是使用<mark>ArcGIS或Pro</mark>，使用Add Spatial Index工具完成快速定位和汇总统计。<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/add-spatial-index.htm">描述</a>：Adds a spatial index to a <strong>shapefile, file geodatabase, or enterprise geodatabase feature class</strong>. Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to re-create an existing spatial index。ArcGIS uses spatial indexes to <font color="#dd0000">quickly locate features</font> in feature classes. <strong>Identifying</strong> a feature, <strong>selecting</strong> features by pointing or <strong>dragging</strong> a box, and <strong>panning and zooming</strong> all require ArcMap to use the spatial index to locate features.</li>
+<li>如果是使用<mark>QGIS</mark>，工具名称是<strong>创建空间索引(Create Spatial Index)</strong></li>
+<li>如果使用<mark>Geopandas</mark>，它也提供了基于树结构的索引，构建索引的时间基本上为0ns，在使用空间连接的时候会用到，但通常geopandas在执行空间连接时，会自动构建所需的索引。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = gpd.read_file(<span class="string">&quot;..shp&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.has_sindex</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.sindex</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.has_sindex</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+<p>更多比较，可以查看<a href="https://aetperf.github.io/2021/09/10/Spatial-Join-with-GeoPandas-and-GEOS.html">ref</a></p>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>ArcGIS</tag>
+        <tag>空间索引</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于ChatGPT热潮的一点思考</title>
     <url>/posts/3dfd2cc1/</url>
     <content><![CDATA[<p>这是一个之前就想写一写的话题，昨晚奥特曼发布了GPT-4，继而又引发了一大波转发。其实，从它最开始到现在，我只在测试的时候用过，所以并未在我个人的工作中体会到它的声势所应有的价值，但我对于它是持一个积极的态度，或者说我对GPT模型的应用有一些<mark>期待</mark>。</p>
