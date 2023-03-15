@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-03-15T07:58:19.448Z</updated>
+  <updated>2023-03-15T08:53:13.619Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>栅格处理(杂)：计算多边形内的点数/线长度/面面积</title>
+    <link href="https://hscyber.github.io/posts/e57ebaa5/"/>
+    <id>https://hscyber.github.io/posts/e57ebaa5/</id>
+    <published>2023-03-15T08:37:20.000Z</published>
+    <updated>2023-03-15T08:53:13.619Z</updated>
+    
+    <content type="html"><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p><span id="more"></span><h2 id="实际操作案例"><a class="markdownIt-Anchor" href="#实际操作案例"></a> 实际操作案例</h2><h3 id="计算各区域内路网的长度"><a class="markdownIt-Anchor" href="#计算各区域内路网的长度"></a> 计算各区域内路网的长度</h3><blockquote><p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p></blockquote><p>ArcGIS Pro提供了一个很好用的工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p><img src="/posts/undefined/image-20230315165154558.png" class alt="image-20230315165154558"><img src="/posts/undefined/image-20230315165006403.png" class alt="image-20230315165006403"><p>如果是使用ArcGIS，步骤如下,<a href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p><ol><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li><li><p>连接表格</p></li></ol><img src="/posts/undefined/image-20230315165245144.png" class alt="image-20230315165245144">]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;在进行指标计算时，尤其是格网数据的数值汇总，经常需要&lt;font color=&quot;#dd0000&quot;&gt;统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积&lt;/font&gt;，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="时空数据处理分析" scheme="https://hscyber.github.io/categories/%E6%97%B6%E7%A9%BA%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E5%88%86%E6%9E%90/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>栅格处理(杂)：添加空间索引显著加快矢量定位及运算</title>
     <link href="https://hscyber.github.io/posts/6f6e706b/"/>
     <id>https://hscyber.github.io/posts/6f6e706b/</id>
     <published>2023-03-15T07:36:37.000Z</published>
-    <updated>2023-03-15T07:58:19.448Z</updated>
+    <updated>2023-03-15T07:58:59.361Z</updated>
     
     <content type="html"><![CDATA[<p>这几天在处理格网内点统计（面上的点），缓冲区内统计等，会遇到特别慢的情况，这时候对点图层添加<mark>空间索引</mark>（几秒完成）之后，再进行处理，从几十分钟的操作降至十几秒。</p><span id="more"></span><p><a href="https://gistbok.ucgis.org/bok-topics/spatial-indexing">空间索引</a>是一种允许有效访问空间对象的数据结构。这是空间数据库常用的技术。如果没有索引，任何对特征的搜索都需要对数据库中的每条记录进行“顺序扫描”，从而导致处理时间更长。在空间索引构建过程中，最小外接矩形作为对象的近似。跨商业和开源数据库的各种类型的空间索引产生可衡量的性能差异。空间索引技术在时间关键型应用程序和空间<strong>大数据</strong>处理中发挥着核心作用。</p><p>小数据影响不大，主要是量大些的数据</p><ol><li>如果是使用<mark>ArcGIS或Pro</mark>，使用Add Spatial Index工具完成快速定位和汇总统计。<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/add-spatial-index.htm">描述</a>：Adds a spatial index to a <strong>shapefile, file geodatabase, or enterprise geodatabase feature class</strong>. Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to re-create an existing spatial index。ArcGIS uses spatial indexes to <font color="#dd0000">quickly locate features</font> in feature classes. <strong>Identifying</strong> a feature, <strong>selecting</strong> features by pointing or <strong>dragging</strong> a box, and <strong>panning and zooming</strong> all require ArcMap to use the spatial index to locate features.</li><li>如果是使用<mark>QGIS</mark>，工具名称是<strong>创建空间索引(Create Spatial Index)</strong></li><li>如果使用<mark>Geopandas</mark>，它也提供了基于树结构的索引，构建索引的时间基本上为0ns，在使用空间连接的时候会用到，但通常geopandas在执行空间连接时，会自动构建所需的索引。</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = gpd.read_file(<span class="string">&quot;..shp&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.has_sindex</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.sindex</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.has_sindex</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure><p>更多比较，可以查看<a href="https://aetperf.github.io/2021/09/10/Spatial-Join-with-GeoPandas-and-GEOS.html">ref</a></p>]]></content>
     
@@ -432,37 +451,6 @@
     <category term="效率" scheme="https://hscyber.github.io/tags/%E6%95%88%E7%8E%87/"/>
     
     <category term="工具推荐" scheme="https://hscyber.github.io/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>工具推荐(1)：一些我在用的Chrom插件</title>
-    <link href="https://hscyber.github.io/posts/efdcabd/"/>
-    <id>https://hscyber.github.io/posts/efdcabd/</id>
-    <published>2022-12-04T04:24:58.000Z</published>
-    <updated>2022-12-04T05:19:05.357Z</updated>
-    
-    <content type="html"><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p><span id="more"></span><p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p><h3 id="插件枚举"><a class="markdownIt-Anchor" href="#插件枚举"></a> 插件枚举</h3><ol><li><p>Google translate：谷歌右键翻译服务</p></li><li><p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p> <img src="/posts/efdcabd/image-20221204123940921.png" class alt="image-20221204123940921"></li><li><p>Imagus：鼠标悬停在图片上是可以<mark>放大预览</mark>缩略图，查看更高清的图片(原始分辨率)。</p><ul><li><img src="/posts/efdcabd/image-20221204124504104.png" class alt="image-20221204124504104"></li></ul></li><li><p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p></li><li><p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个<mark>小爬虫</mark>，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，<mark>如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处</mark>：</p><ul><li><img src="/posts/efdcabd/image-20221204125413077.png" class alt="image-20221204125413077"></li></ul></li><li><p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p></li></ol>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的&lt;a href=&quot;https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon&quot;&gt;Chrom插件&lt;/a&gt;。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Tools" scheme="https://hscyber.github.io/categories/Tools/"/>
-    
-    
-    <category term="Chrom插件" scheme="https://hscyber.github.io/tags/Chrom%E6%8F%92%E4%BB%B6/"/>
-    
-    <category term="crxMouse" scheme="https://hscyber.github.io/tags/crxMouse/"/>
-    
-    <category term="Imagus" scheme="https://hscyber.github.io/tags/Imagus/"/>
-    
-    <category term="SwitchyOmega" scheme="https://hscyber.github.io/tags/SwitchyOmega/"/>
-    
-    <category term="WebScraper" scheme="https://hscyber.github.io/tags/WebScraper/"/>
-    
-    <category term="downloader" scheme="https://hscyber.github.io/tags/downloader/"/>
     
   </entry>
   
