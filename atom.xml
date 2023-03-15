@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-03-15T08:53:13.619Z</updated>
+  <updated>2023-03-15T08:53:30.692Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://hscyber.github.io/posts/e57ebaa5/"/>
     <id>https://hscyber.github.io/posts/e57ebaa5/</id>
     <published>2023-03-15T08:37:20.000Z</published>
-    <updated>2023-03-15T08:53:13.619Z</updated>
+    <updated>2023-03-15T08:53:30.692Z</updated>
     
-    <content type="html"><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p><span id="more"></span><h2 id="实际操作案例"><a class="markdownIt-Anchor" href="#实际操作案例"></a> 实际操作案例</h2><h3 id="计算各区域内路网的长度"><a class="markdownIt-Anchor" href="#计算各区域内路网的长度"></a> 计算各区域内路网的长度</h3><blockquote><p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p></blockquote><p>ArcGIS Pro提供了一个很好用的工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p><img src="/posts/undefined/image-20230315165154558.png" class alt="image-20230315165154558"><img src="/posts/undefined/image-20230315165006403.png" class alt="image-20230315165006403"><p>如果是使用ArcGIS，步骤如下,<a href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p><ol><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li><li><p>连接表格</p></li></ol><img src="/posts/undefined/image-20230315165245144.png" class alt="image-20230315165245144">]]></content>
+    <content type="html"><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p><span id="more"></span><h2 id="实际操作案例"><a class="markdownIt-Anchor" href="#实际操作案例"></a> 实际操作案例</h2><h3 id="计算各区域内路网的长度"><a class="markdownIt-Anchor" href="#计算各区域内路网的长度"></a> 计算各区域内路网的长度</h3><blockquote><p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p></blockquote><p>ArcGIS Pro提供了一个很好用的工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p><img src="/posts/e57ebaa5/image-20230315165154558.png" class alt="image-20230315165154558"><img src="/posts/e57ebaa5/image-20230315165006403.png" class alt="image-20230315165006403"><p>如果是使用ArcGIS，步骤如下,<a href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p><ol><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li><li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li><li><p>连接表格</p></li></ol><img src="/posts/e57ebaa5/image-20230315165245144.png" class alt="image-20230315165245144">]]></content>
     
     
     <summary type="html">&lt;p&gt;在进行指标计算时，尤其是格网数据的数值汇总，经常需要&lt;font color=&quot;#dd0000&quot;&gt;统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积&lt;/font&gt;，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。&lt;/p&gt;</summary>
