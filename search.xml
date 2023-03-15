@@ -1,241 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>在读书籍:《流畅的Python》</title>
-    <url>/posts/15750410/</url>
-    <content><![CDATA[<blockquote>
-<p>持续阅读并更新</p>
-</blockquote>
-<p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
+    <title>文献篇(2)：论文下载</title>
+    <url>/posts/99dce68a/</url>
+    <content><![CDATA[<p>小结个人平时下载文献的流程和几种方式…今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
+<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
 <span id="more"></span>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
+<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
+<ol>
+<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
+<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
+<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
+</ol>
+<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
+<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
+<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
 <blockquote>
-<p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
+<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
+<p>一般前面的操作不行我才会到scihub求助</p>
 </blockquote>
-<p>作者本书强调Python的独有特性，专注于基本库。作者表明尽管Python的包索引已经极多，但是他几乎不会提到标准库以外的任何包。</p>
-<p>赞！因为接触过一段时间的工作会发现三方包的性能方面参差不齐，实际中需要代码优化和加速的场景越来越频繁，而如果能够多调用标准库，充分发挥Python特性，我想应该是可以有助于代码运行效率提高的。</p>
-<h2 id="第一部分-python数据模型"><a class="markdownIt-Anchor" href="#第一部分-python数据模型"></a> 第一部分-Python数据模型</h2>
+<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
+<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
+<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
 <blockquote>
-<p>浅浅介绍一下Python一些<strong>数据类型/类</strong>的底层构造模式</p>
+<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
 </blockquote>
-<p>要点</p>
-<ol>
-<li>Python中的内置类型实现了很多特殊方法（以双下划线开头如<code>__getitem__()</code>），也就是函数，来实现一些比较基本的操作，如：<strong>迭代/循环、属性访问、对象实例创建删除、字符串表示，文件管理(with…)等</strong></li>
-<li>所以当需要使用内置类型实现上述相关功能时，用<strong>内置的方法：速度更快，优先考虑</strong>，如<code>len(x)</code>，若x是一个内置类型如list的实例，那么运行就快，相当于<strong>走后门</strong>。</li>
-<li>下一部分的主要目的就是熟悉和了解Python内置的<strong>数据类型的底层特性及内置方法</strong>：序列（列表、元组）、字典、集合等，特殊用法，从而提高代码的性能</li>
-</ol>
-<h2 id="数据结构序列列表元组"><a class="markdownIt-Anchor" href="#数据结构序列列表元组"></a> 数据结构——序列(列表+元组…)</h2>
-<blockquote>
-<p>第二部分是数据结构，包含三部分</p>
-<p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
-</blockquote>
-<h3 id="list和推导式"><a class="markdownIt-Anchor" href="#list和推导式"></a> list和推导式</h3>
-<ol>
-<li>
-<p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
-</li>
-<li>
-<p>序列分类</p>
-<ol>
-<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)，后者小而快，前者更灵活</li>
-<li>按是否可变（简单理解为自由增删改）分可变和不可变，如<strong>list dict属于可变</strong>，<strong>str tuple不可变</strong></li>
-</ol>
-</li>
-<li>
-<p>list使用要点：</p>
-<ol>
-<li>多使用<strong>列表推导式</strong>，但一般只用于<strong>创建</strong>新列表，一行不能搞定的也不用</li>
-<li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次
-<ul>
-<li>节省内存，避免额外内存消耗，大数据考虑</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-<h3 id="元组tuple及的使用"><a class="markdownIt-Anchor" href="#元组tuple及的使用"></a> 元组tuple及<code>*</code>的使用</h3>
-<ol>
-<li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
-<li>元组拆包的妙用：显式或隐式的都有，很方便，举例：</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 平行复制</span></span><br><span class="line">loc = (<span class="number">33.9</span>, <span class="number">118.5</span>)</span><br><span class="line">lat, lng = loc</span><br><span class="line"><span class="comment"># 函数传参</span></span><br><span class="line">afunc = f(a,b)</span><br><span class="line">z = f(*loc)</span><br><span class="line"><span class="comment"># *处理不确定个数的元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,*b,c,d = <span class="built_in">range</span>(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
-<ol>
-<li>具名元组，可以用来构建：
-<ol>
-<li>带字段的元组。表头？是否可以取代表格数据管理还有待探索hh</li>
-<li>有名字的类</li>
-</ol>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">City = namedtuple(<span class="string">&#x27;City&#x27;</span>, <span class="string">&#x27;name country pop loc&#x27;</span>) <span class="comment">#创建类</span></span><br><span class="line">tolyo = City(<span class="string">&#x27;Tokyo&#x27;</span>,<span class="string">&#x27;JP&#x27;</span>,<span class="number">36.933</span>, (<span class="number">35.7</span>, <span class="number">139.7</span>)) <span class="comment"># 实例化</span></span><br></pre></td></tr></table></figure>
-<h3 id="切片与赋值"><a class="markdownIt-Anchor" href="#切片与赋值"></a> 切片与赋值</h3>
-<blockquote>
-<p>即选取序列中的一段/一部分</p>
-<p>索引从0开始，左闭右开 (a,b]，空表示断点</p>
-</blockquote>
-<ul>
-<li>s[1:5]，选取序列s的第二个到第五个元素</li>
-<li><code>s[a: b:c]</code>，a~b之间以间隔c取值, c值为负数代表倒序取值</li>
-</ul>
-<p>切片赋值时，若左侧为一个切片，右侧应该是可迭代的，即便只有一个值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">alistp[<span class="number">1</span>:<span class="number">5</span>]=[<span class="number">48</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="序列的拼接"><a class="markdownIt-Anchor" href="#序列的拼接"></a> 序列的拼接</h3>
-<p>+和*都是创建一个新的序列：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c = a+b <span class="comment"># &gt;&gt;&gt;[1,2,3,3,4,5]</span></span><br><span class="line">d = a*<span class="number">3</span> <span class="comment"># &gt;&gt;&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]</span></span><br><span class="line">e = <span class="number">5</span>*<span class="string">&#x27;abc&#x27;</span><span class="comment"># &gt;&gt;&gt;&#x27;abcabcabcabcabc&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>+=和*=可用于对可变序列，如列表和字典，其原理是这些类的内部实现了<code>__iadd__或__imul__</code></p>
-<ul>
-<li>对于可变序列使用时，就地改变数据，数据的内存及ID位置不会变</li>
-</ul>
-<h3 id="序列排序"><a class="markdownIt-Anchor" href="#序列排序"></a> 序列排序</h3>
-<p>list.sort()：就地排序,返回None</p>
-<p>sorted()：对可迭代对象排序生成新对象，如列表、元组及生成器都可以</p>
-<ul>
-<li>
-<p>可选参数：reverse(默认是False，升序输出); key 默认是元素本身的值排序，若设置key=str.lower或key=len可以使其忽略大小写或基于长度排序</p>
-</li>
-<li>
-<p>此外，key关键字可以在很多内置函数中使用，如max() min()</p>
-</li>
-</ul>
-<p>当我们需要进行查找和插入元素并<strong>保持序列的顺序不变</strong>时，可使用bisect模块，其使用二分法进行查找和插入，有需要时再检索即可</p>
-<h3 id="处理数值序列-数组array"><a class="markdownIt-Anchor" href="#处理数值序列-数组array"></a> 处理数值序列-数组array</h3>
-<blockquote>
-<p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
-<p>因为数组背后是对数字的机器翻译——字节标段数</p>
-</blockquote>
-<p>使用数组<a href="https://docs.python.org/3/library/array.html">array</a></p>
-<p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点, 更多类型可查看文档</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
-</li>
-<li>
-<p>array的排序可以通过, a = array.array(a.typecode, sorted(a))</p>
-</li>
-</ul>
-<p>标准库之外：值得学习的Numpy和Scipy库，强大的科学计算工具</p>
-<p>Python内部实现了双向队列的类型collections.deque：线程安全、可以快速从两段添加或删除元素的数据类型</p>
-<h2 id="数据结构字典与集合"><a class="markdownIt-Anchor" href="#数据结构字典与集合"></a> 数据结构——字典与集合</h2>
-<h3 id="字典功能结构"><a class="markdownIt-Anchor" href="#字典功能结构"></a> 字典功能结构</h3>
-<h3 id="字典的构造和推导式"><a class="markdownIt-Anchor" href="#字典的构造和推导式"></a> 字典的构造和推导式</h3>
-<h3 id="字典常用方法"><a class="markdownIt-Anchor" href="#字典常用方法"></a> 字典常用方法</h3>
-<h3 id="键找不到时的处理"><a class="markdownIt-Anchor" href="#键找不到时的处理"></a> 键找不到时的处理</h3>
-<p>常规查找：</p>
-<p>my_dict.get(key, defalut)</p>
-<p>更新处理</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict.setdefault(key, []).append(newvalue)</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> my_dict:</span><br><span class="line">    my_dict[key] = []</span><br><span class="line">my_dict[key].append(newvalue) </span><br></pre></td></tr></table></figure>
-<h3 id="自定义字典"><a class="markdownIt-Anchor" href="#自定义字典"></a> 自定义字典</h3>
-<h2 id="little-tips"><a class="markdownIt-Anchor" href="#little-tips"></a> little tips</h2>
-<ol>
-<li>“_”占位符可以用来过滤一些不需要的输出结果</li>
-<li></li>
-</ol>
+<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
+<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
+<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
+<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
+<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
+<p>以上~</p>
 ]]></content>
       <categories>
-        <category>书籍文档学习</category>
+        <category>科研门外汉</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>技术类书籍</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>了解一下中英文字体和分类</title>
-    <url>/posts/44ded5de/</url>
-    <content><![CDATA[<p>字体<a href="https://en.wikipedia.org/wiki/Typeface">Typeface</a>，在撰写文稿、PPT以及制图等等都会有一个字体选择的问题，因此了解一下相关知识。此外，不同语言字体的设计是非常繁琐的过程，尤其是面向中文，有的字体对一些字会有所遗漏。为了使用方便，多数情况下我会选择最常用的那些经典字体即可，如Arial, Calibri, Helvetica, Times New Roman等，本网站用的是Noto Serif SC。</p>
-<span id="more"></span>
-<h2 id="中文字体"><a class="markdownIt-Anchor" href="#中文字体"></a> 中文字体</h2>
-<p>中文没有查到相关的比较好的分类，主要是<strong>宋体、黑体、楷体</strong>及他们的变体。个人常用的字体：<u>宋体、仿宋、华文中宋、微软雅黑、方正字体家族</u></p>
-<ul>
-<li>如果是<strong>印刷</strong>则推荐宋体家族</li>
-<li><strong>屏幕</strong>展示微软雅黑等等</li>
-</ul>
-<h2 id="英文字体"><a class="markdownIt-Anchor" href="#英文字体"></a> 英文字体</h2>
-<blockquote>
-<p>Matplotlib中的<strong>Serif, Sans Serif, Monospace</strong>都是指大类字体，设置具体的字体需要多设置一步指明具体字体</p>
-</blockquote>
-<p>字体大类，每类都包含很多种可选字体，可分为三类：<strong>衬线、非衬线和其他</strong>：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Serif">Serif</a>：衬线体，笔画的末尾有“衬线”，棱角分明一些，似乎对<font color="#dd0000">印刷</font>更为友好，见下图，常用的如
-<ol>
-<li>Adobe Garamond字体，是衬线字体的典范。</li>
-<li>Times New Roman，最初基于Plantin 字体设计的新的更适合报纸排版的字体</li>
-<li>Courier：过去打字机打出来的字体样式</li>
-<li>适合长文阅读的文字：Georgia, Droid Serif, Cambria</li>
-<li>Noto Serif SC：Noto Serif Simplified Chinese简体中文</li>
-</ol>
-</li>
-<li><a href="https://en.wikipedia.org/wiki/Sans-serif">Sans Serif</a>：无衬线体，如
-<ol>
-<li>Arial(等线体)：设计的目的是在电脑屏幕上不同分辨率下的可读性，万能字体，window当前的默认字体</li>
-<li>Calibri：2007年开始取代Times New Roman成为了Microsoft 很多软件的默认字体，当前为Arial</li>
-<li>Helvetica：无衬线字体经典之作！！是世界排名第一的字体，被无数的企业使用作为标准字，也是苹果电脑的御用字体。</li>
-<li>Consolas：代码阅读</li>
-<li>Noto Sans SC：Noto Sans Simplified Chinese简体中文</li>
-<li>适合长文阅读的文字：Lucida Grande、Roboto、Open Sans</li>
-</ol>
-</li>
-<li><a href="https://en.wikipedia.org/wiki/Monospaced_font">Monospace</a>：等宽字体</li>
-<li>其他：Handwriting, Fantasy, <a href="https://en.wikipedia.org/wiki/Cursive">Cursive草书</a></li>
-</ol>
-<img src="/posts/44ded5de/image-20230205164158301.png" class alt="sans">
-<img src="/posts/44ded5de/image-20230205164521485.png" class alt="monospace">
-<h2 id="更多可以参考"><a class="markdownIt-Anchor" href="#更多可以参考"></a> 更多可以参考</h2>
-<ul>
-<li><a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
-<li><a href="https://www.zhihu.com/question/23210530">https://www.zhihu.com/question/23210530</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>暂未分类</category>
-      </categories>
-      <tags>
-        <tag>字体</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>栅格处理(杂)：ArcGIS处理栅格时压缩</title>
-    <url>/posts/7a29f7e7/</url>
-    <content><![CDATA[<p>ArcGIS处理栅格数据时如常用的<mark>栅格裁剪</mark>默认并不会压缩，因此生成文件可能会很大（对比过<a href="https://hscyber.github.io/posts/a9be2430/">压缩</a>的区别），一般需要在工具箱的环境参数里设置数据压缩格式<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>。此外，如果栅格处理会报错，一般需要<strong>关闭并行</strong>。</p>
-<span id="more"></span>
-<h3 id="栅格压缩与并行设置"><a class="markdownIt-Anchor" href="#栅格压缩与并行设置"></a> 栅格压缩与并行设置</h3>
-<p>ArcGIS环境变量设置<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，裁剪栅格举例：Data Management Tools.tbx\Raster\Raster Processing\Clip。</p>
-<img src="/posts/7a29f7e7/image.png" class alt="image">
-<p>如果是ArcPy代码</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line">arcpy.env.parallelProcessingFactor = <span class="string">&quot;0&quot;</span></span><br><span class="line">arcpy.env.compression = <span class="string">&quot;LZW&quot;</span></span><br><span class="line"><span class="comment"># 常用，设置覆盖输出</span></span><br><span class="line">arcpy.env.overwriteOutput = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>ArcGIS</tag>
-        <tag>栅格</tag>
-        <tag>栅格运算报错</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【预】GIS基础(2)：ArcGIS常用工具清单及用途概述</title>
-    <url>/posts/286d5938/</url>
-    <content><![CDATA[<p>ArcGIS是进行空间数据处理分析及制图的常用软件，功能强大。尽管esri截止10.7已停止对其的维护转向ArcGIS Pro，但平时用的还是以ArcGIS为主。在此罗列一下遇到的问题需求及<strong>可用的工具箱ArcToolbox模块</strong>以供查阅。</p>
-<span id="more"></span>
-<p>学习的过程需要循序渐进且持续的，大学时候开始接触的ArcGIS，从陌生到逐渐熟练使用工具，到使用ArcPy批处理，再到现在的转向主Python处理以及QGIS。学习新工具永远在路上…</p>
-<h2 id="相关部件及布局"><a class="markdownIt-Anchor" href="#相关部件及布局"></a> 相关部件及布局</h2>
-<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
-<blockquote>
-<p>待后续填充，建议使用/切换英文版，方便search和检索工具箱，search窗口打开方式【Ctrl+f】</p>
-</blockquote>
-<ol>
-<li>进行缓冲区和最近邻距离分析：Analysis Tools -&gt; Proximity工具箱含Buffer, Near等</li>
-<li>栅格数据分区统计：Spatial Analyst Tools -&gt; Zonal</li>
-<li>…</li>
-</ol>
-]]></content>
-      <categories>
-        <category>GIS基础</category>
-      </categories>
-      <tags>
-        <tag>ArcGIS</tag>
+        <tag>文献</tag>
       </tags>
   </entry>
   <entry>
@@ -424,6 +226,285 @@
       </tags>
   </entry>
   <entry>
+    <title>ChatGPT的热潮引发的一点即兴思考</title>
+    <url>/posts/3dfd2cc1/</url>
+    <content><![CDATA[<p>这是一个之前就想写一写的话题，昨晚Sam发布了GPT-4（之前是3.5），继而又引发了一大波转发。其实，从它最开始到现在，我只在测试的时候用过，所以并未在我个人的工作中体会到它的声势所应有的价值，但我对于它是持一个积极的态度，或者说我对GPT模型的应用有一些<mark>期待</mark>。</p>
+<span id="more"></span>
+<blockquote>
+<p>关于注册，1. 上梯；2. <a href="https://chat.openai.com/auth/login">网站sign up</a>，建议谷歌邮箱；3. <a href="sms-activate.org">此处</a>注册充值1美元，搜索openai，购买虚拟号码（记住选择的国家）； 4. 按流程发送验证码完成注册</p>
+</blockquote>
+<p>这样一个身处热潮中心的“大家伙”，能否同时兼具深度（专业性）和广度，能否切实在一些行业产生持久且颠覆性的改变，不好去预料，尤其是像我这样的大量的还在学校看热闹的<strong>外行</strong>。但从我研究生的角度，我希望它能够给我提供一些<strong>切实的辅助工具</strong>，<font color="#dd0000">比如能让它帮忙查找、帮忙整合、帮忙筛帮忙看、帮忙翻译、帮忙找错帮忙写……我就够满意了</font>【大的改变是不敢奢求也不敢用的，科学研究这种涉及小、专、深、反复的思考是不易代劳的】。</p>
+<h3 id="搜索引擎"><a class="markdownIt-Anchor" href="#搜索引擎"></a> 搜索引擎</h3>
+<p><mark>搜索</mark>本身即是十分重要的技能：一个搜索框和回车键的诞生算是一种<mark>理念</mark>上的革新，而从庞杂的互联网搜索出一系列的结果供人查看 -&gt; 到直接搜索出<strong>一些最佳</strong>的可供参考的答案，我觉得也是一个大的飞跃和进步。</p>
+<ul>
+<li>
+<p><mark>优化搜索效率和结果</mark>，这是很容易想到的点，显然，微软也正在推进这样的事（new bing）。时间的推移和技术的进步，互联网上互联网下都积累了大量的<font color="#dd0000">“知识”和“经验”</font>，各行各业，包括针对科研领域，<strong>入行和入门</strong>需要学习的知识技能只会越来越多，重复的工作和问题也很多，把这些更好更高效地利用起来服务使用者，是很有价值的事情。迄今为止我的学习和进步很多也得益于互联网的资源[Google]。</p>
+</li>
+<li>
+<p>尤其是技术相关的问题，比如写<mark>代码</mark>跑数据，期待进一步优化（Ctrl+C +V的效率）。以前有人说，我平时遇到的99%（绝大部分）的问题，前人可能都已经遇到过且有了解决的方案和经验，但实际中找起答案来不尽人意，以至于消磨了额外的时间甚至是重复“造轮子”，尽管自己折腾的过程也挺有营养，但是能少还是可以少。</p>
+</li>
+</ul>
+<h3 id="文本翻译"><a class="markdownIt-Anchor" href="#文本翻译"></a> 文本翻译</h3>
+<p>不否认学习外语的必要性及其诸多好处，但是还是有很多想要偷懒读写英文论文或材料的时候，所以期待相关翻译工具能够早日达到——差不多改改能够直接出版的专业润色水平。最好是免费的，当然，如果收费便宜点也能接受。</p>
+<ul>
+<li>尚未讨论图像绘画音频相关的东西，但这些方面肯定也是随着文本一同进步的领域。</li>
+</ul>
+<h3 id="错误发现与校正"><a class="markdownIt-Anchor" href="#错误发现与校正"></a> 错误发现与校正</h3>
+<p>期待能够辅助我从大篇幅的文档中、数据中，按照我的要求准确地进行错误提示并给出校正建议，不限于翻译和文体格式调整。小到错别字和标点，大到格式样式调整和各种纠错，很多能想到的平时涉及重复性劳作又容易疏忽的东西，期待逐渐有更好的解决方案。</p>
+<ul>
+<li>此外，关于一条“知识”的正确与否、可信度，包括谣言判别，也需要更好的辅助手段。</li>
+</ul>
+<h3 id="数据知识抽取和整合"><a class="markdownIt-Anchor" href="#数据知识抽取和整合"></a> 数据/知识抽取和整合</h3>
+<p>这有点像知识图谱的构建过程了，网页搜索等很多技术领域背后本身就依托了一个巨大的知识图谱。基于大量的文本（如扫描的书籍、电子书、论文等）来针对一些特定的<mark>主题</mark>或者内容完成知识的抽取、整合及呈现，这也能为一些繁杂的事情节省一点力气。</p>
+<h3 id="让子弹飞一会"><a class="markdownIt-Anchor" href="#让子弹飞一会"></a> 让子弹飞一会</h3>
+<p>……</p>
+]]></content>
+      <categories>
+        <category>机器学习与深度学习</category>
+      </categories>
+      <tags>
+        <tag>chatgpt</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>了解一下中英文字体和分类</title>
+    <url>/posts/44ded5de/</url>
+    <content><![CDATA[<p>字体<a href="https://en.wikipedia.org/wiki/Typeface">Typeface</a>，在撰写文稿、PPT以及制图等等都会有一个字体选择的问题，因此了解一下相关知识。此外，不同语言字体的设计是非常繁琐的过程，尤其是面向中文，有的字体对一些字会有所遗漏。为了使用方便，多数情况下我会选择最常用的那些经典字体即可，如Arial, Calibri, Helvetica, Times New Roman等，本网站用的是Noto Serif SC。</p>
+<span id="more"></span>
+<h2 id="中文字体"><a class="markdownIt-Anchor" href="#中文字体"></a> 中文字体</h2>
+<p>中文没有查到相关的比较好的分类，主要是<strong>宋体、黑体、楷体</strong>及他们的变体。个人常用的字体：<u>宋体、仿宋、华文中宋、微软雅黑、方正字体家族</u></p>
+<ul>
+<li>如果是<strong>印刷</strong>则推荐宋体家族</li>
+<li><strong>屏幕</strong>展示微软雅黑等等</li>
+</ul>
+<h2 id="英文字体"><a class="markdownIt-Anchor" href="#英文字体"></a> 英文字体</h2>
+<blockquote>
+<p>Matplotlib中的<strong>Serif, Sans Serif, Monospace</strong>都是指大类字体，设置具体的字体需要多设置一步指明具体字体</p>
+</blockquote>
+<p>字体大类，每类都包含很多种可选字体，可分为三类：<strong>衬线、非衬线和其他</strong>：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Serif">Serif</a>：衬线体，笔画的末尾有“衬线”，棱角分明一些，似乎对<font color="#dd0000">印刷</font>更为友好，见下图，常用的如
+<ol>
+<li>Adobe Garamond字体，是衬线字体的典范。</li>
+<li>Times New Roman，最初基于Plantin 字体设计的新的更适合报纸排版的字体</li>
+<li>Courier：过去打字机打出来的字体样式</li>
+<li>适合长文阅读的文字：Georgia, Droid Serif, Cambria</li>
+<li>Noto Serif SC：Noto Serif Simplified Chinese简体中文</li>
+</ol>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Sans-serif">Sans Serif</a>：无衬线体，如
+<ol>
+<li>Arial(等线体)：设计的目的是在电脑屏幕上不同分辨率下的可读性，万能字体，window当前的默认字体</li>
+<li>Calibri：2007年开始取代Times New Roman成为了Microsoft 很多软件的默认字体，当前为Arial</li>
+<li>Helvetica：无衬线字体经典之作！！是世界排名第一的字体，被无数的企业使用作为标准字，也是苹果电脑的御用字体。</li>
+<li>Consolas：代码阅读</li>
+<li>Noto Sans SC：Noto Sans Simplified Chinese简体中文</li>
+<li>适合长文阅读的文字：Lucida Grande、Roboto、Open Sans</li>
+</ol>
+</li>
+<li><a href="https://en.wikipedia.org/wiki/Monospaced_font">Monospace</a>：等宽字体</li>
+<li>其他：Handwriting, Fantasy, <a href="https://en.wikipedia.org/wiki/Cursive">Cursive草书</a></li>
+</ol>
+<img src="/posts/44ded5de/image-20230205164158301.png" class alt="sans">
+<img src="/posts/44ded5de/image-20230205164521485.png" class alt="monospace">
+<h2 id="更多可以参考"><a class="markdownIt-Anchor" href="#更多可以参考"></a> 更多可以参考</h2>
+<ul>
+<li><a href="https://fonts.google.com/">https://fonts.google.com/</a></li>
+<li><a href="https://www.zhihu.com/question/23210530">https://www.zhihu.com/question/23210530</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>暂未分类</category>
+      </categories>
+      <tags>
+        <tag>字体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在读书籍:《流畅的Python》</title>
+    <url>/posts/15750410/</url>
+    <content><![CDATA[<blockquote>
+<p>持续阅读并更新</p>
+</blockquote>
+<p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
+<span id="more"></span>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<blockquote>
+<p>Python3官方教程开头是这样写的：”Python是一门既容易上手又强大的编程语言。”这句话本身并无大碍，但正因为它这一特性，很多人都只用到了其强大功能的一小部分…</p>
+</blockquote>
+<p>作者本书强调Python的独有特性，专注于基本库。作者表明尽管Python的包索引已经极多，但是他几乎不会提到标准库以外的任何包。</p>
+<p>赞！因为接触过一段时间的工作会发现三方包的性能方面参差不齐，实际中需要代码优化和加速的场景越来越频繁，而如果能够多调用标准库，充分发挥Python特性，我想应该是可以有助于代码运行效率提高的。</p>
+<h2 id="第一部分-python数据模型"><a class="markdownIt-Anchor" href="#第一部分-python数据模型"></a> 第一部分-Python数据模型</h2>
+<blockquote>
+<p>浅浅介绍一下Python一些<strong>数据类型/类</strong>的底层构造模式</p>
+</blockquote>
+<p>要点</p>
+<ol>
+<li>Python中的内置类型实现了很多特殊方法（以双下划线开头如<code>__getitem__()</code>），也就是函数，来实现一些比较基本的操作，如：<strong>迭代/循环、属性访问、对象实例创建删除、字符串表示，文件管理(with…)等</strong></li>
+<li>所以当需要使用内置类型实现上述相关功能时，用<strong>内置的方法：速度更快，优先考虑</strong>，如<code>len(x)</code>，若x是一个内置类型如list的实例，那么运行就快，相当于<strong>走后门</strong>。</li>
+<li>下一部分的主要目的就是熟悉和了解Python内置的<strong>数据类型的底层特性及内置方法</strong>：序列（列表、元组）、字典、集合等，特殊用法，从而提高代码的性能</li>
+</ol>
+<h2 id="数据结构序列列表元组"><a class="markdownIt-Anchor" href="#数据结构序列列表元组"></a> 数据结构——序列(列表+元组…)</h2>
+<blockquote>
+<p>第二部分是数据结构，包含三部分</p>
+<p>1 序列和数组; 2 字典和集合; 3 文本和字节序列</p>
+</blockquote>
+<h3 id="list和推导式"><a class="markdownIt-Anchor" href="#list和推导式"></a> list和推导式</h3>
+<ol>
+<li>
+<p>序列就是一个能装很多类似数据的可以遍历的数据，比如list可以装很多个元素，string可以有逐字符遍历。</p>
+</li>
+<li>
+<p>序列分类</p>
+<ol>
+<li>按能不能放不同类型的数据分为：容器序列（list tuple…）、扁平序列(str array.array…)，后者小而快，前者更灵活</li>
+<li>按是否可变（简单理解为自由增删改）分可变和不可变，如<strong>list dict属于可变</strong>，<strong>str tuple不可变</strong></li>
+</ol>
+</li>
+<li>
+<p>list使用要点：</p>
+<ol>
+<li>多使用<strong>列表推导式</strong>，但一般只用于<strong>创建</strong>新列表，一行不能搞定的也不用</li>
+<li>生成器-列表推导，将列表推导的[]换成()就得到了生成器，生成器就是动态吐出元素不会直接创建，<strong>元素在调用时再生成</strong>，一次性的，每个只能吐一次
+<ul>
+<li>节省内存，避免额外内存消耗，大数据考虑</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="元组tuple及的使用"><a class="markdownIt-Anchor" href="#元组tuple及的使用"></a> 元组tuple及<code>*</code>的使用</h3>
+<ol>
+<li>元组相当于<strong>一行记录</strong>，同属一个元组的这些数据是隐形绑定的，相当于表格的一行</li>
+<li>元组拆包的妙用：显式或隐式的都有，很方便，举例：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 平行复制</span></span><br><span class="line">loc = (<span class="number">33.9</span>, <span class="number">118.5</span>)</span><br><span class="line">lat, lng = loc</span><br><span class="line"><span class="comment"># 函数传参</span></span><br><span class="line">afunc = f(a,b)</span><br><span class="line">z = f(*loc)</span><br><span class="line"><span class="comment"># *处理不确定个数的元素</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a,*b,c,d = <span class="built_in">range</span>(<span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = [<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<ol>
+<li>具名元组，可以用来构建：
+<ol>
+<li>带字段的元组。表头？是否可以取代表格数据管理还有待探索hh</li>
+<li>有名字的类</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line">City = namedtuple(<span class="string">&#x27;City&#x27;</span>, <span class="string">&#x27;name country pop loc&#x27;</span>) <span class="comment">#创建类</span></span><br><span class="line">tolyo = City(<span class="string">&#x27;Tokyo&#x27;</span>,<span class="string">&#x27;JP&#x27;</span>,<span class="number">36.933</span>, (<span class="number">35.7</span>, <span class="number">139.7</span>)) <span class="comment"># 实例化</span></span><br></pre></td></tr></table></figure>
+<h3 id="切片与赋值"><a class="markdownIt-Anchor" href="#切片与赋值"></a> 切片与赋值</h3>
+<blockquote>
+<p>即选取序列中的一段/一部分</p>
+<p>索引从0开始，左闭右开 (a,b]，空表示断点</p>
+</blockquote>
+<ul>
+<li>s[1:5]，选取序列s的第二个到第五个元素</li>
+<li><code>s[a: b:c]</code>，a~b之间以间隔c取值, c值为负数代表倒序取值</li>
+</ul>
+<p>切片赋值时，若左侧为一个切片，右侧应该是可迭代的，即便只有一个值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">alistp[<span class="number">1</span>:<span class="number">5</span>]=[<span class="number">48</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="序列的拼接"><a class="markdownIt-Anchor" href="#序列的拼接"></a> 序列的拼接</h3>
+<p>+和*都是创建一个新的序列：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">c = a+b <span class="comment"># &gt;&gt;&gt;[1,2,3,3,4,5]</span></span><br><span class="line">d = a*<span class="number">3</span> <span class="comment"># &gt;&gt;&gt;[1, 2, 3, 1, 2, 3, 1, 2, 3]</span></span><br><span class="line">e = <span class="number">5</span>*<span class="string">&#x27;abc&#x27;</span><span class="comment"># &gt;&gt;&gt;&#x27;abcabcabcabcabc&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>+=和*=可用于对可变序列，如列表和字典，其原理是这些类的内部实现了<code>__iadd__或__imul__</code></p>
+<ul>
+<li>对于可变序列使用时，就地改变数据，数据的内存及ID位置不会变</li>
+</ul>
+<h3 id="序列排序"><a class="markdownIt-Anchor" href="#序列排序"></a> 序列排序</h3>
+<p>list.sort()：就地排序,返回None</p>
+<p>sorted()：对可迭代对象排序生成新对象，如列表、元组及生成器都可以</p>
+<ul>
+<li>
+<p>可选参数：reverse(默认是False，升序输出); key 默认是元素本身的值排序，若设置key=str.lower或key=len可以使其忽略大小写或基于长度排序</p>
+</li>
+<li>
+<p>此外，key关键字可以在很多内置函数中使用，如max() min()</p>
+</li>
+</ul>
+<p>当我们需要进行查找和插入元素并<strong>保持序列的顺序不变</strong>时，可使用bisect模块，其使用二分法进行查找和插入，有需要时再检索即可</p>
+<h3 id="处理数值序列-数组array"><a class="markdownIt-Anchor" href="#处理数值序列-数组array"></a> 处理数值序列-数组array</h3>
+<blockquote>
+<p>如果只处理<strong>纯数字</strong>，尤其是比如大量的浮点数，array比list要高效地多</p>
+<p>因为数组背后是对数字的机器翻译——字节标段数</p>
+</blockquote>
+<p>使用数组<a href="https://docs.python.org/3/library/array.html">array</a></p>
+<p>如以下示例生成一个含1000万的浮点数组并写入文件，再读取。会发现写入不到1s，读取约0.1s，文件大小&lt;80mb</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> array <span class="keyword">import</span> array</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> random</span><br><span class="line">floats = array(<span class="string">&#x27;d&#x27;</span>, (random() <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>**<span class="number">7</span>))) <span class="comment">#d代表底层C语言数据类型，浮点, 更多类型可查看文档</span></span><br><span class="line"><span class="comment"># 写入</span></span><br><span class="line">fp = <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">floats.tofile(fp)</span><br><span class="line">fp.close()</span><br><span class="line"><span class="comment"># 读取</span></span><br><span class="line">floats2 = array(<span class="string">&#x27;d&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;test_floats.bin&#x27;</span>,<span class="string">&#x27;rb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    floats2.fromfile(fp, <span class="number">10</span>**<span class="number">7</span>)</span><br><span class="line">floats2==floats</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>此外，<strong>pickle</strong>也是一个快速序列化数字类型的内置模块，同时pickle还可以序列化各种类型的数据</p>
+</li>
+<li>
+<p>array的排序可以通过, a = array.array(a.typecode, sorted(a))</p>
+</li>
+</ul>
+<p>标准库之外：值得学习的Numpy和Scipy库，强大的科学计算工具</p>
+<p>Python内部实现了双向队列的类型collections.deque：线程安全、可以快速从两段添加或删除元素的数据类型</p>
+<h2 id="数据结构字典与集合"><a class="markdownIt-Anchor" href="#数据结构字典与集合"></a> 数据结构——字典与集合</h2>
+<h3 id="字典功能结构"><a class="markdownIt-Anchor" href="#字典功能结构"></a> 字典功能结构</h3>
+<h3 id="字典的构造和推导式"><a class="markdownIt-Anchor" href="#字典的构造和推导式"></a> 字典的构造和推导式</h3>
+<h3 id="字典常用方法"><a class="markdownIt-Anchor" href="#字典常用方法"></a> 字典常用方法</h3>
+<h3 id="键找不到时的处理"><a class="markdownIt-Anchor" href="#键找不到时的处理"></a> 键找不到时的处理</h3>
+<p>常规查找：</p>
+<p>my_dict.get(key, defalut)</p>
+<p>更新处理</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict.setdefault(key, []).append(newvalue)</span><br><span class="line"><span class="comment"># 等价于</span></span><br><span class="line"><span class="keyword">if</span> key <span class="keyword">not</span> <span class="keyword">in</span> my_dict:</span><br><span class="line">    my_dict[key] = []</span><br><span class="line">my_dict[key].append(newvalue) </span><br></pre></td></tr></table></figure>
+<h3 id="自定义字典"><a class="markdownIt-Anchor" href="#自定义字典"></a> 自定义字典</h3>
+<h2 id="little-tips"><a class="markdownIt-Anchor" href="#little-tips"></a> little tips</h2>
+<ol>
+<li>“_”占位符可以用来过滤一些不需要的输出结果</li>
+<li></li>
+</ol>
+]]></content>
+      <categories>
+        <category>书籍文档学习</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>技术类书籍</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>栅格处理(杂)：ArcGIS处理栅格时压缩</title>
+    <url>/posts/7a29f7e7/</url>
+    <content><![CDATA[<p>ArcGIS处理栅格数据时如常用的<mark>栅格裁剪</mark>默认并不会压缩，因此生成文件可能会很大（对比过<a href="https://hscyber.github.io/posts/a9be2430/">压缩</a>的区别），一般需要在工具箱的环境参数里设置数据压缩格式<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>。此外，如果栅格处理会报错，一般需要<strong>关闭并行</strong>。</p>
+<span id="more"></span>
+<h3 id="栅格压缩与并行设置"><a class="markdownIt-Anchor" href="#栅格压缩与并行设置"></a> 栅格压缩与并行设置</h3>
+<p>ArcGIS环境变量设置<a href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，裁剪栅格举例：Data Management Tools.tbx\Raster\Raster Processing\Clip。</p>
+<img src="/posts/7a29f7e7/image.png" class alt="image">
+<p>如果是ArcPy代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line">arcpy.env.parallelProcessingFactor = <span class="string">&quot;0&quot;</span></span><br><span class="line">arcpy.env.compression = <span class="string">&quot;LZW&quot;</span></span><br><span class="line"><span class="comment"># 常用，设置覆盖输出</span></span><br><span class="line">arcpy.env.overwriteOutput = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>ArcGIS</tag>
+        <tag>栅格</tag>
+        <tag>栅格运算报错</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【预】GIS基础(2)：ArcGIS常用工具清单及用途概述</title>
+    <url>/posts/286d5938/</url>
+    <content><![CDATA[<p>ArcGIS是进行空间数据处理分析及制图的常用软件，功能强大。尽管esri截止10.7已停止对其的维护转向ArcGIS Pro，但平时用的还是以ArcGIS为主。在此罗列一下遇到的问题需求及<strong>可用的工具箱ArcToolbox模块</strong>以供查阅。</p>
+<span id="more"></span>
+<p>学习的过程需要循序渐进且持续的，大学时候开始接触的ArcGIS，从陌生到逐渐熟练使用工具，到使用ArcPy批处理，再到现在的转向主Python处理以及QGIS。学习新工具永远在路上…</p>
+<h2 id="相关部件及布局"><a class="markdownIt-Anchor" href="#相关部件及布局"></a> 相关部件及布局</h2>
+<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
+<blockquote>
+<p>待后续填充，建议使用/切换英文版，方便search和检索工具箱，search窗口打开方式【Ctrl+f】</p>
+</blockquote>
+<ol>
+<li>进行缓冲区和最近邻距离分析：Analysis Tools -&gt; Proximity工具箱含Buffer, Near等</li>
+<li>栅格数据分区统计：Spatial Analyst Tools -&gt; Zonal</li>
+<li>…</li>
+</ol>
+]]></content>
+      <categories>
+        <category>GIS基础</category>
+      </categories>
+      <tags>
+        <tag>ArcGIS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>矢栅处理(6)：点矢量提取栅格值extract</title>
     <url>/posts/2f2d96ec/</url>
     <content><![CDATA[<p>基于Python完成，(<strong>批量</strong>)用点矢量来提取栅格数据中的值。数据少也可使用Arcgis中的<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-values-to-points.htm">Extract Values to Points</a>及<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/extract-multi-values-to-points.htm">multi</a>。</p>
@@ -523,8 +604,8 @@
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>Python</tag>
         <tag>R语言</tag>
+        <tag>Python</tag>
         <tag>netCDF4</tag>
         <tag>NC文件</tag>
       </tags>
@@ -558,46 +639,6 @@
         <tag>R语言</tag>
         <tag>GeoTIFF</tag>
         <tag>nc文件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>文献篇(2)：论文下载</title>
-    <url>/posts/99dce68a/</url>
-    <content><![CDATA[<p>小结个人平时下载文献的流程和几种方式…今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<p>1.论文所在官网；2.<a href="https://scholar.google.com/">谷歌学术</a> + <a href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4…</p>
-<span id="more"></span>
-<h2 id="主页"><a class="markdownIt-Anchor" href="#主页"></a> 主页</h2>
-<p>下载文献的目的通常是为了精度或者引用，所以我的习惯是首先应明确论文是否需要下载，这时候一般</p>
-<ol>
-<li>进到论文主页（通过名称或doi直接搜索直达）查看作者及摘要信息等，确定论文是否需要下载</li>
-<li>确定下载后先看能不能通过主页下载，有的期刊本身是开源的或者作者选择了Open，这之后可以直接下，若不行则尝试机构登录</li>
-<li>用科学院的邮箱进行机构登录可以解锁ELSEVIER及很多好期刊的资源，能通过机构下载的优先使用，这样的文章pdf质量也最好,如<a href="https://www.nature.com/articles/s41558-022-01344-2">示例1</a>，<a href="https://doi.org/10.1016/j.compenvurbsys.2022.101777">示例2</a></li>
-</ol>
-<img src="/posts/99dce68a/image-20220609213555174.png" class alt="image-20220609213555174">
-<img src="/posts/99dce68a/image-20220609214043317.png" class alt="image-20220609214043317">
-<h2 id="谷歌学术或scihub"><a class="markdownIt-Anchor" href="#谷歌学术或scihub"></a> 谷歌学术或SciHub</h2>
-<blockquote>
-<p>(<a href="https://scholar.google.com/">Google 学术搜索</a>)<a href="https://sci-hub.se/">Sci-Hub消除科学障碍</a></p>
-<p>一般前面的操作不行我才会到scihub求助</p>
-</blockquote>
-<img src="/posts/99dce68a/image-20220609214239964.png" class alt="image-20220609214239964">
-<img src="/posts/99dce68a/image-20220609214345185.png" class alt="image-20220609214345185">
-<h2 id="researchgate"><a class="markdownIt-Anchor" href="#researchgate"></a> ResearchGate</h2>
-<blockquote>
-<p><a href="https://www.researchgate.net/">https://www.researchgate.net/</a></p>
-</blockquote>
-<p>很多学者都会在这里建立自己的个人建立，并及时添加个分享最新的研究成果，加上平台的学者网络和研究推荐，是个很实用的<strong>学者及论文追踪平台</strong></p>
-<p>这里很多人会把论文的预印本或者发表后的pdf附在成果上，如果没有则可以<strong>请求全文</strong>，基本上有求必应（有点时间长可以尝试发邮件），有人对自己的研究感兴趣，这对于科研人员来说是件非常高兴的事情，如这周我就给两名陌生学者共享了组里的未开源的论文pdf</p>
-<img src="/posts/99dce68a/image-20220609214948366.png" class alt="image-20220609214948366">
-<h2 id="其他"><a class="markdownIt-Anchor" href="#其他"></a> 其他</h2>
-<p>如果还不能找到自己的文献可以求助他人同学，或者给论文作者发邮件</p>
-<p>以上~</p>
-]]></content>
-      <categories>
-        <category>科研门外汉</category>
-      </categories>
-      <tags>
-        <tag>文献</tag>
       </tags>
   </entry>
   <entry>
@@ -659,6 +700,130 @@
         <tag>Python</tag>
         <tag>rasterio</tag>
         <tag>reclass</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矢栅处理(3)：Python读写GeoTIFF文件</title>
+    <url>/posts/f61ccf5/</url>
+    <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+<span id="more"></span>
+<ul>
+<li>关于h5文件和nc文件的读写后续总结</li>
+</ul>
+<h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
+<h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
+<blockquote>
+<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
+</blockquote>
+<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
+<ul>
+<li>像元值，纯数值矩阵numpy ndarray
+<ul>
+<li>矩阵的维度——行列数+波段数</li>
+<li>矩阵的数值及<a href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64
+<ul>
+<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
+<li>float16, float32, float64</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>地理参考/空间位置信息
+<ul>
+<li>空间范围Extent，矩形框四个角的范围</li>
+<li>坐标系：地理坐标系及投影坐标系，如果深究坐标参考系的信息较为丰富</li>
+<li>分辨率，或行列数、空值 Nodata value、图层个数等</li>
+</ul>
+</li>
+<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆=该点的值</li>
+<li><strong><font color="#dd0000">数据读取和处理等中间过程可通过numpy数组完成，涉及空间运算时把位置信息加入生成进行处理即可</font></strong></li>
+</ul>
+<h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
+<blockquote>
+<p>简要版，更多的参数设置查看文档：<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a href="https://gdal.org/index.html">gdal2</a>. 仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
+</blockquote>
+<p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
+<h3 id="rasterio推荐"><a class="markdownIt-Anchor" href="#rasterio推荐"></a> rasterio(推荐)</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
+<blockquote>
+<p>更为底层，前者实际上是基于gdal完成的读写</p>
+<p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
+</blockquote>
+<p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
+<p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
+<p>GDALDataType, 如gdal.GDT_Byte</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">enum GDALDataType</th>
+<th style="text-align:center">对应numpy类型</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GDT_Byte</td>
+<td style="text-align:center">np.uint8</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt16, GDT_Int16</td>
+<td style="text-align:center">np.uint16, np.int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt32, GDT_Int32</td>
+<td style="text-align:center">np.uint32, np.int32</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_UInt64, GDT_Int64</td>
+<td style="text-align:center">np.uint64, np.int64</td>
+<td style="text-align:center">GDAL &gt;= 3.5</td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_Float32， GDT_Float64</td>
+<td style="text-align:center">np.float32, np.float64</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CInt16，GDT_CInt32</td>
+<td style="text-align:center">Complex Int16</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">GDT_CFloat32，GDT_CFloat64</td>
+<td style="text-align:center">Complex Float32</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<p>写出方法1: Create</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
+<p>写出方法2: CreateCopy</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
+<h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
+<p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ol>
+<li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
+<li><a href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
+<li><a href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
+<li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
+<li><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Rasterio</tag>
+        <tag>GeoTIFF</tag>
+        <tag>GDAL</tag>
+        <tag>栅格文件读写</tag>
       </tags>
   </entry>
   <entry>
@@ -881,127 +1046,31 @@
       </tags>
   </entry>
   <entry>
-    <title>矢栅处理(3)：Python读写GeoTIFF文件</title>
-    <url>/posts/f61ccf5/</url>
-    <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
-<ul>
-<li>关于h5文件和nc文件的读写后续总结</li>
-</ul>
-<h2 id="geotiff文件"><a class="markdownIt-Anchor" href="#geotiff文件"></a> GeoTIFF文件</h2>
-<h3 id="文件简介"><a class="markdownIt-Anchor" href="#文件简介"></a> 文件简介</h3>
-<blockquote>
-<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
-</blockquote>
-<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
-<ul>
-<li>像元值，纯数值矩阵numpy ndarray
-<ul>
-<li>矩阵的维度——行列数+波段数</li>
-<li>矩阵的数值及<a href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64
-<ul>
-<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
-<li>float16, float32, float64</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>地理参考/空间位置信息
-<ul>
-<li>空间范围Extent，矩形框四个角的范围</li>
-<li>坐标系：地理坐标系及投影坐标系，如果深究坐标参考系的信息较为丰富</li>
-<li>分辨率，或行列数、空值 Nodata value、图层个数等</li>
-</ul>
-</li>
-<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆=该点的值</li>
-<li><strong><font color="#dd0000">数据读取和处理等中间过程可通过numpy数组完成，涉及空间运算时把位置信息加入生成进行处理即可</font></strong></li>
-</ul>
-<h2 id="文件读写"><a class="markdownIt-Anchor" href="#文件读写"></a> 文件读写</h2>
-<blockquote>
-<p>简要版，更多的参数设置查看文档：<a href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a href="https://gdal.org/index.html">gdal2</a>. 仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
-</blockquote>
-<p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
-<h3 id="rasterio推荐"><a class="markdownIt-Anchor" href="#rasterio推荐"></a> rasterio(推荐)</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="gdal"><a class="markdownIt-Anchor" href="#gdal"></a> gdal</h3>
-<blockquote>
-<p>更为底层，前者实际上是基于gdal完成的读写</p>
-<p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
-</blockquote>
-<p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
-<p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
-<p>GDALDataType, 如gdal.GDT_Byte</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">enum GDALDataType</th>
-<th style="text-align:center">对应numpy类型</th>
-<th style="text-align:center">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">GDT_Byte</td>
-<td style="text-align:center">np.uint8</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt16, GDT_Int16</td>
-<td style="text-align:center">np.uint16, np.int16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt32, GDT_Int32</td>
-<td style="text-align:center">np.uint32, np.int32</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_UInt64, GDT_Int64</td>
-<td style="text-align:center">np.uint64, np.int64</td>
-<td style="text-align:center">GDAL &gt;= 3.5</td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_Float32， GDT_Float64</td>
-<td style="text-align:center">np.float32, np.float64</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_CInt16，GDT_CInt32</td>
-<td style="text-align:center">Complex Int16</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">GDT_CFloat32，GDT_CFloat64</td>
-<td style="text-align:center">Complex Float32</td>
-<td style="text-align:center"></td>
-</tr>
-</tbody>
-</table>
-<p>写出方法1: Create</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
-<p>写出方法2: CreateCopy</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
-<h3 id="matlab"><a class="markdownIt-Anchor" href="#matlab"></a> matlab</h3>
-<p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<ol>
-<li><a href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
-<li><a href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
-<li><a href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
-<li><a href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
-<li><a href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
-</ol>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>时空数据处理分析</category>
+        <category>Tools</category>
       </categories>
       <tags>
-        <tag>Rasterio</tag>
-        <tag>GeoTIFF</tag>
-        <tag>GDAL</tag>
-        <tag>栅格文件读写</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1036,44 +1105,6 @@
       <categories>
         <category>Tools</category>
       </categories>
-  </entry>
-  <entry>
-    <title>ChatGPT的热潮引发的一点即兴思考</title>
-    <url>/posts/3dfd2cc1/</url>
-    <content><![CDATA[<p>这是一个之前就想写一写的话题，昨晚Sam发布了GPT-4（之前是3.5），继而又引发了一大波转发。其实，从它最开始到现在，我只在测试的时候用过，所以并未在我个人的工作中体会到它的声势所应有的价值，但我对于它是持一个积极的态度，或者说我对GPT模型的应用有一些<mark>期待</mark>。</p>
-<span id="more"></span>
-<p>这样一个身处热潮中心的“大家伙”，能否同时兼具深度（专业性）和广度，能否切实在一些行业产生持久且颠覆性的改变，不好去预料，尤其是像我这样的大量的还在学校看热闹的<strong>外行</strong>。但从我研究生的角度，我希望它能够给我提供一些<strong>切实的辅助工具</strong>，<font color="#dd0000">比如能让它帮忙查找、帮忙整合、帮忙筛帮忙看、帮忙翻译、帮忙找错帮忙写……我就够满意了</font>【大的改变是不敢奢求也不敢用的，科学研究这种涉及小、专、深、反复的思考是不易代劳的】。</p>
-<h3 id="搜索引擎"><a class="markdownIt-Anchor" href="#搜索引擎"></a> 搜索引擎</h3>
-<p><mark>搜索</mark>本身即是十分重要的技能：一个搜索框和回车键的诞生算是一种<mark>理念</mark>上的革新，而从庞杂的互联网搜索出一系列的结果供人查看 -&gt; 到直接搜索出<strong>一些最佳</strong>的可供参考的答案，我觉得也是一个大的飞跃和进步。</p>
-<ul>
-<li>
-<p><mark>优化搜索效率和结果</mark>，这是很容易想到的点，显然，微软也正在推进这样的事（new bing）。时间的推移和技术的进步，互联网上互联网下都积累了大量的<font color="#dd0000">“知识”和“经验”</font>，各行各业，包括针对科研领域，<strong>入行和入门</strong>需要学习的知识技能只会越来越多，重复的工作和问题也很多，把这些更好更高效地利用起来服务使用者，是很有价值的事情。迄今为止我的学习和进步很多也得益于互联网的资源[Google]。</p>
-</li>
-<li>
-<p>尤其是技术相关的问题，比如写<mark>代码</mark>跑数据，期待进一步优化（Ctrl+C +V的效率）。以前有人说，我平时遇到的99%（绝大部分）的问题，前人可能都已经遇到过且有了解决的方案和经验，但实际中找起答案来不尽人意，以至于消磨了额外的时间甚至是重复“造轮子”，尽管自己折腾的过程也挺有营养，但是能少还是可以少。</p>
-</li>
-</ul>
-<h3 id="文本翻译"><a class="markdownIt-Anchor" href="#文本翻译"></a> 文本翻译</h3>
-<p>不否认学习外语的必要性及其诸多好处，但是还是有很多想要偷懒读写英文论文或材料的时候，所以期待相关翻译工具能够早日达到——差不多改改能够直接出版的专业润色水平。最好是免费的，当然，如果收费便宜点也能接受。</p>
-<ul>
-<li>尚未讨论图像绘画音频相关的东西，但这些方面肯定也是随着文本一同进步的领域。</li>
-</ul>
-<h3 id="错误发现与校正"><a class="markdownIt-Anchor" href="#错误发现与校正"></a> 错误发现与校正</h3>
-<p>期待能够辅助我从大篇幅的文档中、数据中，按照我的要求准确地进行错误提示并给出校正建议，不限于翻译和文体格式调整。小到错别字和标点，大到格式样式调整和各种纠错，很多能想到的平时涉及重复性劳作又容易疏忽的东西，期待逐渐有更好的解决方案。</p>
-<ul>
-<li>此外，关于一条“知识”的正确与否、可信度，包括谣言判别，也需要更好的辅助手段。</li>
-</ul>
-<h3 id="数据知识抽取和整合"><a class="markdownIt-Anchor" href="#数据知识抽取和整合"></a> 数据/知识抽取和整合</h3>
-<p>这有点像知识图谱的构建过程了，网页搜索等很多技术领域背后本身就依托了一个巨大的知识图谱。基于大量的文本（如扫描的书籍、电子书、论文等）来针对一些特定的<mark>主题</mark>或者内容完成知识的抽取、整合及呈现，这也能为一些繁杂的事情节省一点力气。</p>
-<h3 id="让子弹飞一会"><a class="markdownIt-Anchor" href="#让子弹飞一会"></a> 让子弹飞一会</h3>
-<p>……</p>
-]]></content>
-      <categories>
-        <category>机器学习与深度学习</category>
-      </categories>
-      <tags>
-        <tag>chatgpt</tag>
-      </tags>
   </entry>
   <entry>
     <title>随笔随记-2022/520</title>
@@ -1221,6 +1252,19 @@ Today I know: THIS IS LIFE!</p>
       </categories>
   </entry>
   <entry>
+    <title>生日快乐</title>
+    <url>/posts/42dbb1c3/</url>
+    <content><![CDATA[<p>不知不觉又到了新一年的元旦，又到了该说点什么的时候【转自朋友圈】。</p>
+<span id="more"></span>
+<p>梦幻的2022，已来不及总结，非要定一个关键词，或许是勇气。年初立的flag许下的愿现在也都没有成，虎头蛇尾，似乎年年如此，开始不难，难在坚持。去年没做完的事，一觉醒来也还得接着做，丢不掉的总丢不掉，没有多少事情真的能大手一挥从新开始。<br>
+大了一岁，也只是做了个加减法，放开的2023，依旧无法预料，但确会比去年更值得期待。</p>
+<p>饭间与老师师兄姐聊天，尽管有些已听过多次，还是会感慨生活当真是充满未知和挑战性，还有魅力。希望自己能在平凡的生活和劳动中，继续找寻和创造。当然，要多写文章hh。</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
+  </entry>
+  <entry>
     <title>2022年度总结</title>
     <url>/posts/622a5765/</url>
     <content><![CDATA[<p>临近正式开学，想起从过年前开始写的总结断断续续愣是现在也没写完（返校后直接抛之脑后了属于是），便抽空来此填填坑。<font color="#dd0000">回顾过去一年时间精力的花销很重要，洞察过去才能更好的走好当下和之后的路</font>。</p>
@@ -1254,11 +1298,11 @@ Today I know: THIS IS LIFE!</p>
 <ul>
 <li>认识了很多的新朋友。一是所内的，算是拥抱了一个小团体了，轩轩老朱老蔡还有琳琳邓敏小辛等，在雁栖湖的时候大家都是在一个班，但是因为不在一个宿舍、不同专业等原因接触的不多，加上学业繁忙，不太熟。通过所里这段时间的各种聚餐游玩活动和“共患难”，都很熟络了，每个人都是非常直爽和真诚，愿友谊长存。</li>
 <li>二是通过“摄影”认识了一些摄友。在上半年的时候和家乐师兄聊天，我说我觉得自己的生活过得很沉重很单调，师兄建议我多找同学朋友玩耍聊天，也可以整点爱好，音乐啊什么的，摄影也行，我这相机放在这你可以用，我看你平时就还蛮喜欢拍照的。我一想也是，仔细想了一下，就买了个微单作为记录光影和生活的新工具，当然，它也确实带给了我不少的充实。最开始在知乎加了聪哥一个人，再和韩大哥建了三人的摄友群，从三个人第一次国庆见面到现在群里已经30人了，我也见过了其中10多个朋友，大家相处起来很轻松，看看风景拍拍照片，偶尔给自己拍几张喜欢的照片，非常地愉快。每个人都有闪闪发光的一面啊。</li>
-<li>三是阅读，我不是一个喜欢阅读的人，算是再次强迫自己重拾了读书的习惯，主要是非技术类的。今年买了很多书，看了不少书，有些是重温，大学时候看书好像都没看懂，寒假准备把家里一些书再带过去。即便是光看一些旧的经典书籍，也都是无止境的，所以很多书我都是有兴趣更确切的说是好奇心驱使，或是一些特别的场景或机缘下看到一个书的介绍，触动了我，便买来看看。读书最大的感触是有时会觉得小说什么的也是一个艺术品的创造的过程，美，本身就可以带来一种愉悦。很难说阅读会带给我什么帮助，但是脑子里多了一些故事，多了一些感慨，偶尔也会多一些认识和反思。</li>
+<li>三是阅读，我不是一个多喜欢阅读的人，算是再次强迫自己重拾了读书的习惯，主要是非技术类的。今年买了很多书，看了不少书，有些是重温，大学时候看书好像都没看懂，寒假准备把家里一些书再带过去。即便是光看一些旧的经典书籍，也都是无止境的，所以很多书我都是有兴趣更确切的说是好奇心驱使，或是一些特别的场景或机缘下看到一个书的介绍，触动了我，便买来看看。读书最大的感触是有时会觉得小说什么的也是一个艺术品的创造的过程，美，本身就可以带来一种愉悦。很难说阅读会带给我什么帮助，但是脑子里多了一些故事，多了一些感慨，偶尔也会多一些认识和反思。</li>
 <li>最后想聊聊“艺术”，每次听到好的音乐，会让我心潮澎湃备受鼓舞，觉得这个世界是有意义的，是需要去努力创造和表达的。好的艺术作品，音乐、小说、诗歌、绘画、电影、故事亦或是独特的令人振动的作品，时时能能激起我内心深处的感动，能让我深切地感受到作为生命，生活的意义所在，在于去热爱、去创造、去爱、去充分地表达自我，展现自己独一无二的生命力。或许每个人天生就是有艺术性的，浪漫的，就像王小波写的每个人应该做自己的诗人，就像有画家说真正想绘画是拦不住的……这种表达或许无关外界，也不需要理会外界，就像欧文斯通笔下的梵高与伦勃朗，毛姆笔下的斯特里克兰，苦难与艺术，向往和毫无保留。死亡诗社里有一段话我很喜欢，我们我们读诗写诗，并不是因为它好玩，我们读诗写诗是因为我们是人类的一分子，而人类是充满激情的。没错，医学，法律，商业，工程，这些都是崇高的追求，足以支撑人的一生。但诗歌、美丽、浪漫、爱，这些才是我们生活的意义。</li>
 <li>当然，这或许是有些理想了，囿于世俗和日渐紧密的社会，很多时候还是要接地气才行，需要去做一些有价值的事情。但你若要问及我梦想，我暂且还不清晰，能想到的就是它一定是一些无关名或利的东西。</li>
 <li>然后就是博客和个人私有公众号了，博客到目前为止还是按照自己喜欢且习惯的方式记录着，公号倒是时不时才会写一点，情绪需要控制hh。但有一点我逐渐明确了，我喜欢写，些许享受着将脑中的飘忽不定形成文字。</li>
-<li>最后可能就是运动了。健身/力量训练的学习，算是一个不错的新体验，在天宇的带领下，队伍逐渐壮大，半年多还重了4kg，对于我七八年每变的体重，属实不易；慢跑，5km/周跑持续了两个来月，冬天在园区跑了几次，来年继续坚持吧，过程尽管挺枯燥，但是能够感觉到别样的充实，当然，配速的变化和稳定也是一个鼓励。</li>
+<li>最后可能就是运动了。健身/力量训练的学习，算是一个不错的新体验，在朋友们的带领下，队伍逐渐壮大，半年多还重了3/4kg，对于我七八年每变的体重，属实不易；慢跑，5km/周跑持续了两个来月，冬天在园区跑了几次，来年继续坚持吧，过程尽管挺枯燥，但是能够感觉到别样的充实，当然，配速的变化和稳定也是一个鼓励。</li>
 </ul>
 <h2 id="23新年flags"><a class="markdownIt-Anchor" href="#23新年flags"></a> 23新年flags</h2>
 <blockquote>
@@ -1388,19 +1432,6 @@ Today I know: THIS IS LIFE!</p>
 <li>1月17日，坐上回家的高铁，车子与旁边家人的5岁小女孩嬉笑一路，挥手告别</li>
 <li>1月18日，再度回到老家，准备过春节</li>
 </ol>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>生日快乐</title>
-    <url>/posts/42dbb1c3/</url>
-    <content><![CDATA[<p>不知不觉又到了新一年的元旦，又到了该说点什么的时候【转自朋友圈】。</p>
-<span id="more"></span>
-<p>梦幻的2022，已来不及总结，非要定一个关键词，或许是勇气。年初立的flag许下的愿现在也都没有成，虎头蛇尾，似乎年年如此，开始不难，难在坚持。去年没做完的事，一觉醒来也还得接着做，丢不掉的总丢不掉，没有多少事情真的能大手一挥从新开始。<br>
-大了一岁，也只是做了个加减法，放开的2023，依旧无法预料，但确会比去年更值得期待。</p>
-<p>饭间与老师师兄姐聊天，尽管有些已听过多次，还是会感慨生活当真是充满未知和挑战性，还有魅力。希望自己能在平凡的生活和劳动中，继续找寻和创造。当然，要多写文章hh。</p>
 ]]></content>
       <categories>
         <category>生活漫步</category>
@@ -1734,34 +1765,6 @@ height = 12\times 2.54 = 30.48cm
         <tag>spines</tag>
         <tag>tick_params</tag>
         <tag>set_xticklabels</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command"><a class="markdownIt-Anchor" href="#command"></a> command</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2122,46 +2125,6 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas(杂)：read_csv报错&quot; EOF inside string starting&quot;</title>
-    <url>/posts/a682ffbd/</url>
-    <content><![CDATA[<p>在读取csv文件时（尤其是对于大文件），若一些行有bug，比如文本中出行有多余的分隔号、某一行有错误字符导致READ CSV报错，记录一下解决方案。</p>
-<span id="more"></span>
-<p>最常规的读取大文件并跳过错行（For Pandas &lt; 1.3.0 try error_bad_lines=False）：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">                 on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">                 low_memory=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p>如果还是报错，使用Python解析引擎，但是此时速度会下降，low_memory则默认为C引擎：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">            on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">            engine=<span class="string">&#x27;python&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>参考:</p>
-<ul>
-<li><a href="https://www.shanelynn.ie/pandas-csv-error-error-tokenizing-data-c-error-eof-inside-string-starting-at-line/">EOF inside string starting at line</a>;</li>
-<li><a href="https://stackoverflow.com/questions/18039057/python-pandas-error-tokenizing-data">Pandas Error tokenizing data</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>EOF</tag>
-        <tag>read_csv</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas(杂)：拼接多张表为一张表concat</title>
-    <url>/posts/2178bf2d/</url>
-    <content><![CDATA[<p>将文件夹下的所有相同格式的文本文件csv/txt/xlsx等，<mark>合并或者拼接</mark>为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
-<span id="more"></span>
-<p>函数具体说明可以查看文档 <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat</a>，<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">df.drop_duplicates</a>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入参数</span></span><br><span class="line">indir = <span class="string">r&quot;&quot;</span></span><br><span class="line">outfile = <span class="string">&quot;....csv&quot;</span></span><br><span class="line">filetype = <span class="string">&quot;csv&quot;</span></span><br><span class="line"><span class="comment"># pandas文件遍历及合并</span></span><br><span class="line">files = glob(indir+<span class="string">&quot;\\*.&quot;</span>+filetype)</span><br><span class="line">tables = [] <span class="comment"># 确保文件总大小不会溢出内存，否则需分组处理</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file)</span><br><span class="line">    tables.append(df)</span><br><span class="line"><span class="comment"># 表格拼接及写出,axis=0表示按行拼接</span></span><br><span class="line">result = pd.concat(tables,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># result.drop_duplicates(subset=[&quot;fid&quot;], keep=&#x27;first&#x27;, inplace=True) #去重复列</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 导出可以用excel打开的文件</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8-sig&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">result.to_excel(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他导出选项</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>, sep=<span class="string">&quot;\t&quot;</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>condat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Matplotlib基础(1)：图的组成元素</title>
     <url>/posts/8dfff56a/</url>
     <content><![CDATA[<p><strong>绘图技能</strong>是我一直想要拓展和延伸的一个技能。这一方面需要通过大量的输入来学习别人对图表的设计和呈现，学习色彩、布局等等……另一方面还要能够用代码来实现，而需要基于代码的可视化是一个比较繁琐的内容，需要学习和积累。故在此开始记录自己Python可视化的学习过程，当然，也便于代码的复用。本文主要涉及内容：</p>
@@ -2355,6 +2318,116 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
+    <title>Pandas(杂)：拼接多张表为一张表concat</title>
+    <url>/posts/2178bf2d/</url>
+    <content><![CDATA[<p>将文件夹下的所有相同格式的文本文件csv/txt/xlsx等，<mark>合并或者拼接</mark>为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
+<span id="more"></span>
+<p>函数具体说明可以查看文档 <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat</a>，<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">df.drop_duplicates</a>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入参数</span></span><br><span class="line">indir = <span class="string">r&quot;&quot;</span></span><br><span class="line">outfile = <span class="string">&quot;....csv&quot;</span></span><br><span class="line">filetype = <span class="string">&quot;csv&quot;</span></span><br><span class="line"><span class="comment"># pandas文件遍历及合并</span></span><br><span class="line">files = glob(indir+<span class="string">&quot;\\*.&quot;</span>+filetype)</span><br><span class="line">tables = [] <span class="comment"># 确保文件总大小不会溢出内存，否则需分组处理</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file)</span><br><span class="line">    tables.append(df)</span><br><span class="line"><span class="comment"># 表格拼接及写出,axis=0表示按行拼接</span></span><br><span class="line">result = pd.concat(tables,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># result.drop_duplicates(subset=[&quot;fid&quot;], keep=&#x27;first&#x27;, inplace=True) #去重复列</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 导出可以用excel打开的文件</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8-sig&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">result.to_excel(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他导出选项</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>, sep=<span class="string">&quot;\t&quot;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>condat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(杂)：read_csv报错&quot; EOF inside string starting&quot;</title>
+    <url>/posts/a682ffbd/</url>
+    <content><![CDATA[<p>在读取csv文件时（尤其是对于大文件），若一些行有bug，比如文本中出行有多余的分隔号、某一行有错误字符导致READ CSV报错，记录一下解决方案。</p>
+<span id="more"></span>
+<p>最常规的读取大文件并跳过错行（For Pandas &lt; 1.3.0 try error_bad_lines=False）：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df = pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">                 on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">                 low_memory=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>如果还是报错，使用Python解析引擎，但是此时速度会下降，low_memory则默认为C引擎：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pd.read_csv(file, encoding=<span class="string">&quot;utf-8&quot;</span>, header=<span class="number">0</span>, </span><br><span class="line">            on_bad_lines=<span class="string">&#x27;skip&#x27;</span>,</span><br><span class="line">            engine=<span class="string">&#x27;python&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>参考:</p>
+<ul>
+<li><a href="https://www.shanelynn.ie/pandas-csv-error-error-tokenizing-data-c-error-eof-inside-string-starting-at-line/">EOF inside string starting at line</a>;</li>
+<li><a href="https://stackoverflow.com/questions/18039057/python-pandas-error-tokenizing-data">Pandas Error tokenizing data</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>EOF</tag>
+        <tag>read_csv</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(2)：缺失值即空值na判断及其处理</title>
+    <url>/posts/74993542/</url>
+    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
+<span id="more"></span>
+<h2 id="空值定义"><a class="markdownIt-Anchor" href="#空值定义"></a> 空值定义</h2>
+<blockquote>
+<p>读取dataframe表格输出的控制都显示为“NAN”，但是具体的情况可能存在一些差别</p>
+</blockquote>
+<p>pandas的数值类型基于numpy dtype，因此缺失值/空值也沿用了numpy。一些“<strong>空值</strong>”：</p>
+<ol>
+<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available.</strong>（is None）</li>
+<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>df.isna()/df.isnull/pd.isna(x)/pd.isnull(x)</strong>。</li>
+<li><strong>np.nan</strong>：该值是有值的，占内存，也是一个特殊的浮点数，因此<u>如果导出含NAN的数据会使得该列为浮点型，占用空间增大</u>。<strong>NAN含义为not a number</strong></li>
+<li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
+<li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
+</ol>
+<p>如何<strong>判断</strong>是否为空值：<strong>df.isna(); df.notna();pd.isna(x)</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
+<ul>
+<li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 举例</span></span><br><span class="line"><span class="comment"># 输出某一列为空值的行</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== <span class="literal">None</span>]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== pd.NA]</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isna()]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isnull()]</span><br><span class="line"><span class="comment"># NaT</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]==pd.NaT()]</span><br></pre></td></tr></table></figure>
+<h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
+<p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
+<h3 id="删除行或列dropna"><a class="markdownIt-Anchor" href="#删除行或列dropna"></a> 删除行或列dropna</h3>
+<p>DataFrame.dropna(axis=0, how=[‘any’, ‘all’], thresh, subset=None, inplace=False…)</p>
+<ul>
+<li><strong>axis</strong>=0表示默认删除包含空值的<strong>行</strong></li>
+<li><strong>subset</strong>用于指定某些列</li>
+<li><strong>how</strong>表示是<strong>全部</strong>为None才删除还是<strong>只要存在</strong>None就删除</li>
+<li><strong>thresh</strong>与how不能同时工作，表示<strong>删除多少个</strong></li>
+</ul>
+<p>常用<code>df.dropna(subset=[])</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line"><span class="comment"># 只要存在空值就将列删除</span></span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;any&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="填充fillna"><a class="markdownIt-Anchor" href="#填充fillna"></a> 填充fillna</h3>
+<p>常用的是<code>df.fillna(0)</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df</span><br><span class="line">     A    B   C    D</span><br><span class="line"><span class="number">0</span>  NaN  <span class="number">2.0</span> NaN  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span> NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  NaN NaN  NaN</span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span> NaN  <span class="number">4.0</span></span><br><span class="line"><span class="comment"># 全部填充</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)<span class="comment"># 每一列只填充一次</span></span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  <span class="number">1.0</span>  NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span>  NaN  <span class="number">4.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="插值interpolate"><a class="markdownIt-Anchor" href="#插值interpolate"></a> 插值interpolate</h3>
+<p>关于时间序列的插值可以参阅<a href="https://walkenho.github.io/interpolating-time-series-p1-pandas/">此处</a>，默认为线性插值(method=“linear”)，常用，但默认不会填充第一个空值，需要填充时可以加上<strong>limit_direction</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate()</span><br><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate(limit_direction=‘both’)</span><br><span class="line"><span class="comment"># 所有列进行填充</span></span><br><span class="line">df = df.interpolate(limit_direction=‘both’)</span><br></pre></td></tr></table></figure>
+<p>多项式插值<code>df.interpolate(method='polynomial', order=2)</code></p>
+<h2 id="参考学习"><a class="markdownIt-Anchor" href="#参考学习"></a> 参考学习</h2>
+<ul>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p>
+</li>
+<li>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
+        <tag>dropna</tag>
+        <tag>fillna</tag>
+        <tag>interpolate</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pandas(1)：数据选取/条件筛选小结</title>
     <url>/posts/f9c7a8a1/</url>
     <content><![CDATA[<p>小结一下Pandas <font color="#dd0000">筛选表格数据子集</font>的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的<strong>一部分</strong>，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类,<strong>理论上基于代码我们可以实现任何想得到的处理</strong>：</p>
@@ -2433,76 +2506,6 @@ height = 12\times 2.54 = 30.48cm
       <tags>
         <tag>Pandas</tag>
         <tag>表格数据筛选</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Pandas(2)：缺失值即空值na判断及其处理</title>
-    <url>/posts/74993542/</url>
-    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
-<span id="more"></span>
-<h2 id="空值定义"><a class="markdownIt-Anchor" href="#空值定义"></a> 空值定义</h2>
-<blockquote>
-<p>读取dataframe表格输出的控制都显示为“NAN”，但是具体的情况可能存在一些差别</p>
-</blockquote>
-<p>pandas的数值类型基于numpy dtype，因此缺失值/空值也沿用了numpy。一些“<strong>空值</strong>”：</p>
-<ol>
-<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available.</strong>（is None）</li>
-<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>df.isna()/df.isnull/pd.isna(x)/pd.isnull(x)</strong>。</li>
-<li><strong>np.nan</strong>：该值是有值的，占内存，也是一个特殊的浮点数，因此<u>如果导出含NAN的数据会使得该列为浮点型，占用空间增大</u>。<strong>NAN含义为not a number</strong></li>
-<li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
-<li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
-</ol>
-<p>如何<strong>判断</strong>是否为空值：<strong>df.isna(); df.notna();pd.isna(x)</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
-<ul>
-<li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 举例</span></span><br><span class="line"><span class="comment"># 输出某一列为空值的行</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== <span class="literal">None</span>]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== pd.NA]</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isna()]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isnull()]</span><br><span class="line"><span class="comment"># NaT</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]==pd.NaT()]</span><br></pre></td></tr></table></figure>
-<h2 id="值的处理"><a class="markdownIt-Anchor" href="#值的处理"></a> 值的处理</h2>
-<p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
-<h3 id="删除行或列dropna"><a class="markdownIt-Anchor" href="#删除行或列dropna"></a> 删除行或列dropna</h3>
-<p>DataFrame.dropna(axis=0, how=[‘any’, ‘all’], thresh, subset=None, inplace=False…)</p>
-<ul>
-<li><strong>axis</strong>=0表示默认删除包含空值的<strong>行</strong></li>
-<li><strong>subset</strong>用于指定某些列</li>
-<li><strong>how</strong>表示是<strong>全部</strong>为None才删除还是<strong>只要存在</strong>None就删除</li>
-<li><strong>thresh</strong>与how不能同时工作，表示<strong>删除多少个</strong></li>
-</ul>
-<p>常用<code>df.dropna(subset=[])</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line"><span class="comment"># 只要存在空值就将列删除</span></span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;any&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<h3 id="填充fillna"><a class="markdownIt-Anchor" href="#填充fillna"></a> 填充fillna</h3>
-<p>常用的是<code>df.fillna(0)</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df</span><br><span class="line">     A    B   C    D</span><br><span class="line"><span class="number">0</span>  NaN  <span class="number">2.0</span> NaN  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span> NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  NaN NaN  NaN</span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span> NaN  <span class="number">4.0</span></span><br><span class="line"><span class="comment"># 全部填充</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)<span class="comment"># 每一列只填充一次</span></span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  <span class="number">1.0</span>  NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span>  NaN  <span class="number">4.0</span></span><br></pre></td></tr></table></figure>
-<h3 id="插值interpolate"><a class="markdownIt-Anchor" href="#插值interpolate"></a> 插值interpolate</h3>
-<p>关于时间序列的插值可以参阅<a href="https://walkenho.github.io/interpolating-time-series-p1-pandas/">此处</a>，默认为线性插值(method=“linear”)，常用，但默认不会填充第一个空值，需要填充时可以加上<strong>limit_direction</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate()</span><br><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate(limit_direction=‘both’)</span><br><span class="line"><span class="comment"># 所有列进行填充</span></span><br><span class="line">df = df.interpolate(limit_direction=‘both’)</span><br></pre></td></tr></table></figure>
-<p>多项式插值<code>df.interpolate(method='polynomial', order=2)</code></p>
-<h2 id="参考学习"><a class="markdownIt-Anchor" href="#参考学习"></a> 参考学习</h2>
-<ul>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p>
-</li>
-<li>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Pandas数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Pandas</tag>
-        <tag>dropna</tag>
-        <tag>fillna</tag>
-        <tag>interpolate</tag>
       </tags>
   </entry>
   <entry>
@@ -3165,56 +3168,6 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>论文学习(1)：Generalized Linear Mixed Models</title>
-    <url>/posts/ca790165/</url>
-    <content><![CDATA[<p>近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
-<span id="more"></span>
-<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
-<blockquote>
-<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差/截距</strong>因此不能直接进行建模。</p>
-</blockquote>
-<p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
-<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
-Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
-<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
-<blockquote>
-<p>自行阅读，本文的核心内容都通过图表的形式呈现了，很友好，尤其是一开始的统计相关的一些知识总结。</p>
-</blockquote>
-<h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
-<p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
-<p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
-<img src="/posts/ca790165/f0.png" class>
-<h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
-<blockquote>
-<p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
-</blockquote>
-<img src="/posts/ca790165/f1.png" class>
-<img src="/posts/ca790165/f2.png" class alt="image-20220820145710262">
-<h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
-<p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
-<img src="/posts/ca790165/f3.png" class alt="image-20220820145641791">
-<h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
-<blockquote>
-<p>具体情况具体分析，初步实践可以看一下这个<a href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
-</blockquote>
-<img src="/posts/ca790165/f4.png" class alt="f4">
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<blockquote>
-<p>Bolker另一篇高引用文章(引用52498)，<a href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
-</blockquote>
-<p>Bolker, Benjamin M., et al. “Generalized linear mixed models: a practical guide for ecology and evolution.” <em>Trends in ecology &amp; evolution</em> 24.3 (2009): 127-135.</p>
-<p>Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2015). Fitting Linear Mixed-Effects Models Using lme4. <em>Journal of Statistical Software</em>, <em>67</em>(1), 1–48. <a href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a></p>
-]]></content>
-      <categories>
-        <category>空间分析与统计基础</category>
-      </categories>
-      <tags>
-        <tag>统计</tag>
-        <tag>GLMM</tag>
-        <tag>GLM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>写作篇(2)：第一本英文学术写作指导书</title>
     <url>/posts/6ccbaf0f/</url>
     <content><![CDATA[<p>最近复习下英文写作，资料来自于之前看过的一本小电子书，重读一下记点笔记</p>
@@ -3436,6 +3389,56 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </tags>
   </entry>
   <entry>
+    <title>论文学习(1)：Generalized Linear Mixed Models</title>
+    <url>/posts/ca790165/</url>
+    <content><![CDATA[<p>近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
+<span id="more"></span>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<blockquote>
+<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差/截距</strong>因此不能直接进行建模。</p>
+</blockquote>
+<p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
+<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
+Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
+<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
+<blockquote>
+<p>自行阅读，本文的核心内容都通过图表的形式呈现了，很友好，尤其是一开始的统计相关的一些知识总结。</p>
+</blockquote>
+<h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
+<p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
+<p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
+<img src="/posts/ca790165/f0.png" class>
+<h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
+<blockquote>
+<p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
+</blockquote>
+<img src="/posts/ca790165/f1.png" class>
+<img src="/posts/ca790165/f2.png" class alt="image-20220820145710262">
+<h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
+<p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
+<img src="/posts/ca790165/f3.png" class alt="image-20220820145641791">
+<h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
+<blockquote>
+<p>具体情况具体分析，初步实践可以看一下这个<a href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
+</blockquote>
+<img src="/posts/ca790165/f4.png" class alt="f4">
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<blockquote>
+<p>Bolker另一篇高引用文章(引用52498)，<a href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
+</blockquote>
+<p>Bolker, Benjamin M., et al. “Generalized linear mixed models: a practical guide for ecology and evolution.” <em>Trends in ecology &amp; evolution</em> 24.3 (2009): 127-135.</p>
+<p>Bates, D., Mächler, M., Bolker, B., &amp; Walker, S. (2015). Fitting Linear Mixed-Effects Models Using lme4. <em>Journal of Statistical Software</em>, <em>67</em>(1), 1–48. <a href="https://doi.org/10.18637/jss.v067.i01">https://doi.org/10.18637/jss.v067.i01</a></p>
+]]></content>
+      <categories>
+        <category>空间分析与统计基础</category>
+      </categories>
+      <tags>
+        <tag>统计</tag>
+        <tag>GLMM</tag>
+        <tag>GLM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写作篇(1)：快速提升学术论文写作能力的1313法则</title>
     <url>/posts/81af99e4/</url>
     <content><![CDATA[<p>全文原封不动转载自公众号“学术海豹”,3实际上也可以是更多，听说最初好像是大组的老师提的。</p>
@@ -3562,6 +3565,69 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       </tags>
   </entry>
   <entry>
+    <title>计算机软硬件(杂)：驱动及显卡驱动</title>
+    <url>/posts/f202eaf6/</url>
+    <content><![CDATA[<p>设备<a href="https://en.wikipedia.org/wiki/Device_driver">驱动程序</a>（Device Driver）——<mark>“硬件设备和系统之间的桥梁</mark>”。相当于硬件的接口，操作系统只有通过这个接口控制硬件设备的工作，无需了解所使用硬件的准确细节。PC–&gt;OS–&gt;驱动–&gt;硬件设备。</p>
+<span id="more"></span>
+<h3 id="其他点"><a class="markdownIt-Anchor" href="#其他点"></a> 其他点</h3>
+<ol>
+<li>驱动程序依赖于<strong>硬件</strong>以及特定的操作系统</li>
+<li>通常提供任何必要的异步时间相关硬件接口所需的中断处理。</li>
+<li>由于现代硬件和操作系统的多样性，驱动程序在许多不同的环境中运行。驱动程序可能与
+<ul>
+<li>打印机、扫描仪、网络适配器、网卡、声卡、硬盘等等相关</li>
+</ul>
+</li>
+<li>显卡驱动就是用来<strong>驱动显卡的程序</strong>，它是硬件所对应的软件。</li>
+<li>Free and open-source graphics device driver开源图像驱动
+<ul>
+<li>大多数免费和开源图形设备驱动程序都是由<a href="https://en.wikipedia.org/wiki/Mesa_(computer_graphics)">Mesa开发的</a>项目。驱动程序由<a href="https://en.wikipedia.org/wiki/Compiler">编译器</a>、<a href="https://en.wikipedia.org/wiki/List_of_rendering_APIs">渲染 API</a>和管理图形硬件访问的软件组成。</li>
+<li>驱动程序不开源不利于维护，因此目前多为开源</li>
+<li>AMD 的专有驱动程序AMD Catalyst for their <strong>Radeon</strong>可用于 Microsoft Windows 和 Linux（以前称为 fglrx）</li>
+<li>Nvidia的专有驱动程序Nvidia GeForce driver for GeForce适用于Windows x86 / x86-64、Linux x86/x86-64/ ARM、OS X 10.5及更高版本</li>
+</ul>
+</li>
+</ol>
+<p>因此如果利用GPU进行高效科学计算，需要先配置GPU的驱动及显卡驱动</p>
+]]></content>
+      <categories>
+        <category>计算机软硬件知识</category>
+      </categories>
+      <tags>
+        <tag>驱动</tag>
+        <tag>显卡驱动</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑管理(杂)：笔记本电池不耐用？换电池？</title>
+    <url>/posts/39c4a07/</url>
+    <content><![CDATA[<p>笔记本电脑用久了尤其是游戏本发现电池会很不耐用甚至是不插外接电源都没法工作，这时候可能需要<strong>更换电池</strong>，但换之前先排查一下是不是有<strong>异常耗电</strong>的情况……主要针对<strong>WINDOWS</strong></p>
+<span id="more"></span>
+<p>其次电脑用了几年感觉卡可以花几天时间<strong>重装系统</strong>，尤其是windows，一般都会<strong>越用越臃肿</strong>碎片垃圾累积导致电脑变卡。而且现在装系统都是一键式的很方便，麻烦的是迁移数据而言。我自己就准备趁着中秋重装一下瘦瘦身。当然，给旧电脑升级配置也是一个选项，加内存条换固态是最常用的。</p>
+<p>如果电脑安装了一些杂七杂八的软件，尤其是诸如某某壁纸浏览器之类的，包括360的一些产品，会在电脑里附带一些奇怪的exe，在后台一直运行导致耗电异常。排查</p>
+<ol>
+<li>笔记本设置不接通电源时不关机保持后台运行</li>
+<li>打开电脑任务管理器，查看进程和启动项，大部分自启动的都可以关闭</li>
+<li>关闭显示屏放电，联网，即自然状态让电脑耗尽，看看大概待机多长时间关机</li>
+<li>开机，点击右下角的电池看一下电池设置，查看电池24小时的应用使用情况</li>
+<li>针对耗电量大的exe挨个搜索看看是什么软件</li>
+<li>非系统的软件建议直接清理或者卸载</li>
+<li>非必要的系统<strong>服务</strong>也建议关闭并设置为手动启动</li>
+<li>再充放电一次，查看电脑使用情况</li>
+<li>如果现在待机时间正常且没有异常耗电的应用，那么说明问题已解决</li>
+<li>如果没有异常应用但是待机时间很短，那么可以考虑换个电池，找原装的即可，一般150-300</li>
+</ol>
+<img src="/posts/39c4a07/image-20220911213439135.png" class alt="image-20220911213439135">
+<img src="/posts/39c4a07/image-20220911214328717.png" class alt="image-20220911214328717">
+]]></content>
+      <categories>
+        <category>计算机软硬件知识</category>
+      </categories>
+      <tags>
+        <tag>笔记本电脑</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>计算机软硬件(杂)：GPU与CPU的对比</title>
     <url>/posts/af6efebd/</url>
     <content><![CDATA[<p>初步了解一下GPU和CPU的区别，尤其是GPU为什么能够<strong>加速运算</strong>。</p>
@@ -3626,69 +3692,6 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
       <tags>
         <tag>CPU</tag>
         <tag>GPU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>电脑管理(杂)：笔记本电池不耐用？换电池？</title>
-    <url>/posts/39c4a07/</url>
-    <content><![CDATA[<p>笔记本电脑用久了尤其是游戏本发现电池会很不耐用甚至是不插外接电源都没法工作，这时候可能需要<strong>更换电池</strong>，但换之前先排查一下是不是有<strong>异常耗电</strong>的情况……主要针对<strong>WINDOWS</strong></p>
-<span id="more"></span>
-<p>其次电脑用了几年感觉卡可以花几天时间<strong>重装系统</strong>，尤其是windows，一般都会<strong>越用越臃肿</strong>碎片垃圾累积导致电脑变卡。而且现在装系统都是一键式的很方便，麻烦的是迁移数据而言。我自己就准备趁着中秋重装一下瘦瘦身。当然，给旧电脑升级配置也是一个选项，加内存条换固态是最常用的。</p>
-<p>如果电脑安装了一些杂七杂八的软件，尤其是诸如某某壁纸浏览器之类的，包括360的一些产品，会在电脑里附带一些奇怪的exe，在后台一直运行导致耗电异常。排查</p>
-<ol>
-<li>笔记本设置不接通电源时不关机保持后台运行</li>
-<li>打开电脑任务管理器，查看进程和启动项，大部分自启动的都可以关闭</li>
-<li>关闭显示屏放电，联网，即自然状态让电脑耗尽，看看大概待机多长时间关机</li>
-<li>开机，点击右下角的电池看一下电池设置，查看电池24小时的应用使用情况</li>
-<li>针对耗电量大的exe挨个搜索看看是什么软件</li>
-<li>非系统的软件建议直接清理或者卸载</li>
-<li>非必要的系统<strong>服务</strong>也建议关闭并设置为手动启动</li>
-<li>再充放电一次，查看电脑使用情况</li>
-<li>如果现在待机时间正常且没有异常耗电的应用，那么说明问题已解决</li>
-<li>如果没有异常应用但是待机时间很短，那么可以考虑换个电池，找原装的即可，一般150-300</li>
-</ol>
-<img src="/posts/39c4a07/image-20220911213439135.png" class alt="image-20220911213439135">
-<img src="/posts/39c4a07/image-20220911214328717.png" class alt="image-20220911214328717">
-]]></content>
-      <categories>
-        <category>计算机软硬件知识</category>
-      </categories>
-      <tags>
-        <tag>笔记本电脑</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计算机软硬件(杂)：驱动及显卡驱动</title>
-    <url>/posts/f202eaf6/</url>
-    <content><![CDATA[<p>设备<a href="https://en.wikipedia.org/wiki/Device_driver">驱动程序</a>（Device Driver）——<mark>“硬件设备和系统之间的桥梁</mark>”。相当于硬件的接口，操作系统只有通过这个接口控制硬件设备的工作，无需了解所使用硬件的准确细节。PC–&gt;OS–&gt;驱动–&gt;硬件设备。</p>
-<span id="more"></span>
-<h3 id="其他点"><a class="markdownIt-Anchor" href="#其他点"></a> 其他点</h3>
-<ol>
-<li>驱动程序依赖于<strong>硬件</strong>以及特定的操作系统</li>
-<li>通常提供任何必要的异步时间相关硬件接口所需的中断处理。</li>
-<li>由于现代硬件和操作系统的多样性，驱动程序在许多不同的环境中运行。驱动程序可能与
-<ul>
-<li>打印机、扫描仪、网络适配器、网卡、声卡、硬盘等等相关</li>
-</ul>
-</li>
-<li>显卡驱动就是用来<strong>驱动显卡的程序</strong>，它是硬件所对应的软件。</li>
-<li>Free and open-source graphics device driver开源图像驱动
-<ul>
-<li>大多数免费和开源图形设备驱动程序都是由<a href="https://en.wikipedia.org/wiki/Mesa_(computer_graphics)">Mesa开发的</a>项目。驱动程序由<a href="https://en.wikipedia.org/wiki/Compiler">编译器</a>、<a href="https://en.wikipedia.org/wiki/List_of_rendering_APIs">渲染 API</a>和管理图形硬件访问的软件组成。</li>
-<li>驱动程序不开源不利于维护，因此目前多为开源</li>
-<li>AMD 的专有驱动程序AMD Catalyst for their <strong>Radeon</strong>可用于 Microsoft Windows 和 Linux（以前称为 fglrx）</li>
-<li>Nvidia的专有驱动程序Nvidia GeForce driver for GeForce适用于Windows x86 / x86-64、Linux x86/x86-64/ ARM、OS X 10.5及更高版本</li>
-</ul>
-</li>
-</ol>
-<p>因此如果利用GPU进行高效科学计算，需要先配置GPU的驱动及显卡驱动</p>
-]]></content>
-      <categories>
-        <category>计算机软硬件知识</category>
-      </categories>
-      <tags>
-        <tag>驱动</tag>
-        <tag>显卡驱动</tag>
       </tags>
   </entry>
   <entry>
@@ -4978,57 +4981,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </categories>
   </entry>
   <entry>
-    <title>工具推荐(1)：一些我在用的Chrom插件</title>
-    <url>/posts/efdcabd/</url>
-    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p>
-<span id="more"></span>
-<p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
-<h3 id="插件枚举"><a class="markdownIt-Anchor" href="#插件枚举"></a> 插件枚举</h3>
-<ol>
-<li>
-<p>Google translate：谷歌右键翻译服务</p>
-</li>
-<li>
-<p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
- <img src="/posts/efdcabd/image-20221204123940921.png" class alt="image-20221204123940921">
-</li>
-<li>
-<p>Imagus：鼠标悬停在图片上是可以<mark>放大预览</mark>缩略图，查看更高清的图片(原始分辨率)。</p>
-<ul>
-<li>
-<img src="/posts/efdcabd/image-20221204124504104.png" class alt="image-20221204124504104">
-</li>
-</ul>
-</li>
-<li>
-<p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p>
-</li>
-<li>
-<p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个<mark>小爬虫</mark>，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，<mark>如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处</mark>：</p>
-<ul>
-<li>
-<img src="/posts/efdcabd/image-20221204125413077.png" class alt="image-20221204125413077">
-</li>
-</ul>
-</li>
-<li>
-<p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>Chrom插件</tag>
-        <tag>crxMouse</tag>
-        <tag>Imagus</tag>
-        <tag>SwitchyOmega</tag>
-        <tag>WebScraper</tag>
-        <tag>downloader</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据抓取(1)：Python网络爬虫学习与参考</title>
     <url>/posts/5374e378/</url>
     <content><![CDATA[<p>爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。</p>
@@ -5094,6 +5046,137 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <tag>Python</tag>
         <tag>爬虫</tag>
         <tag>数据抓取</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具推荐(1)：一些我在用的Chrom插件</title>
+    <url>/posts/efdcabd/</url>
+    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p>
+<span id="more"></span>
+<p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
+<h3 id="插件枚举"><a class="markdownIt-Anchor" href="#插件枚举"></a> 插件枚举</h3>
+<ol>
+<li>
+<p>Google translate：谷歌右键翻译服务</p>
+</li>
+<li>
+<p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
+ <img src="/posts/efdcabd/image-20221204123940921.png" class alt="image-20221204123940921">
+</li>
+<li>
+<p>Imagus：鼠标悬停在图片上是可以<mark>放大预览</mark>缩略图，查看更高清的图片(原始分辨率)。</p>
+<ul>
+<li>
+<img src="/posts/efdcabd/image-20221204124504104.png" class alt="image-20221204124504104">
+</li>
+</ul>
+</li>
+<li>
+<p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p>
+</li>
+<li>
+<p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个<mark>小爬虫</mark>，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，<mark>如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处</mark>：</p>
+<ul>
+<li>
+<img src="/posts/efdcabd/image-20221204125413077.png" class alt="image-20221204125413077">
+</li>
+</ul>
+</li>
+<li>
+<p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Chrom插件</tag>
+        <tag>crxMouse</tag>
+        <tag>Imagus</tag>
+        <tag>SwitchyOmega</tag>
+        <tag>WebScraper</tag>
+        <tag>downloader</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>网络相关(1):代理工具Clash的使用及规则代理切换</title>
+    <url>/posts/43ad9f20/</url>
+    <content><![CDATA[<p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
+<span id="more"></span>
+<h2 id="代理简介"><a class="markdownIt-Anchor" href="#代理简介"></a> 代理简介</h2>
+<blockquote>
+<p>不感兴趣可以直接跳转到<strong>clash配置</strong>部分。详细的可以参见<a href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。</p>
+</blockquote>
+<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a href="https://www.google.com/">Google</a>；<a href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的<mark>代理服务器(<mark>如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个</mark>桥梁</mark>的作用，这即是代理服务的作用。如下图，几点说明：</p>
+<ul>
+<li>由于服务器访问很快，所以响应时间基本可以忽略。【当然如果很慢那说明代理不太行hh】</li>
+<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li>
+<li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加快捷隐私。端口默认为7890。</li>
+<li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，
+<ul>
+<li>对于视频电影等持续访问操作则涉及到网站的<strong>会话Session</strong>等知识，暂不展开</li>
+<li><strong>端口Port</strong>是电脑/IP地址之间通讯的地址通道，具体暂不展开</li>
+</ul>
+</li>
+</ul>
+<img src="/posts/43ad9f20/image-20221202000821947.png" class alt="image-20221202000821947">
+<p>有了上述大致认识之后，我们使用和调试网络代理就能够顺手一些。</p>
+<h2 id="clash配置win"><a class="markdownIt-Anchor" href="#clash配置win"></a> clash配置(win)</h2>
+<blockquote>
+<p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg/releases">clash-windows/mac</a>；<a href="https://github.com/Kr328/ClashForAndroid/releases">Clash-Android</a>；<a href="https://github.com/Dreamacro/clash/releases">clash-linux</a>，ios使用Shadowrocket，配置需美区账号。</p>
+</blockquote>
+<p>配置步骤如下：</p>
+<ol>
+<li>下载软件并<font color="#dd0000">解压到文件夹</font>，windows建议放在非C盘</li>
+<li>打开文件夹双击<font color="#dd0000">运行</font>程序clash.exe，右下角可以看到小猫咪,打开</li>
+<li>在<font color="#dd0000">Profiles</font>配置文件界面将订阅链接粘贴到地址栏下载<font color="#dd0000">Download</font>，然后选中刚刚刷新的配置
+<ul>
+<li>常见问题，这里初次更新/下载订阅时一般需要确保clash的系统代理处在<strong>关闭</strong>状态，原理见上。</li>
+</ul>
+</li>
+<li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li>
+<li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li>
+<li>访问网页测试<a href="https://www.google.com/%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%B7%B2%E7%BB%8F%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%AF%95">https://www.google.com/，如果可以访问，已经设置完毕</a></li>
+<li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li>
+</ol>
+<p>操作示意：</p>
+<img src="/posts/43ad9f20/image-20221202003231976.png" class alt="image-20221202003231976">
+<img src="/posts/43ad9f20/image-20221202003619895.png" class alt="image-20221202003619895">
+<img src="/posts/43ad9f20/image-20221202003734064.png" class alt="image-20221202003734064">
+<h2 id="故障排查"><a class="markdownIt-Anchor" href="#故障排查"></a> 故障排查</h2>
+<blockquote>
+<p>如果平台有故障我会及时更新，尽量使用较新的软件</p>
+</blockquote>
+<ol>
+<li>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新，如果依旧无效或失败，</li>
+<li>检查电脑代理设置，设置为自动检测（会自动调整设置），再更新订阅</li>
+<li>缓存或DNS污染等其他问题导致，重开再更新订阅，或者重启</li>
+<li></li>
+</ol>
+<h2 id="浏览器rule设置插件"><a class="markdownIt-Anchor" href="#浏览器rule设置插件"></a> 浏览器Rule设置(插件)</h2>
+<p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事。</p>
+<p>我这里使用的插件为<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>，使用参考步骤</p>
+<ol>
+<li>设置代理的访问情景模式，随意取名，如Clash，设置代理<font color="#dd0000">协议为SOCKS5，代理服务器为127.0.1，代理端口为7890</font>.</li>
+<li>新建自动选择模式，下载规则配置文件，设置规则访问方式，默认为直连，规则为Clash</li>
+<li>平时使用过程中可以在按钮出切换直连（不代理）或系统代理或其他，也可以添加规则，即<font color="#dd0000">发现某个网站内网才能访问或者更快，那我就添加一个规则</font>，同理。</li>
+<li>以上</li>
+</ol>
+<p>界面示意：</p>
+<img src="/posts/43ad9f20/image-20221202004615019.png" class alt="image-20221202004615019">
+<img src="/posts/43ad9f20/image-20221202004702487.png" class alt="image-20221202004702487">
+<p>比如这里我设置地理所官网为直连。</p>
+<img src="/posts/43ad9f20/image-20221202004905135.png" class alt="image-20221202004905135">
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>SwitchyOmega</tag>
+        <tag>Clash</tag>
+        <tag>Proxy</tag>
+        <tag>Tools</tag>
       </tags>
   </entry>
   <entry>
@@ -5197,89 +5280,9 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <category>Tools</category>
       </categories>
       <tags>
+        <tag>Tools</tag>
         <tag>Typora</tag>
         <tag>Markdown</tag>
-        <tag>Tools</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>网络相关(1):代理工具Clash的使用及规则代理切换</title>
-    <url>/posts/43ad9f20/</url>
-    <content><![CDATA[<p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
-<span id="more"></span>
-<h2 id="代理简介"><a class="markdownIt-Anchor" href="#代理简介"></a> 代理简介</h2>
-<blockquote>
-<p>不感兴趣可以直接跳转到<strong>clash配置</strong>部分。详细的可以参见<a href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。</p>
-</blockquote>
-<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a href="https://www.google.com/">Google</a>；<a href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的<mark>代理服务器(<mark>如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个</mark>桥梁</mark>的作用，这即是代理服务的作用。如下图，几点说明：</p>
-<ul>
-<li>由于服务器访问很快，所以响应时间基本可以忽略。【当然如果很慢那说明代理不太行hh】</li>
-<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li>
-<li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加快捷隐私。端口默认为7890。</li>
-<li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，
-<ul>
-<li>对于视频电影等持续访问操作则涉及到网站的<strong>会话Session</strong>等知识，暂不展开</li>
-<li><strong>端口Port</strong>是电脑/IP地址之间通讯的地址通道，具体暂不展开</li>
-</ul>
-</li>
-</ul>
-<img src="/posts/43ad9f20/image-20221202000821947.png" class alt="image-20221202000821947">
-<p>有了上述大致认识之后，我们使用和调试网络代理就能够顺手一些。</p>
-<h2 id="clash配置win"><a class="markdownIt-Anchor" href="#clash配置win"></a> clash配置(win)</h2>
-<blockquote>
-<p>下载链接：<a href="https://github.com/Fndroid/clash_for_windows_pkg/releases">clash-windows/mac</a>；<a href="https://github.com/Kr328/ClashForAndroid/releases">Clash-Android</a>；<a href="https://github.com/Dreamacro/clash/releases">clash-linux</a>，ios使用Shadowrocket，配置需美区账号。</p>
-</blockquote>
-<p>配置步骤如下：</p>
-<ol>
-<li>下载软件并<font color="#dd0000">解压到文件夹</font>，windows建议放在非C盘</li>
-<li>打开文件夹双击<font color="#dd0000">运行</font>程序clash.exe，右下角可以看到小猫咪,打开</li>
-<li>在<font color="#dd0000">Profiles</font>配置文件界面将订阅链接粘贴到地址栏下载<font color="#dd0000">Download</font>，然后选中刚刚刷新的配置
-<ul>
-<li>常见问题，这里初次更新/下载订阅时一般需要确保clash的系统代理处在<strong>关闭</strong>状态，原理见上。</li>
-</ul>
-</li>
-<li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li>
-<li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li>
-<li>访问网页测试<a href="https://www.google.com/%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%B7%B2%E7%BB%8F%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%AF%95">https://www.google.com/，如果可以访问，已经设置完毕</a></li>
-<li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li>
-</ol>
-<p>操作示意：</p>
-<img src="/posts/43ad9f20/image-20221202003231976.png" class alt="image-20221202003231976">
-<img src="/posts/43ad9f20/image-20221202003619895.png" class alt="image-20221202003619895">
-<img src="/posts/43ad9f20/image-20221202003734064.png" class alt="image-20221202003734064">
-<h2 id="故障排查"><a class="markdownIt-Anchor" href="#故障排查"></a> 故障排查</h2>
-<blockquote>
-<p>如果平台有故障我会及时更新，尽量使用较新的软件</p>
-</blockquote>
-<ol>
-<li>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新，如果依旧无效或失败，</li>
-<li>检查电脑代理设置，设置为自动检测（会自动调整设置），再更新订阅</li>
-<li>缓存或DNS污染等其他问题导致，重开再更新订阅，或者重启</li>
-<li></li>
-</ol>
-<h2 id="浏览器rule设置插件"><a class="markdownIt-Anchor" href="#浏览器rule设置插件"></a> 浏览器Rule设置(插件)</h2>
-<p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事。</p>
-<p>我这里使用的插件为<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>，使用参考步骤</p>
-<ol>
-<li>设置代理的访问情景模式，随意取名，如Clash，设置代理<font color="#dd0000">协议为SOCKS5，代理服务器为127.0.1，代理端口为7890</font>.</li>
-<li>新建自动选择模式，下载规则配置文件，设置规则访问方式，默认为直连，规则为Clash</li>
-<li>平时使用过程中可以在按钮出切换直连（不代理）或系统代理或其他，也可以添加规则，即<font color="#dd0000">发现某个网站内网才能访问或者更快，那我就添加一个规则</font>，同理。</li>
-<li>以上</li>
-</ol>
-<p>界面示意：</p>
-<img src="/posts/43ad9f20/image-20221202004615019.png" class alt="image-20221202004615019">
-<img src="/posts/43ad9f20/image-20221202004702487.png" class alt="image-20221202004702487">
-<p>比如这里我设置地理所官网为直连。</p>
-<img src="/posts/43ad9f20/image-20221202004905135.png" class alt="image-20221202004905135">
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>SwitchyOmega</tag>
-        <tag>Tools</tag>
-        <tag>Clash</tag>
-        <tag>Proxy</tag>
       </tags>
   </entry>
   <entry>
@@ -5333,8 +5336,8 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>Typora</tag>
         <tag>Tools</tag>
+        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
@@ -5701,6 +5704,118 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </tags>
   </entry>
   <entry>
+    <title>【研究生新手笔记汇总】</title>
+    <url>/posts/979af058/</url>
+    <content><![CDATA[<center>存放与研究生工作及摸鱼相关度较大的内容...</center>
+<span id="more"></span>
+<h3 id="文献与跟踪"><a class="markdownIt-Anchor" href="#文献与跟踪"></a> 文献与跟踪</h3>
+<p><a href="https://hscyber.github.io/posts/33f7b1b7/">文献篇(1) 论文检索</a></p>
+<p><a href="https://hscyber.github.io/posts/99dce68a/">文献篇(2) 论文下载</a></p>
+<p><a href="https://hscyber.github.io/posts/e8c71149/">文献篇(3) 如何开展研究背景调研和总结？</a></p>
+<p><a href="https://hscyber.github.io/posts/4270937d/">研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</a></p>
+<h3 id="杂"><a class="markdownIt-Anchor" href="#杂"></a> 杂</h3>
+<p><a href="https://hscyber.github.io/posts/81af99e4/">快速提升学术论文写作能力的1313法则</a></p>
+<p><a href="https://hscyber.github.io/posts/9730787a/">数据处理习惯</a></p>
+<h3 id="统计相关"><a class="markdownIt-Anchor" href="#统计相关"></a> 统计相关</h3>
+<p><a href="https://hscyber.github.io/posts/ca790165/">论文学习(1)：Generalized Linear Mixed Models</a></p>
+<p><a href="https://hscyber.github.io/posts/aff1e629/">【预】统计基础(1)：概念学习与理解1</a></p>
+<p><a href="https://hscyber.github.io/posts/5663ac13/">【预】回归建模(2)：变量预览及预处理</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>时间序列(1)：LOESS(STL)时间序列分解</title>
+    <url>/posts/6e05178d/</url>
+    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
+<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
+<span id="more"></span>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+<blockquote>
+<p>时间序列中的”异常”？</p>
+<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
+</blockquote>
+<p>周期：如一个商场的总人口每天24小时的规律变化</p>
+<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
+<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
+<ul>
+<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
+<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
+</ul>
+<p>在异常分析时这是比较常规的方式：</p>
+<ol>
+<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
+<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
+<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
+</ol>
+<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
+<blockquote>
+<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
+</blockquote>
+<blockquote>
+<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
+</blockquote>
+<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
+<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li>
+<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
+</li>
+<li>
+<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>时间序列分解</tag>
+        <tag>statsmodels</tag>
+        <tag>R</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑重装系统Ubuntu22.04.1 LTS记录</title>
+    <url>/posts/2fb61b4d/</url>
+    <content><![CDATA[<p>记录一下旧笔记本重装Ubuntu Desktop22.04.1 LTS的简要过程</p>
+<span id="more"></span>
+<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
+<ol>
+<li>下载<a href="https://rufus.ie/zh/">rufus</a>以及<a href="https://ubuntu.com/download/desktop">ubuntu destop镜像</a>创建启动盘，参数默认即可</li>
+<li>按照<a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">官网教程</a>逐步安装并完成更新，电脑启动项自查，见参考<a href="https://zhuanlan.zhihu.com/p/496107394">知乎</a></li>
+<li>安装vim ，切换系统镜像源为阿里源，备份初始文件再使用vim编辑器操作，清空之前的内容，<code>i</code>复制粘贴内容，再输入<code>=</code>以及<code>:wq</code>保存并退出，然后再<code>sudo apt-get update &amp;&amp; apt-get upgrade</code></li>
+<li>安装搜狗输入法<a href="https://shurufa.sogou.com/linux">下载.deb</a>，后续参考这个<a href="https://www.cnblogs.com/star-another/p/16298866.html">教程</a></li>
+<li>下载配置<a href="https://github.com/Dreamacro/clash/releases">clash for linux</a>以访问谷歌【参考代理教程】</li>
+<li>安装<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>并登陆完成同步</li>
+<li>安装<a href="https://im.qq.com/linuxqq/download.html">腾讯QQ</a>，腾讯<a href="https://meeting.tencent.com/download?mfrom=OfficialIndex_TopBanner1_Download">会议</a></li>
+<li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
+<li>QGIS for ubuntu【可选】</li>
+<li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
+<li>安装Miniconda3并迁移配置之前的环境，基于yml文件</li>
+<li>安装vs code</li>
+<li>安装gotohttp</li>
+<li>……</li>
+</ol>
+<img src="/posts/2fb61b4d/image-20220912223323738.png" class alt="image-20220912223323738">
+<h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
+<ol>
+<li>window上制作启动盘推荐rufus</li>
+<li>vim编辑器的使用可先掌握基本的插入 复制粘贴及保存</li>
+<li>typora激活失败可以选择离线激活</li>
+<li>……</li>
+</ol>
+]]></content>
+      <categories>
+        <category>ubuntu</category>
+      </categories>
+      <tags>
+        <tag>重装系统</tag>
+        <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux系统ubuntu22.04安装qgis</title>
     <url>/posts/ec7147e8/</url>
     <content><![CDATA[<p>记录一下在ubuntu系统上安装qgis的过程，参考<a href="https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu">qgis官方网站</a>及<a href="https://www.youtube.com/watch?v=vbZI1dya6io">youtube</a>。</p>
@@ -5871,118 +5986,6 @@ datetime是基于time包开发的包，datetime可以拆解为date和time两个�
       </categories>
       <tags>
         <tag>wget</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>时间序列(1)：LOESS(STL)时间序列分解</title>
-    <url>/posts/6e05178d/</url>
-    <content><![CDATA[<p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
-<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
-<span id="more"></span>
-<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<blockquote>
-<p>时间序列中的”异常”？</p>
-<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
-</blockquote>
-<p>周期：如一个商场的总人口每天24小时的规律变化</p>
-<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
-<p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
-<ul>
-<li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
-<li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
-</ul>
-<p>在异常分析时这是比较常规的方式：</p>
-<ol>
-<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
-<li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
-<li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
-</ol>
-<h2 id="stl时序分解"><a class="markdownIt-Anchor" href="#stl时序分解"></a> stl时序分解</h2>
-<blockquote>
-<p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
-</blockquote>
-<blockquote>
-<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
-</blockquote>
-<h3 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h3>
-<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
-<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<ul>
-<li>
-<p>预测： 方法与实践: <a href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
-</li>
-<li>
-<p>python statsmodel包:<a href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>时间序列分解</tag>
-        <tag>statsmodels</tag>
-        <tag>R</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【研究生新手笔记汇总】</title>
-    <url>/posts/979af058/</url>
-    <content><![CDATA[<center>存放与研究生工作及摸鱼相关度较大的内容...</center>
-<span id="more"></span>
-<h3 id="文献与跟踪"><a class="markdownIt-Anchor" href="#文献与跟踪"></a> 文献与跟踪</h3>
-<p><a href="https://hscyber.github.io/posts/33f7b1b7/">文献篇(1) 论文检索</a></p>
-<p><a href="https://hscyber.github.io/posts/99dce68a/">文献篇(2) 论文下载</a></p>
-<p><a href="https://hscyber.github.io/posts/e8c71149/">文献篇(3) 如何开展研究背景调研和总结？</a></p>
-<p><a href="https://hscyber.github.io/posts/4270937d/">研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</a></p>
-<h3 id="杂"><a class="markdownIt-Anchor" href="#杂"></a> 杂</h3>
-<p><a href="https://hscyber.github.io/posts/81af99e4/">快速提升学术论文写作能力的1313法则</a></p>
-<p><a href="https://hscyber.github.io/posts/9730787a/">数据处理习惯</a></p>
-<h3 id="统计相关"><a class="markdownIt-Anchor" href="#统计相关"></a> 统计相关</h3>
-<p><a href="https://hscyber.github.io/posts/ca790165/">论文学习(1)：Generalized Linear Mixed Models</a></p>
-<p><a href="https://hscyber.github.io/posts/aff1e629/">【预】统计基础(1)：概念学习与理解1</a></p>
-<p><a href="https://hscyber.github.io/posts/5663ac13/">【预】回归建模(2)：变量预览及预处理</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>电脑重装系统Ubuntu22.04.1 LTS记录</title>
-    <url>/posts/2fb61b4d/</url>
-    <content><![CDATA[<p>记录一下旧笔记本重装Ubuntu Desktop22.04.1 LTS的简要过程</p>
-<span id="more"></span>
-<h3 id="主要步骤"><a class="markdownIt-Anchor" href="#主要步骤"></a> 主要步骤</h3>
-<ol>
-<li>下载<a href="https://rufus.ie/zh/">rufus</a>以及<a href="https://ubuntu.com/download/desktop">ubuntu destop镜像</a>创建启动盘，参数默认即可</li>
-<li>按照<a href="https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview">官网教程</a>逐步安装并完成更新，电脑启动项自查，见参考<a href="https://zhuanlan.zhihu.com/p/496107394">知乎</a></li>
-<li>安装vim ，切换系统镜像源为阿里源，备份初始文件再使用vim编辑器操作，清空之前的内容，<code>i</code>复制粘贴内容，再输入<code>=</code>以及<code>:wq</code>保存并退出，然后再<code>sudo apt-get update &amp;&amp; apt-get upgrade</code></li>
-<li>安装搜狗输入法<a href="https://shurufa.sogou.com/linux">下载.deb</a>，后续参考这个<a href="https://www.cnblogs.com/star-another/p/16298866.html">教程</a></li>
-<li>下载配置<a href="https://github.com/Dreamacro/clash/releases">clash for linux</a>以访问谷歌【参考代理教程】</li>
-<li>安装<a href="https://www.google.com/intl/zh-CN/chrome/">Chrome</a>并登陆完成同步</li>
-<li>安装<a href="https://im.qq.com/linuxqq/download.html">腾讯QQ</a>，腾讯<a href="https://meeting.tencent.com/download?mfrom=OfficialIndex_TopBanner1_Download">会议</a></li>
-<li>Typora安装并激活<a href="https://typora.io/#linux">install</a></li>
-<li>QGIS for ubuntu【可选】</li>
-<li>WPS，ubuntu自带的office可以打开word ppt excel，暂可不安装【可选】</li>
-<li>安装Miniconda3并迁移配置之前的环境，基于yml文件</li>
-<li>安装vs code</li>
-<li>安装gotohttp</li>
-<li>……</li>
-</ol>
-<img src="/posts/2fb61b4d/image-20220912223323738.png" class alt="image-20220912223323738">
-<h3 id="问题记录"><a class="markdownIt-Anchor" href="#问题记录"></a> 问题记录</h3>
-<ol>
-<li>window上制作启动盘推荐rufus</li>
-<li>vim编辑器的使用可先掌握基本的插入 复制粘贴及保存</li>
-<li>typora激活失败可以选择离线激活</li>
-<li>……</li>
-</ol>
-]]></content>
-      <categories>
-        <category>ubuntu</category>
-      </categories>
-      <tags>
-        <tag>重装系统</tag>
-        <tag>ubuntu</tag>
       </tags>
   </entry>
 </search>
