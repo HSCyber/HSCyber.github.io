@@ -301,6 +301,22 @@
       </tags>
   </entry>
   <entry>
+    <title>这周又是一个新的节点</title>
+    <url>/posts/df93ef6f/</url>
+    <content><![CDATA[<p>从1月29返京，到2月3组会+元宵节和老师一起庆祝开工，再到2月9日北京下雪，再到2月16号开学注册，再到今天的组会+课题组聚餐，一个多月的时间过得匆忙但也丰富，当然，也得益于似乎远去的疫情。</p>
+<span id="more"></span>
+<p>到这周忙完了项目申请和一些杂七杂八的活，开始捡起之前的工作继续推进，长舒一口气的同时，生活学习仿佛也跟着舒展开来。就像北京雾霾被春天的清风吹散，在公园大吸一口新鲜空气，也想起有时带着满身疲惫下班，看到惹人留步的西山上耀眼的落日，或是深蓝夜空中西边最亮的那个星，些许治愈。</p>
+<p>研究生第三年的下半年，按照硕士的时间算，今年是毕业的年级。所以我的同级的很多朋友们，包括组里今年毕业的师姐，这段时间也都在忙着盲审稿的准备，截止时间也是这周，我的忙里偷闲摸鱼和他们的忙碌有些格格不入。师兄终于在等待签证出国交流，也看到朋友圈不少朋友顺利收到了所里或者国外的博士offer，由衷地表示祝贺。春天，是个很美好的季节，是播种的季节，也是“收获”的季节，还有免费的阳光，空气和迎面来的风，除了雾霾和扬沙。</p>
+<p>平时聊的最多的，还是本科时候的同学们。熟悉的几个小伙伴们，他们倒是都找好了去处，有留北京的，也有在京外公司的，都还不赖。昨天本科导师北京开会，特地来所里找他的同学吃饭，也特地来看了看我和同级的两个在所里的同学，感觉和陈老师已经好几年没见面了，一起聊了得有半个多小时，很亲切，很怀念。也感慨时间流逝，当时的班上很多同学如今也都是天各一方，有的读研有的工作，有的准备继续读博，有的也还在看，最后都汇成一句话，“都挺好的，哈哈”，生活没那么如意，但也没多糟糕。和陈老师一起来北京的，还有更是“多年”未见的本科室友，只是不知道明天有没有时间和健健完成这历史性的会面。</p>
+<p>还有很多故事想讲，手机里也还留下了很多值得纪念的时刻。和老同学老朋友的短剧闲聊，课题组的聚餐，办公室10多号人的初次聚餐，和实验室学生会同志们的首次饭桌会面，和所里的一众小伙伴们、摄友们的一起听的八卦，讲的笑话……都是以后美好的燃料。</p>
+<p>倘若这寥寥几句就作为一个多月的总结好像过于短了，可一天的会下来-我的眼皮已经在打架了，到了该下班期待明天的时候了，也就到此歇菜了，没说完的话就留在梦里了。</p>
+<p>2023/3/17 22:20</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
+  </entry>
+  <entry>
     <title>栅格处理(杂)：计算多边形内的点数/线长度/面面积</title>
     <url>/posts/e57ebaa5/</url>
     <content><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p>
@@ -3527,11 +3543,11 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
 <p>可以分块读取并保存到本地，当然也可以逐部分进行操作最后再保存。大文件为避免有行错误添加<strong>on_bad_lines=’skip’</strong>（这里的分块chunks实际上应该是生成器）</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">chunksize=<span class="number">3000000</span>  <span class="comment">#设置分块的行数，并筛选列</span></span><br><span class="line">set_cols = [<span class="string">&#x27;_id&#x27;</span>, <span class="string">&#x27;Comment&#x27;</span>, <span class="string">&#x27;Like&#x27;</span>, <span class="string">&#x27;Transfer&#x27;</span>, <span class="string">&#x27;Content&#x27;</span>, <span class="string">&#x27;Co_oridinate1&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Co_oridinate2&#x27;</span>, <span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;ID&#x27;</span>]</span><br><span class="line">chunks = pd.read_csv(geotweets,header=<span class="number">0</span>,chunksize=chunksize,low_memory=<span class="literal">False</span>,</span><br><span class="line">                     usecols=set_cols, on_bad_lines=<span class="string">&#x27;skip&#x27;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">path_res_split = <span class="string">&#x27;F:/weibo2017/Dataset/s1_split_chunks&#x27;</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> chunks:</span><br><span class="line">    outFileName = <span class="string">&#x27;&#123;0&#125;_&#123;1&#125;&#123;2&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;chunk&#x27;</span>, i, <span class="string">&#x27;.csv&#x27;</span>)</span><br><span class="line">    path_outfile = os.path.join(path_res_split, outFileName)</span><br><span class="line">    chunk.to_csv(path_outfile, index=<span class="literal">False</span>)</span><br><span class="line">    i = i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>这里的写出可能会很慢，可以替换成pickle</p>
-<h2 id="写出压缩"><a class="markdownIt-Anchor" href="#写出压缩"></a> 写出压缩</h2>
+<h2 id="写出二进制压缩"><a class="markdownIt-Anchor" href="#写出二进制压缩"></a> 写出二进制/压缩</h2>
 <blockquote>
-<p>尤其是对于中间计算过程的文件或者是仅用作备份的文件，可以写出压缩的pkl，空间更小且读写更快</p>
+<p>尤其是对于中间计算过程的文件或者是仅用作备份的文件，可以写出压缩的pkl（二进制文件），空间更小且读写更快</p>
 </blockquote>
-<p>有个bug是这里得记录下环境中pandas的版本，不同的版本保存的文件读写不一定能兼容</p>
+<p>有个bug是这里得记录下环境中pandas的版本，不同的版本保存的文件读写不一定能兼容。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">chunk.to_pickle(outpklfile,compression=&#123;<span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="string">&#x27;compresslevel&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;mtime&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line">df = pd.read_pickle(outpklfile,compression=&#123;<span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="string">&#x27;compresslevel&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;mtime&#x27;</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="运算加速"><a class="markdownIt-Anchor" href="#运算加速"></a> 运算加速</h2>
 <blockquote>
