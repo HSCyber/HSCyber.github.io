@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-03-17T14:26:00.607Z</updated>
+  <updated>2023-03-23T12:31:44.948Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GIS基础(杂)：自相关/热点/异常分析，Moran&#39;s I和Gets-Ord Gi对比</title>
+    <link href="https://hscyber.github.io/posts/51a1b003/"/>
+    <id>https://hscyber.github.io/posts/51a1b003/</id>
+    <published>2023-03-23T03:07:51.000Z</published>
+    <updated>2023-03-23T12:31:44.948Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>空间自相关强度计算、热点分析与异常值分析</strong>是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的<mark>Moran‘s I</mark>以及<mark>Getis-Ord General G</mark>。</p><span id="more"></span><h2 id="实际使用指南"><a class="markdownIt-Anchor" href="#实际使用指南"></a> 实际使用指南</h2><ol><li>方法的使用有前提假设，具体可以查看-<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/what-is-a-z-score-what-is-a-p-value.htm">参考</a></li><li>使用方法前，一定要明确分析的目标以及对应冷点热点或者聚集区的<mark>物理含义及解释</mark></li><li>需要使用投影坐标系，单位为m或km</li><li>全局的Moran指数和Gets G都只能从整体上推断数据特征的<strong>空间分布</strong>，前者是判断随机还是分散还是聚集，当然，值的大小也可以指示强度；后者是给出高值或低值是否聚集，聚集程度。</li><li>对于距离阈值的判断可以采用遍历的方式寻找阈值，ArcGIS/Pro提供了工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a>，或者也可以使用R语言实现/Spatial Correlograms，此处的阈值也即是观测的尺度。</li><li>采用的是常用的Z-score进行统计显著性检验，因为只涉及单个数值的检验。</li></ol><table><thead><tr><th style="text-align:center">方法</th><th style="text-align:center">尺度</th><th style="text-align:center">用途</th><th style="text-align:center">取值</th></tr></thead><tbody><tr><td style="text-align:center">Moran’s I</td><td style="text-align:center">Global</td><td style="text-align:center">整体上是聚集还是发散，也可以给出程度</td><td style="text-align:center">-1，0，1</td></tr><tr><td style="text-align:center">Getis-Ord Gi</td><td style="text-align:center">Global</td><td style="text-align:center">高低值聚集程度</td><td style="text-align:center">&gt;0</td></tr><tr><td style="text-align:center">Local Moran’s I</td><td style="text-align:center">Local/逐对象</td><td style="text-align:center">高/低值聚类探测，异常值分析</td><td style="text-align:center">HH;LL;HJ;LH;不显著区（5类）</td></tr><tr><td style="text-align:center">Getis-Ord Gi*</td><td style="text-align:center">Local/逐对象</td><td style="text-align:center">高/低值聚集区（热点区域）探测</td><td style="text-align:center">±90 95 99%显著;不显著区（7类）</td></tr></tbody></table><h2 id="global尺度"><a class="markdownIt-Anchor" href="#global尺度"></a> Global尺度</h2><blockquote><p>全局Moran’s I 是在假定均质的情况下给出变量总体自相关程度的统计量</p></blockquote><p>空间自相关(Spatial autocorrelation)，空间自相关用来刻画一个对象与其临近对象的<strong>相似</strong>程度。<font color="#dd0000">Moran’s I是用于推断变量“整体”的聚集程度，是倾向于聚集分布还是随机分布，而General G是判断变量中的“高值或低值”的聚集程度。</font></p><img src="/posts/undefined/image-20230323113652065.png" class alt="image-20230323113652065"><h3 id="morans-i"><a class="markdownIt-Anchor" href="#morans-i"></a> Moran’s I</h3><p>Moran’s I衡量区域 (Global)尺度上某空间随机变量整体自相关的程度，这里比较的对象为<mark>整体的均值</mark></p><ul><li>通俗理解：协方差矩阵为正，代表“同方向变化”，为负则说明领域周围有的大于<strong>整体均值</strong>，有的比均值小。</li><li>Moran’s I 取值范围：[-1, 0, +1]，对应表明：负自相关-随机分布-正自相关，结果<strong>解释</strong>：<ul><li>显著的<mark>正</mark>Z(+1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加<mark>聚集</mark>(正相关)</li><li>显著的<mark>负</mark>Z( -1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加<mark>分散</mark>(负相关)</li></ul></li></ul><img src="/posts/undefined/image-20230323112814561.png" class alt="image-20230323112814561"><h3 id="getis-ord-general-g"><a class="markdownIt-Anchor" href="#getis-ord-general-g"></a> Getis-Ord General G</h3><p>Getis-Ord General G 是衡量区域(Global)尺度上某空间随机变量高值/低值的聚集程度的统计量, a measure of High/Low clustering。General G为正值&gt;0，但对于一个二值(0/1)的wij来说，G取值[0, +1]</p><ul><li>显著的<mark>正</mark>Z(+1.65, 单侧0.05)表明<mark>高值</mark>变量空间分布比期望的随机分布更加聚集</li><li>显著的<mark>负</mark>Z( -1.65, 单侧0.05)表明<mark>低值</mark>变量空间分布比期望的随机分布更加聚集</li></ul><h2 id="local尺度聚类及异常分析"><a class="markdownIt-Anchor" href="#local尺度聚类及异常分析"></a> Local尺度——聚类及异常分析</h2><p>以下两种方式的差异，<a href="https://www.mattpeeples.net/modules/LISA.html">具体可参考</a>。简单来说，局部莫兰指数除了可以进行高低值聚类分析，还可以用于异常值分析，而Getis-Ord Gi* 则主要用于高高值或低低值的聚团发现，如下图我选一个区域，同时在30km的范围内计算二者的值，结果：</p><img src="/posts/undefined/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" class alt="方法对比"><h3 id="local-morans-i"><a class="markdownIt-Anchor" href="#local-morans-i"></a> Local Moran’s I</h3><p>实际上Moran’s I可以拆成n个Moran’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">I_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的相乘，个体单元尺度上的空间自相关程度Local indicators of spatial association (LISA)。即使不存在显著的全局自相关/聚集，局部尺度也可能存在。<strong>对于每个对象</strong>，我们都计算它与周边对象的相似程度（周围的也都是高值还是都是低值，还是有高有低），注意，此处的高低是相对于全局均值而言。</p><p><strong>解释</strong>：</p><ul><li>显著的正Zi(+1.65, 单侧0.05)表明i单元与邻居有相似的值(高-高/低-低)-即聚集(Clusters)</li><li>显著的负Zi( -1.65, 单侧0.05)表明i单元与邻居有相异的值(高-低/低-高)-即异常(Outliers)</li><li>由此可以识别高-高(HH)和低-低(LL)聚集，以及高-低(HL)和低-高(LH)异常</li></ul><h3 id="getis-ord-gi"><a class="markdownIt-Anchor" href="#getis-ord-gi"></a> Getis-Ord Gi*</h3><p>高值对象很重要，但可能不是具有统计意义的热点。要成为统计上显着的热点，一个对象将具高值并且被其他高值对象包围。一个对象及其邻居的<strong>局部总和</strong>与所有对象的<strong>总和</strong>成比例地进行比较；当局部总和与预期的局部总和有很大差异时，并且当该差异太大以至于不是随机机会的结果时，会产生具有统计显着性的z 分数。</p><ul><li>显著正 z 分数，z 分数越大，高值（热点）的聚类就越强烈</li><li>显著负 z 分数，z 分数越小，低值（冷点）的聚类就越强烈。</li></ul><h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2><ul><li>空间统计分析 R 语言 / 马廷编著. ——北京：科学出版社，2022.10</li><li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-spatial-autocorrelation-moran-s-i-spatial-st.htm">全局Moran指数计算及其原理</a></li><li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/cluster-and-outlier-analysis-anselin-local-moran-s.htm">局部Moran指数计算及其原理</a></li><li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a></li><li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/hot-spot-analysis.htm">Gets-G热点分析</a>，<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-hot-spot-analysis-getis-ord-gi-spatial-stati.htm">原理</a></li><li><a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/optimized-hot-spot-analysis.htm">优化-自适应的热点分析</a></li></ul>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;空间自相关强度计算、热点分析与异常值分析&lt;/strong&gt;是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的&lt;mark&gt;Moran‘s I&lt;/mark&gt;以及&lt;mark&gt;Getis-Ord General G&lt;/mark&gt;。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="空间自相关" scheme="https://hscyber.github.io/tags/%E7%A9%BA%E9%97%B4%E8%87%AA%E7%9B%B8%E5%85%B3/"/>
+    
+    <category term="空间热点分析" scheme="https://hscyber.github.io/tags/%E7%A9%BA%E9%97%B4%E7%83%AD%E7%82%B9%E5%88%86%E6%9E%90/"/>
+    
+    <category term="聚类" scheme="https://hscyber.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
+    
+    <category term="异常值" scheme="https://hscyber.github.io/tags/%E5%BC%82%E5%B8%B8%E5%80%BC/"/>
+    
+    <category term="Moran&#39;s I" scheme="https://hscyber.github.io/tags/Moran-s-I/"/>
+    
+    <category term="Getis-Ord Gi" scheme="https://hscyber.github.io/tags/Getis-Ord-Gi/"/>
+    
+  </entry>
   
   <entry>
     <title>这周又是一个新的节点</title>
@@ -424,27 +453,6 @@
     
     
     <category term="论文" scheme="https://hscyber.github.io/tags/%E8%AE%BA%E6%96%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>研究跟踪(2)：GIS专业常见国内外期刊汇总</title>
-    <link href="https://hscyber.github.io/posts/5d5f6e21/"/>
-    <id>https://hscyber.github.io/posts/5d5f6e21/</id>
-    <published>2022-12-09T12:54:00.000Z</published>
-    <updated>2022-12-09T15:59:10.233Z</updated>
-    
-    <content type="html"><![CDATA[<p>综合期刊、地学、GIS和遥感方向的期刊以及交叉学科类期刊罗列。这里基于的是我到目前为止文献阅读过程中接触到的期刊，与我研究领域差的较大的或者我没接触的期刊则不列出。</p><span id="more"></span><blockquote><p>先凭印象大致罗列，后续补充，包括影响因子、分区及内容。</p></blockquote><p><mark>顶刊/子刊</mark>：这部分GIS方向其实很难发，大多是偏自然地理和纯科学的方向更容易发，目前我看的做大数据方向有发的期刊是<font color="#dd0000">Nature Sustainbility, Nature Communications, One Earth, Nature Human Behaviour</font>。</p><ol><li><p>Nature, Science, PNAS</p></li><li><p>Nature Energy, Naure Climate Change, <u>Nature Sustainbility</u>, Nature Reviews Earth &amp; Environment</p></li><li><p>Nature Geoscience, Nature Ecology &amp; Evolution, Nature Human Behaviour, Nature machine intelligence</p></li><li><p><u>Science Advance, Nature Communications, One Earth(Open)</u></p></li><li><p>新刊：Nature Water, Communications Earth &amp; Environment</p></li><li><p>新更名期刊：npj humanities and social sciences communications</p></li></ol><p><mark>地学顶刊(含遥感top)</mark>：</p><ol><li><strong>RSE</strong>, ISPRS Journal of Photogrammetry and Remote Sensing, <strong>TGRS</strong>(IEEE Transactions on Geoscience and Remote Sensing), <strong>JAG</strong>(IJ Applied Earth Observation and Geoinformation)</li><li>Global Environmental Change, Earth’s Future, GRL, Remote Sensing Letters, ERL…</li></ol><p><mark>数据类期刊顶刊</mark>：Scientific Data, ESSD</p><p><mark>GIS专业期刊</mark>：英文大致按分区或者认可度编号</p><ol><li>中文：地理学报、地球信息科学学报、武汉大学学报-信息科学版</li><li>综合性：Science Bulletion</li><li>AAG(Annals of the Association of American Geographers), IJGIS</li><li>TGIS, GIScience &amp; Remote Sensing, IJDE, Geo-spatial Information Science(武大信息学报英文版), Journal of Geographical Sciences(地理学报英文版),</li><li>Geographical Analysis, Cartography and Geographic Information Science, IJGI（三区）</li><li>Geography and Sustainability, Geocarto International, Annals of GIS</li></ol><p><mark>交叉-城市/规划类</mark></p><ol><li>Sustainable Cities and Society, Cities, Landscape and Urban Planning, Land Use Policy</li><li>Computers, Environment and Urban Systems</li><li>Computers in Human Behavior, Computers &amp; Geosciences</li></ol><p><mark>环境/生态/旅游等</mark></p><ol><li>Global Change Biology, Water Research, Frontiers in Ecology and the Environment, Environmental Science &amp; Technology</li><li>JEM, JCP, SOTE,Journal of Environmental Sciences, Ecological Indicators(较多)</li><li>Tourism Management, Tourism Geographies, Current Issues in Tourism</li></ol><p><mark>灾害类</mark></p><ol><li>Weather and Climate Extremes(偏自然)气象类的顶刊很多但我接触很少</li><li>International Journal of Disaster Risk Reduction</li><li>NHESS, Natural Hazards Review, Journal of Disaster Research, Progress in Disaster Science</li></ol>]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;综合期刊、地学、GIS和遥感方向的期刊以及交叉学科类期刊罗列。这里基于的是我到目前为止文献阅读过程中接触到的期刊，与我研究领域差的较大的或者我没接触的期刊则不列出。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="科研门外汉" scheme="https://hscyber.github.io/categories/%E7%A7%91%E7%A0%94%E9%97%A8%E5%A4%96%E6%B1%89/"/>
-    
-    
-    <category term="期刊" scheme="https://hscyber.github.io/tags/%E6%9C%9F%E5%88%8A/"/>
     
   </entry>
   

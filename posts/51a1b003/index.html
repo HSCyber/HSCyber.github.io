@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="4x9nh5naIcZcY5E724zToiyhCRmgrZmrzuUXHkxhkgU">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="空间自相关强度计算、热点分析与异常值分析是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的Moran‘s I以及Getis-Ord General G。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GIS基础(杂)：自相关&#x2F;热点&#x2F;异常分析，Moran&#39;s I和Gets-Ord Gi对比">
+<meta property="og:url" content="https://hscyber.github.io/posts/51a1b003/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="空间自相关强度计算、热点分析与异常值分析是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的Moran‘s I以及Getis-Ord General G。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20230323113652065.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20230323112814561.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png">
+<meta property="article:published_time" content="2023-03-23T03:07:51.000Z">
+<meta property="article:modified_time" content="2023-03-23T12:31:44.948Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="空间自相关">
+<meta property="article:tag" content="空间热点分析">
+<meta property="article:tag" content="聚类">
+<meta property="article:tag" content="异常值">
+<meta property="article:tag" content="Moran&#39;s I">
+<meta property="article:tag" content="Getis-Ord Gi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20230323113652065.png">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/51a1b003/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/51a1b003/","path":"posts/51a1b003/","title":"GIS基础(杂)：自相关/热点/异常分析，Moran's I和Gets-Ord Gi对比"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>GIS基础(杂)：自相关/热点/异常分析，Moran's I和Gets-Ord Gi对比 | Huangs's Notes</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Huangs's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">129</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">102</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text"> 实际使用指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#global%E5%B0%BA%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text"> Global尺度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#morans-i"><span class="nav-number">2.1.</span> <span class="nav-text"> Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getis-ord-general-g"><span class="nav-number">2.2.</span> <span class="nav-text"> Getis-Ord General G</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local%E5%B0%BA%E5%BA%A6%E8%81%9A%E7%B1%BB%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text"> Local尺度——聚类及异常分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#local-morans-i"><span class="nav-number">3.1.</span> <span class="nav-text"> Local Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getis-ord-gi"><span class="nav-number">3.2.</span> <span class="nav-text"> Getis-Ord Gi*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar3.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">102</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1126456109@qq.com" title="E-Mail → 1126456109@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/51a1b003/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar3.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="GIS基础(杂)：自相关/热点/异常分析，Moran's I和Gets-Ord Gi对比 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GIS基础(杂)：自相关/热点/异常分析，Moran's I和Gets-Ord Gi对比
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-23 11:07:51" itemprop="dateCreated datePublished" datetime="2023-03-23T11:07:51+08:00">2023-03-23</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/51a1b003/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/51a1b003/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>空间自相关强度计算、热点分析与异常值分析</strong>是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的<mark>Moran‘s I</mark>以及<mark>Getis-Ord General G</mark>。</p>
+<span id="more"></span>
+<h2 id="实际使用指南"><a class="markdownIt-Anchor" href="#实际使用指南"></a> 实际使用指南</h2>
+<ol>
+<li>方法的使用有前提假设，具体可以查看-<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/what-is-a-z-score-what-is-a-p-value.htm">参考</a></li>
+<li>使用方法前，一定要明确分析的目标以及对应冷点热点或者聚集区的<mark>物理含义及解释</mark></li>
+<li>需要使用投影坐标系，单位为m或km</li>
+<li>全局的Moran指数和Gets G都只能从整体上推断数据特征的<strong>空间分布</strong>，前者是判断随机还是分散还是聚集，当然，值的大小也可以指示强度；后者是给出高值或低值是否聚集，聚集程度。</li>
+<li>对于距离阈值的判断可以采用遍历的方式寻找阈值，ArcGIS/Pro提供了工具<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a>，或者也可以使用R语言实现/Spatial Correlograms，此处的阈值也即是观测的尺度。</li>
+<li>采用的是常用的Z-score进行统计显著性检验，因为只涉及单个数值的检验。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">尺度</th>
+<th style="text-align:center">用途</th>
+<th style="text-align:center">取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Moran’s I</td>
+<td style="text-align:center">Global</td>
+<td style="text-align:center">整体上是聚集还是发散，也可以给出程度</td>
+<td style="text-align:center">-1，0，1</td>
+</tr>
+<tr>
+<td style="text-align:center">Getis-Ord Gi</td>
+<td style="text-align:center">Global</td>
+<td style="text-align:center">高低值聚集程度</td>
+<td style="text-align:center">&gt;0</td>
+</tr>
+<tr>
+<td style="text-align:center">Local Moran’s I</td>
+<td style="text-align:center">Local/逐对象</td>
+<td style="text-align:center">高/低值聚类探测，异常值分析</td>
+<td style="text-align:center">HH;LL;HJ;LH;不显著区（5类）</td>
+</tr>
+<tr>
+<td style="text-align:center">Getis-Ord Gi*</td>
+<td style="text-align:center">Local/逐对象</td>
+<td style="text-align:center">高/低值聚集区（热点区域）探测</td>
+<td style="text-align:center">±90 95 99%显著;不显著区（7类）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="global尺度"><a class="markdownIt-Anchor" href="#global尺度"></a> Global尺度</h2>
+<blockquote>
+<p>全局Moran’s I 是在假定均质的情况下给出变量总体自相关程度的统计量</p>
+</blockquote>
+<p>空间自相关(Spatial autocorrelation)，空间自相关用来刻画一个对象与其临近对象的<strong>相似</strong>程度。<font color="#dd0000">Moran’s I是用于推断变量“整体”的聚集程度，是倾向于聚集分布还是随机分布，而General G是判断变量中的“高值或低值”的聚集程度。</font></p>
+<img src="/posts/undefined/image-20230323113652065.png" class alt="image-20230323113652065">
+<h3 id="morans-i"><a class="markdownIt-Anchor" href="#morans-i"></a> Moran’s I</h3>
+<p>Moran’s I衡量区域 (Global)尺度上某空间随机变量整体自相关的程度，这里比较的对象为<mark>整体的均值</mark></p>
+<ul>
+<li>通俗理解：协方差矩阵为正，代表“同方向变化”，为负则说明领域周围有的大于<strong>整体均值</strong>，有的比均值小。</li>
+<li>Moran’s I 取值范围：[-1, 0, +1]，对应表明：负自相关-随机分布-正自相关，结果<strong>解释</strong>：
+<ul>
+<li>显著的<mark>正</mark>Z(+1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加<mark>聚集</mark>(正相关)</li>
+<li>显著的<mark>负</mark>Z( -1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加<mark>分散</mark>(负相关)</li>
+</ul>
+</li>
+</ul>
+<img src="/posts/undefined/image-20230323112814561.png" class alt="image-20230323112814561">
+<h3 id="getis-ord-general-g"><a class="markdownIt-Anchor" href="#getis-ord-general-g"></a> Getis-Ord General G</h3>
+<p>Getis-Ord General G 是衡量区域(Global)尺度上某空间随机变量高值/低值的聚集程度的统计量, a measure of High/Low clustering。General G为正值&gt;0，但对于一个二值(0/1)的wij来说，G取值[0, +1]</p>
+<ul>
+<li>显著的<mark>正</mark>Z(+1.65, 单侧0.05)表明<mark>高值</mark>变量空间分布比期望的随机分布更加聚集</li>
+<li>显著的<mark>负</mark>Z( -1.65, 单侧0.05)表明<mark>低值</mark>变量空间分布比期望的随机分布更加聚集</li>
+</ul>
+<h2 id="local尺度聚类及异常分析"><a class="markdownIt-Anchor" href="#local尺度聚类及异常分析"></a> Local尺度——聚类及异常分析</h2>
+<p>以下两种方式的差异，<a target="_blank" rel="noopener" href="https://www.mattpeeples.net/modules/LISA.html">具体可参考</a>。简单来说，局部莫兰指数除了可以进行高低值聚类分析，还可以用于异常值分析，而Getis-Ord Gi* 则主要用于高高值或低低值的聚团发现，如下图我选一个区域，同时在30km的范围内计算二者的值，结果：</p>
+<img src="/posts/undefined/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" class alt="方法对比">
+<h3 id="local-morans-i"><a class="markdownIt-Anchor" href="#local-morans-i"></a> Local Moran’s I</h3>
+<p>实际上Moran’s I可以拆成n个Moran’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">I_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的相乘，个体单元尺度上的空间自相关程度Local indicators of spatial association (LISA)。即使不存在显著的全局自相关/聚集，局部尺度也可能存在。<strong>对于每个对象</strong>，我们都计算它与周边对象的相似程度（周围的也都是高值还是都是低值，还是有高有低），注意，此处的高低是相对于全局均值而言。</p>
+<p><strong>解释</strong>：</p>
+<ul>
+<li>显著的正Zi(+1.65, 单侧0.05)表明i单元与邻居有相似的值(高-高/低-低)-即聚集(Clusters)</li>
+<li>显著的负Zi( -1.65, 单侧0.05)表明i单元与邻居有相异的值(高-低/低-高)-即异常(Outliers)</li>
+<li>由此可以识别高-高(HH)和低-低(LL)聚集，以及高-低(HL)和低-高(LH)异常</li>
+</ul>
+<h3 id="getis-ord-gi"><a class="markdownIt-Anchor" href="#getis-ord-gi"></a> Getis-Ord Gi*</h3>
+<p>高值对象很重要，但可能不是具有统计意义的热点。要成为统计上显着的热点，一个对象将具高值并且被其他高值对象包围。一个对象及其邻居的<strong>局部总和</strong>与所有对象的<strong>总和</strong>成比例地进行比较；当局部总和与预期的局部总和有很大差异时，并且当该差异太大以至于不是随机机会的结果时，会产生具有统计显着性的z 分数。</p>
+<ul>
+<li>显著正 z 分数，z 分数越大，高值（热点）的聚类就越强烈</li>
+<li>显著负 z 分数，z 分数越小，低值（冷点）的聚类就越强烈。</li>
+</ul>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<ul>
+<li>空间统计分析 R 语言 / 马廷编著. ——北京：科学出版社，2022.10</li>
+<li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-spatial-autocorrelation-moran-s-i-spatial-st.htm">全局Moran指数计算及其原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/cluster-and-outlier-analysis-anselin-local-moran-s.htm">局部Moran指数计算及其原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a></li>
+<li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/hot-spot-analysis.htm">Gets-G热点分析</a>，<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-hot-spot-analysis-getis-ord-gi-spatial-stati.htm">原理</a></li>
+<li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/optimized-hot-spot-analysis.htm">优化-自适应的热点分析</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/51a1b003/" title="GIS基础(杂)：自相关&#x2F;热点&#x2F;异常分析，Moran&#39;s I和Gets-Ord Gi对比">https://hscyber.github.io/posts/51a1b003/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E7%A9%BA%E9%97%B4%E8%87%AA%E7%9B%B8%E5%85%B3/" rel="tag"><i class="fa fa-tag"></i> 空间自相关</a>
+              <a href="/tags/%E7%A9%BA%E9%97%B4%E7%83%AD%E7%82%B9%E5%88%86%E6%9E%90/" rel="tag"><i class="fa fa-tag"></i> 空间热点分析</a>
+              <a href="/tags/%E8%81%9A%E7%B1%BB/" rel="tag"><i class="fa fa-tag"></i> 聚类</a>
+              <a href="/tags/%E5%BC%82%E5%B8%B8%E5%80%BC/" rel="tag"><i class="fa fa-tag"></i> 异常值</a>
+              <a href="/tags/Moran-s-I/" rel="tag"><i class="fa fa-tag"></i> Moran's I</a>
+              <a href="/tags/Getis-Ord-Gi/" rel="tag"><i class="fa fa-tag"></i> Getis-Ord Gi</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/df93ef6f/" rel="prev" title="这周又是一个新的节点">
+                  <i class="fa fa-chevron-left"></i> 这周又是一个新的节点
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">210k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:11</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css" integrity="sha256-94CNZ/bJtwrBYZrXhCOBvpB4rZUzBnvAsirFv31TMGo=" crossorigin="anonymous">
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/51a1b003/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"en","enable":true,"serverURL":"https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"locale":{"placeholder":"Please use international networks. 评论功能大陆网屏蔽"},"avatar":"mm","meta":["nick","mail"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/51a1b003/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
