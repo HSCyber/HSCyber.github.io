@@ -33,11 +33,11 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="空间自相关强度计算、热点分析与异常值分析是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的Moran‘s I以及Getis-Ord General G。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20230323113652065.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20230323112814561.png">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/51a1b003/image-20230323113652065.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/51a1b003/image-20230323112814561.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/51a1b003/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png">
 <meta property="article:published_time" content="2023-03-23T03:07:51.000Z">
-<meta property="article:modified_time" content="2023-03-23T12:31:44.948Z">
+<meta property="article:modified_time" content="2023-03-23T13:34:39.887Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="空间自相关">
 <meta property="article:tag" content="空间热点分析">
@@ -46,7 +46,7 @@
 <meta property="article:tag" content="Moran&#39;s I">
 <meta property="article:tag" content="Getis-Ord Gi">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20230323113652065.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/51a1b003/image-20230323113652065.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/51a1b003/">
@@ -377,7 +377,7 @@
 <p>全局Moran’s I 是在假定均质的情况下给出变量总体自相关程度的统计量</p>
 </blockquote>
 <p>空间自相关(Spatial autocorrelation)，空间自相关用来刻画一个对象与其临近对象的<strong>相似</strong>程度。<font color="#dd0000">Moran’s I是用于推断变量“整体”的聚集程度，是倾向于聚集分布还是随机分布，而General G是判断变量中的“高值或低值”的聚集程度。</font></p>
-<img src="/posts/undefined/image-20230323113652065.png" class alt="image-20230323113652065">
+<img src="/posts/51a1b003/image-20230323113652065.png" class alt="image-20230323113652065">
 <h3 id="morans-i"><a class="markdownIt-Anchor" href="#morans-i"></a> Moran’s I</h3>
 <p>Moran’s I衡量区域 (Global)尺度上某空间随机变量整体自相关的程度，这里比较的对象为<mark>整体的均值</mark></p>
 <ul>
@@ -389,7 +389,7 @@
 </ul>
 </li>
 </ul>
-<img src="/posts/undefined/image-20230323112814561.png" class alt="image-20230323112814561">
+<img src="/posts/51a1b003/image-20230323112814561.png" class alt="image-20230323112814561">
 <h3 id="getis-ord-general-g"><a class="markdownIt-Anchor" href="#getis-ord-general-g"></a> Getis-Ord General G</h3>
 <p>Getis-Ord General G 是衡量区域(Global)尺度上某空间随机变量高值/低值的聚集程度的统计量, a measure of High/Low clustering。General G为正值&gt;0，但对于一个二值(0/1)的wij来说，G取值[0, +1]</p>
 <ul>
@@ -398,7 +398,7 @@
 </ul>
 <h2 id="local尺度聚类及异常分析"><a class="markdownIt-Anchor" href="#local尺度聚类及异常分析"></a> Local尺度——聚类及异常分析</h2>
 <p>以下两种方式的差异，<a target="_blank" rel="noopener" href="https://www.mattpeeples.net/modules/LISA.html">具体可参考</a>。简单来说，局部莫兰指数除了可以进行高低值聚类分析，还可以用于异常值分析，而Getis-Ord Gi* 则主要用于高高值或低低值的聚团发现，如下图我选一个区域，同时在30km的范围内计算二者的值，结果：</p>
-<img src="/posts/undefined/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" class alt="方法对比">
+<img src="/posts/51a1b003/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" class alt="方法对比">
 <h3 id="local-morans-i"><a class="markdownIt-Anchor" href="#local-morans-i"></a> Local Moran’s I</h3>
 <p>实际上Moran’s I可以拆成n个Moran’s <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">I_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的相乘，个体单元尺度上的空间自相关程度Local indicators of spatial association (LISA)。即使不存在显著的全局自相关/聚集，局部尺度也可能存在。<strong>对于每个对象</strong>，我们都计算它与周边对象的相似程度（周围的也都是高值还是都是低值，还是有高有低），注意，此处的高低是相对于全局均值而言。</p>
 <p><strong>解释</strong>：</p>
