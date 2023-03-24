@@ -3840,9 +3840,9 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
         <category>时空数据处理分析</category>
       </categories>
       <tags>
-        <tag>Rasterio</tag>
         <tag>GeoTIFF</tag>
         <tag>GDAL</tag>
+        <tag>Rasterio</tag>
         <tag>栅格文件读写</tag>
       </tags>
   </entry>
