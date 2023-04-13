@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-03-23T13:34:39.887Z</updated>
+  <updated>2023-04-13T15:20:13.155Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>需要克制</title>
+    <link href="https://hscyber.github.io/posts/23ea2b62/"/>
+    <id>https://hscyber.github.io/posts/23ea2b62/</id>
+    <published>2023-04-13T14:21:42.000Z</published>
+    <updated>2023-04-13T15:20:13.155Z</updated>
+    
+    <content type="html"><![CDATA[<p>不去做一些事情，有时候比去做一件事情还难。</p><span id="more"></span><p>毫不怀疑我有足够的能力和精力去做很多很多的事情，也毫无意外我常常因此落入快乐的陷阱。</p><p>人的欲望有时候是收不住的。饭后刷手机，看小红书的时候，系统开始给我推乒乓的视频，看来是前天京东下单买乒乓球的信息又被它知道了，看的饶有兴致，因为确实最近打球激起了多年的胜负欲，竟然又有些开始想练练球的心思。再猛然发现，最近想的，在进行的东西已经有点多了。</p><p>想继续好好地看书，好好健身好好跑步，想拍照想旅游想登山，想看展想听音乐会，想打好羽毛球打好乒乓，想提升一下游泳，想提升一下写作，提升一下Coding,想抽时间整理笔记清单，想经营公号，想写读书笔记，想练英语……诸如此类，甚至还想学乐器。当然，我相信，如果真的想，在当下这个状态，很多事情都可以做到，毫不怀疑，每件事都能找到圈子，都能轻松愉快地地开始，可多少有些不务正业亦或是捉襟见肘了。所以，我想我该收收一些该死的虚荣心和胜负欲，而逐渐收缩到简单纯粹的工作、学习、运动、休憩中，聚焦好注意力，收收欲望，也分配好时间。</p><p>我特别敬佩一些人，那些可以专心致志心无旁骛做着简单的几件事情的人，尤其是在当下这个眼花缭乱的、浮躁的、处处充满“刺激”和诱惑的时代。就像一些专心做音乐写小说的人（每每这种时候我第一眼浮现的都是那些小说家和艺术创作者），我觉得它们应该有着对抗无聊和无意义的绝佳方式。这样的人想必是不少的，有的人搞研究做技术，有的人创业或做工作，有的人搞运动搞竞技等等，不管是因为纯粹的热爱，还是因为无奈（但不能是讨厌）。</p><p>生活需要希望，需要劳动，需要放松，也需要时时的<font color="#dd0000">克制</font>。</p>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;不去做一些事情，有时候比去做一件事情还难。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="生活漫步" scheme="https://hscyber.github.io/categories/%E7%94%9F%E6%B4%BB%E6%BC%AB%E6%AD%A5/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>GIS基础(杂)：自相关/热点/异常分析，Moran&#39;s I和Gets-Ord Gi对比</title>
@@ -432,27 +451,6 @@
     
     <category term="生活漫步" scheme="https://hscyber.github.io/categories/%E7%94%9F%E6%B4%BB%E6%BC%AB%E6%AD%A5/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>研究跟踪(3)：学习国内外研究团队及学者的研究工作</title>
-    <link href="https://hscyber.github.io/posts/b441b64d/"/>
-    <id>https://hscyber.github.io/posts/b441b64d/</id>
-    <published>2022-12-09T12:54:25.000Z</published>
-    <updated>2022-12-09T13:58:01.112Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前记录了<a href="https://hscyber.github.io/posts/4270937d/">感兴趣期刊及研究方向研究跟踪</a>，但这主要是侧重兴趣向。实际上科研工作大都是<mark>国内外研究团队</mark>以<mark>项目及机构</mark>为依托开展，所以<font color="#dd0000">开展特定方向的具体工作时，系统查阅和了解、从而比较、借鉴国内外相关团队的工作</font>有利于团队工作的推进。</p><span id="more"></span><blockquote><p>平台：学者个人主页、学校网站、</p><p>Google scholar, Research Gate(推建注册，很多国内外学者在此推广自己的最新研究进展)</p></blockquote><p>跟踪的学者及团队主要来自于自己读论文过程中的检索。在看到和自己工作密切相关的工作或者觉得做的比较好、发了比较好的文章的工作时则可以<font color="#dd0000">顺着论文作者目录检索到相关的学者以及团队</font></p><ul><li>这里举个例子，我在看<mark>大数据×灾害</mark>反面的文章的时候，看到了几篇Zhenlong Li博士的文章，因此搜索他的主页：<a href="http://gis.cas.sc.edu/zhenlong/%E7%84%B6%E5%90%8E%E9%A1%BA%E7%9D%80%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E6%89%80%E5%9C%A8%E7%9A%84%E5%87%A0%E4%B8%AA%E5%AE%9E%E9%AA%8C%E5%AE%A4%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E8%BF%99%E4%BA%9B%E5%B7%A5%E4%BD%9C%E6%9D%A5%E8%BE%85%E5%8A%A9%E6%88%91%E5%BC%80%E5%B1%95%E9%A1%B9%E7%9B%AE%E7%94%B3%E8%AF%B7%E5%8F%8A%E6%8E%A8%E8%BF%9B%EF%BC%8C%E5%A2%9E%E8%BF%9B%E8%AE%A4%E8%AF%86%E4%BB%A5%E5%8F%8A%E5%80%9F%E9%89%B4%E6%80%9D%E8%B7%AF%E3%80%82">http://gis.cas.sc.edu/zhenlong/然后顺着可以找到所在的几个实验室，可以通过这些工作来辅助我开展项目申请及推进，增进认识以及借鉴思路。</a></li></ul><img src="/posts/b441b64d/image-20221209215311746.png" class alt="image-20221209215311746"><p>然后找到了他的地理空间大数据研究中心<a href="http://gis.cas.sc.edu/gibd/research/%EF%BC%8C%E7%84%B6%E5%90%8E%E8%BF%99%E9%87%8C%E5%B0%B1%E6%89%BE%E5%88%B0%E4%BA%86%E5%AE%83%E4%BB%AC%E7%9B%AE%E5%89%8D%E5%BC%80%E5%B1%95%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%92%8C%E7%A0%94%E7%A9%B6%E6%88%90%E6%9E%9C">http://gis.cas.sc.edu/gibd/research/，然后这里就找到了它们目前开展的项目和研究成果</a></p><img src="/posts/b441b64d/image-20221209215409473.png" class alt="image-20221209215409473"><p>他是一个副教授，通常上面还会有更大的导师（大牛），于是有找到了灾害脆弱性研究实验室。</p><img src="/posts/b441b64d/image-20221209215525806.png" class alt="image-20221209215525806"><img src="/posts/b441b64d/image-20221209215602895.png" class alt="image-20221209215602895">]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;之前记录了&lt;a href=&quot;https://hscyber.github.io/posts/4270937d/&quot;&gt;感兴趣期刊及研究方向研究跟踪&lt;/a&gt;，但这主要是侧重兴趣向。实际上科研工作大都是&lt;mark&gt;国内外研究团队&lt;/mark&gt;以&lt;mark&gt;项目及机构&lt;/mark&gt;为依托开展，所以&lt;font color=&quot;#dd0000&quot;&gt;开展特定方向的具体工作时，系统查阅和了解、从而比较、借鉴国内外相关团队的工作&lt;/font&gt;有利于团队工作的推进。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="科研门外汉" scheme="https://hscyber.github.io/categories/%E7%A7%91%E7%A0%94%E9%97%A8%E5%A4%96%E6%B1%89/"/>
-    
-    
-    <category term="论文" scheme="https://hscyber.github.io/tags/%E8%AE%BA%E6%96%87/"/>
     
   </entry>
   
