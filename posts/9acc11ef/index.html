@@ -34,7 +34,7 @@
 <meta property="og:description" content="今天帮同学打包py脚本为可执行程序exe时遇到了文件过大的问题（基于conda环境&amp;pyinstaller），网上查了一下但是很多方案都没说明问题，在此记录一下简要方案以及个人案例。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-08T06:45:51.000Z">
-<meta property="article:modified_time" content="2022-09-09T02:45:57.612Z">
+<meta property="article:modified_time" content="2023-04-27T09:34:49.932Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="pyinstaller">
 <meta property="article:tag" content="exe">
@@ -99,9 +99,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">129</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">130</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">105</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -173,7 +173,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -184,7 +184,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">129</span>
+        <span class="site-state-item-count">130</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -334,7 +334,7 @@
 <h2 id="步骤及案例参考"><a class="markdownIt-Anchor" href="#步骤及案例参考"></a> 步骤及案例参考</h2>
 <p><strong>原因</strong>：如果直接使用conda环境进行打包会出现文件过大的问题，通常是因为<mark>基于conda安装的包会比正常pip安装的包更大</mark>，打包时会增加依赖，导致最终的exe很大，如只要是包含numpy或者pandas模块的py脚本打包，基本都会大于200M，测试过程略（可以自行新建环境测试包依赖），因此建议是<strong>新建环境安装包并打包</strong>。这里我一开始<strong>直接打包是300M，新环境中打包后为29M</strong>，而且由于生成的文件小了，<font color="#dd0000">速度也快了很多</font></p>
 <h3 id="新建环境并安装"><a class="markdownIt-Anchor" href="#新建环境并安装"></a> 新建环境并安装</h3>
-<p>更多包和环境管理可见<a href="https://hscyber.github.io/posts/42743416/">Python环境管理</a>，打开命令行依次执行，<font color="#dd0000">包通过pip命令安装</font></p>
+<p>更多包和环境管理可见<a href="https://hscyber.github.io/posts/42743416/">Python环境管理</a>，打开命令行依次执行，<font color="#dd0000">包通过pip命令安装,版本根据代码执行路径确定</font></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create -n exe python=3.8</span><br><span class="line">conda activate exe</span><br><span class="line">pip install --upgrade pyinstaller</span><br><span class="line">pip install pandas</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装pandas会直接安装numpy及其依赖，如果有其他包也直接pip安装</span></span><br></pre></td></tr></table></figure>
 <h3 id="打包"><a class="markdownIt-Anchor" href="#打包"></a> 打包</h3>
 <p>打包会在目录下默认生成临时文件夹Building及包含exe的dist文件夹，可以添加参数指定位置，或生成后删除即可。<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/usage.html#options">参数解释</a></p>
@@ -432,13 +432,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">211k</span>
+    <span title="站点总字数">215k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:12</span>
+    <span title="站点阅读时长">3:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
