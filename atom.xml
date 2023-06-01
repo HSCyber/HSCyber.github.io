@@ -387,9 +387,9 @@
     
     <category term="Pandas" scheme="https://hscyber.github.io/tags/Pandas/"/>
     
-    <category term="EOF" scheme="https://hscyber.github.io/tags/EOF/"/>
-    
     <category term="read_csv" scheme="https://hscyber.github.io/tags/read-csv/"/>
+    
+    <category term="EOF" scheme="https://hscyber.github.io/tags/EOF/"/>
     
   </entry>
   
