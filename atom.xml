@@ -6,7 +6,7 @@
   <link href="https://hscyber.github.io/atom.xml" rel="self"/>
   
   <link href="https://hscyber.github.io/"/>
-  <updated>2023-08-14T05:31:48.172Z</updated>
+  <updated>2023-08-14T06:56:18.505Z</updated>
   <id>https://hscyber.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://hscyber.github.io/posts/aee76f8e/"/>
     <id>https://hscyber.github.io/posts/aee76f8e/</id>
     <published>2023-08-14T05:12:41.000Z</published>
-    <updated>2023-08-14T05:31:48.172Z</updated>
+    <updated>2023-08-14T06:56:18.505Z</updated>
     
-    <content type="html"><![CDATA[<p>近期准备把旧电脑给弟用，游戏本，之前装的ubuntu系统，现在重装回windows10，现在装系统之类的事情都十分便捷，此处简单记录一下步骤</p><span id="more"></span><h2 id="u盘安装win"><a class="markdownIt-Anchor" href="#u盘安装win"></a> U盘安装win</h2><blockquote><p>如果是在原本就是window系统电脑上升级或者重装，直接安装即可</p></blockquote><p>准备一个U盘（大于8G），步骤（制作驱动–重启进入启动项–安装）如下：</p><ol><li>下载window官方安装工具<a href="https://www.microsoft.com/zh-cn/software-download/windows10">地址</a>，一路next</li><li>安装方式选择选择安装iso镜像</li><li>创建完之后会选择路径下载一个iso文件</li><li>等待下载完成，下载工具进行USB驱动器创建，我用的是<a href="https://rufus.ie/en/">Rufus</a></li><li>添加镜像并完成驱动器创建</li><li>在目标电脑上安装即可：<ol><li>重启/关机，打开启动项，惠普是F9，联想默认F9，工作中好像是F12</li><li>切换启动项，选择从U盘启动（即刚刚插入的U盘）</li><li>然后安装系统即可，必要时删除原分区或者格式化</li><li>OK</li></ol></li></ol><img src="/posts/aee76f8e/image-20230814131816766.png" class alt="image-20230814131816766"><img src="/posts/aee76f8e/image-20230814131947964.png" class alt="image-20230814131947964"><img src="/posts/aee76f8e/image-20230814132421537.png" class alt="image-20230814132421537">]]></content>
+    <content type="html"><![CDATA[<p>近期准备把旧电脑给弟用，游戏本，之前装的ubuntu系统，现在重装回windows10，现在装系统之类的事情都十分便捷，此处简单记录一下步骤</p><span id="more"></span><h2 id="u盘安装win"><a class="markdownIt-Anchor" href="#u盘安装win"></a> U盘安装win</h2><blockquote><p>如果是在原本就是window系统电脑上升级或者重装，直接安装即可</p></blockquote><p>准备一个U盘（大于8G），步骤（制作驱动–重启进入启动项–安装）如下：</p><ol><li>下载window官方安装工具<a href="https://www.microsoft.com/zh-cn/software-download/windows10">地址</a>，一路next</li><li>安装方式选择选择安装iso镜像</li><li>创建完之后会选择路径下载一个iso文件</li><li>等待下载完成，下载工具进行USB驱动器创建，我用的是<a href="https://rufus.ie/en/">Rufus</a></li><li>添加镜像并完成驱动器创建</li><li>在目标电脑上安装即可：<ol><li>重启/关机，打开启动项，惠普是F9，联想默认F9，工作中好像是F12</li><li>切换启动项，选择从U盘启动（即刚刚插入的U盘）</li><li>然后安装系统即可，必要时删除原分区或者格式化</li><li>安装过程需要选择登录微软账户，如果有则直接登录即可，也可以注册再登，用QQ邮箱即可</li></ol></li></ol><img src="/posts/aee76f8e/image-20230814131816766.png" class alt="image-20230814131816766"><img src="/posts/aee76f8e/image-20230814131947964.png" class alt="image-20230814131947964"><img src="/posts/aee76f8e/image-20230814132421537.png" class alt="image-20230814132421537"><h2 id="系统选择和激活"><a class="markdownIt-Anchor" href="#系统选择和激活"></a> 系统选择和激活</h2><p>选择的时候可以选择家庭版或者专业版，我选的是专业版，权限回多一点</p><ol><li>激活的时候可以直接t宝或者拼dd买一个激活码激活windows，10块钱</li><li>然后如果需要office，再几十块钱买一个office绑定微软账户即可</li><li>官网下载并完成office安装</li></ol>]]></content>
     
     
     <summary type="html">&lt;p&gt;近期准备把旧电脑给弟用，游戏本，之前装的ubuntu系统，现在重装回windows10，现在装系统之类的事情都十分便捷，此处简单记录一下步骤&lt;/p&gt;</summary>
