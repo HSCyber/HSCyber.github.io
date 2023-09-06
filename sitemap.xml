@@ -1810,13 +1810,6 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8A%93%E5%8F%96/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hscyber.github.io/tags/jupyter/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -1825,6 +1818,13 @@
   
   <url>
     <loc>https://hscyber.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hscyber.github.io/tags/%E6%95%B0%E6%8D%AE%E6%8A%93%E5%8F%96/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2106,14 +2106,14 @@
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/categories/Python%E7%88%AC%E8%99%AB/</loc>
+    <loc>https://hscyber.github.io/categories/ubuntu/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hscyber.github.io/categories/ubuntu/</loc>
+    <loc>https://hscyber.github.io/categories/Python%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
