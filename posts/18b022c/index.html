@@ -308,7 +308,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>942</span>
+      <span>937</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -328,31 +328,35 @@
     
     <div class="post-body" itemprop="articleBody">
         <center>简单记录一下数据库或表格连接的类型，建议通过行数辨别</center>
-
 <span id="more"></span>
-
 <p>在<code>pd.merge(); df.join(); gpd.sjoin()</code>等函数中会用到，只有存在共同字段的列才能连接。否则拼接应该采用<code>pd.concat()</code><a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">函数</a></p>
 <ol>
-<li><p>内连接 (inner join)，一般默认，只保留匹配到的结果</p>
+<li>
+<p>内连接 (inner join)，一般默认，只保留匹配到的结果</p>
 </li>
-<li><p>左(外)连接 (left join)，以左侧表的连接键唯一值数量为准，左表行数不变</p>
+<li>
+<p>左(外)连接 (left join)，以左侧表的连接键唯一值数量为准，左表行数不变</p>
 </li>
-<li><p>右(外)连接 (right join)，右表行数不变</p>
+<li>
+<p>右(外)连接 (right join)，右表行数不变</p>
 </li>
-<li><p>全连接 (full join)，在pandas中没有：在数据库中指返回左右表的所有行，缺失处补空值。行数&#x3D;左表的行数+右表的行数-公共连接行</p>
+<li>
+<p>全连接 (full join)，在pandas中没有：在数据库中指返回左右表的所有行，缺失处补空值。行数=左表的行数+右表的行数-公共连接行</p>
 </li>
 </ol>
 <p>举例，下面左表<strong>5行</strong>2列，右表-<strong>4行</strong>两列，公共列为fid，fid<strong>公共行数为3行</strong>，结果</p>
 <ul>
-<li><p>内连接返回三行，[‘a’, ‘b’,’c’]，未匹配的丢弃</p>
+<li>
+<p>内连接返回三行，[‘a’, ‘b’,‘c’]，未匹配的丢弃</p>
 </li>
-<li><p>左连接返回5行，[1,2,3,4,5]，无值则补null</p>
+<li>
+<p>左连接返回5行，[1,2,3,4,5]，无值则补null</p>
 </li>
-<li><p>右连接返回3行，[3,4,5,7]，无值则补null</p>
+<li>
+<p>右连接返回3行，[3,4,5,7]，无值则补null</p>
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data1 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">data2 = &#123;</span><br><span class="line">    <span class="string">&#x27;fid&#x27;</span>:[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">7</span>],</span><br><span class="line">    <span class="string">&#x27;name&#x27;</span>:[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;e&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line">df1 = pd.DataFrame(data1)</span><br><span class="line">df2 = pd.DataFrame(data2)</span><br><span class="line"><span class="comment"># 查看输出</span></span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">pd.merge(left=df1, right=df2, on=<span class="string">&#x27;fid&#x27;</span>, how=<span class="string">&#x27;inner&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>分别输出：</p>
 <img src="/posts/18b022c/image-20220722223231092.png" class title="image-20220722223231092">
 
@@ -429,13 +433,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">226k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:25</span>
   </span>
 </div>
 <div class="busuanzi-count">

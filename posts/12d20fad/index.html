@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="【持续扩充】由于经常使用Matplotlib绘制&#x3D;&#x3D;草图&#x3D;&#x3D;，发现需要时常去找一些之前的代码，因此便将常用代码和有人整理的一个很nice的速查备忘录贴于此处便于查看。">
+    <meta name="description" content="【持续扩充】由于经常使用Matplotlib绘制草图，发现需要时常去找一些之前的代码，因此便将常用代码和有人整理的一个很nice的速查备忘录贴于此处便于查看。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matplotlib绘图常用代码速查">
 <meta property="og:url" content="https://hscyber.github.io/posts/12d20fad/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="【持续扩充】由于经常使用Matplotlib绘制&#x3D;&#x3D;草图&#x3D;&#x3D;，发现需要时常去找一些之前的代码，因此便将常用代码和有人整理的一个很nice的速查备忘录贴于此处便于查看。">
+<meta property="og:description" content="【持续扩充】由于经常使用Matplotlib绘制草图，发现需要时常去找一些之前的代码，因此便将常用代码和有人整理的一个很nice的速查备忘录贴于此处便于查看。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/12d20fad/matplotlib-pbpython-example.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/12d20fad/plot1.png">
@@ -164,7 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">常用代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9F%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text">速查</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text"> 常用代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9F%E6%9F%A5"><span class="nav-number">2.</span> <span class="nav-text"> 速查</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -336,29 +336,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>【持续扩充】由于经常使用Matplotlib绘制&#x3D;&#x3D;草图&#x3D;&#x3D;，发现需要时常去找一些之前的代码，因此便将<strong>常用代码</strong>和有人整理的<strong>一个很nice的速查备忘录</strong>贴于此处便于查看。</p>
+        <p>【持续扩充】由于经常使用Matplotlib绘制<mark>草图</mark>，发现需要时常去找一些之前的代码，因此便将<strong>常用代码</strong>和有人整理的<strong>一个很nice的速查备忘录</strong>贴于此处便于查看。</p>
 <span id="more"></span>
-
-<h2 id="常用代码"><a href="#常用代码" class="headerlink" title="常用代码"></a>常用代码</h2><p>常规导入、创建及输出（ Matplotlib及numpy等都是<strong>行优先</strong>，即索引先行后列）</p>
+<h2 id="常用代码"><a class="markdownIt-Anchor" href="#常用代码"></a> 常用代码</h2>
+<p>常规导入、创建及输出（ Matplotlib及numpy等都是<strong>行优先</strong>，即索引先行后列）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># import geopandas as gpd</span></span><br><span class="line"><span class="keyword">import</span> scipy.stats <span class="keyword">as</span> st</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line"><span class="keyword">import</span> matplotlib.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="comment"># 随时更改</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">120</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.size&#x27;</span>]=<span class="number">10.5</span> <span class="comment">#五号字体</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.size&#x27;</span>]=<span class="number">9</span> <span class="comment">#小五字体</span></span><br><span class="line">cm = <span class="number">1</span>/<span class="number">2.54</span></span><br><span class="line"></span><br><span class="line">fig, axes = plt.subplots(figsize=(<span class="number">10</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">fig, axes = plt.subplots(nrows =<span class="number">2</span> ,ncols=<span class="number">2</span>, figsize=(<span class="number">20</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">axes = axes.flatten()</span><br><span class="line"></span><br><span class="line">fig.tight_layout()</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>,facacolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;...\f1.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.2</span>,facacolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">fig.savefig(save_pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>)</span><br><span class="line"><span class="comment"># 多PDF</span></span><br><span class="line">pdf = PdfPages(save_pdf);fig.savefig(pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>);pdf.close() </span><br></pre></td></tr></table></figure>
-
-<p>字体和布局：<a href="https://hscyber.github.io/posts/7c8b9f60/">中文及英文字体设置</a>，<a href="https://hscyber.github.io/posts/cddc42b6/">多张图的布局subplots&#x2F;gridspec&#x2F;mosaic</a></p>
-<p>刻度相关：<a href="https://hscyber.github.io/posts/152b5c56/">边框spines及刻度ticks&#x2F;labels属性设置及隐藏</a></p>
+<p>字体和布局：<a href="https://hscyber.github.io/posts/7c8b9f60/">中文及英文字体设置</a>，<a href="https://hscyber.github.io/posts/cddc42b6/">多张图的布局subplots/gridspec/mosaic</a></p>
+<p>刻度相关：<a href="https://hscyber.github.io/posts/152b5c56/">边框spines及刻度ticks/labels属性设置及隐藏</a></p>
 <p>文本注释：<a href="https://hscyber.github.io/posts/66a3b602/">绘图坐标系及注释位置控制</a></p>
 <img src="/posts/12d20fad/matplotlib-pbpython-example.png" class title="plt">
-
-<h2 id="速查"><a href="#速查" class="headerlink" title="速查"></a>速查</h2><blockquote>
+<h2 id="速查"><a class="markdownIt-Anchor" href="#速查"></a> 速查</h2>
+<blockquote>
 <p>该备忘录整理的很好，建议充分熟悉内容之后再使用</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://github.com/matplotlib/cheatsheets">来源</a>，这是<a target="_blank" rel="noopener" href="https://github.com/HSCyber/Data_public/blob/main/matplotlib/cheatsheets_handouts.pdf">拼接的pdf</a>，可下载本地查看。</p>
 <img src="/posts/12d20fad/plot1.png" class>
-
 <img src="/posts/12d20fad/plot2.png" class>
-
 <img src="/posts/12d20fad/plot3.png" class>
-
 <img src="/posts/12d20fad/plot4.png" class>
-
 <img src="/posts/12d20fad/plot5.png" class>
     </div>
 
@@ -429,13 +424,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">226k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:25</span>
   </span>
 </div>
 <div class="busuanzi-count">
