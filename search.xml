@@ -295,7 +295,7 @@
 <li>注意，$t&#x3D;0和t&#x3D;1$之间与现实时间无关的，取决于智能体每次交互并获得反馈所需要的时间</li>
 </ul>
 <p>目标：最大化累积奖励$G_t &#x3D; r_1+r_2+\cdots+r_T$，从 $t&#x3D;0 $和$ t+T$ 这一段时步我们称为一个回合（ episode ），如游戏中的一局。</p>
-<img src="/posts/undefined/image-20231112225501720.png" class title="image-20231112225501720">
+<img src="/posts/bcf963a4/image-20231112225501720.png" class title="image1">
 
 <h3 id="马尔可夫性"><a href="#马尔可夫性" class="headerlink" title="马尔可夫性"></a>马尔可夫性</h3><blockquote>
 <p>某个状态的未来只与当前状态$s_t$有关，与<strong>历史的状态无关</strong>。</p>
@@ -309,7 +309,7 @@
 <p><strong>引入折扣因子$\gamma$，通过系数来调整我们对未来回报的关注</strong>：智能体会持续与环境交互，此时$T&#x3D;\infty$，如下，$G_t$，$R_{t+1}$即表示t时刻之后的回报<br>$$<br>G_t&#x3D;R_{t+1}+\gamma R_{t+2}+\gamma^2 R_{t+3}+\cdots&#x3D;\sum_{k&#x3D;0}^{\infty} \gamma^k R_{t+k+1}<br>$$</p>
 <p>$$<br>G_t&#x3D;R_{t+1} +\gamma G_{t+1}<br>$$</p>
 <h3 id="状态转移矩阵"><a href="#状态转移矩阵" class="headerlink" title="状态转移矩阵"></a>状态转移矩阵</h3><p>马尔可夫链（Markov Chain）&#x2F;离散时间的马尔可夫过程（Markov Process）</p>
-<img src="/posts/undefined/image-20231116005619927.png" class title="image-20231116005619927">
+<img src="/posts/bcf963a4/image-20231116005619927.png" class title="image2">
 
 <p>状态转移概率和矩阵：智能体或环境状态数通常是有限的，因此可以用一种<strong>状态流向图</strong>来表示智能体与环境交互过程中的走向。</p>
 <ul>
@@ -364,7 +364,7 @@
 </ul>
 </li>
 </ol>
-<img src="/posts/undefined/image-20231116011623798.png" class title="image-20231116011623798">
+<img src="/posts/bcf963a4/image-20231116011623798.png" class title="image3">
 
 <p>额外补充：在本章的算法中，其实默认状态转移概率$\sum_{s^{\prime} \in S} p\left(s^{\prime} \mid s, a\right)$已知，但状态转移概率是环境本身的性质，通常未知，因此最基本的策略迭代和价值迭代难以直接应用，这时通常会对先<strong>状态转移概率或者状态（动作）价值函数进行预测估计</strong>。</p>
 <p>以上，后续继续推进……</p>
@@ -4107,8 +4107,8 @@
       </categories>
       <tags>
         <tag>Rasterio</tag>
-        <tag>GeoTIFF</tag>
         <tag>GDAL</tag>
+        <tag>GeoTIFF</tag>
         <tag>栅格文件读写</tag>
       </tags>
   </entry>
