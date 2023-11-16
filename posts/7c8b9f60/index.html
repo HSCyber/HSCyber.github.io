@@ -163,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E5%8F%8A%E6%9C%AC%E5%9C%B0%E5%AD%97%E4%BD%93%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.</span> <span class="nav-text"> 内置及本地字体查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%B1%BB%E5%88%AB%E5%8F%8A%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text"> 字体类别及设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%B1%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text"> 英文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87"><span class="nav-number">2.2.</span> <span class="nav-text"> 中文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text"> 字体属性</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E5%8F%8A%E6%9C%AC%E5%9C%B0%E5%AD%97%E4%BD%93%E6%9F%A5%E7%9C%8B"><span class="nav-number">1.</span> <span class="nav-text">内置及本地字体查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E7%B1%BB%E5%88%AB%E5%8F%8A%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">字体类别及设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%B1%E6%96%87"><span class="nav-number">2.1.</span> <span class="nav-text">英文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87"><span class="nav-number">2.2.</span> <span class="nav-text">中文</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E4%BD%93%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">字体属性</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -312,7 +312,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -333,97 +333,99 @@
     <div class="post-body" itemprop="articleBody">
         <p>记一下在Matplotlib绘图中默认字体的调整，以及中文字体绘图时会涉及的乱码问题，本文主要<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/index.html">参考</a>。</p>
 <span id="more"></span>
+
 <p>包引入，需要注意的是，此处默认绘图要么统一中文要么统一英文，<font color="#dd0000">不考虑中英文混杂的情况</font></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">matplotlib.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">150</span></span><br><span class="line"><span class="comment"># 解决中文乱码问题</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;serif&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.serif&quot;</span>] = [<span class="string">&quot;Microsoft YaHei&quot;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.unicode_minus&quot;</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
-<h2 id="内置及本地字体查看"><a class="markdownIt-Anchor" href="#内置及本地字体查看"></a> 内置及本地字体查看</h2>
-<p>配置文件<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/introductory/customizing.html">matplotlibrc</a>，查看字体列表位置：</p>
+
+<h2 id="内置及本地字体查看"><a href="#内置及本地字体查看" class="headerlink" title="内置及本地字体查看"></a>内置及本地字体查看</h2><p>配置文件<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/introductory/customizing.html">matplotlibrc</a>，查看字体列表位置：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">matplotlib.get_cachedir()</span><br><span class="line"><span class="comment"># fontlist = &quot;C:/Users/huangs/.matplotlib/fontlist-v330.json&quot;</span></span><br><span class="line">matplotlib.matplotlib_fname()<span class="comment"># 当前工作路径的默认字体属性文件</span></span><br></pre></td></tr></table></figure>
+
 <p>查看具体及本地全部中英文字体的别名：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[f.name <span class="keyword">for</span> f <span class="keyword">in</span> matplotlib.font_manager.fontManager.afmlist]</span><br><span class="line">[f.name <span class="keyword">for</span> f <span class="keyword">in</span> matplotlib.font_manager.fontManager.ttflist]</span><br></pre></td></tr></table></figure>
+
 <p>当前的默认字体</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(plt.rcParams[<span class="string">&quot;font.serif&quot;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(plt.rcParams[<span class="string">&quot;font.sans-serif&quot;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(plt.rcParams[<span class="string">&quot;font.monospace&quot;</span>][<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-<h2 id="字体类别及设置"><a class="markdownIt-Anchor" href="#字体类别及设置"></a> 字体类别及设置</h2>
-<blockquote>
+
+<h2 id="字体类别及设置"><a href="#字体类别及设置" class="headerlink" title="字体类别及设置"></a>字体类别及设置</h2><blockquote>
 <p><a href="https://hscyber.github.io/posts/44ded5de/">了解一下中英文字体和分类</a>，此处对字体进行初步了解</p>
 </blockquote>
-<h3 id="英文"><a class="markdownIt-Anchor" href="#英文"></a> 英文</h3>
-<p>Matplotlib中字体大类<mark>Family</mark>有{‘cursive’, ‘fantasy’, ‘monospace’, ‘sans’, ‘sans-serif’, ‘serif’}，常用的就<font color="#dd0000"> ‘sans serif’, ‘serif’</font>。选择字体时先选择大类再设置对应的具体字体，如下：</p>
+<h3 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h3><p>Matplotlib中字体大类&#x3D;&#x3D;Family&#x3D;&#x3D;有{‘cursive’, ‘fantasy’, ‘monospace’, ‘sans’, ‘sans-serif’, ‘serif’}，常用的就<font color="#dd0000"> ‘sans serif’, ‘serif’</font>。选择字体时先选择大类再设置对应的具体字体，如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择无衬线字体并将其指定为“Helvetica”</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;sans-serif&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.sans-serif&quot;</span>] = [<span class="string">&quot;Helvetica&quot;</span>]</span><br><span class="line"><span class="comment"># 选择无衬线字体并将其指定为“Times New Roman”</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;serif&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.serif&quot;</span>] = [<span class="string">&quot;Times New Roman&quot;</span>]</span><br><span class="line"><span class="comment"># 选择等宽字体并将其指定为“FreeMono”</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;monospace&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.monospace&quot;</span>] = [<span class="string">&quot;FreeMono&quot;</span>]</span><br></pre></td></tr></table></figure>
+
 <p>常用字体：</p>
 <ul>
 <li>Sans Serif：无衬线体，如Arial(等线)，Calibri，Helvetica，Consolas，Noto Sans SC</li>
 <li>Serif：衬线体，笔画的末尾有“衬线”，棱角分明一些，似乎对印刷更为友好：Times New Roman，Courier，Noto Serif SC，Georgia, Droid Serif, Cambria</li>
 </ul>
-<h3 id="中文"><a class="markdownIt-Anchor" href="#中文"></a> 中文</h3>
-<p>中文常用的字体别称如下，具体名称可以在第一节除查看：</p>
+<h3 id="中文"><a href="#中文" class="headerlink" title="中文"></a>中文</h3><p>中文常用的字体别称如下，具体名称可以在第一节除查看：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plt.rcParams[<span class="string">&quot;font.family&quot;</span>] = <span class="string">&quot;serif&quot;</span></span><br><span class="line">plt.rcParams[<span class="string">&quot;font.serif&quot;</span>] = [<span class="string">&quot;Microsoft YaHei&quot;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&quot;axes.unicode_minus&quot;</span>]=<span class="literal">False</span> <span class="comment">#该语句解决图像中的“-”负号的乱码问题</span></span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
 <tr>
-<th style="text-align:center">字体名称</th>
-<th style="text-align:center">别名</th>
+<th align="center">字体名称</th>
+<th align="center">别名</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">宋体</td>
-<td style="text-align:center">SimSun</td>
+<tbody><tr>
+<td align="center">宋体</td>
+<td align="center">SimSun</td>
 </tr>
 <tr>
-<td style="text-align:center">黑体</td>
-<td style="text-align:center">Simhei</td>
+<td align="center">黑体</td>
+<td align="center">Simhei</td>
 </tr>
 <tr>
-<td style="text-align:center">楷体</td>
-<td style="text-align:center">KaiTi</td>
+<td align="center">楷体</td>
+<td align="center">KaiTi</td>
 </tr>
 <tr>
-<td style="text-align:center">等线</td>
-<td style="text-align:center">DengXian</td>
+<td align="center">等线</td>
+<td align="center">DengXian</td>
 </tr>
 <tr>
-<td style="text-align:center">仿宋</td>
-<td style="text-align:center">FangSong</td>
+<td align="center">仿宋</td>
+<td align="center">FangSong</td>
 </tr>
 <tr>
-<td style="text-align:center">微软雅黑</td>
-<td style="text-align:center">Microsoft YaHei</td>
+<td align="center">微软雅黑</td>
+<td align="center">Microsoft YaHei</td>
 </tr>
 <tr>
-<td style="text-align:center">华文宋体</td>
-<td style="text-align:center">STSong</td>
+<td align="center">华文宋体</td>
+<td align="center">STSong</td>
 </tr>
 <tr>
-<td style="text-align:center">华文中宋</td>
-<td style="text-align:center">STZhongsong</td>
+<td align="center">华文中宋</td>
+<td align="center">STZhongsong</td>
 </tr>
 <tr>
-<td style="text-align:center">华文楷体</td>
-<td style="text-align:center">STKaiti</td>
+<td align="center">华文楷体</td>
+<td align="center">STKaiti</td>
 </tr>
 <tr>
-<td style="text-align:center">方正舒体</td>
-<td style="text-align:center">FZShuTi</td>
+<td align="center">方正舒体</td>
+<td align="center">FZShuTi</td>
 </tr>
 <tr>
-<td style="text-align:center">华文新魏</td>
-<td style="text-align:center">STXinwei</td>
+<td align="center">华文新魏</td>
+<td align="center">STXinwei</td>
 </tr>
 <tr>
-<td style="text-align:center">方正姚体</td>
-<td style="text-align:center">FZYaoTi</td>
+<td align="center">方正姚体</td>
+<td align="center">FZYaoTi</td>
 </tr>
-</tbody>
-</table>
-<p><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/text_intro.html">绘图参考</a>，比如此处我设置华文新魏字体</p>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/text_intro.html">绘图参考</a>，比如此处我设置华文新魏字体 </p>
 <img src="/posts/7c8b9f60/font.png" class title="font">
-<h2 id="字体属性"><a class="markdownIt-Anchor" href="#字体属性"></a> 字体属性</h2>
-<p><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/text_props.html">字体属性</a>在涉及文本的属性设置如text或者labels，都可以添加属性字典调节：</p>
+
+<h2 id="字体属性"><a href="#字体属性" class="headerlink" title="字体属性"></a>字体属性</h2><p><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/text_props.html">字体属性</a>在涉及文本的属性设置如text或者labels，都可以添加属性字典调节：</p>
 <p>包括：颜色、字体风格、是否加粗、倾斜、大小、透明度、背景颜色、对齐方式、背景框bbox等等</p>
 <ul>
 <li>如果单独设置则：fontsize, fontstyle,fontweight…，详细参考<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/text_props.html">字体属性</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">fontdict = &#123;</span><br><span class="line">    <span class="string">&#x27;family&#x27;</span>: <span class="string">&#x27;serif&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;alpla&#x27;</span>:<span class="number">0.5</span>,</span><br><span class="line">    <span class="string">&#x27;style&#x27;</span>: <span class="string">&#x27;italic&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;color&#x27;</span>:  <span class="string">&#x27;darkred&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;weight&#x27;</span>: <span class="string">&#x27;bold&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;size&#x27;</span>: <span class="number">16</span>,</span><br><span class="line">    <span class="string">&#x27;va&#x27;</span>: <span class="string">&#x27;center&#x27;</span>,<span class="comment"># 对齐方式verticalalignment</span></span><br><span class="line">    <span class="string">&#x27;rotation&#x27;</span>:<span class="number">40</span>,<span class="comment">#&#x27;vertical&#x27;</span></span><br><span class="line">    bbox=&#123;<span class="string">&#x27;facecolor&#x27;</span>: <span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;alpha&#x27;</span>: <span class="number">0.5</span>, <span class="string">&#x27;pad&#x27;</span>: <span class="number">10</span>&#125;</span><br><span class="line">        &#125;</span><br><span class="line">ax.text(<span class="number">2</span>, <span class="number">6</span>, <span class="string">&#x27;注释&#x27;</span>, fontdict=fontdict)</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/7c8b9f60/font2.png" class title="font2">
 
     </div>
@@ -501,13 +503,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">228k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:27</span>
   </span>
 </div>
 <div class="busuanzi-count">

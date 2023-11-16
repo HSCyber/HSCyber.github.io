@@ -163,7 +163,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E5%9B%BE%E5%AF%B9%E6%AF%94"><span class="nav-number">1.</span> <span class="nav-text"> 出图对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#png"><span class="nav-number">1.1.</span> <span class="nav-text"> png</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E7%9F%A2%E9%87%8F%E5%9B%BEsvg"><span class="nav-number">1.2.</span> <span class="nav-text"> 细节矢量图svg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E7%9F%A2%E9%87%8F%E5%9B%BEpdf"><span class="nav-number">1.3.</span> <span class="nav-text"> 细节矢量图pdf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B5pdf"><span class="nav-number">2.</span> <span class="nav-text"> 多页pdf</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BA%E5%9B%BE%E5%AF%B9%E6%AF%94"><span class="nav-number">1.</span> <span class="nav-text">出图对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#png"><span class="nav-number">1.1.</span> <span class="nav-text">png</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E7%9F%A2%E9%87%8F%E5%9B%BEsvg"><span class="nav-number">1.2.</span> <span class="nav-text">细节矢量图svg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%86%E8%8A%82%E7%9F%A2%E9%87%8F%E5%9B%BEpdf"><span class="nav-number">1.3.</span> <span class="nav-text">细节矢量图pdf</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B5pdf"><span class="nav-number">2.</span> <span class="nav-text">多页pdf</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -333,6 +333,7 @@
     <div class="post-body" itemprop="articleBody">
         <p>初步小结一下图形保存本地的常用设置（可用于<strong>论文出图</strong>），通过参数设置可以输出非常高质量清晰的且长宽格式的图片或pdf文件，主要介绍png、svg及pdf格式，以A4纸的宽度21cm或一半10cm为例测试。对于具体图形、文字、线条等尺寸的大小控制及文件格式可见<a href="https://hscyber.github.io/posts/5524eff4">上篇</a>。</p>
 <span id="more"></span>
+
 <p>需要说明的是，这一步是<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">fig.save()</a>，即保存画布的步骤，这时<u>已经无法再调画布上的ax的图形，通常只能调节</u>：</p>
 <ol>
 <li>画布的背景颜色<strong>facecolor</strong>、边框颜色<strong>edgecolor</strong></li>
@@ -341,25 +342,37 @@
 </ol>
 <p><font color="#dd0000">常规出图png即可，论文成图简单可png，较复杂细节多的可出无损矢量图svg eps或pdf，</font>此外svg格式的结果可以在<strong>Adobe Illustrator</strong>中调节，下文简单介绍。(地图保存也可以输出问svg或pdf，ArcMap&amp;QGIS均可)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">120</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.size&#x27;</span>]=<span class="number">10.5</span></span><br><span class="line">cm = <span class="number">1</span>/<span class="number">2.54</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#0.5代表1.27cm的间距</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(nrows =<span class="number">1</span> ,ncols=<span class="number">2</span>, figsize=(<span class="number">21</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">fig.savefig(<span class="string">&#x27;./test.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">&#x27;./test.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">&#x27;./test.pdf&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="出图对比"><a class="markdownIt-Anchor" href="#出图对比"></a> 出图对比</h2>
-<p>出图举例：此处目的是展示出图，从官网拉两张图拼接示意<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html#sphx-glr-gallery-lines-bars-and-markers-fill-between-demo-py">f1</a>，<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/subplots_axes_and_figures/axis_labels_demo.html#sphx-glr-gallery-subplots-axes-and-figures-axis-labels-demo-py">f2</a>，导入模块，修改路径运行代码</p>
+
+
+
+<h2 id="出图对比"><a href="#出图对比" class="headerlink" title="出图对比"></a>出图对比</h2><p>出图举例：此处目的是展示出图，从官网拉两张图拼接示意<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/lines_bars_and_markers/fill_between_demo.html#sphx-glr-gallery-lines-bars-and-markers-fill-between-demo-py">f1</a>，<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/gallery/subplots_axes_and_figures/axis_labels_demo.html#sphx-glr-gallery-subplots-axes-and-figures-axis-labels-demo-py">f2</a>，导入模块，修改路径运行代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">fig, (ax1, ax2) = plt.subplots(nrows =<span class="number">1</span> ,ncols=<span class="number">2</span>, figsize=(<span class="number">21</span>*cm,<span class="number">10</span>*cm), facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># 图一参考</span></span><br><span class="line">N = <span class="number">21</span></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">10</span>, <span class="number">11</span>)</span><br><span class="line">y = [<span class="number">3.9</span>, <span class="number">4.4</span>, <span class="number">10.8</span>, <span class="number">10.3</span>, <span class="number">11.2</span>, <span class="number">13.1</span>, <span class="number">14.1</span>,  <span class="number">9.9</span>, <span class="number">13.9</span>, <span class="number">15.1</span>, <span class="number">12.5</span>]</span><br><span class="line"><span class="comment"># fit a linear curve an estimate its y-values and their error.</span></span><br><span class="line">a, b = np.polyfit(x, y, deg=<span class="number">1</span>)</span><br><span class="line">y_est = a * x + b</span><br><span class="line">y_err = x.std() * np.sqrt(<span class="number">1</span>/<span class="built_in">len</span>(x) +(x - x.mean())**<span class="number">2</span> / np.<span class="built_in">sum</span>((x - x.mean())**<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">ax1.plot(x, y_est, <span class="string">&#x27;-&#x27;</span>)</span><br><span class="line">ax1.fill_between(x, y_est - y_err, y_est + y_err, alpha=<span class="number">0.2</span>)</span><br><span class="line">ax1.plot(x, y, <span class="string">&#x27;o&#x27;</span>, ms=<span class="number">4</span>, color=<span class="string">&#x27;tab:red&#x27;</span>)</span><br><span class="line"><span class="comment"># 图2</span></span><br><span class="line">sc = ax2.scatter([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">2</span>], c=[<span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">ax2.set_ylabel(<span class="string">&#x27;YLabel&#x27;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax2.set_xlabel(<span class="string">&#x27;XLabel&#x27;</span>, loc=<span class="string">&#x27;left&#x27;</span>)</span><br><span class="line">cbar = fig.colorbar(sc)</span><br><span class="line">cbar.set_label(<span class="string">&quot;ZLabel&quot;</span>, loc=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">fig.savefig(<span class="string">r&#x27;./f1.png&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;./f1.svg&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br><span class="line">fig.savefig(<span class="string">r&#x27;./f1.pdf&#x27;</span>,dpi=<span class="number">300</span>,bbox_inches=<span class="string">&#x27;tight&#x27;</span>,pad_inches=<span class="number">0.5</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="png"><a class="markdownIt-Anchor" href="#png"></a> png</h3>
-<p>结果图，置入word刚好合适，四周边距还可以根据要求调整</p>
+
+<h3 id="png"><a href="#png" class="headerlink" title="png"></a>png</h3><p>结果图，置入word刚好合适，四周边距还可以根据要求调整</p>
 <img src="/posts/459b5ff7/f1.png" class title="f1">
-<h3 id="细节矢量图svg"><a class="markdownIt-Anchor" href="#细节矢量图svg"></a> 细节矢量图svg</h3>
-<p>使用浏览器打开即可预览，或者可以打开AI，进行进一步地拼图或调整图层等操作</p>
+
+<h3 id="细节矢量图svg"><a href="#细节矢量图svg" class="headerlink" title="细节矢量图svg"></a>细节矢量图svg</h3><p>使用浏览器打开即可预览，或者可以打开AI，进行进一步地拼图或调整图层等操作</p>
 <img src="/posts/459b5ff7/f3.png" class title="f3">
-<h3 id="细节矢量图pdf"><a class="markdownIt-Anchor" href="#细节矢量图pdf"></a> 细节矢量图pdf</h3>
-<p>如下图，按设定画布固定大小的pdf，其实期刊论文的发表附图都要求使用pdf等矢量格式，因为高清无损！正文不方便，但在论文支撑材料/附件中可以生成PDF最后拼接即可。</p>
+
+<h3 id="细节矢量图pdf"><a href="#细节矢量图pdf" class="headerlink" title="细节矢量图pdf"></a>细节矢量图pdf</h3><p>如下图，按设定画布固定大小的pdf，其实期刊论文的发表附图都要求使用pdf等矢量格式，因为高清无损！正文不方便，但在论文支撑材料&#x2F;附件中可以生成PDF最后拼接即可。</p>
 <img src="/posts/459b5ff7/f2.png" class title="f2">
-<h2 id="多页pdf"><a class="markdownIt-Anchor" href="#多页pdf"></a> 多页pdf</h2>
-<p>单个figure保存至pdf，比如我这里绘制了一幅6行3列的组图，保存为一页pdf文件，当然也可以直接保存为png或其他格式：</p>
+
+
+
+<h2 id="多页pdf"><a href="#多页pdf" class="headerlink" title="多页pdf"></a>多页pdf</h2><p>单个figure保存至pdf，比如我这里绘制了一幅6行3列的组图，保存为一页pdf文件，当然也可以直接保存为png或其他格式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">fig, axes = plt.subplots(nrows =<span class="number">6</span> ,ncols=<span class="number">3</span>, figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">axes = axes.flatten()</span><br><span class="line"><span class="keyword">for</span> ax <span class="keyword">in</span> axes:</span><br><span class="line">    ax.plot(...)</span><br><span class="line">    ax.text(...)</span><br><span class="line">fig.savefig(save_pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 <p>多个figure保存为多页pdf，<code>PdfPages</code>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.backends.backend_pdf <span class="keyword">import</span> PdfPages</span><br><span class="line"></span><br><span class="line">save_pdf = <span class="string">&quot;./figure/test.pdf&quot;</span></span><br><span class="line">pdf = PdfPages(save_pdf) <span class="comment"># 打开文件</span></span><br><span class="line"><span class="keyword">for</span> col <span class="keyword">in</span> df.columns.to_list():</span><br><span class="line">    values = df[col].to_numpy()</span><br><span class="line">    fig, ax = plt.subplots(figsize=(<span class="number">21</span>*cm,<span class="number">29.7</span>*cm),facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">    ax.hist(values,<span class="number">50</span>)</span><br><span class="line">    fig.savefig(pdf,<span class="built_in">format</span>=<span class="string">&#x27;pdf&#x27;</span>) <span class="comment"># 保存</span></span><br><span class="line">    plt.close()</span><br><span class="line">pdf.close() <span class="comment"># 保存</span></span><br></pre></td></tr></table></figure>
+
 <img src="/posts/459b5ff7/f4.png" class title="image">
+
+
+
+
+
 
     </div>
 
@@ -434,13 +447,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">228k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:27</span>
   </span>
 </div>
 <div class="busuanzi-count">

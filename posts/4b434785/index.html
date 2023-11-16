@@ -158,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#poolmap"><span class="nav-number">1.</span> <span class="nav-text"> Pool.map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text"> 常用自定义函数</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pool-map"><span class="nav-number">1.</span> <span class="nav-text">Pool.map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">常用自定义函数</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -328,29 +328,30 @@
     <div class="post-body" itemprop="articleBody">
         <p>这个系列放涉及Python性能相关的处理，总的来说-<font color="#dd0000">除了优化代码逻辑和数据结构，其他的就是增加计算或存储资源、时间换空间、空间换时间</font>。首先，较常用的，处理大量数据时通过多进程利用CPU的多核可以并行处理从而达到加速运算的目的，此处小结python内置模块<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.9/library/multiprocessing.html#">multiprecessing</a>的简单使用。</p>
 <span id="more"></span>
+
 <p>进程的知识点不少，方法也好多类，这里先放一个</p>
-<h2 id="poolmap"><a class="markdownIt-Anchor" href="#poolmap"></a> Pool.map</h2>
-<blockquote>
+<h2 id="Pool-map"><a href="#Pool-map" class="headerlink" title="Pool.map"></a>Pool.map</h2><blockquote>
 <p>目前我用的最多的简单粗暴的并行</p>
 </blockquote>
 <p>有大堆数据，需要进行相同的处理（函数）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> cpu_count</span><br><span class="line"><span class="built_in">print</span>(cpu_count())</span><br></pre></td></tr></table></figure>
-<p>上面的函数查看电脑CPU的核数/即最大并行进程数</p>
+
+<p>上面的函数查看电脑CPU的核数&#x2F;即最大并行进程数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="comment"># 也可以定义全局参数用于函数内</span></span><br><span class="line">root = <span class="string">&quot;...&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="comment"># 这里定义处理的函数</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="comment"># 8代表八个进程即使用8个核</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(f, files)</span><br></pre></td></tr></table></figure>
+
 <p>如果有多个参数，则可以将参数用元组封装传参后再拆包，如下示例：</p>
 <ul>
-<li><mark>paras是一个列表，每个元素都是一个函数f的输入参数</mark></li>
-<li>对于<mark>固定参数</mark>，如路径path或者其他则可以定义全局参数放在开始或者放在函数内部</li>
-<li>对于多个参数，可自行<strong>构造参数的列表</strong>，可使用列表运算符，或结合range函数实现
-<ul>
+<li>&#x3D;&#x3D;paras是一个列表，每个元素都是一个函数f的输入参数&#x3D;&#x3D;</li>
+<li>对于&#x3D;&#x3D;固定参数&#x3D;&#x3D;，如路径path或者其他则可以定义全局参数放在开始或者放在函数内部</li>
+<li>对于多个参数，可自行<strong>构造参数的列表</strong>，可使用列表运算符，或结合range函数实现<ul>
 <li>数量增加<code>*</code>：<code>a = [1,2,3]; b = a*2;   b = [1,2,3,1,2,3]</code></li>
 </ul>
 </li>
-<li>也可以使用<mark>starmap()</mark>，多参数以及pandas特殊遍历用法参见<a href="https://hscyber.github.io/posts/e4ebeda1/">这个笔记</a></li>
+<li>也可以使用&#x3D;&#x3D;starmap()&#x3D;&#x3D;，多参数以及pandas特殊遍历用法参见<a href="https://hscyber.github.io/posts/e4ebeda1/">这个笔记</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">r&quot;A:\Data&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f</span>(<span class="params">paras</span>):</span><br><span class="line">    file, date = paras</span><br><span class="line">    savefile = path+<span class="string">&quot;\\&quot;</span>+<span class="built_in">str</span>(date)+<span class="string">&quot;.csv&quot;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    files = glob(<span class="string">r&quot;A:\Data\indata\*.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># 此处我通过循环构造参数列表，days和files数量相同</span></span><br><span class="line">    paras = [(file, day) <span class="keyword">for</span> file <span class="keyword">in</span> files <span class="keyword">for</span> date <span class="keyword">in</span> dates]</span><br><span class="line">    pool.<span class="built_in">map</span>(f,paras)</span><br></pre></td></tr></table></figure>
-<h2 id="常用自定义函数"><a class="markdownIt-Anchor" href="#常用自定义函数"></a> 常用自定义函数</h2>
-<p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
+
+<h2 id="常用自定义函数"><a href="#常用自定义函数" class="headerlink" title="常用自定义函数"></a>常用自定义函数</h2><p>常用辅助函数，很多时候需要根据处理的文件自动创建文件夹，比如：</p>
 <ul>
 <li>这里我经常用到的一个dataframe按列拆分并运算，然后输出的函数</li>
 </ul>
@@ -429,13 +430,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">228k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:27</span>
   </span>
 </div>
 <div class="busuanzi-count">

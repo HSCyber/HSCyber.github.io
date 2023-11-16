@@ -165,7 +165,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text"> 摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text"> 内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text"> 概念表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.2.</span> <span class="nav-text"> 模型参数估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text"> 模型推断方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%BB%BA%E6%A8%A1%E6%8C%87%E5%8D%97"><span class="nav-number">2.4.</span> <span class="nav-text"> 完整建模指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">内容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A1%A8"><span class="nav-number">2.1.</span> <span class="nav-text">概念表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E4%BC%B0%E8%AE%A1"><span class="nav-number">2.2.</span> <span class="nav-text">模型参数估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%8E%A8%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-number">2.3.</span> <span class="nav-text">模型推断方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E5%BB%BA%E6%A8%A1%E6%8C%87%E5%8D%97"><span class="nav-number">2.4.</span> <span class="nav-text">完整建模指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -335,37 +335,35 @@
     <div class="post-body" itemprop="articleBody">
         <p>近期在学习广义线性混合效应模型，看了一篇文章，谷歌学术引用8k,  Generalized Linear Mixed Models: A Practical Guide for Ecology and Evolution (Bolker, Benjamin M., et al. 2009)<a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/221995574_Generalized_Linear_Mixed_Models_A_Practical_Guide_for_Ecology_and_Evolution">下载</a></p>
 <span id="more"></span>
-<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
-<blockquote>
-<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差/截距</strong>因此不能直接进行建模。</p>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><blockquote>
+<p>固定效应和随机效应，可粗略将随机效应理解为分组效应。一组数据内存在组间差距，典型的比如一堆学生调查数据其中来自多个班级，这里班级即考虑为一个随机效应，因为不同班级本身存在一个<strong>偏差&#x2F;截距</strong>因此不能直接进行建模。</p>
 </blockquote>
 <p>大意：GLMMs在生态领域应用十分广泛，但是对于模型的使用、拟合及参数估计等还是存在一些问题，本文的工作是回顾了模型的使用，讨论了GLMM中的参数估计和模型推断，并<u>总结了一份数据分析步骤的“最佳的实践”</u>。</p>
-<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>
-Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
-<h2 id="内容"><a class="markdownIt-Anchor" href="#内容"></a> 内容</h2>
-<blockquote>
+<p>How should ecologists and evolutionary biologists <strong>analyze nonnormal data that involve random effects</strong>?<br>Nonnormal data such as counts or proportions(因变量为包含随机效应的非正常数据比如频次，百分比等) often defy classical statistical procedures. Generalized linear mixed models (GLMMs) provide a more flexible approach for analyzing nonnormal data when random effects are present. The explosion of research on GLMMs in the last decade has generated <strong>considerable uncertainty</strong> for practitioners in ecology and evolution. Despite the availability of accurate techniques for estimating GLMM parameters in simple cases, complex GLMMs are challenging to fit and statistical inference such as hypothesis testing remains difficult. We review the use (and misuse) of GLMMs in ecology and evolution, <strong>discuss estimation and inference and summarize ‘best-practice’ data analysis procedures</strong> for scientists facing this challenge.</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><blockquote>
 <p>自行阅读，本文的核心内容都通过图表的形式呈现了，很友好，尤其是一开始的统计相关的一些知识总结。</p>
 </blockquote>
-<h3 id="概念表"><a class="markdownIt-Anchor" href="#概念表"></a> 概念表</h3>
-<p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
+<h3 id="概念表"><a href="#概念表" class="headerlink" title="概念表"></a>概念表</h3><p>一些统计学的概念可能需要进一步学习和在实践中逐渐体会：Bayesian statistics, Bias, Block random effects, Continuous random effects, Crossed random effects, Exponential family,……</p>
 <p><font color="#dd0000">统计模型的选择和处理依赖于因变量的类型</font>，关于GLM回归模型延伸一下，针对不同变量类型采取的不同变换，借用老师上课时候的一张PPT：</p>
 <img src="/posts/ca790165/f0.png" class>
-<h3 id="模型参数估计"><a class="markdownIt-Anchor" href="#模型参数估计"></a> 模型参数估计</h3>
-<blockquote>
+
+<h3 id="模型参数估计"><a href="#模型参数估计" class="headerlink" title="模型参数估计"></a>模型参数估计</h3><blockquote>
 <p>步骤及方法详情，具体可阅读论文，以下图文均来自论文</p>
 </blockquote>
 <img src="/posts/ca790165/f1.png" class>
+
 <img src="/posts/ca790165/f2.png" class title="image-20220820145710262">
-<h3 id="模型推断方法"><a class="markdownIt-Anchor" href="#模型推断方法"></a> 模型推断方法</h3>
-<p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
+
+<h3 id="模型推断方法"><a href="#模型推断方法" class="headerlink" title="模型推断方法"></a>模型推断方法</h3><p>在估计了GLMMs的参数值后，下一步是统计推断：即通过检查估计值及其置信区间、测试假设、选择最佳模型和评估模型间的拟合度差异，从数据中得出<strong>统计和生物学结论</strong>。本文讨论三种一般的推理类型：假设检验、模型比较和贝叶斯方法。</p>
 <img src="/posts/ca790165/f3.png" class title="image-20220820145641791">
-<h3 id="完整建模指南"><a class="markdownIt-Anchor" href="#完整建模指南"></a> 完整建模指南</h3>
-<blockquote>
+
+<h3 id="完整建模指南"><a href="#完整建模指南" class="headerlink" title="完整建模指南"></a>完整建模指南</h3><blockquote>
 <p>具体情况具体分析，初步实践可以看一下这个<a target="_blank" rel="noopener" href="https://ase.tufts.edu/bugs/guide/assets/mixed_model_guide.html">教程</a>，我觉得写的建模思路比较完整</p>
 </blockquote>
 <img src="/posts/ca790165/f4.png" class title="f4">
-<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
-<blockquote>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
 <p>Bolker另一篇高引用文章(引用52498)，<a target="_blank" rel="noopener" href="http://dx.doi.org/10.18637/jss.v067.i01">2015-Fitting Linear Mixed-Effects Models Using lme4</a>是R语言lme4包的介绍和模型拟合，略长，还没来及看</p>
 </blockquote>
 <p>Bolker, Benjamin M., et al. “Generalized linear mixed models: a practical guide for ecology and evolution.” <em>Trends in ecology &amp; evolution</em> 24.3 (2009): 127-135.</p>
@@ -445,13 +443,13 @@ Nonnormal data such as counts or proportions(因变量为包含随机效应的�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">226k</span>
+    <span title="站点总字数">228k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:25</span>
+    <span title="站点阅读时长">3:27</span>
   </span>
 </div>
 <div class="busuanzi-count">
