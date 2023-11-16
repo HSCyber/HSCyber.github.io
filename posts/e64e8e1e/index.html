@@ -305,7 +305,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>812</span>
+      <span>815</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -326,11 +326,25 @@
     <div class="post-body" itemprop="articleBody">
         <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Row-_and_column-major_order">wiki</a> 在计算中，行优先顺序(Row-major order)和列优先顺序(column-major order)是在<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Random_access_memory">随机存取存储器</a> 等线性存储器中<strong>存储多维数组</strong>的方法。顺序之间的区别在于数组的哪些元素<strong>在内存中是连续的</strong>。在行优先顺序中，行的连续元素彼此相邻。它对遍历数组时的性能也很重要，<strong>因为 CPU 处理顺序数据比处理非顺序数据更有效</strong>。</p>
 <span id="more"></span>
-
 <p>常见的语言，NumPy的多维数据和Torch当前默认为行优先，可以推广至任意维。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>],</span><br><span class="line">       [ <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a[<span class="number">0</span>]</span><br><span class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = a.flatten()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">array([ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>,  <span class="number">5</span>])</span><br></pre></td></tr></table></figure>
-
-<p>文字描述，如数组：<br>$$<br>A&#x3D;\left[\begin{array}{lll}<br>a_{11} &amp; a_{12} &amp; a_{13} \<br>a_{21} &amp; a_{22} &amp; a_{23}<br>\end{array}\right]<br>$$<br>存储方式<br>$$<br>\begin{array}{|c|c|c|}<br>\hline \text { 地址 } &amp; \text { 行优先顺序 } &amp; \text { 列优先顺序 } \<br>\hline \mathbf{0} &amp; a_{11} &amp; a_{11} \<br>\hline \mathbf{1} &amp; a_{12} &amp; a_{21} \<br>\hline \mathbf{2} &amp; a_{13} &amp; a_{12} \<br>\hline \mathbf{3} &amp; a_{21} &amp; a_{22} \<br>\hline \mathbf{4} &amp; a_{22} &amp; a_{13} \<br>\hline \mathbf{5} &amp; a_{23} &amp; a_{23} \<br>\hline<br>\end{array}<br>$$</p>
+<p>文字描述，如数组： <span class="math display">\[
+A=\left[\begin{array}{lll}
+a_{11} &amp; a_{12} &amp; a_{13} \\
+a_{21} &amp; a_{22} &amp; a_{23}
+\end{array}\right]
+\]</span> 存储方式 <span class="math display">\[
+\begin{array}{|c|c|c|}
+\hline \text { 地址 } &amp; \text { 行优先顺序 } &amp; \text { 列优先顺序 } \\
+\hline \mathbf{0} &amp; a_{11} &amp; a_{11} \\
+\hline \mathbf{1} &amp; a_{12} &amp; a_{21} \\
+\hline \mathbf{2} &amp; a_{13} &amp; a_{12} \\
+\hline \mathbf{3} &amp; a_{21} &amp; a_{22} \\
+\hline \mathbf{4} &amp; a_{22} &amp; a_{13} \\
+\hline \mathbf{5} &amp; a_{23} &amp; a_{23} \\
+\hline
+\end{array}
+\]</span></p>
 
     </div>
 
@@ -404,13 +418,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:23</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -306,7 +306,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -325,21 +325,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>pandas将多个表格(series&#x2F;dataframe)写入单个或多个excel文件,<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html">.to_excel()</a>。</p>
+        <p>pandas将多个表格(series/dataframe)写入单个或多个excel文件,<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html">.to_excel()</a>。</p>
 <span id="more"></span>
-
 <p>如果提示缺少包则需安装openpyxl</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge openpyxl</span><br></pre></td></tr></table></figure>
-
 <p>单个文件写出</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df.to_csv(<span class="string">&quot;./test.csv&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">df.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># series，单列</span></span><br><span class="line">wb_count = df[<span class="string">&#x27;weibo_count&#x27;</span>].value_counts()</span><br><span class="line">wb_count.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>,index_label=<span class="string">&#x27;value&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>多个文件写出，类似于文本文件的写出</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一次性导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line"><span class="keyword">with</span> pd.ExcelWriter(save_file) <span class="keyword">as</span> writer:  </span><br><span class="line">    df[<span class="string">&#x27;wb&#x27;</span>].to_excel(writer,sheet_name=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb17&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;17&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb18&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;18&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb19&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;19&#x27;</span>)</span><br><span class="line"><span class="comment"># 非一次性陆续导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line">writer = pd.ExcelWriter(save_file)</span><br><span class="line">df1.to_excel(writer, sheet_name = <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">df2.to_excel(writer, sheet_name = <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line"><span class="comment"># 关闭流并写入文件</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
-
 <p>追加表格到文件（<strong>建议先备份避免出错导致原始表格被覆盖</strong>）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> pd.ExcelWriter(<span class="string">&#x27;output.xlsx&#x27;</span>,mode=<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> writer:  </span><br><span class="line">    df.to_excel(writer, sheet_name=<span class="string">&#x27;Sheet_add&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
 <p>其他可选参数：na_rep(缺失值填充，默认为空)</p>
 
     </div>
@@ -415,13 +410,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:23</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括： 1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);">
+    <meta name="description" content="近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括： 1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);">
 <meta property="og:type" content="article">
 <meta property="og:title" content="时间序列(1)：LOESS(STL)时间序列分解">
 <meta property="og:url" content="https://hscyber.github.io/posts/6e05178d/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括： 1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);">
+<meta property="og:description" content="近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括： 1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-18T02:16:19.000Z">
 <meta property="article:modified_time" content="2022-08-27T05:16:47.901Z">
@@ -309,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>964</span>
+      <span>939</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -329,38 +329,40 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
-<p>1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);   </p>
+<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
 <span id="more"></span>
-
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
+<h2 id="引言">引言</h2>
+<blockquote>
 <p>时间序列中的”异常”？</p>
-<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded&#x2F;)</p>
+<p>此处的时间序列包含成分：周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)</p>
 </blockquote>
 <p>周期：如一个商场的总人口每天24小时的规律变化</p>
-<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化&#x2F;减少的趋势线</p>
+<p>趋势：最小单元一般是一个周期，及尺度会大于周期。比如商场周一到周末会有一个变化/减少的趋势线</p>
 <p>理论上，如果规律完美，原始时间序列减去周期及趋势应该能得到一条水平线，恒为0，但实际上很少会这样，能够得到一个在0或者某个值附近波动的变化，这样都可以称为理想的白噪音了，也即是这个过程没有任何问题，但实际上：</p>
 <ul>
 <li>各种不确定性的内部外部因素都可能产生异常，导致某天某些时候数据突变，甚至是整个趋势的变化，这就是通常在研究中我们需要关注的点并结合问题进行进一步的分析。</li>
 <li>有的异常或者个别的异常可能并不带来负面影响，那他就是可容忍的，因此我们需要设置一些<strong>阈值</strong>，通过一些方法来排除掉，<strong>从而找到我们真正需要关心的那些变化</strong></li>
 </ul>
 <p>在异常分析时这是比较常规的方式：</p>
-<ol>
-<li>对序列进行<strong>建模&#x2F;拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
+<ol type="1">
+<li>对序列进行<strong>建模/拟合</strong>(时间序列分解实际也是这样的)，模型总是理想的</li>
 <li>分离常态并去除规律性的部分（周期或趋势或二者均去除）。趋势的去除和周期的尺度和时间长度密切相关，因此需要结合实际问题和情况考虑趋势是否需要去除</li>
 <li>根据问题，设定条件，判别真正的<strong>异常</strong></li>
 </ol>
-<h2 id="stl时序分解"><a href="#stl时序分解" class="headerlink" title="stl时序分解"></a>stl时序分解</h2><blockquote>
+<h2 id="stl时序分解">stl时序分解</h2>
+<blockquote>
 <p>STL(“Seasonal and Trend decomposition using Loess”) 是一种用于分解时间序列的通用且稳健的方法。</p>
 </blockquote>
 <blockquote>
-<p> Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a target="_blank" rel="noopener" href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
+<p>Loess 是一种估计非线性关系的方法。STL 方法由RB Cleveland等人 ( <a target="_blank" rel="noopener" href="https://otexts.com/fpp2/stl.html#ref-Cleveland1990">1990</a> )开发。</p>
 </blockquote>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded&#x2F;)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li><p>预测： 方法与实践: <a target="_blank" rel="noopener" href="https://otexts.com/fppcn/stl.html">在线书籍</a></p>
-</li>
-<li><p>python statsmodel包:<a target="_blank" rel="noopener" href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p>
-</li>
+<h3 id="简介">简介</h3>
+<p>STL时间序列分解将序列分解为周期成分(seasonal)、趋势成分(trend)及其他部分(remainded/)，这几个成分可以是相加的也可以是相乘的（及加法模型和乘法模型），乘法也就意味着随着时间的推移不同成为有累积叠加作用</p>
+<h3 id="代码">代码</h3>
+<h2 id="参考">参考</h2>
+<ul>
+<li><p>预测： 方法与实践: <a target="_blank" rel="noopener" href="https://otexts.com/fppcn/stl.html">在线书籍</a></p></li>
+<li><p>python statsmodel包:<a target="_blank" rel="noopener" href="https://www.statsmodels.org/devel/examples/notebooks/generated/stl_decomposition.html#">stl_decomposition</a></p></li>
 </ul>
 
     </div>
@@ -438,13 +440,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">223k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:23</span>
   </span>
 </div>
 <div class="busuanzi-count">
