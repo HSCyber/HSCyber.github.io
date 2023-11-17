@@ -305,7 +305,7 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
 <li>时序差分方法可以在连续的环境下（没有终止）进行学习。蒙特卡洛方法只能在有终止的情况下学习。</li>
 <li>时序差分方法利用了马尔可夫性质，在马尔可夫环境下有更高的学习效率。蒙特卡洛方法没有假设环境具有马尔可夫性质，利用采样的价值来估计某个状态的价值，在不是马尔可夫的环境下更加有效。</li>
 </ul>
-<img src="/posts/undefined/image-20231117204142158.png" class title="image-20231117204142158">
+<img src="/posts/d205f64e/image-20231117204142158.png" class title="image2">
 <h2 id="免模型控制">免模型控制</h2>
 <blockquote>
 <p>控制，即给定一个马尔可夫决策过程，输出<u>最优策略以及对应的最优价值函数</u></p>
