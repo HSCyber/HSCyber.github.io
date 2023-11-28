@@ -157,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ewget"><span class="nav-number">1.</span> <span class="nav-text">关于WGET</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python-wget"><span class="nav-number">3.</span> <span class="nav-text">Python wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">其他参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EWGET"><span class="nav-number">1.</span> <span class="nav-text">关于WGET</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-wget"><span class="nav-number">3.</span> <span class="nav-text">Python wget</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">其他参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -306,14 +306,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>2.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -325,50 +325,50 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>之前下载一些网站数据，遇到大文件，下到一半源服务器就中断，后面就找到了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wget">WGET</a>，一个通过命令行下载文件和抓取网站的免费工具。WGET 提供了一组命令来下载文件，且能批量==下载失败自动重连且会顺着上次的下载继续下。==</p>
+        <p>之前下载一些网站数据，遇到大文件，下到一半源服务器就中断，后面就找到了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wget">WGET</a>，一个通过命令行下载文件和抓取网站的免费工具。WGET 提供了一组命令来下载文件，且能批量&#x3D;&#x3D;下载失败自动重连且会顺着上次的下载继续下。&#x3D;&#x3D;</p>
 <span id="more"></span>
-<h2 id="关于wget">关于WGET</h2>
-<h3 id="背景">背景</h3>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/GNU">GNU</a>(GNU's Not Unix)是一个拥有大量自由软件的集合，也可作为独立的操作系统使用，如<code>linux</code>，GNU项目的目标是实现一个完全免费的软件操作系统。创始人 (Richard Stallman)之后还成立了自由软件基金会(FSF)并聘请软件开发人员编写GNU所需的软件。</li>
+
+<h2 id="关于WGET"><a href="#关于WGET" class="headerlink" title="关于WGET"></a>关于WGET</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/GNU">GNU</a>(GNU’s Not Unix)是一个拥有大量自由软件的集合，也可作为独立的操作系统使用，如<code>linux</code>，GNU项目的目标是实现一个完全免费的软件操作系统。创始人 (Richard Stallman)之后还成立了自由软件基金会(FSF)并聘请软件开发人员编写GNU所需的软件。</li>
 <li><strong>GNU Wget</strong>(Wget)是一个可以从网络服务器上获取内容的<strong>计算机程序</strong>，支持 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTTP">HTTP</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTTPS">HTTPS</a>, and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP</a>等的下载。<strong>下载代理工具</strong>。</li>
 <li>它填补了 90 年代中期可用的不一致的网络下载软件的空白，即之前程序只能通过一种方式如FTP来下载文件。</li>
-<li>我用它主要是因为它还能自动处理网络瞬时故障，即==下载失败会顺着上次的下载继续下==</li>
+<li>我用它主要是因为它还能自动处理网络瞬时故障，即&#x3D;&#x3D;下载失败会顺着上次的下载继续下&#x3D;&#x3D;</li>
 </ul>
-<h3 id="特点">特点</h3>
-<p>WGET 通过命令行下载文件和抓取网站</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>WGET 通过命令行下载文件和抓取网站</p>
 <ul>
 <li>稳健：下载文件时会自动重连+下载</li>
 <li>批量：可以递归下载，即批处理</li>
 <li>自动：非交互即不需要图形界面及登录，自动完成大数据传输</li>
-<li>便携：对第三方依赖小，只需要一个 C 编译器和一个类似于 BSD 的TCP/IP网络接口，Wget 是用可移植的 C 语言创建的，可以在任何 Unix 系统上使用。也可以在 Mac OS X、Microsoft Windows、AmigaOS 和其他流行平台上实施。</li>
+<li>便携：对第三方依赖小，只需要一个 C 编译器和一个类似于 BSD 的TCP&#x2F;IP网络接口，Wget 是用可移植的 C 语言创建的，可以在任何 Unix 系统上使用。也可以在 Mac OS X、Microsoft Windows、AmigaOS 和其他流行平台上实施。</li>
 </ul>
-<h2 id="使用">使用</h2>
-<p>==下载安装==</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>&#x3D;&#x3D;下载安装&#x3D;&#x3D;</p>
 <ul>
-<li>程序下载以下均可：https://eternallybored.org/misc/wget/
-<ul>
+<li>程序下载以下均可：<a target="_blank" rel="noopener" href="https://eternallybored.org/misc/wget/">https://eternallybored.org/misc/wget/</a><ul>
 <li>其他下载链接：<a target="_blank" rel="noopener" href="http://gnuwin32.sourceforge.net/packages/wget.htm">官方2</a>, <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/gnu/wget/">aliyun镜像 wget</a></li>
 <li>对于windows可下载最新版的64-bit exe并放在文件夹下<code>C:\Windows\System32</code>，这样就相当于配置了系统环境变量，就可以在CMD中直接运行</li>
-</ul></li>
+</ul>
+</li>
 <li>ubuntu：<code>sudo apt-get install wget</code></li>
 </ul>
 <p>安装完后在命令行输入<code>wget -h</code>即可看到帮助文档，即命令用法</p>
-<p>==使用命令示例，打开CMD==：更多命令可以查看文档，我个人最常用的就是<font color="#dd0000">-c -i -P </font>这几个参数</p>
+<p>&#x3D;&#x3D;使用命令示例，打开CMD&#x3D;&#x3D;：更多命令可以查看文档，我个人最常用的就是<font color="#dd0000">-c -i -P </font>这几个参数</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载文件到当前目录 默认位置</span></span><br><span class="line">wget https://wordpress.org/latest.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载时掉线自动重连-c,即如果断了会自动续下</span></span><br><span class="line">wget -c https://example/very-big-file.zip</span><br><span class="line">wget -c https://wordpress.org/latest.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载多个文件：txt由多行链接组成</span></span><br><span class="line">wget -i urls.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载并重命名文件</span></span><br><span class="line">wget -O wordpress-install.zip https://wordpress.org/latest.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载到指定目录，最后加一个-P写地址即可</span></span><br><span class="line">wget ... -P .../latest.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">批量下载规则文件</span></span><br><span class="line">wget http://example.com/images/&#123;1..50&#125;.jpg</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">FTP下载，需设置用户及密码：</span></span><br><span class="line">wget --ftp-user=YOUR_USERNAME --ftp-password=YOUR_PASSWORD ftp://....tar</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">直接复刻网页内容，-P后跟的是当前路径下的文件夹</span></span><br><span class="line">wget --mirror --convert-links --page-requisites --no-parent -P documents/websites/ https://some-website.com</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">其他</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载限速：</span></span><br><span class="line">wget --limit-rate=1024k https://wordpress.org/latest.zip</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置重连次数：</span></span><br><span class="line">wget -tries=100 https://wordpress.org/latest.zip`</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置后台下载（大文件），路径下还会出现<span class="built_in">log</span>日志文件</span></span><br><span class="line">wget -b http://example.com/beefy-file.tar.gz</span><br></pre></td></tr></table></figure>
-<p>此外：如果需要代理网络则需要==让CMD走代理流量==才行</p>
-<h2 id="python-wget">Python wget</h2>
-<p>Python调用exe执行，没具体测试过，大致代码</p>
+
+<p>此外：如果需要代理网络则需要&#x3D;&#x3D;让CMD走代理流量&#x3D;&#x3D;才行</p>
+<h2 id="Python-wget"><a href="#Python-wget" class="headerlink" title="Python wget"></a>Python wget</h2><p>Python调用exe执行，没具体测试过，大致代码</p>
 <ul>
 <li>pip install wget</li>
-<li>import wget; wget.download(url, bar=bar_thermometer)</li>
+<li>import wget; wget.download(url, bar&#x3D;bar_thermometer)</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import the wget module</span></span><br><span class="line"><span class="keyword">from</span> wget <span class="keyword">import</span> download</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># create a downloader class.</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">downloader</span>:</span><br><span class="line">    <span class="comment">#  Create a custom prgress bar method</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">progressBar</span>(<span class="params">self,current,total</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Downloading: %d%% [%d / %d] bytes&quot;</span> % (current / total * <span class="number">100</span>, current, total))</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Create a downloadfile method</span></span><br><span class="line">    <span class="comment"># Accepting the url and the file storage location</span></span><br><span class="line">    <span class="comment"># Set the location to an empty string by default.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">downloadFile</span>(<span class="params">self, url, location=<span class="string">&quot;&quot;</span></span>):</span><br><span class="line">         <span class="comment"># Download file and with a custom progress bar</span></span><br><span class="line">        download(url, out = location, bar = self.progressBar)</span><br><span class="line"></span><br><span class="line">downloadObj = downloader()</span><br><span class="line">downloadObj.downloadFile(<span class="string">&quot;https://blog.debugeverything.com/wp-content/uploads/2021/04/python-virtualenv-project-structure.jpg&quot;</span>,<span class="string">&quot;files&quot;</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="其他参考">其他参考</h2>
-<ul>
-<li><p>官方文档：https://www.gnu.org/software/wget/manual/wget.html</p></li>
-<li><p>参考1: https://www.hostinger.com/tutorials/wget-command-examples/</p></li>
-<li><p>参考2: https://builtvisible.com/download-your-website-with-wget/</p></li>
+
+<h2 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h2><ul>
+<li><p>官方文档：<a target="_blank" rel="noopener" href="https://www.gnu.org/software/wget/manual/wget.html">https://www.gnu.org/software/wget/manual/wget.html</a></p>
+</li>
+<li><p>参考1: <a target="_blank" rel="noopener" href="https://www.hostinger.com/tutorials/wget-command-examples/">https://www.hostinger.com/tutorials/wget-command-examples/</a></p>
+</li>
+<li><p>参考2: <a target="_blank" rel="noopener" href="https://builtvisible.com/download-your-website-with-wget/">https://builtvisible.com/download-your-website-with-wget/</a></p>
+</li>
 </ul>
 
     </div>
@@ -443,13 +443,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

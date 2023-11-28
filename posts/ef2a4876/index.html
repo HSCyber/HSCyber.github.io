@@ -329,21 +329,23 @@
     <div class="post-body" itemprop="articleBody">
         <p>下载了天尺度1km格网的中国区域的温度数据，nc文件格式，需要先裁剪并输出为tif以便后续的提取工作，在Python里折腾老半天不得劲，最后用<strong>R语言完成</strong>。</p>
 <span id="more"></span>
+
 <p>这几天的数据处理工作让我感觉Python对于栅格数据的支持不够友好，而且性能捉急，往后类似的工作尽量上手R语言做，<strong>R语言对栅格处理友好且速度更快</strong>。</p>
-<h2 id="包">包</h2>
-<p>安装</p>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>安装</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ncdf4&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;raster&quot;</span><span class="punctuation">)</span></span><br><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;rgdal&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
 <p>文档查看：<a target="_blank" rel="noopener" href="https://cran.r-project.org/web/packages/raster/index.html">raster 包</a>，<a target="_blank" rel="noopener" href="https://cran.r-project.org/web/packages/raster/raster.pdf">API文档</a>，<a target="_blank" rel="noopener" href="https://cran.r-project.org/web/packages/rgdal/index.html">rgdal</a></p>
-<h2 id="nc写tif">nc写tif</h2>
-<ol type="1">
+<h2 id="nc写tif"><a href="#nc写tif" class="headerlink" title="nc写tif"></a>nc写tif</h2><ol>
 <li>基于研究区裁剪数据</li>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ncdf4<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>raster<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>rgdal<span class="punctuation">)</span></span><br><span class="line">study_area <span class="operator">=</span> <span class="string">&quot;A:/my_research/Studyarea.shp&quot;</span></span><br><span class="line">extent <span class="operator">&lt;-</span> shapefile<span class="punctuation">(</span>study_area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
+
+<ol start="2">
 <li>读取文件并拆分，循环写入</li>
 <li>说明（可以自行输出中间过程文件查看）：ncbr输出即为读入的nc文件，包含其数据的维度及名称等等，自行查看</li>
 </ol>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">outdir <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/tif/prep/&quot;</span></span><br><span class="line">ncfile <span class="operator">=</span> <span class="string">&quot;E:/Datasets/temp/China_1km_prep_2017.nc&quot;</span></span><br><span class="line">ncbr <span class="operator">=</span> brick<span class="punctuation">(</span>ncfile<span class="punctuation">,</span>varname <span class="operator">=</span> <span class="string">&quot;prep&quot;</span><span class="punctuation">,</span>lvar<span class="operator">=</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">filenames <span class="operator">=</span> paste0<span class="punctuation">(</span>outdir<span class="punctuation">,</span>ncbr<span class="operator">@</span>data<span class="operator">@</span><span class="built_in">names</span><span class="punctuation">,</span><span class="string">&quot;.tif&quot;</span><span class="punctuation">)</span></span><br><span class="line">nlayers <span class="operator">=</span> <span class="built_in">length</span><span class="punctuation">(</span>filenames<span class="punctuation">)</span></span><br><span class="line"><span class="keyword">for</span><span class="punctuation">(</span>i <span class="keyword">in</span> <span class="number">1</span><span class="operator">:</span>nlayers<span class="punctuation">)</span><span class="punctuation">&#123;</span></span><br><span class="line">  r <span class="operator">=</span> ncbr<span class="punctuation">[[</span>i<span class="punctuation">]</span><span class="punctuation">]</span> <span class="comment">#取一个图层</span></span><br><span class="line">  rc <span class="operator">=</span> crop<span class="punctuation">(</span>r<span class="punctuation">,</span>shp<span class="punctuation">)</span> <span class="comment"># 范围筛选</span></span><br><span class="line">  writeRaster<span class="punctuation">(</span>rc<span class="punctuation">,</span> filenames<span class="punctuation">[</span>i<span class="punctuation">]</span><span class="punctuation">,</span> bylayer<span class="operator">=</span><span class="literal">TRUE</span><span class="punctuation">,</span> format <span class="operator">=</span> <span class="string">&quot;GTiff&quot;</span><span class="punctuation">,</span>overwrite <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span>options<span class="operator">=</span><span class="string">&quot;COMPRESS=LZW&quot;</span><span class="punctuation">,</span>NAflag<span class="operator">=</span><span class="operator">-</span><span class="number">1</span><span class="punctuation">)</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <p>不过貌似不能直接按照shapefile边界形状裁剪？</p>
 
     </div>
@@ -420,13 +422,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

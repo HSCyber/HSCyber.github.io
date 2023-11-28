@@ -310,7 +310,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>302</span>
+      <span>317</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -329,21 +329,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p>
+        <p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域&#x2F;研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p>
 <span id="more"></span>
-<h2 id="实际操作案例">实际操作案例</h2>
-<h3 id="计算各区域内路网的长度">计算各区域内路网的长度</h3>
-<blockquote>
-<p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p>
+
+<h2 id="实际操作案例"><a href="#实际操作案例" class="headerlink" title="实际操作案例"></a>实际操作案例</h2><h3 id="计算各区域内路网的长度"><a href="#计算各区域内路网的长度" class="headerlink" title="计算各区域内路网的长度"></a>计算各区域内路网的长度</h3><blockquote>
+<p>计算各区域内&#x2F;格网&#x2F;缓冲区内湖泊的面积等，类似</p>
 </blockquote>
 <p>ArcGIS Pro提供了一个很好用的工具<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p>
 <img src="/posts/e57ebaa5/image-20230315165154558.png" class title="image-20230315165154558">
+
 <img src="/posts/e57ebaa5/image-20230315165006403.png" class title="image-20230315165006403">
+
+
+
 <p>如果是使用ArcGIS，步骤如下,<a target="_blank" rel="noopener" href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p>
-<ol type="1">
-<li><p>使用<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li>
-<li><p>使用<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li>
-<li><p>连接表格</p></li>
+<ol>
+<li><p>使用<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p>
+</li>
+<li><p>使用<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p>
+</li>
+<li><p>连接表格</p>
+</li>
 </ol>
 <img src="/posts/e57ebaa5/image-20230315165245144.png" class title="image-20230315165245144">
 
@@ -416,13 +422,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

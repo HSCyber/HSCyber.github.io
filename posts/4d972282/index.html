@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>855</span>
+      <span>881</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -328,21 +328,22 @@
     <div class="post-body" itemprop="articleBody">
         <p>处理<strong>文本或字符串</strong>数据常需要对内容进行<strong>关键词筛选</strong>，如选出表格df中包含某几个关键词的行，选出某个列表<strong>texts</strong>中所有包含某些关键词的句子<strong>keywords</strong>，或选择属于某个list的行……</p>
 <span id="more"></span>
-<h2 id="字符串">字符串</h2>
-<blockquote>
+
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><blockquote>
 <p>子串包含行筛选</p>
 </blockquote>
 <p>单个字符串的筛选则可以通过<code>if (substring in text)</code>进行判断</p>
-<p>pandas可通过<code>df['text'].str.contains("keyword1|keyword2...")</code></p>
+<p>pandas可通过<code>df[&#39;text&#39;].str.contains(&quot;keyword1|keyword2...&quot;)</code></p>
 <p>代码举例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 表格行筛选</span></span><br><span class="line">keywords = <span class="string">&quot;天鸽|台风|hato|HATO|Hato|帕卡|Pakhar|pakhar&quot;</span></span><br><span class="line">df = df.loc[df[<span class="string">&#x27;content_cleaned&#x27;</span>].<span class="built_in">str</span>.contains(keywords)] </span><br><span class="line"><span class="comment"># 列表筛选举例，先转为列表（为了举例，实际中会采用contains()的方式）</span></span><br><span class="line">contents = df[<span class="string">&#x27;content_cleaned&#x27;</span>].to_list()</span><br><span class="line">keywords = [<span class="string">&quot;天鸽&quot;</span>,<span class="string">&quot;台风&quot;</span>,<span class="string">&quot;hato&quot;</span>,<span class="string">&quot;HATO&quot;</span>,<span class="string">&quot;Hato&quot;</span>]</span><br><span class="line">contents2 = [content <span class="keyword">for</span> content <span class="keyword">in</span> contents <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> content <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
 <p>如果是且，则改成<code>&amp;</code>;<code>all()</code></p>
-<h2 id="列表包含">列表包含</h2>
-<p>列表推导</p>
+<h2 id="列表包含"><a href="#列表包含" class="headerlink" title="列表包含"></a>列表包含</h2><p>列表推导</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newlist = [text <span class="keyword">for</span> text <span class="keyword">in</span> texts <span class="keyword">if</span> <span class="built_in">any</span>(w <span class="keyword">in</span> text <span class="keyword">for</span> w <span class="keyword">in</span> keywords)]</span><br></pre></td></tr></table></figure>
+
 <p>如果是列元素是否包含于<strong>list</strong>的筛选：</p>
 <ul>
-<li><code>df2 = df1.loc[df1['ID'].isin(keywords)]</code></li>
+<li><code>df2 = df1.loc[df1[&#39;ID&#39;].isin(keywords)]</code></li>
 <li>取反则加<code>~</code>，如用户筛选：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vipusers = [...]</span><br><span class="line">wb_vip = wb.loc[wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br><span class="line"><span class="comment"># 取反则</span></span><br><span class="line">wb_vip = wb.loc[~wb[<span class="string">&#x27;ID&#x27;</span>].isin(vipusers)]</span><br></pre></td></tr></table></figure>
@@ -420,13 +421,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:31</span>
   </span>
 </div>
 <div class="busuanzi-count">

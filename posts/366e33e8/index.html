@@ -157,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#r-python-conversion-guide"><span class="nav-number">1.</span> <span class="nav-text">R-Python conversion guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#r%E7%9A%84%E4%BE%BF%E6%8D%B7%E4%B8%8E%E7%BC%BA%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">R的便捷与缺点</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#R-Python-conversion-guide"><span class="nav-number">1.</span> <span class="nav-text">R-Python conversion guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#R%E7%9A%84%E4%BE%BF%E6%8D%B7%E4%B8%8E%E7%BC%BA%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">R的便捷与缺点</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -306,7 +306,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>746</span>
+      <span>806</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -327,25 +327,24 @@
     <div class="post-body" itemprop="articleBody">
         <p>上一次用R语言已经是去年的事情了，最近想用R进行制图（在涉及统计和统计图表方面还得是R），R的图表和配色也都很好看，便开始再来学一学R。</p>
 <span id="more"></span>
-<h2 id="r-python-conversion-guide">R-Python conversion guide</h2>
-<p>直接跳转到这位前辈的博客：</p>
+
+<h2 id="R-Python-conversion-guide"><a href="#R-Python-conversion-guide" class="headerlink" title="R-Python conversion guide"></a>R-Python conversion guide</h2><p>直接跳转到这位前辈的博客：</p>
 <p><a target="_blank" rel="noopener" href="https://www.mit.edu/~amidi/teaching/data-science-tools/">Data Science Tools</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-manipulation/">Data manipulation R-Python conversion guide</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-visualization/">Data visualization</a></p>
-<h2 id="r的便捷与缺点">R的便捷与缺点</h2>
-<blockquote>
+<h2 id="R的便捷与缺点"><a href="#R的便捷与缺点" class="headerlink" title="R的便捷与缺点"></a>R的便捷与缺点</h2><blockquote>
 <p>从Python到R会觉得R的格式不规范</p>
 </blockquote>
 <p>接触过一点时间会发现R语言在某种程度上用起来比R方便，功能的实现只需要找到一个响应的函数，传入参数，得到相应的输出，也就是<font color="#dd0000">封装地更“好”</font>，用起来更简单(傻瓜)了，但是对我来说，便捷之处我感觉就是引出了它的一些缺点：</p>
-<ol type="1">
-<li>包与函数之间缺乏==逻辑==，不便于查文档和学习包。距离来说，Python中处理文件目录路径相关的操作，都在os中就可以完成，只需要import os，然后通过os.path.split(), os.listdir()等调用即可，==Python的包查看文档和接口说明十分方便==，R语言则不是，<font color="#dd0000">看到一个R的函数，我都不知道它是否是内置函数，也不知道它属于哪个包，给我的感觉很不好</font>，这可能需要更多的时间来熟悉和查询</li>
+<ol>
+<li>包与函数之间缺乏&#x3D;&#x3D;逻辑&#x3D;&#x3D;，不便于查文档和学习包。距离来说，Python中处理文件目录路径相关的操作，都在os中就可以完成，只需要import os，然后通过os.path.split(), os.listdir()等调用即可，&#x3D;&#x3D;Python的包查看文档和接口说明十分方便&#x3D;&#x3D;，R语言则不是，<font color="#dd0000">看到一个R的函数，我都不知道它是否是内置函数，也不知道它属于哪个包，给我的感觉很不好</font>，这可能需要更多的时间来熟悉和查询</li>
 <li>文档不友好。包带来的问题是文档的杂乱，平时我一般通过API文档来查看函数细节，但是R的网页版不方便，而且还存在重名函数等问题，看的很不习惯</li>
 <li>不方便查看和debug，首先是代码不好看（这个还能忍），可读性不佳，另一个是不好改和参考别人的代码，函数和包给人的感觉总是比较乱，想用前辈的代码比较痛苦，相较于Python。</li>
 <li>此外，用的时候发现R不支持中文字符串；</li>
 </ol>
 <p>所以还是不便于用它进行数据处理而仅作为统计分析建模以及可视化工具</p>
 <ul>
-<li>最近开始专门学习一下R的==ggplot2==制图</li>
+<li>最近开始专门学习一下R的&#x3D;&#x3D;ggplot2&#x3D;&#x3D;制图</li>
 </ul>
 
     </div>
@@ -420,13 +419,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">228k</span>
+    <span title="站点总字数">233k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:27</span>
+    <span title="站点阅读时长">3:31</span>
   </span>
 </div>
 <div class="busuanzi-count">
