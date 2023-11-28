@@ -34,7 +34,7 @@
 <meta property="og:description" content="如果在图中的适当位置添加辅助线及文本，并设置其属性，……。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-05T08:30:11.000Z">
-<meta property="article:modified_time" content="2022-12-09T14:01:58.834Z">
+<meta property="article:modified_time" content="2023-11-28T08:48:29.373Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="Matplotlib">
@@ -158,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7%E4%B8%8E%E5%B8%83%E5%B1%80"><span class="nav-number">1.</span> <span class="nav-text">文本属性与布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ax.text%E6%96%87%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">ax.text文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">辅助线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ax.vlines%E5%9E%82%E7%9B%B4%E7%BA%BF"><span class="nav-number">3.1.</span> <span class="nav-text">ax.vlines垂直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ax.hlines%E6%B0%B4%E5%B9%B3%E7%BA%BF"><span class="nav-number">3.2.</span> <span class="nav-text">ax.hlines水平线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axline%E4%BB%BB%E6%84%8F%E7%BA%BF"><span class="nav-number">3.3.</span> <span class="nav-text">axline任意线</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%B1%9E%E6%80%A7%E4%B8%8E%E5%B8%83%E5%B1%80"><span class="nav-number">1.</span> <span class="nav-text">文本属性与布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ax.text%E6%96%87%E6%9C%AC"><span class="nav-number">2.</span> <span class="nav-text">ax.text文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E7%BA%BF"><span class="nav-number">3.</span> <span class="nav-text">辅助线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vlines%E5%9E%82%E7%9B%B4%E7%BA%BF"><span class="nav-number">3.1.</span> <span class="nav-text">vlines垂直线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hlines%E6%B0%B4%E5%B9%B3%E7%BA%BF"><span class="nav-number">3.2.</span> <span class="nav-text">hlines水平线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#axline%E4%BB%BB%E6%84%8F%E7%BA%BF"><span class="nav-number">3.3.</span> <span class="nav-text">axline任意线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%85%E5%8A%A9%E9%9D%A2%E7%9F%A9%E5%BD%A2"><span class="nav-number">4.</span> <span class="nav-text">辅助面(矩形)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#axhspan%E4%B8%8Eaxvspan"><span class="nav-number">4.1.</span> <span class="nav-text">axhspan与axvspan</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>292</span>
+      <span>357</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -337,18 +337,15 @@
 <p><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.axes.Axes.text.html">api</a></p>
 </blockquote>
 <h2 id="辅助线">辅助线</h2>
-<h3 id="ax.vlines垂直线">ax.vlines垂直线</h3>
-<blockquote>
-<p>Axes.vlines(x, ymin, ymax, ...)——Plot <strong>vertical</strong> lines at each <em>x</em> from <em>ymin</em> to <em>ymax</em>.</p>
-</blockquote>
-<h3 id="ax.hlines水平线">ax.hlines水平线</h3>
-<blockquote>
-<p>Axes.hlines(y, xmin, xmax,...)——Plot <strong>horizontal</strong> lines at each <em>y</em> from <em>xmin</em> to <em>xmax</em>.</p>
-</blockquote>
+<h3 id="vlines垂直线">vlines垂直线</h3>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.hlines.html">Axes.vlines(x, ymin, ymax, ...)</a>——Plot <strong>vertical</strong> lines at each <em>x</em> from <em>ymin</em> to <em>ymax</em>.</p>
+<h3 id="hlines水平线">hlines水平线</h3>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.vlines.html">Axes.hlines(y, xmin, xmax,...)</a>——Plot <strong>horizontal</strong> lines at each <em>y</em> from <em>xmin</em> to <em>xmax</em>.</p>
 <h3 id="axline任意线">axline任意线</h3>
-<blockquote>
-<p>可以绘制斜线，如回归拟合线<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/gallery/specialty_plots/anscombe.html#sphx-glr-gallery-specialty-plots-anscombe-py">example</a>——Axes.axline(xy1, xy2=None, *, slope=None)...</p>
-</blockquote>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.axline.html">Axes.axline api</a>，除了水平垂直线，可以绘制斜线，如回归拟合线<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/gallery/specialty_plots/anscombe.html#sphx-glr-gallery-specialty-plots-anscombe-py">example</a>——Axes.axline(xy1, xy2=None, *, slope=None)...</p>
+<h2 id="辅助面矩形">辅助面(矩形)</h2>
+<h3 id="axhspan与axvspan">axhspan与axvspan</h3>
+<p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axhspan.html">axhspan api</a>，<a target="_blank" rel="noopener" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axvspan.html">axvspan api</a>，用例<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/gallery/subplots_axes_and_figures/axhspan_demo.html#sphx-glr-gallery-subplots-axes-and-figures-axhspan-demo-py">参考</a></p>
 
     </div>
 
