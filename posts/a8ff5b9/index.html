@@ -100,9 +100,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,7 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E8%AF%BB%E5%8F%96"><span class="nav-number">1.</span> <span class="nav-text">分块读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%87%BA%E4%BA%8C%E8%BF%9B%E5%88%B6-%E5%8E%8B%E7%BC%A9"><span class="nav-number">2.</span> <span class="nav-text">写出二进制&#x2F;压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%8A%A0%E9%80%9F"><span class="nav-number">3.</span> <span class="nav-text">运算加速</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%9D%97%E8%AF%BB%E5%8F%96"><span class="nav-number">1.</span> <span class="nav-text">分块读取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E5%87%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8E%8B%E7%BC%A9"><span class="nav-number">2.</span> <span class="nav-text">写出二进制&#x2F;压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E5%8A%A0%E9%80%9F"><span class="nav-number">3.</span> <span class="nav-text">运算加速</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,18 +174,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -329,26 +329,25 @@
     <div class="post-body" itemprop="articleBody">
         <p>初略小结一下处理大型文件的常规思路。Python借助Pandas处理表格文件很方便，但是涉及一下大的文件，比如需要处理单个70G（笔记本内存一般16G）的csv或者txt文件，显然不能够整个将其读取运存进行分析和运算，目前我的一般思路是<u>读取时分块，运算时并行，写出时压缩</u>。</p>
 <span id="more"></span>
-
-<h2 id="分块读取"><a href="#分块读取" class="headerlink" title="分块读取"></a>分块读取</h2><p>以大型csv为例，可以先预览一下文件表头，使用quicklook或者读取前若干行。</p>
+<h2 id="分块读取">分块读取</h2>
+<p>以大型csv为例，可以先预览一下文件表头，使用quicklook或者读取前若干行。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>geotweets = <span class="string">&#x27;F:/weibo2017/geo_weibo_2017.csv&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = pd.read_csv(geotweets, header=<span class="number">0</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>, nrows=<span class="number">100</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.columns</span><br><span class="line">Index([<span class="string">&#x27;_id&#x27;</span>, <span class="string">&#x27;Comment&#x27;</span>, <span class="string">&#x27;Like&#x27;</span>, <span class="string">&#x27;Transfer&#x27;</span>, <span class="string">&#x27;Content&#x27;</span>, <span class="string">&#x27;Co_oridinate1&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;Co_oridinate2&#x27;</span>, <span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;Tools&#x27;</span>, <span class="string">&#x27;ID&#x27;</span>, <span class="string">&#x27;PicNumber&#x27;</span>, <span class="string">&#x27;PicLink&#x27;</span>,</span><br><span class="line">       <span class="string">&#x27;PicAllLink&#x27;</span>],</span><br><span class="line">      dtype=<span class="string">&#x27;object&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span> df.info()  <span class="comment"># 查看列的类型</span></span><br></pre></td></tr></table></figure>
-
-<p>可以分块读取并保存到本地，当然也可以逐部分进行操作最后再保存。大文件为避免有行错误添加<strong>on_bad_lines&#x3D;’skip’</strong>（这里的分块chunks实际上应该是生成器）</p>
+<p>可以分块读取并保存到本地，当然也可以逐部分进行操作最后再保存。大文件为避免有行错误添加<strong>on_bad_lines=’skip’</strong>（这里的分块chunks实际上应该是生成器）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">chunksize=<span class="number">3000000</span>  <span class="comment">#设置分块的行数，并筛选列</span></span><br><span class="line">set_cols = [<span class="string">&#x27;_id&#x27;</span>, <span class="string">&#x27;Comment&#x27;</span>, <span class="string">&#x27;Like&#x27;</span>, <span class="string">&#x27;Transfer&#x27;</span>, <span class="string">&#x27;Content&#x27;</span>, <span class="string">&#x27;Co_oridinate1&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;Co_oridinate2&#x27;</span>, <span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;ID&#x27;</span>]</span><br><span class="line">chunks = pd.read_csv(geotweets,header=<span class="number">0</span>,chunksize=chunksize,low_memory=<span class="literal">False</span>,</span><br><span class="line">                     usecols=set_cols, on_bad_lines=<span class="string">&#x27;skip&#x27;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">path_res_split = <span class="string">&#x27;F:/weibo2017/Dataset/s1_split_chunks&#x27;</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> chunks:</span><br><span class="line">    outFileName = <span class="string">&#x27;&#123;0&#125;_&#123;1&#125;&#123;2&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="string">&#x27;chunk&#x27;</span>, i, <span class="string">&#x27;.csv&#x27;</span>)</span><br><span class="line">    path_outfile = os.path.join(path_res_split, outFileName)</span><br><span class="line">    chunk.to_csv(path_outfile, index=<span class="literal">False</span>)</span><br><span class="line">    i = i+<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
 <p>这里的写出可能会很慢，可以替换成pickle</p>
-<h2 id="写出二进制-压缩"><a href="#写出二进制-压缩" class="headerlink" title="写出二进制&#x2F;压缩"></a>写出二进制&#x2F;压缩</h2><blockquote>
+<h2 id="写出二进制压缩">写出二进制/压缩</h2>
+<blockquote>
 <p>尤其是对于中间计算过程的文件或者是仅用作备份的文件，可以写出压缩的pkl（二进制文件），空间更小且读写更快</p>
 </blockquote>
 <p>有个bug是这里得记录下环境中pandas的版本，不同的版本保存的文件读写不一定能兼容。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chunk.to_pickle(outpklfile,compression=&#123;<span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="string">&#x27;compresslevel&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;mtime&#x27;</span>: <span class="number">1</span>&#125;)</span><br><span class="line">df = pd.read_pickle(outpklfile,compression=&#123;<span class="string">&#x27;method&#x27;</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="string">&#x27;compresslevel&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;mtime&#x27;</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<h2 id="运算加速"><a href="#运算加速" class="headerlink" title="运算加速"></a>运算加速</h2><blockquote>
+<h2 id="运算加速">运算加速</h2>
+<blockquote>
 <p>高效处理的一些模块和函数+Python中的多进程并行</p>
 </blockquote>
 <p>一方面内存足够的情况下，可以简单可以采用<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
 <p>同时在操作运算的时候可以多考虑：</p>
-<ol>
+<ol type="1">
 <li>优先使用使用内置模块及内置函数</li>
 <li>数据类型多使用numpy数组、内置的array，以及字典和元组</li>
 <li>列表和元组、字典可以多使用列表推导式</li>
@@ -429,13 +428,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">

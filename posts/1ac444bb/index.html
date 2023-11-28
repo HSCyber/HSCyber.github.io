@@ -100,9 +100,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -174,18 +174,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -329,12 +329,12 @@
     <div class="post-body" itemprop="articleBody">
         <p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
 <span id="more"></span>
-
 <p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
-<h2 id="非并行"><a href="#非并行" class="headerlink" title="非并行"></a>非并行</h2><p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
+<h2 id="非并行">非并行</h2>
+<p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#未安装包可以先安装 conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(files)</span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h2><p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
+<h2 id="并行">并行</h2>
+<p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reclass</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">    files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    </span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(reclass, files)</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -411,13 +411,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">

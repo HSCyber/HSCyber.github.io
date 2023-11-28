@@ -99,9 +99,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -158,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DLL%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">DLL文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conda%E7%89%88%E6%9C%AC%E5%8F%8A%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">Conda版本及包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">部分参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dll%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">DLL文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E7%89%88%E6%9C%AC%E5%8F%8A%E5%8C%85%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">Conda版本及包问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">部分参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -173,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -326,43 +326,42 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突&#x2F;不适配问题</p>
+        <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
 <span id="more"></span>
-
 <p>一般重新安装或者重新配置环境解决。</p>
 <p>经分析此处大概也是Python环境中包的依赖版本及路径的冲突问题，一开始新建了3.9的环境能够运行，但是偶尔能用，未进一步深究，直接建议安装了3.9的miniconda替换了旧的3.7的Anaconda（该版本有点旧了）,此处大概是因为基础环境中的3.7版本GDAL与新环境的冲突。旧版本的GDAL还需要自己设置路径。</p>
-<h2 id="DLL文件"><a href="#DLL文件" class="headerlink" title="DLL文件"></a>DLL文件</h2><blockquote>
+<h2 id="dll文件">DLL文件</h2>
+<blockquote>
 <p>Dynamic-link_library 动态链接库，也即是<strong>库</strong></p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS&#x2F;2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dynamic-link_library">wiki</a>：是Microsoft在Microsoft Windows和OS/2操作系统中实现的共享库概念，与exe一样，DLL可以包含任意组合的代码、数据和资源。</p>
 <ul>
-<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was “dynamic linking”.</li>
+<li>动态链接：程序在执行时从共享库中调用代码片段dll。The same architectural concept that allowed GDI to load different device drivers is that which allowed the <strong><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Windows_shell">Windows shell</a> to load different Windows programs</strong>, and for these programs to invoke API calls from the shared USER and GDI libraries. That concept was "dynamic linking".</li>
 <li>共享：不同的应用程序可以调用同一个DLL即DLL 中的代码通常在所有使用 DLL 的进程之间共享</li>
-<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码&#x2F;数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
+<li>好处：DLL 为共享代码和数据提供了一种机制，允许共享代码/数据的开发人员升级功能，而无需重新链接或重新编译应用程序。</li>
 </ul>
 <p>与静态库一样，DLL 的导入库由.lib文件扩展名注明</p>
-<h2 id="Conda版本及包问题"><a href="#Conda版本及包问题" class="headerlink" title="Conda版本及包问题"></a>Conda版本及包问题</h2><blockquote>
+<h2 id="conda版本及包问题">Conda版本及包问题</h2>
+<blockquote>
 <p>不同包来源和依赖库版本不同，加上维护群体和更新快慢差异，因此直接安装多个包可能存在冲突。</p>
 </blockquote>
 <blockquote>
-<p> 这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
+<p>这也是为什么建议通过pip conda之类的工具来进行包的管理，即有人帮我们做了一道版本的”审查”。建议是尽量使用主流的一些包，安装时优先使用conda-forge，如果还有问题先试试新建环境，一般能走通，或者也可以找到源码自己改写。</p>
 </blockquote>
 <p>个人习惯使用<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">miniconda</a>3.9版本或者3.8作为基础环境进行环境管理，然后根据不同的工作新建常用的一些环境进行环境分离（而且新环境坏了也可以直接删掉重来），比如我个人会常建空间处理、文本处理、爬虫等几个环境进行使用，而不使用base，另外有特殊版本需求的任务可以新建如2.7 3.6 环境等</p>
 <ul>
 <li>之前写过Python入门、包以及conda环境管理，后续改改上传一下</li>
 </ul>
-<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda&#x2F;或者在github)，及优先使用<a target="_blank" rel="noopener" href="https://anaconda.org/"> conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a target="_blank" rel="noopener" href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
+<p>安装包的时候建议通过谷歌搜索conda package名找到最佳安装命令(conda/或者在github)，及优先使用<a target="_blank" rel="noopener" href="https://anaconda.org/">conda-forge</a>安装，没有的包则直接通过pip安装关于为什么建议使用conda-forge和不同包分法渠道的区别还可以看看这里<a target="_blank" rel="noopener" href="https://conda-forge.org/docs/user/introduction.html">官网</a>,<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/39857289/should-conda-or-conda-forge-be-used-for-python-environments">帖2</a></p>
 <ul>
 <li>设置默认渠道的方式：<code>conda config --add channels conda-forge</code></li>
-<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:&#x2F;Users&#x2F;huangs&#x2F;.condarc</li>
+<li>包来源渠道channels设置文件一般在用户文件处，如我的是C:/Users/huangs/.condarc</li>
 </ul>
-<h2 id="部分参考"><a href="#部分参考" class="headerlink" title="部分参考"></a>部分参考</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://conda-forge.org/docs/user/introduction.html">https://conda-forge.org/docs/user/introduction.html</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p>
-</li>
+<h2 id="部分参考">部分参考</h2>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html#:~:text=Miniconda%20is%20a%20free%20minimal,zlib%20and%20a%20few%20others.">Miniconda</a></p></li>
+<li><p>https://conda-forge.org/docs/user/introduction.html</p></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41683065/article/details/99710373">csdn</a></p></li>
 </ul>
 
     </div>
@@ -438,13 +437,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">

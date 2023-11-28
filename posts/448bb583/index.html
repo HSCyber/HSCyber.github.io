@@ -101,9 +101,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NetCDF"><span class="nav-number">1.</span> <span class="nav-text">NetCDF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E8%AF%BBnc%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Python读nc文件</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#netcdf"><span class="nav-number">1.</span> <span class="nav-text">NetCDF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E8%AF%BBnc%E6%96%87%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">Python读nc文件</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,18 +175,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -330,35 +330,30 @@
     <div class="post-body" itemprop="articleBody">
         <p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/NetCDF">NC文件</a>由于便捷存储多维数据（如大范围长时间序列），因而广泛用于气候，气象数据存储及交换。python文档<a target="_blank" rel="noopener" href="https://unidata.github.io/netcdf4-python/">netCDF4</a></p>
 <span id="more"></span>
-
 <p>安装：conda install -c conda-forge netcdf4</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> netCDF4 <span class="keyword">as</span> nc</span><br><span class="line"><span class="keyword">from</span> netCDF4 <span class="keyword">import</span> Dataset</span><br></pre></td></tr></table></figure>
-
-<h2 id="NetCDF"><a href="#NetCDF" class="headerlink" title="NetCDF"></a>NetCDF</h2><blockquote>
+<h2 id="netcdf">NetCDF</h2>
+<blockquote>
 <p>NetCDF (Network Common Data Form)，网络通用数据格式</p>
 </blockquote>
 <p>NC文件包括以下几个属性</p>
 <ul>
-<li>简单来说，netcdf是一个包含多自变量及其函数的文件。用公式来说就是f(x,y,z,…)&#x3D;value，同时存储了xyz</li>
+<li>简单来说，netcdf是一个包含多自变量及其函数的文件。用公式来说就是f(x,y,z,…)=value，同时存储了xyz</li>
 <li>函数的自变量x,y,z等在netcdf中叫做维(dimension) 或坐标轴(axix),<code>ds.dimensions</code>可以看到维度的信息</li>
 <li>函数值与自变量均存储在(Variables)，<code>ds.variables</code>属性则存储了数据的详细信息及数组文件。</li>
 </ul>
 <p>具体案例见下方示例：</p>
-<h2 id="Python读nc文件"><a href="#Python读nc文件" class="headerlink" title="Python读nc文件"></a>Python读nc文件</h2><p>netCDF文件有五种（NETCDF3_CLASSIC, NETCDF3_64BIT_OFFSET, NETCDF3_64BIT_DATA, NETCDF4_CLASSIC和NETCDF4）读取之后<code>ds.data_model</code>输出可以看到其实际存储格式。</p>
+<h2 id="python读nc文件">Python读nc文件</h2>
+<p>netCDF文件有五种（NETCDF3_CLASSIC, NETCDF3_64BIT_OFFSET, NETCDF3_64BIT_DATA, NETCDF4_CLASSIC和NETCDF4）读取之后<code>ds.data_model</code>输出可以看到其实际存储格式。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ncfile = <span class="string">&#x27;E:\\Datasets\\temp\\China_1km_maxtmp_2017.nc&#x27;</span></span><br><span class="line">ds = Dataset(ncfile, <span class="string">&quot;r&quot;</span>, <span class="built_in">format</span>=<span class="string">&quot;NETCDF4&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(ds.data_model)</span><br><span class="line"><span class="comment"># ds.close()</span></span><br></pre></td></tr></table></figure>
-
 <p>常见属性举例：时间这里是从1800年开始按天算的，实际中都要自行判断并转换，这里的温度的单位是K</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds.dimensions</span><br><span class="line">&#123;<span class="string">&#x27;lon&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lon&#x27;</span>, size = <span class="number">7386</span>,</span><br><span class="line"> <span class="string">&#x27;lat&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt;: name = <span class="string">&#x27;lat&#x27;</span>, size = <span class="number">4267</span>,</span><br><span class="line"> <span class="string">&#x27;time&#x27;</span>: &lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Dimension&#x27;</span>&gt; (unlimited): name = <span class="string">&#x27;time&#x27;</span>, size = <span class="number">365</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>ds_dict = ds.variables</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict.keys()</span><br><span class="line">dict_keys([<span class="string">&#x27;time&#x27;</span>, <span class="string">&#x27;lon&#x27;</span>, <span class="string">&#x27;lat&#x27;</span>, <span class="string">&#x27;maxtmp&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看数据信息</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;time&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 time(time)</span><br><span class="line">    units: days since <span class="number">1800</span>-01-01 <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span></span><br><span class="line">    standard_name: time</span><br><span class="line">    calendar: proleptic_gregorian</span><br><span class="line">    long_name: Time</span><br><span class="line">    axis: T</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 lon(lon)</span><br><span class="line">    standard_name: longitude</span><br><span class="line">    long_name: Longitude</span><br><span class="line">    units: degrees_east</span><br><span class="line">    axis: X</span><br><span class="line">unlimited dimensions: </span><br><span class="line">current shape = (<span class="number">7386</span>,)</span><br><span class="line">filling on, default _FillValue of <span class="number">9.969209968386869e+36</span> used</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>]</span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;netCDF4._netCDF4.Variable&#x27;</span>&gt;</span><br><span class="line">float32 maxtmp(time, lat, lon)</span><br><span class="line">    _FillValue: nan</span><br><span class="line">    scale_factor: <span class="number">0.01</span></span><br><span class="line">    add_offset: <span class="number">273.15</span></span><br><span class="line">    units: K</span><br><span class="line">    long_name: Daily Maximum Near-Surface Air Temperature</span><br><span class="line">    standard_name: air_temperature</span><br><span class="line">    missing_value: nan</span><br><span class="line">unlimited dimensions: time</span><br><span class="line">current shape = (<span class="number">365</span>, <span class="number">4267</span>, <span class="number">7386</span>)</span><br><span class="line">filling on</span><br></pre></td></tr></table></figure>
-
 <p>数据矩阵访问，通常是掩码数组，这里是False，相当于无掩码，普通数组</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_dict[<span class="string">&#x27;lon&#x27;</span>][:]</span><br><span class="line">masked_array(data=[ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>,</span><br><span class="line">                   <span class="number">134.9803</span> , <span class="number">134.98863</span>],</span><br><span class="line">             mask=<span class="literal">False</span>,</span><br><span class="line">       fill_value=<span class="number">1e+20</span>,</span><br><span class="line">            dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>array_lon = dt_dict[<span class="string">&#x27;lon&#x27;</span>][:].data</span><br><span class="line">array([ <span class="number">73.44696</span>,  <span class="number">73.45529</span>,  <span class="number">73.46363</span>, ..., <span class="number">134.97195</span>, <span class="number">134.9803</span> ,</span><br><span class="line">       <span class="number">134.98863</span>], dtype=float32)</span><br></pre></td></tr></table></figure>
-
 <p>其他类似，后面的操作都是<strong>numy多维数组</strong>的操作了</p>
 <ul>
-<li><p>访问某天的全区域的数据<code>[1,:,:]</code>，也可以输入特定经纬度索引范围</p>
-</li>
-<li><p>访问某点的时间序列数据<code>[:,index_lon,index_lat]</code></p>
-</li>
+<li><p>访问某天的全区域的数据<code>[1,:,:]</code>，也可以输入特定经纬度索引范围</p></li>
+<li><p>访问某点的时间序列数据<code>[:,index_lon,index_lat]</code></p></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp = dt_dict[<span class="string">&#x27;maxtmp&#x27;</span>][<span class="number">1</span>,:,:]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp</span><br><span class="line">masked_array(</span><br><span class="line">  data=[[--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        ...,</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --],</span><br><span class="line">        [--, --, --, ..., --, --, --]],</span><br><span class="line">  mask=[[ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        ...,</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>],</span><br><span class="line">        [ <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>, ...,  <span class="literal">True</span>,  <span class="literal">True</span>,  <span class="literal">True</span>]],</span><br><span class="line">  fill_value=nan,</span><br><span class="line">  dtype=float32)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dt_maxtmp.data</span><br><span class="line">array([[nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       ...,</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan],</span><br><span class="line">       [nan, nan, nan, ..., nan, nan, nan]], dtype=float32)</span><br></pre></td></tr></table></figure>
 
@@ -437,13 +432,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -99,9 +99,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -173,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -326,18 +326,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>使用多进程经常会遇到多个参数的问题，此时pool.map()略显麻烦，可以使用&#x3D;&#x3D;pool.starmap&#x3D;&#x3D;</p>
+        <p>使用多进程经常会遇到多个参数的问题，此时pool.map()略显麻烦，可以使用==pool.starmap==</p>
 <span id="more"></span>
-
-<h2 id="starmap用法"><a href="#starmap用法" class="headerlink" title="starmap用法"></a>starmap用法</h2><p>用法与<a href="https://hscyber.github.io/posts/4b434785/">之前类似</a>，只不过提供了一个更加方便的参数打包和完成自动解析的步骤</p>
+<h2 id="starmap用法">starmap用法</h2>
+<p>用法与<a href="https://hscyber.github.io/posts/4b434785/">之前类似</a>，只不过提供了一个更加方便的参数打包和完成自动解析的步骤</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.pool <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myfunction</span>(<span class="params">outpath,x,y,z</span>):</span><br><span class="line">     <span class="comment"># 此处是处理操作</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">outpath =  <span class="string">&quot;C:\Users\huangs\Desktop&quot;</span>   </span><br><span class="line">outpaths = [outpath]*<span class="number">4</span></span><br><span class="line">X = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">Y = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">Z = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line"><span class="comment"># X,Y,Z为参数集合，也可以用元组包装，如X = (1,2,3,4)</span></span><br><span class="line">paras = [outpaths,X, Y, Z]</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> Pool(<span class="number">8</span>) <span class="keyword">as</span> pool:</span><br><span class="line">    pool.starmap(myfunction, paras)</span><br></pre></td></tr></table></figure>
-
 <p>这样实际上就会多进程执行：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">myfunction(outpaths[<span class="number">0</span>],X[<span class="number">0</span>],Y[<span class="number">0</span>],Z[<span class="number">0</span>])</span><br><span class="line">myfunction(outpaths[<span class="number">1</span>],X[<span class="number">1</span>],Y[<span class="number">1</span>],Z[<span class="number">1</span>])</span><br><span class="line">......</span><br><span class="line">myfunction(outpaths[i],X[i],Y[i],Z[i])</span><br></pre></td></tr></table></figure>
-
-<h2 id="pandas多行并行"><a href="#pandas多行并行" class="headerlink" title="pandas多行并行"></a>pandas多行并行</h2><p>如果能够直接构造一个函数使用pandas apply函数即可，有时候pandas的多行提取得到一些结果，不方便直接apply，可以&#x3D;&#x3D;将表拆分成多个表完成并行操作&#x3D;&#x3D;，记录一下刚刚完成的实例：</p>
+<h2 id="pandas多行并行">pandas多行并行</h2>
+<p>如果能够直接构造一个函数使用pandas apply函数即可，有时候pandas的多行提取得到一些结果，不方便直接apply，可以==将表拆分成多个表完成并行操作==，记录一下刚刚完成的实例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">tids, track_ids, user_ids, cities</span>):</span><br><span class="line">    <span class="comment"># 此处是操作</span></span><br><span class="line">    newrows = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(tids)):</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:    </span><br><span class="line">    <span class="comment"># 原始轨迹数据表</span></span><br><span class="line">    tf = pd.read_csv(trackinfo, header=<span class="number">0</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    paras = []</span><br><span class="line">    <span class="comment"># 按照城市拆分成367个表格，每组数据作为paras的一个元素</span></span><br><span class="line">    <span class="keyword">for</span> city,table <span class="keyword">in</span> tf.groupby(<span class="string">&#x27;city&#x27;</span>):</span><br><span class="line">        tids = <span class="built_in">list</span>(table[<span class="string">&#x27;tid&#x27;</span>])</span><br><span class="line">        track_ids = <span class="built_in">list</span>(table[<span class="string">&#x27;track_id&#x27;</span>])</span><br><span class="line">        user_ids = <span class="built_in">list</span>(table[<span class="string">&#x27;user_id&#x27;</span>])</span><br><span class="line">        cities = <span class="built_in">list</span>(table[<span class="string">&#x27;city&#x27;</span>])</span><br><span class="line">        paras.append((tids,track_ids,user_ids,cities))</span><br><span class="line">    <span class="comment"># 此时paras是一个包含367个元组的列表，每个元素是一组输入</span></span><br><span class="line">    <span class="comment"># 遍历处理，函数内设循环</span></span><br><span class="line">    <span class="keyword">with</span> Pool(<span class="number">8</span>) <span class="keyword">as</span> pool:</span><br><span class="line">        pool.starmap(main, paras)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -412,13 +410,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -101,9 +101,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">135</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">110</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DataFrame%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">DataFrame格式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E7%BB%9F%E8%AE%A1%E5%80%BC%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">按照统计值排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Seaborn%E7%BB%98%E5%9B%BE%E7%A4%BA%E6%84%8F"><span class="nav-number">3.</span> <span class="nav-text">Seaborn绘图示意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#dataframe%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">DataFrame格式转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%89%E7%85%A7%E7%BB%9F%E8%AE%A1%E5%80%BC%E6%8E%92%E5%BA%8F"><span class="nav-number">2.</span> <span class="nav-text">按照统计值排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#seaborn%E7%BB%98%E5%9B%BE%E7%A4%BA%E6%84%8F"><span class="nav-number">3.</span> <span class="nav-text">Seaborn绘图示意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">4.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -175,18 +175,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">110</span>
+          <span class="site-state-item-count">111</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">135</span>
+        <span class="site-state-item-count">136</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -309,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -330,40 +330,33 @@
     <div class="post-body" itemprop="articleBody">
         <p>在绘图时有时需要将本地的表格转换为目标接口要求的格式 -&gt; reshape。以seaborn绘制多变量箱线图为例，其默认数据接口需要的是<strong>一列数值加一列类型，但是本地通常是多列</strong>，因此需要转换，此外如果涉及到<strong>排序</strong>也需要自行调整，以下为案例代码记录以供复用：</p>
 <span id="more"></span>
-
-<h2 id="DataFrame格式转换"><a href="#DataFrame格式转换" class="headerlink" title="DataFrame格式转换"></a>DataFrame格式转换</h2><p>比如我的表格为如下的，n行6列的表格，其中5列代表五个不同的变量，需要将其转换为三列:UID, Typename, Value</p>
+<h2 id="dataframe格式转换">DataFrame格式转换</h2>
+<p>比如我的表格为如下的，n行6列的表格，其中5列代表五个不同的变量，需要将其转换为三列:UID, Typename, Value</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;UID&quot;</span>: <span class="built_in">range</span>(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;x1&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;x2&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;x3&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;x4&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;x5&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
-
 <img src="/posts/837ccaeb/image-20230906144957498.png" class title="image-20230906144957498">
-
 <p>使用<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html">pd.stack()</a>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df2 = df.set_index(<span class="string">&quot;UID&quot;</span>)</span><br><span class="line">df2 = df2.stack().reset_index()</span><br><span class="line">df2.columns = [<span class="string">&quot;UID&quot;</span>,<span class="string">&quot;typaneme&quot;</span>,<span class="string">&quot;y&quot;</span>]</span><br><span class="line">df2</span><br></pre></td></tr></table></figure>
-
 <p>不使用函数自行定义：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">stack_data</span>(<span class="params">datatable, typenames, col_id</span>):</span><br><span class="line">    uids = []</span><br><span class="line">    names = []</span><br><span class="line">    values = []</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> typenames:</span><br><span class="line">        value = <span class="built_in">list</span>(datatable[col])</span><br><span class="line">        names.extend([col]*<span class="built_in">len</span>(value))</span><br><span class="line">        values.extend(value)</span><br><span class="line">        uids.extend(datatable[col_id])</span><br><span class="line">    df_temp = pd.DataFrame(&#123;col_id:uids,<span class="string">&quot;typename&quot;</span>:names, <span class="string">&quot;y&quot;</span>:values&#125;)</span><br><span class="line">    <span class="keyword">return</span> df_temp</span><br><span class="line"><span class="comment"># 选定要堆叠的变量</span></span><br><span class="line">cols = <span class="built_in">list</span>(df.columns[<span class="number">1</span>:])</span><br><span class="line">typenames = cols</span><br><span class="line"><span class="comment"># [&#x27;x1&#x27;, &#x27;x2&#x27;, &#x27;x3&#x27;, &#x27;x4&#x27;, &#x27;x5&#x27;]</span></span><br><span class="line">df_temp = stack_data(df,typenames,<span class="string">&quot;UID&quot;</span>)</span><br><span class="line">df_temp</span><br></pre></td></tr></table></figure>
-
 <p>如果不需要UID列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">stack_data</span>(<span class="params">datatable, typenames</span>):</span><br><span class="line">    names = []</span><br><span class="line">    values = []</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> typenames:</span><br><span class="line">        value = <span class="built_in">list</span>(datatable[col])</span><br><span class="line">        names.extend([col]*<span class="built_in">len</span>(value))</span><br><span class="line">        values.extend(value)</span><br><span class="line">    df_temp = pd.DataFrame(&#123;<span class="string">&quot;typename&quot;</span>:names, <span class="string">&quot;y&quot;</span>:values&#125;)</span><br><span class="line">    <span class="keyword">return</span> df_temp</span><br><span class="line"><span class="comment"># 选定要堆叠的变量</span></span><br><span class="line">cols = <span class="built_in">list</span>(df.columns[<span class="number">1</span>:])</span><br><span class="line">typenames = cols</span><br><span class="line"></span><br><span class="line">df_temp = stack_data(df,typenames)</span><br><span class="line">df_temp</span><br></pre></td></tr></table></figure>
-
-<h2 id="按照统计值排序"><a href="#按照统计值排序" class="headerlink" title="按照统计值排序"></a>按照统计值排序</h2><blockquote>
-<p>如果是直接排序，直接对得到的表格进行排序即可，df.sort_values(by&#x3D;[“y”], scending&#x3D;False,ignore_index&#x3D;False)</p>
+<h2 id="按照统计值排序">按照统计值排序</h2>
+<blockquote>
+<p>如果是直接排序，直接对得到的表格进行排序即可，df.sort_values(by=["y"], scending=False,ignore_index=False)</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#直接对堆叠后的值排序如下， 也可多列进行排序，也可以结合set_index();sort_index()函数操作</span></span><br><span class="line">df_temp.sort_values(by=[<span class="string">&quot;y&quot;</span>], ascending=[<span class="literal">False</span>],ignore_index=<span class="literal">False</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <p>有时候需要先<strong>对列进行排序</strong>再进行堆叠，比如按照中位数或者均值排列</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">df3 = df[df.columns[<span class="number">1</span>:]]</span><br><span class="line">meds = df3.median()</span><br><span class="line">meds = meds.sort_values(ascending=<span class="literal">False</span>)</span><br><span class="line">cols_sort = <span class="built_in">list</span>(meds.index)</span><br><span class="line"><span class="comment"># cols_sort即为按照列的中位数调整顺序后的列名[&#x27;x2&#x27;, &#x27;x5&#x27;, &#x27;x1&#x27;, &#x27;x4&#x27;, &#x27;x3&#x27;]</span></span><br><span class="line">cols_sort.insert(<span class="number">0</span>,<span class="string">&quot;UID&quot;</span>)</span><br><span class="line">df3 = df[cols_sort]</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line"><span class="comment"># 再进行堆叠即可得到新的按照变量的中值进行排序的结果</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="Seaborn绘图示意"><a href="#Seaborn绘图示意" class="headerlink" title="Seaborn绘图示意"></a>Seaborn绘图示意</h2><blockquote>
-<p>seaborn.boxplot(data&#x3D;None, *, x&#x3D;None, y&#x3D;None, hue&#x3D;None, order&#x3D;None, hue_order&#x3D;None, orient&#x3D;None, color&#x3D;None, palette&#x3D;None, saturation&#x3D;0.75, width&#x3D;0.8, dodge&#x3D;True, fliersize&#x3D;5, linewidth&#x3D;None, whis&#x3D;1.5, ax&#x3D;None, **kwargs)</p>
+<h2 id="seaborn绘图示意">Seaborn绘图示意</h2>
+<blockquote>
+<p>seaborn.boxplot(data=None, *, x=None, y=None, hue=None, order=None, hue_order=None, orient=None, color=None, palette=None, saturation=0.75, width=0.8, dodge=True, fliersize=5, linewidth=None, whis=1.5, ax=None, **kwargs)</p>
 </blockquote>
 <p>实际上我们可以对该图进行定制，包括颜色，文字，线和箱等等，后续单独记一下boxplot的调参</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">sns.set_theme(style=<span class="string">&quot;ticks&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Initialize the figure with a logarithmic x axis</span></span><br><span class="line">f, ax = plt.subplots(figsize=(<span class="number">7</span>, <span class="number">6</span>))</span><br><span class="line">ax.set_xscale(<span class="string">&quot;log&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Load the example planets dataset</span></span><br><span class="line">planets = sns.load_dataset(<span class="string">&quot;planets&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Plot the orbital period with horizontal boxes</span></span><br><span class="line">sns.boxplot(x=<span class="string">&quot;distance&quot;</span>, y=<span class="string">&quot;method&quot;</span>, data=planets,</span><br><span class="line">            whis=[<span class="number">0</span>, <span class="number">100</span>], width=<span class="number">.6</span>, palette=<span class="string">&quot;vlag&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add in points to show each observation</span></span><br><span class="line">sns.stripplot(x=<span class="string">&quot;distance&quot;</span>, y=<span class="string">&quot;method&quot;</span>, data=planets,</span><br><span class="line">              size=<span class="number">4</span>, color=<span class="string">&quot;.3&quot;</span>, linewidth=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Tweak the visual presentation</span></span><br><span class="line">ax.xaxis.grid(<span class="literal">True</span>)</span><br><span class="line">ax.<span class="built_in">set</span>(ylabel=<span class="string">&quot;&quot;</span>)</span><br><span class="line">sns.despine(trim=<span class="literal">True</span>, left=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
-
 <img src="/posts/837ccaeb/box.jpeg" class title="image">
-
-<h2 id><a href="#" class="headerlink" title></a></h2><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<h2 id="section"></h2>
+<h2 id="参考">参考</h2>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html#reshaping-stacking">pandas-reshape</a></li>
 <li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html">pandas.DataFrame.sort_values</a></li>
 <li><a target="_blank" rel="noopener" href="https://seaborn.pydata.org/generated/seaborn.boxplot.html#seaborn.boxplot">seaborn boxplot</a></li>
@@ -441,13 +434,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">233k</span>
+    <span title="站点总字数">230k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:31</span>
+    <span title="站点阅读时长">3:29</span>
   </span>
 </div>
 <div class="busuanzi-count">
