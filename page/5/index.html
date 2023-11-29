@@ -96,8 +96,8 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">120</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -175,12 +175,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -314,7 +314,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
+          <p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：**(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式**</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -423,9 +423,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <center>
-小结读写tif文件之前，先总结一下tif文件数值类型以及压缩的必要性和方法。
-</center>
+          <center>小结读写tif文件之前，先总结一下tif文件数值类型以及压缩的必要性和方法。</center>
           <!--noindex-->
           <!--/noindex-->
         
@@ -515,7 +513,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
+      <span>3.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -534,7 +532,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines...。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
+          <p><a href="https://hscyber.github.io/posts/8dfff56a/">前一节</a>小结了一下Matplotlib一张图表的组成(Elements), 也即<strong>Anatomy of a figure</strong>，包括Figure, Axes, Axis, Spines…。另外还指出了一个点-图表本质上<u>是由以下三种要素的组合: patchs块、线和文本</u>，<strong>且理论上上述部件(也称artist)都能够被访问和调整，即自定义</strong>。接下来要要做的即是逐步熟悉各部件的调整，在此之前先简单理一理绘图的<strong>逻辑</strong>及最基本的创建<strong>画布和图形及字体尺寸</strong>，并放了A4尺寸出图的参考代码。附录是关于文件格式的简单汇总。</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -690,7 +688,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/18b022c/" class="post-title-link" itemprop="url">Pandas(杂)：表格的各种连接方式</a>
+          <a href="/posts/18b022c/" class="post-title-link" itemprop="url">Pandas(杂)：表格的各种连接方式join</a>
         </h2>
 
         <div class="post-meta-container">
@@ -733,7 +731,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>937</span>
+      <span>942</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -752,9 +750,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <center>
-简单记录一下数据库或表格连接的类型，建议通过行数辨别
-</center>
+          <center>简单记录一下数据库或表格连接的类型，建议通过行数辨别</center>
           <!--noindex-->
           <!--/noindex-->
         
@@ -863,9 +859,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <center>
-汇总一下常用的几行geopandas代码便于复用
-</center>
+          <center>汇总一下常用的几行geopandas代码便于复用</center>
           <!--noindex-->
           <!--/noindex-->
         
@@ -955,7 +949,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -974,7 +968,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突/不适配问题</p>
+          <p>近期debug，同学在引入包(rasterio)的过程中频繁遇到<code>DLL load failed while importing _version: 找不到指定的程序</code>的问题，大部分情况都是因为包依赖的冲突&#x2F;不适配问题</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1064,7 +1058,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>939</span>
+      <span>964</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1084,7 +1078,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>近期处理定位请求时间序列的过程中用到了STL时间序列分解，趋势分析及变点检测方法，在Python和R中都进行了实践，小结一下参数设置和其他个人体会。内容包括：</p>
-<p>1-时间序列建模/成分提取及异常分析思路；2-STL调参及代码(python and R);</p>
+<p>1-时间序列建模&#x2F;成分提取及异常分析思路；2-STL调参及代码(python and R);   </p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1174,7 +1168,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1193,7 +1187,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>re(Regular Expression)/正则表达式是一个内置的文本处理模块，在进行<strong>数据处理（筛选、替换）以及网页数据</strong>抓取时十分常用该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
+          <p>re(Regular Expression)&#x2F;正则表达式是一个内置的文本处理模块，在进行<strong>数据处理（筛选、替换）以及网页数据</strong>抓取时十分常用该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1283,7 +1277,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.3k</span>
+      <span>4.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1302,8 +1296,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
-<p>对于软件，如果点是矢量，则可以直接通过ArcMap/QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a target="_blank" rel="noopener" href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
+          <p><strong>按照多边形</strong>（如格网&#x2F;行政区划）边界<strong>汇总统计</strong>其内的<strong>点&#x2F;栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
+<p>对于软件，如果点是矢量，则可以直接通过ArcMap&#x2F;QGIS的spatial join计算，点为栅格，则称zonal statistic……实际中数据多即需要批处理，可以采用QGIS、ArcPy或者基于Python（如<a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.sjoin.html">geopandas</a> <a target="_blank" rel="noopener" href="https://pythonhosted.org/rasterstats/manual.html#zonal-statistics">rasterstats</a>等模块）……</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1415,7 +1409,7 @@
           <blockquote>
 <p>持续阅读并更新</p>
 </blockquote>
-<p>本书对Python的数据模型/类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh...</p>
+<p>本书对Python的数据模型&#x2F;类型和一些基础有一些深入的讲解。翻译自国外的书籍《Fluent Python》，最早2017年出版，我大概是18年买的，那阵子Python刚开始火，不过买了发现过了好几年都看不懂，现在勉强能抽空看看hh…</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1505,7 +1499,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>432</span>
+      <span>447</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1524,9 +1518,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <center>
-持续更新...
-</center>
+          <center>持续更新...</center>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1636,7 +1628,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>小结一下Pandas <font color="#dd0000">筛选表格数据子集</font>的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的<strong>一部分</strong>，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类,<strong>理论上基于代码我们可以实现任何想得到的处理</strong>：</p>
-<ol type="1">
+<ol>
 <li>位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用<mark>df.iloc[ , ]</mark></li>
 <li>条件筛选<mark>df.loc[条件]</mark>（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
 <li>复杂条件筛选（自定义函数<mark>df.apply</mark>的运用）</li>
@@ -1750,7 +1742,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>介绍一下Vscode Python环境配置，并小结一下自己目前<strong>基于Python的数据分析工作习惯</strong>。</p>
-<p>之前的模式是基于Anaconda环境，使用Jupyter Notebook/Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas...）、ArcPy以及QGIS、ArcMap等软件。</p>
+<p>之前的模式是基于Anaconda环境，使用Jupyter Notebook&#x2F;Lab和pycharm，现在是基于Miniconda，用VSCode为主；至于涉及空间的处理，则主要是基于Python库（Gdal; geopandas…）、ArcPy以及QGIS、ArcMap等软件。</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -1860,7 +1852,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>本文小结JSON相关的一些知识点和读写方式，涉及内容</p>
-<p>①. 序列化与反序列化； ②.Json数据格式转换及其读写； ③. 出错案例/非标准JSON文件处理</p>
+<p>①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例&#x2F;非标准JSON文件处理 	</p>
 <p>首先：<code>import json</code></p>
           <!--noindex-->
           <!--/noindex-->
@@ -1961,9 +1953,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <center>
-存放与研究生工作及摸鱼相关度较大的内容...
-</center>
+          <center>存放与研究生工作及摸鱼相关度较大的内容...</center>
           <!--noindex-->
           <!--/noindex-->
         
@@ -2053,7 +2043,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>855</span>
+      <span>881</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -2162,7 +2152,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>648</span>
+      <span>644</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -2181,8 +2171,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>小结个人平时下载文献的流程和几种方式...今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
-<p>1.论文所在官网；2.<a target="_blank" rel="noopener" href="https://scholar.google.com/">谷歌学术</a> + <a target="_blank" rel="noopener" href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a target="_blank" rel="noopener" href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4....</p>
+          <p>小结个人平时下载文献的流程和几种方式…今天有人问我是怎么下载<strong>英文文献</strong>的？我大概捋了一下：</p>
+<p>1.论文所在官网；2.<a target="_blank" rel="noopener" href="https://scholar.google.com/">谷歌学术</a> + <a target="_blank" rel="noopener" href="https://sci-hub.se/">Scihub</a>（优先doi号搜索）3.<a target="_blank" rel="noopener" href="https://www.researchgate.net/">researchgate</a>，若作者未发可以点击<strong>请求全文</strong> 4….</p>
           <!--noindex-->
           <!--/noindex-->
         
@@ -2272,14 +2262,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6k</span>
+      <span>6.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -2295,7 +2285,7 @@
 <p><strong>从Python到R</strong></p>
 </blockquote>
 <p>相比于Python，R语言在进行统计分析建模及可视化方面有明显优势，且很多算法提供了R版本但不一定有Python。而两种语言在数据处理分析等方面其实相像，因此可以通过<strong>类比</strong>熟悉一下R语言，以便快速上手R并完成一些工作。本文小结R语言基础，主要涉及</p>
-<ol type="1">
+<ol>
 <li>基本语法，数据类型</li>
 <li>常用函数，流程控制（写循环）</li>
 <li>文件读写及数据框的常规操作</li>
@@ -2453,13 +2443,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">234k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:33</span>
   </span>
 </div>
 <div class="busuanzi-count">

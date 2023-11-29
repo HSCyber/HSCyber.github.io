@@ -107,8 +107,8 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">120</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -187,12 +187,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -315,7 +315,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -334,82 +334,95 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>作图时首先就要确定图片内容的布局，此处小结一下<mark>多图布局的常规操作</mark>。绘制草图及常用的图使用==subplots==进行布局即可，涉及更多元化的布局可以使用==gridspec==以及最新的==subplot_mosaic==</p>
+        <p>作图时首先就要确定图片内容的布局，此处小结一下<mark>多图布局的常规操作</mark>。绘制草图及常用的图使用&#x3D;&#x3D;subplots&#x3D;&#x3D;进行布局即可，涉及更多元化的布局可以使用&#x3D;&#x3D;gridspec&#x3D;&#x3D;以及最新的&#x3D;&#x3D;subplot_mosaic&#x3D;&#x3D;</p>
 <span id="more"></span>
-<h2 id="布局示意">布局示意</h2>
-<blockquote>
-<p>这里主要记录的是多个==axes==(图形)在一张或多种画布==figure==中的布局。</p>
+
+<h2 id="布局示意"><a href="#布局示意" class="headerlink" title="布局示意"></a>布局示意</h2><blockquote>
+<p>这里主要记录的是多个&#x3D;&#x3D;axes&#x3D;&#x3D;(图形)在一张或多种画布&#x3D;&#x3D;figure&#x3D;&#x3D;中的布局。</p>
 </blockquote>
 <p>新建画布的步骤可以拆成两步，也可以合并为一行代码</p>
-<ol type="1">
+<ol>
 <li>先新建一个figure（然后往其中继续添加subfigures）</li>
 <li>往figiue上添加axes，即添加图形</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">matplotlib.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">120</span> </span><br><span class="line"></span><br><span class="line">fig,ax_array = plt.subplots(</span><br><span class="line">    nrows = <span class="number">2</span>, ncols = <span class="number">2</span>,</span><br><span class="line">    figsize=(<span class="number">5</span>,<span class="number">5</span>),</span><br><span class="line">    layout=<span class="string">&#x27;constrained&#x27;</span>)</span><br><span class="line"><span class="comment"># 等效于</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>,<span class="number">5</span>),layout=<span class="string">&#x27;constrained&#x27;</span>)</span><br><span class="line">ax_array = fig.subplots(nrows = <span class="number">2</span>, ncols = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="固定行列subplots">固定行列subplots</h2>
-<p>创建指定行列数<strong>默认等大小</strong>的若干图形，参数：</p>
+
+<h2 id="固定行列subplots"><a href="#固定行列subplots" class="headerlink" title="固定行列subplots"></a>固定行列subplots</h2><p>创建指定行列数<strong>默认等大小</strong>的若干图形，参数：</p>
 <ul>
 <li>nrows,ncols，行列数</li>
-<li>figsize=() #单位是英寸，如果设置为A4纸大小为(21/2.54,29.7/2.54)</li>
-<li>layout，布局，默认紧凑<strong>'constrained', 'compressed', 'tight'</strong>
-<ul>
+<li>figsize&#x3D;() #单位是英寸，如果设置为A4纸大小为(21&#x2F;2.54,29.7&#x2F;2.54)</li>
+<li>layout，布局，默认紧凑**’constrained’, ‘compressed’, ‘tight’**<ul>
 <li>set_constrained_layout: w_pad, h_pad，调节ax周边包围的大小，单位是英寸</li>
-</ul></li>
-<li>sharex=‘col’, sharey=‘row’</li>
-<li>gridspec_kw(<strong>此参数也适用于subfigure，调整画布之间的比例等</strong>)：
-<ul>
+</ul>
+</li>
+<li>sharex&#x3D;‘col’, sharey&#x3D;‘row’</li>
+<li>gridspec_kw(<strong>此参数也适用于subfigure，调整画布之间的比例等</strong>)：<ul>
 <li>wspace, hspace 调整行列之间的间隙</li>
 <li>height_ratios, width_ratios：调整行列图形的大小比例</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fig,ax_array = plt.subplots(</span><br><span class="line">    nrows = <span class="number">2</span>, ncols = <span class="number">2</span>,figsize=(<span class="number">6</span>,<span class="number">4</span>),</span><br><span class="line">    layout=<span class="string">&#x27;constrained&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ax_array[<span class="number">0</span>, <span class="number">0</span>].bar([<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>], [<span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>])</span><br><span class="line">ax_array[<span class="number">0</span>, <span class="number">1</span>].plot([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">ax_array[<span class="number">1</span>, <span class="number">0</span>].hist(hist_data, bins=<span class="string">&quot;auto&quot;</span>)</span><br><span class="line">ax_array[<span class="number">1</span>, <span class="number">1</span>].imshow([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line"><span class="comment"># 以下等价</span></span><br><span class="line"><span class="comment"># axes = ax_array.flatten()</span></span><br><span class="line"><span class="comment"># axes[0].bar([&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], [5, 7, 9])</span></span><br><span class="line"><span class="comment"># axes[1].plot([1, 2, 3])</span></span><br><span class="line"><span class="comment"># axes[2].hist(hist_data, bins=&quot;auto&quot;)</span></span><br><span class="line"><span class="comment"># axes[3].imshow([[1, 2], [2, 1]])</span></span><br></pre></td></tr></table></figure>
+
 <img src="/posts/cddc42b6/f10.png" class title="f10">
+
 <p>其他参数示例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 左图</span></span><br><span class="line">fig,ax_array = plt.subplots(<span class="number">2</span>,<span class="number">2</span>, sharex=<span class="string">&#x27;col&#x27;</span>,sharey=<span class="string">&#x27;row&#x27;</span>,</span><br><span class="line">          gridspec_kw=&#123;<span class="string">&#x27;hspace&#x27;</span>: <span class="number">0</span>, </span><br><span class="line">                       <span class="string">&#x27;wspace&#x27;</span>: <span class="number">0</span>&#125;)</span><br><span class="line"><span class="comment"># 右图</span></span><br><span class="line">fig,ax_array = .subplots(<span class="number">2</span>,<span class="number">2</span>,gridspec_kw=&#123;<span class="string">&#x27;height_ratios&#x27;</span>: [<span class="number">1</span>,<span class="number">2</span>],<span class="string">&#x27;width_ratios&#x27;</span>:[<span class="number">1</span>,<span class="number">3</span>]&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
 <img src="/posts/cddc42b6/image-20221230124405372.png" class title="image-20221230124405372">
-<h2 id="格网布局gridspec">格网布局gridspec</h2>
-<blockquote>
+
+<h2 id="格网布局gridspec"><a href="#格网布局gridspec" class="headerlink" title="格网布局gridspec"></a>格网布局gridspec</h2><blockquote>
 <p>将平面划分为若干行列的网格，然后选取若干“网格填色”组成预期的布局</p>
 </blockquote>
-<h3 id="用法示例">用法示例</h3>
-<p>添加的步骤代码：</p>
-<ol type="1">
-<li>创建Figure：fig = plt.figure()</li>
-<li>创建并添加格网：grids = fig.add_gridspec(ncols=2, nrows=3)</li>
-<li>选取格网创建ax：ax = fig.add_subplot(grids[0, :])</li>
+<h3 id="用法示例"><a href="#用法示例" class="headerlink" title="用法示例"></a>用法示例</h3><p>添加的步骤代码：</p>
+<ol>
+<li>创建Figure：fig &#x3D; plt.figure()</li>
+<li>创建并添加格网：grids &#x3D; fig.add_gridspec(ncols&#x3D;2, nrows&#x3D;3)</li>
+<li>选取格网创建ax：ax &#x3D; fig.add_subplot(grids[0, :])</li>
 </ol>
 <p>添加2*3的格网，然后合并为四个，示例如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对应左图</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">5</span>), layout=<span class="string">&quot;constrained&quot;</span>)</span><br><span class="line">grids = fig.add_gridspec(ncols=<span class="number">2</span>, nrows=<span class="number">3</span>)</span><br><span class="line">ax0 = fig.add_subplot(grids[<span class="number">0</span>, :])</span><br><span class="line">ax10 = fig.add_subplot(grids[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line">ax11 = fig.add_subplot(grids[<span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">ax2 = fig.add_subplot(grids[<span class="number">2</span>, :])</span><br><span class="line"><span class="comment"># 对应右图</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">5</span>), layout=<span class="string">&quot;constrained&quot;</span>)</span><br><span class="line">grids = fig.add_gridspec(ncols=<span class="number">2</span>, nrows=<span class="number">3</span>)</span><br><span class="line">ax0 = fig.add_subplot(grids[<span class="number">0</span>, :])</span><br><span class="line">ax10 = fig.add_subplot(grids[<span class="number">1</span>:, <span class="number">0</span>])</span><br><span class="line">ax11 = fig.add_subplot(grids[<span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line">ax2 = fig.add_subplot(grids[<span class="number">2</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/cddc42b6/image-20221230160419399.png" class title="image-20221230160419399">
-<h3 id="嵌套格网subgridspec或者多subfigures">嵌套格网subgridspec或者多subfigures</h3>
-<p>嵌套的格网实现分块的布局结构，示例如下：</p>
-<ol type="1">
-<li>创建格网/分块 plt.figure(), fig.add_gridspec()</li>
+
+<h3 id="嵌套格网subgridspec或者多subfigures"><a href="#嵌套格网subgridspec或者多subfigures" class="headerlink" title="嵌套格网subgridspec或者多subfigures"></a>嵌套格网subgridspec或者多subfigures</h3><p>嵌套的格网实现分块的布局结构，示例如下：</p>
+<ol>
+<li>创建格网&#x2F;分块 plt.figure(), fig.add_gridspec()</li>
 <li>每个格网分别进行二次划分grids0[0].subgridspec()</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">7</span>, <span class="number">4</span>),layout=<span class="string">&quot;constrained&quot;</span>)</span><br><span class="line">gs0 = fig.add_gridspec(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>)<span class="comment">#一行两列，两个格网</span></span><br><span class="line">gs00 = gs0[<span class="number">0</span>].subgridspec(<span class="number">2</span>, <span class="number">2</span>)<span class="comment"># 左侧两行两列的四个格网</span></span><br><span class="line">gs01 = gs0[<span class="number">1</span>].subgridspec(<span class="number">3</span>, <span class="number">1</span>)<span class="comment"># 三行一列的三个格网</span></span><br><span class="line"></span><br><span class="line">ax1 = fig.add_subplot(gs00[<span class="number">0</span>,<span class="number">0</span>])</span><br><span class="line">ax2 = fig.add_subplot(gs00[<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">ax3 = fig.add_subplot(gs00[<span class="number">1</span>,<span class="number">0</span>])</span><br><span class="line">ax4 = fig.add_subplot(gs00[<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">ax5 = fig.add_subplot(gs01[<span class="number">0</span>])</span><br><span class="line">ax6 = fig.add_subplot(gs01[<span class="number">1</span>])</span><br><span class="line">ax7 = fig.add_subplot(gs01[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/cddc42b6/f3.png" class title="f3">
+
 <p>有时候左右两块想<strong>单独设置各自的布局及其他参数</strong>，则可以拆成两个Figure</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fig = plt.figure(figsize=(<span class="number">7</span>, <span class="number">4</span>),layout=<span class="string">&quot;constrained&quot;</span>,facecolor=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">subfigs = fig.subfigures(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">axs0 = subfigs[<span class="number">0</span>].subplots(<span class="number">2</span>, <span class="number">2</span>) <span class="comment">#左侧figure创建subplots</span></span><br><span class="line">axs1 = subfigs[<span class="number">1</span>].subplots(<span class="number">3</span>, <span class="number">1</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加其他信息示意</span></span><br><span class="line">subfigs[<span class="number">0</span>].suptitle(<span class="string">&#x27;subfigs[0]\nLeft side&#x27;</span>,color=<span class="string">&#x27;b&#x27;</span>,fontsize=<span class="number">12</span>)</span><br><span class="line">subfigs[<span class="number">0</span>].supxlabel(<span class="string">&#x27;xlabel for subfigs[0]&#x27;</span>)</span><br><span class="line">subfigs[<span class="number">1</span>].suptitle(<span class="string">r&#x27;supertitle subfigs[1]&#x27;</span>,color=<span class="string">&#x27;b&#x27;</span>,fontsize=<span class="number">12</span>)</span><br><span class="line">subfigs[<span class="number">1</span>].supylabel(<span class="string">&#x27;ylabel for subfigs[1]&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/cddc42b6/f4.png" class title="f4">
-<h2 id="形象化格网布局mosaic">形象化格网布局mosaic</h2>
-<blockquote>
+
+<h2 id="形象化格网布局mosaic"><a href="#形象化格网布局mosaic" class="headerlink" title="形象化格网布局mosaic"></a>形象化格网布局mosaic</h2><blockquote>
 <p>到了上面这些基本能够通过设计实现自己想要的任意布局，最新的版本还提供了更为便捷的绘图接口fig.subplot_mosaic()，可以通过字典、字符串、numpy数组表示的方式得到目标的格网布局</p>
 </blockquote>
 <p>举例,表达方式多种多样，使用字符串即可，更多案例可以参考<a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/intermediate/arranging_axes.html">官方</a></p>
 <ul>
-<li>获取ax的方式则变成了字典，如ax0 = ax_dict[‘A’]，ax0 = ax_dict[‘1’]</li>
+<li>获取ax的方式则变成了字典，如ax0 &#x3D; ax_dict[‘A’]，ax0 &#x3D; ax_dict[‘1’]</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mosaic =<span class="string">&quot;AB;CD&quot;</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">ax_dict = fig.subplot_mosaic(mosaic)</span><br><span class="line"><span class="comment"># 以下等价</span></span><br><span class="line">mosaic =<span class="string">&quot;12;34&quot;</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">ax_dict = fig.subplot_mosaic(mosaic)</span><br><span class="line"><span class="comment"># 以下等价</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">axd = fig.subplot_mosaic(</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    AB</span></span><br><span class="line"><span class="string">    CD</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/cddc42b6/image-20221230163622067.png" class title="image-20221230163622067">
+
 <p>更加丰富的表达：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 图1</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">axd = fig.subplot_mosaic(<span class="string">&quot;ABD;CCD&quot;</span>)</span><br><span class="line"><span class="comment"># 图2</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">axd = fig.subplot_mosaic(<span class="string">&quot;A.C;BBB;.D.&quot;</span>)</span><br><span class="line"><span class="comment"># 图3</span></span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">axd = fig.subplot_mosaic(<span class="string">&quot;.a.;bAc;.d.&quot;</span>,</span><br><span class="line">    gridspec_kw=&#123;<span class="string">&quot;height_ratios&quot;</span>:[<span class="number">1</span>, <span class="number">3.5</span>, <span class="number">1</span>],</span><br><span class="line">    <span class="string">&quot;width_ratios&quot;</span>:[<span class="number">1</span>, <span class="number">3.5</span>, <span class="number">1</span>]&#125;</span><br><span class="line">    <span class="comment"># set the height ratios between the rows</span></span><br><span class="line">    <span class="comment"># set the width ratios between the columns</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 图4，嵌套列表</span></span><br><span class="line">inner = [</span><br><span class="line">    [<span class="string">&quot;inner A&quot;</span>],</span><br><span class="line">    [<span class="string">&quot;inner B&quot;</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">outer_nested_mosaic = [</span><br><span class="line">    [<span class="string">&quot;main&quot;</span>, inner],</span><br><span class="line">    [<span class="string">&quot;bottom&quot;</span>, <span class="string">&quot;bottom&quot;</span>],</span><br><span class="line">]</span><br><span class="line">fig = plt.figure(constrained_layout=<span class="literal">True</span>)</span><br><span class="line">axd = fig.subplot_mosaic(</span><br><span class="line">    outer_nested_mosaic, empty_sentinel=<span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
 <img src="/posts/cddc42b6/image-20221230165421058.png" class title="image-20221230165421058">
-<h2 id="参考">参考</h2>
-<ol type="1">
-<li>https://matplotlib.org/devdocs/tutorials/index.html</li>
-<li>https://matplotlib.org/devdocs/api/index.html</li>
-<li>https://matplotlib.org/devdocs/gallery/index.html</li>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/index.html">https://matplotlib.org/devdocs/tutorials/index.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/api/index.html">https://matplotlib.org/devdocs/api/index.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/gallery/index.html">https://matplotlib.org/devdocs/gallery/index.html</a></li>
 </ol>
 
     </div>
@@ -485,13 +498,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">234k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:33</span>
   </span>
 </div>
 <div class="busuanzi-count">

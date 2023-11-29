@@ -26,18 +26,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="小结一下Pandas 筛选表格数据子集的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类,理论上基于代码我们可以实现任何想得到的处理：  位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用df.iloc[ , ] 条件筛选df.l">
+    <meta name="description" content="小结一下Pandas 筛选表格数据子集的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类,理论上基于代码我们可以实现任何想得到的处理：  位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用df.iloc[ , ] 条件筛选df.loc[">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandas(1)：数据选取&#x2F;条件筛选小结">
 <meta property="og:url" content="https://hscyber.github.io/posts/f9c7a8a1/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="小结一下Pandas 筛选表格数据子集的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类,理论上基于代码我们可以实现任何想得到的处理：  位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用df.iloc[ , ] 条件筛选df.l">
+<meta property="og:description" content="小结一下Pandas 筛选表格数据子集的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的一部分，因此经常需要进行：选取特定位置、特定日期、特定数值（如文本、空值）、或者满足若干组合条件的行、列等处理，这里简单汇总一下主要有以下几类,理论上基于代码我们可以实现任何想得到的处理：  位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用df.iloc[ , ] 条件筛选df.loc[">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-27T14:10:49.000Z">
-<meta property="article:modified_time" content="2023-02-20T09:40:59.729Z">
+<meta property="article:modified_time" content="2023-11-29T02:15:57.395Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Pandas">
-<meta property="article:tag" content="表格数据筛选">
 <meta name="twitter:card" content="summary">
 
 
@@ -99,8 +98,8 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">120</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -158,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">数据预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%AD%9B%E9%80%89"><span class="nav-number">2.</span> <span class="nav-text">位置筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%8F%B7%E5%88%87%E7%89%87"><span class="nav-number">2.1.</span> <span class="nav-text">行列号切片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E8%A1%8C%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">创建新行列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdf.loc"><span class="nav-number">4.</span> <span class="nav-text">条件筛选行df.loc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%AE%9A%E5%80%BC"><span class="nav-number">4.1.</span> <span class="nav-text">特定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E5%80%BC"><span class="nav-number">4.2.</span> <span class="nav-text">范围值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89"><span class="nav-number">5.</span> <span class="nav-text">复杂条件筛选</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%A2%84%E8%A7%88"><span class="nav-number">1.</span> <span class="nav-text">数据预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E7%AD%9B%E9%80%89"><span class="nav-number">2.</span> <span class="nav-text">位置筛选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%88%97%E5%8F%B7%E5%88%87%E7%89%87"><span class="nav-number">2.1.</span> <span class="nav-text">行列号切片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E8%A1%8C%E5%88%97"><span class="nav-number">3.</span> <span class="nav-text">创建新行列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdf-loc"><span class="nav-number">4.</span> <span class="nav-text">条件筛选行df.loc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%AE%9A%E5%80%BC"><span class="nav-number">4.1.</span> <span class="nav-text">特定值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E5%80%BC"><span class="nav-number">4.2.</span> <span class="nav-text">范围值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89"><span class="nav-number">5.</span> <span class="nav-text">复杂条件筛选</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,12 +178,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,67 +326,75 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>小结一下Pandas <font color="#dd0000">筛选表格数据子集</font>的方法作为速查手册……实际中数据处理分析及可视化往往只是数据表的<strong>一部分</strong>，因此经常需要进行：<strong>选取特定位置、特定日期、特定数值</strong>（如文本、空值）、或者<strong>满足若干组合条件的行、列</strong>等处理，这里简单汇总一下主要有以下几类,<strong>理论上基于代码我们可以实现任何想得到的处理</strong>：</p>
-<ol type="1">
+<ol>
 <li>位置筛选（与表中数值无关，仅取决于行列号或行列名），最常用<mark>df.iloc[ , ]</mark></li>
 <li>条件筛选<mark>df.loc[条件]</mark>（与数值相关，根据若干符合条件（特定值或范围）选取数据子集）</li>
 <li>复杂条件筛选（自定义函数<mark>df.apply</mark>的运用）</li>
 </ol>
 <span id="more"></span>
-<h2 id="数据预览">数据预览</h2>
-<blockquote>
+
+<h2 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h2><blockquote>
 <p>日常涉及数据类型主要有：数字、字符串、时间日期格式。</p>
 </blockquote>
 <p>测试数据导入及查看基本信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">filepath = <span class="string">&quot;F:/weibo2017/Dataset/s3_day/1/2017-01-01.csv&quot;</span></span><br><span class="line"><span class="comment"># 取前1000行测试即可</span></span><br><span class="line">df = pd.read_csv(filepath, header=<span class="number">0</span>, parse_dates=[<span class="string">&#x27;PubTime&#x27;</span>, <span class="string">&#x27;date&#x27;</span>], nrows=<span class="number">1000</span>)</span><br><span class="line"><span class="comment"># 查看数据字段类型及信息</span></span><br><span class="line">df.info()</span><br><span class="line">df.columns.to_list()<span class="comment"># 导出列</span></span><br><span class="line"><span class="comment"># 预览后剔除冗余列</span></span><br><span class="line">usecols = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Tools&#x27;</span>]</span><br><span class="line">df = df.drop(columns=usecols)</span><br><span class="line"><span class="comment"># 查看表格形状，行列数</span></span><br><span class="line">df.shape <span class="comment"># nrows = df.shape[0]</span></span><br><span class="line"><span class="comment"># 查看前几行或后几行</span></span><br><span class="line">df.head(<span class="number">7</span>)</span><br><span class="line">df.tail(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="位置筛选">位置筛选</h2>
-<blockquote>
+
+<h2 id="位置筛选"><a href="#位置筛选" class="headerlink" title="位置筛选"></a>位置筛选</h2><blockquote>
 <p>Python默认从<code>0</code>开始索引.</p>
 </blockquote>
-<h3 id="行列号切片">行列号切片</h3>
-<ul>
-<li><p>切片时选取<span class="math inline">\([a,b]\)</span>默认为 数学中的左闭右开<span class="math inline">\([a,b)\)</span>，因此总的个数为<span class="math inline">\(b-a\)</span>个</p></li>
-<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p></li>
-<li><p>大多数情况，可以访问也可以修改值</p></li>
+<h3 id="行列号切片"><a href="#行列号切片" class="headerlink" title="行列号切片"></a>行列号切片</h3><ul>
+<li><p>切片时选取$[a,b]$默认为 数学中的左闭右开$[a,b)$，因此总的个数为$b-a$个</p>
+</li>
+<li><p>一般情况单列返回类型<strong>Series</strong>，多列或多行则返回<strong>DataFrame</strong></p>
+</li>
+<li><p>大多数情况，可以访问也可以修改值</p>
+</li>
 </ul>
 <p>主要函数：<strong>df.iloc[],</strong> df.iat[], df.at[]</p>
 <p>原则：传入一个值或一个list时返回若干行；传入两个参数时，返回对应行及列的筛选</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一个参数</span></span><br><span class="line">df.iloc[<span class="number">2</span>] <span class="comment"># 以Series类型返回第二行数据</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>] <span class="comment">#返回2 3 4行</span></span><br><span class="line">df.iloc[[<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>]] <span class="comment">#返回 3 5 7行</span></span><br><span class="line"><span class="comment"># 两个参数</span></span><br><span class="line">df.iloc[<span class="number">6</span>,<span class="number">4</span>] <span class="comment">#第六行第四列</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>,:] <span class="comment">#返回2 3 4行的表格</span></span><br><span class="line">df.iloc[<span class="number">1</span>:<span class="number">4</span>, <span class="number">2</span>:<span class="number">4</span>] <span class="comment">#返回2~5行，3到5列的表格</span></span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>], <span class="number">5</span>] <span class="comment">#返回2 4 6行，第五列的表格</span></span><br><span class="line">df.iloc[[<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>], <span class="number">5</span>].values  <span class="comment"># 取值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#df.at获取或就地更改第四行&#x27;B&#x27;列的数值，4为行索引名称</span></span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">df.at[<span class="number">4</span>, <span class="string">&#x27;B&#x27;</span>] = <span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 选取或更改单个值</span></span><br><span class="line">df.iat[<span class="number">4</span>,<span class="number">4</span>] <span class="comment">#访问第五行第五列的数值</span></span><br><span class="line">df.iat[<span class="number">3</span>,<span class="number">3</span>]=<span class="number">2</span> <span class="comment">#就地更改第四行第四列的数值</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 行索引选取</span></span><br><span class="line">df = df.set_index(<span class="string">&#x27;gridid&#x27;</span>)  <span class="comment">#比如可以先设置id为索引再访问</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] <span class="comment"># 多行，这里的1 2 3是索引的名字</span></span><br><span class="line">df.loc[[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]][<span class="string">&#x27;colname&#x27;</span>] <span class="comment"># 多行某列，取值则df.loc[[1,2,3]][&#x27;colname&#x27;].values</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列选取</span></span><br><span class="line">usecol = [<span class="string">&#x27;_id&#x27;</span>,<span class="string">&#x27;Content&#x27;</span>]<span class="comment"># usecol = [&#x27;_id&#x27;]</span></span><br><span class="line">new_df = df[usecol] <span class="comment">#一列或多列都是返回dataframe</span></span><br></pre></td></tr></table></figure>
+
 <p>选择某一列值对应同行的单个其他值</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这张表有很多列，我想根据城市挨个获取其对应的省份id</span></span><br><span class="line">province = <span class="built_in">list</span>(cities.loc[cities.city == <span class="string">&quot;宜春&quot;</span>][<span class="string">&#x27;province_id&#x27;</span>])[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<h2 id="创建新行列">创建新行列</h2>
-<p>df创建列：直接df[]新建，右侧为值或者series或series的元组</p>
+
+
+
+<h2 id="创建新行列"><a href="#创建新行列" class="headerlink" title="创建新行列"></a>创建新行列</h2><p>df创建列：直接df[]新建，右侧为值或者series或series的元组</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;列1&#x27;</span>] = ...<span class="comment"># 新建一列</span></span><br><span class="line">df[[<span class="string">&#x27;列1&#x27;</span>,<span class="string">&#x27;列2&#x27;</span>]] = ...<span class="comment"># 新建多列</span></span><br></pre></td></tr></table></figure>
-<p>df新建行：或者追加一个同样的dataframe及多行，简单示意，更多的关于表格拼接和合并单写，需注意==列名及个数一致==。</p>
+
+<p>df新建行：或者追加一个同样的dataframe及多行，简单示意，更多的关于表格拼接和合并单写，需注意&#x3D;&#x3D;列名及个数一致&#x3D;&#x3D;。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个表格并追加一行数据</span></span><br><span class="line">df = pd.DataFrame(columns=[<span class="string">&#x27;c1&#x27;</span>, <span class="string">&#x27;c2&#x27;</span>, <span class="string">&#x27;c3&#x27;</span>])</span><br><span class="line">df.loc[<span class="number">0</span>] = &#123;<span class="string">&#x27;c1&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c2&#x27;</span>:<span class="number">2</span>, <span class="string">&#x27;c3&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line"><span class="comment">## 追加两行</span></span><br><span class="line">df = df.append([&#123;<span class="string">&#x27;c1&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c2&#x27;</span>:<span class="number">2</span>, <span class="string">&#x27;c3&#x27;</span>:<span class="number">3</span>&#125;,&#123;<span class="string">&#x27;c1&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;c2&#x27;</span>:<span class="number">3</span>, <span class="string">&#x27;c3&#x27;</span>:<span class="number">4</span>&#125;], ignore_index=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">## 循环或遍历追加行</span></span><br><span class="line">df.loc[i]=&#123;<span class="string">&#x27;c&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c2&#x27;</span>:<span class="number">2</span>, <span class="string">&#x27;c3&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line">values = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">df.loc[df.shape[<span class="number">0</span>]] = <span class="built_in">dict</span>(<span class="built_in">zip</span>(df.columns, values))</span><br><span class="line"><span class="comment"># 表格合并/追加</span></span><br><span class="line">df1 = df1.append(df2, ignore_index=<span class="literal">True</span>)<span class="comment"># 追加一个格式一样的表格，等价于</span></span><br><span class="line">df1 = pd.concat([df1,df2], axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="条件筛选行df.loc">条件筛选行df.loc</h2>
-<blockquote>
-<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)/即补集，</p>
+
+<h2 id="条件筛选行df-loc"><a href="#条件筛选行df-loc" class="headerlink" title="条件筛选行df.loc"></a>条件筛选行df.loc</h2><blockquote>
+<p>多个条件使用: 与(&amp;), 或(|), 非(!), 及取反(~)&#x2F;即补集，</p>
 <p>主要函数<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.loc.html">df.loc</a>，条件过多或繁琐则参考第三节apply</p>
 </blockquote>
-<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,...]，再根据这个数组匹配</p>
-<h3 id="特定值">特定值</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna() <span class="comment"># na值筛选</span></span><br><span class="line">Con= df[<span class="string">&#x27;Comment&#x27;</span>].isnull() <span class="comment"># null值筛选</span></span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...]) <span class="comment"># 包含值列表筛选</span></span><br><span class="line"><span class="comment"># 选取并构造新的df</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h3 id="范围值">范围值</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
-<h2 id="复杂条件筛选">复杂条件筛选</h2>
-<blockquote>
+<p>条件筛选的实质是先根据条件生成一个这样的数组：[True, False, False,…]，再根据这个数组匹配</p>
+<h3 id="特定值"><a href="#特定值" class="headerlink" title="特定值"></a>特定值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isna() <span class="comment"># na值筛选</span></span><br><span class="line">Con= df[<span class="string">&#x27;Comment&#x27;</span>].isnull() <span class="comment"># null值筛选</span></span><br><span class="line">Con = df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...]) <span class="comment"># 包含值列表筛选</span></span><br><span class="line"><span class="comment"># 选取并构造新的df</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line"><span class="comment"># 当然为了简介通常写在一起</span></span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isna()]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].isin([a,b,c,...])]</span><br><span class="line">df2 = df.loc[df[<span class="string">&#x27;Comment&#x27;</span>].<span class="built_in">str</span>.contains(<span class="string">&quot;a&quot;</span>)]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h3 id="范围值"><a href="#范围值" class="headerlink" title="范围值"></a>范围值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]==<span class="number">3</span></span><br><span class="line">Con = df[<span class="string">&#x27;hour&#x27;</span>]&gt;=<span class="number">23</span></span><br><span class="line">df2 = df.loc[Con]</span><br><span class="line">df2 = df.loc[(df[<span class="string">&#x27;date&#x27;</span>]==<span class="string">&#x27;2017-01-01&#x27;</span>) &amp; (df[<span class="string">&#x27;Transfer&#x27;</span>]&gt;<span class="number">6</span>)]</span><br><span class="line"><span class="comment"># 筛选hour&lt;=3的行</span></span><br><span class="line">df2 = df.loc[~(df[<span class="string">&#x27;hour&#x27;</span>]&gt;<span class="number">3</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="复杂条件筛选"><a href="#复杂条件筛选" class="headerlink" title="复杂条件筛选"></a>复杂条件筛选</h2><blockquote>
 <p>个人建议通过类似 df.apply(lambda x: myfun(x)) 的方式实现</p>
 </blockquote>
 <p>即自定义一个新的函数生成新列，再筛选，如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x</span>):</span><br><span class="line">    <span class="keyword">if</span> x&gt;<span class="number">3</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">elif</span> x&gt;<span class="number">0</span>:</span><br><span class="line">        retuen <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        retuen <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
 <p>有几种形式，一种是单列输入单输出,这里的lambda x就是每一行的该列(df[col])的值</p>
 <ul>
-<li>df[newcol] = df[col].apply(lambda x: myfun(x))</li>
+<li>df[newcol] &#x3D; df[col].apply(lambda x: myfun(x))</li>
 </ul>
 <p>有时候需要多列参与运算，结果是返回单个值</p>
 <p>如函数为myfun(x, y)，即有多个输入，这种情况x是代表一行，建议写成row,因此需要指定值</p>
 <ul>
-<li>df[col] = df.apply(lambda row: myfun(row[col1],row[col2]), axis=1)</li>
+<li>df[col]  &#x3D; df.apply(lambda row: myfun(row[col1],row[col2]), axis&#x3D;1)</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;datetime&#x27;</span>] =  df.apply(<span class="keyword">lambda</span> row: datetime(row.year, row.month, row.day, row.hour), axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
 <p>如果输入输出都得是多列的，则需要通过zip函数拆包并新建多个列来接收，</p>
 <p>举例<code>df[],df[]... = zip(*df.apply())</code>：其他情况类推</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myfun</span>(<span class="params">x,y</span>):</span><br><span class="line">    <span class="keyword">return</span> x,y</span><br><span class="line">df[<span class="string">&#x27;x&#x27;</span>], df[<span class="string">&#x27;y&#x27;</span>] = <span class="built_in">zip</span>(*df.apply(<span class="keyword">lambda</span> row: myfun(row[<span class="string">&#x27;Co_oridinate1&#x27;</span>],row[<span class="string">&#x27;Co_oridinate2&#x27;</span>]), axis=<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
 <p>关于更多函数的运用后续小结</p>
 
     </div>
@@ -416,7 +423,6 @@
 
           <div class="post-tags">
               <a href="/tags/Pandas/" rel="tag"><i class="fa fa-tag"></i> Pandas</a>
-              <a href="/tags/%E8%A1%A8%E6%A0%BC%E6%95%B0%E6%8D%AE%E7%AD%9B%E9%80%89/" rel="tag"><i class="fa fa-tag"></i> 表格数据筛选</a>
           </div>
 
         
@@ -463,13 +469,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">234k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:33</span>
   </span>
 </div>
 <div class="busuanzi-count">

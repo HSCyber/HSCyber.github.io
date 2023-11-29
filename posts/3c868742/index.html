@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本文小结JSON相关的一些知识点和读写方式，涉及内容 ①. 序列化与反序列化； ②.Json数据格式转换及其读写； ③. 出错案例&#x2F;非标准JSON文件处理 首先：import json">
+    <meta name="description" content="本文小结JSON相关的一些知识点和读写方式，涉及内容 ①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例&#x2F;非标准JSON文件处理 	 首先：import json">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python处理Json文件">
 <meta property="og:url" content="https://hscyber.github.io/posts/3c868742/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="本文小结JSON相关的一些知识点和读写方式，涉及内容 ①. 序列化与反序列化； ②.Json数据格式转换及其读写； ③. 出错案例&#x2F;非标准JSON文件处理 首先：import json">
+<meta property="og:description" content="本文小结JSON相关的一些知识点和读写方式，涉及内容 ①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例&#x2F;非标准JSON文件处理 	 首先：import json">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-18T09:18:25.000Z">
 <meta property="article:modified_time" content="2022-08-26T14:34:58.095Z">
@@ -99,8 +99,8 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">136</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">19</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">120</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
         <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -158,7 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8Ejson%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">序列化与JSON文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#json%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">JSON文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#json%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">JSON对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2dumpsloads"><span class="nav-number">2.</span> <span class="nav-text">数据类型转换：dumps()+loads()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json%E6%96%87%E4%BB%B6%E5%86%99%E5%92%8C%E8%AF%BBdumpload"><span class="nav-number">3.</span> <span class="nav-text">JSON文件写和读dump()+load()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E5%87%BA%E9%94%99%E9%9D%9E%E6%A0%87%E5%87%86json%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">读写出错?——非标准json格式处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA"><span class="nav-number">4.1.</span> <span class="nav-text">中文显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">部分参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8EJSON%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">序列化与JSON文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.</span> <span class="nav-text">JSON文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.2.</span> <span class="nav-text">JSON对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%9Adumps-loads"><span class="nav-number">2.</span> <span class="nav-text">数据类型转换：dumps()+loads()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON%E6%96%87%E4%BB%B6%E5%86%99%E5%92%8C%E8%AF%BBdump-load"><span class="nav-number">3.</span> <span class="nav-text">JSON文件写和读dump()+load()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E5%87%BA%E9%94%99-%E2%80%94%E2%80%94%E9%9D%9E%E6%A0%87%E5%87%86json%E6%A0%BC%E5%BC%8F%E5%A4%84%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">读写出错?——非标准json格式处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA"><span class="nav-number">4.1.</span> <span class="nav-text">中文显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">部分参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,12 +179,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">136</span>
+        <span class="site-state-item-count">120</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,70 +327,80 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>本文小结JSON相关的一些知识点和读写方式，涉及内容</p>
-<p>①. 序列化与反序列化； ②.Json数据格式转换及其读写； ③. 出错案例/非标准JSON文件处理</p>
+<p>①. 序列化与反序列化；	②.Json数据格式转换及其读写；	③. 出错案例&#x2F;非标准JSON文件处理 	</p>
 <p>首先：<code>import json</code></p>
 <span id="more"></span>
-<h2 id="序列化与json文件">序列化与JSON文件</h2>
-<blockquote>
-<p>序列化<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>，广泛地讲就是将内存中创建/生成的数据对象存为文件的过程</p>
+
+<h2 id="序列化与JSON文件"><a href="#序列化与JSON文件" class="headerlink" title="序列化与JSON文件"></a>序列化与JSON文件</h2><blockquote>
+<p>序列化<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Serialization">Serialization</a>，广泛地讲就是将内存中创建&#x2F;生成的数据对象存为文件的过程</p>
 <p>平时读写txt csv excel shapefile pickle json geojson都可以视为(反)序列化的过程</p>
 </blockquote>
-<h3 id="json文件">JSON文件</h3>
-<p>JSON全称是“JavaScript Object Notation”，是一种数据格式，js中的大量属性都是通过字典格式表示，因此json主要以字典格式存储。此外，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>是在<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/JSON">json</a>文件的基础上构建的一种，处理方式类似。</p>
+<h3 id="JSON文件"><a href="#JSON文件" class="headerlink" title="JSON文件"></a>JSON文件</h3><p>JSON全称是“JavaScript Object Notation”，是一种数据格式，js中的大量属性都是通过字典格式表示，因此json主要以字典格式存储。此外，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a>是在<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/JSON">json</a>文件的基础上构建的一种，处理方式类似。</p>
 <p>序列化(serialization)与反序列化(deserialization)</p>
-<ol type="1">
-<li><p>序列化指将数据结构、对象转换为可读取状态，如存为文件，以便下次或在其他环境中能够恢复到原来的状态；也称对象编组(marshlling)。</p></li>
-<li><p>从一序列字节提取数据结果的反向操作则成为反序列化，也称解码组(unmarshlling) 。</p></li>
+<ol>
+<li><p>序列化指将数据结构、对象转换为可读取状态，如存为文件，以便下次或在其他环境中能够恢复到原来的状态；也称对象编组(marshlling)。</p>
+</li>
+<li><p>从一序列字节提取数据结果的反向操作则成为反序列化，也称解码组(unmarshlling) 。</p>
+</li>
 </ol>
 <p>python中的序列化模块主要有：pickle、json 等等</p>
-<h3 id="json对象">JSON对象</h3>
-<blockquote>
+<h3 id="JSON对象"><a href="#JSON对象" class="headerlink" title="JSON对象"></a>JSON对象</h3><blockquote>
 <p>在未保存前其在内存中的表示即数据类型，类似于DataFrame与csv的关系</p>
 </blockquote>
-<p>Python中的JSON序列化过程中，即在内存中的表示/数据类型：</p>
+<p>Python中的JSON序列化过程中，即在内存中的表示&#x2F;数据类型：</p>
 <ul>
-<li><p>字典<code>dict</code>会编组为标准的<code>JSON</code>对象</p></li>
-<li><p><code>list</code>及<code>tuple</code>转换为<code>array</code></p></li>
-<li><p>字符及数值分别转换为<code>string</code>;<code>numbers</code></p></li>
+<li><p>字典<code>dict</code>会编组为标准的<code>JSON</code>对象</p>
+</li>
+<li><p><code>list</code>及<code>tuple</code>转换为<code>array</code></p>
+</li>
+<li><p>字符及数值分别转换为<code>string</code>;<code>numbers</code></p>
+</li>
 </ul>
-<h2 id="数据类型转换dumpsloads">数据类型转换：dumps()+loads()</h2>
-<blockquote>
+<h2 id="数据类型转换：dumps-loads"><a href="#数据类型转换：dumps-loads" class="headerlink" title="数据类型转换：dumps()+loads()"></a>数据类型转换：dumps()+loads()</h2><blockquote>
 <p>json.dumps()就是序列化的函数，不带s的是用来读写的</p>
 </blockquote>
 <p>我们可以直接将列表、字典等各种数据类型通过<code>json.dumps(object)</code>转换为json格式</p>
 <p>当然，实际中更常用的是通过<code>json.loads(json_string)</code>读取json对象</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 其他对象转为json对象</span></span><br><span class="line">mylist = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">mydic = &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>:<span class="string">&quot;h&quot;</span>,</span><br><span class="line">    <span class="string">&quot;age&quot;</span>:<span class="number">24</span>,</span><br><span class="line">    <span class="string">&quot;money&quot;</span>:<span class="number">1500</span>&#125;</span><br><span class="line">data_json = json.dumps(mydic)</span><br><span class="line"><span class="built_in">print</span>(data_json) <span class="comment"># &#123;&quot;name&quot;: &quot;h&quot;, &quot;age&quot;: 24, &quot;money&quot;: 1500&#125;</span></span><br><span class="line">data_json = json.dumps(mydic, indent=<span class="number">4</span>)</span><br><span class="line">data_json <span class="comment"># &#x27;&#123;\n    &quot;name&quot;: &quot;h&quot;,\n    &quot;age&quot;: 24,\n    &quot;money&quot;: 1500\n&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(data_json) <span class="comment"># print()打印的话，会看待标准的字典样式，带4的缩进</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># json转为原始对象</span></span><br><span class="line">mydict = json.loads(data_json)</span><br></pre></td></tr></table></figure>
-<h2 id="json文件写和读dumpload">JSON文件写和读dump()+load()</h2>
-<blockquote>
+
+<h2 id="JSON文件写和读dump-load"><a href="#JSON文件写和读dump-load" class="headerlink" title="JSON文件写和读dump()+load()"></a>JSON文件写和读dump()+load()</h2><blockquote>
 <p>一般而言json文件是由<strong>字典+列表</strong>多层嵌套组成，最终文件是字符串</p>
 </blockquote>
 <p>写json文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可以不转换将数据直接写入</span></span><br><span class="line">mylist = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(mydic, f, indent=<span class="number">4</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(mylist, f)</span><br></pre></td></tr></table></figure>
+
 <p>读json文件</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.json&quot;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    mylist = json.load(f)</span><br></pre></td></tr></table></figure>
+
 <p>追加到json文件，追加无法像文本一样直接写入，需要读取原始json字典或者list，修改后再重新写出</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1.读取json文件</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.json&quot;</span>, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    mydic = json.load(f)</span><br><span class="line"><span class="comment">#2.修改，update好像是Python3.9及之后有的函数，也可以其他方式修改</span></span><br><span class="line">x = &#123;<span class="string">&quot;x&quot;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]&#125;</span><br><span class="line">mydic.update(x)</span><br><span class="line"><span class="comment">#3.重新写入</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.json&quot;</span>, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    json.dump(mydic, f)</span><br></pre></td></tr></table></figure>
-<h2 id="读写出错非标准json格式处理">读写出错?——非标准json格式处理</h2>
-<blockquote>
+
+<h2 id="读写出错-——非标准json格式处理"><a href="#读写出错-——非标准json格式处理" class="headerlink" title="读写出错?——非标准json格式处理"></a>读写出错?——非标准json格式处理</h2><blockquote>
 <p>出错调试案例</p>
 </blockquote>
-<p><strong>情况1</strong>：由于文件的多次序列与反序列化/读写，会导致格式不一致或<strong>非标准文件的产生</strong>。</p>
+<p><strong>情况1</strong>：由于文件的多次序列与反序列化&#x2F;读写，会导致格式不一致或<strong>非标准文件的产生</strong>。</p>
 <ul>
 <li>如：读文件时出现：<code>JSONDecodeError: Invalid control character at: line...</code>，说明文件格式不标准，添加参数<code>json.load(jf, strict=False)</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./pois.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    poi_list = json.load(f, strict=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<p><strong>情况2</strong>：文件是多个json对象组成的，理论上应该是存成[{},{}...]或类似的结构</p>
+
+
+
+<p><strong>情况2</strong>：文件是多个json对象组成的，理论上应该是存成[{},{}…]或类似的结构</p>
 <ul>
 <li>如通过记事本或notepad打开文件长这样，<strong>每行是一个json对象</strong></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;created_at&quot;</span>:<span class="string">&quot;Sat Jul 01 13:00:00 +0000 2017&quot;</span>,<span class="string">&quot;id&quot;</span>:<span class="number">881135299081887744</span>,...&#125;</span><br><span class="line">&#123;<span class="string">&quot;id&quot;</span>:<span class="number">865709269722832896</span>,<span class="string">&quot;id_str&quot;</span>:<span class="string">&quot;865709269722832896&quot;</span>,<span class="string">&quot;user_id&quot;</span>...&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>处理逻辑：先读取文件再逐行/逐对象load加载</p>
+
+<p>处理逻辑：先读取文件再逐行&#x2F;逐对象load加载</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复合写法，将对象追加到list</span></span><br><span class="line">tweets = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&#x27;./dataset/tweets.json&#x27;</span>, <span class="string">&#x27;r&#x27;</span>):</span><br><span class="line">    tweets.append(json.loads(line))</span><br><span class="line"><span class="comment"># 拆开写</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./dataset/tweets.json&#x27;</span>,<span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:   </span><br><span class="line">    jsonstr_list = f.readlines()</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> jsonstr_list:</span><br><span class="line">    x = json.loads(line)</span><br><span class="line">    tweets.append(x)</span><br></pre></td></tr></table></figure>
-<h3 id="中文显示">中文显示</h3>
-<p>输出文件中文编码显示<strong>ensure_ascii=False</strong>：</p>
+
+<h3 id="中文显示"><a href="#中文显示" class="headerlink" title="中文显示"></a>中文显示</h3><p>输出文件中文编码显示<strong>ensure_ascii&#x3D;False</strong>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&quot;./china.json&quot;</span>,<span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    json.dump(ty_city,fp,indent=<span class="number">4</span>,ensure_ascii=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="部分参考">部分参考</h2>
-<blockquote>
+
+
+
+<h2 id="部分参考"><a href="#部分参考" class="headerlink" title="部分参考"></a>部分参考</h2><blockquote>
 <p>详细的也可以自己查或看以下链接</p>
 </blockquote>
 <p>- <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3.9/library/json.html#basic-usage">Json in python</a></p>
@@ -470,13 +480,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">230k</span>
+    <span title="站点总字数">234k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:29</span>
+    <span title="站点阅读时长">3:33</span>
   </span>
 </div>
 <div class="busuanzi-count">
