@@ -105,7 +105,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">120</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">111</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">112</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -177,7 +177,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">111</span>
+          <span class="site-state-item-count">112</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -311,7 +311,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>610</span>
+      <span>565</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -332,24 +332,24 @@
     <div class="post-body" itemprop="articleBody">
         <p>计算机系统的外部存储器有内置的硬盘、移动硬盘和U盘等，经常会注意到不同的硬盘文件类型不一样，做一些简单了解。以及，为什么有时候数据的实际大小和占据的内存不一致？</p>
 <span id="more"></span>
-
-<h2 id="类型及区别"><a href="#类型及区别" class="headerlink" title="类型及区别"></a>类型及区别</h2><blockquote>
+<h2 id="类型及区别">类型及区别</h2>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.easeus.com/diskmanager/file-system.html">参考</a></p>
 </blockquote>
-<p>&#x3D;&#x3D;文件系统&#x3D;&#x3D;是操作系统管理和操作存储器内的数据和文件的方式&#x2F;数据结构。通常来说：</p>
+<p>==文件系统==是操作系统管理和操作存储器内的数据和文件的方式/数据结构。通常来说：</p>
 <ul>
 <li>window装系统完成后磁盘类型都是默认NTFS，大型移动硬盘或者移动固态硬盘通常为exFAT。</li>
-<li>选择的区别主要在于<strong>文件的大小</strong>，如传输的单个最大文件大于4G，或磁盘总空间大于16T，则需要选择exFAT<ul>
+<li>选择的区别主要在于<strong>文件的大小</strong>，如传输的单个最大文件大于4G，或磁盘总空间大于16T，则需要选择exFAT
+<ul>
 <li>还有一个额外的点可以注意一下，计算机<strong>磁盘分区表</strong>有MBr和GPT(GUID)，如果硬盘大于<strong>2T</strong>，需要格式化为GPT，这一点在之前我用<strong>服务器</strong>的时候踩过坑，如果一开始选择了MBR，但是想扩容到2T以上，就可能需要格式化才行（磁盘的分区表类型在电脑管理-&gt;磁盘管理可以看到）。</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <img src="/posts/d360117d/image-20230312212452652.png" class title="image-20230312212452652">
-
-<h2 id="实际空间"><a href="#实际空间" class="headerlink" title="实际空间"></a>实际空间</h2><blockquote>
+<h2 id="实际空间">实际空间</h2>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://support.microsoft.com/en-us/topic/default-cluster-size-for-ntfs-fat-and-exfat-9772e6f1-e31a-00d7-e18f-73169155af95">NTFS、FAT 和 exFAT 的默认簇大小</a></p>
 </blockquote>
-<p>比如有时候会发现这种情况，这是我一个移动硬盘内的一个文件，因为有&#x3D;&#x3D;大量只有1kb的文件&#x3D;&#x3D;，导致空间浪费，其原因是不同文件系统的默认最小单元造成的。如exFAT 默认簇大小是 128 KB，1 B ~ 128 KB 大小的文件占用空间都是 128 KB，128 KB + 1 B ~ 256 KB 大小的文件占用空间都是 256 KB,<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/446551421">ref</a>。</p>
+<p>比如有时候会发现这种情况，这是我一个移动硬盘内的一个文件，因为有==大量只有1kb的文件==，导致空间浪费，其原因是不同文件系统的默认最小单元造成的。如exFAT 默认簇大小是 128 KB，1 B ~ 128 KB 大小的文件占用空间都是 128 KB，128 KB + 1 B ~ 256 KB 大小的文件占用空间都是 256 KB,<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/446551421">ref</a>。</p>
 <ul>
 <li>此时可以进行数据清理或者移动到其他格式的硬盘</li>
 </ul>
