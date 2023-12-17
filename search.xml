@@ -281,6 +281,39 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </tags>
   </entry>
   <entry>
+    <title>R语言基础(2)：Python与R</title>
+    <url>/posts/366e33e8/</url>
+    <content><![CDATA[<p>上一次用R语言已经是去年的事情了，最近想用R进行制图（在涉及统计和统计图表方面还得是R），R的图表和配色也都很好看，便开始再来学一学R。</p>
+<span id="more"></span>
+<h2 id="r-python-conversion-guide">R-Python conversion guide</h2>
+<p>直接跳转到这位前辈的博客：</p>
+<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/">Data Science Tools</a></p>
+<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-manipulation/">Data manipulation R-Python conversion guide</a></p>
+<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-visualization/">Data visualization</a></p>
+<h2 id="r的便捷与缺点">R的便捷与缺点</h2>
+<blockquote>
+<p>从Python到R会觉得R的格式不规范</p>
+</blockquote>
+<p>接触过一点时间会发现R语言在某种程度上用起来比R方便，功能的实现只需要找到一个响应的函数，传入参数，得到相应的输出，也就是<font color="#dd0000">封装地更“好”</font>，用起来更简单(傻瓜)了，但是对我来说，便捷之处我感觉就是引出了它的一些缺点：</p>
+<ol type="1">
+<li>包与函数之间缺乏==逻辑==，不便于查文档和学习包。距离来说，Python中处理文件目录路径相关的操作，都在os中就可以完成，只需要import os，然后通过os.path.split(), os.listdir()等调用即可，==Python的包查看文档和接口说明十分方便==，R语言则不是，<font color="#dd0000">看到一个R的函数，我都不知道它是否是内置函数，也不知道它属于哪个包，给我的感觉很不好</font>，这可能需要更多的时间来熟悉和查询</li>
+<li>文档不友好。包带来的问题是文档的杂乱，平时我一般通过API文档来查看函数细节，但是R的网页版不方便，而且还存在重名函数等问题，看的很不习惯</li>
+<li>不方便查看和debug，首先是代码不好看（这个还能忍），可读性不佳，另一个是不好改和参考别人的代码，函数和包给人的感觉总是比较乱，想用前辈的代码比较痛苦，相较于Python。</li>
+<li>此外，用的时候发现R不支持中文字符串；</li>
+</ol>
+<p>所以还是不便于用它进行数据处理而仅作为统计分析建模以及可视化工具</p>
+<ul>
+<li>最近开始专门学习一下R的==ggplot2==制图</li>
+</ul>
+]]></content>
+      <categories>
+        <category>R语言</category>
+      </categories>
+      <tags>
+        <tag>R语言</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>R语言基础(1)：常用方法</title>
     <url>/posts/7b2f7b5e/</url>
     <content><![CDATA[<blockquote>
@@ -435,39 +468,6 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
 <p>参考<a href="https://mgimond.github.io/ES218/Week03ab_groupby.html#Count_the_number_of_records_in_each_group">1</a></p>
 <p>操作实例</p>
 <figure class="highlight r"><table><tr><td class="code"><pre><span class="line">df <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span></span><br><span class="line">  Weekday <span class="operator">=</span> factor<span class="punctuation">(</span><span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">4</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">                   levels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Mon&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Tues&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Wed&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Thurs&quot;</span><span class="punctuation">,</span> <span class="string">&quot;Fri&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">  Quarter <span class="operator">=</span> paste0<span class="punctuation">(</span><span class="string">&quot;Q&quot;</span><span class="punctuation">,</span> <span class="built_in">rep</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">4</span><span class="punctuation">,</span> each <span class="operator">=</span> <span class="number">5</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">  Delay <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">9.9</span><span class="punctuation">,</span> <span class="number">5.4</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">6.9</span><span class="punctuation">,</span> <span class="number">4.9</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5</span><span class="punctuation">,</span> <span class="number">8.8</span><span class="punctuation">,</span> <span class="number">11.1</span><span class="punctuation">,</span> <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.3</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span></span><br><span class="line">            <span class="number">10.2</span><span class="punctuation">,</span> <span class="number">9.2</span><span class="punctuation">,</span> <span class="number">9.7</span><span class="punctuation">,</span> <span class="number">12.2</span><span class="punctuation">,</span> <span class="number">8.1</span><span class="punctuation">,</span> <span class="number">7.9</span><span class="punctuation">,</span> <span class="number">5.6</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">df <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>Weekday<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarize<span class="punctuation">(</span>min_delay <span class="operator">=</span> <span class="built_in">min</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">,</span> max_delay <span class="operator">=</span> <span class="built_in">max</span><span class="punctuation">(</span>Delay<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>R语言</category>
-      </categories>
-      <tags>
-        <tag>R语言</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>R语言基础(2)：Python与R</title>
-    <url>/posts/366e33e8/</url>
-    <content><![CDATA[<p>上一次用R语言已经是去年的事情了，最近想用R进行制图（在涉及统计和统计图表方面还得是R），R的图表和配色也都很好看，便开始再来学一学R。</p>
-<span id="more"></span>
-<h2 id="r-python-conversion-guide">R-Python conversion guide</h2>
-<p>直接跳转到这位前辈的博客：</p>
-<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/">Data Science Tools</a></p>
-<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-manipulation/">Data manipulation R-Python conversion guide</a></p>
-<p><a href="https://www.mit.edu/~amidi/teaching/data-science-tools/conversion-guide/r-python-data-visualization/">Data visualization</a></p>
-<h2 id="r的便捷与缺点">R的便捷与缺点</h2>
-<blockquote>
-<p>从Python到R会觉得R的格式不规范</p>
-</blockquote>
-<p>接触过一点时间会发现R语言在某种程度上用起来比R方便，功能的实现只需要找到一个响应的函数，传入参数，得到相应的输出，也就是<font color="#dd0000">封装地更“好”</font>，用起来更简单(傻瓜)了，但是对我来说，便捷之处我感觉就是引出了它的一些缺点：</p>
-<ol type="1">
-<li>包与函数之间缺乏==逻辑==，不便于查文档和学习包。距离来说，Python中处理文件目录路径相关的操作，都在os中就可以完成，只需要import os，然后通过os.path.split(), os.listdir()等调用即可，==Python的包查看文档和接口说明十分方便==，R语言则不是，<font color="#dd0000">看到一个R的函数，我都不知道它是否是内置函数，也不知道它属于哪个包，给我的感觉很不好</font>，这可能需要更多的时间来熟悉和查询</li>
-<li>文档不友好。包带来的问题是文档的杂乱，平时我一般通过API文档来查看函数细节，但是R的网页版不方便，而且还存在重名函数等问题，看的很不习惯</li>
-<li>不方便查看和debug，首先是代码不好看（这个还能忍），可读性不佳，另一个是不好改和参考别人的代码，函数和包给人的感觉总是比较乱，想用前辈的代码比较痛苦，相较于Python。</li>
-<li>此外，用的时候发现R不支持中文字符串；</li>
-</ol>
-<p>所以还是不便于用它进行数据处理而仅作为统计分析建模以及可视化工具</p>
-<ul>
-<li>最近开始专门学习一下R的==ggplot2==制图</li>
-</ul>
 ]]></content>
       <categories>
         <category>R语言</category>
@@ -964,6 +964,28 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </tags>
   </entry>
   <entry>
+    <title>栅格处理(杂)：栅格重分类或特定值转图层(批处理)</title>
+    <url>/posts/1ac444bb/</url>
+    <content><![CDATA[<p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
+<span id="more"></span>
+<p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
+<h2 id="非并行">非并行</h2>
+<p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#未安装包可以先安装 conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(files)</span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="并行">并行</h2>
+<p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reclass</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">    files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    </span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(reclass, files)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>rasterio</tag>
+        <tag>reclass</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>矢栅处理(3)：Python读写GeoTIFF文件</title>
     <url>/posts/f61ccf5/</url>
     <content><![CDATA[<p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
@@ -1085,28 +1107,6 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </tags>
   </entry>
   <entry>
-    <title>栅格处理(杂)：栅格重分类或特定值转图层(批处理)</title>
-    <url>/posts/1ac444bb/</url>
-    <content><![CDATA[<p>今天与同学交流的一个问题：如果提取一个栅格数据<mark>tif中特定的值</mark>并生成新的栅格数据，其他值设为空，这和重分类比较像，存放一下代码实现。</p>
-<span id="more"></span>
-<p>栅格读写tif的<a href="https://hscyber.github.io/posts/f61ccf5/">参考这</a>，关于并行的看一下<a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a>，先看一下电脑的最大核数。关于<a href="https://hscyber.github.io/posts/a9be2430/">tif压缩格式</a>可以看之前笔记最底部的测试。</p>
-<h2 id="非并行">非并行</h2>
-<p>代码逻辑比较直白。这里提取的是[10,20,30,40]，空值设为了0，新文件名称这里直接将默认值添加到了后缀，可自行修改，代码测试无误</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment">#未安装包可以先安装 conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(files)</span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="并行">并行</h2>
-<p><a href="https://hscyber.github.io/posts/4b434785/">multiprocessing多进程</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*-coding:utf-8 -*-</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">@File    :   reclass_tif.py</span></span><br><span class="line"><span class="string">@Time    :   2022/08/30 21:15:45</span></span><br><span class="line"><span class="string">@Author  :   huangsh </span></span><br><span class="line"><span class="string">@Version :   1.0</span></span><br><span class="line"><span class="string">@Contact :   1126456109@qq.com</span></span><br><span class="line"><span class="string">@Desc    :   None</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># conda install -c conda-forge rasterio</span></span><br><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">outpath = <span class="string">r&quot;C:\Users\huangs\Desktop\test\outpath\\&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">reclass</span>(<span class="params">file</span>):</span><br><span class="line">    <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">        profiles = src_dataset.profile</span><br><span class="line">        band = src_dataset.read(<span class="number">1</span>)</span><br><span class="line">    <span class="comment"># 目标值更新</span></span><br><span class="line">    <span class="keyword">for</span> value <span class="keyword">in</span> [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>]:</span><br><span class="line">        band_up = np.array(band)</span><br><span class="line">        band_up[band_up!=value] = <span class="number">0</span></span><br><span class="line">        <span class="comment"># 设置输出文件路径，压缩格式可以选择&#x27;DEFLATE&#x27;</span></span><br><span class="line">        outfile = outpath+os.path.basename(file).replace(<span class="string">&quot;.tif&quot;</span>,<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(value)+<span class="string">&quot;.tif&quot;</span>)</span><br><span class="line">        profiles.update(nodata=<span class="number">0</span>,compress=<span class="string">&#x27;LZW&#x27;</span>)</span><br><span class="line">        <span class="keyword">with</span> rasterio.<span class="built_in">open</span>(outfile, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">                dst.write(band_up, <span class="number">1</span>)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    path = <span class="string">r&quot;C:\Users\huangs\Desktop\test\inpath\\&quot;</span></span><br><span class="line">    files = glob(path+<span class="string">&quot;*.tif&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    </span><br><span class="line">    pool = Pool(<span class="number">8</span>)</span><br><span class="line">    <span class="comment"># files是一个参数列表list,[file1, file2, ...]</span></span><br><span class="line">    pool.<span class="built_in">map</span>(reclass, files)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>时空数据处理分析</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>rasterio</tag>
-        <tag>reclass</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>矢栅处理(1)：分区统计sjoin|zonal</title>
     <url>/posts/54103437/</url>
     <content><![CDATA[<p><strong>按照多边形</strong>（如格网/行政区划）边界<strong>汇总统计</strong>其内的<strong>点/栅格</strong>是空间分析中的常用操作（栅格实际上可以看做点数据）。</p>
@@ -1197,6 +1197,31 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
         <tag>ArcGIS</tag>
         <tag>空间索引</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>栅格处理(杂)：计算多边形内的点数/线长度/面面积</title>
+    <url>/posts/e57ebaa5/</url>
+    <content><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p>
+<span id="more"></span>
+<h2 id="实际操作案例">实际操作案例</h2>
+<h3 id="计算各区域内路网的长度">计算各区域内路网的长度</h3>
+<blockquote>
+<p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p>
+</blockquote>
+<p>ArcGIS Pro提供了一个很好用的工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p>
+<img src="/posts/e57ebaa5/image-20230315165154558.png" class title="image-20230315165154558">
+<img src="/posts/e57ebaa5/image-20230315165006403.png" class title="image-20230315165006403">
+<p>如果是使用ArcGIS，步骤如下,<a href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p>
+<ol type="1">
+<li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li>
+<li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li>
+<li><p>连接表格</p></li>
+</ol>
+<img src="/posts/e57ebaa5/image-20230315165245144.png" class title="image-20230315165245144">
+]]></content>
+      <categories>
+        <category>时空数据处理分析</category>
+      </categories>
   </entry>
   <entry>
     <title>矢栅处理(2)：GeoTIFF数值类型及压缩</title>
@@ -1367,29 +1392,32 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </tags>
   </entry>
   <entry>
-    <title>栅格处理(杂)：计算多边形内的点数/线长度/面面积</title>
-    <url>/posts/e57ebaa5/</url>
-    <content><![CDATA[<p>在进行指标计算时，尤其是格网数据的数值汇总，经常需要<font color="#dd0000">统计汇总面内（区域/研究单元）的点的个数、道路的长度、面的面积</font>，对于点数的统计可以直接spatial join或者count，后者则需要多几步操作。</p>
+    <title>Hello World</title>
+    <url>/posts/4a17b156/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
-<h2 id="实际操作案例">实际操作案例</h2>
-<h3 id="计算各区域内路网的长度">计算各区域内路网的长度</h3>
-<blockquote>
-<p>计算各区域内/格网/缓冲区内湖泊的面积等，类似</p>
-</blockquote>
-<p>ArcGIS Pro提供了一个很好用的工具<a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/geoanalytics-desktop/summarize-within.htm">Summarize Within (GeoAnalytics Desktop)</a>，使用按照参数传入即可，计算完再基于ID将结果表格连接一下。</p>
-<img src="/posts/e57ebaa5/image-20230315165154558.png" class title="image-20230315165154558">
-<img src="/posts/e57ebaa5/image-20230315165006403.png" class title="image-20230315165006403">
-<p>如果是使用ArcGIS，步骤如下,<a href="https://gis.stackexchange.com/questions/98518/calculate-line-distances-inside-of-polygons-using-arcgis-for-desktop">参考</a>：</p>
-<ol type="1">
-<li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/coverage-toolbox/identity.htm">Identity</a>，用面打断路网</p></li>
-<li><p>使用<a href="https://desktop.arcgis.com/en/arcmap/latest/tools/analysis-toolbox/summary-statistics.htm">Summary Statistics</a>基于面FID或其他唯一字段统计长度</p></li>
-<li><p>连接表格</p></li>
-</ol>
-<img src="/posts/e57ebaa5/image-20230315165245144.png" class title="image-20230315165245144">
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="command">command</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>时空数据处理分析</category>
+        <category>Hexo建博客</category>
       </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>GIS基础(杂)：自相关/热点/异常分析，Moran&#39;s I和Gets-Ord Gi对比</title>
@@ -1603,34 +1631,6 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/posts/4a17b156/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="command">command</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Hexo建博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo图片自动上传同步测试</title>
     <url>/posts/2852138d/</url>
     <content><![CDATA[<p>typora图片插入格式设置 <code>![](相对文件夹/图片名)</code></p>
@@ -1692,66 +1692,6 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
 </ol>
 <p>今天继续打卡了奥森跑道，北京初秋的夜晚竟已冷得不能穿夏装了。组会后的周末，睡个好觉。周末两天flag~把欠下的笔记补好。</p>
 <p>2022/08/26 23:36</p>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>对近来生活的思考和一点自我反思</title>
-    <url>/posts/1d48db90/</url>
-    <content><![CDATA[<p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
-<span id="more"></span>
-<h3 id="闲言碎语-不知所云">闲言碎语-不知所云</h3>
-<blockquote>
-<p>人是一根会思考的芦苇</p>
-</blockquote>
-<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
-<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光着实是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
-<p>最大的收获大致在于：<strong>认识到了自身的有限性和平凡</strong>，接纳和认识自己，特质与优缺点，也认识到了人具有的巨大潜力和可塑性，很多是能够改变的，缺的是主动性、认知、勇气、行动，少一些借口。焦虑是允许的，积极拥抱。每天我都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知、探求和表达，余下的是大概是爱与“工作”。</p>
-<p>我们好像讨厌工作，抗拒工作，将之视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造和表达自我，开拓自己心中的森林。</p>
-<p><strong>我们来的时候，什么也没有，不妨大胆一些。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多</strong>。有人说25岁左右人才真正成年，我想，这肯定也是个虚数，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但二十几岁的年纪，一个人再天才再有帮助，所能达到的高度也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能厚实。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
-<p>我们都有自己的道路，不应被时间和他人或是什么其他的东西而定义自己或是自己的阶段，要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
-<h3 id="关于提高效率的几点反思">关于提高效率的几点反思。</h3>
-<blockquote>
-<p>热爱、爱、渴望是最纯净的力量源泉。</p>
-</blockquote>
-<ol type="1">
-<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
-<li>我们<strong>需要适当遏止内心纷繁的一些渴望</strong>。减少虚荣，<strong>我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑</strong>。不能抵挡诱惑就关闭通道，关闭信息通报，比如可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
-<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
-<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready. 我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
-<li>接上，<strong>不要过度准备和过分焦虑</strong>。假如做事都要面面顾到，那就什么事情都不能做了。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，焦虑和恐惧于事无补，焦虑改变不了明天，反而会影响今天的心情，恐惧也改变不了明天；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
-<li>难过无法自抑压抑不能自释的时候，多寻求帮助与关怀，失望与难过很难感同身受，但倾述和释放会让我好很多。</li>
-<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起。有同伴很多时候会让我们做事情更具热情。</li>
-<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
-<li>多付诸行动</li>
-<li>……</li>
-</ol>
-<p>2022/10/11 22:59</p>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>生日快乐</title>
-    <url>/posts/42dbb1c3/</url>
-    <content><![CDATA[<p>不知不觉又到了新一年的元旦，又到了该说点什么的时候【转自朋友圈】。</p>
-<span id="more"></span>
-<p>梦幻的2022，已来不及总结，非要定一个关键词，或许是勇气。年初立的flag许下的愿现在也都没有成，虎头蛇尾，似乎年年如此，开始不难，难在坚持。去年没做完的事，一觉醒来也还得接着做，丢不掉的总丢不掉，没有多少事情真的能大手一挥从新开始。 大了一岁，也只是做了个加减法，放开的2023，依旧无法预料，但确会比去年更值得期待。</p>
-<p>饭间与老师师兄姐聊天，尽管有些已听过多次，还是会感慨生活当真是充满未知和挑战性，还有魅力。希望自己能在平凡的生活和劳动中，继续找寻和创造。当然，要多写文章hh。</p>
-]]></content>
-      <categories>
-        <category>生活漫步</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>解封了，过去？之后？</title>
-    <url>/posts/c0dea3e0/</url>
-    <content><![CDATA[<p>今天，宿舍园区解封了。算一算，从21号封校（世界杯开赛当天hh），到现在三周整，但感觉上却比五月份那一个多月还长不少……</p>
-<span id="more"></span>
-<p>或许是最近发生的事情太多，也或许因为最近的变化太大，当然，也可能是我对之前事情的印象不如眼下的清晰深切。</p>
 ]]></content>
       <categories>
         <category>生活漫步</category>
@@ -1967,6 +1907,43 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
       </categories>
   </entry>
   <entry>
+    <title>对近来生活的思考和一点自我反思</title>
+    <url>/posts/1d48db90/</url>
+    <content><![CDATA[<p>尽管时间不差多少，但相较于上半年，下半年的时间过起来总是会格外地快，快到仿佛我再不记点什么就马上回跨到下一个年头……</p>
+<span id="more"></span>
+<h3 id="闲言碎语-不知所云">闲言碎语-不知所云</h3>
+<blockquote>
+<p>人是一根会思考的芦苇</p>
+</blockquote>
+<p>兴许是下意识将78月归入上半年，将9月视作新的开始，才觉得过得飞快，当然，和秋冬的恶劣天气也脱不了关系。不知不觉现在我也已经进入了读研的第三年，说不出的滋味。抛开一如既往此起彼伏的北京疫情，这几个月我算是无所顾忌地在开始着各种尝试，对于自身和很多东西的看法有了不少的改变，当然，这种尝试是需要成本的，有时还会让人倍感疲惫。</p>
+<p>这几个月工作之余，大量的课外阅读，频繁的运动与奔跑，持续的思索与记录，积极拥抱小团体，勇敢找寻一些自己的热爱和兴趣，让我的生活不再像之前那样“沉重”而“单调”，收获颇丰，但回过头来看，人的精力和目光着实是有限的，有些东西是牢固的，这种状态不可持续，慢慢地就暴露了一些问题，有浮躁及矫枉过正之嫌。</p>
+<p>最大的收获大致在于：<strong>认识到了自身的有限性和平凡</strong>，接纳和认识自己，特质与优缺点，也认识到了人具有的巨大潜力和可塑性，很多是能够改变的，缺的是主动性、认知、勇气、行动，少一些借口。焦虑是允许的，积极拥抱。每天我都在做着对抗，与人生来的惰性、刺激与享乐、逃避痛苦而对抗，少有人能够做到极致，除非是极致的热爱。我便在这中间寻找一个地方踏步，并努力地向着另一端慢慢行进。我不再向过去那样思考人生的意义，因为这短短的一生，值得追寻的，除却对自我的认知、探求和表达，余下的是大概是爱与“工作”。</p>
+<p>我们好像讨厌工作，抗拒工作，将之视为一种别无选择被迫做的事情，即来自身处社会和人际关系中的外界压力与其所赋予我们的责任。<strong>但慢慢地我发觉，有些东西，一些无可替代的幸福感和平静，只能够从劳动中获得</strong>，或许也可以称之为工作，当然，我更愿意称其为创造。像绘画与雕塑、像音乐、像科学、像书作……在劳动中创造和表达自我，开拓自己心中的森林。</p>
+<p><strong>我们来的时候，什么也没有，不妨大胆一些。二十几岁的年纪，我们不可能做到什么都有，而且每个人真正属于自己的东西，其实都不多</strong>。有人说25岁左右人才真正成年，我想，这肯定也是个虚数，即便是从生理上看，毕竟人与人是不一样的，生长过程和经历的人生阶段也各自不同。但二十几岁的年纪，一个人再天才再有帮助，所能达到的高度也是有限的，更确切的说，属于他自己的那些东西定然是有限的。不会有完美的人，我们不得不去经历，才能厚实。有人在小地方吭哧吭哧长大然后投身人海，有人在繁华都市一步步走向聚光灯和舞台，不同的时间造就不同的人，并无好与坏之分，他有的别人或许没有，但有些人有的，他可能也无法收获。每个人都有一些面是智者，一些面是残者。。</p>
+<p>我们都有自己的道路，不应被时间和他人或是什么其他的东西而定义自己或是自己的阶段，要<font color="#dd0000">勇敢地走上人生旅途</font>。</p>
+<h3 id="关于提高效率的几点反思">关于提高效率的几点反思。</h3>
+<blockquote>
+<p>热爱、爱、渴望是最纯净的力量源泉。</p>
+</blockquote>
+<ol type="1">
+<li><strong>减少精力和注意力的分散，我们不可能同时盯着很多条进程，大脑CPU的核数和资源都是有限的，适当地削减和调整该资源的分配</strong>。要事第一，当然，或许需要割舍一些次重要的东西，这会难受，但是大多值得。</li>
+<li>我们<strong>需要适当遏止内心纷繁的一些渴望</strong>。减少虚荣，<strong>我们远比我们想象中得难以自我察觉、控制情绪和抵制诱惑</strong>。不能抵挡诱惑就关闭通道，关闭信息通报，比如可以考虑取关你80%+的公众号，卸掉占据大量时间的ap。而投入眼前的工作，并找寻一些兴趣与热爱。</li>
+<li>不要被时间或节点所限制，将目光聚焦在所做的事情。也即是让一件一件的小事情成为生活的最小分割，而不是1分钟一小时，当然并不是不考虑时间，而是<strong>不需要过分盯着数着时间点做事情，而聚焦到事情本身的完成度上</strong>。可能因为我自己有些强迫症的缘故才会这样~比如说，我知道1个月之后某某答辩，我只需要在此之前花费特定的时间完成准备好即可，而不是一个月都要在做这个事情。比如我规定自己12.30之前要睡觉，并不是说我回去早了就要先玩手机干别的到了这个点才睡，该做的事情做完了就可以睡觉，对我而言，起床亦是如此。</li>
+<li><strong>不要事事都抱着等有充足准备之后再开始做的念头</strong>。You can never be ready. 我们非常喜欢做好充足准备后再开始做任何工作和事情，也就是做有把握的事情，但是真正关键的时刻往往不会让我们准备好，包括那些可能改变我们命运的大时刻，我们就是该硬着头皮去做一些事情，会有更加促进我们的跃升，比如我不可能等学好了什么什么才能开始做东西。</li>
+<li>接上，<strong>不要过度准备和过分焦虑</strong>。假如做事都要面面顾到，那就什么事情都不能做了。事情完成到一定程度即可，锦上添花的事情很多时候是非必要的。<u>焦虑适度即可，不要为太远的事情而担忧，像珍惜礼物那样珍惜今天。对于不可控的事情，我们要保持乐观和自信，对于可控的事情，我们要保持谨慎和节制。</u>对于不可控的事情，说白了，焦虑和恐惧于事无补，焦虑改变不了明天，反而会影响今天的心情，恐惧也改变不了明天；但是对于可控的事情，能不能好好利用时间，这是可控的，你要谨慎你要节制，因为如果不谨慎不节制就会乐极生悲。</li>
+<li>难过无法自抑压抑不能自释的时候，多寻求帮助与关怀，失望与难过很难感同身受，但倾述和释放会让我好很多。</li>
+<li>坚持适当运动和阅读，培养一两个兴趣爱好，可以的话，和志趣相投小伙伴一起。有同伴很多时候会让我们做事情更具热情。</li>
+<li>早睡早起，该下班就下班，比如现在，不要用今天来弥补昨天，也不要预支明天。</li>
+<li>多付诸行动</li>
+<li>……</li>
+</ol>
+<p>2022/10/11 22:59</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
+  </entry>
+  <entry>
     <title>需要克制</title>
     <url>/posts/23ea2b62/</url>
     <content><![CDATA[<p>2023-04-13，不去做一些事情，有时候比去做一件事情还难。</p>
@@ -1992,13 +1969,16 @@ V\left(s_t\right) \leftarrow V\left(s_t\right)+\alpha\left[G_t-V\left(s_t\right)
 <p>我们是需要假期的，不仅是缓冲消除一下工作的疲倦，丰富一下生活娱乐，在我，还有一个尤为重要的功能是定期整理生活和清理心绪里的“垃圾”。生活自然不必说，隔一段时间东西总是会越来越乱，稍花时间规整即能让心情愉悦，至于心绪，实在是每天都会有很多各种各样杂乱的情绪和未尽的思路，生活感悟糟糕情绪人际关系过错诸如此类，这时候，就需要借助一些时间静心梳理，回归澄清和平静。</p>
 <p>今天做了不少事，除开动笔写这个文和清垃圾，也久违地和家人尤其刚上大学的弟弟聊了一下近期的生活，不赖。过去我是个很少主动联系家里的“懒人”（频率可能几个月一次），也算是某种对亲密关系的回避，问题确实不少，这一年开始正视之后有了好转，也成了父母和弟弟的某种支撑，也作为了弟弟和家里沟通的桥梁，也都很乐于和我说话谈心。一切安好。</p>
 <h2 id="回顾">回顾</h2>
+<blockquote>
+<p>近期及后续核心内容——准备大论文的开题</p>
+</blockquote>
 <p>言归正传，回顾一下近期看似忙碌也漏洞百出的生活。</p>
 <p>由于年底开题，工作的主线很明确，最近的时间也都堆在了这上面。由于在这个选题上尚未开展足够的相关工作（甚至还没看到数据e），因此时间显得有些紧凑，加上又会抽出一些时间来学习一下新的必要的东西，总是会感觉时间不够用。这样时间的流逝明明感觉很缓慢，每天都有不少收获，但是一天天接近deadline又会让人感觉挺焦灼，看来还是力有不逮。</p>
 <p>焦灼的一个重要方面应该是论文的产出。近期也把积攒了很久的一个工作投了出去，在写cover letter的时候看到了上一次的抬头十分恍惚，距离上一次投稿已经过了刚好2年。这让我不得不反思这两年时间花在了何处，包括研究工作的停滞的原因……此处省略1万字。客观环境和资源的状态和变化，自身心境/情绪/情感的状态与调整，自我的约束和控制，都是事情发生的根源。当然，有些东西不受我的控制，很多事情没有捷径，我们需要不断地不断地从过去学习，才能更好的往前走。</p>
 <p>在科研之外，关于阅读，关于行路，关于拍照，其实也有很多值得说道一二的地方，毕竟我好像花了不少时间在这些所谓的“不务正业”的事情上。但一写总会觉得空洞无物，想起上次读书日的时候还写了个长文谈阅读，谈感悟谈收获，可说到底，这些都是过于自我的东西，是没法清楚地描绘出来，也难以感同身受。只不过，这些确确实实也化作了我的养分，滋养且丰富了我社会人之外的世界。阅读减少了我在手机上的时间，“认识”更多的人和事之余，也常常激起我的思考和反省；拍照是源于兴趣，拿起相机是让自己多了一个迈出脚步的理由，更加贴近自然和感受真实的生活，认识更多朴实有趣的人，让我对自己多了更多的包容。生活不应该成为工作的避难所，当然，工作也是，工作也不应该作为逃避生活的借口。积极主动的态度，迎接、拥抱和转变，生活即是生活，都自有其法。</p>
 <p>我们周围有太多的模样，我们也会听到太多的声音，这很容易让人无所适从，疲于奔命，也让人疲于思考自己的状态倾听内心的想法，人们也总是被无处不在充斥着的思想潮流裹挟着往前走。我们已经分不清什么是自己想去做愿意去做，什么又是所谓的应该和不应该，还总有人告诉我们现实就是怎样，告诉我如果不，以后我就怎么样。而每个人的路，都只能自己走一遭，而下一站是哪，无人能预见。</p>
 <p>言多必失，说到底，于我个人，当保持清醒和温暖，主动思考并付诸行动，常反省多尝试新甚至敢于“革命”，一步一步……即是我力求的状态。</p>
-<p>最后就把备忘录的待办内容清一清也就是这周末的重要人物———<strong>—清垃圾</strong>。</p>
+<p>最后就把备忘录的待办内容清一清也即<strong>清垃圾</strong>。</p>
 <h2 id="附-碎念">附-碎念</h2>
 <blockquote>
 <p>每一天，看到什么，想到什么，好像常常有些东西会进到我的脑子让我想说点什么，就形成了一个长长的备忘录。定期清理，倒序删除2023/12--2023/3。</p>
@@ -2360,6 +2340,17 @@ height = 12\times 2.54 = 30.48cm
         <tag>Python</tag>
         <tag>Matplotlib</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>解封了，过去？之后？</title>
+    <url>/posts/c0dea3e0/</url>
+    <content><![CDATA[<p>今天，宿舍园区解封了。算一算，从21号封校（世界杯开赛当天hh），到现在三周整，但感觉上却比五月份那一个多月还长不少……</p>
+<span id="more"></span>
+<p>或许是最近发生的事情太多，也或许因为最近的变化太大，当然，也可能是我对之前事情的印象不如眼下的清晰深切。</p>
+]]></content>
+      <categories>
+        <category>生活漫步</category>
+      </categories>
   </entry>
   <entry>
     <title>Matplotlib基础(杂)：边框spines及刻度ticks/labels属性设置及隐藏</title>
@@ -2866,19 +2857,16 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas(杂)：拼接多张表为一张表concat</title>
-    <url>/posts/2178bf2d/</url>
-    <content><![CDATA[<p>将文件夹下的所有相同格式的文本文件csv/txt/xlsx等，==合并或者拼接==为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
+    <title>生日快乐</title>
+    <url>/posts/42dbb1c3/</url>
+    <content><![CDATA[<p>不知不觉又到了新一年的元旦，又到了该说点什么的时候【转自朋友圈】。</p>
 <span id="more"></span>
-<p>函数具体说明可以查看文档 <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat</a>，<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">df.drop_duplicates</a>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入参数</span></span><br><span class="line">indir = <span class="string">r&quot;&quot;</span></span><br><span class="line">outfile = <span class="string">&quot;....csv&quot;</span></span><br><span class="line">filetype = <span class="string">&quot;csv&quot;</span></span><br><span class="line"><span class="comment"># pandas文件遍历及合并</span></span><br><span class="line">files = glob(indir+<span class="string">&quot;\\*.&quot;</span>+filetype)</span><br><span class="line">tables = [] <span class="comment"># 确保文件总大小不会溢出内存，否则需分组处理</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file)</span><br><span class="line">    tables.append(df)</span><br><span class="line"><span class="comment"># 表格拼接及写出,axis=0表示按行拼接</span></span><br><span class="line">result = pd.concat(tables,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># result.drop_duplicates(subset=[&quot;fid&quot;], keep=&#x27;first&#x27;, inplace=True) #去重复列</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 导出可以用excel打开的文件</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8-sig&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">result.to_excel(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他导出选项</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>, sep=<span class="string">&quot;\t&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>梦幻的2022，已来不及总结，非要定一个关键词，或许是勇气。年初立的flag许下的愿现在也都没有成，虎头蛇尾，似乎年年如此，开始不难，难在坚持。去年没做完的事，一觉醒来也还得接着做，丢不掉的总丢不掉，没有多少事情真的能大手一挥从新开始。 大了一岁，也只是做了个加减法，放开的2023，依旧无法预料，但确会比去年更值得期待。</p>
+<p>饭间与老师师兄姐聊天，尽管有些已听过多次，还是会感慨生活当真是充满未知和挑战性，还有魅力。希望自己能在平凡的生活和劳动中，继续找寻和创造。当然，要多写文章hh。</p>
 ]]></content>
       <categories>
-        <category>Pandas数据处理分析</category>
+        <category>生活漫步</category>
       </categories>
-      <tags>
-        <tag>Pandas</tag>
-      </tags>
   </entry>
   <entry>
     <title>Numpy基础：ndarray的理解及其常用操作</title>
@@ -2947,6 +2935,21 @@ height = 12\times 2.54 = 30.48cm
       </categories>
       <tags>
         <tag>Numpy</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Pandas(杂)：拼接多张表为一张表concat</title>
+    <url>/posts/2178bf2d/</url>
+    <content><![CDATA[<p>将文件夹下的所有相同格式的文本文件csv/txt/xlsx等，==合并或者拼接==为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
+<span id="more"></span>
+<p>函数具体说明可以查看文档 <a href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat</a>，<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">df.drop_duplicates</a>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入参数</span></span><br><span class="line">indir = <span class="string">r&quot;&quot;</span></span><br><span class="line">outfile = <span class="string">&quot;....csv&quot;</span></span><br><span class="line">filetype = <span class="string">&quot;csv&quot;</span></span><br><span class="line"><span class="comment"># pandas文件遍历及合并</span></span><br><span class="line">files = glob(indir+<span class="string">&quot;\\*.&quot;</span>+filetype)</span><br><span class="line">tables = [] <span class="comment"># 确保文件总大小不会溢出内存，否则需分组处理</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file)</span><br><span class="line">    tables.append(df)</span><br><span class="line"><span class="comment"># 表格拼接及写出,axis=0表示按行拼接</span></span><br><span class="line">result = pd.concat(tables,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># result.drop_duplicates(subset=[&quot;fid&quot;], keep=&#x27;first&#x27;, inplace=True) #去重复列</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 导出可以用excel打开的文件</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8-sig&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">result.to_excel(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他导出选项</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>, sep=<span class="string">&quot;\t&quot;</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Pandas数据处理分析</category>
+      </categories>
+      <tags>
+        <tag>Pandas</tag>
       </tags>
   </entry>
   <entry>
@@ -3047,25 +3050,63 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas(杂)：to_excel多表格写出excel</title>
-    <url>/posts/a234f8ea/</url>
-    <content><![CDATA[<p>pandas将多个表格(series/dataframe)写入单个或多个excel文件,<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html">.to_excel()</a>。</p>
+    <title>Pandas(2)：缺失值即空值na判断及其处理</title>
+    <url>/posts/74993542/</url>
+    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
 <span id="more"></span>
-<p>如果提示缺少包则需安装openpyxl</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge openpyxl</span><br></pre></td></tr></table></figure>
-<p>单个文件写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.to_csv(<span class="string">&quot;./test.csv&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">df.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># series，单列</span></span><br><span class="line">wb_count = df[<span class="string">&#x27;weibo_count&#x27;</span>].value_counts()</span><br><span class="line">wb_count.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>,index_label=<span class="string">&#x27;value&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>多个文件写出，类似于文本文件的写出</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一次性导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line"><span class="keyword">with</span> pd.ExcelWriter(save_file) <span class="keyword">as</span> writer:  </span><br><span class="line">    df[<span class="string">&#x27;wb&#x27;</span>].to_excel(writer,sheet_name=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb17&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;17&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb18&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;18&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb19&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;19&#x27;</span>)</span><br><span class="line"><span class="comment"># 非一次性陆续导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line">writer = pd.ExcelWriter(save_file)</span><br><span class="line">df1.to_excel(writer, sheet_name = <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">df2.to_excel(writer, sheet_name = <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line"><span class="comment"># 关闭流并写入文件</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
-<p>追加表格到文件（<strong>建议先备份避免出错导致原始表格被覆盖</strong>）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> pd.ExcelWriter(<span class="string">&#x27;output.xlsx&#x27;</span>,mode=<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> writer:  </span><br><span class="line">    df.to_excel(writer, sheet_name=<span class="string">&#x27;Sheet_add&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>其他可选参数：na_rep(缺失值填充，默认为空)</p>
+<h2 id="空值定义">空值定义</h2>
+<blockquote>
+<p>读取dataframe表格输出的控制都显示为“NAN”，但是具体的情况可能存在一些差别</p>
+</blockquote>
+<p>pandas的数值类型基于numpy dtype，因此缺失值/空值也沿用了numpy。一些“<strong>空值</strong>”：</p>
+<ol type="1">
+<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available.</strong>（is None）</li>
+<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>df.isna()/df.isnull/pd.isna(x)/pd.isnull(x)</strong>。</li>
+<li><strong>np.nan</strong>：该值是有值的，占内存，也是一个特殊的浮点数，因此<u>如果导出含NAN的数据会使得该列为浮点型，占用空间增大</u>。<strong>NAN含义为not a number</strong></li>
+<li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
+<li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
+</ol>
+<p>如何<strong>判断</strong>是否为空值：<strong>df.isna(); df.notna();pd.isna(x)</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
+<ul>
+<li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 举例</span></span><br><span class="line"><span class="comment"># 输出某一列为空值的行</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== <span class="literal">None</span>]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== pd.NA]</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isna()]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isnull()]</span><br><span class="line"><span class="comment"># NaT</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]==pd.NaT()]</span><br></pre></td></tr></table></figure>
+<h2 id="值的处理">值的处理</h2>
+<p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
+<h3 id="删除行或列dropna">删除行或列dropna</h3>
+<p>DataFrame.dropna(axis=0, how=[‘any’, ‘all’], thresh, subset=None, inplace=False...)</p>
+<ul>
+<li><strong>axis</strong>=0表示默认删除包含空值的<strong>行</strong></li>
+<li><strong>subset</strong>用于指定某些列</li>
+<li><strong>how</strong>表示是<strong>全部</strong>为None才删除还是<strong>只要存在</strong>None就删除</li>
+<li><strong>thresh</strong>与how不能同时工作，表示<strong>删除多少个</strong></li>
+</ul>
+<p>常用<code>df.dropna(subset=[])</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line"><span class="comment"># 只要存在空值就将列删除</span></span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;any&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="填充fillna">填充fillna</h3>
+<p>常用的是<code>df.fillna(0)</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df</span><br><span class="line">     A    B   C    D</span><br><span class="line"><span class="number">0</span>  NaN  <span class="number">2.0</span> NaN  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span> NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  NaN NaN  NaN</span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span> NaN  <span class="number">4.0</span></span><br><span class="line"><span class="comment"># 全部填充</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)<span class="comment"># 每一列只填充一次</span></span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  <span class="number">1.0</span>  NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span>  NaN  <span class="number">4.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="插值interpolate">插值interpolate</h3>
+<p>关于时间序列的插值可以参阅<a href="https://walkenho.github.io/interpolating-time-series-p1-pandas/">此处</a>，默认为线性插值(method=“linear”)，常用，但默认不会填充第一个空值，需要填充时可以加上<strong>limit_direction</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate()</span><br><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate(limit_direction=‘both’)</span><br><span class="line"><span class="comment"># 所有列进行填充</span></span><br><span class="line">df = df.interpolate(limit_direction=‘both’)</span><br></pre></td></tr></table></figure>
+<p>多项式插值<code>df.interpolate(method='polynomial', order=2)</code></p>
+<h2 id="参考学习">参考学习</h2>
+<ul>
+<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p></li>
+<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p></li>
+<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p></li>
+<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p></li>
+<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p></li>
+</ul>
 ]]></content>
       <categories>
         <category>Pandas数据处理分析</category>
       </categories>
       <tags>
         <tag>Pandas</tag>
+        <tag>dropna</tag>
+        <tag>fillna</tag>
+        <tag>interpolate</tag>
       </tags>
   </entry>
   <entry>
@@ -3127,63 +3168,25 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>Pandas(2)：缺失值即空值na判断及其处理</title>
-    <url>/posts/74993542/</url>
-    <content><![CDATA[<p>常用的pandas表格空值处理方式。如 (1) 删除包含空值的行或者列；(2) 填充某些列的空值为特定值；(3) 基于序列的插值。</p>
+    <title>Pandas(杂)：to_excel多表格写出excel</title>
+    <url>/posts/a234f8ea/</url>
+    <content><![CDATA[<p>pandas将多个表格(series/dataframe)写入单个或多个excel文件,<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html">.to_excel()</a>。</p>
 <span id="more"></span>
-<h2 id="空值定义">空值定义</h2>
-<blockquote>
-<p>读取dataframe表格输出的控制都显示为“NAN”，但是具体的情况可能存在一些差别</p>
-</blockquote>
-<p>pandas的数值类型基于numpy dtype，因此缺失值/空值也沿用了numpy。一些“<strong>空值</strong>”：</p>
-<ol type="1">
-<li><strong>None/pd.NA</strong>：Python中的空值表示，即所有的空值指向同一个地址。<strong>NA含义为not available.</strong>（is None）</li>
-<li><strong>pd.NaN</strong>：这是非常常见的一个空值，它不等于None也不等于np.nan，是一个特殊的浮点数。要对它进行判断需要使用<strong>df.isna()/df.isnull/pd.isna(x)/pd.isnull(x)</strong>。</li>
-<li><strong>np.nan</strong>：该值是有值的，占内存，也是一个特殊的浮点数，因此<u>如果导出含NAN的数据会使得该列为浮点型，占用空间增大</u>。<strong>NAN含义为not a number</strong></li>
-<li><strong>NaT</strong>：对于 datetime64[ns] 类型，使用<code>NaT</code>表示缺失值</li>
-<li><mark>‘’</mark>：空字符串，这里实际上也是有值的，但字符串长度为0。</li>
-</ol>
-<p>如何<strong>判断</strong>是否为空值：<strong>df.isna(); df.notna();pd.isna(x)</strong>，会返回<strong>True/False</strong>。在此基础上可以进行进一步计算，如<u>df.loc[]的条件选择实际上就是基于中间的条件生成T/F的列然后进行mask筛选行列</u>，具体可以参见<a href="https://hscyber.github.io/posts/f9c7a8a1/#%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E8%A1%8Cdfloc">之前的笔记</a>。</p>
-<ul>
-<li>isnull()函数==isna()函数，但推荐用后者，便于记忆，与填充及删除时一致。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 举例</span></span><br><span class="line"><span class="comment"># 输出某一列为空值的行</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== <span class="literal">None</span>]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]== pd.NA]</span><br><span class="line"><span class="comment"># nan</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isna()]</span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>].isnull()]</span><br><span class="line"><span class="comment"># NaT</span></span><br><span class="line">df.loc[df[<span class="string">&#x27;colname&#x27;</span>]==pd.NaT()]</span><br></pre></td></tr></table></figure>
-<h2 id="值的处理">值的处理</h2>
-<p>什么时候对数值进行<strong>整列删除-意味着舍弃某指标</strong>或者<strong>整行删除-舍弃某条记录</strong>或者什么时候选择进行填充需要<font color="#dd0000">视具体的数据和需求</font>来确定。</p>
-<h3 id="删除行或列dropna">删除行或列dropna</h3>
-<p>DataFrame.dropna(axis=0, how=[‘any’, ‘all’], thresh, subset=None, inplace=False...)</p>
-<ul>
-<li><strong>axis</strong>=0表示默认删除包含空值的<strong>行</strong></li>
-<li><strong>subset</strong>用于指定某些列</li>
-<li><strong>how</strong>表示是<strong>全部</strong>为None才删除还是<strong>只要存在</strong>None就删除</li>
-<li><strong>thresh</strong>与how不能同时工作，表示<strong>删除多少个</strong></li>
-</ul>
-<p>常用<code>df.dropna(subset=[])</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除全部空的行</span></span><br><span class="line">df.dropna()</span><br><span class="line"><span class="comment"># 删除全部空的列</span></span><br><span class="line">df.dropna(axis=<span class="string">&#x27;columns&#x27;</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>)</span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line"><span class="comment"># 只要存在空值就将列删除</span></span><br><span class="line">df.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;any&#x27;</span>)</span><br><span class="line"><span class="comment"># 删除某些列中存在空值的行</span></span><br><span class="line">df.dropna(subset=[<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;toy&#x27;</span>])</span><br></pre></td></tr></table></figure>
-<h3 id="填充fillna">填充fillna</h3>
-<p>常用的是<code>df.fillna(0)</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df</span><br><span class="line">     A    B   C    D</span><br><span class="line"><span class="number">0</span>  NaN  <span class="number">2.0</span> NaN  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span> NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  NaN NaN  NaN</span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span> NaN  <span class="number">4.0</span></span><br><span class="line"><span class="comment"># 全部填充</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 给不同的列填充不同的值，A列填充0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>values = &#123;<span class="string">&quot;A&quot;</span>: <span class="number">0</span>, <span class="string">&quot;B&quot;</span>: <span class="number">1</span>, <span class="string">&quot;C&quot;</span>: <span class="number">2</span>, <span class="string">&quot;D&quot;</span>: <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values)</span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  <span class="number">2.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  <span class="number">0.0</span>  <span class="number">1.0</span>  <span class="number">2.0</span>  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  <span class="number">0.0</span>  <span class="number">3.0</span>  <span class="number">2.0</span>  <span class="number">4.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.fillna(value=values, limit=<span class="number">1</span>)<span class="comment"># 每一列只填充一次</span></span><br><span class="line">     A    B    C    D</span><br><span class="line"><span class="number">0</span>  <span class="number">0.0</span>  <span class="number">2.0</span>  <span class="number">2.0</span>  <span class="number">0.0</span></span><br><span class="line"><span class="number">1</span>  <span class="number">3.0</span>  <span class="number">4.0</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2</span>  NaN  <span class="number">1.0</span>  NaN  <span class="number">3.0</span></span><br><span class="line"><span class="number">3</span>  NaN  <span class="number">3.0</span>  NaN  <span class="number">4.0</span></span><br></pre></td></tr></table></figure>
-<h3 id="插值interpolate">插值interpolate</h3>
-<p>关于时间序列的插值可以参阅<a href="https://walkenho.github.io/interpolating-time-series-p1-pandas/">此处</a>，默认为线性插值(method=“linear”)，常用，但默认不会填充第一个空值，需要填充时可以加上<strong>limit_direction</strong>。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate()</span><br><span class="line">df[<span class="string">&#x27;a1&#x27;</span>] = df[<span class="string">&#x27;a&#x27;</span>].interpolate(limit_direction=‘both’)</span><br><span class="line"><span class="comment"># 所有列进行填充</span></span><br><span class="line">df = df.interpolate(limit_direction=‘both’)</span><br></pre></td></tr></table></figure>
-<p>多项式插值<code>df.interpolate(method='polynomial', order=2)</code></p>
-<h2 id="参考学习">参考学习</h2>
-<ul>
-<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">文档参考</a></p></li>
-<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p></li>
-<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.fillna.html#pandas.DataFrame.fillna">df.fillna()</a></p></li>
-<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.interpolate.html#pandas.DataFrame.interpolate">df.interpolate()</a></p></li>
-<li><p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.replace.html#pandas.DataFrame.replace">df.replace()</a></p></li>
-</ul>
+<p>如果提示缺少包则需安装openpyxl</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge openpyxl</span><br></pre></td></tr></table></figure>
+<p>单个文件写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">df.to_csv(<span class="string">&quot;./test.csv&quot;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>, index=<span class="literal">False</span>)</span><br><span class="line">df.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>, index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># series，单列</span></span><br><span class="line">wb_count = df[<span class="string">&#x27;weibo_count&#x27;</span>].value_counts()</span><br><span class="line">wb_count.to_excel(<span class="string">&quot;./test.xlsx&quot;</span>,index_label=<span class="string">&#x27;value&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>多个文件写出，类似于文本文件的写出</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 一次性导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line"><span class="keyword">with</span> pd.ExcelWriter(save_file) <span class="keyword">as</span> writer:  </span><br><span class="line">    df[<span class="string">&#x27;wb&#x27;</span>].to_excel(writer,sheet_name=<span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb17&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;17&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb18&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;18&#x27;</span>)</span><br><span class="line">    df[<span class="string">&#x27;wb19&#x27;</span>].value_counts().to_excel(writer, index_label=<span class="string">&#x27;value&#x27;</span>,sheet_name=<span class="string">&#x27;19&#x27;</span>)</span><br><span class="line"><span class="comment"># 非一次性陆续导出</span></span><br><span class="line">save_file = <span class="string">&quot;./valuecount.xlsx&quot;</span></span><br><span class="line">writer = pd.ExcelWriter(save_file)</span><br><span class="line">df1.to_excel(writer, sheet_name = <span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">df2.to_excel(writer, sheet_name = <span class="string">&#x27;2&#x27;</span>)</span><br><span class="line"><span class="comment"># 关闭流并写入文件</span></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<p>追加表格到文件（<strong>建议先备份避免出错导致原始表格被覆盖</strong>）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> pd.ExcelWriter(<span class="string">&#x27;output.xlsx&#x27;</span>,mode=<span class="string">&#x27;a&#x27;</span>) <span class="keyword">as</span> writer:  </span><br><span class="line">    df.to_excel(writer, sheet_name=<span class="string">&#x27;Sheet_add&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>其他可选参数：na_rep(缺失值填充，默认为空)</p>
 ]]></content>
       <categories>
         <category>Pandas数据处理分析</category>
       </categories>
       <tags>
         <tag>Pandas</tag>
-        <tag>dropna</tag>
-        <tag>fillna</tag>
-        <tag>interpolate</tag>
       </tags>
   </entry>
   <entry>
@@ -3591,40 +3594,6 @@ height = 12\times 2.54 = 30.48cm
       </tags>
   </entry>
   <entry>
-    <title>研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</title>
-    <url>/posts/4270937d/</url>
-    <content><![CDATA[<p>看最新的文献(尤其是<strong>top</strong>)是必要的，尤其是在比较热门的领域。一方面可以学习膜拜借鉴收获灵感，开阔研究思路，同时也能熟悉自己学科或工作相关的当前的国际研究热点/前言理论方法，有助于论文选题，工作开展及撰写。<strong>地理</strong>方面，国内的文章可以通过期刊官网和一些公众号，英文SCI则主要借助RSS（需要梯子）。关于论文检索和下载可以看之前的<a href="https://hscyber.github.io/posts/33f7b1b7/">论文检索</a>、<a href="https://hscyber.github.io/posts/99dce68a/">论文下载</a></p>
-<span id="more"></span>
-<h2 id="rss订阅">RSS订阅</h2>
-<blockquote>
-<p>大三开始接触了RSS，从那之后便一直使用RSS来追踪特定英文期刊及自己感兴趣方向的文章，收获良多，也可以跟踪一些<strong>其他平台如少数派、国家地理</strong>等等。</p>
-</blockquote>
-<p><font color="#dd0000">RSS平台可以自动抓取订阅源的推送更新，因此我们可以不打开期刊就批量看到最近文章及摘要</font>。</p>
-<p>我个人的话英文除了顶刊（NSP及子刊以及一区）还会关注一些灾害及环境生态领域的较好的杂志，中文少，我一般只关注地理学报及地球信息科学学报等期刊，因人而异。</p>
-<p>RSS订阅平台很多，我用的是免费网页版的<a href="https://www.inoreader.com/apps">inoreader</a>，需要梯子，以下是简要使用步骤：</p>
-<ol type="1">
-<li>注册并登陆账号</li>
-<li>批量检索期刊出版社：如<a href="https://www.nature.com/">Nature</a>，<a href="https://www.science.org/">Science</a>，<a href="https://www.pnas.org/loi/pnas">PNAS</a>，<a href="https://www.elsevier.com/books-and-journals/elsevier">ELESVIER</a>，<a href="https://www.tandfonline.com/action/showPublications?pubType=journal">tandfonline</a>，Springer，Wiley，MDPI</li>
-<li>进入期刊主页，找subscribe类似的字样，找到RSS即可，据我目前的是NSP及其子刊，ELESVIER等主流期刊都提供了RSS订阅。另外，<strong>NSP等一些出版商支持高级检索关键词RSS订阅</strong>。</li>
-<li>结合自己的兴趣订阅期刊并归类，接下来就是自己一周打开一次网页查看最新文章即可，感兴趣的<strong>星标</strong></li>
-<li>使用<font color="#dd0000">荧光标</font>标记高亮的关键词</li>
-</ol>
-<h3 id="操作示例">操作示例</h3>
-<img src="/posts/4270937d/image-20220826174114761.png" class title="image-20220826174114761">
-<img src="/posts/4270937d/image-20220826173931032.png" class title="image-20220826173931032">
-<img src="/posts/4270937d/image-20220826174023680.png" class title="image-20220826174023680">
-<img src="/posts/4270937d/image-20220826173446841.png" class title="image-20220826173446841">
-<img src="/posts/4270937d/image-20220829171153071.png" class title="image-20220829171153071">
-]]></content>
-      <categories>
-        <category>科研门外汉</category>
-      </categories>
-      <tags>
-        <tag>期刊</tag>
-        <tag>RSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>研究跟踪(2)：GIS专业常见国内外期刊汇总</title>
     <url>/posts/5d5f6e21/</url>
     <content><![CDATA[<p>综合期刊、地学、GIS和遥感方向的期刊以及交叉学科类期刊罗列。这里基于的是我到目前为止文献阅读过程中接触到的期刊，与我研究领域差的较大的或者我没接触的期刊则不列出。</p>
@@ -3680,6 +3649,40 @@ height = 12\times 2.54 = 30.48cm
       </categories>
       <tags>
         <tag>期刊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>研究跟踪(1)：感兴趣期刊及研究方向的最新动态获取</title>
+    <url>/posts/4270937d/</url>
+    <content><![CDATA[<p>看最新的文献(尤其是<strong>top</strong>)是必要的，尤其是在比较热门的领域。一方面可以学习膜拜借鉴收获灵感，开阔研究思路，同时也能熟悉自己学科或工作相关的当前的国际研究热点/前言理论方法，有助于论文选题，工作开展及撰写。<strong>地理</strong>方面，国内的文章可以通过期刊官网和一些公众号，英文SCI则主要借助RSS（需要梯子）。关于论文检索和下载可以看之前的<a href="https://hscyber.github.io/posts/33f7b1b7/">论文检索</a>、<a href="https://hscyber.github.io/posts/99dce68a/">论文下载</a></p>
+<span id="more"></span>
+<h2 id="rss订阅">RSS订阅</h2>
+<blockquote>
+<p>大三开始接触了RSS，从那之后便一直使用RSS来追踪特定英文期刊及自己感兴趣方向的文章，收获良多，也可以跟踪一些<strong>其他平台如少数派、国家地理</strong>等等。</p>
+</blockquote>
+<p><font color="#dd0000">RSS平台可以自动抓取订阅源的推送更新，因此我们可以不打开期刊就批量看到最近文章及摘要</font>。</p>
+<p>我个人的话英文除了顶刊（NSP及子刊以及一区）还会关注一些灾害及环境生态领域的较好的杂志，中文少，我一般只关注地理学报及地球信息科学学报等期刊，因人而异。</p>
+<p>RSS订阅平台很多，我用的是免费网页版的<a href="https://www.inoreader.com/apps">inoreader</a>，需要梯子，以下是简要使用步骤：</p>
+<ol type="1">
+<li>注册并登陆账号</li>
+<li>批量检索期刊出版社：如<a href="https://www.nature.com/">Nature</a>，<a href="https://www.science.org/">Science</a>，<a href="https://www.pnas.org/loi/pnas">PNAS</a>，<a href="https://www.elsevier.com/books-and-journals/elsevier">ELESVIER</a>，<a href="https://www.tandfonline.com/action/showPublications?pubType=journal">tandfonline</a>，Springer，Wiley，MDPI</li>
+<li>进入期刊主页，找subscribe类似的字样，找到RSS即可，据我目前的是NSP及其子刊，ELESVIER等主流期刊都提供了RSS订阅。另外，<strong>NSP等一些出版商支持高级检索关键词RSS订阅</strong>。</li>
+<li>结合自己的兴趣订阅期刊并归类，接下来就是自己一周打开一次网页查看最新文章即可，感兴趣的<strong>星标</strong></li>
+<li>使用<font color="#dd0000">荧光标</font>标记高亮的关键词</li>
+</ol>
+<h3 id="操作示例">操作示例</h3>
+<img src="/posts/4270937d/image-20220826174114761.png" class title="image-20220826174114761">
+<img src="/posts/4270937d/image-20220826173931032.png" class title="image-20220826173931032">
+<img src="/posts/4270937d/image-20220826174023680.png" class title="image-20220826174023680">
+<img src="/posts/4270937d/image-20220826173446841.png" class title="image-20220826173446841">
+<img src="/posts/4270937d/image-20220829171153071.png" class title="image-20220829171153071">
+]]></content>
+      <categories>
+        <category>科研门外汉</category>
+      </categories>
+      <tags>
+        <tag>期刊</tag>
+        <tag>RSS</tag>
       </tags>
   </entry>
   <entry>
@@ -3970,35 +3973,6 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>电脑管理(杂)：数据清理备份以便系统重装</title>
-    <url>/posts/3d00caa6/</url>
-    <content><![CDATA[<p>这两天准备重装一下旧笔记本，记录一下过程。先是数据的清理和备份，由于应用可以直接参考我的台式机所以仅迁移数据，如果是单电脑最好记录一下现在用的一些主要的应用程序避免遗漏。主要备份内容：</p>
-<span id="more"></span>
-<p>如果<strong>只涉及C盘换系统，可直接将C盘文件转存至其他数据盘即可</strong>，或者用一个1T/500G固态硬盘用于数据拷贝（现在不管是电脑内存还是固态移动硬盘都一直在掉价，不贵，买一两个日常使用和数据备份用）。由于我的电脑一般不分超过3个盘（推荐），这里我的笔记本分盘是</p>
-<ol type="1">
-<li>C系统盘，拷用户及桌面数据；（500G，三星pcie固态）</li>
-<li>D数据盘先清理再拷，减少细碎的文件，因为机械硬盘小文件传输会比较耗时（机械500G）</li>
-<li>E程序盘2，会装一些容易数据增长的软件比如qq微信这种，拷一下数据（机械500G）</li>
-</ol>
-<p>具体而言：</p>
-<ol type="1">
-<li>User文件夹(会包含桌面文件)；比如我的文件夹在**C:*</li>
-<li>数据及文档，包括百度网盘下载路径等；</li>
-<li>QQ微信等程序提前导出数据并备份，找到文件路径拷贝；</li>
-<li>主要应用的用户配置文件，可选，包括python或者R的环境</li>
-<li>……其他依个人需求定</li>
-</ol>
-<p>备份完确认关键数据无缺失，检查一下大小和文件数目，相差不大就可以准备重装了</p>
-]]></content>
-      <categories>
-        <category>计算机软硬件知识</category>
-      </categories>
-      <tags>
-        <tag>笔记本电脑</tag>
-        <tag>系统环境</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>写作篇(1)：快速提升学术论文写作能力的1313法则</title>
     <url>/posts/81af99e4/</url>
     <content><![CDATA[<p>全文原封不动转载自公众号“学术海豹”,3实际上也可以是更多，听说最初好像是大组的老师提的。</p>
@@ -4055,6 +4029,35 @@ $$
       </categories>
       <tags>
         <tag>论文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>电脑管理(杂)：数据清理备份以便系统重装</title>
+    <url>/posts/3d00caa6/</url>
+    <content><![CDATA[<p>这两天准备重装一下旧笔记本，记录一下过程。先是数据的清理和备份，由于应用可以直接参考我的台式机所以仅迁移数据，如果是单电脑最好记录一下现在用的一些主要的应用程序避免遗漏。主要备份内容：</p>
+<span id="more"></span>
+<p>如果<strong>只涉及C盘换系统，可直接将C盘文件转存至其他数据盘即可</strong>，或者用一个1T/500G固态硬盘用于数据拷贝（现在不管是电脑内存还是固态移动硬盘都一直在掉价，不贵，买一两个日常使用和数据备份用）。由于我的电脑一般不分超过3个盘（推荐），这里我的笔记本分盘是</p>
+<ol type="1">
+<li>C系统盘，拷用户及桌面数据；（500G，三星pcie固态）</li>
+<li>D数据盘先清理再拷，减少细碎的文件，因为机械硬盘小文件传输会比较耗时（机械500G）</li>
+<li>E程序盘2，会装一些容易数据增长的软件比如qq微信这种，拷一下数据（机械500G）</li>
+</ol>
+<p>具体而言：</p>
+<ol type="1">
+<li>User文件夹(会包含桌面文件)；比如我的文件夹在**C:*</li>
+<li>数据及文档，包括百度网盘下载路径等；</li>
+<li>QQ微信等程序提前导出数据并备份，找到文件路径拷贝；</li>
+<li>主要应用的用户配置文件，可选，包括python或者R的环境</li>
+<li>……其他依个人需求定</li>
+</ol>
+<p>备份完确认关键数据无缺失，检查一下大小和文件数目，相差不大就可以准备重装了</p>
+]]></content>
+      <categories>
+        <category>计算机软硬件知识</category>
+      </categories>
+      <tags>
+        <tag>笔记本电脑</tag>
+        <tag>系统环境</tag>
       </tags>
   </entry>
   <entry>
@@ -5496,40 +5499,6 @@ a_{21} &amp; a_{22} &amp; a_{23}
       </tags>
   </entry>
   <entry>
-    <title>工具推荐(1)：一些我在用的Chrom插件</title>
-    <url>/posts/efdcabd/</url>
-    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p>
-<span id="more"></span>
-<p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
-<h3 id="插件枚举">插件枚举</h3>
-<ol type="1">
-<li><p>Google translate：谷歌右键翻译服务</p></li>
-<li><p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
-<p><img src="/posts/efdcabd/image-20221204123940921.png" class title="image-20221204123940921"></p></li>
-<li><p>Imagus：鼠标悬停在图片上是可以==放大预览==缩略图，查看更高清的图片(原始分辨率)。</p>
-<ul>
-<li><img src="/posts/efdcabd/image-20221204124504104.png" class title="image-20221204124504104"></li>
-</ul></li>
-<li><p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p></li>
-<li><p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个==小爬虫==，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，==如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处==：</p>
-<ul>
-<li><img src="/posts/efdcabd/image-20221204125413077.png" class title="image-20221204125413077"></li>
-</ul></li>
-<li><p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Tools</category>
-      </categories>
-      <tags>
-        <tag>crxMouse</tag>
-        <tag>Imagus</tag>
-        <tag>SwitchyOmega</tag>
-        <tag>WebScraper</tag>
-        <tag>downloader</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>网络相关(1):代理工具Clash的使用及规则代理切换</title>
     <url>/posts/43ad9f20/</url>
     <content><![CDATA[<p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a href="https://github.com/Dreamacro/clash">Clash</a>(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
@@ -5601,9 +5570,43 @@ a_{21} &amp; a_{22} &amp; a_{23}
         <category>Tools</category>
       </categories>
       <tags>
-        <tag>SwitchyOmega</tag>
         <tag>Clash</tag>
         <tag>Proxy</tag>
+        <tag>SwitchyOmega</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>工具推荐(1)：一些我在用的Chrom插件</title>
+    <url>/posts/efdcabd/</url>
+    <content><![CDATA[<p>【持续更新】公开的插件是开源平台提供的重要好处，这里推一些我个人觉得比较实用的<a href="https://chrome.google.com/webstore/category/extensions?utm_source=chrome-ntp-icon">Chrom插件</a>。</p>
+<span id="more"></span>
+<p>这些插件实际上就是一些个人或团队开发维护的提高效率，减少造轮子的小工具，更多的也可以自己去商店探索</p>
+<h3 id="插件枚举">插件枚举</h3>
+<ol type="1">
+<li><p>Google translate：谷歌右键翻译服务</p></li>
+<li><p>crxMouse Chrome™ 手势：通过鼠标右键的手势设置来实现网页的关闭、前进后退等等惭操作</p>
+<p><img src="/posts/efdcabd/image-20221204123940921.png" class title="image-20221204123940921"></p></li>
+<li><p>Imagus：鼠标悬停在图片上是可以==放大预览==缩略图，查看更高清的图片(原始分辨率)。</p>
+<ul>
+<li><img src="/posts/efdcabd/image-20221204124504104.png" class title="image-20221204124504104"></li>
+</ul></li>
+<li><p>Proxy SwitchyOmega：这个在之前有介绍，是一个<a href="https://hscyber.github.io/posts/43ad9f20/#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6">切换代理的工具</a></p></li>
+<li><p>Simple mass downloader：这是一个批量抓取/筛选<strong>单个网页</strong>信息的工具，也就是一个==小爬虫==，比如可以批量导出和下载一个页面上的所有链接、图片、html、json文件、数据等等，==如果我们要在一个网页上一直点点点，这个工具就可能可以发挥用处==：</p>
+<ul>
+<li><img src="/posts/efdcabd/image-20221204125413077.png" class title="image-20221204125413077"></li>
+</ul></li>
+<li><p>Web Scraper - Free Web Scraping：这是一个免费的爬虫插件，可以自行定义规则实现多页面的批量抓取，我之前试用过，挺好用，对于不想写代码是一个很好的选择。关于爬虫的一些经验<a href="https://hscyber.github.io/posts/5374e378/">数据抓取(1)：Python网络爬虫学习与参考</a></p></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>SwitchyOmega</tag>
+        <tag>crxMouse</tag>
+        <tag>Imagus</tag>
+        <tag>WebScraper</tag>
+        <tag>downloader</tag>
       </tags>
   </entry>
   <entry>
