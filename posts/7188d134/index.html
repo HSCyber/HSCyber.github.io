@@ -33,9 +33,9 @@
 <meta property="og:site_name" content="Huangs&#39;s Notes">
 <meta property="og:description" content="在处理和分析大量大型的csv文件时（尤其是Geopandas）会遇到读写速度过慢的问题，因此一直想补充一个关于表格型文件读写步骤优化的讨论，恰好有个公众号做了推送，在其基础上稍加查阅发现已经有了很多讨论，此处对主要的结果进行了整理。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hscyber.github.io/posts/undefined/image-20231224235322916.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/7188d134/image-20231224235322916.png">
 <meta property="article:published_time" content="2023-12-24T15:23:03.000Z">
-<meta property="article:modified_time" content="2023-12-24T15:57:51.845Z">
+<meta property="article:modified_time" content="2023-12-26T07:11:06.492Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Geopandas">
 <meta property="article:tag" content="Pandas">
@@ -43,7 +43,7 @@
 <meta property="article:tag" content="feature">
 <meta property="article:tag" content="Parquet">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/image-20231224235322916.png">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/7188d134/image-20231224235322916.png">
 
 
 <link rel="canonical" href="https://hscyber.github.io/posts/7188d134/">
@@ -312,14 +312,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>2.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -340,19 +340,31 @@
 <li>如果是<strong>小文件</strong>，或者需要考虑到不同用户之间的<strong>协作</strong>以及<strong>快速预览或制图</strong>等，建议用常规格式；</li>
 <li>若涉及较大数据处理、中间过程文件以及单个数据集的处理流程等，推荐使用二进制格式如Parquet和feature格式。</li>
 <li>只考虑速度，使用feature，对于Geopandas数据，中间的过程文件尤建议以feature文件存储。</li>
-<li>考虑到文件的大小，则优先使用Parquet</li>
+<li>考虑到文件的大小，则优先使用Parquet，且使用列筛选可以加速读取时间</li>
 </ul>
 <h2 id="pandas读写">pandas读写</h2>
 <p>参考：</p>
 <ul>
-<li><p>官方文档<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#performance-considerations">参考</a>、公众号<a href="ttps://mp.weixin.qq.com/s/izqOl8bzjHqn2duVpn7mzA">尤尔小屋</a></p></li>
-<li><p>API：<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_feather.html">read_feather</a>、<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_feather.html">to_feature</a>、<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_parquet.html">read_parquet</a>、<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_parquet.html">to_parquet</a></p></li>
+<li>官方文档<a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#performance-considerations">参考</a>、公众号<a href="ttps://mp.weixin.qq.com/s/izqOl8bzjHqn2duVpn7mzA">尤尔小屋</a></li>
+<li>API：
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_feather.html">pd.read_feather()</a>，参数——<strong>columns</strong>，<strong>use_threadsbool</strong>, 默认Ture-多线程</li>
+<li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_feather.html">df.to_feature()</a>：参数——<strong>compression</strong>={“zstd”, “<strong>lz4</strong>”, “uncompressed”}, <strong>compression_level</strong>=None, <strong>chunksize</strong>=None...)</li>
+<li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_parquet.html">read_parquet()</a>：<strong>columns</strong>, <strong>engine</strong>={‘auto’, ‘pyarrow’, ‘fastparquet’},<strong>filters</strong>:[[(column, op, val), …],…]，如‘[('adcode','&gt;',410900)]等</li>
+<li><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_parquet.html">to_parquet()</a>:<strong>partition_cols</strong> 列表，按列分区，<strong>compressionstr={‘snappy’, ‘gzip’, ‘brotli’, ‘lz4’, ‘zstd’, None}</strong></li>
+</ul></li>
 </ul>
 <p>结论：优先使用Parquet和feature，加速显著，此处我csv正常读写分别为2.5s和1min25s，feature则为0.7/1.6s，Parquet为1.5/2.1s，考虑到存储空间的问题，更推荐选<strong>Parquet</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;./data/pois.csv&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">df.info()</span><br><span class="line"></span><br><span class="line">df.to_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line">df2 = pd.read_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line"></span><br><span class="line">df.to_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>,index=<span class="literal">False</span>)</span><br><span class="line">df2 = pd.read_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>)</span><br></pre></td></tr></table></figure>
-<img src="/posts/undefined/image-20231224235322916.png" class title="image-20231224235322916">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">df = pd.read_csv(<span class="string">&quot;./data/pois.csv&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">df.info()</span><br><span class="line"></span><br><span class="line">df.to_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line">df2 = pd.read_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line"></span><br><span class="line">df.to_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>,index=<span class="literal">False</span>)</span><br><span class="line">df2 = pd.read_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>)</span><br><span class="line">df2 = pd.read_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>,columns=[<span class="string">&#x27;adcode&#x27;</span>, <span class="string">&#x27;pname&#x27;</span>, <span class="string">&#x27;cityname&#x27;</span>],filters=[(<span class="string">&#x27;adcode&#x27;</span>,<span class="string">&#x27;&gt;&#x27;</span>,<span class="number">410900</span>),(<span class="string">&#x27;cityname&#x27;</span>,<span class="string">&#x27;==&#x27;</span>,<span class="string">&#x27;濮阳市&#x27;</span>)])</span><br></pre></td></tr></table></figure>
+<img src="/posts/7188d134/image-20231224235322916.png" class title="image20231224235322916">
 <h2 id="geopandas读写">Geopandas读写</h2>
-<p>参考：geopandas官方文档<a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/user_guide/io.html">参考</a></p>
+<p>参考：geopandas官方文档<a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/user_guide/io.html">参考</a>，</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_parquet.html#geopandas.read_parquet">gpd.read_parquet(): 参数</a>：columns=None*，来自pyarrow的参数<a target="_blank" rel="noopener" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.read_table.html">read_table()</a>如filters</li>
+<li><a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.read_parquet.html#geopandas.read_parquet">gpd.read_feather(): 参数</a>：同上</li>
+<li><a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_parquet.html">gpd.to_parquet(): 参数</a>：path,index,compression={‘snappy’, ‘gzip’, ‘brotli’, None}, schema_version={‘0.1.0’, ‘0.4.0’, None},来自pyarrow的参数<a target="_blank" rel="noopener" href="https://arrow.apache.org/docs/python/generated/pyarrow.parquet.write_table.html#pyarrow.parquet.write_table">write_table()</a>如coerce_timestamps</li>
+<li><a target="_blank" rel="noopener" href="https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoDataFrame.to_feather.html">gpd.to_feature(): 参数</a>：compression={‘zstd’, ‘lz4’, ‘uncompressed’},其余同上</li>
+</ul>
 <p>结论：优先使用feather，加速尤其显著，如果兼顾<strong>存储空间</strong>小使用Parquet（如此处<font color="#dd0000">读写一个200w行的poi shp文件分别需要4min和2min43s，改成feature是1.2s和4s，parquet则读写都是3s</font>），完整的测试结果后续有时间补充。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据测试</span></span><br><span class="line">gdf = gpd.read_file(<span class="string">&quot;./data/pois.shp&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line"></span><br><span class="line">gdf.to_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>)</span><br><span class="line">gdf2 = gpd.read_parquet(outdir+<span class="string">&quot;pois.parquet&quot;</span>)</span><br><span class="line"></span><br><span class="line">gdf.to_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line">gdf2 = gpd.read_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>)</span><br><span class="line"><span class="comment"># 只选取特定列也会显著加快速度</span></span><br><span class="line">gdf2 = gpd.read_feather(outdir+<span class="string">&quot;pois.feather&quot;</span>,columns=[<span class="string">&#x27;adname&#x27;</span>, <span class="string">&#x27;cityname&#x27;</span>,<span class="string">&#x27;geometry&#x27;</span>])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="实验补充">实验补充</h2>
@@ -431,13 +443,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">236k</span>
+    <span title="站点总字数">237k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:35</span>
+    <span title="站点阅读时长">3:36</span>
   </span>
 </div>
 <div class="busuanzi-count">
