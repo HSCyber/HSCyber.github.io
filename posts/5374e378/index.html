@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -328,45 +328,48 @@
     <div class="post-body" itemprop="articleBody">
         <p>爬虫类别笔记主要小结自己数据抓取的一些学习参考和经验，后续也考虑放一些自己数据抓取的案例。第一篇先记录一下自己的学习路径和一点体会。</p>
 <span id="more"></span>
-<h2 id="爬虫原理">爬虫原理</h2>
-<blockquote>
+
+<h2 id="爬虫原理"><a href="#爬虫原理" class="headerlink" title="爬虫原理"></a>爬虫原理</h2><blockquote>
 <p>主要针对平台提供的或网站上呈现的数据。</p>
 </blockquote>
-<p>爬虫是一个<strong>可以获取网页上的信息</strong>自动化脚本/程序。举例来说：我们打开任何的外部网站，在地址栏都会有一个连接(url)，这个网站打开之后就会自动加载页面，包括呈现的数据，比如打开淘宝会呈现商品，我们下拉会继续刷新网页提供新的商品信息……这个过程，回车打开网页即是对特定的url<strong>发送请求</strong>，url所有者（<strong>服务器端</strong>）收到请求后处理解析，然后<strong>发送响应内容</strong>，也就是我们看到的内容，不断下拉也会触发请求从而服务器动态给我们提供信息。这个过程就是一个数据请求的过程。写爬虫也就是通过代码（此处指Python）来实现<strong>批量多次</strong></p>
-<ol type="1">
+<p>爬虫是一个<strong>可以获取网页上的信息</strong>自动化脚本&#x2F;程序。举例来说：我们打开任何的外部网站，在地址栏都会有一个连接(url)，这个网站打开之后就会自动加载页面，包括呈现的数据，比如打开淘宝会呈现商品，我们下拉会继续刷新网页提供新的商品信息……这个过程，回车打开网页即是对特定的url<strong>发送请求</strong>，url所有者（<strong>服务器端</strong>）收到请求后处理解析，然后<strong>发送响应内容</strong>，也就是我们看到的内容，不断下拉也会触发请求从而服务器动态给我们提供信息。这个过程就是一个数据请求的过程。写爬虫也就是通过代码（此处指Python）来实现<strong>批量多次</strong></p>
+<ol>
 <li>按要求发送请求</li>
 <li>接收响应结果（网页信息或数据）</li>
 <li>解析并将需要的信息保存到本地</li>
 </ol>
 <p>我们的学习主要在于学会<strong>解析网页和涉及到的常用Python库的使用</strong>。对于一般的网页可以很顺利地完成数据抓取工作，最多多花点时间。但是对于另一些平台，处于一些原因，会对数据的请求进行限制（反爬措施），如增加验证码，给内容加密，限制用户和IP访问的频率等等，所以实际数据抓取的难点在于<strong>反反爬</strong>hh，如</p>
-<ol type="1">
+<ol>
 <li>平台数据宝贵或者涉及安全利益等等，不能免费共享</li>
-<li>请求过于频繁会对平台的服务器造成较大的压力（频繁的I/O），造成额外的资源开销</li>
+<li>请求过于频繁会对平台的服务器造成较大的压力（频繁的I&#x2F;O），造成额外的资源开销</li>
 </ol>
-<h2 id="学习参考">学习参考</h2>
-<blockquote>
+<h2 id="学习参考"><a href="#学习参考" class="headerlink" title="学习参考"></a>学习参考</h2><blockquote>
 <p>掌握了基本的网页知识和抓取工具用法之后就可以试着抓取一些数据，实践上手是学习最快的方式，尤其是被迫不得不自己动手的时候hh</p>
 </blockquote>
 <p>我个人学习爬虫是断断续续的，一开始主要是看的这位大佬的书籍《Python3网络爬虫开发实战》<a target="_blank" rel="noopener" href="https://item.jd.com/13527222.html">jd</a>和网站<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">博客</a>，先是把书看了个大概，了解网页的一些基础和工具基础，再模仿着书上的案例。然后是在工作实践中组里时长有这方面的需求，自己就不得不上手写并调试（这个过程中还需要不断地翻看别人写的博客和文档），从一些最简单的网页到复杂一些的页面，慢慢熟悉基本的抓取工具和思路。</p>
 <p>现在常规网站的数据抓取已经不成问题，多花点时间能搞定。但对于反爬比较厉害的网站则还不行（需要购买账号IP代理池等才能顺利抓取）。</p>
-<h3 id="一些常用的参考">一些常用的参考</h3>
-<ul>
-<li><p>request文档：<a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">requests</a></p></li>
-<li><p>BeautifulSoup文档：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">bs4</a></p></li>
-<li><p>Selenium文档：<a target="_blank" rel="noopener" href="https://selenium-python.readthedocs.io/">Selenium</a></p></li>
-<li><p>Scrapy文档：<a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html">Scrapy</a></p></li>
-<li><p>崔庆才个人爬虫站点：https://cuiqingcai.com/</p></li>
-<li><p>崔书籍网页阅读版：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/0-%E7%9B%AE%E5%BD%95.md">github</a>，如爬虫基本原理详细可读：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.1-HTTP%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">HTTP基本原理</a>，<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.3-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">爬虫基本原理</a></p></li>
+<h3 id="一些常用的参考"><a href="#一些常用的参考" class="headerlink" title="一些常用的参考"></a>一些常用的参考</h3><ul>
+<li><p>request文档：<a target="_blank" rel="noopener" href="https://requests.readthedocs.io/en/latest/">requests</a></p>
+</li>
+<li><p>BeautifulSoup文档：<a target="_blank" rel="noopener" href="https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/">bs4</a></p>
+</li>
+<li><p>Selenium文档：<a target="_blank" rel="noopener" href="https://selenium-python.readthedocs.io/">Selenium</a></p>
+</li>
+<li><p>Scrapy文档：<a target="_blank" rel="noopener" href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/overview.html">Scrapy</a></p>
+</li>
+<li><p>崔庆才个人爬虫站点：<a target="_blank" rel="noopener" href="https://cuiqingcai.com/">https://cuiqingcai.com/</a></p>
+</li>
+<li><p>崔书籍网页阅读版：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/0-%E7%9B%AE%E5%BD%95.md">github</a>，如爬虫基本原理详细可读：<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.1-HTTP%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">HTTP基本原理</a>，<a target="_blank" rel="noopener" href="https://github.com/Python3WebSpider/Python3WebSpider/blob/master/2.3-%E7%88%AC%E8%99%AB%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86.md">爬虫基本原理</a></p>
+</li>
 </ul>
-<h2 id="补充">补充</h2>
-<p>普通网页的url提取：一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>普通网页的url提取：一些数据下载网页或者单个页面都会提供数据下载url，如果数量太大，也可以借助代码来完成(最简单的爬虫程序]),或者我们已经获取到了url，只是想批量下载并保存重命名文件，也是ok的。</p>
 <ul>
 <li>当然，很多时候如果是浏览器的话实际上有很多可用的插件，比如这里推荐一个我一直在用的chrome插件<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/simple-mass-downloader/abdkkegmcbiomijcbdaodaflgehfffed?utm_source=chrome-ntp-icon">Simple mass downloader</a>，以及这个更高级一点的免费抓取工具<a target="_blank" rel="noopener" href="https://webscraper.io/">webscraper</a>，提供了<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/web-scraper-free-web-scra/jnhgnonknehpejjnehehllkliplmbmhn?utm_source=chrome-ntp-icon">chrome插件</a>，之前我用过，它可以同来实现多个网页的复杂的抓取，而且不需要写代码，按钮点击式</li>
 </ul>
 <p>API接口式抓取：比如<a target="_blank" rel="noopener" href="https://lbs.amap.com/api/webservice/guide/api/newpoisearch">高德开放平台</a>提供的poi搜索，就把接口都给用户准备好了，我们只需要按流程申请key，再按照自己的需求输入参数，就可以发起请求获取poi的结果，即<strong>按要求构建url发送请求，平台服务器端会自动返给我们json数据</strong></p>
 <ul>
-<li>如请求的url：https://restapi.amap.com/v5/place/text?parameters</li>
-<li>最终的输入实际大致会是：...place/text?key={...}&amp;types=120000&amp;....</li>
+<li>如请求的url：<a target="_blank" rel="noopener" href="https://restapi.amap.com/v5/place/text?parameters">https://restapi.amap.com/v5/place/text?parameters</a></li>
+<li>最终的输入实际大致会是：…place&#x2F;text?key&#x3D;{…}&amp;types&#x3D;120000&amp;….</li>
 <li>然后通过代码批量自动完成该过程</li>
 </ul>
 
@@ -443,13 +446,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">242k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:36</span>
+    <span title="站点阅读时长">3:40</span>
   </span>
 </div>
 <div class="busuanzi-count">

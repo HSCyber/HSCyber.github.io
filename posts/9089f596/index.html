@@ -46,8 +46,8 @@
 <meta property="article:published_time" content="2022-08-27T13:54:58.000Z">
 <meta property="article:modified_time" content="2023-11-29T02:12:46.936Z">
 <meta property="article:author" content="huangsh">
-<meta property="article:tag" content="Python环境">
 <meta property="article:tag" content="Conda">
+<meta property="article:tag" content="Python环境">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hscyber.github.io/posts/9089f596/image-20220827202632781.png">
 
@@ -169,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#minicondaanaconda%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Miniconda&#x2F;Anaconda安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">编辑器安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode"><span class="nav-number">2.1.</span> <span class="nav-text">vscode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pycharm"><span class="nav-number">2.2.</span> <span class="nav-text">pycharm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Python安装</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Miniconda-Anaconda%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Miniconda&#x2F;Anaconda安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">编辑器安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode"><span class="nav-number">2.1.</span> <span class="nav-text">vscode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pycharm"><span class="nav-number">2.2.</span> <span class="nav-text">pycharm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Python安装</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -339,33 +339,34 @@
     <div class="post-body" itemprop="articleBody">
         <p>承接<a href="https://hscyber.github.io/posts/c5ac1642/">Python环境(1)：基础知识</a>，接下来记录一下当前我Python环境的配置及Vscode、pycharm软件安装，至于为什么建议安装Conda看<a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理</a></p>
 <span id="more"></span>
-<h2 id="minicondaanaconda安装">Miniconda/Anaconda安装</h2>
-<blockquote>
-<p>个人目前使用的环境，并不适用于每个人</p>
+
+<h2 id="Miniconda-Anaconda安装"><a href="#Miniconda-Anaconda安装" class="headerlink" title="Miniconda&#x2F;Anaconda安装"></a>Miniconda&#x2F;Anaconda安装</h2><blockquote>
+<p> 个人目前使用的环境，并不适用于每个人</p>
 </blockquote>
 <p>GIS个人均推荐3.9版本。Miniconda是Anaconda的精简版，前者仅安装Python和Conda环境及必要的基础包；后者会自动安装jupyter lab、Spyder编辑器且base环境初始自动安装了较多的数据处理分析包。视情况选择</p>
-<h3 id="步骤">步骤</h3>
-<ol type="1">
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
 <li>网站下载<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a>或<a target="_blank" rel="noopener" href="https://www.anaconda.com/products/distribution">Anaconda</a>，并双击运行,<strong>Next</strong></li>
 <li>选择用户，如果是个人电脑一般无所谓<strong>Just Me</strong>即可，服务器或多用户电脑安装则可以考虑全体用户</li>
-<li>安装目录，可以默认也可以更改，如我会直接放在C盘或者D盘<strong>D:</strong></li>
+<li>安装目录，可以默认也可以更改，如我会直接放在C盘或者D盘<strong>D:\moniconda3</strong></li>
 <li>完成安装后，可以看到最近安装程序Anaconda下有<strong>Anaconda prompt</strong>，通过该程序启动cmd并自动激活<strong>base环境</strong>，如：</li>
 </ol>
 <img src="/posts/9089f596/image-20220827202632781.png" class title="image-20220827202632781">
-<ol type="1">
-<li>该环境激活后相当于进入了默认的Conda环境，可以在此进行新环境的创建及维护、包管理等等，但不建议在base环境中安装过多的包，而建议新建多个环境用于不同版本/类型的工作，环境隔离的重要性和好处暂不展开。关于环境及包的管理以及常用命令见<a href>(3)环境及包管理</a></li>
+
+<ol>
+<li>该环境激活后相当于进入了默认的Conda环境，可以在此进行新环境的创建及维护、包管理等等，但不建议在base环境中安装过多的包，而建议新建多个环境用于不同版本&#x2F;类型的工作，环境隔离的重要性和好处暂不展开。关于环境及包的管理以及常用命令见<a href>(3)环境及包管理</a></li>
 <li>如果是安装Miniconda，为了能在vscode中运行jupyter，需要在对应的环境中安装ipykernel，由于环境隔离，每个新环境都需要各自安装。</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge ipykernel</span><br></pre></td></tr></table></figure>
-<h2 id="编辑器安装">编辑器安装</h2>
-<blockquote>
+
+
+
+<h2 id="编辑器安装"><a href="#编辑器安装" class="headerlink" title="编辑器安装"></a>编辑器安装</h2><blockquote>
 <p>个人只用过vscode和pycharm，进入官网下载安装即可。<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">vsode官网下载</a>，<a target="_blank" rel="noopener" href="https://www.jetbrains.com/pycharm/download/#section=windows">pycharm社区版下载</a></p>
 <p>安装过程，建议勾选”将打开文件添加到右键菜单”，方便在任意文件夹右击新建脚本</p>
 </blockquote>
-<h3 id="vscode">vscode</h3>
-<p>官方文档<a target="_blank" rel="noopener" href="https://code.visualstudio.com/api">VSCode API</a>，安装插件Learn:<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Jupyter Notebooks in VS Code</a></p>
+<h3 id="vscode"><a href="#vscode" class="headerlink" title="vscode"></a>vscode</h3><p>官方文档<a target="_blank" rel="noopener" href="https://code.visualstudio.com/api">VSCode API</a>，安装插件Learn:<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/datascience/jupyter-notebooks">Jupyter Notebooks in VS Code</a></p>
 <p>进入文件夹，启动，也可以在程序栏启动并切换工程目录，几个注意的点</p>
-<ol type="1">
+<ol>
 <li>新建文件时选择jupyter或者文本文件，先保存再编写代码运行</li>
 <li>对于Python代码，需要打开终端并通过cd进入对应环境，再python输入py脚本名运行代码（配合tab键提示文件名）</li>
 <li>一般会自动检测本地安装的jupyter环境，如果没有，可以手动添加, 依次点击文件→首选项→设置→拓展→python→<strong>Conda Path</strong>添加进入setting.json编辑文件添加如下即可</li>
@@ -373,28 +374,35 @@
 <li>其他的诸如主题、字体等等自行设置即可</li>
 </ol>
 <img src="/posts/9089f596/image-20220827203348746.png" class title="image-20220827203348746">
+
 <img src="/posts/9089f596/image-20220827203633874.png" class title="image-20220827203633874">
+
 <img src="/posts/9089f596/image-20220827204858425.png" class title="image-20220827204858425">
+
 <img src="/posts/9089f596/image-20220827204113884.png" class title="image-20220827204113884">
-<p>为python脚本添加用户片段信息的方式，在文件/file-&gt;首选项/reference-&gt;配置用户代码片段/user snippets，更多的可以看<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#:~:text=Single%2Dlanguage%20user%2Ddefined%20snippets,for%20which%20it%20is%20defined.">文档</a>，我这里是：</p>
-<p><code>$CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND"</code></p>
+
+<p>为python脚本添加用户片段信息的方式，在文件&#x2F;file-&gt;首选项&#x2F;reference-&gt;配置用户代码片段&#x2F;user snippets，更多的可以看<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/userdefinedsnippets#:~:text=Single%2Dlanguage%20user%2Ddefined%20snippets,for%20which%20it%20is%20defined.">文档</a>，我这里是：</p>
+<p><code>$CURRENT_YEAR/$CURRENT_MONTH/$CURRENT_DATE $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</code></p>
 <img src="/posts/9089f596/image-20220827205304096.png" class title="image-20220827205304096">
+
 <p>用法输入英文headerz找到对应提示即可，效果如下：</p>
 <img src="/posts/9089f596/image-20220827205438092.png" class title="image-20220827205438092">
+
 <img src="/posts/9089f596/image-20220827205501698.png" class title="image-20220827205501698">
-<h3 id="pycharm">pycharm</h3>
-<p>下载并完成安装后，一路<strong>next</strong>既可以，这里其他不建议勾选，是否添加环境路径试情况，随时也可以自行添加，运行后打开一个工程目录（即防止代码的文件）。</p>
+
+<h3 id="pycharm"><a href="#pycharm" class="headerlink" title="pycharm"></a>pycharm</h3><p>下载并完成安装后，一路<strong>next</strong>既可以，这里其他不建议勾选，是否添加环境路径试情况，随时也可以自行添加，运行后打开一个工程目录（即防止代码的文件）。</p>
 <ul>
 <li>一般会自动检索环境，建议手动添加一下确认</li>
-<li>其他的设置均可自定搜索查阅，
-<ul>
+<li>其他的设置均可自定搜索查阅，<ul>
 <li>添加文件头信息在：File -&gt; settings -&gt; Editor -&gt; File and Code Templates -&gt; Python Script</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <img src="/posts/9089f596/image-20220827205747159.png" class title="image-20220827205747159">
+
 <img src="/posts/9089f596/image-20220827210259673.png" class title="image-20220827210259673">
-<h2 id="python安装">Python安装</h2>
-<p>如果安装了Miniconda可以不安装Python，因为其他需求需要安装的话去此处找到对应的版本下载安装即可。至于安装步骤，可以全程点击下一步。具体内容可以看一下第一节的安装python</p>
+
+<h2 id="Python安装"><a href="#Python安装" class="headerlink" title="Python安装"></a>Python安装</h2><p>如果安装了Miniconda可以不安装Python，因为其他需求需要安装的话去此处找到对应的版本下载安装即可。至于安装步骤，可以全程点击下一步。具体内容可以看一下第一节的安装python</p>
 
     </div>
 
@@ -421,8 +429,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Python%E7%8E%AF%E5%A2%83/" rel="tag"><i class="fa fa-tag"></i> Python环境</a>
               <a href="/tags/Conda/" rel="tag"><i class="fa fa-tag"></i> Conda</a>
+              <a href="/tags/Python%E7%8E%AF%E5%A2%83/" rel="tag"><i class="fa fa-tag"></i> Python环境</a>
           </div>
 
         
@@ -469,13 +477,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">242k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:36</span>
+    <span title="站点阅读时长">3:40</span>
   </span>
 </div>
 <div class="busuanzi-count">

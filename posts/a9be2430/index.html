@@ -326,19 +326,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <center>
-小结读写tif文件之前，先总结一下tif文件数值类型以及压缩的必要性和方法。
-</center>
+        <center>小结读写tif文件之前，先总结一下tif文件数值类型以及压缩的必要性和方法。</center>
+
 <span id="more"></span>
-<h2 id="numpy数值类型">numpy数值类型</h2>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64</p>
+
+<h2 id="numpy数值类型"><a href="#numpy数值类型" class="headerlink" title="numpy数值类型"></a>numpy数值类型</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64</p>
 <ul>
-<li>int8, int16, int32, int64; uint16, uint16, uint32, uint64;(无符号即大于等于0)</li>
+<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
 <li>float16, float32, float64</li>
 </ul>
-<h2 id="tif数值类型">tif数值类型</h2>
-<blockquote>
-<p>1MB=1024KB 1KB=1024B 1B=8bit, 1B*3000w/1024/1024=28.6</p>
+<h2 id="tif数值类型"><a href="#tif数值类型" class="headerlink" title="tif数值类型"></a>tif数值类型</h2><blockquote>
+<p>1MB&#x3D;1024KB 1KB&#x3D;1024B 1B&#x3D;8bit,    1B*3000w&#x2F;1024&#x2F;1024&#x3D;28.6</p>
 </blockquote>
 <p>数据类型主要包括整型和浮点，其中整型还包括无符号整型，各类型占用空间的大小见下表</p>
 <ul>
@@ -348,69 +346,66 @@
 </ul>
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">数据类型</th>
-<th style="text-align: center;">单个占用空间(bytes/B)</th>
-<th style="text-align: center;">数值范围</th>
-<th style="text-align: center;">数组大小</th>
-<th style="text-align: center;">TIFF大小(不压缩)</th>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">单个占用空间(bytes&#x2F;B)</th>
+<th align="center">数值范围</th>
+<th align="center">数组大小</th>
+<th align="center">TIFF大小(不压缩)</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">uint8</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">0~255(2^8-1)</td>
-<td style="text-align: center;">29MB</td>
-<td style="text-align: center;">29.8MB</td>
+<tbody><tr>
+<td align="center">uint8</td>
+<td align="center">1</td>
+<td align="center">0~255(2^8-1)</td>
+<td align="center">29MB</td>
+<td align="center">29.8MB</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">int8</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">-128~127</td>
-<td style="text-align: center;">29MB</td>
-<td style="text-align: center;">29.8MB</td>
+<tr>
+<td align="center">int8</td>
+<td align="center">1</td>
+<td align="center">-128~127</td>
+<td align="center">29MB</td>
+<td align="center">29.8MB</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">int16</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">-32768-32767</td>
-<td style="text-align: center;">58MB</td>
-<td style="text-align: center;">59.7MB</td>
+<tr>
+<td align="center">int16</td>
+<td align="center">2</td>
+<td align="center">-32768-32767</td>
+<td align="center">58MB</td>
+<td align="center">59.7MB</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">int32</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">116MB</td>
-<td style="text-align: center;">2.4MB(Lzw压缩)</td>
+<tr>
+<td align="center">int32</td>
+<td align="center">4</td>
+<td align="center">…</td>
+<td align="center">116MB</td>
+<td align="center">2.4MB(Lzw压缩)</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">int64</td>
-<td style="text-align: center;">8</td>
-<td style="text-align: center;">...</td>
-<td style="text-align: center;">233MB</td>
-<td style="text-align: center;">...</td>
+<tr>
+<td align="center">int64</td>
+<td align="center">8</td>
+<td align="center">…</td>
+<td align="center">233MB</td>
+<td align="center">…</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">float16</td>
-<td style="text-align: center;">2</td>
-<td style="text-align: center;">10 个尾数位</td>
-<td style="text-align: center;">58MB</td>
-<td style="text-align: center;">...</td>
+<tr>
+<td align="center">float16</td>
+<td align="center">2</td>
+<td align="center">10 个尾数位</td>
+<td align="center">58MB</td>
+<td align="center">…</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">float32</td>
-<td style="text-align: center;">4</td>
-<td style="text-align: center;">32 个尾数位</td>
-<td style="text-align: center;">116MB</td>
-<td style="text-align: center;">119MB</td>
+<tr>
+<td align="center">float32</td>
+<td align="center">4</td>
+<td align="center">32 个尾数位</td>
+<td align="center">116MB</td>
+<td align="center">119MB</td>
 </tr>
-</tbody>
-</table>
-<h3 id="压缩方式">压缩方式</h3>
-<blockquote>
-<p>图像/光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储，且压缩并不会对影响数据。</p>
+</tbody></table>
+<h3 id="压缩方式"><a href="#压缩方式" class="headerlink" title="压缩方式"></a>压缩方式</h3><blockquote>
+<p>图像&#x2F;光栅文件<strong>大量冗余</strong>使得压缩可以大量减少其空间，便于数据交换和临时存储，且压缩并不会对影响数据。</p>
 </blockquote>
 <p>测试结果仅供参考。图像压缩的方式有很多，这里仅比较几个GeoTIFF中常用的三种<strong>无损压缩</strong>算法以及较新的ZSTD(facabook, 2016)，以int32 geotiff文件为例，目前看性价比最高的是<font color="#dd0000">Deflate</font>，然后是LZW：</p>
 <ul>
@@ -420,45 +415,43 @@
 </ul>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>压缩方式</th>
-<th style="text-align: center;">压缩/写出速度</th>
-<th style="text-align: center;">压缩比例</th>
-<th style="text-align: center;">压缩后</th>
-<th style="text-align: center;">读取速度</th>
+<th align="center">压缩&#x2F;写出速度</th>
+<th align="center">压缩比例</th>
+<th align="center">压缩后</th>
+<th align="center">读取速度</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
+<tbody><tr>
 <td>PACKBITS</td>
-<td style="text-align: center;">最快；199ms</td>
-<td style="text-align: center;">小</td>
-<td style="text-align: center;">5.91MB</td>
-<td style="text-align: center;">127ms</td>
+<td align="center">最快；199ms</td>
+<td align="center">小</td>
+<td align="center">5.91MB</td>
+<td align="center">127ms</td>
 </tr>
-<tr class="even">
+<tr>
 <td>LZW</td>
-<td style="text-align: center;">中；441ms</td>
-<td style="text-align: center;">中</td>
-<td style="text-align: center;">2.41MB</td>
-<td style="text-align: center;">205ms</td>
+<td align="center">中；441ms</td>
+<td align="center">中</td>
+<td align="center">2.41MB</td>
+<td align="center">205ms</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DEFLATE</td>
-<td style="text-align: center;">慢；570ms</td>
-<td style="text-align: center;">大</td>
-<td style="text-align: center;">1.87MB</td>
-<td style="text-align: center;">140ms</td>
+<td align="center">慢；570ms</td>
+<td align="center">大</td>
+<td align="center">1.87MB</td>
+<td align="center">140ms</td>
 </tr>
-<tr class="even">
+<tr>
 <td>ZSTD</td>
-<td style="text-align: center;">最慢；2340ms</td>
-<td style="text-align: center;">最大</td>
-<td style="text-align: center;">1.76MB</td>
-<td style="text-align: center;">191ms</td>
+<td align="center">最慢；2340ms</td>
+<td align="center">最大</td>
+<td align="center">1.76MB</td>
+<td align="center">191ms</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>时间测试代码示例 (10 loops each)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%%timeit</span><br><span class="line">file = <span class="string">&#x27;...tif&#x27;</span></span><br><span class="line">ds = gdal.Open(file)</span><br><span class="line">im_data = ds.ReadAsArray()</span><br></pre></td></tr></table></figure>
 
@@ -535,13 +528,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">237k</span>
+    <span title="站点总字数">242k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:36</span>
+    <span title="站点阅读时长">3:40</span>
   </span>
 </div>
 <div class="busuanzi-count">
