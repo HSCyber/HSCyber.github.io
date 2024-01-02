@@ -40,12 +40,14 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004615019.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004702487.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004905135.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20240102154748215.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20240102154752934.png">
 <meta property="article:published_time" content="2022-12-01T15:09:23.000Z">
-<meta property="article:modified_time" content="2023-11-29T02:12:00.534Z">
+<meta property="article:modified_time" content="2024-01-02T07:52:28.538Z">
 <meta property="article:author" content="huangsh">
+<meta property="article:tag" content="SwitchyOmega">
 <meta property="article:tag" content="Clash">
 <meta property="article:tag" content="Proxy">
-<meta property="article:tag" content="SwitchyOmega">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202000821947.png">
 
@@ -167,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">代理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash%E9%85%8D%E7%BD%AEwin"><span class="nav-number">2.</span> <span class="nav-text">clash配置(win)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">故障排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">浏览器Rule设置(插件)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">代理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash%E9%85%8D%E7%BD%AEwin"><span class="nav-number">2.</span> <span class="nav-text">clash配置(win)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">故障排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">浏览器Rule设置(插件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash-rule"><span class="nav-number">5.</span> <span class="nav-text">Clash Rule</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -316,14 +318,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -386,8 +388,8 @@
 <li></li>
 </ol>
 <h2 id="浏览器rule设置插件">浏览器Rule设置(插件)</h2>
-<p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事。</p>
-<p>我这里使用的插件为<a href="chrome-extension://padekgcemlokbadohgkifijomclgjgif/options.html#!/about">SwitchyOmega</a>，使用参考步骤</p>
+<p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事(下图中的规则列表gf...)。</p>
+<p>我这里使用的插件为<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/?utm_source=ext_app_menu&amp;pli=1">SwitchyOmega</a>，使用参考步骤</p>
 <ol type="1">
 <li>设置代理的访问情景模式，随意取名，如Clash，设置代理<font color="#dd0000">协议为SOCKS5，代理服务器为127.0.1，代理端口为7890</font>.</li>
 <li>新建自动选择模式，下载规则配置文件，设置规则访问方式，默认为直连，规则为Clash</li>
@@ -399,6 +401,17 @@
 <img src="/posts/43ad9f20/image-20221202004702487.png" class title="image-20221202004702487">
 <p>比如这里我设置地理所官网为直连。</p>
 <img src="/posts/43ad9f20/image-20221202004905135.png" class title="image-20221202004905135">
+<h2 id="clash-rule">Clash Rule</h2>
+<blockquote>
+<p>clash本身也提供了规则选择，也可以自行搜搜索bypass添加绕行IP和名单等等</p>
+</blockquote>
+<ol type="1">
+<li>进入setting界面，选择System Proxy Bypass——Edit</li>
+<li>添加绕行IP或者域名即可，添加后保存</li>
+<li>如<code>“*edu.cn.com”</code>，<code>10.168.100.*</code>等</li>
+</ol>
+<img src="/posts/43ad9f20/image-20240102154748215.png" class title="image-20240102154748215">
+<img src="/posts/43ad9f20/image-20240102154752934.png" class title="image-20240102154752934">
 
     </div>
 
@@ -425,9 +438,9 @@
 </div>
 
           <div class="post-tags">
+              <a href="/tags/SwitchyOmega/" rel="tag"><i class="fa fa-tag"></i> SwitchyOmega</a>
               <a href="/tags/Clash/" rel="tag"><i class="fa fa-tag"></i> Clash</a>
               <a href="/tags/Proxy/" rel="tag"><i class="fa fa-tag"></i> Proxy</a>
-              <a href="/tags/SwitchyOmega/" rel="tag"><i class="fa fa-tag"></i> SwitchyOmega</a>
           </div>
 
         
@@ -463,7 +476,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
