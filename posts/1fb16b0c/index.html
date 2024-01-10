@@ -335,8 +335,8 @@
     <div class="post-body" itemprop="articleBody">
         <p>如题，抽空记录了一下本网站的构建过程以供查阅。这里我基于Github提供的免费网站，并基于<a target="_blank" rel="noopener" href="https://hexo.io/index.html">Hexo框架</a>在本地构建并部署，使用的渲染主题是<a target="_blank" rel="noopener" href="https://theme-next.js.org/">Next</a>。</p>
 <span id="more"></span>
-
-<h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><p>首先需要说明的是，对于博客搭建，这里提供的是一个可选项，但<strong>重要的事把事情做起来而不在于使用什么技术或形式</strong>。有很多开源的框架，如Hugo、Jekyll，也有很多免费或付费的网站搭建平台，比如流行的WordPress，可以一键构建好博客网站，有兴趣可自行探索</p>
+<h2 id="写在开头">写在开头</h2>
+<p>首先需要说明的是，对于博客搭建，这里提供的是一个可选项，但<strong>重要的事把事情做起来而不在于使用什么技术或形式</strong>。有很多开源的框架，如Hugo、Jekyll，也有很多免费或付费的网站搭建平台，比如流行的WordPress，可以一键构建好博客网站，有兴趣可自行探索</p>
 <hr>
 <p>回归正题，为什么会有这个站？——（目前）个人认为博客网站是作为集内容<strong>存档、查阅及分享</strong>为一体的十分便捷的笔记仓库的最佳工具。我主要用来记录什么？</p>
 <ul>
@@ -344,16 +344,18 @@
 <li>阅读和学习笔记，通过<strong>写</strong>的方式来促使自己完成进一步的<strong>思考和总结</strong></li>
 <li>记录和<strong>分享</strong>经验，不论是工具类的还是非工具类的。</li>
 </ul>
-<h2 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h2><ol>
+<h2 id="快速了解">快速了解</h2>
+<ol type="1">
 <li>Github是一个免费的云端的代码托管平台（远程服务器），我们可以连接该服务器将本地的代码同步上传到其上。它还提供了Github Pages，可以将托管的<strong>网站源码</strong>自动发布成可以被公众访问的<strong>网站</strong>。</li>
-<li>Hexo是一个基于Node.js的博客框架（类似的还有很多包括Jekyll及Hogo等），可将用 Markdown 文档转换为预设好主题样式的 <strong>html 页面</strong>，并可以一键部署到Github等平台<ul>
+<li>Hexo是一个基于Node.js的博客框架（类似的还有很多包括Jekyll及Hogo等），可将用 Markdown 文档转换为预设好主题样式的 <strong>html 页面</strong>，并可以一键部署到Github等平台
+<ul>
 <li>Node.js是一种开源且跨平台的 JavaScript 运行时环境，允许我们在Web 浏览器之外执行 JavaScript 代码（包括前中后端），Node.js默认使用npm——包管理器，拥有超多软件包的库 。</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>因此，通过二者结合，我们可以将<strong>本地的笔记文档（用markdown格式撰写）即使转换为网页并部署到Github</strong>，也就形成了一个简约的博客网站。静态是指内容依赖于html文件而不是根据数据库等动态生成内容。</p>
-<h2 id="部署过程"><a href="#部署过程" class="headerlink" title="部署过程"></a>部署过程</h2><ol>
-<li>本地安装<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a>，一个代码&#x2F;项目管理软件，此处用于本地与Github“沟通”，同步传输文件</li>
+<h2 id="部署过程">部署过程</h2>
+<ol type="1">
+<li>本地安装<a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a>，一个代码/项目管理软件，此处用于本地与Github“沟通”，同步传输文件</li>
 <li>下载<a target="_blank" rel="noopener" href="https://nodejs.org/en">Node.js</a>，<a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm</a>是Node.js 的默认程序包管理器，<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/chinese/news/what-is-npm-a-node-package-manager-tutorial-for-beginners/">More</a></li>
 <li>使用npm安装<a target="_blank" rel="noopener" href="https://hexo.io/docs/index.html">Hexo</a>，初始化文件夹并预览本地网页，我将文件夹放置于<strong>Onedriver</strong>目录下定期同步</li>
 <li>切换Hexo的主题并根据个人喜好修改样式，完成本地初步设置（推荐主题：Next, Maupassant, 3hexo）</li>
@@ -361,46 +363,42 @@
 <li>创建密匙以自由访问github,连接到Github，本地撰写笔记，即时上传至云端即可</li>
 <li>【可选】创建私有库自动同步备份文件</li>
 </ol>
-<h2 id="步骤参考"><a href="#步骤参考" class="headerlink" title="步骤参考"></a>步骤参考</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a></p>
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages.html">https://hexo.io/zh-cn/docs/github-pages.html</a></p>
+<h2 id="步骤参考">步骤参考</h2>
+<blockquote>
+<p>https://hexo.io/zh-cn/docs/</p>
+<p>https://hexo.io/zh-cn/docs/github-pages.html</p>
 </blockquote>
-<h3 id="安装hexo并连接github"><a href="#安装hexo并连接github" class="headerlink" title="安装hexo并连接github"></a>安装hexo并连接github</h3><p>安装hexo，安装完hexo后即可本地预览初始化网页<a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+<h3 id="安装hexo并连接github">安装hexo并连接github</h3>
+<p>安装hexo，安装完hexo后即可本地预览初始化网页http://localhost:4000/</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blog   #再当前目录下创建博客根文件夹</span><br><span class="line">cd blog   # 进入目录</span><br><span class="line">hexo server   # http://localhost:4000/</span><br></pre></td></tr></table></figure>
-
 <p>安装完成后，目录下有如下文件夹，<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/setup">详见</a>：</p>
-<ol>
+<ol type="1">
 <li>_config.yml：Hexo配置文件，设置关于网站的各种信息</li>
 <li>package.json：已安装包的信息</li>
-<li>source：存放推文及草稿等信息，博客文档均位于.&#x2F;source&#x2F;_posts，这里可以看到初始网页</li>
+<li>source：存放推文及草稿等信息，博客文档均位于./source/_posts，这里可以看到初始网页</li>
 <li>scaffolds：关于网页及默认草稿模板的文件，当新建文章时，Hexo 会根据 scaffold 来创建文件.</li>
 <li>themes：主题文件夹，Hexo 会根据主题来生成静态页面，可自行切换修改,下文详细介绍</li>
 </ol>
 <p>配置github</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git config --global user.name &quot;GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;GitHub注册邮箱&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建公钥用于建立和github的连接</span></span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装依赖部署hexo</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>创建同名存储库</p>
 <img src="/posts/1fb16b0c/image-20231029155216880.png" class title="image-20231029155216880">
-
 <img src="/posts/1fb16b0c/image-20231029155709062.png" class title="image-20231029155709062">
-
 <p>在设置中（注意是账户设置不是仓库设置）添加ssh key用于连接</p>
 <img src="/posts/1fb16b0c/image-20231029155525664.png" class title="image-20231029155525664">
-
 <p>最后在_config文件中修改为仓库链接</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># _config.yml 文件最底部</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/hhsgis/hhsgis.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="主题详细设置"><a href="#主题详细设置" class="headerlink" title="主题详细设置"></a>主题详细设置</h3><blockquote>
-<p>以最流行的Next为例，主页：<a target="_blank" rel="noopener" href="https://theme-next.js.org/">https://theme-next.js.org/</a></p>
-<p>文档: <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/">https://theme-next.js.org/docs/getting-started/</a></p>
+<h3 id="主题详细设置">主题详细设置</h3>
+<blockquote>
+<p>以最流行的Next为例，主页：https://theme-next.js.org/</p>
+<p>文档: https://theme-next.js.org/docs/getting-started/</p>
 <p>选择流行的主题可以减少很多不必要的麻烦，维护更新快。</p>
 </blockquote>
 <p>Next安装，也可手动到对应的github下载文件夹放置在blog根目录下的theme目录下</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-
-<p>在themes主题下可以找到主题文件，通常包含以下文件&#x2F;文件夹：</p>
+<p>在themes主题下可以找到主题文件，通常包含以下文件/文件夹：</p>
 <ul>
-<li><strong>_config.yml</strong>：主题的配置文件，设置主题的样式等等</li>
+<li>**_config.yml**：主题的配置文件，设置主题的样式等等</li>
 <li>languages：语言设置</li>
 <li>layout：主题的布局模板文件</li>
 <li>scripts：脚本文件夹。在启动时，Hexo 会加载此文件夹内的 JavaScript 文件</li>
@@ -408,24 +406,20 @@
 </ul>
 <p>实际上，主要通过_config.yml及source对主题进行进一步的自定义调整。</p>
 <ul>
-<li>关于大部分的设置，都可以借助如下文档的说明以及_config.yml的修改实现，如果一九不满意，则可以借助外部插件并自行编写修改。<ul>
+<li>关于大部分的设置，都可以借助如下文档的说明以及_config.yml的修改实现，如果一九不满意，则可以借助外部插件并自行编写修改。
+<ul>
 <li>比如，通过设置<code>scheme: Gemini</code>就可以修改布局为多列的布局</li>
 <li>更多的可以自行探索和尝试，以上</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <img src="/posts/1fb16b0c/image-20231025004228891.png" class title="image-20231025004228891">
-
-<h3 id="撰写及发布"><a href="#撰写及发布" class="headerlink" title="撰写及发布"></a>撰写及发布</h3><p>完成上述步骤之后，就可以进入到对应的文件夹目录，使用：</p>
+<h3 id="撰写及发布">撰写及发布</h3>
+<p>完成上述步骤之后，就可以进入到对应的文件夹目录，使用：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;mypost&quot;</span><br></pre></td></tr></table></figure>
-
-<p>创建一个新的md文件，并在&#x2F;source&#x2F;_posts&#x2F;路径下找到对应的,md文件撰写自己的笔记了，撰写完成后，在命令行执行生成并发布，即完成了上传，但是通常延迟才能看到效果，也可以直接使用<code>hexo s</code>并打开本地站点预览结果并调试，默认<a target="_blank" rel="noopener" href="http://localhost:4000/%E3%80%82">http://localhost:4000/。</a></p>
+<p>创建一个新的md文件，并在/source/_posts/路径下找到对应的,md文件撰写自己的笔记了，撰写完成后，在命令行执行生成并发布，即完成了上传，但是通常延迟才能看到效果，也可以直接使用<code>hexo s</code>并打开本地站点预览结果并调试，默认http://localhost:4000/。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <p>关闭预览使用以下命令</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl c</span><br></pre></td></tr></table></figure>
-
-
-
 <p>后续内容预告：md文件中的图片上传显示问题的解决，以及本地typora编辑器的联动</p>
 
     </div>
@@ -503,13 +497,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:36</span>
   </span>
 </div>
 <div class="busuanzi-count">

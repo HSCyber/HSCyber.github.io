@@ -313,7 +313,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -334,59 +334,50 @@
     <div class="post-body" itemprop="articleBody">
         <p>承接<a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理</a>，此处记录环境的迁移与共享，包括本地的yml及离线</p>
 <span id="more"></span>
-
-<h2 id="常规迁移"><a href="#常规迁移" class="headerlink" title="常规迁移"></a>常规迁移</h2><p>首选，支持跨平台安装。通过yml文件进行环境迁移，导出环境的配置信息，具体<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment">参考</a>，导出后，删除最后一行path路径，name也可以改，默认为创建新环境时的名称</p>
-<ol>
+<h2 id="常规迁移">常规迁移</h2>
+<p>首选，支持跨平台安装。通过yml文件进行环境迁移，导出环境的配置信息，具体<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment">参考</a>，导出后，删除最后一行path路径，name也可以改，默认为创建新环境时的名称</p>
+<ol type="1">
 <li>导出环境</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda activate geo39</span><br><span class="line">conda env export &gt; C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>其他人的电脑或者平台上安装环境，&#x3D;&#x3D;有网络&#x3D;&#x3D;</li>
+<ol start="2" type="1">
+<li>其他人的电脑或者平台上安装环境，==有网络==</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda activate base <span class="comment"># 下面conda.bat是手误，但不影响</span></span><br><span class="line">conda env create -f C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
-
-
-
 <img src="/posts/911c717a/image-20220827211808200.png" class title="image-20220827211808200">
-
 <img src="/posts/911c717a/image-20220827212015481.png" class title="image-20220827212015481">
-
-<ol start="3">
+<ol start="3" type="1">
 <li>其他，也可以自己手动写yml文件，见<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#sharing-an-environment">网站文档</a></li>
 <li>r<strong>equirements.txt</strong>，使用pip创建、安装和迁移包，具体可见<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/31684375/automatically-create-requirements-txt">参考</a></li>
 </ol>
-<h2 id="离线迁移共享"><a href="#离线迁移共享" class="headerlink" title="离线迁移共享"></a>离线迁移共享</h2><p>上面是在有网的情况下进行的迁移，但有的情况可能没有网络，如私有云服务器，因此查了离线打包的方式，也非常方便，但有点小问题是两个电脑的系统需要一致，如均为Windows。其实这里也很好理解，实际上就是将<font color="#dd0000">环境整个目录压缩一下再放到另一个电脑装上去</font>。</p>
-<h3 id="直接解压并移动"><a href="#直接解压并移动" class="headerlink" title="直接解压并移动"></a>直接解压并移动</h3><p>如在ubuntu上，进入对应的目录之后：</p>
+<h2 id="离线迁移共享">离线迁移共享</h2>
+<p>上面是在有网的情况下进行的迁移，但有的情况可能没有网络，如私有云服务器，因此查了离线打包的方式，也非常方便，但有点小问题是两个电脑的系统需要一致，如均为Windows。其实这里也很好理解，实际上就是将<font color="#dd0000">环境整个目录压缩一下再放到另一个电脑装上去</font>。</p>
+<h3 id="直接解压并移动">直接解压并移动</h3>
+<p>如在ubuntu上，进入对应的目录之后：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">压缩,-v表示压缩过程中显示文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-c 压缩文件内容</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-x 解压文件中的内容</span></span><br><span class="line">tar -zcvf test.tar.gz directory_to_compress</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">解压缩</span></span><br><span class="line">tar -zxvf test.tar.gz  -C /tmp/extract/</span><br></pre></td></tr></table></figure>
-
-<h3 id="windows也可手动压缩"><a href="#windows也可手动压缩" class="headerlink" title="windows也可手动压缩"></a>windows也可手动压缩</h3><p>操作略</p>
-<h3 id="方式1-conda-pack"><a href="#方式1-conda-pack" class="headerlink" title="方式1-conda-pack"></a>方式1-<a target="_blank" rel="noopener" href="https://conda.github.io/conda-pack/">conda-pack</a></h3><ol>
+<h3 id="windows也可手动压缩">windows也可手动压缩</h3>
+<p>操作略</p>
+<h3 id="方式1-conda-pack">方式1-<a target="_blank" rel="noopener" href="https://conda.github.io/conda-pack/">conda-pack</a></h3>
+<ol type="1">
 <li>在本机<strong>base环境</strong>中安装conda-pack并导出环境，如果安不了，可以下载文件安装<a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/conda-pack/0.4.0/download/noarch/conda-pack-0.4.0-py_0.tar.bz2">conda pack file</a>，tar.bz2是一种压缩文件格式。</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda install conda-pack</span><br><span class="line">conda install -c conda-forge conda-pack</span><br><span class="line">conda install conda-pack-<span class="number">0.4</span><span class="number">.0</span>-py_0.tar.bz2</span><br><span class="line">pip install conda-pack</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>cd切换进入到准备用来存放压缩包的文件夹, </li>
+<ol start="2" type="1">
+<li>cd切换进入到准备用来存放压缩包的文件夹,</li>
 <li>进入base环境，输入如下命令，导出环境，-p后接环境所在文件夹，打包需要一定的时间。完成后在当前目录下可以找到<strong>pachong.tar.gz</strong>，即打包完成</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda pack -p D:\Miniconda3\envs\pachong</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
+<ol start="4" type="1">
 <li>文件拷贝到新的电脑或者通过ftp传到服务器，(需提前离线安装好miniconda或anaconda)</li>
-<li>打开命令行anaconda prompt, 创建文件夹并解压缩，拷贝到env环境路径下，&#x3D;&#x3D;必须放在envs下&#x3D;&#x3D;。</li>
+<li>打开命令行anaconda prompt, 创建文件夹并解压缩，拷贝到env环境路径下，==必须放在envs下==。</li>
 <li>激活环境并测试，成功，如个别包不能运行属正常，毕竟电脑环境不完全一致</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir D:\miniconda3\envs\pachong</span><br><span class="line"><span class="comment"># 或手动解压，然后拷贝到conda的envs目录下</span></span><br><span class="line">tar -xzf D:\miniconda3\envs\pachong.tar.gz -C D:\miniconda3\envs\pachong</span><br><span class="line"><span class="comment"># 激活测试</span></span><br><span class="line">conda activate pachong</span><br><span class="line">conda-unpack</span><br><span class="line">python</span><br></pre></td></tr></table></figure>
-
 <p>部分操作截图示意</p>
 <img src="/posts/911c717a/image-20220827213900656.png" class title="image-20220827213900656">
-
 <img src="/posts/911c717a/image-20220827215106407.png" class title="image-20220827215106407">
-
-
-
-<h3 id="其他略"><a href="#其他略" class="headerlink" title="其他略"></a>其他略</h3><img src="/posts/911c717a/image-20220827213619426.png" class title="image-20220827213619426">
+<h3 id="其他略">其他略</h3>
+<img src="/posts/911c717a/image-20220827213619426.png" class title="image-20220827213619426">
 
     </div>
 
@@ -461,13 +452,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:36</span>
   </span>
 </div>
 <div class="busuanzi-count">

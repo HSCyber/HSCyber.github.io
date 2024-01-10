@@ -308,7 +308,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.9k</span>
+      <span>2.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -327,126 +327,118 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>re(Regular Expression)&#x2F;正则表达式是一个内置的文本处理模块，在进行<strong>数据处理（筛选、替换）以及网页数据</strong>抓取时十分常用该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
+        <p>re(Regular Expression)/正则表达式是一个内置的文本处理模块，在进行<strong>数据处理（筛选、替换）以及网页数据</strong>抓取时十分常用该模块的主要功能是基于给定的表达式<strong>匹配</strong><u>字符串</u>中的某些内容，本文参考官方文档，学习以下几点内容：<u>1-正则表达式的语法；2-常用函数及参数；3-案例及常用表达式</u></p>
 <span id="more"></span>
-
 <p>先介绍函数，再介绍写法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="函数方法"><a href="#函数方法" class="headerlink" title="函数方法"></a>函数方法</h2><blockquote>
+<h2 id="函数方法">函数方法</h2>
+<blockquote>
 <p>flages是在匹配时的附加参数，获得更加准确及干净的匹配结果，如可以选择<strong>不考虑换行，忽略大小写等</strong></p>
 </blockquote>
-<h3 id="方法及对象"><a href="#方法及对象" class="headerlink" title="方法及对象"></a>方法及对象</h3><ol>
-<li><code>re.compile(pattern, flags=0)</code>：将表达式编译为<strong>正则表达式对象</strong>以供后续使用&#x2F;<strong>复用</strong><ul>
-<li>输入pattern为表达式字符串，返回对象类型为 &lt;class ‘re.Pattern’&gt;，可以直接进行检索也可作为其他函数的pattern输入</li>
-</ul>
-</li>
+<h3 id="方法及对象">方法及对象</h3>
+<ol type="1">
+<li><code>re.compile(pattern, flags=0)</code>：将表达式编译为<strong>正则表达式对象</strong>以供后续使用/<strong>复用</strong>
+<ul>
+<li>输入pattern为表达式字符串，返回对象类型为 &lt;class 're.Pattern'&gt;，可以直接进行检索也可作为其他函数的pattern输入</li>
+</ul></li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pattern_ = re.<span class="built_in">compile</span>(pattern)</span><br><span class="line">result = re.<span class="keyword">match</span>(pattern_, string)<span class="comment">#实际上就等价于re.match(pattern, string)</span></span><br><span class="line"><span class="comment"># 其他参见pattern_.search();pattern_.match();pattern_.split();pattern_.findall();...</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><code>re.findall(pattern, string, flags=0)</code>：常用，返回全部匹配结果，以<strong>列表list</strong>返回<ul>
+<ol start="2" type="1">
+<li><code>re.findall(pattern, string, flags=0)</code>：常用，返回全部匹配结果，以<strong>列表list</strong>返回
+<ul>
 <li>通过在表达式中加括号可以实现元组分组，两个示例</li>
 <li><code>re.finditer(pattern, string, flags=0)</code>：同上，但是返回结果为一个迭代器</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re.findall(<span class="string">r&#x27;[a-zA-Z]+&#x27;</span>, <span class="string">&#x27;Which453foot378（*&amp;…… or378 378hand378 fell378 fastest&#x27;</span>)</span><br><span class="line"><span class="comment"># 返回其中的单词 [&#x27;which&#x27;, &#x27;foot&#x27;, &#x27;or&#x27;, &#x27;hand&#x27;, &#x27;fell&#x27;, &#x27;fastest&#x27;]</span></span><br><span class="line">re.findall(<span class="string">r&#x27;(\w+)=(\d+)&#x27;</span>, <span class="string">&#x27;set width=20 and height=10&#x27;</span>)</span><br><span class="line">[(<span class="string">&#x27;width&#x27;</span>, <span class="string">&#x27;20&#x27;</span>), (<span class="string">&#x27;height&#x27;</span>, <span class="string">&#x27;10&#x27;</span>)]</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
+<ol start="3" type="1">
 <li><p><code>re.search(pattern, string, flags=0)</code>: 整个字符串匹配并返回满足pattern的的<strong>第一个</strong>位置，可以为空</p>
 <ul>
-<li>返回对象类型是&lt;class ‘re.Match’&gt;，如果没有匹配到，则返回None ；</li>
-</ul>
-</li>
-<li><p><code>re.match(pattern, string, flags=0)</code>: 匹配字符串开头是否满足pattern并返回，不常用</p>
-</li>
+<li>返回对象类型是&lt;class 're.Match'&gt;，如果没有匹配到，则返回None ；</li>
+</ul></li>
+<li><p><code>re.match(pattern, string, flags=0)</code>: 匹配字符串开头是否满足pattern并返回，不常用</p></li>
 <li><p><code>re.split(pattern, string, maxsplit=0, flags=0)</code>：匹配表达式分割string，如匹配逗号分开单词</p>
 <ul>
-<li><p>可以视为str.split(char, num)的加强版，maxsplit设置分割次数，默认全部分割</p>
-</li>
-<li><p>如果pattern中包含了括号则会同时返回匹配到的内容及切分后的结果，示例：</p>
-</li>
-</ul>
-</li>
+<li><p>可以视为str.split(char, num)的加强版，maxsplit设置分割次数，默认全部分割</p></li>
+<li><p>如果pattern中包含了括号则会同时返回匹配到的内容及切分后的结果，示例：</p></li>
+</ul></li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">re.split(<span class="string">r&#x27;\W+&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;words&#x27;, &#x27;words&#x27;, &#x27;&#x27;]</span></span><br><span class="line">re.split(<span class="string">r&#x27;(\W+)&#x27;</span>, <span class="string">&#x27;Words, words, words.&#x27;</span>)</span><br><span class="line"><span class="comment"># [&#x27;Words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;, &#x27;, &#x27;words&#x27;, &#x27;.&#x27;, &#x27;&#x27;]</span></span><br></pre></td></tr></table></figure>
-
-<ol start="6">
+<ol start="6" type="1">
 <li><p><code>re.sub(pattern, repl, string, count=0, flags=0)</code>：查找并<strong>替换</strong>string中pattern匹配的内容</p>
 <ul>
-<li><p>repl是替换为的新的内容，也可以是一个函数</p>
-</li>
-<li><p>可以视为str.replace(‘…’, ‘…’)的加强版，<code>re.``subn()</code>类似，但是会同时返回替换&#x2F;匹配成功的次数</p>
-</li>
-</ul>
-</li>
+<li><p>repl是替换为的新的内容，也可以是一个函数</p></li>
+<li><p>可以视为str.replace(‘...’, ‘...’)的加强版，<code>re.``subn()</code>类似，但是会同时返回替换/匹配成功的次数</p></li>
+</ul></li>
 </ol>
-<h3 id="flags参数"><a href="#flags参数" class="headerlink" title="flags参数"></a>flags参数</h3><blockquote>
+<h3 id="flags参数">flags参数</h3>
+<blockquote>
 <p>一次只能设一个</p>
 </blockquote>
 <table>
 <thead>
-<tr>
-<th align="center">表达式flags&#x3D;</th>
-<th align="center">全称</th>
-<th align="center">功能</th>
+<tr class="header">
+<th style="text-align: center;">表达式flags=</th>
+<th style="text-align: center;">全称</th>
+<th style="text-align: center;">功能</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">re.A</td>
-<td align="center">ASCII</td>
-<td align="center">让 \w, \W, \b, \B, \d, \D, \s 和 \S 只匹配ASCII，而不是Unicode</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">re.A</td>
+<td style="text-align: center;">ASCII</td>
+<td style="text-align: center;">让 , ,  ,  , 和 只匹配ASCII，而不是Unicode</td>
 </tr>
-<tr>
-<td align="center">re.I</td>
-<td align="center">IGNORECASE</td>
-<td align="center">忽略大小写匹配</td>
+<tr class="even">
+<td style="text-align: center;">re.I</td>
+<td style="text-align: center;">IGNORECASE</td>
+<td style="text-align: center;">忽略大小写匹配</td>
 </tr>
-<tr>
-<td align="center">re.S</td>
-<td align="center">DOTALL</td>
-<td align="center">最常用，让 <code>&#39;.&#39;</code> 特殊字符匹配任何字符，包括换行符</td>
+<tr class="odd">
+<td style="text-align: center;">re.S</td>
+<td style="text-align: center;">DOTALL</td>
+<td style="text-align: center;">最常用，让 <code>'.'</code> 特殊字符匹配任何字符，包括换行符</td>
 </tr>
-<tr>
-<td align="center">re.M</td>
-<td align="center">MULTILINE</td>
-<td align="center">当之前只能匹配字符串开头结尾的的可以拓展到多行的开头结尾</td>
+<tr class="even">
+<td style="text-align: center;">re.M</td>
+<td style="text-align: center;">MULTILINE</td>
+<td style="text-align: center;">当之前只能匹配字符串开头结尾的的可以拓展到多行的开头结尾</td>
 </tr>
-<tr>
-<td align="center">re.X</td>
-<td align="center">VERBOSE</td>
-<td align="center">编写友好，写表达式时可以进行分段和添加注释</td>
+<tr class="odd">
+<td style="text-align: center;">re.X</td>
+<td style="text-align: center;">VERBOSE</td>
+<td style="text-align: center;">编写友好，写表达式时可以进行分段和添加注释</td>
 </tr>
-</tbody></table>
-<h2 id="正则表达式语法"><a href="#正则表达式语法" class="headerlink" title="正则表达式语法"></a>正则表达式语法</h2><blockquote>
-<p>最重要的是完成准确的正则表达式的书写，通常的形式是  r’raw…’</p>
+</tbody>
+</table>
+<h2 id="正则表达式语法">正则表达式语法</h2>
+<blockquote>
+<p>最重要的是完成准确的正则表达式的书写，通常的形式是 r'raw...'</p>
 </blockquote>
 <p>正则表达式的几个点</p>
-<ol>
+<ol type="1">
 <li>可以拼接组合，如‘a-zA-Z’会一起匹配大小写字母，A|B 或匹配，优先A</li>
 <li>可以包含普通或者特殊字符，</li>
 <li>元字符有<code>. ^ $ * + ? &#123; &#125; [ ] \ | ( )</code>，它们不匹配自己</li>
 <li>反斜杠<code>\</code>用于和其他字母组合表示特殊匹配形式</li>
 <li>重复修饰符 (<code>*</code>, <code>+</code>, <code>?</code>, <code>&#123;m,n&#125;</code>，字面意思，重复匹配</li>
-<li>关于转义符的解释：<code>r&quot;\n&quot;</code> 表示包含 <code>&#39;\&#39;</code> 和 <code>&#39;n&#39;</code> 两个字符的字符串，而 <code>&quot;\n&quot;</code> 则表示只包含一个换行符的字符串,<code>r&quot;.*?&quot;</code>匹配特殊序列而不是匹配<code>?</code>本身。</li>
+<li>关于转义符的解释：<code>r"\n"</code> 表示包含 <code>'\'</code> 和 <code>'n'</code> 两个字符的字符串，而 <code>"\n"</code> 则表示只包含一个换行符的字符串,<code>r".*?"</code>匹配特殊序列而不是匹配<code>?</code>本身。</li>
 </ol>
 <p>语法-<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/re.html#regular-expression-syntax">详细参考</a>，此处仅介绍部分</p>
 <ul>
 <li><code>.</code>：匹配除了换行的任意字符。如果指定了标签<strong>re.S</strong>，它将匹配包括换行符的任意字符。</li>
-<li><code>[]</code>:表示一个字符集合，如[amk]匹配三个字母，<code>[0-5][0-9]</code>匹配00-59<ul>
-<li>特殊字符在集合中会失去其特殊意义，如<code>[(+*)]</code> 只会匹配这几个字面字符之一 <code>&#39;(&#39;</code>, <code>&#39;+&#39;</code>, <code>&#39;*&#39;</code>, or <code>&#39;)&#39;</code>。</li>
-<li>[^…]，匹配不在 [] 中的字符</li>
-</ul>
-</li>
+<li><code>[]</code>:表示一个字符集合，如[amk]匹配三个字母，<code>[0-5][0-9]</code>匹配00-59
+<ul>
+<li>特殊字符在集合中会失去其特殊意义，如<code>[(+*)]</code> 只会匹配这几个字面字符之一 <code>'('</code>, <code>'+'</code>, <code>'*'</code>, or <code>')'</code>。</li>
+<li>[^...]，匹配不在 [] 中的字符</li>
+</ul></li>
 <li><code>()</code>: 匹配括号内的表达式，也表示一个组</li>
 </ul>
 <p>重复匹配符</p>
 <ul>
 <li><code>*</code>: 对它前面的正则式匹配0到任意次重复， 尽量多的匹配字符串。</li>
 <li><code>+</code>: 对它前面的正则式匹配1到任意次重复。</li>
-<li><code>?</code>: 对它前面的正则式匹配0到1次重复。 <code>ab?</code> 会匹配 <code>&#39;a&#39;</code> 或者 <code>&#39;ab&#39;</code></li>
+<li><code>?</code>: 对它前面的正则式匹配0到1次重复。 <code>ab?</code> 会匹配 <code>'a'</code> 或者 <code>'ab'</code></li>
 <li><code>*?, +?, ??</code></li>
 <li><code>&#123;m&#125;</code></li>
 <li><code>&#123;mn&#125;</code>对正则式进行 m 到 n 次匹配，在 m 和 n 之间取尽量多。</li>
@@ -455,13 +447,15 @@
 <p>匹配数字字母及下划线等符号</p>
 <ul>
 <li><code>\d</code>：匹配数字想当于[0-9]；<code>\D</code>匹配非数字相当于<code>[^0-9]</code></li>
-<li><code>\s</code>: 匹配任意空白字符（换行符等），等价于 [\t\n\r\f]，<code>\S</code>取反</li>
+<li><code>\s</code>: 匹配任意空白字符（换行符等），等价于 [，<code>\S</code>取反</li>
 <li><code>\w</code>: 匹配字母数字及下划线，大写<code>\W</code>则取反</li>
 </ul>
 <p>其他：<code>\A \z</code>等匹配字符串的开头结尾</p>
-<h2 id="案例及常用"><a href="#案例及常用" class="headerlink" title="案例及常用"></a>案例及常用</h2><p>任意匹配：<code>.*?</code></p>
+<h2 id="案例及常用">案例及常用</h2>
+<p>任意匹配：<code>.*?</code></p>
 <p>匹配url: <code>[a-zA-z]+://[^\s]*</code></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>源代码位置：<a target="_blank" rel="noopener" href="https://github.com/python/cpython/tree/3.10/Lib/re.py">Lib&#x2F;re.py</a></p>
+<h2 id="参考">参考</h2>
+<p>源代码位置：<a target="_blank" rel="noopener" href="https://github.com/python/cpython/tree/3.10/Lib/re.py">Lib/re.py</a></p>
 <p>官方文档: <a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/re.html#functions">api</a></p>
 
     </div>
@@ -538,13 +532,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">242k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:40</span>
+    <span title="站点阅读时长">3:36</span>
   </span>
 </div>
 <div class="busuanzi-count">
