@@ -305,7 +305,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>890</span>
+      <span>860</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -324,12 +324,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>将文件夹下的所有相同格式的文本文件csv&#x2F;txt&#x2F;xlsx等，&#x3D;&#x3D;合并或者拼接&#x3D;&#x3D;为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
+        <p>将文件夹下的所有相同格式的文本文件csv/txt/xlsx等，==合并或者拼接==为一张表的代码，代码很简单，因为经常用到所以放在这里以便用的时候直接粘贴复用：</p>
 <span id="more"></span>
-
 <p>函数具体说明可以查看文档 <a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html">pd.concat</a>，<a target="_blank" rel="noopener" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html">df.drop_duplicates</a>：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入参数</span></span><br><span class="line">indir = <span class="string">r&quot;&quot;</span></span><br><span class="line">outfile = <span class="string">&quot;....csv&quot;</span></span><br><span class="line">filetype = <span class="string">&quot;csv&quot;</span></span><br><span class="line"><span class="comment"># pandas文件遍历及合并</span></span><br><span class="line">files = glob(indir+<span class="string">&quot;\\*.&quot;</span>+filetype)</span><br><span class="line">tables = [] <span class="comment"># 确保文件总大小不会溢出内存，否则需分组处理</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file)</span><br><span class="line">    tables.append(df)</span><br><span class="line"><span class="comment"># 表格拼接及写出,axis=0表示按行拼接</span></span><br><span class="line">result = pd.concat(tables,axis=<span class="number">0</span>)</span><br><span class="line"><span class="comment"># result.drop_duplicates(subset=[&quot;fid&quot;], keep=&#x27;first&#x27;, inplace=True) #去重复列</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 导出可以用excel打开的文件</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8-sig&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line">result.to_excel(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>)</span><br><span class="line"><span class="comment"># 其他导出选项</span></span><br><span class="line">result.to_csv(outfile,encoding = <span class="string">&#x27;utf-8&#x27;</span>,index=<span class="literal">False</span>, sep=<span class="string">&quot;\t&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -403,13 +401,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">243k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">3:37</span>
   </span>
 </div>
 <div class="busuanzi-count">

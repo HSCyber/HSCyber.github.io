@@ -164,7 +164,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">实际使用指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Global%E5%B0%BA%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">Global尺度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Moran%E2%80%99s-I"><span class="nav-number">2.1.</span> <span class="nav-text">Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getis-Ord-General-G"><span class="nav-number">2.2.</span> <span class="nav-text">Getis-Ord General G</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Local%E5%B0%BA%E5%BA%A6%E2%80%94%E2%80%94%E8%81%9A%E7%B1%BB%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">Local尺度——聚类及异常分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-Moran%E2%80%99s-I"><span class="nav-number">3.1.</span> <span class="nav-text">Local Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Getis-Ord-Gi"><span class="nav-number">3.2.</span> <span class="nav-text">Getis-Ord Gi*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="nav-number">1.</span> <span class="nav-text">实际使用指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#global%E5%B0%BA%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">Global尺度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#morans-i"><span class="nav-number">2.1.</span> <span class="nav-text">Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getis-ord-general-g"><span class="nav-number">2.2.</span> <span class="nav-text">Getis-Ord General G</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#local%E5%B0%BA%E5%BA%A6%E8%81%9A%E7%B1%BB%E5%8F%8A%E5%BC%82%E5%B8%B8%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">Local尺度——聚类及异常分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#local-morans-i"><span class="nav-number">3.1.</span> <span class="nav-text">Local Moran’s I</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getis-ord-gi"><span class="nav-number">3.2.</span> <span class="nav-text">Getis-Ord Gi*</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -304,7 +304,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -323,90 +323,96 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong>空间自相关强度计算、热点分析与异常值分析</strong>是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的&#x3D;&#x3D;Moran‘s I&#x3D;&#x3D;以及&#x3D;&#x3D;Getis-Ord General G&#x3D;&#x3D;。</p>
+        <p><strong>空间自相关强度计算、热点分析与异常值分析</strong>是空间分析中的常用工具，在此简单辨析一下空间自相关等相关工具的差异和用法。主要对比的是全局和局部的==Moran‘s I==以及==Getis-Ord General G==。</p>
 <span id="more"></span>
-
-<h2 id="实际使用指南"><a href="#实际使用指南" class="headerlink" title="实际使用指南"></a>实际使用指南</h2><ol>
+<h2 id="实际使用指南">实际使用指南</h2>
+<ol type="1">
 <li>方法的使用有前提假设，具体可以查看-<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/what-is-a-z-score-what-is-a-p-value.htm">参考</a></li>
-<li>使用方法前，一定要明确分析的目标以及对应冷点热点或者聚集区的&#x3D;&#x3D;物理含义及解释&#x3D;&#x3D;</li>
+<li>使用方法前，一定要明确分析的目标以及对应冷点热点或者聚集区的==物理含义及解释==</li>
 <li>需要使用投影坐标系，单位为m或km</li>
 <li>全局的Moran指数和Gets G都只能从整体上推断数据特征的<strong>空间分布</strong>，前者是判断随机还是分散还是聚集，当然，值的大小也可以指示强度；后者是给出高值或低值是否聚集，聚集程度。</li>
-<li>对于距离阈值的判断可以采用遍历的方式寻找阈值，ArcGIS&#x2F;Pro提供了工具<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a>，或者也可以使用R语言实现&#x2F;Spatial Correlograms，此处的阈值也即是观测的尺度。</li>
+<li>对于距离阈值的判断可以采用遍历的方式寻找阈值，ArcGIS/Pro提供了工具<a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a>，或者也可以使用R语言实现/Spatial Correlograms，此处的阈值也即是观测的尺度。</li>
 <li>采用的是常用的Z-score进行统计显著性检验，因为只涉及单个数值的检验。</li>
 </ol>
 <table>
 <thead>
-<tr>
-<th align="center">方法</th>
-<th align="center">尺度</th>
-<th align="center">用途</th>
-<th align="center">取值</th>
+<tr class="header">
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">尺度</th>
+<th style="text-align: center;">用途</th>
+<th style="text-align: center;">取值</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">Moran’s I</td>
-<td align="center">Global</td>
-<td align="center">整体上是聚集还是发散，也可以给出程度</td>
-<td align="center">-1，0，1</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Moran’s I</td>
+<td style="text-align: center;">Global</td>
+<td style="text-align: center;">整体上是聚集还是发散，也可以给出程度</td>
+<td style="text-align: center;">-1，0，1</td>
 </tr>
-<tr>
-<td align="center">Getis-Ord Gi</td>
-<td align="center">Global</td>
-<td align="center">高低值聚集程度</td>
-<td align="center">&gt;0</td>
+<tr class="even">
+<td style="text-align: center;">Getis-Ord Gi</td>
+<td style="text-align: center;">Global</td>
+<td style="text-align: center;">高低值聚集程度</td>
+<td style="text-align: center;">&gt;0</td>
 </tr>
-<tr>
-<td align="center">Local Moran’s I</td>
-<td align="center">Local&#x2F;逐对象</td>
-<td align="center">高&#x2F;低值聚类探测，异常值分析</td>
-<td align="center">HH;LL;HJ;LH;不显著区（5类）</td>
+<tr class="odd">
+<td style="text-align: center;">Local Moran's I</td>
+<td style="text-align: center;">Local/逐对象</td>
+<td style="text-align: center;">高/低值聚类探测，异常值分析</td>
+<td style="text-align: center;">HH;LL;HJ;LH;不显著区（5类）</td>
 </tr>
-<tr>
-<td align="center">Getis-Ord Gi*</td>
-<td align="center">Local&#x2F;逐对象</td>
-<td align="center">高&#x2F;低值聚集区（热点区域）探测</td>
-<td align="center">±90 95 99%显著;不显著区（7类）</td>
+<tr class="even">
+<td style="text-align: center;">Getis-Ord Gi*</td>
+<td style="text-align: center;">Local/逐对象</td>
+<td style="text-align: center;">高/低值聚集区（热点区域）探测</td>
+<td style="text-align: center;">±90 95 99%显著;不显著区（7类）</td>
 </tr>
-</tbody></table>
-<h2 id="Global尺度"><a href="#Global尺度" class="headerlink" title="Global尺度"></a>Global尺度</h2><blockquote>
+</tbody>
+</table>
+<h2 id="global尺度">Global尺度</h2>
+<blockquote>
 <p>全局Moran’s I 是在假定均质的情况下给出变量总体自相关程度的统计量</p>
 </blockquote>
 <p>空间自相关(Spatial autocorrelation)，空间自相关用来刻画一个对象与其临近对象的<strong>相似</strong>程度。<font color="#dd0000">Moran’s I是用于推断变量“整体”的聚集程度，是倾向于聚集分布还是随机分布，而General G是判断变量中的“高值或低值”的聚集程度。</font></p>
 <img src="/posts/51a1b003/image-20230323113652065.png" class title="image-20230323113652065">
-
-<h3 id="Moran’s-I"><a href="#Moran’s-I" class="headerlink" title="Moran’s I"></a>Moran’s I</h3><p>Moran’s I衡量区域 (Global)尺度上某空间随机变量整体自相关的程度，这里比较的对象为&#x3D;&#x3D;整体的均值&#x3D;&#x3D;</p>
+<h3 id="morans-i">Moran’s I</h3>
+<p>Moran’s I衡量区域 (Global)尺度上某空间随机变量整体自相关的程度，这里比较的对象为==整体的均值==</p>
 <ul>
 <li>通俗理解：协方差矩阵为正，代表“同方向变化”，为负则说明领域周围有的大于<strong>整体均值</strong>，有的比均值小。</li>
-<li>Moran’s I 取值范围：[-1, 0, +1]，对应表明：负自相关-随机分布-正自相关，结果<strong>解释</strong>：<ul>
-<li>显著的&#x3D;&#x3D;正&#x3D;&#x3D;Z(+1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加&#x3D;&#x3D;聚集&#x3D;&#x3D;(正相关)</li>
-<li>显著的&#x3D;&#x3D;负&#x3D;&#x3D;Z( -1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加&#x3D;&#x3D;分散&#x3D;&#x3D;(负相关)</li>
-</ul>
-</li>
+<li>Moran’s I 取值范围：[-1, 0, +1]，对应表明：负自相关-随机分布-正自相关，结果<strong>解释</strong>：
+<ul>
+<li>显著的==正==Z(+1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加==聚集==(正相关)</li>
+<li>显著的==负==Z( -1.65, 单侧0.05)表明变量空间分布比期望的随机分布更加==分散==(负相关)</li>
+</ul></li>
 </ul>
 <img src="/posts/51a1b003/image-20230323112814561.png" class title="image-20230323112814561">
-
-<h3 id="Getis-Ord-General-G"><a href="#Getis-Ord-General-G" class="headerlink" title="Getis-Ord General G"></a>Getis-Ord General G</h3><p>Getis-Ord General G 是衡量区域(Global)尺度上某空间随机变量高值&#x2F;低值的聚集程度的统计量, a measure of High&#x2F;Low clustering。General G为正值&gt;0，但对于一个二值(0&#x2F;1)的wij来说，G取值[0, +1]</p>
+<h3 id="getis-ord-general-g">Getis-Ord General G</h3>
+<p>Getis-Ord General G 是衡量区域(Global)尺度上某空间随机变量高值/低值的聚集程度的统计量, a measure of High/Low clustering。General G为正值&gt;0，但对于一个二值(0/1)的wij来说，G取值[0, +1]</p>
 <ul>
-<li>显著的&#x3D;&#x3D;正&#x3D;&#x3D;Z(+1.65, 单侧0.05)表明&#x3D;&#x3D;高值&#x3D;&#x3D;变量空间分布比期望的随机分布更加聚集</li>
-<li>显著的&#x3D;&#x3D;负&#x3D;&#x3D;Z( -1.65, 单侧0.05)表明&#x3D;&#x3D;低值&#x3D;&#x3D;变量空间分布比期望的随机分布更加聚集</li>
+<li>显著的==正==Z(+1.65, 单侧0.05)表明==高值==变量空间分布比期望的随机分布更加聚集</li>
+<li>显著的==负==Z( -1.65, 单侧0.05)表明==低值==变量空间分布比期望的随机分布更加聚集</li>
 </ul>
-<h2 id="Local尺度——聚类及异常分析"><a href="#Local尺度——聚类及异常分析" class="headerlink" title="Local尺度——聚类及异常分析"></a>Local尺度——聚类及异常分析</h2><p>以下两种方式的差异，<a target="_blank" rel="noopener" href="https://www.mattpeeples.net/modules/LISA.html">具体可参考</a>。简单来说，局部莫兰指数除了可以进行高低值聚类分析，还可以用于异常值分析，而Getis-Ord Gi* 则主要用于高高值或低低值的聚团发现，如下图我选一个区域，同时在30km的范围内计算二者的值，结果：</p>
+<h2 id="local尺度聚类及异常分析">Local尺度——聚类及异常分析</h2>
+<p>以下两种方式的差异，<a target="_blank" rel="noopener" href="https://www.mattpeeples.net/modules/LISA.html">具体可参考</a>。简单来说，局部莫兰指数除了可以进行高低值聚类分析，还可以用于异常值分析，而Getis-Ord Gi* 则主要用于高高值或低低值的聚团发现，如下图我选一个区域，同时在30km的范围内计算二者的值，结果：</p>
 <img src="/posts/51a1b003/%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" class title="方法对比">
-
-<h3 id="Local-Moran’s-I"><a href="#Local-Moran’s-I" class="headerlink" title="Local Moran’s I"></a>Local Moran’s I</h3><p>实际上Moran’s I可以拆成n个Moran’s $I_i$的相乘，个体单元尺度上的空间自相关程度Local indicators of spatial association (LISA)。即使不存在显著的全局自相关&#x2F;聚集，局部尺度也可能存在。<strong>对于每个对象</strong>，我们都计算它与周边对象的相似程度（周围的也都是高值还是都是低值，还是有高有低），注意，此处的高低是相对于全局均值而言。</p>
+<h3 id="local-morans-i">Local Moran’s I</h3>
+<p>实际上Moran’s I可以拆成n个Moran’s <span class="math inline">\(I_i\)</span>的相乘，个体单元尺度上的空间自相关程度Local indicators of spatial association (LISA)。即使不存在显著的全局自相关/聚集，局部尺度也可能存在。<strong>对于每个对象</strong>，我们都计算它与周边对象的相似程度（周围的也都是高值还是都是低值，还是有高有低），注意，此处的高低是相对于全局均值而言。</p>
 <p><strong>解释</strong>：</p>
 <ul>
-<li>显著的正Zi(+1.65, 单侧0.05)表明i单元与邻居有相似的值(高-高&#x2F;低-低)-即聚集(Clusters)</li>
-<li>显著的负Zi( -1.65, 单侧0.05)表明i单元与邻居有相异的值(高-低&#x2F;低-高)-即异常(Outliers)</li>
+<li>显著的正Zi(+1.65, 单侧0.05)表明i单元与邻居有相似的值(高-高/低-低)-即聚集(Clusters)</li>
+<li>显著的负Zi( -1.65, 单侧0.05)表明i单元与邻居有相异的值(高-低/低-高)-即异常(Outliers)</li>
 <li>由此可以识别高-高(HH)和低-低(LL)聚集，以及高-低(HL)和低-高(LH)异常</li>
 </ul>
-<h3 id="Getis-Ord-Gi"><a href="#Getis-Ord-Gi" class="headerlink" title="Getis-Ord Gi*"></a>Getis-Ord Gi*</h3><p>高值对象很重要，但可能不是具有统计意义的热点。要成为统计上显着的热点，一个对象将具高值并且被其他高值对象包围。一个对象及其邻居的<strong>局部总和</strong>与所有对象的<strong>总和</strong>成比例地进行比较；当局部总和与预期的局部总和有很大差异时，并且当该差异太大以至于不是随机机会的结果时，会产生具有统计显着性的z 分数。</p>
+<h3 id="getis-ord-gi">Getis-Ord Gi*</h3>
+<p>高值对象很重要，但可能不是具有统计意义的热点。要成为统计上显着的热点，一个对象将具高值并且被其他高值对象包围。一个对象及其邻居的<strong>局部总和</strong>与所有对象的<strong>总和</strong>成比例地进行比较；当局部总和与预期的局部总和有很大差异时，并且当该差异太大以至于不是随机机会的结果时，会产生具有统计显着性的z 分数。</p>
 <ul>
 <li>显著正 z 分数，z 分数越大，高值（热点）的聚类就越强烈</li>
 <li>显著负 z 分数，z 分数越小，低值（冷点）的聚类就越强烈。</li>
 </ul>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
-<li>空间统计分析 R 语言 &#x2F; 马廷编著. ——北京：科学出版社，2022.10</li>
+<h2 id="参考">参考</h2>
+<ul>
+<li>空间统计分析 R 语言 / 马廷编著. ——北京：科学出版社，2022.10</li>
 <li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/h-how-spatial-autocorrelation-moran-s-i-spatial-st.htm">全局Moran指数计算及其原理</a></li>
 <li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/cluster-and-outlier-analysis-anselin-local-moran-s.htm">局部Moran指数计算及其原理</a></li>
 <li><a target="_blank" rel="noopener" href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-statistics/incremental-spatial-autocorrelation.htm">增量空间自相关分析——寻找距离阈值</a></li>
@@ -489,13 +495,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">243k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">3:37</span>
   </span>
 </div>
 <div class="busuanzi-count">

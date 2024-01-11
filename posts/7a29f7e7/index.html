@@ -309,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>333</span>
+      <span>314</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -330,13 +330,11 @@
     <div class="post-body" itemprop="articleBody">
         <p>ArcGIS处理栅格数据时如常用的<mark>栅格裁剪</mark>默认并不会压缩，因此生成文件可能会很大（对比过<a href="https://hscyber.github.io/posts/a9be2430/">压缩</a>的区别），一般需要在工具箱的环境参数里设置数据压缩格式<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>。此外，如果栅格处理会报错，一般需要<strong>关闭并行</strong>。</p>
 <span id="more"></span>
-
-<h3 id="栅格压缩与并行设置"><a href="#栅格压缩与并行设置" class="headerlink" title="栅格压缩与并行设置"></a>栅格压缩与并行设置</h3><p>ArcGIS环境变量设置<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，裁剪栅格举例：Data Management Tools.tbx\Raster\Raster Processing\Clip。</p>
+<h3 id="栅格压缩与并行设置">栅格压缩与并行设置</h3>
+<p>ArcGIS环境变量设置<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/zh-cn/arcmap/latest/tools/environments/compression.htm">参考</a>，裁剪栅格举例：Data Management Tools.tbxProcessing。</p>
 <img src="/posts/7a29f7e7/image.png" class title="image">
-
 <p>如果是ArcPy代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> arcpy</span><br><span class="line">arcpy.env.parallelProcessingFactor = <span class="string">&quot;0&quot;</span></span><br><span class="line">arcpy.env.compression = <span class="string">&quot;LZW&quot;</span></span><br><span class="line"><span class="comment"># 常用，设置覆盖输出</span></span><br><span class="line">arcpy.env.overwriteOutput = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -411,13 +409,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">243k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">3:37</span>
   </span>
 </div>
 <div class="busuanzi-count">

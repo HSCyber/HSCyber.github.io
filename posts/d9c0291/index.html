@@ -161,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">系统安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python%E7%9A%84Conda%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">Python的Conda环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85miniconda"><span class="nav-number">2.1.</span> <span class="nav-text">安装miniconda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%BF%81%E7%A7%BB"><span class="nav-number">2.2.</span> <span class="nav-text">环境配置与迁移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">linux常用指令</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">系统安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E7%9A%84conda%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">Python的Conda环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85miniconda"><span class="nav-number">2.1.</span> <span class="nav-text">安装miniconda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%BF%81%E7%A7%BB"><span class="nav-number">2.2.</span> <span class="nav-text">环境配置与迁移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">linux常用指令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -310,14 +310,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -329,51 +329,47 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>此处记录在本地Windows10&#x2F;11环境中安装ubuntu环境及Python conda环境安装的过程，可便于后续私有云服务器Python包环境的离线迁移及部署。</p>
+        <p>此处记录在本地Windows10/11环境中安装ubuntu环境及Python conda环境安装的过程，可便于后续私有云服务器Python包环境的离线迁移及部署。</p>
 <span id="more"></span>
-
-<h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><blockquote>
+<h2 id="系统安装">系统安装</h2>
+<blockquote>
 <p><a target="_blank" rel="noopener" href="https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">ubuntu官方教程</a></p>
 </blockquote>
 <p>！由于所里私有云不支持公网的访问，且缺乏相关完备的镜像源，因此需要离线迁移环境到服务器，经过查询发现window目前提供了较好的基于WSL的解决方案，配置步骤：</p>
-<ol>
+<ol type="1">
 <li>启用windows虚拟机功能，重启电脑</li>
 <li>官方渠道下载并安装 <a target="_blank" rel="noopener" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">WSL2 Linux kernel update package for x64 machines</a>. 更多可见<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/install">wsl install</a>。</li>
 <li>打开微软应用商店并搜索ubuntu，此处我选择安装18.04版本</li>
 <li>打开并进入，<code>sudo apt update</code>更新apt源，<code>sudo apt full-upgrade</code>，此时已经完成安装</li>
-<li><code>pwd</code>(present working directory) 显示当前ubuntu子系统的工作目录&#x2F;路径，此外，</li>
+<li><code>pwd</code>(present working directory) 显示当前ubuntu子系统的工作目录/路径，此外，</li>
 <li>系统路径位于：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/759880/where-is-the-ubuntu-file-system-root-directory-in-windows-subsystem-for-linux-an">参考</a>，</li>
 </ol>
 <ul>
-<li>C:\Users\huangs\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04LTS_79rhkp1fndgsc\LocalState\rootfs\home</li>
+<li>C:.Ubuntu18.04LTS_79rhkp1fndgsc</li>
 <li>在window11上可能略有不同可自行查询</li>
 </ul>
 <img src="/posts/d9c0291/image-20231128224838590.png" class title="image-20231128224838590">
-
 <img src="/posts/d9c0291/image-20231128225006701.png" class title="image-20231128225006701">
-
-<h2 id="Python的Conda环境配置"><a href="#Python的Conda环境配置" class="headerlink" title="Python的Conda环境配置"></a>Python的Conda环境配置</h2><blockquote>
+<h2 id="python的conda环境配置">Python的Conda环境配置</h2>
+<blockquote>
 <p>此处我使用miniconda3，创建3.9的环境用于使用，geop为环境名</p>
 </blockquote>
-<h3 id="安装miniconda"><a href="#安装miniconda" class="headerlink" title="安装miniconda"></a>安装miniconda</h3><p><a target="_blank" rel="noopener" href="https://docs.conda.io/projects/miniconda/en/latest/index.html#quick-command-line-install">参考</a>，首先进入用户目录，<code>cd ./huangsh/</code>依次执行如下命令。相关的命令可自行查阅文档熟悉。</p>
+<h3 id="安装miniconda">安装miniconda</h3>
+<p><a target="_blank" rel="noopener" href="https://docs.conda.io/projects/miniconda/en/latest/index.html#quick-command-line-install">参考</a>，首先进入用户目录，<code>cd ./huangsh/</code>依次执行如下命令。相关的命令可自行查阅文档熟悉。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在根目录下创建文件夹miniconda3用于安装</span></span><br><span class="line">mkdir -p ~/miniconda3</span><br><span class="line">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh</span><br><span class="line">bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装完成后删除安装文件</span></span><br><span class="line">rm -rf ~/miniconda3/miniconda.sh</span><br></pre></td></tr></table></figure>
-
 <img src="/posts/d9c0291/image-20231122153314987.png" class title="image-20231122153314987">
-
-<h3 id="环境配置与迁移"><a href="#环境配置与迁移" class="headerlink" title="环境配置与迁移"></a>环境配置与迁移</h3><p>创建环境<code>conda create -n &lt;env_name&gt; python=3.9</code>、激活环境并安装包，更多可参考<a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理Conda+pypi</a>,<a href="https://hscyber.github.io/posts/911c717a/">Python环境(4)：环境迁移及共享</a></p>
+<h3 id="环境配置与迁移">环境配置与迁移</h3>
+<p>创建环境<code>conda create -n &lt;env_name&gt; python=3.9</code>、激活环境并安装包，更多可参考<a href="https://hscyber.github.io/posts/42743416/">Python环境(3)：环境及包管理Conda+pypi</a>,<a href="https://hscyber.github.io/posts/911c717a/">Python环境(4)：环境迁移及共享</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n geop python=3.9</span><br><span class="line">conda activate geop</span><br><span class="line">conda install geopandas rasterio scikit-learn</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
 <p>打包压缩供迁移：<code>tar -zcvf geop.tar.gz directory_to_compress</code></p>
 <p>本地解压缩：<code>tar -zxvf geop.tar.gz  -C /tmp/extract/</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-c 压缩文件内容</span><br><span class="line">-x 解压文件中的内容</span><br><span class="line">-z 使用gzip来解压或压缩.tar.gz格式的文件</span><br><span class="line">-v 压缩过程中显示文件</span><br><span class="line">-f 置顶文件名，f 后面立刻紧跟文件名，不能接受其他参数</span><br></pre></td></tr></table></figure>
-
-<h2 id="linux常用指令"><a href="#linux常用指令" class="headerlink" title="linux常用指令"></a>linux常用指令</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-command-manual.html">Linux 命令大全</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">linux快速入门参考1</a>，<code>/</code>代表根目录，<code>.</code>代表当前目录，<code>..</code>上级目录，<code>tab</code>键自动补全文件(夹)名</p>
+<h2 id="linux常用指令">linux常用指令</h2>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-command-manual.html">Linux 命令大全</a>，<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-tutorial.html">linux快速入门参考1</a>，<code>/</code>代表根目录，<code>.</code>代表当前目录，<code>..</code>上级目录，<code>tab</code>键自动补全文件(夹)名</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入home路径，<span class="built_in">cd</span>代表改变路径，~指代家目录。？home/用户名</span></span><br><span class="line">cd ~</span><br><span class="line">cd /home/huangsh/</span><br><span class="line">ls # 列出当前目录下的文件</span><br><span class="line">cd ./miniconda3  #切换到当前目录下的miniconda目录内</span><br><span class="line">cd ..  #返回上级目录</span><br></pre></td></tr></table></figure>
-
 <p><code>mkdir</code>, <code>rmdir</code>, <code>rm</code>, <code>sudo(以超级用户权限执行)</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir</span><br><span class="line">rmdir  #只能删除空文件夹</span><br><span class="line">rm -rf #删除文件或文件夹及其内的文件/夹</span><br><span class="line">rm -rf /  #删除全部文件</span><br></pre></td></tr></table></figure>
-
-<p><code>cp</code>：文件复制，<code>cp -rf</code>：文件夹复制，<code>mv</code>：移动&#x2F;剪切文件或文件夹</p>
+<p><code>cp</code>：文件复制，<code>cp -rf</code>：文件夹复制，<code>mv</code>：移动/剪切文件或文件夹</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cp ~/Downloads/a.txt ~Downloads/b.txt</span><br><span class="line">cd ./Downloads</span><br><span class="line">cp a.txt b.txt</span><br><span class="line">ls</span><br><span class="line">mv a.pdf b.pdf  #文件重命名</span><br><span class="line"></span><br><span class="line">clear  #清屏</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -448,13 +444,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">243k</span>
+    <span title="站点总字数">238k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:41</span>
+    <span title="站点阅读时长">3:37</span>
   </span>
 </div>
 <div class="busuanzi-count">
