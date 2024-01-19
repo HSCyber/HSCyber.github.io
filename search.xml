@@ -116,7 +116,7 @@
       </categories>
   </entry>
   <entry>
-    <title>python性能(4)：pandas和geopandas读写大文件加速</title>
+    <title>python性能(4)：Pandas和Geopandas读写大文件加速</title>
     <url>/posts/7188d134/</url>
     <content><![CDATA[<p>在处理和分析大量大型的csv文件时（尤其是Geopandas）会遇到读写速度过慢的问题，因此一直想补充一个关于<strong>表格型文件读写</strong>步骤优化的讨论，此处对主要的结果进行了整理。</p>
 <span id="more"></span>
