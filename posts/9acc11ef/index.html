@@ -98,9 +98,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">90</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">113</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -172,18 +172,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">90</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -327,34 +327,36 @@
     <div class="post-body" itemprop="articleBody">
         <p>今天帮同学打包py脚本为可执行程序exe时遇到了文件过大的问题（基于conda环境&amp;<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/installation.html">pyinstaller</a>），网上查了一下但是很多方案都没说明问题，在此记录一下简要方案以及个人案例。</p>
 <span id="more"></span>
+
 <p>包安装</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br><span class="line"><span class="comment"># or upgrade to a newer version:</span></span><br><span class="line">pip install --upgrade pyinstaller</span><br></pre></td></tr></table></figure>
+
 <p>py打包为exe可以干嘛？<strong>不需要安装Python软件环境即可执行程序完成响应的处理，便于共享和处理</strong></p>
-<h2 id="步骤及案例参考">步骤及案例参考</h2>
-<p><strong>原因</strong>：如果直接使用conda环境进行打包会出现文件过大的问题，通常是因为<mark>基于conda安装的包会比正常pip安装的包更大</mark>，打包时会增加依赖，导致最终的exe很大，如只要是包含numpy或者pandas模块的py脚本打包，基本都会大于200M，测试过程略（可以自行新建环境测试包依赖），因此建议是<strong>新建环境安装包并打包</strong>。这里我一开始<strong>直接打包是300M，新环境中打包后为29M</strong>，而且由于生成的文件小了，<font color="#dd0000">速度也快了很多</font></p>
-<h3 id="新建环境并安装">新建环境并安装</h3>
-<p>更多包和环境管理可见<a href="https://hscyber.github.io/posts/42743416/">Python环境管理</a>，打开命令行依次执行，<font color="#dd0000">包通过pip命令安装,版本根据代码执行路径确定</font></p>
+<h2 id="步骤及案例参考"><a href="#步骤及案例参考" class="headerlink" title="步骤及案例参考"></a>步骤及案例参考</h2><p><strong>原因</strong>：如果直接使用conda环境进行打包会出现文件过大的问题，通常是因为<mark>基于conda安装的包会比正常pip安装的包更大</mark>，打包时会增加依赖，导致最终的exe很大，如只要是包含numpy或者pandas模块的py脚本打包，基本都会大于200M，测试过程略（可以自行新建环境测试包依赖），因此建议是<strong>新建环境安装包并打包</strong>。这里我一开始<strong>直接打包是300M，新环境中打包后为29M</strong>，而且由于生成的文件小了，<font color="#dd0000">速度也快了很多</font></p>
+<h3 id="新建环境并安装"><a href="#新建环境并安装" class="headerlink" title="新建环境并安装"></a>新建环境并安装</h3><p>更多包和环境管理可见<a href="https://hscyber.github.io/posts/42743416/">Python环境管理</a>，打开命令行依次执行，<font color="#dd0000">包通过pip命令安装,版本根据代码执行路径确定</font></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">conda create -n exe python=3.8</span><br><span class="line">conda activate exe</span><br><span class="line">pip install --upgrade pyinstaller</span><br><span class="line">pip install pandas</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装pandas会直接安装numpy及其依赖，如果有其他包也直接pip安装</span></span><br></pre></td></tr></table></figure>
-<h3 id="打包">打包</h3>
-<p>打包会在目录下默认生成临时文件夹Building及包含exe的dist文件夹，可以添加参数指定位置，或生成后删除即可。<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/usage.html#options">参数解释</a></p>
+
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><p>打包会在目录下默认生成临时文件夹Building及包含exe的dist文件夹，可以添加参数指定位置，或生成后删除即可。<a target="_blank" rel="noopener" href="https://pyinstaller.org/en/stable/usage.html#options">参数解释</a></p>
 <ul>
 <li>-F 指定生成单个exe程序</li>
-<li>--distpath后跟的是exe文件存放路径，<strong>可以使用相对或绝对路径，正反斜杠都可以</strong></li>
-<li>--workpath后跟的是中间过程文件路径，可以使用相对或绝对路径</li>
+<li>–distpath后跟的是exe文件存放路径，<strong>可以使用相对或绝对路径，正反斜杠都可以</strong></li>
+<li>–workpath后跟的是中间过程文件路径，可以使用相对或绝对路径</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入指定要打包的脚本文件夹</span></span><br><span class="line">cd C:\Users\huangs\Desktop\test</span><br><span class="line">pyinstaller -F myscript.py</span><br><span class="line"><span class="comment"># 相对路径，./代表当期路径下</span></span><br><span class="line">pyinstaller -F zxzdm.py --distpath ./res --workpath ./res</span><br><span class="line">pyinstaller -F zxzdm.py --distpath .\res --workpath .\res</span><br><span class="line"><span class="comment"># 绝对路径</span></span><br><span class="line">pyinstaller -F myscript.py --distpath C:\Users\huangs\Desktop\test\res --workpath C:\Users\huangs\Desktop\test\res</span><br></pre></td></tr></table></figure>
-<h3 id="案例">案例</h3>
-<blockquote>
+
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><blockquote>
 <p>举例一下应用的场景</p>
 </blockquote>
 <p>比如我有一个任务，每周下载数据并将其按天和城市提取为csv，下载的文件为多个zip压缩文件，压缩文件中为原始的txt，我需要<strong>定期多次</strong>下载数据并转换。也可以给他人共享</p>
 <ul>
 <li>每次都要打开脚本运行会有点心烦，但是又必须经常检查是否下载缺失，于是就可以将脚本转换为exe，将下载的压缩包统统丢进一个文件夹，然后双击exe自动提取和去重文件并转换为按天分割的csv。</li>
 </ul>
-<p>写好脚本后进行以下改动，需要注意一下<strong>路径问题即可，将所有的绝对路径改成相对路径</strong>，涉及文件输出可以新建文件夹<strong>mkdir</strong>，涉及路径则使用<strong>os.path.join</strong>拼接，更多文件/文件夹操作可<a href="https://hscyber.github.io/posts/290b74f/">参考</a></p>
+<p>写好脚本后进行以下改动，需要注意一下<strong>路径问题即可，将所有的绝对路径改成相对路径</strong>，涉及文件输出可以新建文件夹<strong>mkdir</strong>，涉及路径则使用<strong>os.path.join</strong>拼接，更多文件&#x2F;文件夹操作可<a href="https://hscyber.github.io/posts/290b74f/">参考</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 判断文件夹是否存在并新建的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">create_dir</span>(<span class="params">cwd</span>):</span><br><span class="line">    isExists = os.path.exists(cwd)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> isExists:</span><br><span class="line">        os.makedirs(cwd)</span><br><span class="line">    <span class="keyword">return</span> cwd</span><br><span class="line"><span class="comment"># 这里默认获取当前路径，即将exe放在指定文件夹下即可执行</span></span><br><span class="line">root = os.getcwd()</span><br><span class="line"><span class="comment"># process</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">outfounder = os.path.join(root, <span class="string">&#x27;tables&#x27;</span>)</span><br><span class="line">outfounder = create_dir(outfounder)</span><br><span class="line"><span class="meta">... </span>   </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(outcsvs)):</span><br><span class="line">    <span class="built_in">print</span>(names[i])</span><br><span class="line">    path = os.path.join(outfounder,names[i])</span><br><span class="line">    outcsvs[i].to_csv(path, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
 <p>如果是需要手动指定路径：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root=<span class="built_in">input</span>(<span class="string">&#x27;请输入data_zip路径:  &#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -428,13 +430,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">238k</span>
+    <span title="站点总字数">249k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:37</span>
+    <span title="站点阅读时长">3:46</span>
   </span>
 </div>
 <div class="busuanzi-count">

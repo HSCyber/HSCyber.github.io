@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（&#x2F;mark&gt;&gt;）分隔，其中最后两年的数据是不等数量的空格分列，因此需要统一格式。">
+    <meta name="description" content="今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（\t&gt;）分隔，其中最后两年的数据是不等数量的空格分列，因此需要统一格式。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandas(杂)：read_csv读取不同空格数的txt或csv">
 <meta property="og:url" content="https://hscyber.github.io/posts/8a34f949/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（&#x2F;mark&gt;&gt;）分隔，其中最后两年的数据是不等数量的空格分列，因此需要统一格式。">
+<meta property="og:description" content="今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（\t&gt;）分隔，其中最后两年的数据是不等数量的空格分列，因此需要统一格式。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/8a34f949/image-20221019190325307.png">
 <meta property="article:published_time" content="2022-10-19T11:00:04.000Z">
@@ -100,9 +100,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">90</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">113</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -173,18 +173,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">90</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -307,7 +307,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>540</span>
+      <span>538</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -326,12 +326,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（<mark>/mark&gt;&gt;）分隔，其中最后两年的数据<strong>是不等数量的空格分列</strong>，因此需要统一格式。</mark></p>
+        <p>今天处理数据时遇到一个特殊情况，正常数据表(txt格式)是按制表符（<mark>\t</mark>&gt;）分隔，其中最后两年的数据<strong>是不等数量的空格分列</strong>，因此需要统一格式。</p>
 <span id="more"></span>
-<p>原始如下图，最后处理成单个空格或制表符分隔，</p>
+
+<p>原始如下图，最后处理成单个空格或制表符分隔，\t或默认</p>
 <img src="/posts/8a34f949/image-20221019190325307.png" class title="image-20221019190325307">
+
 <p>pandas可以读取csv txt等文本文件，<code>read_csv(sep=“\s”)</code>即可，示例：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> glob <span class="keyword">import</span> glob</span><br><span class="line">files = glob(<span class="string">r&quot;D:\气象局数据\天尺度气象数据\存档\201911-202106\*.txt&quot;</span>)</span><br><span class="line">outdir = <span class="string">r&quot;D:\气象局数据\天尺度气象数据\存档\201911-202106-2\\&quot;</span></span><br><span class="line"><span class="comment"># 遍历写出即可，head=None因为这里忽略表头</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> files:</span><br><span class="line">    df = pd.read_csv(file, header=<span class="literal">None</span>,sep=<span class="string">&#x27;\s+&#x27;</span>, encoding = <span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    df.to_csv(outdir+os.path.basename(file),index=<span class="literal">False</span>,header=<span class="literal">None</span>,encoding = <span class="string">&#x27;utf-8&#x27;</span>,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -405,13 +408,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">238k</span>
+    <span title="站点总字数">249k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:37</span>
+    <span title="站点阅读时长">3:46</span>
   </span>
 </div>
 <div class="busuanzi-count">

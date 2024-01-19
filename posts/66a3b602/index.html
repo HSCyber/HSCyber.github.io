@@ -114,9 +114,9 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">90</span></a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">113</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -188,18 +188,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">113</span>
+          <span class="site-state-item-count">114</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">90</span>
+        <span class="site-state-item-count">91</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -343,107 +343,115 @@
     <div class="post-body" itemprop="articleBody">
         <p>绘制图形首先需要明确使用的坐标参考系，通常该操作为默认，但在<mark>图形内添加文本、辅助线、箭头、图例等装说明时常用</mark>，如可将文本放置在每张图想要的位置如正中间(0.5, 0.5)而不需要关心具体数值。由于自己之前作图遇到过，还增加了一个<strong>绘制固定大小正圆</strong>的实现方式。</p>
 <span id="more"></span>
-<h2 id="坐标系及转换">坐标系及转换</h2>
-<h3 id="基础坐标变换">基础坐标变换</h3>
-<blockquote>
+
+<h2 id="坐标系及转换"><a href="#坐标系及转换" class="headerlink" title="坐标系及转换"></a>坐标系及转换</h2><h3 id="基础坐标变换"><a href="#基础坐标变换" class="headerlink" title="基础坐标变换"></a>基础坐标变换</h3><blockquote>
 <p><a target="_blank" rel="noopener" href="https://matplotlib.org/stable/tutorials/advanced/transforms_tutorial.html">详细介绍</a></p>
 </blockquote>
 <p>除了画布的坐标系（NFC, 0-1）<code>fig.transFigure</code>,画布像素坐标系（FC, pixels）<code>fig.dpi_scale_trans</code>，还包括数据本身的坐标系（DC）<code>ax.transData</code>以及标准化的坐标系（NDC, 0-1）<code>ax.transAxes</code>。</p>
 <img src="/posts/66a3b602/cs.png" class>
+
 <p>不同坐标之间的变换，即如何从一个坐标系中的数值转换到对应的目标坐标系的数值。会用到的通常只有DC_to_FC、DC_to_NDC、DC_to_NFC，即从数值转到其它坐标系，使用方式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="comment"># 函数重命名</span></span><br><span class="line">DC_to_FC = ax.transData.transform</span><br><span class="line">FC_to_DC = ax.transData.inverted().transform</span><br><span class="line">NDC_to_FC = ax.transAxes.transform</span><br><span class="line">FC_to_NDC = ax.transAxes.inverted().transform</span><br><span class="line">NFC_to_FC = fig.transFigure.transform</span><br><span class="line">FC_to_NFC = fig.transFigure.inverted().transform</span><br><span class="line">DC_to_NDC = <span class="keyword">lambda</span> x: FC_to_NDC(DC_to_FC(x))</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">6</span>, <span class="number">5</span>), dpi=<span class="number">100</span>)</span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">ax.set_xlim(<span class="number">0</span>, <span class="number">360</span>)</span><br><span class="line">ax.set_ylim(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(NFC_to_FC([<span class="number">1</span>, <span class="number">1</span>]))</span><br><span class="line"><span class="comment"># (600,500)</span></span><br></pre></td></tr></table></figure>
+
 <table>
 <thead>
-<tr class="header">
-<th style="text-align: center;">源坐标系</th>
-<th style="text-align: center;">目标坐标系</th>
-<th style="text-align: center;">简写</th>
-<th style="text-align: center;">转换函数</th>
+<tr>
+<th align="center">源坐标系</th>
+<th align="center">目标坐标系</th>
+<th align="center">简写</th>
+<th align="center">转换函数</th>
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">数据x-y</td>
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">DC_to_FC</td>
-<td style="text-align: center;">ax.transData.transform</td>
+<tbody><tr>
+<td align="center">数据x-y</td>
+<td align="center">画布pixels</td>
+<td align="center">DC_to_FC</td>
+<td align="center">ax.transData.transform</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">数据x-y</td>
-<td style="text-align: center;">FC_to_DC</td>
-<td style="text-align: center;">ax.transData.inverted().transform</td>
+<tr>
+<td align="center">画布pixels</td>
+<td align="center">数据x-y</td>
+<td align="center">FC_to_DC</td>
+<td align="center">ax.transData.inverted().transform</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">数据x-y</td>
-<td style="text-align: center;">数据0-1</td>
-<td style="text-align: center;">DC_to_NDC</td>
-<td style="text-align: center;">lambda x: FC_to_NDC(DC_to_FC(x))</td>
+<tr>
+<td align="center">数据x-y</td>
+<td align="center">数据0-1</td>
+<td align="center">DC_to_NDC</td>
+<td align="center">lambda x: FC_to_NDC(DC_to_FC(x))</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">数据x-y</td>
-<td style="text-align: center;">画布0-1</td>
-<td style="text-align: center;">DC_to_NFC</td>
-<td style="text-align: center;">lambda x: FC_to_NFC(DC_to_FC(x))</td>
+<tr>
+<td align="center">数据x-y</td>
+<td align="center">画布0-1</td>
+<td align="center">DC_to_NFC</td>
+<td align="center">lambda x: FC_to_NFC(DC_to_FC(x))</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">数据0-1</td>
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">NDC_to_FC</td>
-<td style="text-align: center;">ax.transAxes.transform</td>
+<tr>
+<td align="center">数据0-1</td>
+<td align="center">画布pixels</td>
+<td align="center">NDC_to_FC</td>
+<td align="center">ax.transAxes.transform</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">数据0-1</td>
-<td style="text-align: center;">FC_to_NDC</td>
-<td style="text-align: center;">ax.transAxes.inverted().transform</td>
+<tr>
+<td align="center">画布pixels</td>
+<td align="center">数据0-1</td>
+<td align="center">FC_to_NDC</td>
+<td align="center">ax.transAxes.inverted().transform</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;">画布0-1</td>
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">NFC_to_FC</td>
-<td style="text-align: center;">fig.transFigure.transform</td>
+<tr>
+<td align="center">画布0-1</td>
+<td align="center">画布pixels</td>
+<td align="center">NFC_to_FC</td>
+<td align="center">fig.transFigure.transform</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;">画布pixels</td>
-<td style="text-align: center;">画布0-1</td>
-<td style="text-align: center;">FC_to_NFC</td>
-<td style="text-align: center;">fig.transFigure.inverted().transform</td>
+<tr>
+<td align="center">画布pixels</td>
+<td align="center">画布0-1</td>
+<td align="center">FC_to_NFC</td>
+<td align="center">fig.transFigure.inverted().transform</td>
 </tr>
-</tbody>
-</table>
-<h3 id="案例">案例</h3>
-<p>下图展示了各种变换方式的应用：</p>
+</tbody></table>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><p>下图展示了各种变换方式的应用：</p>
 <ul>
-<li>transform=ax.transAxes：使用标准化坐标表示位置，即用<strong>百分比</strong>（0.5,0.5）表示将注释放在<strong>正中间</strong></li>
-<li>transform= transforms.blended_transform_factory(ax.transData, ax.transAxes)：X轴使用数据，Y使用<strong>百分比</strong>确定文本的初始位置，同理transY相反</li>
-<li>见画圆时案例-transform=fig.dpi_scale_trans + ScaledTranslation(x0, y0, ax.transData)：使用像素的坐标系，但是添加偏移量使得图形从ax的左下角开始绘制</li>
+<li>transform&#x3D;ax.transAxes：使用标准化坐标表示位置，即用<strong>百分比</strong>（0.5,0.5）表示将注释放在<strong>正中间</strong></li>
+<li>transform&#x3D; transforms.blended_transform_factory(ax.transData, ax.transAxes)：X轴使用数据，Y使用<strong>百分比</strong>确定文本的初始位置，同理transY相反</li>
+<li>见画圆时案例-transform&#x3D;fig.dpi_scale_trans + ScaledTranslation(x0, y0, ax.transData)：使用像素的坐标系，但是添加偏移量使得图形从ax的左下角开始绘制</li>
 </ul>
 <img src="/posts/66a3b602/ex2.png" class title="ex2">
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> matplotlib.transforms <span class="keyword">as</span> transforms</span><br><span class="line"><span class="keyword">import</span> matplotlib.patches <span class="keyword">as</span> mpatches</span><br><span class="line"><span class="keyword">from</span> matplotlib.transforms <span class="keyword">import</span> ScaledTranslation</span><br><span class="line"></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;figure.dpi&#x27;</span>] = <span class="number">120</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.size&#x27;</span>]=<span class="number">10.5</span></span><br></pre></td></tr></table></figure>
+
 <p><mark>案例1-文本注释</mark>：对应上方前三幅图</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># matplotlib是行优先的，也就是索引先数行再列</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">10</span>, <span class="number">6</span>))</span><br><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line">ax.text(<span class="number">0.05</span>, <span class="number">0.85</span>, <span class="string">&quot;(0.05, 0.85)&quot;</span>, transform=ax.transAxes,</span><br><span class="line">        fontsize=<span class="number">8</span>, fontweight=<span class="string">&#x27;bold&#x27;</span>, va=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax.scatter(<span class="number">0.05</span>,<span class="number">0.85</span>,s=<span class="number">5</span>,c=<span class="string">&#x27;r&#x27;</span>,transform=ax.transAxes)</span><br><span class="line"><span class="comment"># *************************************************************</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line">transX = transforms.blended_transform_factory(</span><br><span class="line">    ax.transData, ax.transAxes)</span><br><span class="line">ax.text(<span class="number">3</span>, <span class="number">0.5</span>, <span class="string">&quot;(3, 0.5)&quot;</span>, transform=transX,</span><br><span class="line">        fontsize=<span class="number">8</span>, fontweight=<span class="string">&#x27;bold&#x27;</span>, va=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax.scatter(<span class="number">3</span>,<span class="number">0.5</span>,s=<span class="number">5</span>,c=<span class="string">&#x27;r&#x27;</span>,transform=transX)</span><br><span class="line"><span class="comment"># *************************************************************</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line">transY = transforms.blended_transform_factory(</span><br><span class="line">    ax.transAxes, ax.transData)</span><br><span class="line">ax.text(<span class="number">0.5</span>, <span class="number">4</span>, <span class="string">&quot;(0.5, 4)&quot;</span>, transform=transY,</span><br><span class="line">        fontsize=<span class="number">8</span>, fontweight=<span class="string">&#x27;bold&#x27;</span>, va=<span class="string">&#x27;top&#x27;</span>)</span><br><span class="line">ax.scatter(<span class="number">0.5</span>,<span class="number">4</span>,s=<span class="number">5</span>,c=<span class="string">&#x27;r&#x27;</span>,transform=transY)</span><br></pre></td></tr></table></figure>
+
 <p><mark>案例2-绘固定的圆形</mark>：对应图4 图5，不转换的画绘制圆形会因为XY像素比例不一致而变形，注意圆半径r的单位是英寸，此处画布的大小为10*6英寸</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>,<span class="number">6</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">circ = mpatches.Circle((<span class="number">0.5</span>, <span class="number">0.5</span>), radius=<span class="number">0.25</span>, transform=ax.transAxes,</span><br><span class="line">                       facecolor=<span class="string">&#x27;blue&#x27;</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line">ax.add_patch(circ)</span><br><span class="line">ax.scatter(<span class="number">0.5</span>,<span class="number">0.5</span>,s=<span class="number">5</span>,c=<span class="string">&#x27;r&#x27;</span>,transform=ax.transAxes)</span><br><span class="line"><span class="comment"># *************************************************************</span></span><br><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>,<span class="number">6</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">x0, y0 = <span class="number">3</span>, <span class="number">4</span> <span class="comment"># 圆心</span></span><br><span class="line">offset = ScaledTranslation(x0, y0, ax.transData)</span><br><span class="line"></span><br><span class="line">circ = mpatches.Circle((<span class="number">0</span>, <span class="number">0</span>), radius=<span class="number">0.5</span>, transform=fig.dpi_scale_trans + offset,</span><br><span class="line">                       facecolor=<span class="string">&#x27;g&#x27;</span>, alpha=<span class="number">0.75</span>)</span><br><span class="line">ax.add_patch(circ)</span><br><span class="line">ax.scatter(x0,y0,c=<span class="string">&#x27;r&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 <p><mark>案例3-矩形注释</mark>，对应图6</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ax = fig.add_subplot(<span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">x = np.random.randn(<span class="number">1000</span>)</span><br><span class="line">ax.hist(x, <span class="number">50</span>)</span><br><span class="line"></span><br><span class="line">transX = transforms.blended_transform_factory(</span><br><span class="line">    ax.transData, ax.transAxes)</span><br><span class="line">    <span class="comment"># 变换X为数据坐标，y为标准化的值，宽度也相应变换</span></span><br><span class="line">rect = mpatches.Rectangle((-<span class="number">1.5</span>, <span class="number">0</span>), width=<span class="number">2.5</span>, height=<span class="number">0.8</span>, transform=transX,</span><br><span class="line">                          color=<span class="string">&#x27;yellow&#x27;</span>, alpha=<span class="number">0.7</span>)</span><br><span class="line">ax.add_patch(rect)</span><br></pre></td></tr></table></figure>
-<h3 id="图外注释添加">图外注释添加</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.transforms <span class="keyword">import</span> blended_transform_factory, ScaledTranslation</span><br><span class="line"><span class="comment"># 长6英寸</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">6</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, aspect=<span class="number">1</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">ax.set_xticks(<span class="built_in">range</span>(<span class="number">11</span>))</span><br><span class="line">ax.set_ylim(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">ax.set_xticks(<span class="built_in">range</span>(<span class="number">11</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># dy = 3*12/72英寸 ，往外偏移</span></span><br><span class="line">point = <span class="number">1</span> / <span class="number">72</span></span><br><span class="line">fontsize = <span class="number">12</span></span><br><span class="line">dx, dy = <span class="number">0</span>, -<span class="number">3</span> * fontsize * point</span><br><span class="line">offset = ScaledTranslation(dx, dy, fig.dpi_scale_trans)</span><br><span class="line">transform = blended_transform_factory(ax.transData, ax.transAxes + offset)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">    plt.text(x, <span class="number">0</span>, <span class="string">&quot;↑&quot;</span>, transform=transform, ha=<span class="string">&quot;center&quot;</span>, va=<span class="string">&quot;top&quot;</span>, fontsize=fontsize)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h3 id="图外注释添加"><a href="#图外注释添加" class="headerlink" title="图外注释添加"></a>图外注释添加</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.transforms <span class="keyword">import</span> blended_transform_factory, ScaledTranslation</span><br><span class="line"><span class="comment"># 长6英寸</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">6</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">ax = fig.add_subplot(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, aspect=<span class="number">1</span>)</span><br><span class="line">ax.set_xlim(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">ax.set_xticks(<span class="built_in">range</span>(<span class="number">11</span>))</span><br><span class="line">ax.set_ylim(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">ax.set_xticks(<span class="built_in">range</span>(<span class="number">11</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># dy = 3*12/72英寸 ，往外偏移</span></span><br><span class="line">point = <span class="number">1</span> / <span class="number">72</span></span><br><span class="line">fontsize = <span class="number">12</span></span><br><span class="line">dx, dy = <span class="number">0</span>, -<span class="number">3</span> * fontsize * point</span><br><span class="line">offset = ScaledTranslation(dx, dy, fig.dpi_scale_trans)</span><br><span class="line">transform = blended_transform_factory(ax.transData, ax.transAxes + offset)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>):</span><br><span class="line">    plt.text(x, <span class="number">0</span>, <span class="string">&quot;↑&quot;</span>, transform=transform, ha=<span class="string">&quot;center&quot;</span>, va=<span class="string">&quot;top&quot;</span>, fontsize=fontsize)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <img src="/posts/66a3b602/ex3.png" class title="ex2">
-<h3 id="公式或辅助线或箭头注释的案例">公式或辅助线或箭头注释的案例</h3>
-<p>关于注释的内容比较多，置于后续展开参考</p>
-<ol type="1">
+
+<h3 id="公式或辅助线或箭头注释的案例"><a href="#公式或辅助线或箭头注释的案例" class="headerlink" title="公式或辅助线或箭头注释的案例"></a>公式或辅助线或箭头注释的案例</h3><p>关于注释的内容比较多，置于后续展开参考</p>
+<ol>
 <li><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/tutorials/text/annotations.html">Annotating text with Matplotlib.</a></li>
 <li><a target="_blank" rel="noopener" href="https://matplotlib.org/devdocs/api/_as_gen/matplotlib.axes.Axes.annotate.html">ax.annotate</a>，下方有很多案例，如：</li>
 </ol>
 <img src="/posts/66a3b602/annotate0.png" class title="annotate0">
+
 <img src="/posts/66a3b602/annotate1.png" class title="annotate0">
+
 <img src="/posts/66a3b602/annotate5.png" class title="annotate0">
+
 <img src="/posts/66a3b602/annotate2.png" class title="annotate0">
+
 <img src="/posts/66a3b602/annotate3.png" class title="annotate0">
+
 <img src="/posts/66a3b602/annotate4.png" class title="annotate0">
-<h2 id="极坐标">极坐标</h2>
-<blockquote>
+
+<h2 id="极坐标"><a href="#极坐标" class="headerlink" title="极坐标"></a>极坐标</h2><blockquote>
 <p>暂不展开</p>
 </blockquote>
 
@@ -525,13 +533,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">238k</span>
+    <span title="站点总字数">249k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:37</span>
+    <span title="站点阅读时长">3:46</span>
   </span>
 </div>
 <div class="busuanzi-count">

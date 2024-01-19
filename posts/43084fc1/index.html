@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="4x9nh5naIcZcY5E724zToiyhCRmgrZmrzuUXHkxhkgU">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室私有云服务器(1)：初步使用及文件传输">
+<meta property="og:url" content="https://hscyber.github.io/posts/43084fc1/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-19T11:11:32.000Z">
+<meta property="article:modified_time" content="2024-01-19T12:02:19.411Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="server">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/43084fc1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/43084fc1/","path":"posts/43084fc1/","title":"实验室私有云服务器(1)：初步使用及文件传输"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>实验室私有云服务器(1)：初步使用及文件传输 | Huangs's Notes</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Huangs's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar3.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1126456109@qq.com" title="E-Mail → 1126456109@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/43084fc1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar3.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="实验室私有云服务器(1)：初步使用及文件传输 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          实验室私有云服务器(1)：初步使用及文件传输
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-19 19:11:32" itemprop="dateCreated datePublished" datetime="2024-01-19T19:11:32+08:00">2024-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Lreis/" itemprop="url" rel="index"><span itemprop="name">Lreis</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/43084fc1/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/43084fc1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="1d5281e7c445ff8f67f16ffc83ce2a78fa498328ddfb0490575bdbf1fbc49dc1">105dbede25db45b7b53c9979c0915d2dcc44e47c3eae2c38c7bc0574444e4f7a75a319ac9eeb011efaf8bec65063dfe0a604271829a527fe2f81b79f22999b86a50fe360baac11a533a80b22420a0dfe8e6ed7d502da211de416433e23d2ce7bf78c2cdeb7bc52707722f3e09556322488f066ff343164d719c515fe9a6dcc002ec1c0ecd03f505e9ee016c2dbb6567697424d6df1ce67b5c200a063957034754bc6988dad22f09d784ca50a755377917908d53c25fc2497c643a4d3257f8b12f0f96fb23995ba502a8e48fa696215df66fd0fc03f6017fbd64373a8e22f2cc6f315ac0453f6ad471d05d8a3c5c293b26f263b97d29f7236fb1edfe669193a921e626e54c0bb1caad0182014a26269db0f14ec8fe694d8ed7929fa2ecf84b5019837d65d9aa315e8dd59a22fc175deb25ca11c7dd5e329fd0477cc869088fe88c04ecedecbb6b64c43b6fac1687f54522d15b29d0833d56eee091e91056a998cb850119242e2d4670644885a507a5fcab9e37736640aa4fe34ac90359e249681565815bf05efa33453e724aa5e04bc1d559c2b294b0f95cadc110ff9cdf35960d3b3e1f99ecc21d5594137751759925cfc7908c60108dc95bc59d094f7e054a6a29743d57285f1e3541f2adc7474b8232f0c06a6164e6ef7af27f695387c90a9238e3b4a66a7d16889ca150adb20870ea5cae97b30abc4568a30d92512f9ead8dfde0973de7f62767fe9cd438e7da344a1c6bfe1082ebf6ff1b523861d49f5b838a20b848e7bfd14163384dc4b6d230f7fa077be4e83747e3b9fdd1d93a3bb5530b20d06f3af8aba13736c45eb0389d199852b710ff28041d6c7dd7ac4f04dd5c39732b694e680e3808c1b9359b1705e76720ecb88bf6ea620db8c375b59775c4fd343dae3aeb1b9b70c9cbdecfd910e9ddf406ab1564ed55cb6f0f2990bf4e42d665198c2487500d8acb4412691930d4ef421f20f0c8b9dbd3a035ac9ed20742e76269f49e58764068d82e7255294c7b6f0631971b649d30138aa0c91eacf1474559df5b9b125c733f97e1b72433965c93a6c083fa89e35b0d39ba4c0b71a9dbe1cfd8a14bfd03a94cc29b1ec5e1c4037d218611fedf36a9e37b01500f92f4d917a4a49040f9c066c63e2c088b5849ad83ded65a1f16144594fe0b6f95730e6b3f8604cda66262cadf3addc9da537d453045b7eae7bacd0c7a5d7cdeec6dd2d76348daab7ae8a03de9212f838e4982c557f957be862c828d9ebefdcf9572a94679722bdc011b530310c64185d25527657c4d115f13ee3868eb3164d2195d7272177598aa109c05bbb211237053aa3e15c8d019e20224d629b24a021ee134fcdf4f182090fa62e99c5327f774a80db283a36083df23589624238e5c153ab348f310b384e5b381825d36a875ffe80b759d717ced9575260c35222d7f9726d9d1062822d1fbc83b1fba44bac40f48a4144ac0f6d3bb02504f0e8f7db3ac90c6f613a3be99530bbee941838a20e2f89a2fc6ff33934498a1014e70f98340658128a0ef597e94be7262a521e6bf249b6fa8b426f2a5ccab0e778003d331fa4a72d199e5140deb1bf713c29d5e15a34409c9eb98136a2fd36ff589b0db2c6f738267537a79b3f97b943699c17658f1ac3b6322117a7f2c4361e951852ee4c6e69b576acc7ef489c0752f1d55ecd08dc336b4bbcce926b8c15c4e0e876aa89f750189ff0ac3b8cef9938a0ab3421a82cf81956e4c7e146a8e246e5772bef8456df0558bbcab58580433056d353f0134e8838d58c83ddd6998f455cf85701575a2204aedd8e651307646a309357e1714dcd2b9eb4eb4524965162d75e8c63b8822a1f7d49a140d069bc90f44355e17839ca65fa5191868577cca8be597897d1cddd4c89613a623aa19d3841a719beb264f2de72c5bedd09a02c5caaddd7dc045687b5991f2cabc294c41ca628b3f8ef5bbf72727a903ed68198c0c77d7fd465d3ee9b44feb5edcf5b6114a8d66e8734649c08ce5d442ea41521f89e7e3b1bf84bba1f5c8168b18f217b4564079a797194b98b1f49b3f7ff58262806801ba8dfb23e54916f2d848598132bd8ed735dd4e0897844b3c1565baf4f9cf45a63d7d4410c9b2f5e4954bec126a889100b9de8422e5de7b9c60f4805149e8eb33ba25713f5c253ead31fa8fcc3a62185a529d5ad1bdfa4c24cc10943e3a69b186de71050c29750824d215dae41834decb35ee7f55df2d885a70ad893ce84f04befda08cebcdc3cecfcb8df24f428274fde0209bfb32b19ef60563c952ea965150e8e4534e172d6819616eb11a7423da93e1f0eff663dd2af1c846995a5ba5258fddf4acbce2b711c21cb5b09dde3894447c16f50ca62a0902048cef3e9d4ab42afa0e9d56ee5dba1e4dca818825796c442edc312033d379d03e82ad3027dc5c7e2a3368f7d7f7b44c20a5380b563953f896cb26f11e12bde6a7a728abac04f3acec4a5ebe4348603c8a9ca709a7873742a5dfa67eb4b07e9012083c09a1c1b2363f477812f3ef14b9a512dc789fd5dee93e314c8b9e0fac253f4cba743c7ded8801ccf2bdd1a0939f6d737551f19d336140d98487be3a4dc7c5135f85106128840cc4581edf87830f5ab6bc419e2426b43a5b28f6005e06560caf5b259624bc0ef86479d79ad1a44cc4e7487b5a9b497dca51112710015214c26260ddd07f20955ac6757417ba9b7866681a0171baed78b8afa227bb50a5d217895bf370ccbb032217616d81769c94fc8ff2496e2f66b4e6f144e4e5ae05c21482f73935a59a25f4785f7f5b5816a5fc75a2b3df17f76afeb032ff532734ea0315ba2fe2299587d139bf06c8df0775f6a624c01591cf37929b732c0d9a29562f1ab7487c7e339f702dab51d1af0cffab498919f6a3b37c47c468ab7a311639c23ce23ef34da2c9bad1764566249c738f8e52580bf49703d47ab089aa2c7800c8fb0ca99307c1d63e3095c841dcee63d3c723229463172d41a635e9df9a4c9f9ab8ef2ce84b07f6ec9180a610d230e7535ebb486d5a6aa37c05e3d82d8e71aad07fb0d1f3b39aa5a4993f3d9881e5ee417465c9f7c000d2c62ca5c0d3836cdea5836879b9d568feb2213b1de9649ea7cc625ab7f153bb86a5afc2f3ccfea8eda2f676b3f551534026c2838153ad096812cb085ac646170b7ac34aad4083f0193057f05090a1afc261026f7bc00fd5eb9f56f21c19ad9640d834a782825ee1b174a12dd300d2d55ccc1bfebbe5f6b0e252bca57c219a23147821973f73f4188305ce4d36e6382d4a08fcb0d09a4383a9af5f3e815a341a4c54ac3f94cddf1df009b9fa4a0c82df80b44bc5026cf50939b22fad10e4046f71a63ea45b38c45079444e962d430fc888bccd83454584b251168ef945261c50ba06b48537509fdb87e4fdf773bbf637815e01bc851de10cc5fa0cf6b8e351c4c6cc6c1b39f24555faf644bbbbb7b18fe78831ad1c7f7f695421872d4ffce130382d9c8b921f32ca9475ab5c0d268f52f7e7f2286328e2c8d7ea8989d8b950f2617c6f4ae9d30c452e8bd79ab75a9bbd78e190c64841f53e44c7b95b65bdf4c00d3ca151f324329dc95c8878d5d9aeb0a5f4f7ce8a9b913275f75e6b7798d30119d03d8b12e0bae7ac7db02bc828c168c3b6f79ddd10cb8d138284087498d0fffd0336945a4befedb3517facd591470a809f4929542b6fa0c0221932515f71d2274cac4f88542cdcab82b4d50f3d733195e92df06621c754d60cbb4a85d2425c5a3222b146259a8c1bfe77050a14576fbc2a683a238bf3a15f34a10279e91c5bc18c998a58ff2d14318b16e0d4ffa0ff829185383b86fb820f4992cfa7e3f62d14f01fea53dd889af148729801985de1a48cd3469ebb8b8164bbcbedfd3c77fb0a5ec414d6078206ee53b63a93c46af419a905676b11cd0bf1d2a5dab22153ec61aed5ffa97ce81068a3f7967ce2fbdfebe7db24eba5ddf1c770c5235e638271e713244166a07c860070df38c6ad86771acd2fcdebe65918643561bfef55f607e940ea2ed467bfe889de39194b15456172f59b306821e58d6b1888f3be6a439d2dd7f49d6803d92</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/43084fc1/" title="实验室私有云服务器(1)：初步使用及文件传输">https://hscyber.github.io/posts/43084fc1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/server/" rel="tag"><i class="fa fa-tag"></i> server</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/7188d134/" rel="prev" title="python性能(4)：Pandas和Geopandas读写大文件加速">
+                  <i class="fa fa-chevron-left"></i> python性能(4)：Pandas和Geopandas读写大文件加速
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">249k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:46</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/43084fc1/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"en","enable":true,"serverURL":"https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"locale":{"placeholder":"Please use international networks. 评论功能大陆网屏蔽"},"avatar":"mm","meta":["nick","mail"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/43084fc1/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>
