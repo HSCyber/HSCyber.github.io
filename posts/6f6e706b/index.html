@@ -306,7 +306,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -325,18 +325,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>这几天在处理格网内点统计（面上的点），缓冲区内统计等，会遇到特别慢的情况，这时候对点图层添加&#x3D;&#x3D;空间索引&#x3D;&#x3D;（几秒完成）之后，再进行处理，从几十分钟的操作降至十几秒。</p>
+        <p>这几天在处理格网内点统计（面上的点），缓冲区内统计等，会遇到特别慢的情况，这时候对点图层添加==空间索引==（几秒完成）之后，再进行处理，从几十分钟的操作降至十几秒。</p>
 <span id="more"></span>
-
 <p><a target="_blank" rel="noopener" href="https://gistbok.ucgis.org/bok-topics/spatial-indexing">空间索引</a>是一种允许有效访问空间对象的数据结构。这是空间数据库常用的技术。如果没有索引，任何对特征的搜索都需要对数据库中的每条记录进行“顺序扫描”，从而导致处理时间更长。在空间索引构建过程中，最小外接矩形作为对象的近似。跨商业和开源数据库的各种类型的空间索引产生可衡量的性能差异。空间索引技术在时间关键型应用程序和空间<strong>大数据</strong>处理中发挥着核心作用。</p>
 <p>小数据影响不大，主要是量大些的数据</p>
-<ol>
-<li>如果是使用&#x3D;&#x3D;ArcGIS或Pro&#x3D;&#x3D;，使用Add Spatial Index工具完成快速定位和汇总统计。<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/add-spatial-index.htm">描述</a>：Adds a spatial index to a <strong>shapefile, file geodatabase, or enterprise geodatabase feature class</strong>. Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to re-create an existing spatial index。ArcGIS uses spatial indexes to <font color="#dd0000">quickly locate features</font> in feature classes. <strong>Identifying</strong> a feature, <strong>selecting</strong> features by pointing or <strong>dragging</strong> a box, and <strong>panning and zooming</strong> all require ArcMap to use the spatial index to locate features. </li>
-<li>如果是使用&#x3D;&#x3D;QGIS&#x3D;&#x3D;，工具名称是<strong>创建空间索引(Create Spatial Index)</strong></li>
-<li>如果使用&#x3D;&#x3D;Geopandas&#x3D;&#x3D;，它也提供了基于树结构的索引，构建索引的时间基本上为0ns，在使用空间连接的时候会用到，但通常geopandas在执行空间连接时，会自动构建所需的索引。</li>
+<ol type="1">
+<li>如果是使用==ArcGIS或Pro==，使用Add Spatial Index工具完成快速定位和汇总统计。<a target="_blank" rel="noopener" href="https://desktop.arcgis.com/en/arcmap/latest/tools/data-management-toolbox/add-spatial-index.htm">描述</a>：Adds a spatial index to a <strong>shapefile, file geodatabase, or enterprise geodatabase feature class</strong>. Use this tool to either add a spatial index to a shapefile or feature class that does not already have one or to re-create an existing spatial index。ArcGIS uses spatial indexes to <font color="#dd0000">quickly locate features</font> in feature classes. <strong>Identifying</strong> a feature, <strong>selecting</strong> features by pointing or <strong>dragging</strong> a box, and <strong>panning and zooming</strong> all require ArcMap to use the spatial index to locate features.</li>
+<li>如果是使用==QGIS==，工具名称是<strong>创建空间索引(Create Spatial Index)</strong></li>
+<li>如果使用==Geopandas==，它也提供了基于树结构的索引，构建索引的时间基本上为0ns，在使用空间连接的时候会用到，但通常geopandas在执行空间连接时，会自动构建所需的索引。</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>df = gpd.read_file(<span class="string">&quot;..shp&quot;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>df.has_sindex</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.sindex</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>rst.has_sindex</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
-
 <p>更多比较，可以查看<a target="_blank" rel="noopener" href="https://aetperf.github.io/2021/09/10/Spatial-Join-with-GeoPandas-and-GEOS.html">ref</a></p>
 
     </div>
@@ -412,13 +410,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">249k</span>
+    <span title="站点总字数">244k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:46</span>
+    <span title="站点阅读时长">3:41</span>
   </span>
 </div>
 <div class="busuanzi-count">

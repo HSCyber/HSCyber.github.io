@@ -161,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pivot%E7%94%A8%E6%B3%95reshape"><span class="nav-number">1.</span> <span class="nav-text">pivot用法reshape</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pivot-table%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">pivot_table参数详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">结果表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%97%E4%B8%BE"><span class="nav-number">4.</span> <span class="nav-text">常用函数列举</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pivot%E7%94%A8%E6%B3%95reshape"><span class="nav-number">1.</span> <span class="nav-text">pivot用法reshape</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pivot_table%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">pivot_table参数详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E8%A1%A8"><span class="nav-number">3.</span> <span class="nav-text">结果表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E5%88%97%E4%B8%BE"><span class="nav-number">4.</span> <span class="nav-text">常用函数列举</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -310,7 +310,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -329,68 +329,52 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视&#x3D;&#x3D;pd.pivot_table&#x3D;&#x3D;。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下<strong>常用写法以及函数</strong>（如统计某列的<strong>唯一值数量</strong>），如果只是想变换表格的形状和行列，使用&#x3D;&#x3D;pd.pivot()&#x3D;&#x3D;。</p>
+        <p>groupby常用于简单的汇总统计，多个变量及复杂统计可使用数据透视==pd.pivot_table==。其在excel中数据透视表也是一个很好用的工具，用法也很简单。此处详细列一下<strong>常用写法以及函数</strong>（如统计某列的<strong>唯一值数量</strong>），如果只是想变换表格的形状和行列，使用==pd.pivot()==。</p>
 <span id="more"></span>
-
-<h2 id="pivot用法reshape"><a href="#pivot用法reshape" class="headerlink" title="pivot用法reshape"></a>pivot用法reshape</h2><p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">pd.pivot(index&#x3D;”date”, columns&#x3D;”variable”, values&#x3D;”value”)</a>举例，我这里有一张表是这样的，96个格网的1998年到2017年的气温降水数据，四列，共96*20&#x3D;1960行：</p>
+<h2 id="pivot用法reshape">pivot用法reshape</h2>
+<p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/reshaping.html">pd.pivot(index="date", columns="variable", values="value")</a>举例，我这里有一张表是这样的，96个格网的1998年到2017年的气温降水数据，四列，共96*20=1960行：</p>
 <ul>
-<li><img src="/posts/cdacb688/image-20230301103358420.png" class title="image-20230301103358420">
-</li>
-<li><p>现在我想改成96行，每列是一个气温指标，如下。（如果不指定values则会同时有两张表）</p>
-</li>
+<li><img src="/posts/cdacb688/image-20230301103358420.png" class title="image-20230301103358420"></li>
+<li>现在我想改成96行，每列是一个气温指标，如下。（如果不指定values则会同时有两张表）</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.pivot(index=<span class="string">&quot;ORIG_FID&quot;</span>, columns=<span class="string">&quot;year&quot;</span>, values=<span class="string">&quot;tem&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <img src="/posts/cdacb688/image-20230301103441020.png" class title="image-20230301103441020">
-
-
-
-<h2 id="pivot-table参数详解"><a href="#pivot-table参数详解" class="headerlink" title="pivot_table参数详解"></a>pivot_table参数详解</h2><blockquote>
-<p>该方法用于对数据按照指定类别字段进行–分类汇总&#x2F;统计，以下为我对该方法的使用理解，不熟悉可先在excel中使用该功能。</p>
+<h2 id="pivot_table参数详解">pivot_table参数详解</h2>
+<blockquote>
+<p>该方法用于对数据按照指定类别字段进行--分类汇总/统计，以下为我对该方法的使用理解，不熟悉可先在excel中使用该功能。</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pandas.pivot_table</a>(data, values&#x3D;None, index&#x3D;None, columns&#x3D;None, aggfunc&#x3D;’mean’, fill_value&#x3D;None, margins&#x3D;False, dropna&#x3D;True, margins_name&#x3D;’All’, observed&#x3D;False, sort&#x3D;True)，这里的参数基本都常用，举例：</p>
+<p><a target="_blank" rel="noopener" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pandas.pivot_table</a>(data, values=None, index=None, columns=None, aggfunc='mean', fill_value=None, margins=False, dropna=True, margins_name='All', observed=False, sort=True)，这里的参数基本都常用，举例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="comment"># 这里有一张轨迹信息表，很多列citycode等都是字段，我想按照城市统计轨迹的条数和唯一用户数...</span></span><br><span class="line">df = pd.read_csv(...)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">f_unique</span>(<span class="params">xlist</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(np.unique(xlist))</span><br><span class="line">result = pd.pivot_table(df,index=[<span class="string">&#x27;citycode&#x27;</span>, <span class="string">&#x27;cityname&#x27;</span>],</span><br><span class="line">                        values=[<span class="string">&#x27;track_id&#x27;</span>, <span class="string">&#x27;user_id&#x27;</span>], </span><br><span class="line">                        aggfunc=&#123;<span class="string">&#x27;tid&#x27;</span>:[np.mean,f_unique],<span class="string">&#x27;user_id&#x27;</span>:f_unique&#125;,</span><br><span class="line">                        fill_value=<span class="number">0</span>,margins=<span class="literal">False</span>)</span><br><span class="line">result = result.reset_index()</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>data，fill_value，dropna望文生义即可，margins即是否求一个行列的总和。</p>
-</li>
-<li><p><strong>index</strong>：用来分组汇总的要素，比如我这里按城市分组，这里的分组就是<strong>拆分再组合</strong>，即按照城市拆开分别用同样的方法运算，再组合成一张表。</p>
-</li>
-<li><p><strong>values</strong>：需要计算统计的<strong>指标列名</strong>，比如这里是我想统计轨迹和用户数量，则取轨迹的id和用户id。</p>
-</li>
+<li><p>data，fill_value，dropna望文生义即可，margins即是否求一个行列的总和。</p></li>
+<li><p><strong>index</strong>：用来分组汇总的要素，比如我这里按城市分组，这里的分组就是<strong>拆分再组合</strong>，即按照城市拆开分别用同样的方法运算，再组合成一张表。</p></li>
+<li><p><strong>values</strong>：需要计算统计的<strong>指标列名</strong>，比如这里是我想统计轨迹和用户数量，则取轨迹的id和用户id。</p></li>
 <li><p><strong>columns</strong>：这里是另一个维度的分组变量，是对指标的数值进行分组，比如我这里还有一列用来指示轨迹的年份，那么就会按年，<strong>在index分组切分之后的基础上再分组</strong>用于计算。通常用于类别变量，比如指标值有a b c 三种数值，需要分别统计。</p>
 <ul>
 <li>observed与columns组合使用，即可以对指标的数值类进行进一步的筛选</li>
-</ul>
-</li>
+</ul></li>
 <li><p><strong>aggfunc</strong>：统计的方式，默认为求均值。这里实际上是对每一个最小拆分后的组分进行计算，再连接到index及columns。即函数的输入<strong>可以视为df的某列的一些元素</strong>，一维序列series！比如这里每次计算的是<strong>面向一个城市的track_id组成的列表</strong>，理解了这个就方便我们写自定义函数了</p>
 <ul>
-<li>每个指标都可以应用多个函数，通过列表指定即可，如[np.sum, np.mean,…]</li>
+<li>每个指标都可以应用多个函数，通过列表指定即可，如[np.sum, np.mean,...]</li>
 <li>也可以使用pandas series支持的函数unique();nunque()，如<code>f_unique = lambda x: len(x.unique())</code></li>
+</ul></li>
+<li><p>其中，如果不按上述方式用字典指定values对应的函数则会每个指标都应用函数，如<code>aggfunc = [np.sum, np.mean]</code>则会计算track_id和user_id两列的求和及均值，得到四列</p></li>
 </ul>
-</li>
-<li><p>其中，如果不按上述方式用字典指定values对应的函数则会每个指标都应用函数，如<code>aggfunc = [np.sum, np.mean]</code>则会计算track_id和user_id两列的求和及均值，得到四列</p>
-</li>
-</ul>
-<h2 id="结果表"><a href="#结果表" class="headerlink" title="结果表"></a>结果表</h2><p>得到的结果通常具有多维索引，且列名不符合预期，此时可以进行如下调整：</p>
+<h2 id="结果表">结果表</h2>
+<p>得到的结果通常具有多维索引，且列名不符合预期，此时可以进行如下调整：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reslut = reslut.reset_index()</span><br></pre></td></tr></table></figure>
-
 <p>如果列是多重索引，可以先转成字典再计算值得到目标列名再替换</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(reslut.columns)</span><br><span class="line"><span class="comment"># 具体列如何视情况分析</span></span><br><span class="line">cols_dict = <span class="built_in">dict</span>(reslut.columns)</span><br><span class="line">cols2 = <span class="built_in">list</span>(cols_dict.keys())</span><br><span class="line"><span class="comment"># 替换新列</span></span><br><span class="line">reslut.columns = cols2</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用函数列举"><a href="#常用函数列举" class="headerlink" title="常用函数列举"></a>常用函数列举</h2><p>前面已经分析过，实际上<strong>函数计算的对象是针对最小拆分单元</strong>（扁平一维序列series），那么就可以将其视为一个list进行任意个性化的统计。np自带的函数有</p>
+<h2 id="常用函数列举">常用函数列举</h2>
+<p>前面已经分析过，实际上<strong>函数计算的对象是针对最小拆分单元</strong>（扁平一维序列series），那么就可以将其视为一个list进行任意个性化的统计。np自带的函数有</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">np.unique()查找数组的唯一元素</span><br><span class="line">np.isin()返回一个布尔数组，如果的元素在指定<span class="built_in">list</span>中，则返回 <span class="literal">True</span>，否则返回 <span class="literal">False</span></span><br><span class="line">np.count_nonzero计算非<span class="number">0</span>值的个数</span><br><span class="line"></span><br><span class="line">argmax()返回沿轴的最大值的索引。</span><br><span class="line">nanargmax()返回指定轴中最大值的索引，忽略 NaN。</span><br><span class="line">argmin()返回沿轴的最小值的索引。</span><br><span class="line">nanargmin()返回指定轴中最小值的索引，忽略 NaN。</span><br><span class="line"></span><br><span class="line">ptp()沿轴的值范围（最大值 - 最小值），极差。</span><br><span class="line">median()计算沿指定轴的中位数。</span><br><span class="line">average()计算沿指定轴的加权平均值。</span><br><span class="line">mean()计算沿指定轴的算术平均值。</span><br><span class="line">std()计算沿指定轴的标准偏差。</span><br><span class="line">var()计算沿指定轴的方差。</span><br><span class="line">nanmedian()计算沿指定轴的中位数，同时忽略 NaN。</span><br><span class="line">nanmean()计算沿指定轴的算术平均值，忽略 NaN。</span><br><span class="line">nanstd()计算沿指定轴的标准偏差，同时忽略 NaN。</span><br><span class="line">nanvar()计算沿指定轴的方差，同时忽略 NaN。</span><br><span class="line"></span><br><span class="line">percentile()沿指定轴计算数据的第 q 个百分位数。</span><br><span class="line">nanpercentile()计算沿指定轴的数据的第 q 个百分位数，同时忽略 nan 值。</span><br><span class="line">quantile()沿指定轴计算数据的第 q 个分位数。</span><br><span class="line">nanquantile()沿指定轴计算数据的第 q 个分位数，同时忽略 nan 值。</span><br></pre></td></tr></table></figure>
-
 <p>函数的具体用法可以在numpy文档搜素：</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.set.html">https://numpy.org/doc/stable/reference/routines.set.html</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.sort.html">https://numpy.org/doc/stable/reference/routines.sort.html</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://numpy.org/doc/stable/reference/routines.statistics.html">https://numpy.org/doc/stable/reference/routines.statistics.html</a></p>
-</li>
+<li><p>https://numpy.org/doc/stable/reference/routines.set.html</p></li>
+<li><p>https://numpy.org/doc/stable/reference/routines.sort.html</p></li>
+<li><p>https://numpy.org/doc/stable/reference/routines.statistics.html</p></li>
 </ul>
-<p>其他的更加复杂的，多条件的统计或计算则可以通过&#x3D;&#x3D;自定义函数&#x3D;&#x3D;完成</p>
+<p>其他的更加复杂的，多条件的统计或计算则可以通过==自定义函数==完成</p>
 
     </div>
 
@@ -465,13 +449,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">249k</span>
+    <span title="站点总字数">244k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:46</span>
+    <span title="站点阅读时长">3:41</span>
   </span>
 </div>
 <div class="busuanzi-count">

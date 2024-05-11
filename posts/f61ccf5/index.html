@@ -26,12 +26,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="先看一下tif文件的数值类型和压缩方式。地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：**(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式*">
+    <meta name="description" content="先看一下tif文件的数值类型和压缩方式。地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="矢栅处理(3)：Python读写GeoTIFF文件">
 <meta property="og:url" content="https://hscyber.github.io/posts/f61ccf5/">
 <meta property="og:site_name" content="Huangs&#39;s Notes">
-<meta property="og:description" content="先看一下tif文件的数值类型和压缩方式。地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：**(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式*">
+<meta property="og:description" content="先看一下tif文件的数值类型和压缩方式。地理栅格数据通常会以GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-25T08:49:08.000Z">
 <meta property="article:modified_time" content="2024-01-10T12:05:01.918Z">
@@ -160,7 +160,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GeoTIFF%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">GeoTIFF文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">文件简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rasterio-%E6%8E%A8%E8%8D%90"><span class="nav-number">2.1.</span> <span class="nav-text">rasterio(推荐)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdal"><span class="nav-number">2.2.</span> <span class="nav-text">gdal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matlab"><span class="nav-number">2.3.</span> <span class="nav-text">matlab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#geotiff%E6%96%87%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">GeoTIFF文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">文件简介</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99"><span class="nav-number">2.</span> <span class="nav-text">文件读写</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rasterio%E6%8E%A8%E8%8D%90"><span class="nav-number">2.1.</span> <span class="nav-text">rasterio(推荐)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdal"><span class="nav-number">2.2.</span> <span class="nav-text">gdal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#matlab"><span class="nav-number">2.3.</span> <span class="nav-text">matlab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -328,108 +328,111 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：**(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式**</p>
+        <p><a href="https://hscyber.github.io/posts/a9be2430/">先看一下</a>tif文件的数值类型和压缩方式。地理栅格数据通常会以<u>GeoTIFF(.tif; .tiff)、HDF(.h5; .hdf5)、NETCDF(.nc)</u>等多种文件格式(后两者气象数据居多，长时间序列数据存储)，但实际中空间处理、统计及可视化最常用的还是geotiff数据，因此先小结并对比一下：<strong>(1) gdal模块和rasterio两个模块读写tif的对比；(2)geotif文件的压缩格式</strong></p>
 <span id="more"></span>
-
 <ul>
 <li>关于h5文件和nc文件的读写后续总结</li>
 </ul>
-<h2 id="GeoTIFF文件"><a href="#GeoTIFF文件" class="headerlink" title="GeoTIFF文件"></a>GeoTIFF文件</h2><h3 id="文件简介"><a href="#文件简介" class="headerlink" title="文件简介"></a>文件简介</h3><blockquote>
-<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw&#x2F;.tiffw 或 .wld 的 ESRI世界文件。</p>
+<h2 id="geotiff文件">GeoTIFF文件</h2>
+<h3 id="文件简介">文件简介</h3>
+<blockquote>
+<p><strong>GEO+TIF</strong>，如果 TIFF 文件本身没有地理配准信息，GDAL 将依次检查并使用扩展名为.aux.xml文件 . MapInfo .tab 文件以及tfw、.tifw/.tiffw 或 .wld 的 ESRI世界文件。</p>
 </blockquote>
-<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息&#x2F;tags得到的，包含两部分</p>
+<p>tiff和png等本身即是光栅文件，geotiff文件是在tiff文件中嵌入地理参考信息/tags得到的，包含两部分</p>
 <ul>
-<li>像元值，纯数值矩阵numpy ndarray<ul>
+<li>像元值，纯数值矩阵numpy ndarray
+<ul>
 <li>矩阵的维度——行列数+波段数</li>
-<li>矩阵的数值及<a target="_blank" rel="noopener" href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64<ul>
-<li>int8, int16, int32, int64;  uint16,  uint16, uint32, uint64;(无符号即大于等于0)</li>
+<li>矩阵的数值及<a target="_blank" rel="noopener" href="https://www.runoob.com/numpy/numpy-dtype.html">numpy数据类型dtype</a>, 表示为，np.uint8; np.bool_; np.complex64
+<ul>
+<li>int8, int16, int32, int64; uint16, uint16, uint32, uint64;(无符号即大于等于0)</li>
 <li>float16, float32, float64</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>地理参考&#x2F;空间位置信息<ul>
+</ul></li>
+</ul></li>
+<li>地理参考/空间位置信息
+<ul>
 <li>空间范围Extent，矩形框四个角的范围</li>
 <li>坐标系：地理坐标系及投影坐标系，如果深究坐标参考系的信息较为丰富</li>
 <li>分辨率，或行列数、空值 Nodata value、图层个数等</li>
-</ul>
-</li>
-<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆&#x3D;该点的值</li>
+</ul></li>
+<li>tiff等光栅文件均可视为点文件，以该点为中心的格网空间范围内的值皆=该点的值</li>
 <li><strong><font color="#dd0000">数据读取和处理等中间过程可通过numpy数组完成，涉及空间运算时把位置信息加入生成进行处理即可</font></strong></li>
 </ul>
-<h2 id="文件读写"><a href="#文件读写" class="headerlink" title="文件读写"></a>文件读写</h2><blockquote>
+<h2 id="文件读写">文件读写</h2>
+<blockquote>
 <p>简要版，更多的参数设置查看文档：<a target="_blank" rel="noopener" href="https://rasterio.readthedocs.io/en/latest/quickstart.html">rasterio</a>; <a target="_blank" rel="noopener" href="https://gdal.org/python/osgeo.gdal-module.html">gdal1</a>, <a target="_blank" rel="noopener" href="https://gdal.org/index.html">gdal2</a>. 仅以单波段图像为例进行读写分析，多波段可以自行拓展</p>
 </blockquote>
 <p><strong><font color="#dd0000">读写后的tif信息往往不完全一致，可以通过读取两幅影像比较数值矩阵是否相等,下述三种方法写出文件的结果数值一致</font></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(data1 == data2).<span class="built_in">all</span>() <span class="comment">#True则表示相同</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="rasterio-推荐"><a href="#rasterio-推荐" class="headerlink" title="rasterio(推荐)"></a>rasterio(推荐)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="gdal"><a href="#gdal" class="headerlink" title="gdal"></a>gdal</h3><blockquote>
+<h3 id="rasterio推荐">rasterio(推荐)</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> rasterio</span><br><span class="line"><span class="comment"># 读</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(file) <span class="keyword">as</span> src_dataset:</span><br><span class="line">    profiles = src_dataset.profile</span><br><span class="line">    band1 = src_dataset.read(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(profiles)</span><br><span class="line"><span class="built_in">print</span>(band1) <span class="comment">#ndarray</span></span><br><span class="line"><span class="comment"># 在此更新字典信息</span></span><br><span class="line">new_type = rasterio.int32</span><br><span class="line">profiles.update(dtype=new_type,compress=<span class="string">&#x27;DEFLATE&#x27;</span>)</span><br><span class="line"><span class="comment"># 写: band1为一个numpy array</span></span><br><span class="line"><span class="keyword">with</span> rasterio.<span class="built_in">open</span>(out, <span class="string">&#x27;w&#x27;</span>, **profiles) <span class="keyword">as</span> dst:</span><br><span class="line">        dst.write(band1.astype(new_type), <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="gdal">gdal</h3>
+<blockquote>
 <p>更为底层，前者实际上是基于gdal完成的读写</p>
 <p>gdal写出的文件会比rasterio更大，暂时还不知道原因</p>
 </blockquote>
 <p>读，获取各项信息，可以通过dir(ds)查看其全部属性方法</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ds = gdal.Open(tiffile)</span><br><span class="line">band = ds.GetRasterBand(<span class="number">1</span>)</span><br><span class="line">im_data = band.ReadAsArray()</span><br><span class="line"><span class="built_in">print</span>(im_data.dtype)</span><br><span class="line"><span class="comment"># 各项信息</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;文件的源信息&quot;</span>,ds.GetMetadata())</span><br><span class="line">im_width = ds.RasterXSize <span class="comment">#栅格矩阵的列数</span></span><br><span class="line">im_height = ds.RasterYSize <span class="comment">#栅格矩阵的行数</span></span><br><span class="line">im_bands = ds.RasterCount <span class="comment">#波段数</span></span><br><span class="line"></span><br><span class="line">im_geotrans = ds.GetGeoTransform() <span class="comment">#仿射矩阵，左上角像素的大地坐标和像素分辨率</span></span><br><span class="line">im_proj = ds.GetProjection() <span class="comment">#地图投影信息，字符串表示</span></span><br><span class="line">proj = osr.SpatialReference(wkt=im_proj)</span><br><span class="line">nodata = band.GetNoDataValue()</span><br></pre></td></tr></table></figure>
-
 <p>写<code>GDALDataset *Create(const char *pszName,nXSize,nYSize,nBands,eType,...)</code></p>
 <p>GDALDataType, 如gdal.GDT_Byte</p>
 <table>
 <thead>
-<tr>
-<th align="center">enum GDALDataType</th>
-<th align="center">对应numpy类型</th>
-<th align="center">备注</th>
+<tr class="header">
+<th style="text-align: center;">enum GDALDataType</th>
+<th style="text-align: center;">对应numpy类型</th>
+<th style="text-align: center;">备注</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">GDT_Byte</td>
-<td align="center">np.uint8</td>
-<td align="center"></td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">GDT_Byte</td>
+<td style="text-align: center;">np.uint8</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td align="center">GDT_UInt16, GDT_Int16</td>
-<td align="center">np.uint16, np.int16</td>
-<td align="center"></td>
+<tr class="even">
+<td style="text-align: center;">GDT_UInt16, GDT_Int16</td>
+<td style="text-align: center;">np.uint16, np.int16</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td align="center">GDT_UInt32, GDT_Int32</td>
-<td align="center">np.uint32, np.int32</td>
-<td align="center"></td>
+<tr class="odd">
+<td style="text-align: center;">GDT_UInt32, GDT_Int32</td>
+<td style="text-align: center;">np.uint32, np.int32</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td align="center">GDT_UInt64, GDT_Int64</td>
-<td align="center">np.uint64, np.int64</td>
-<td align="center">GDAL &gt;&#x3D; 3.5</td>
+<tr class="even">
+<td style="text-align: center;">GDT_UInt64, GDT_Int64</td>
+<td style="text-align: center;">np.uint64, np.int64</td>
+<td style="text-align: center;">GDAL &gt;= 3.5</td>
 </tr>
-<tr>
-<td align="center">GDT_Float32， GDT_Float64</td>
-<td align="center">np.float32, np.float64</td>
-<td align="center"></td>
+<tr class="odd">
+<td style="text-align: center;">GDT_Float32， GDT_Float64</td>
+<td style="text-align: center;">np.float32, np.float64</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td align="center">GDT_CInt16，GDT_CInt32</td>
-<td align="center">Complex Int16</td>
-<td align="center"></td>
+<tr class="even">
+<td style="text-align: center;">GDT_CInt16，GDT_CInt32</td>
+<td style="text-align: center;">Complex Int16</td>
+<td style="text-align: center;"></td>
 </tr>
-<tr>
-<td align="center">GDT_CFloat32，GDT_CFloat64</td>
-<td align="center">Complex Float32</td>
-<td align="center"></td>
+<tr class="odd">
+<td style="text-align: center;">GDT_CFloat32，GDT_CFloat64</td>
+<td style="text-align: center;">Complex Float32</td>
+<td style="text-align: center;"></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>写出方法1: Create</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif</span>(<span class="params">outpath, im_data, im_geotrans,im_proj, nodata=-<span class="number">1</span></span>):</span><br><span class="line">    <span class="comment"># 仅适用于单个波段</span></span><br><span class="line">    <span class="comment"># 数据类型</span></span><br><span class="line">    GDT_Dict = &#123;</span><br><span class="line">        <span class="string">&#x27;uint8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;int8&#x27;</span>:gdal.GDT_Byte,</span><br><span class="line">        <span class="string">&#x27;uint16&#x27;</span>:gdal.GDT_UInt16,</span><br><span class="line">        <span class="string">&#x27;int16&#x27;</span>:gdal.GDT_Int16,</span><br><span class="line">        <span class="string">&#x27;uint32&#x27;</span>:gdal.GDT_UInt32,</span><br><span class="line">        <span class="string">&#x27;int32&#x27;</span>:gdal.GDT_Int32,</span><br><span class="line">        <span class="string">&#x27;float32&#x27;</span>:gdal.GDT_Float32&#125;</span><br><span class="line">    gdaltype = GDT_Dict[im_data.dtype.name]</span><br><span class="line">    im_bands, (im_height, im_width) = <span class="number">1</span>, im_data.shape</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dataset = driver.Create(outpath, im_width, im_height, im_bands, gdaltype, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    dataset.SetGeoTransform(im_geotrans) <span class="comment">#写入仿射变换参数</span></span><br><span class="line">    dataset.SetProjection(im_proj) <span class="comment">#写入投影</span></span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    dataset.GetRasterBand(<span class="number">1</span>).SetNoDataValue(nodata)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dataset</span><br><span class="line">outpath = <span class="string">r&quot;....tif&quot;</span></span><br><span class="line">write_geotif(outpath, im_data, im_geotrans,im_proj, nodata=nodata)</span><br></pre></td></tr></table></figure>
-
 <p>写出方法2: CreateCopy</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_geotif2</span>(<span class="params">outpath, im_data, src_ds</span>):</span><br><span class="line">    <span class="comment"># 创建文件</span></span><br><span class="line">    driver = gdal.GetDriverByName(<span class="string">&quot;GTiff&quot;</span>)</span><br><span class="line">    dst_ds = driver.CreateCopy(outpath, src_ds, strict=<span class="number">0</span>, options=[<span class="string">&quot;COMPRESS=LZW&quot;</span>])</span><br><span class="line">    <span class="comment"># 写入数据</span></span><br><span class="line">    dst_ds.GetRasterBand(<span class="number">1</span>).WriteArray(im_data)</span><br><span class="line">    <span class="comment"># 写入内存</span></span><br><span class="line">    <span class="keyword">del</span> dst_ds</span><br><span class="line">outpath = <span class="string">r&quot;...tif&quot;</span></span><br><span class="line">write_geotif2(outpath, im_data,ds)</span><br></pre></td></tr></table></figure>
-
-<h3 id="matlab"><a href="#matlab" class="headerlink" title="matlab"></a>matlab</h3><p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
-<li><a target="_blank" rel="noopener" href="https://rasterio.readthedocs.io/en/latest/intro.html">https://rasterio.readthedocs.io/en/latest/intro.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://gdal.org/tutorials/index.html">https://gdal.org/tutorials/index.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://gdal.org/index.html">https://gdal.org/index.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://gdal.org/drivers/raster/gtiff.html">https://gdal.org/drivers/raster/gtiff.html</a></li>
+<h3 id="matlab">matlab</h3>
+<p>由于文件本质上是纯数值文件，Matlab处理tiff文件也十分便捷<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/map/ref/geotiffwrite.html">api</a>，但鉴于目前不太熟悉，后续填充</p>
+<h2 id="参考">参考</h2>
+<ol type="1">
+<li>https://rasterio.readthedocs.io/en/latest/intro.html</li>
+<li>https://gdal.org/tutorials/index.html</li>
+<li>https://gdal.org/index.html</li>
+<li>https://gdal.org/drivers/raster/gtiff.html</li>
 <li><a target="_blank" rel="noopener" href="https://digital-geography.com/geotiff-compression-comparison/#:~:text=GDAL%20supports%20three%20lossless%20compression,methods%20with%20GDALs%20creation%20options.">其他参考</a></li>
 </ol>
 
@@ -508,13 +511,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">249k</span>
+    <span title="站点总字数">244k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:46</span>
+    <span title="站点阅读时长">3:41</span>
   </span>
 </div>
 <div class="busuanzi-count">

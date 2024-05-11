@@ -37,13 +37,14 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202003231976.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202003619895.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202003734064.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20240511155145218.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004615019.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004702487.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20221202004905135.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20240102154748215.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/43ad9f20/image-20240102155608812.png">
 <meta property="article:published_time" content="2022-12-01T15:09:23.000Z">
-<meta property="article:modified_time" content="2024-01-10T11:54:59.672Z">
+<meta property="article:modified_time" content="2024-05-11T07:51:51.072Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Clash">
 <meta property="article:tag" content="Proxy">
@@ -168,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">代理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash%E9%85%8D%E7%BD%AE-win"><span class="nav-number">2.</span> <span class="nav-text">clash配置(win)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">故障排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8Rule%E8%AE%BE%E7%BD%AE-%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">浏览器Rule设置(插件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clash-Rule"><span class="nav-number">5.</span> <span class="nav-text">Clash Rule</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">代理简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash%E9%85%8D%E7%BD%AEwin"><span class="nav-number">2.</span> <span class="nav-text">Clash配置(win)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#android%E9%85%8D%E7%BD%AE"><span class="nav-number">2.1.</span> <span class="nav-text">Android配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">故障排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8rule%E8%AE%BE%E7%BD%AE%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">浏览器Rule设置(插件)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#clash-rule"><span class="nav-number">5.</span> <span class="nav-text">Clash Rule</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -336,61 +337,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash">Clash</a>(支持win&#x2F;mac&#x2F;linux&#x2F;android)的使用；3-自定义浏览器规则模式(Rule)。</p>
+        <p>通常访问谷歌需要一些辅助，此处记录一下：1-代理的基本原理；2-目前使用较广的网络代理工具Clash(支持win/mac/linux/android)的使用；3-自定义浏览器规则模式(Rule)。</p>
 <span id="more"></span>
-
-<h2 id="代理简介"><a href="#代理简介" class="headerlink" title="代理简介"></a>代理简介</h2><blockquote>
+<h2 id="代理简介">代理简介</h2>
+<blockquote>
 <p>不感兴趣可以直接跳转到<strong>clash配置</strong>部分。详细的可以参见<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。</p>
 </blockquote>
-<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a target="_blank" rel="noopener" href="https://www.google.com/">Google</a>；<a target="_blank" rel="noopener" href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的&#x3D;&#x3D;代理服务器(&#x3D;&#x3D;如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个&#x3D;&#x3D;桥梁&#x3D;&#x3D;的作用，这即是代理服务的作用。如下图，几点说明：</p>
+<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a target="_blank" rel="noopener" href="https://www.google.com/">Google</a>；<a target="_blank" rel="noopener" href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的==代理服务器(==如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个==桥梁==的作用，这即是代理服务的作用。如下图，几点说明：</p>
 <ul>
 <li>由于服务器访问很快，所以响应时间基本可以忽略。【当然如果很慢那说明代理不太行hh】</li>
-<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac&#x2F;ios), Quantumult等等</li>
+<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li>
 <li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加快捷隐私。端口默认为7890。</li>
-<li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，<ul>
+<li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，
+<ul>
 <li>对于视频电影等持续访问操作则涉及到网站的<strong>会话Session</strong>等知识，暂不展开</li>
-<li><strong>端口Port</strong>是电脑&#x2F;IP地址之间通讯的地址通道，具体暂不展开</li>
-</ul>
-</li>
+<li><strong>端口Port</strong>是电脑/IP地址之间通讯的地址通道，具体暂不展开</li>
+</ul></li>
 </ul>
 <img src="/posts/43ad9f20/image-20221202000821947.png" class title="image-20221202000821947">
-
 <p>有了上述大致认识之后，我们使用和调试网络代理就能够顺手一些。</p>
-<h2 id="clash配置-win"><a href="#clash配置-win" class="headerlink" title="clash配置(win)"></a>clash配置(win)</h2><blockquote>
-<p>下载链接：<a target="_blank" rel="noopener" href="https://github.com/Fndroid/clash_for_windows_pkg/releases">clash-windows&#x2F;mac</a>；<a target="_blank" rel="noopener" href="https://github.com/Kr328/ClashForAndroid/releases">Clash-Android</a>；<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash/releases">clash-linux</a>，ios使用Shadowrocket，配置需美区账号。</p>
+<h2 id="clash配置win">Clash配置(win)</h2>
+<blockquote>
+<p>Clash的GitHub 仓库地址2023年底已删库不再维护更新，不知何时更新，目前本地下载链接，ios可使用Shadowrocket，配置需使用已购买app的账号（登陆store下载软件后退出即可），mac可<a target="_blank" rel="noopener" href="https://github.com/githubvpn007/ClashX?tab=readme-ov-file">参考</a></p>
 </blockquote>
-<p>配置步骤如下：</p>
-<ol>
+<p>配置步骤如下，其他平台类似：</p>
+<ol type="1">
 <li>下载软件并<font color="#dd0000">解压到文件夹</font>，windows建议放在非C盘</li>
 <li>打开文件夹双击<font color="#dd0000">运行</font>程序clash.exe，右下角可以看到小猫咪,打开</li>
-<li>在<font color="#dd0000">Profiles</font>配置文件界面将订阅链接粘贴到地址栏下载<font color="#dd0000">Download</font>，然后选中刚刚刷新的配置<ul>
-<li>常见问题，这里初次更新&#x2F;下载订阅时一般需要确保clash的系统代理处在<strong>关闭</strong>状态，原理见上。</li>
-</ul>
-</li>
+<li>在<font color="#dd0000">Profiles</font>配置文件界面将订阅链接粘贴到地址栏下载<font color="#dd0000">Download</font>，然后选中刚刚刷新的配置
+<ul>
+<li>常见问题，这里初次更新/下载订阅时一般需要确保clash的系统代理处在<strong>关闭</strong>状态，原理见上。</li>
+</ul></li>
 <li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li>
 <li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li>
-<li>访问网页测试<a target="_blank" rel="noopener" href="https://www.google.com/%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%B7%B2%E7%BB%8F%E8%AE%BE%E7%BD%AE%E5%AE%8C%E6%AF%95">https://www.google.com/，如果可以访问，已经设置完毕</a></li>
+<li>访问网页测试https://www.google.com/，如果可以访问，已经设置完毕</li>
 <li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li>
 </ol>
 <p>操作示意：</p>
 <img src="/posts/43ad9f20/image-20221202003231976.png" class title="image-20221202003231976">
-
 <img src="/posts/43ad9f20/image-20221202003619895.png" class title="image-20221202003619895">
-
 <img src="/posts/43ad9f20/image-20221202003734064.png" class title="image-20221202003734064">
-
-<h2 id="故障排查"><a href="#故障排查" class="headerlink" title="故障排查"></a>故障排查</h2><blockquote>
+<h3 id="android配置">Android配置</h3>
+<img src="/posts/43ad9f20/image-20240511155145218.png" class title="image-20240511155145218">
+<h2 id="故障排查">故障排查</h2>
+<blockquote>
 <p>如果平台有故障我会及时更新，尽量使用较新的软件</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新，如果依旧无效或失败，</li>
 <li>检查电脑代理设置，设置为自动检测（会自动调整设置），再更新订阅</li>
 <li>缓存或DNS污染等其他问题导致，重开再更新订阅，或者重启</li>
-<li></li>
 </ol>
-<h2 id="浏览器Rule设置-插件"><a href="#浏览器Rule设置-插件" class="headerlink" title="浏览器Rule设置(插件)"></a>浏览器Rule设置(插件)</h2><p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事(下图中的规则列表gf…)。</p>
-<p>我这里使用的插件为<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/?utm_source=ext_app_menu&pli=1">SwitchyOmega</a>，使用参考步骤</p>
-<ol>
+<h2 id="浏览器rule设置插件">浏览器Rule设置(插件)</h2>
+<p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事(下图中的规则列表gf...)。</p>
+<p>我这里使用的插件为<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/?utm_source=ext_app_menu&amp;pli=1">SwitchyOmega</a>，使用参考步骤</p>
+<ol type="1">
 <li>设置代理的访问情景模式，随意取名，如Clash，设置代理<font color="#dd0000">协议为SOCKS5，代理服务器为127.0.1，代理端口为7890</font>.</li>
 <li>新建自动选择模式，下载规则配置文件，设置规则访问方式，默认为直连，规则为Clash</li>
 <li>平时使用过程中可以在按钮出切换直连（不代理）或系统代理或其他，也可以添加规则，即<font color="#dd0000">发现某个网站内网才能访问或者更快，那我就添加一个规则</font>，同理。</li>
@@ -398,22 +399,19 @@
 </ol>
 <p>界面示意：</p>
 <img src="/posts/43ad9f20/image-20221202004615019.png" class title="image-20221202004615019">
-
 <img src="/posts/43ad9f20/image-20221202004702487.png" class title="image-20221202004702487">
-
 <p>比如这里我设置地理所官网为直连。</p>
 <img src="/posts/43ad9f20/image-20221202004905135.png" class title="image-20221202004905135">
-
-<h2 id="Clash-Rule"><a href="#Clash-Rule" class="headerlink" title="Clash Rule"></a>Clash Rule</h2><blockquote>
+<h2 id="clash-rule">Clash Rule</h2>
+<blockquote>
 <p>clash本身也提供了规则选择，也可以自行搜搜索bypass添加绕行IP和名单等等</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>进入setting界面，选择System Proxy Bypass——Edit</li>
 <li>添加绕行IP或者域名即可，添加后保存</li>
 <li>如<code>“*edu.cn”</code>，<code>10.168.100.*</code>等</li>
 </ol>
 <img src="/posts/43ad9f20/image-20240102154748215.png" class title="image-20240102154748215">
-
 <img src="/posts/43ad9f20/image-20240102155608812.png" class title="image-20240102155608812">
 
     </div>
@@ -489,13 +487,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">249k</span>
+    <span title="站点总字数">244k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:46</span>
+    <span title="站点阅读时长">3:41</span>
   </span>
 </div>
 <div class="busuanzi-count">
