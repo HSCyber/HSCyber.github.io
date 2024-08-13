@@ -2383,11 +2383,11 @@ $$
 <blockquote>
 <p>不感兴趣可以直接跳转到<strong>clash配置</strong>部分。详细的可以参见<a href="https://en.wikipedia.org/wiki/Proxy_server">百科</a>。</p>
 </blockquote>
-<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a href="https://www.google.com/">Google</a>；<a href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的==代理服务器(==如在香港)，它<u>接收请求</u>访问谷歌，再将请求结果<u>返回</u>给本地，充当了一个==桥梁==的作用，这即是代理服务的作用。如下图，几点说明：</p>
+<p>举例来说，本地网络(localhost 127.0.0.1)处于限制无法访问<a href="https://www.google.com/">Google</a>；<a href="https://scholar.google.com.hk/">Google 学术</a>，先将访问<u>请求发送</u>给一个有权访问的<strong>代理服务器</strong>(如在香港)，它<u>接收请求</u>访问谷歌，再将请求“结果”<u>返回</u>给本地，充当了一个“代发”的桥梁作用（类比<strong>代购</strong>），这即是代理服务的作用。如下图，几点说明：</p>
 <ul>
-<li>由于服务器访问很快，所以响应时间基本可以忽略。【当然如果很慢那说明代理不太行hh】</li>
-<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，如SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li>
-<li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加快捷隐私。端口默认为7890。</li>
+<li>由于服务器访问很快，且通常只获取必要数据包，所以响应时间基本可忽略。【当然如果很慢那说明代理不太行】</li>
+<li>Clash等等<strong>工具</strong>充当的作用即是一个可操作界面，能够辅助用户完成这一对话，代理服务商的IP地址获取及服务的沟通。这样功能的软件很多，常见的还有SSR, Shadowrcket, Surge(Mac/ios), Quantumult等等</li>
+<li>网站通常是Https，但是代理目前通常走的是<strong>Socks5协议</strong>，这类协议只<strong>转发数据包</strong>，省略其他各种信息，因此更加<u>快捷隐私</u>。端口默认为7890。</li>
 <li><strong>127.0.0.1</strong>的意思为本地网络即localhost。此外，
 <ul>
 <li>对于视频电影等持续访问操作则涉及到网站的<strong>会话Session</strong>等知识，暂不展开</li>
@@ -2395,10 +2395,10 @@ $$
 </ul></li>
 </ul>
 <img src="/posts/43ad9f20/image-20221202000821947.png" class title="image-20221202000821947">
-<p>有了上述大致认识之后，我们使用和调试网络代理就能够顺手一些。</p>
-<h2 id="clash配置win">Clash配置(win)</h2>
+<p>有了上述大致认识之后，我们后续使用和遇到问题调试网络代理就能够顺手一些。</p>
+<h2 id="clash等代理配置win">Clash等代理配置(win)</h2>
 <blockquote>
-<p>Clash的GitHub 仓库地址2023年底已删库不再维护更新，不知何时更新，目前本地下载链接，ios可使用Shadowrocket，配置需使用已购买app的账号（登陆store下载软件后退出即可），mac可<a href="https://github.com/githubvpn007/ClashX?tab=readme-ov-file">参考</a></p>
+<p>Clash的GitHub 仓库地址2023年底已删库不再维护更新，不知何时复活更新，目前本地下载链接，ios可使用Shadowrocket，配置需使用已购买app的账号（登陆store下载软件后退出即可），mac可<a href="https://github.com/githubvpn007/ClashX?tab=readme-ov-file">参考</a></p>
 </blockquote>
 <p>配置步骤如下，其他平台类似：</p>
 <ol type="1">
@@ -2411,6 +2411,7 @@ $$
 <li>在<font color="#dd0000">Genaral</font>通用设置处，打开系统代理<font color="#dd0000">System Proxy</font>，其他视情况开启</li>
 <li>在<font color="#dd0000">Proxies</font>处选择代理方式及节点，推荐Global模型及自动选择节点模型</li>
 <li>访问网页测试https://www.google.com/，如果可以访问，已经设置完毕</li>
+<li>LAN是允许局域网共享，如果校园网可能遇到流量疯跑的情况，<strong>请关闭</strong></li>
 <li>此外，TUN模式可用于一些需要本地包括cmd均走代理的情景，应需查阅。</li>
 </ol>
 <p>操作示意：</p>
@@ -2419,14 +2420,25 @@ $$
 <img src="/posts/43ad9f20/image-20221202003734064.png" class title="image-20221202003734064">
 <h3 id="android配置">Android配置</h3>
 <img src="/posts/43ad9f20/image-20240511155145218.png" class title="image-20240511155145218">
+<h3 id="iosshadowrocket">IOS：Shadowrocket</h3>
+<p><strong>!共享账户仅允许登录AppStore商店，不能登录iCloud</strong></p>
+<ol type="1">
+<li>打开 app Store</li>
+<li>进入账号设置，下拉到最底部退出账号</li>
+<li>登陆共享账号</li>
+<li>搜索并下载Shadowrocket</li>
+<li>下载完成后退出账号</li>
+<li>复制ssr订阅链接并导入配置，完成后打开代理并选择节点即可</li>
+</ol>
 <h2 id="故障排查">故障排查</h2>
 <blockquote>
 <p>如果平台有故障我会及时更新，尽量使用较新的软件</p>
 </blockquote>
 <ol type="1">
-<li>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新，如果依旧无效或失败，</li>
+<li><strong>更新订阅时关闭代理（先关闭<font color="#dd0000">System Proxy</font>）再添加订阅进行更新</strong>，如果依旧无效或失败，</li>
 <li>检查电脑代理设置，设置为自动检测（会自动调整设置），再更新订阅</li>
 <li>缓存或DNS污染等其他问题导致，重开再更新订阅，或者重启</li>
+<li>依旧无效，进一步交流</li>
 </ol>
 <h2 id="浏览器rule设置插件">浏览器Rule设置(插件)</h2>
 <p>在实际使用过程中，有一个很常见的问题：<font color="#dd0000">有的网站外部代理不能访问（比如单位内网）或者较慢</font>，比如政府网站等等。这时候就自然想到，设置对于不同域名的网站走不同的网络模式，即访问百度时走本地网络，访问谷歌时走代理，那么，那么多网站怎么列全呢？已经有人做了这事(下图中的规则列表gf...)。</p>
