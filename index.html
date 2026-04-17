@@ -535,59 +535,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>此处记录一下：网络代理工具Clash的使用</p>
-<h2 id="工具配置步骤举例">工具配置步骤举例</h2>
-<blockquote>
-<p>此前经典的Clash已删库跑路不再维护，不稳定且代理质量受影响</p>
-</blockquote>
-<p><strong>Fclash</strong>：基于 ClashMeta 的多平台代理客户端[Android、Windows、macOS 和 Linux]，简单易用，开源无广告。下载/更新链接，https://github.com/chen08209/FlClash/releases/</p>
-<h3 id="windows配置举例">Windows配置举例</h3>
-<ol type="1">
-<li>下载对应客户端的压缩包文件，解压到本地文件夹（建议非C盘）</li>
-<li>运行工具 <strong>FlClash.exe</strong>，添加URL订阅链接，即完成导入及更新</li>
-<li>打开代理——切换选择节点（优先实验节点）
-<ol type="1">
-<li>初次配置遵循上述步骤，更新只需更改订阅或刷新即可（<strong>刷新前关闭代理服务</strong>）</li>
-<li>手机版及其他终端类似，仅界面差异。</li>
-<li>若个别连接失败，可能——<u>电脑网络代理设置/本地网络延迟过高</u></li>
-</ol></li>
-<li>服务失效或刷新会及时发布，如无则说明正常使用中。</li>
-</ol>
-<img src="/posts/417dfc25/image-20260417114145017.png" class title="image-20260417114145017">
-<img src="/posts/417dfc25/image-20260417114158476.png" class title="image-20260417114158476">
-<img src="/posts/417dfc25/image-20260417114224969.png" class title="image-20260417114224969">
-<img src="/posts/417dfc25/image-20260417114232180.png" class title="image-20260417114232180">
-<img src="/posts/417dfc25/image-20260417114239781.png" class title="image-20260417114239781">
-<h3 id="ios_shadowrocket">IOS_Shadowrocket</h3>
-<blockquote>
-<p>预先获取 AppStore 小火箭下载共享账户</p>
-</blockquote>
-<p>！共享账户仅限 AppStore 使用，禁止登录 iCloud 账户，否则将导致数据丢失或设备锁定。</p>
-<p>步骤：</p>
-<ol type="1">
-<li>登录 AppStore ，下载 Shadowrocket</li>
-<li>复制订阅链接（Subscribe）、导入订阅/更新配置</li>
-<li>打开并选择节点、切换模式</li>
-</ol>
-<h2 id="代理作用简介">代理/作用简介</h2>
-<ol type="1">
-<li>代理的原理：本地网络受<strong>IP地址</strong>限制无法访问 Google/Github 先将访问请求发送给一个有权访问的<strong>代理服务器</strong>(如在香港)，它接收请求访问网页，再将<strong>请求“结果”</strong>返回给本地，充当了一个“代发”的桥梁作用（类比<strong>代购</strong>）——绕过网络限制、隐藏真实IP地址。</li>
-<li><strong>访问延迟：</strong>服务器访问速度通常很快且只获取必要数据包，所以响应时间基本可忽略，延迟一般接近本地网速。（网站通常是Https，代理通常走的是Socks协议，这类协议只转发数据包，省略其他各种信息，因此更加快捷隐私，端口默认为7890）</li>
-<li><strong>代理工具如Clash/Shadowrocket：</strong>图形化或命令行的代理<strong>客户端</strong>，将协议及代理服务器等<strong>整合</strong>为易用的流量调度、代理管理及网络切换服务。
-<ol type="1">
-<li>代理工具必<strong>须依赖已有的代理服务器（节点）</strong>才能工作，Clash本身不提供代理服务。</li>
-<li>使用步骤：购买了一个代理服务器（机场/订阅）——&gt;安装clash——&gt;导入订阅——&gt;开启代理
-<ul>
-<li><strong>订阅链接</strong>：包含了所有节点的信息和一套基础分流规则</li>
-<li><strong>出站/代理模式</strong>：
-<ul>
-<li>Rule = 智能分流（推荐，日常工作使用），根据规则自动处理国内国外流量</li>
-<li>Global = 全部走代理（特殊场景临时开启）</li>
-<li>Direct = 全部直连（彻底关闭代理效果）</li>
-</ul></li>
-</ul></li>
-</ol></li>
-</ol>
-
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
