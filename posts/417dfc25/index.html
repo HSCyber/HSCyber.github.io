@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="google-site-verification" content="4x9nh5naIcZcY5E724zToiyhCRmgrZmrzuUXHkxhkgU">
+  <meta name="msvalidate.01" content="7C9F9018A6940FE68383AACA35759B24">
+  <meta name="baidu-site-verification" content="M6SNHjlHjH">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300italic,400,400italic,700,700italic%7CNoto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" integrity="sha256-jTIdiMuX/e3DGJUGwl3pKSxuc6YOuqtJYkM0bGQESA4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/green/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hscyber.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="此处记录一下：网络代理工具Clash的使用 工具配置步骤举例  此前经典的Clash已删库跑路不再维护，不稳定且代理质量受影响  Fclash：基于 ClashMeta 的多平台代理客户端[Android、Windows、macOS 和 Linux]，简单易用，开源无广告。下载&#x2F;更新链接，https:&#x2F;&#x2F;github.com&#x2F;chen08209&#x2F;FlClash&#x2F;releases&#x2F; Wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络相关(2):代理及其工具使用">
+<meta property="og:url" content="https://hscyber.github.io/posts/417dfc25/">
+<meta property="og:site_name" content="Huangs&#39;s Notes">
+<meta property="og:description" content="此处记录一下：网络代理工具Clash的使用 工具配置步骤举例  此前经典的Clash已删库跑路不再维护，不稳定且代理质量受影响  Fclash：基于 ClashMeta 的多平台代理客户端[Android、Windows、macOS 和 Linux]，简单易用，开源无广告。下载&#x2F;更新链接，https:&#x2F;&#x2F;github.com&#x2F;chen08209&#x2F;FlClash&#x2F;releases&#x2F; Wi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/1776396917565-5.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/1776396917564-1.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/1776396917564-2.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/1776396917564-3.png">
+<meta property="og:image" content="https://hscyber.github.io/posts/undefined/1776396917564-4.png">
+<meta property="article:published_time" content="2026-04-17T02:36:39.000Z">
+<meta property="article:modified_time" content="2026-04-17T03:38:08.627Z">
+<meta property="article:author" content="huangsh">
+<meta property="article:tag" content="Clash">
+<meta property="article:tag" content="Proxy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hscyber.github.io/posts/undefined/1776396917565-5.png">
+
+
+<link rel="canonical" href="https://hscyber.github.io/posts/417dfc25/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hscyber.github.io/posts/417dfc25/","path":"posts/417dfc25/","title":"网络相关(2):代理及其工具使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>网络相关(2):代理及其工具使用 | Huangs's Notes</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Huangs's Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Huangs's Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">明天的事后天就知道了</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-docs"><a href="/docs/" rel="section"><i class="fa fa-book fa-fw"></i>文档</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">工具配置步骤举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#windows%E9%85%8D%E7%BD%AE%E4%B8%BE%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">Windows配置举例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ios_shadowrocket"><span class="nav-number">1.2.</span> <span class="nav-text">IOS_Shadowrocket</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%90%86%E4%BD%9C%E7%94%A8%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">代理&#x2F;作用简介</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="huangsh"
+      src="/uploads/avatar3.jpg">
+  <p class="site-author-name" itemprop="name">huangsh</p>
+  <div class="site-description" itemprop="description">Stay hungry. Stay foolish.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">115</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">91</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/HSCyber" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;HSCyber" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/1126456109@qq.com" title="E-Mail → 1126456109@qq.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hscyber.github.io/posts/417dfc25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar3.jpg">
+      <meta itemprop="name" content="huangsh">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huangs's Notes">
+      <meta itemprop="description" content="Stay hungry. Stay foolish.">
+    </span>
+    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="网络相关(2):代理及其工具使用 | Huangs's Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          网络相关(2):代理及其工具使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-04-17 10:36:39" itemprop="dateCreated datePublished" datetime="2026-04-17T10:36:39+08:00">2026-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/417dfc25/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/417dfc25/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+		  
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>此处记录一下：网络代理工具Clash的使用</p>
+<h2 id="工具配置步骤举例">工具配置步骤举例</h2>
+<blockquote>
+<p>此前经典的Clash已删库跑路不再维护，不稳定且代理质量受影响</p>
+</blockquote>
+<p><strong>Fclash</strong>：基于 ClashMeta 的多平台代理客户端[Android、Windows、macOS 和 Linux]，简单易用，开源无广告。下载/更新链接，https://github.com/chen08209/FlClash/releases/</p>
+<h3 id="windows配置举例">Windows配置举例</h3>
+<ol type="1">
+<li>下载对应客户端的压缩包文件，解压到本地文件夹（建议非C盘）</li>
+<li>运行工具 <strong>FlClash.exe</strong>，添加URL订阅链接，即完成导入及更新</li>
+<li>打开代理——切换选择节点（优先实验节点）
+<ol type="1">
+<li>初次配置遵循上述步骤，更新只需更改订阅或刷新即可（<strong>刷新前关闭代理服务</strong>）</li>
+<li>手机版及其他终端类似，仅界面差异。</li>
+<li>若个别连接失败，可能——<u>电脑网络代理设置/本地网络延迟过高</u></li>
+</ol></li>
+<li>服务失效或刷新会及时发布，如无则说明正常使用中。</li>
+</ol>
+<img src="/posts/undefined/1776396917565-5.png" class title="img">
+<img src="/posts/undefined/1776396917564-1.png" class title="img">
+<img src="/posts/undefined/1776396917564-2.png" class title="img">
+<img src="/posts/undefined/1776396917564-3.png" class title="img">
+<img src="/posts/undefined/1776396917564-4.png" class title="img">
+<h3 id="ios_shadowrocket">IOS_Shadowrocket</h3>
+<blockquote>
+<p>预先获取 AppStore 小火箭下载共享账户</p>
+</blockquote>
+<p>！共享账户仅限 AppStore 使用，禁止登录 iCloud 账户，否则将导致数据丢失或设备锁定。</p>
+<p>步骤：</p>
+<ol type="1">
+<li>登录 AppStore ，下载 Shadowrocket</li>
+<li>复制订阅链接（Subscribe）、导入订阅/更新配置</li>
+<li>打开并选择节点、切换模式</li>
+</ol>
+<h2 id="代理作用简介">代理/作用简介</h2>
+<ol type="1">
+<li>代理的原理：本地网络受<strong>IP地址</strong>限制无法访问 Google/Github 先将访问请求发送给一个有权访问的<strong>代理服务器</strong>(如在香港)，它接收请求访问网页，再将<strong>请求“结果”</strong>返回给本地，充当了一个“代发”的桥梁作用（类比<strong>代购</strong>）——绕过网络限制、隐藏真实IP地址。</li>
+<li><strong>访问延迟：</strong>服务器访问速度通常很快且只获取必要数据包，所以响应时间基本可忽略，延迟一般接近本地网速。（网站通常是Https，代理通常走的是Socks协议，这类协议只转发数据包，省略其他各种信息，因此更加快捷隐私，端口默认为7890）</li>
+<li><strong>代理工具如Clash/Shadowrocket：</strong>图形化或命令行的代理<strong>客户端</strong>，将协议及代理服务器等<strong>整合</strong>为易用的流量调度、代理管理及网络切换服务。
+<ol type="1">
+<li>代理工具必<strong>须依赖已有的代理服务器（节点）</strong>才能工作，Clash本身不提供代理服务。</li>
+<li>使用步骤：购买了一个代理服务器（机场/订阅）——&gt;安装clash——&gt;导入订阅——&gt;开启代理
+<ul>
+<li><strong>订阅链接</strong>：包含了所有节点的信息和一套基础分流规则</li>
+<li><strong>出站/代理模式</strong>：
+<ul>
+<li>Rule = 智能分流（推荐，日常工作使用），根据规则自动处理国内国外流量</li>
+<li>Global = 全部走代理（特殊场景临时开启）</li>
+<li>Direct = 全部直连（彻底关闭代理效果）</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>huangsh
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://hscyber.github.io/posts/417dfc25/" title="网络相关(2):代理及其工具使用">https://hscyber.github.io/posts/417dfc25/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Clash/" rel="tag"><i class="fa fa-tag"></i> Clash</a>
+              <a href="/tags/Proxy/" rel="tag"><i class="fa fa-tag"></i> Proxy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/43084fc1/" rel="prev" title="实验室私有云服务器(1)：初步使用及文件传输">
+                  <i class="fa fa-chevron-left"></i> 实验室私有云服务器(1)：初步使用及文件传输
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2026</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huangsh</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">245k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:43</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.7/pdfobject.min.js","integrity":"sha256-ph3Dk89VmuTVXG6x/RDzk53SU9LPdAh1tpv0UvnDZ2I="},"url":"/lib/pdf/web/viewer"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"ams","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/quicklink@2.2.0/dist/quicklink.umd.js" integrity="sha256-4kQf9z5ntdQrzsBC3YSHnEz02Z9C1UeW/E9OgnvlzSY=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://hscyber.github.io/posts/417dfc25/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"en","enable":true,"serverURL":"https://hsc-yber-comments-2vbu21rti-hscyber.vercel.app/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"locale":{"placeholder":"Please use international networks. 评论功能大陆网屏蔽"},"avatar":"mm","meta":["nick","mail"],"pageSize":10,"visitor":false,"comment_count":false,"requiredFields":[],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/posts/417dfc25/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

@@ -35,7 +35,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hscyber.github.io/posts/7188d134/image-20231224235322916.png">
 <meta property="article:published_time" content="2023-12-24T15:23:03.000Z">
-<meta property="article:modified_time" content="2024-01-11T08:55:52.129Z">
+<meta property="article:modified_time" content="2024-10-02T04:43:44.944Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Geopandas">
 <meta property="article:tag" content="Pandas">
@@ -106,7 +106,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -178,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -340,8 +340,8 @@
 <li>如果是<strong>小文件</strong>，或者需要考虑到不同用户之间的<strong>协作</strong>以及<strong>快速预览或制图</strong>等，建议用常规格式；</li>
 <li>若涉及较大数据处理、中间过程文件以及单个数据集的处理流程等，推荐使用二进制格式如<strong>Parquet和feather格式</strong>。</li>
 <li>只考虑速度，使用——feather，兼顾存储空间和共享——Parquet</li>
-<li>对于Geopandas数据——<u>强烈建议使用feather</u>，中间的过程文件尤建议以Parquet/feather文件存储【<strong>QGIS可以直接查看feather文件</strong>】。读写速度差异见下文</li>
-<li>考虑到文件的大小，则优先使用Parquet，且使用<strong>列筛选 columns</strong>可以加速读取时间</li>
+<li>对于Geopandas数据——<u>强烈建议使用feather或parquet</u>，中间的过程文件尤建议以Parquet/feather文件存储【<strong>QGIS可以直接查看feather文件</strong>】。读写速度差异见下文</li>
+<li>考虑到文件存储大小，则优先使用Parquet，且使用<strong>列筛选 columns</strong>可加速读取时间</li>
 </ul>
 <h2 id="pandas读写">pandas读写</h2>
 <p>参考：</p>
@@ -439,7 +439,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -450,13 +450,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">245k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:43</span>
   </span>
 </div>
 <div class="busuanzi-count">

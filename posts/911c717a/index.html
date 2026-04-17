@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://hscyber.github.io/posts/911c717a/image-20220827215106407.png">
 <meta property="og:image" content="https://hscyber.github.io/posts/911c717a/image-20220827213619426.png">
 <meta property="article:published_time" content="2022-08-27T13:55:07.000Z">
-<meta property="article:modified_time" content="2024-01-11T08:43:08.071Z">
+<meta property="article:modified_time" content="2024-11-26T05:37:40.996Z">
 <meta property="article:author" content="huangsh">
 <meta property="article:tag" content="Python环境">
 <meta property="article:tag" content="Conda">
@@ -107,7 +107,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">91</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">114</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">115</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -179,7 +179,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">114</span>
+          <span class="site-state-item-count">115</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -313,14 +313,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>1.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -344,7 +344,8 @@
 <ol type="1">
 <li>导出环境</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda activate geo39</span><br><span class="line">conda env export &gt; C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
+<p>--no-builds项会去掉特定于平台的构建信息，这样可以避免平台相关的依赖问题，确保 <code>.yml</code> 文件更具可移植性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda activate geo39</span><br><span class="line">conda env export &gt; geo_39.yml</span><br><span class="line">conda env export &gt; C:\Users\huangs\Desktop\test\geo_39.yml</span><br><span class="line">conda env export &gt; --no-builds C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
 <ol start="2" type="1">
 <li>其他人的电脑或者平台上安装环境，==有网络==</li>
 </ol>
@@ -447,7 +448,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2026</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -458,13 +459,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">244k</span>
+    <span title="站点总字数">245k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">3:42</span>
+    <span title="站点阅读时长">3:43</span>
   </span>
 </div>
 <div class="busuanzi-count">

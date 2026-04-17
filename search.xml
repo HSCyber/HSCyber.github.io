@@ -116,6 +116,71 @@
       </categories>
   </entry>
   <entry>
+    <title>网络相关(2):代理及其工具使用</title>
+    <url>/posts/417dfc25/</url>
+    <content><![CDATA[<p>此处记录一下：网络代理工具Clash的使用</p>
+<h2 id="工具配置步骤举例">工具配置步骤举例</h2>
+<blockquote>
+<p>此前经典的Clash已删库跑路不再维护，不稳定且代理质量受影响</p>
+</blockquote>
+<p><strong>Fclash</strong>：基于 ClashMeta 的多平台代理客户端[Android、Windows、macOS 和 Linux]，简单易用，开源无广告。下载/更新链接，https://github.com/chen08209/FlClash/releases/</p>
+<h3 id="windows配置举例">Windows配置举例</h3>
+<ol type="1">
+<li>下载对应客户端的压缩包文件，解压到本地文件夹（建议非C盘）</li>
+<li>运行工具 <strong>FlClash.exe</strong>，添加URL订阅链接，即完成导入及更新</li>
+<li>打开代理——切换选择节点（优先实验节点）
+<ol type="1">
+<li>初次配置遵循上述步骤，更新只需更改订阅或刷新即可（<strong>刷新前关闭代理服务</strong>）</li>
+<li>手机版及其他终端类似，仅界面差异。</li>
+<li>若个别连接失败，可能——<u>电脑网络代理设置/本地网络延迟过高</u></li>
+</ol></li>
+<li>服务失效或刷新会及时发布，如无则说明正常使用中。</li>
+</ol>
+<img src="/posts/undefined/1776396917565-5.png" class title="img">
+<img src="/posts/undefined/1776396917564-1.png" class title="img">
+<img src="/posts/undefined/1776396917564-2.png" class title="img">
+<img src="/posts/undefined/1776396917564-3.png" class title="img">
+<img src="/posts/undefined/1776396917564-4.png" class title="img">
+<h3 id="ios_shadowrocket">IOS_Shadowrocket</h3>
+<blockquote>
+<p>预先获取 AppStore 小火箭下载共享账户</p>
+</blockquote>
+<p>！共享账户仅限 AppStore 使用，禁止登录 iCloud 账户，否则将导致数据丢失或设备锁定。</p>
+<p>步骤：</p>
+<ol type="1">
+<li>登录 AppStore ，下载 Shadowrocket</li>
+<li>复制订阅链接（Subscribe）、导入订阅/更新配置</li>
+<li>打开并选择节点、切换模式</li>
+</ol>
+<h2 id="代理作用简介">代理/作用简介</h2>
+<ol type="1">
+<li>代理的原理：本地网络受<strong>IP地址</strong>限制无法访问 Google/Github 先将访问请求发送给一个有权访问的<strong>代理服务器</strong>(如在香港)，它接收请求访问网页，再将<strong>请求“结果”</strong>返回给本地，充当了一个“代发”的桥梁作用（类比<strong>代购</strong>）——绕过网络限制、隐藏真实IP地址。</li>
+<li><strong>访问延迟：</strong>服务器访问速度通常很快且只获取必要数据包，所以响应时间基本可忽略，延迟一般接近本地网速。（网站通常是Https，代理通常走的是Socks协议，这类协议只转发数据包，省略其他各种信息，因此更加快捷隐私，端口默认为7890）</li>
+<li><strong>代理工具如Clash/Shadowrocket：</strong>图形化或命令行的代理<strong>客户端</strong>，将协议及代理服务器等<strong>整合</strong>为易用的流量调度、代理管理及网络切换服务。
+<ol type="1">
+<li>代理工具必<strong>须依赖已有的代理服务器（节点）</strong>才能工作，Clash本身不提供代理服务。</li>
+<li>使用步骤：购买了一个代理服务器（机场/订阅）——&gt;安装clash——&gt;导入订阅——&gt;开启代理
+<ul>
+<li><strong>订阅链接</strong>：包含了所有节点的信息和一套基础分流规则</li>
+<li><strong>出站/代理模式</strong>：
+<ul>
+<li>Rule = 智能分流（推荐，日常工作使用），根据规则自动处理国内国外流量</li>
+<li>Global = 全部走代理（特殊场景临时开启）</li>
+<li>Direct = 全部直连（彻底关闭代理效果）</li>
+</ul></li>
+</ul></li>
+</ol></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Tools</category>
+      </categories>
+      <tags>
+        <tag>Clash</tag>
+        <tag>Proxy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>实验室私有云服务器(1)：初步使用及文件传输</title>
     <url>/posts/43084fc1/</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -149,8 +214,8 @@
 <li>如果是<strong>小文件</strong>，或者需要考虑到不同用户之间的<strong>协作</strong>以及<strong>快速预览或制图</strong>等，建议用常规格式；</li>
 <li>若涉及较大数据处理、中间过程文件以及单个数据集的处理流程等，推荐使用二进制格式如<strong>Parquet和feather格式</strong>。</li>
 <li>只考虑速度，使用——feather，兼顾存储空间和共享——Parquet</li>
-<li>对于Geopandas数据——<u>强烈建议使用feather</u>，中间的过程文件尤建议以Parquet/feather文件存储【<strong>QGIS可以直接查看feather文件</strong>】。读写速度差异见下文</li>
-<li>考虑到文件的大小，则优先使用Parquet，且使用<strong>列筛选 columns</strong>可以加速读取时间</li>
+<li>对于Geopandas数据——<u>强烈建议使用feather或parquet</u>，中间的过程文件尤建议以Parquet/feather文件存储【<strong>QGIS可以直接查看feather文件</strong>】。读写速度差异见下文</li>
+<li>考虑到文件存储大小，则优先使用Parquet，且使用<strong>列筛选 columns</strong>可加速读取时间</li>
 </ul>
 <h2 id="pandas读写">pandas读写</h2>
 <p>参考：</p>
@@ -3266,7 +3331,8 @@ $$
 <ol type="1">
 <li>导出环境</li>
 </ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda activate geo39</span><br><span class="line">conda env export &gt; C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
+<p>--no-builds项会去掉特定于平台的构建信息，这样可以避免平台相关的依赖问题，确保 <code>.yml</code> 文件更具可移植性</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">conda activate geo39</span><br><span class="line">conda env export &gt; geo_39.yml</span><br><span class="line">conda env export &gt; C:\Users\huangs\Desktop\test\geo_39.yml</span><br><span class="line">conda env export &gt; --no-builds C:\Users\huangs\Desktop\test\geo_39.yml</span><br></pre></td></tr></table></figure>
 <ol start="2" type="1">
 <li>其他人的电脑或者平台上安装环境，==有网络==</li>
 </ol>
